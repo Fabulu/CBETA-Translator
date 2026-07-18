@@ -1,0 +1,234 @@
+{
+  "SchemaVersion": 1,
+  "Entry": {
+    "Id": "t_61987dac7052",
+    "SourceTerm": "賊不打貧兒家",
+    "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+    "CreatedBy": "Codex Iriya construction lane C evidence-first",
+    "WrittenUtc": "2026-07-18T07:36:25.348928Z",
+    "Senses": [
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "a thief does not strike a poor household",
+        "AlternateTargets": [
+          "thieves do not rob a destitute family",
+          "a robber leaves the poor house alone"
+        ],
+        "SearchAliases": [
+          "thief does not rob poor house",
+          "nothing worth stealing",
+          "robber leaves poor family",
+          "poor household thief"
+        ],
+        "Status": "preferred",
+        "Validation": "multi-source",
+        "Note": "Four distinct encounter deployments span four independent works.",
+        "Occurrences": [
+          {
+            "RelPath": "X/X82/X82n1571.xml",
+            "FromLb": "0217a08",
+            "ToLb": "0217a09",
+            "Kwic": "賊不打貧兒家。一日，問一：祖意、教意是同是別？",
+            "MasterName": null,
+            "Curated": true,
+            "ContextMasters": [],
+            "AttributionNote": "Source record (X/X82/X82n1571.xml). Complete Five Lamps (Vols. 34–120). Tieguan Fashu rejects a congratulation from Fuyou with a shout and the poor-house proverb. Exact identified speaker: Tieguan Fashu; retained as an identified unlinked master because the current lineage roster has no exact canonical link. Unlinked context figure: Tieguan Fashu (utterer); identity and role are preserved here without a broken ContextMasters link.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "賊不打貧兒家。一日，問一：祖意、教意是同是別？",
+              "GrammaticalSubject": "Tieguan Fashu",
+              "SpeechFrame": "Tieguan Fashu rejects a congratulation from Fuyou with a shout and the poor-house proverb.",
+              "FullCaseDecision": "Tieguan Fashu owns the exact headword-bearing turn."
+            },
+            "ActorAttribution": {
+              "Status": "identified-unlinked-master",
+              "Kind": "full-case-grammar-adjudication",
+              "ActorLabel": "Tieguan Fashu",
+              "ActorRole": "utterer",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "Tieguan Fashu: the complete retained case and governing speech frame identify Tieguan Fashu as the exact utterer of the headword; all six attribution rungs were checked, but no exact canonical roster link exists. Context role preserved without link: Tieguan Fashu (utterer).",
+              "ReviewedBy": "Codex strict-roster repair lane A",
+              "ReviewedUtc": "2026-07-18T00:00:00Z"
+            }
+          },
+          {
+            "RelPath": "P/P154/P154n1519.xml",
+            "FromLb": "0618b07",
+            "ToLb": "0618b09",
+            "Kwic": "京兆草堂和尚曾叅海昌昌問什麼處來師云道塲來昌云這裏是什麼所在師云賊不打貧兒家。",
+            "MasterName": "Caotang Shanqing",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Caotang Shanqing",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "AttributionNote": "Source record (P/P154/P154n1519.xml). Essential Compendium of the Chan Gate, Main and Continuation. Caotang Shanqing answers Haichang’s question about what kind of place this is with the poor-house proverb.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "京兆草堂和尚曾叅海昌昌問什麼處來師云道塲來昌云這裏是什麼所在師云賊不打貧兒家。",
+              "GrammaticalSubject": "Caotang Shanqing",
+              "SpeechFrame": "Caotang Shanqing answers Haichang’s question about what kind of place this is with the poor-house proverb.",
+              "FullCaseDecision": "Caotang Shanqing owns the exact headword-bearing turn."
+            }
+          },
+          {
+            "RelPath": "X/X80/X80n1565.xml",
+            "FromLb": "0100c11",
+            "ToLb": "0100c13",
+            "Kwic": "僧問。十二年前為甚麼降魔。師曰。賊不打貧兒家。曰。十二年後為甚麼不降魔。師曰。賊不打貧兒家。",
+            "MasterName": null,
+            "Curated": true,
+            "ContextMasters": [],
+            "AttributionNote": "Source record (X/X80/X80n1565.xml). Five Lamps Compendium. Qilin answers both why he subdued demons twelve years earlier and why he later stopped with the identical poor-house proverb.",
+            "HeadwordSpanReview": {
+              "Count": 2,
+              "Disposition": "single-actor-single-turn-repetition",
+              "GrammarEvidence": "Qilin answers both why he subdued demons twelve years earlier and why he later stopped with the identical poor-house proverb."
+            },
+            "ActorAttribution": {
+              "Status": "identified-unlinked-master",
+              "Kind": "Chan master",
+              "ActorLabel": "Qilin",
+              "ActorRole": "utterer",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "The enclosing section explicitly names 湖南祇林和尚 (Qilin), and both 師曰 frames assign him the repeated headword-bearing answers; the source identity is retained without inventing a lineage link.",
+              "ReviewedBy": "Codex Iriya construction lane C",
+              "ReviewedUtc": "2026-07-18T07:36:25.348830Z"
+            },
+            "DraftActorProof": {
+              "ExactHeadwordClause": "僧問。十二年前為甚麼降魔。師曰。賊不打貧兒家。曰。十二年後為甚麼不降魔。師曰。賊不打貧兒家。",
+              "GrammaticalSubject": "Qilin",
+              "SpeechFrame": "Qilin answers both why he subdued demons twelve years earlier and why he later stopped with the identical poor-house proverb.",
+              "FullCaseDecision": "The enclosing section explicitly names 湖南祇林和尚 (Qilin), and both 師曰 frames assign him the repeated headword-bearing answers; the source identity is retained without inventing a lineage link."
+            }
+          },
+          {
+            "RelPath": "J/J26/J26nB187.xml",
+            "FromLb": "0724c24",
+            "ToLb": "0724c25",
+            "Kwic": "「計窮力盡時如何？」師云：「賊不打貧兒家。」",
+            "MasterName": "Tian'an Sheng",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Tian'an Sheng",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "AttributionNote": "Source record (J/J26/J26nB187.xml). Recorded Sayings of Chan Master Tian’an Sheng. Tian'an Sheng answers what happens when plans and strength are exhausted with the poor-house proverb.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "「計窮力盡時如何？」師云：「賊不打貧兒家。」",
+              "GrammaticalSubject": "Tian'an Sheng",
+              "SpeechFrame": "Tian'an Sheng answers what happens when plans and strength are exhausted with the poor-house proverb.",
+              "FullCaseDecision": "Tian'an Sheng owns the exact headword-bearing turn."
+            }
+          }
+        ],
+        "SourceTexts": [
+          "X/X82/X82n1571.xml",
+          "P/P154/P154n1519.xml",
+          "X/X80/X80n1565.xml",
+          "J/J26/J26nB187.xml"
+        ],
+        "RelatedMasters": [
+          "Caotang Shanqing",
+          "Tian'an Sheng"
+        ],
+        "RelatedTerms": [
+          "賊",
+          "貧兒家",
+          "賊過後張弓",
+          "勾賊破家"
+        ],
+        "ClaimAnchors": [],
+        "Explanation": "A thief does not strike a poor household because there is nothing there worth taking. Chan speakers turn the proverb against an interlocutor: the person or position under discussion possesses no treasure, attainment, or teaching goods for the thief to seize. Tieguan Fashu shouts it after being congratulated; Caotang answers a question about his location with it; Qilin gives the same answer for both his earlier and later conduct; and Tian'an uses it when asked what happens when plans and strength are exhausted.",
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "A thief does not strike a poor household because there is nothing there worth taking. Chan speakers turn the proverb against an interlocutor: the person or position under discussion possesses no treasure, attainment, or teaching goods for the thief to seize.",
+          "EvidenceBody": [
+            "Tieguan Fashu shouts it after being congratulated; Caotang answers a question about his location with it; Qilin gives the same answer for both his earlier and later conduct; and Tian'an uses it when asked what happens when plans and strength are exhausted."
+          ]
+        },
+        "DraftEvidence": {
+          "OpeningClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3",
+            "o4"
+          ],
+          "ZenBend": "The household proverb becomes a compact public put-down denying that the target has anything worth stealing.",
+          "CounterexampleOrLimit": "The phrase denies valuables in its immediate encounters; it does not define literal poverty or authorize a general judgment about every person called poor.",
+          "DifferentThingTest": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "the thief’s refusal to strike",
+              "the poor household’s lack of valuables"
+            ],
+            "Reason": "The refusal follows from the same proverb’s stated household condition; its different encounter targets are applications, not senses."
+          },
+          "AliasRationale": "Probes preserve thief or robber, poor house or family, and the absence of anything worth taking.",
+          "ModifierControls": [
+            {
+              "Control": "negative target selection",
+              "Finding": "不打 says the thief does not attack; 貧兒家 supplies the reason-bearing target."
+            }
+          ],
+          "FamilyControls": [
+            {
+              "Term": "賊",
+              "Finding": "The thief alone lacks the poor-house verdict."
+            },
+            {
+              "Term": "貧兒家",
+              "Finding": "The poor household alone lacks the thief’s refusal."
+            },
+            {
+              "Term": "賊過後張弓",
+              "Finding": "A separate thief proverb about acting too late."
+            },
+            {
+              "Term": "勾賊破家",
+              "Finding": "A different image in which inviting a thief ruins the household."
+            }
+          ],
+          "IndependentWorkIds": [
+            "work:wudeng-quanshu",
+            "chan:zongmen-tongyao-zhengxu",
+            "work:X80n1565",
+            "work:J26nB187"
+          ]
+        },
+        "DraftAcceptedDerivedFields": {
+          "SourceTexts": [
+            "X/X82/X82n1571.xml",
+            "P/P154/P154n1519.xml",
+            "X/X80/X80n1565.xml",
+            "J/J26/J26nB187.xml"
+          ],
+          "RelatedMasters": [
+            "Caotang Shanqing",
+            "Tian'an Sheng"
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "iriya-release-gate-repair-closure-v1",
+  "lane": "C",
+  "position": 7,
+  "id": "t_b1230513fb42",
+  "term": "亡鋒結舌",
+  "hardPass": true,
+  "resolution": {
+    "masterName": "Mi'an Xianjie",
+    "role": "direct hall utterer",
+    "source": "T/T47/T47n1999.xml",
+    "sourceLines": [
+      "0968a05",
+      "0968a06",
+      "0968a07",
+      "0968a08"
+    ],
+    "finding": "The standalone 上堂 paragraph has Mi’an physically perform 拈起 and directly continue through 良久云; it contains no 舉, 引, 古人道, or quotation marker. The former English verb raises caused a validator false positive.",
+    "rosterEdited": false
+  },
+  "artifacts": {
+    "worksheet": "fresh-build/entries/t_b1230513fb42/evidence.draft.json",
+    "worksheetSha256": "c1a53a0f5ebce9cde940d126542d72ff874f5f0a5dfcb84f60de6009b00afd6c",
+    "entry": "fresh-build/entries/t_b1230513fb42/entry.v2.json",
+    "entrySha256": "459d637d2fca82d7bad4570c6840b42173bb7c3695ca6cb140852a5ce098da98",
+    "compile": "maintenance/iriya-C007-release-gate-repair-compile.json",
+    "singleAttribution": "maintenance/iriya-C007-release-gate-repair-attribution.json",
+    "singleExact": "maintenance/iriya-C007-release-gate-repair-zc.json",
+    "full250": "maintenance/iriya-C007-release-gate-repair-full250.json",
+    "regression": "maintenance/iriya-C007-release-gate-repair-regression.json",
+    "auditSha256": "35c9df8c8bf31cc721d71a3605a46ca95fce30ab03254681e98647463782053e"
+  },
+  "gates": {
+    "compileErrors": 0,
+    "singleAttributionHardFailures": 0,
+    "singleExactFailures": 0,
+    "full250AttributionHardFailures": 0,
+    "full250ExactFailures": 0,
+    "full250RoundtripFailures": 0,
+    "full250RoundtripChecked": 250,
+    "regressionFailures": 0
+  },
+  "aggregateCohortStatus": {
+    "hardPass": false,
+    "nonRepairReason": "99 pre-existing public-feedback review flags remain; release-blocking attribution, exactness, and parity dimensions pass.",
+    "publicFeedbackFlagged": 99
+  },
+  "installPerformed": false,
+  "mergePerformed": false,
+  "selfReviewPerformed": false
+}

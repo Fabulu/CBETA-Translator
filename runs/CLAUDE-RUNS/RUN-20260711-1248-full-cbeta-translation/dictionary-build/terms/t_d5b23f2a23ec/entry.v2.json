@@ -1,0 +1,117 @@
+{
+  "Id": "t_d5b23f2a23ec",
+  "SourceTerm": "罪不重科",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "CreatedBy": "Codex Iriya construction lane C evidence-first",
+  "WrittenUtc": "2026-07-18T06:23:46.258592Z",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "do not impose a heavier penalty than the offense",
+      "AlternateTargets": [
+        "the fault does not warrant a doubled punishment",
+        "the offense is not punished twice"
+      ],
+      "SearchAliases": [
+        "punishment fit the offense",
+        "no double punishment",
+        "penalty not heavier than fault",
+        "do not overpunish"
+      ],
+      "Status": "preferred",
+      "Validation": "multi-source",
+      "Note": "Four distinct rebuke and appraisal deployments span three independent works; no recension supplies depth.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X78/X78n1556.xml",
+          "FromLb": "0653b20",
+          "ToLb": "0653b21",
+          "Kwic": "有僧出禮拜，起云：請師答話。師便棒。僧曰：豈無方便？師云：罪不重科。",
+          "MasterName": "Xuedou Chongxian",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Xuedou Chongxian",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (X/X78/X78n1556.xml). Jianzhong Jingguo Continued Lamp Record. Xuedou Chongxian answers his questioner's plea for an accommodating means after striking him by saying the offense does not warrant a heavier penalty."
+        },
+        {
+          "RelPath": "D/D48/D48n8939.xml",
+          "FromLb": "0662b01",
+          "ToLb": "0662b03",
+          "Kwic": "問非時親覲請師一句師云對眾作麼生舉云㩀現定舉師云放你三十棒云有什麼罪過師云罪不重科",
+          "MasterName": "Dongshan Shouchu",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Dongshan Shouchu",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (D/D48/D48n8939.xml). Recorded Sayings of Ancient Venerable Masters. Dongshan Shouchu answers the monk’s question about his fault after assigning thirty blows with the legal maxim."
+        },
+        {
+          "RelPath": "X/X66/X66n1297.xml",
+          "FromLb": "0666c06",
+          "ToLb": "0666c08",
+          "Kwic": "靈巖儲云：欽山祇圖賣弄風流，不顧魂消夢斷。巖頭雖然憲章國法，爭奈罪不重科？",
+          "MasterName": "Jiqi Hongchu",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Jiqi Hongchu",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (X/X66/X66n1297.xml). Tradition Mirror Grove. Jiqi Hongchu says Yantou upholds the state law but the offense does not warrant the added punishment."
+        },
+        {
+          "RelPath": "X/X66/X66n1297.xml",
+          "FromLb": "0495b09",
+          "ToLb": "0495b09",
+          "Kwic": "罪不重科，還甘也無？問取趙州，東壁葫蘆。",
+          "MasterName": null,
+          "Curated": true,
+          "ContextMasters": [],
+          "AttributionNote": "Source record (X/X66/X66n1297.xml). Tradition Mirror Grove. The compilation’s editorial voice asks whether the listener accepts that the offense does not warrant a heavier penalty, then points to Zhaozhou’s east-wall gourd.",
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "compilation commentary",
+            "ActorLabel": "the compilation’s editorial voice",
+            "ActorRole": "compiler",
+            "GrammarEvidence": "The headword appears in an unattributed editorial capping comment between the preceding verse set and the next Gaofeng item; no 師云 or named quotation governs it.",
+            "ReviewedBy": "Codex Iriya construction lane C",
+            "ReviewedUtc": "2026-07-18T06:23:46.258592Z"
+          }
+        }
+      ],
+      "SourceTexts": [
+        "X/X78/X78n1556.xml",
+        "D/D48/D48n8939.xml",
+        "X/X66/X66n1297.xml"
+      ],
+      "RelatedMasters": [
+        "Xuedou Chongxian",
+        "Dongshan Shouchu",
+        "Jiqi Hongchu"
+      ],
+      "RelatedTerms": [
+        "三十棒",
+        "罪過",
+        "以強陵弱",
+        "兩重公案"
+      ],
+      "ClaimAnchors": [],
+      "Explanation": "A legal maxim says that a fault is not punished again or beyond its weight. Chan records turn it into a compact reply after a blow, a rebuke of excessive handling, and a question about whether the listener accepts the ruling. Xuedou gives it after his questioner protests that a blow lacked accommodation; Dongshan gives it after assigning thirty blows; Jiqi uses it while comparing a case to state law; and an anthology’s editorial cap asks whether the audience accepts it."
+    }
+  ]
+}

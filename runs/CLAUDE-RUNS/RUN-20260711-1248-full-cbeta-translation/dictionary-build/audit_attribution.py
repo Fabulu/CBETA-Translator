@@ -18,7 +18,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[3]
-ROSTER_PATH = REPO / "Assets" / "Data" / "master-dates.json"
+ROSTER_PATH = REPO / "Assets" / "Data" / "lineage-masters.json"
 PENDING_ROSTER_PATH = HERE / "fresh-build" / "pending-roster.json"
 
 CJK_RE = re.compile(r"[\u3400-\u9fff\uf900-\ufaff]+")
@@ -29,6 +29,7 @@ VAGUE_RE = re.compile(
 )
 PLACEHOLDER_ACTOR_RE = re.compile(
     r"\b(?:the\s+)?(?:fully\s+)?reviewed\s+(?:source\s+)?voice\b"
+    r"|\b(?:the\s+)?case-specific\s+unnamed\s+voice\b"
     r"|\b(?:the\s+)?reviewed\s+compilation\s+voice\b"
     r"|\b(?:the\s+)?named\s+section\s+speaker\s+or\s+quoted\s+case\s+voice\b"
     r"|\b(?:the\s+)?verse\s+or\s+address\s+invoking\b"
@@ -39,7 +40,9 @@ PLACEHOLDER_ACTOR_RE = re.compile(
     r"|\b(?:the\s+)?verse\s+voice\b"
     r"|\b(?:the\s+)?case\s+or\s+verse\s+narrator\b"
     r"|\b(?:the\s+)?unresolved\s+(?:quoted\s+)?speaker\b"
-    r"|\b(?:the\s+)?generic\s+(?:case\s+)?narrator\b",
+    r"|\b(?:the\s+)?generic\s+(?:case\s+)?narrator\b"
+    r"|\butters\s+or\s+raises\s+the\s+exact\s+headword-bearing\s+wording\b"
+    r"|\b[A-Z]\d+n[A-Z0-9]+\s+section\s+master\b",
     re.IGNORECASE,
 )
 DUPLICATED_NOTE_PREFIX_RE = re.compile(r"(?:^|[.!?]\s+)([^:.\n]{1,100}):\s*\1:")
@@ -49,6 +52,12 @@ DUPLICATED_SOURCE_PREFIX_RE = re.compile(
 )
 MALFORMED_UNNAMED_RE = re.compile(r"\bdoes not name\s+(?:an?\s+)?unnamed\b", re.IGNORECASE)
 MALFORMED_NOTE_PUNCTUATION_RE = re.compile(r"(?:\.\s*[:;)]+|:\s*,|\)\s*\)\s*\)|\(\s*\))")
+ORPHAN_XML_TAIL_RE = re.compile(r"(?<!\()\b[A-Z]/[A-Z0-9/]+\.xml\)\.", re.IGNORECASE)
+HEADING_TYPES = {"biography", "poem", "portrait", "raised-case", "section"}
+HEADING_DUPLICATION_RE = re.compile(
+    r"\b(?:biograph(?:y|ical(?:\s+section)?)|poem|portrait|raised[- ]case|section)\s+heading\s+heading\b",
+    re.IGNORECASE,
+)
 
 
 def attribution_note_hygiene_failures(note: str, rel: str) -> list[str]:
@@ -68,12 +77,43 @@ def attribution_note_hygiene_failures(note: str, rel: str) -> list[str]:
         failures.append("malformed-unnamed-actor")
     if MALFORMED_NOTE_PUNCTUATION_RE.search(note):
         failures.append("malformed-punctuation")
+    if note.count("(") != note.count(")") or note.count("（") != note.count("）"):
+        failures.append("unbalanced-parentheses")
+    if ORPHAN_XML_TAIL_RE.search(note):
+        failures.append("orphan-relpath-tail")
+    if re.search(r"\bThe\s+the\b", note):
+        failures.append("duplicated-article")
+    if HEADING_DUPLICATION_RE.search(note):
+        failures.append("duplicated-heading-type")
     # Translation-repair recursion leaves the same phrase immediately nested
     # many times: ``the question says (the question says (...``. Two can occur
     # naturally in quoted prose; three is generated scaffolding, never prose.
     lowered = re.sub(r"\s+", " ", note.lower())
     if re.search(r"([a-z][a-z /'-]{3,60}?)\s*\(\s*\1\s*\(\s*\1\s*\(", lowered):
         failures.append("recursive-translation-expansion")
+    return failures
+
+
+def heading_attribution_failures(row: dict) -> list[str]:
+    """Fail closed on typed editorial-heading roles without judging actor truth."""
+    actor = row.get("ActorAttribution") or {}
+    kind = str(actor.get("Kind") or "").casefold()
+    label = str(actor.get("ActorLabel") or "").casefold()
+    if "heading" not in kind and "heading" not in label:
+        return []
+    heading_type = actor.get("HeadingType")
+    if heading_type not in HEADING_TYPES:
+        return ["heading-type-missing-or-invalid"]
+    failures = []
+    roles = {
+        role
+        for context in (row.get("ContextMasters") or []) if isinstance(context, dict)
+        for role in (context.get("Roles") or [])
+    }
+    if "verse-author" in roles and heading_type not in {"poem", "portrait"}:
+        failures.append("verse-author-incompatible-with-heading-type")
+    if heading_type == "biography" and "verse-author" in roles:
+        failures.append("biography-heading-requires-subject-role")
     return failures
 
 
@@ -101,7 +141,7 @@ ATTRIBUTION_RUNGS = [
     "tei-header",
     "parallel-passage",
 ]
-ACTOR_STATUSES = {"identified-non-master", "reviewed-unnamed", "narrated", "impersonal"}
+ACTOR_STATUSES = {"identified-non-master", "identified-unlinked-master", "reviewed-unnamed", "narrated", "impersonal"}
 EXPLICIT_MASTER_TURN = re.compile(r"師(?:乃|遂|復)?(?:云|曰|道|問|答|謂)")
 # A singular 師 in a case frame identifies a performer who must be resolved.
 # Generic plurals such as 諸師拈提語 and 眾師舉揚 do not identify one nameable
@@ -139,6 +179,19 @@ def has_evidence_bound_later_quoter(actor: dict | None) -> bool:
         r"|assigns|voices|utters|speaks)",
         grammar,
         re.I,
+    ))
+
+
+def note_identifies_named_later_quoter(master: str, note: str) -> bool:
+    """Distinguish quotation-raising from physical 拈起/舉起 actions."""
+    subject = rf"\b{re.escape(master)}\s+(?:explicitly\s+)?"
+    if re.search(subject + r"(?:quotes|cites)\b", note, re.IGNORECASE):
+        return True
+    return bool(re.search(
+        subject + r"raises\s+(?:an?\s+|the\s+)?(?:old\s+|earlier\s+|quoted\s+|inherited\s+)?"
+        r"(?:saying|case|verse|words?|statement|question|reply|exchange)\b",
+        note,
+        re.IGNORECASE,
     ))
 
 
@@ -183,9 +236,26 @@ def ambiguous_headword_span(term: str, kwic: str, review: object = None) -> bool
     return True
 
 
+def valid_governed_variant(occurrence: dict) -> bool:
+    """A variant exemption is explicit and its exact governed surface is visible."""
+    variant = str(occurrence.get("VariantForm") or "")
+    return bool(
+        occurrence.get("EvidenceRole") == "variant"
+        and occurrence.get("VariantKind") in {"editorial-punctuation", "governed-graphic"}
+        and variant
+        and variant in str(occurrence.get("Kwic") or "")
+    )
+
+
+def public_actor_label(value: object) -> str:
+    text = CJK_RE.sub("", str(value or ""))
+    return re.sub(r"\s+", " ", text).strip(" ,;:-")
+
+
 def roster_names() -> set[str]:
     data = json.loads(ROSTER_PATH.read_text(encoding="utf-8"))
-    return {m["names"][0] for m in data["masters"]}
+    masters = data if isinstance(data, list) else data["masters"]
+    return {m["names"][0] for m in masters}
 
 
 def pending_roster_names(path: Path = PENDING_ROSTER_PATH) -> set[str]:
@@ -342,7 +412,15 @@ def main() -> int:
 
     for entry in files:
         data = json.loads(entry.read_text(encoding="utf-8"))
-        strict_roster_here = ns.strict_roster or data.get("Id") in strict_ids
+        # Fresh construction is reader-link production, not legacy diagnosis:
+        # every link-bearing master field must already equal roster names[0].
+        # A source-attested but unlinked master belongs in ActorAttribution or
+        # other descriptive prose, never in MasterName/ContextMasters.
+        strict_roster_here = (
+            ns.strict_roster
+            or data.get("Id") in strict_ids
+            or "fresh-build" in entry.parts
+        )
         term = data.get("SourceTerm", entry.parent.name)
         for si, sense in enumerate(data.get("Senses", []), 1):
             counts["senses"] += 1
@@ -354,7 +432,7 @@ def main() -> int:
                         f"{term} s{si}: RelatedMasters values must be nonempty master-name strings, got {related!r}",
                     )
                     continue
-                if strict_roster_here and related not in roster and related not in pending_roster:
+                if strict_roster_here and related not in roster:
                     fail(
                         "noncanonical_related_master",
                         entry,
@@ -386,10 +464,10 @@ def main() -> int:
                         # entry remediation; re-enable the roster gate after the
                         # expanded roster is integrated.
                         counts["deferred_non_roster"] += 1
-                        if master in pending_roster:
-                            counts["pending_roster_master"] += 1
-                        elif strict_roster_here:
+                        if strict_roster_here:
                             fail("noncanonical_master_name", entry, f"{term} s{si} {evidence_label}: {master!r} is not roster names[0]")
+                        elif master in pending_roster:
+                            counts["pending_roster_master"] += 1
                 elif isinstance(actor, dict):
                     batch_actor_signatures[(actor.get("Status"), actor.get("Kind"), actor.get("ActorLabel"), actor.get("ActorRole"))] += 1
                     status = actor.get("Status")
@@ -406,7 +484,11 @@ def main() -> int:
                             fail("placeholder_actor_forbidden", entry, f"{term} s{si} {evidence_label} {field}: {value!r}")
                     if actor.get("ActorRole") and actor.get("ActorRole") not in CLOSED_ROLES:
                         fail("invalid_actor_role", entry, f"{term} s{si} o{oi}: {actor.get('ActorRole')!r}")
-                    if re.search(r"master|teacher|禪師|和尚", str(actor.get("Kind") or ""), re.IGNORECASE):
+                    if status != "identified-unlinked-master" and re.search(
+                        r"master|teacher|禪師|和尚",
+                        " ".join(str(actor.get(field) or "") for field in ("Kind", "ActorLabel")),
+                        re.IGNORECASE,
+                    ):
                         fail("unnamed_master_forbidden", entry, f"{term} s{si} o{oi}: every master must be named")
                     if status == "identified-non-master" and re.search(
                         r"record[- ]owner|record owner|語錄主", " ".join(
@@ -432,20 +514,52 @@ def main() -> int:
                             f"use reviewed-unnamed plus all six rungs when the source supplies only a role: "
                             f"{actor.get('ActorLabel')!r}",
                         )
+                    if status == "identified-unlinked-master":
+                        label = str(actor.get("ActorLabel") or "").strip()
+                        if re.match(r"^(?:the|an?|one|some|unnamed)\b", label, re.IGNORECASE):
+                            fail("identified_unlinked_master_not_named", entry,
+                                 f"{term} s{si} o{oi}: explicit Chinese/English source identity required: {label!r}")
+                        if actor.get("RungsChecked") != ATTRIBUTION_RUNGS:
+                            fail("identified_unlinked_master_incomplete_rungs", entry,
+                                 f"{term} s{si} o{oi}: all six ordered rungs required")
+                        # DraftActorProof is compiler-validated and intentionally
+                        # omitted from the public product. GrammarEvidence is the
+                        # surviving, reader-auditable exact-turn proof.
+                        proof_text = str(actor.get("GrammarEvidence") or "")
+                        if not label or label not in proof_text:
+                            fail("identified_unlinked_master_unsupported_identity", entry,
+                                 f"{term} s{si} o{oi}: ActorLabel must be repeated in surviving exact-turn GrammarEvidence")
                     if status == "reviewed-unnamed" and actor.get("RungsChecked") != ATTRIBUTION_RUNGS:
                         fail("incomplete_actor_rungs", entry, f"{term} s{si} o{oi}: expected all six ordered rungs")
+                    if status == "reviewed-unnamed" and actor.get("ActorRole") == "utterer" and not re.search(
+                        r"僧|客|居士|官|婆|童|侍者|問者|行者|沙彌|lay(?:man|woman|person)?|monk|questioner|official|visitor|woman|child|attendant|novice|verse author|compiler",
+                        str(actor.get("GrammarEvidence") or ""), re.IGNORECASE,
+                    ):
+                        fail(
+                            "unnamed_utterer_nonmaster_cue_missing", entry,
+                            f"{term} s{si} o{oi}: reviewed-unnamed utterer lacks concrete evidence that the source presents a non-master actor",
+                        )
                     if status == "reviewed-unnamed" and not re.search(
                         r"\bunnamed\b|does not name", str(actor.get("ActorLabel") or ""), re.IGNORECASE
                     ):
                         fail("reviewed_unnamed_label_not_explicit", entry,
                              f"{term} s{si} o{oi}: reviewed-unnamed ActorLabel must explicitly say unnamed")
-                    if status in {"identified-non-master", "narrated", "impersonal"} and not actor.get("GrammarEvidence"):
+                    if status in {"identified-non-master", "identified-unlinked-master", "narrated", "impersonal"} and not actor.get("GrammarEvidence"):
                         fail("missing_grammar_evidence", entry, f"{term} s{si} o{oi}")
                 else:
                     fail("unresolved_actor", entry, f"{term} s{si} o{oi} {occ.get('RelPath')}:{occ.get('FromLb')}")
 
                 kwic_text = str(occ.get("Kwic") or "")
-                if evidence_kind == "o" and ambiguous_headword_span(
+                if "fresh-build" in entry.parts and len(kwic_text) > 600:
+                    fail(
+                        "overbroad_fresh_kwic",
+                        entry,
+                        f"{term} s{si} o{oi}: {len(kwic_text)} characters; recut to the bounded "
+                        "headword-bearing turn before exact verification",
+                    )
+                declared_variant = str(occ.get("VariantForm") or "")
+                valid_variant = valid_governed_variant(occ)
+                if evidence_kind == "o" and not valid_variant and ambiguous_headword_span(
                     term, kwic_text, occ.get("HeadwordSpanReview")
                 ):
                     fail(
@@ -458,7 +572,34 @@ def main() -> int:
                     if term and term in clause
                 ]
                 explicit_turns = explicit_master_turns_before_headword(term, kwic_text)
-                if explicit_turns and not master:
+                # Long punctuation-poor lamp-record KWICs may contain an
+                # earlier 師云/師曰 before a later narrator clause or an
+                # explicitly introduced monk's question.  A completed human
+                # grammar adjudication for those two actor classes outranks
+                # that coarse cue; this is not available to generic unnamed
+                # speech and therefore cannot launder an unnamed master.
+                reviewed_grammar_override = bool(
+                    isinstance(actor, dict)
+                    and actor.get("ReviewedBy")
+                    and actor.get("GrammarEvidence")
+                    and (
+                        actor.get("Status") == "narrated"
+                        or (
+                            actor.get("Status") == "identified-unlinked-master"
+                            and str(actor.get("ActorLabel") or "").strip()
+                            and list(actor.get("RungsChecked") or []) == ATTRIBUTION_RUNGS
+                            and str(actor.get("ActorLabel"))
+                                in str(actor.get("GrammarEvidence") or "")
+                        )
+                        or (
+                            actor.get("Status") == "reviewed-unnamed"
+                            and actor.get("ActorRole") == "questioner"
+                            and re.search(r"(?:僧問|問 introduces|headword-bearing question)",
+                                          str(actor.get("GrammarEvidence") or ""), re.IGNORECASE)
+                        )
+                    )
+                )
+                if explicit_turns and not master and not reviewed_grammar_override:
                     fail(
                         "explicit_master_turn_left_anonymous",
                         entry,
@@ -491,6 +632,42 @@ def main() -> int:
                         "the responding master belongs in ContextMasters",
                     )
 
+                # A common compact record frame assigns the headword to the
+                # anonymous participant and introduces the master's response
+                # only afterwards: 僧云/問 ... HEADWORD ... 師云.  Do not let
+                # record ownership or the trailing 師云 bind backward.
+                nonmaster_before_master_reply = any(
+                    (
+                        re.search(r"(?:僧(?:云|曰)|(?:^|[。；])問[：:]?[「『\"]?)", clause[:clause.find(term)])
+                        and re.search(r"師(?:云|曰|道)", clause[clause.find(term) + len(term):])
+                    )
+                    for clause in headword_clauses
+                )
+                if nonmaster_before_master_reply and master:
+                    fail(
+                        "nonmaster_turn_assigned_backward_to_master",
+                        entry,
+                        f"{term} s{si} o{oi}: 僧云/問 owns the headword-bearing turn; "
+                        "the master introduced afterward belongs in ContextMasters",
+                    )
+
+                # Reader prose often states the decisive distinction more
+                # clearly than compact punctuation: ``X quotes Y's verdict``
+                # means X is the later quoter/commentator, not the original
+                # utterer of the quoted headword.  Never allow the quoter's
+                # roster link to overwrite the named quoted speaker merely
+                # because the quotation appears inside X's record.
+                note = str(occ.get("AttributionNote") or "")
+                named_quoter_in_master = bool(master and note_identifies_named_later_quoter(master, note))
+                if named_quoter_in_master:
+                    fail(
+                        "named_quoter_in_utterer_field",
+                        entry,
+                        f"{term} s{si} o{oi}: AttributionNote identifies {master} as the later "
+                        "quoter/raiser; resolve the quoted speaker as MasterName and retain the "
+                        "present master in ContextMasters",
+                    )
+
                 raised_old_saying = any(
                     RAISED_OLD_SAYING.search(clause) for clause in headword_clauses
                 )
@@ -509,10 +686,10 @@ def main() -> int:
                         fail("invalid_context_roles", entry, f"{term} s{si} o{oi} c{ci}: {invalid_roles}")
                     if context["MasterName"] not in roster:
                         counts["deferred_non_roster_context"] += 1
-                        if context["MasterName"] in pending_roster:
-                            counts["pending_roster_context_master"] += 1
-                        elif strict_roster_here:
+                        if strict_roster_here:
                             fail("noncanonical_context_master_name", entry, f"{term} s{si} o{oi} c{ci}: {context['MasterName']!r} is not roster names[0]")
+                        elif context["MasterName"] in pending_roster:
+                            counts["pending_roster_context_master"] += 1
                 if raised_old_saying and not has_evidence_bound_later_quoter(actor) and not any(
                     "later-raiser" in (context.get("Roles") or [])
                     for context in context_masters if isinstance(context, dict)
@@ -539,7 +716,7 @@ def main() -> int:
                 if evidence_kind == "o" and term not in str(occ.get("Kwic") or ""):
                     counts["supporting_occurrences"] += 1
                     variant = str(occ.get("VariantForm") or "")
-                    if variant and variant in str(occ.get("Kwic") or "") and occ.get("EvidenceRole") == "variant":
+                    if valid_governed_variant(occ):
                         counts["governed_variant_occurrences"] += 1
                     else:
                         fail("headword_absent_from_kwic", entry, f"{term} s{si} o{oi}: re-cut or replace; only an exact declared VariantForm with EvidenceRole=variant is exempt")
@@ -560,7 +737,10 @@ def main() -> int:
                     for hygiene_failure in attribution_note_hygiene_failures(note, str(occ.get("RelPath") or "")):
                         fail("attribution_note_prose_hygiene", entry,
                              f"{term} s{si} {evidence_label} {hygiene_failure}: {note!r}")
-                    actor_marker = ""
+                    for heading_failure in heading_attribution_failures(occ):
+                        fail("heading_attribution_role_hygiene", entry,
+                             f"{term} s{si} {evidence_label} {heading_failure}")
+                    actor_marker = str(master or "").strip()
                     if isinstance(actor, dict):
                         status = actor.get("Status")
                         label = str(actor.get("ActorLabel") or "").strip()
@@ -572,7 +752,7 @@ def main() -> int:
                         elif status == "impersonal":
                             actor_marker = "Editorial or procedural text"
                         else:
-                            actor_marker = label
+                            actor_marker = label if label in note else public_actor_label(label)
                     if not has_english_source_label(
                         note, str(occ.get("RelPath") or ""), [str(master or ""), actor_marker, "Exact actor"]
                     ):
@@ -590,7 +770,19 @@ def main() -> int:
                     )
                     actor_text = json.dumps(actor, ensure_ascii=False) if isinstance(actor, dict) else ""
                     actor_label = str((actor or {}).get("ActorLabel") or "").strip()
-                    named_in_prose = set(roster_name_pattern.findall(note + " " + actor_text)) if roster_name_pattern else set()
+                    # The authoritative work-title segment can itself contain
+                    # a master's name (for example, "Recorded Sayings of Chan
+                    # Master Huqiu Shaolong").  That names the work, not a
+                    # participant in this evidence row.  Search only from the
+                    # already-computed actor marker onward; structured actor
+                    # JSON remains in scope.  Falling back to the whole note is
+                    # deliberately fail-closed when the note has no marker.
+                    actor_note = note
+                    if actor_marker:
+                        marker_at = note.casefold().find(actor_marker.casefold())
+                        if marker_at >= 0:
+                            actor_note = note[marker_at:]
+                    named_in_prose = set(roster_name_pattern.findall(actor_note + " " + actor_text)) if roster_name_pattern else set()
                     missing_named_context = sorted(
                         name for name in (named_in_prose - represented)
                         # A named lay/official/non-master must be printed in
@@ -601,7 +793,7 @@ def main() -> int:
                         # representation for this actor class.
                         if not (
                             isinstance(actor, dict)
-                            and actor.get("Status") == "identified-non-master"
+                            and actor.get("Status") in {"identified-non-master", "identified-unlinked-master"}
                             and name in actor_label
                         )
                         if not any(
@@ -653,6 +845,11 @@ def main() -> int:
                                 r"heading|procedur|biograph|editorial|commentator|preface|monastic-rule",
                                 note, re.IGNORECASE,
                             )
+                        )
+                        or (
+                            actor.get("Status") == "identified-unlinked-master"
+                            and actor_label
+                            and re.search(re.escape(public_actor_label(actor_label)), note, re.IGNORECASE)
                         )
                     ))
                     if not speaker_named and not exception_named:

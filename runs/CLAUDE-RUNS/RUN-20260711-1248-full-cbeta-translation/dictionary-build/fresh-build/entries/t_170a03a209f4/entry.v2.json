@@ -1,0 +1,126 @@
+{
+  "Id": "t_170a03a209f4",
+  "SourceTerm": "海神知貴不知價",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "CreatedBy": "Codex Iriya lane C61-160 exact-turn author",
+  "WrittenUtc": "2026-07-18T15:18:00Z",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "the sea god knows its preciousness but not its price",
+      "AlternateTargets": [
+        "the sea god knows its worth, not its price"
+      ],
+      "SearchAliases": [
+        "sea god knows its preciousness not its price",
+        "priceless pearl"
+      ],
+      "Status": "preferred",
+      "Validation": "multi-source",
+      "Note": "The fixed line describes a treasure whose preciousness is recognized but cannot be priced. Its frequent companion line leaves the light shining in the human world; that companion is reported as context, not folded into the headword.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X66/X66n1297.xml",
+          "FromLb": "0286a19",
+          "ToLb": "0286a20",
+          "Kwic": "小盡廿九，大盡三十。海神知貴不知價，留與人間光照夜。",
+          "MasterName": null,
+          "Curated": true,
+          "ContextMasters": [],
+          "AttributionNote": "Source record (X/X66/X66n1297.xml). Dharma Grove of the Tradition’s Mirror (宗鑑法林). Speaker: the unidentified transmitted verse author.",
+          "ActorAttribution": {
+            "Status": "narrated",
+            "Kind": "transmitted verse",
+            "ActorLabel": "the unidentified transmitted verse author",
+            "ActorRole": "verse-author",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The headword is an unattributed transmitted verse line in the Dharma Grove compilation; no local marker assigns its authorship to the compiler or a named master.",
+            "ReviewedBy": "Codex six-rung full-case exact-turn review",
+            "ReviewedUtc": "2026-07-18T15:18:00Z",
+            "AuthoredVoiceRiskReviewed": true
+          }
+        },
+        {
+          "RelPath": "P/P154/P154n1519.xml",
+          "FromLb": "0661a05",
+          "ToLb": "0661a07",
+          "Kwic": "且道此珠見今在什麼處乃云海神知貴不知價留與人間光照夜。",
+          "MasterName": "Baiyun Shouduan",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Baiyun Shouduan",
+              "Roles": [
+                "utterer"
+              ]
+            },
+            {
+              "MasterName": "Nanquan Puyuan",
+              "Roles": [
+                "case-figure"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (P/P154/P154n1519.xml). Essential Compendium of the Zen School: Main and Continued Collections (Vols. 1–12) (宗門統要正續集(第1卷-第12卷)). Speaker: Baiyun Shouduan."
+        },
+        {
+          "RelPath": "T/T47/T47n1997.xml",
+          "FromLb": "0720a03",
+          "ToLb": "0720a04",
+          "Kwic": "海神知貴不知價。留向人間光照夜。",
+          "MasterName": "Yuanwu Keqin",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Yuanwu Keqin",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (T/T47/T47n1997.xml). Recorded Sayings of Chan Master Yuanwu Foguo (圓悟佛果禪師語錄). Speaker: Yuanwu Keqin."
+        },
+        {
+          "RelPath": "T/T47/T47n1999.xml",
+          "FromLb": "0961b12",
+          "ToLb": "0961b13",
+          "Kwic": "遂提起云。看看。海神知貴不知價。留與人間光照夜。",
+          "MasterName": "Mi'an Xianjie",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Mi'an Xianjie",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (T/T47/T47n1999.xml). Recorded Sayings of Monk Mi’an (密菴和尚語錄). Speaker: Mi'an Xianjie."
+        }
+      ],
+      "SourceTexts": [
+        "X/X66/X66n1297.xml",
+        "P/P154/P154n1519.xml",
+        "T/T47/T47n1997.xml",
+        "T/T47/T47n1999.xml"
+      ],
+      "RelatedMasters": [
+        "Baiyun Shouduan",
+        "Yuanwu Keqin",
+        "Mi'an Xianjie",
+        "Nanquan Puyuan"
+      ],
+      "RelatedTerms": [],
+      "ClaimAnchors": [],
+      "Explanation": "The sea god knows its preciousness but not its price: the treasure is recognized as precious while remaining beyond valuation. An unattributed transmitted verse in the Zongjian Falin anthology pairs the sea god's inability to price the treasure with leaving its light in the human world. Baiyun Shouduan asks where Yunji's rare mani pearl is now and answers with the same line. Yuanwu Keqin uses it after asking which of two old formulas is present. Mi'an Xianjie raises his staff, asks where the decisive move falls before world-formation, and answers with the line. These uses preserve recognized but unpriced preciousness without identifying a market value."
+    }
+  ]
+}

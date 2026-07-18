@@ -1,0 +1,125 @@
+{
+  "Id": "t_e5d8ae8944e4",
+  "SourceTerm": "擔枷過狀",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "CreatedBy": "Codex Iriya construction cohort 001 lane C clean packet",
+  "WrittenUtc": "2026-07-18T08:15:53.294764Z",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "carry the cangue and submit one’s own indictment",
+      "AlternateTargets": [
+        "wear the cangue while presenting the charge against oneself",
+        "bring one’s own criminal charge while already in the cangue"
+      ],
+      "SearchAliases": [
+        "self incrimination cangue",
+        "carry own indictment",
+        "condemn oneself by speaking",
+        "cangue and charge sheet"
+      ],
+      "Status": "preferred",
+      "Validation": "multi-source",
+      "Note": "Four deployments of the corpus form span four independent works; the printed headword retains the queue’s variant graph.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X66/X66n1297.xml",
+          "FromLb": "0426a14",
+          "ToLb": "0426a14",
+          "Kwic": "師曰：擔枷過狀，劈脊便打。",
+          "MasterName": "Muzhou Daoming",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Muzhou Daoming",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (X/X66/X66n1297.xml). Dharma Grove of the Tradition’s Mirror. Muzhou Daoming says that the questioner carries the cangue and submits his own indictment, then strikes him across the back."
+        },
+        {
+          "RelPath": "C/C077/C077n1710.xml",
+          "FromLb": "0657c09",
+          "ToLb": "0657c10",
+          "Kwic": "進云什麼處是話墮處師云擔枷過狀萬里崖州自領出去",
+          "MasterName": "Muzhou Daoming",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Muzhou Daoming",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (C/C077/C077n1710.xml). Recorded Sayings of Ancient Venerable Masters. Muzhou Daoming answers the questioner’s question about where his speech fell by saying he carries the cangue and submits his own indictment."
+        },
+        {
+          "RelPath": "X/X79/X79n1559.xml",
+          "FromLb": "0304c14",
+          "ToLb": "0304c15",
+          "Kwic": "云：如何是道中人？曰：擔枷過狀。",
+          "MasterName": "Cuiyan Kezhen",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Cuiyan Kezhen",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (X/X79/X79n1559.xml). Jiatai Universal Lamp Record. Cuiyan Kezhen answers the question about a person of the Way with the self-incriminating cangue image."
+        },
+        {
+          "RelPath": "X/X68/X68n1318.xml",
+          "FromLb": "0349b06",
+          "ToLb": "0349b06",
+          "Kwic": "部云：擔枷過狀。師云：更不再勘。",
+          "MasterName": null,
+          "Curated": true,
+          "ContextMasters": [],
+          "AttributionNote": "Source record (X/X68/X68n1318.xml). Continued Essentials from the Sayings of Ancient Worthies. Zheng Gongbu tells Fenyang that he carries the cangue and submits his own indictment; Fenyang declines to examine him again.",
+          "ActorAttribution": {
+            "Status": "identified-non-master",
+            "Kind": "lay official",
+            "ActorLabel": "Zheng Gongbu",
+            "ActorRole": "interlocutor",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "Zheng Gongbu: 部云 assigns the exact phrase to the named official 鄭工部 rather than to Fenyang.",
+            "ReviewedBy": "Codex Iriya construction lane C",
+            "ReviewedUtc": "2026-07-18T08:15:53.294692Z"
+          }
+        }
+      ],
+      "SourceTexts": [
+        "X/X66/X66n1297.xml",
+        "C/C077/C077n1710.xml",
+        "X/X79/X79n1559.xml",
+        "X/X68/X68n1318.xml"
+      ],
+      "RelatedMasters": [
+        "Muzhou Daoming",
+        "Cuiyan Kezhen"
+      ],
+      "RelatedTerms": [
+        "枷",
+        "兩重公案",
+        "話墮",
+        "劈脊便打"
+      ],
+      "ClaimAnchors": [],
+      "Explanation": "To carry the cangue and submit one’s own indictment is to incriminate oneself by the very answer or claim offered in defense. Chan speakers use the legal image when someone’s words supply both the restraint and the charge against him. Muzhou Daoming applies it after a questioner claims that Muzhou knows; another Muzhou record uses it when a questioner asks where his speech went wrong. Cuiyan Kezhen gives it as the answer defining a person of the Way. The official Zheng Gongbu turns it back on Fenyang during their exchange."
+    }
+  ]
+}

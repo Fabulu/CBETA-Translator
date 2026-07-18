@@ -1,0 +1,125 @@
+{
+  "Id": "t_2217b6fb98c0",
+  "SourceTerm": "重疊關山路",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "CreatedBy": "Codex Iriya construction lane C evidence-first",
+  "WrittenUtc": "2026-07-18T07:31:59.765170Z",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "a road through overlapping mountain passes",
+      "AlternateTargets": [
+        "a road through layer upon layer of mountain barriers",
+        "the route of repeated mountain passes"
+      ],
+      "SearchAliases": [
+        "layered mountain-pass road",
+        "road through repeated barriers",
+        "overlapping mountain passes",
+        "mountain barriers ahead"
+      ],
+      "Status": "preferred",
+      "Validation": "multi-source",
+      "Note": "Four direct answers span four independent works and three separate encounter settings.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X78/X78n1556.xml",
+          "FromLb": "0671a09",
+          "ToLb": "0671a10",
+          "Kwic": "問：善法堂中師子吼，利人一句又如何？師云：重疊關山路。",
+          "MasterName": "Baoen Tan",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Baoen Tan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (X/X78/X78n1556.xml). Jianzhong Jingguo Continued Lamp Record. Baoen Tan answers a request for the beneficial sentence of the lion’s roar with the mountain-pass road."
+        },
+        {
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0218b01",
+          "ToLb": "0218b02",
+          "Kwic": "曰：與麼則覿面不相識，千里可同風。師曰：重疊關山路。",
+          "MasterName": null,
+          "Curated": true,
+          "ContextMasters": [],
+          "AttributionNote": "Source record (X/X82/X82n1571.xml). Complete Five Lamps (Vols. 34–120). Tieguan Fashu answers the monk’s claim of face-to-face nonrecognition and shared wind with the layered mountain road. Exact identified speaker: Tieguan Fashu; retained as an identified unlinked master because the current lineage roster has no exact canonical link. Unlinked context figure: Tieguan Fashu (utterer); identity and role are preserved here without a broken ContextMasters link.",
+          "ActorAttribution": {
+            "Status": "identified-unlinked-master",
+            "Kind": "full-case-grammar-adjudication",
+            "ActorLabel": "Tieguan Fashu",
+            "ActorRole": "utterer",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "Tieguan Fashu: the complete retained case and governing speech frame identify Tieguan Fashu as the exact utterer of the headword; all six attribution rungs were checked, but no exact canonical roster link exists. Context role preserved without link: Tieguan Fashu (utterer).",
+            "ReviewedBy": "Codex strict-roster repair lane C",
+            "ReviewedUtc": "2026-07-18T00:00:00Z"
+          }
+        },
+        {
+          "RelPath": "P/P155/P155n1519.xml",
+          "FromLb": "0109a09",
+          "ToLb": "0109a10",
+          "Kwic": "師云重疊關山路。師問僧近離甚處",
+          "MasterName": "Jingqing Daofu",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Jingqing Daofu",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (P/P155/P155n1519.xml). Essential Compendium of the Zen School: Main and Continued Collections (Vols. 13–20). Jingqing Daofu gives the phrase as his final answer in the water-moon exchange."
+        },
+        {
+          "RelPath": "X/X70/X70n1386.xml",
+          "FromLb": "0330a17",
+          "ToLb": "0330a19",
+          "Kwic": "當時待這僧問：佛法如水中月。是否？只向他道：重疊關山路。非惟截斷這僧脚跟，亦乃與後人點眼。",
+          "MasterName": "Shitian Faxun",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Shitian Faxun",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (X/X70/X70n1386.xml). Recorded Sayings of Chan Master Shitian Faxun. Shitian Faxun says he would answer the water-moon question with the layered mountain road."
+        }
+      ],
+      "SourceTexts": [
+        "X/X78/X78n1556.xml",
+        "X/X82/X82n1571.xml",
+        "P/P155/P155n1519.xml",
+        "X/X70/X70n1386.xml"
+      ],
+      "RelatedMasters": [
+        "Jingqing Daofu",
+        "Shitian Faxun"
+      ],
+      "RelatedTerms": [
+        "清波無透路",
+        "再問復何來",
+        "關山",
+        "祖關"
+      ],
+      "ClaimAnchors": [],
+      "Explanation": "A road through overlapping mountain passes is a route on which one barrier opens only onto another. Chan masters use it as a direct answer or final line: apparent progress does not leave an unobstructed road, but meets another pass beyond the last. Baoen Tan gives it as the beneficial lion-roar sentence; Tieguan Fashu answers a claim of face-to-face accord with it; Jingqing Daofu caps the water-moon exchange with it; and Shitian Faxun says it is the answer he would give to that same water-moon question."
+    }
+  ]
+}

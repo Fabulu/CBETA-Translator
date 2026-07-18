@@ -1,0 +1,315 @@
+{
+  "SchemaVersion": 1,
+  "Entry": {
+    "Id": "t_ede52b261c8c",
+    "SourceTerm": "揚眉瞬目",
+    "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+    "CreatedBy": "Codex Iriya cohort001 Lane A evidence-first",
+    "WrittenUtc": "2026-07-18T07:00:46.837781+00:00",
+    "Senses": [
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "raise the eyebrows and blink",
+        "AlternateTargets": [
+          "eyebrow-raising and blinking"
+        ],
+        "SearchAliases": [
+          "raise eyebrows and blink",
+          "eyebrow gesture",
+          "blink the eyes",
+          "facial gesture"
+        ],
+        "Status": "preferred",
+        "Validation": "multi-source",
+        "Note": "The bodily gesture remains literal, but records use it as a test case for whether visible responsiveness is apt, insufficient, mechanically imitated, or falsely certified as awakening.",
+        "Occurrences": [
+          {
+            "RelPath": "C/C077/C077n1710.xml",
+            "FromLb": "0675c24",
+            "ToLb": "0676a01",
+            "Kwic": "問拈槌竪拂皆是止啼之說揚眉瞬目未為作者之機如何是見前受用",
+            "Curated": true,
+            "AttributionNote": "Source record (C/C077/C077n1710.xml). Recorded Sayings of Ancient Venerable Masters. Exact actor: the unnamed questioning monk. An unnamed monk says that raising the eyebrows and blinking is not yet an adept’s working and asks about present use.",
+            "ContextMasters": [],
+            "ActorAttribution": {
+              "Status": "reviewed-unnamed",
+              "Kind": "monk asking within a recorded encounter",
+              "ActorLabel": "the unnamed questioning monk",
+              "ActorRole": "questioner",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "the unnamed questioning monk: 問 begins the headword-bearing question; 師云 introduces the master’s answer only afterward.",
+              "ReviewedBy": "Codex Iriya Lane A full-case author",
+              "ReviewedUtc": "2026-07-18T09:00:00Z"
+            },
+            "DraftActorProof": {
+              "ExactHeadwordClause": "問拈槌竪拂皆是止啼之說揚眉瞬目未為作者之機如何是見前受用",
+              "GrammaticalSubject": "the unnamed questioning monk",
+              "SpeechFrame": "問 begins the headword-bearing question; 師云 introduces the master’s answer only afterward.",
+              "FullCaseDecision": "An unnamed monk says that raising the eyebrows and blinking is not yet an adept’s working and asks about present use."
+            }
+          },
+          {
+            "RelPath": "X/X80/X80n1565.xml",
+            "FromLb": "0109b03",
+            "ToLb": "0109b05",
+            "Kwic": "祖曰。我有時教伊揚眉瞬目。有時不教伊揚眉瞬目。有時揚眉瞬目者是。有時揚眉瞬目者不是。",
+            "MasterName": "Mazu Daoyi",
+            "Curated": true,
+            "AttributionNote": "Source record (X/X80/X80n1565.xml). Five Lamps Compendium. Exact utterer: Mazu Daoyi. Mazu Daoyi tells Yaoshan that sometimes he teaches eyebrow-raising and blinking and sometimes does not, and that sometimes it is right and sometimes not.",
+            "ContextMasters": [
+              {
+                "MasterName": "Mazu Daoyi",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "祖曰。我有時教伊揚眉瞬目。有時不教伊揚眉瞬目。有時揚眉瞬目者是。有時揚眉瞬目者不是。",
+              "SpeechFrame": "祖曰 follows Yaoshan’s arrival at Mazu and assigns the complete fourfold statement to Mazu.",
+              "FullCaseDecision": "Mazu Daoyi tells Yaoshan that sometimes he teaches eyebrow-raising and blinking and sometimes does not, and that sometimes it is right and sometimes not."
+            },
+            "HeadwordSpanReview": {
+              "Count": 4,
+              "Disposition": "single-actor-single-turn-repetition",
+              "GrammarEvidence": "The repeated lexical item remains inside the one complete speech turn identified by DraftActorProof."
+            }
+          },
+          {
+            "RelPath": "X/X79/X79n1557.xml",
+            "FromLb": "0033b13",
+            "ToLb": "0033b14",
+            "Kwic": "此性善能揚眉瞬目，去來動靜徧於身中",
+            "Curated": true,
+            "AttributionNote": "Source record (X/X79/X79n1557.xml). Essential Compendium of the United Lamp. Exact actor: the unnamed visiting monk. An unnamed visiting monk reports a southern teaching that awareness can raise the eyebrows and blink throughout bodily movement.",
+            "ContextMasters": [],
+            "ActorAttribution": {
+              "Status": "reviewed-unnamed",
+              "Kind": "reporting visitor",
+              "ActorLabel": "the unnamed visiting monk",
+              "ActorRole": "later-quoter",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "the unnamed visiting monk: 師問 how southern teachers instruct; 云 begins the monk’s reported formulation.",
+              "ReviewedBy": "Codex Iriya Lane A full-case author",
+              "ReviewedUtc": "2026-07-18T09:00:00Z"
+            },
+            "DraftActorProof": {
+              "ExactHeadwordClause": "此性善能揚眉瞬目，去來動靜徧於身中",
+              "GrammaticalSubject": "the unnamed visiting monk",
+              "SpeechFrame": "師問 how southern teachers instruct; 云 begins the monk’s reported formulation.",
+              "FullCaseDecision": "An unnamed visiting monk reports a southern teaching that awareness can raise the eyebrows and blink throughout bodily movement."
+            }
+          },
+          {
+            "RelPath": "X/X82/X82n1571.xml",
+            "FromLb": "0014a17",
+            "ToLb": "0014a17",
+            "Kwic": "拈椎豎拂泥洗泥，揚眉瞬目籠中鷄。",
+            "Curated": true,
+            "AttributionNote": "Source record (X/X82/X82n1571.xml). Complete Five Lamps (Vols. 34–120). Exact actor: Zhongji Kezun. Zhongji Kezun compares eyebrow-raising and blinking to a chicken in a cage within a hall verse.",
+            "ContextMasters": [],
+            "ActorAttribution": {
+              "Status": "identified-unlinked-master",
+              "Kind": "source-identified unlinked Chan master",
+              "ActorLabel": "Zhongji Kezun",
+              "ActorRole": "utterer",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "Zhongji Kezun: The section header 福州中際可遵禪師 is followed by a sequence of 上堂 units; this line remains in his hall verse.",
+              "ReviewedBy": "Codex Iriya Lane A full-case author",
+              "ReviewedUtc": "2026-07-18T09:00:00Z"
+            },
+            "DraftActorProof": {
+              "ExactHeadwordClause": "拈椎豎拂泥洗泥，揚眉瞬目籠中鷄。",
+              "GrammaticalSubject": "Zhongji Kezun",
+              "SpeechFrame": "The section header 福州中際可遵禪師 is followed by a sequence of 上堂 units; this line remains in his hall verse.",
+              "FullCaseDecision": "Zhongji Kezun compares eyebrow-raising and blinking to a chicken in a cage within a hall verse."
+            }
+          },
+          {
+            "RelPath": "J/J38/J38nB406.xml",
+            "FromLb": "0131a27",
+            "ToLb": "0131a29",
+            "Kwic": "我有時教伊揚眉瞬目，有時不教伊揚眉瞬目，有時道揚眉瞬目者是，揚眉瞬目者不是。",
+            "MasterName": "Tianran Hanshi",
+            "Curated": true,
+            "AttributionNote": "Source record (J/J38/J38nB406.xml). Recorded Sayings of Chan Master Tianran of Mount Lu. Exact utterer: Tianran Hanshi. Tianran Hanshi repeats Mazu’s fourfold formula while appraising how Mazu uses affirmation and denial.",
+            "ContextMasters": [
+              {
+                "MasterName": "Tianran Hanshi",
+                "Roles": [
+                  "utterer"
+                ]
+              },
+              {
+                "MasterName": "Mazu Daoyi",
+                "Roles": [
+                  "case-figure"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "我有時教伊揚眉瞬目，有時不教伊揚眉瞬目，有時道揚眉瞬目者是，揚眉瞬目者不是。",
+              "SpeechFrame": "The passage is Tianran Hanshi’s continuous authorial discussion; he then explicitly names 馬祖 as the source.",
+              "FullCaseDecision": "Tianran Hanshi repeats Mazu’s fourfold formula while appraising how Mazu uses affirmation and denial."
+            },
+            "HeadwordSpanReview": {
+              "Count": 4,
+              "Disposition": "single-actor-single-turn-repetition",
+              "GrammarEvidence": "The repeated lexical item remains inside the one complete speech turn identified by DraftActorProof."
+            }
+          },
+          {
+            "RelPath": "X/X67/X67n1309.xml",
+            "FromLb": "0565a14",
+            "ToLb": "0565a15",
+            "Kwic": "若以揚眉瞬目，豎拳豎指，謦欬咳嗽，是厨中拭鉢帛。",
+            "MasterName": "Dongshan Shouchu",
+            "Curated": true,
+            "AttributionNote": "Source record (X/X67/X67n1309.xml). Treasury of the True Dharma Eye. Exact utterer: Dongshan Shouchu. Dongshan Shouchu says that eyebrow-raising, blinking, gestures, and coughs are merely a kitchen wiping rag if used to claim the ancestral meaning.",
+            "ContextMasters": [
+              {
+                "MasterName": "Dongshan Shouchu",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "若以揚眉瞬目，豎拳豎指，謦欬咳嗽，是厨中拭鉢帛。",
+              "SpeechFrame": "洞山初和尚示眾云 explicitly names Dongshan Shouchu as the utterer.",
+              "FullCaseDecision": "Dongshan Shouchu says that eyebrow-raising, blinking, gestures, and coughs are merely a kitchen wiping rag if used to claim the ancestral meaning."
+            }
+          },
+          {
+            "RelPath": "X/X71/X71n1420.xml",
+            "FromLb": "0548a23",
+            "ToLb": "0548a24",
+            "Kwic": "揚眉瞬目之頃，輙曰：彼已悟矣，何其易悟哉？",
+            "MasterName": "Chushi Fanqi",
+            "Curated": true,
+            "AttributionNote": "Source record (X/X71/X71n1420.xml). Recorded Sayings of Chan Master Chushi Fanqi. Exact utterer: Chushi Fanqi. Chushi Fanqi criticizes those who certify awakening at the mere instant of an eyebrow raise or blink.",
+            "ContextMasters": [
+              {
+                "MasterName": "Chushi Fanqi",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "揚眉瞬目之頃，輙曰：彼已悟矣，何其易悟哉？",
+              "SpeechFrame": "The prose belongs to Chushi Fanqi’s own recorded work and argues in his authorial voice against careless certification.",
+              "FullCaseDecision": "Chushi Fanqi criticizes those who certify awakening at the mere instant of an eyebrow raise or blink."
+            }
+          }
+        ],
+        "ClaimAnchors": [],
+        "SourceTexts": [
+          "C/C077/C077n1710.xml",
+          "X/X80/X80n1565.xml",
+          "X/X79/X79n1557.xml",
+          "X/X82/X82n1571.xml",
+          "J/J38/J38nB406.xml",
+          "X/X67/X67n1309.xml",
+          "X/X71/X71n1420.xml"
+        ],
+        "RelatedMasters": [
+          "Mazu Daoyi",
+          "Tianran Hanshi",
+          "Dongshan Shouchu",
+          "Chushi Fanqi"
+        ],
+        "RelatedTerms": [
+          "瞬目",
+          "拈槌豎拂",
+          "豎拳豎指"
+        ],
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "Raising the eyebrows and blinking is an observable facial response whose value changes with the encounter; the action itself does not certify what it means.",
+          "EvidenceBody": [
+            "Mazu Daoyi explicitly makes the gesture right at some times and wrong at others. A questioner says it is not yet an adept’s working, while Zhongji Kezun and Dongshan Shouchu compare formulaic gesture to confinement or a kitchen rag.",
+            "A visiting monk reports it as evidence of pervasive awareness; Tianran Hanshi analyzes Mazu’s alternating use, and Chushi Fanqi condemns instant certification based on the gesture alone."
+          ]
+        },
+        "DraftEvidence": {
+          "OpeningClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3",
+            "o4",
+            "o5",
+            "o6",
+            "o7"
+          ],
+          "ZenBend": "A minute facial action becomes a public test of timing and discrimination precisely because the same motion can be accepted, denied, copied, or over-read.",
+          "CounterexampleOrLimit": "The corpus supplies no stable inner state readable from the gesture; Mazu’s fourfold statement and Chushi’s criticism forbid treating it as automatic proof.",
+          "DifferentThingTest": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "raise the eyebrows and blink",
+              "the same expression in questions, answers, comments, and verdicts"
+            ],
+            "Reason": "The questioner denies adept status witness and the false-certification warning control change the phrase’s public job without producing a different referent."
+          },
+          "AliasRationale": "The lookup wording follows the Mazu’s fourfold timing rule deployment and remains bounded by the preferred target.",
+          "ModifierControls": [
+            {
+              "finding": "not-applicable",
+              "reason": "The reported awareness doctrine witness supplies no material relation requiring a color-or-substance branch."
+            }
+          ],
+          "FamilyControls": [
+            {
+              "finding": "checked",
+              "reason": "The false-certification warning control keeps the neighboring expressions 瞬目, 拈槌豎拂, 豎拳豎指 outside this evidence count."
+            }
+          ],
+          "IndependentWorkIds": [
+            "work:guzunsu-yulu",
+            "work:X80n1565",
+            "work:X79n1557",
+            "work:wudeng-quanshu",
+            "work:J38nB406",
+            "chan:dahui-zhengfa-yancang",
+            "work:X71n1420"
+          ],
+          "DeploymentClassAudit": {
+            "Decision": "distinct-deployments-only",
+            "Families": [
+              "questioner denies adept status",
+              "Mazu’s fourfold timing rule",
+              "reported awareness doctrine",
+              "caged-chicken criticism",
+              "later analysis of Mazu",
+              "kitchen-rag criticism",
+              "false-certification warning"
+            ],
+            "Reason": "Parallel recensions were excluded from depth."
+          }
+        }
+      }
+    ]
+  }
+}

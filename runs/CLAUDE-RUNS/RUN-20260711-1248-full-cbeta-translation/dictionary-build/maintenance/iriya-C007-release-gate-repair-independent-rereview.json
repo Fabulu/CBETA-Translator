@@ -1,0 +1,85 @@
+{
+  "schemaVersion": "iriya-release-gate-repair-independent-rereview-v1",
+  "lane": "C",
+  "position": 7,
+  "id": "t_b1230513fb42",
+  "term": "亡鋒結舌",
+  "reviewer": "Codex independent changed-only reviewer; did not perform the repair",
+  "generatedUtc": "2026-07-18T13:34:00+00:00",
+  "scope": ["C007.s1.o5"],
+  "closureBinding": {
+    "path": "maintenance/iriya-C007-release-gate-repair-closure.json",
+    "sha256": "46c48f13452b6f5e3fb66384b0b5d160d34ac9af025213edc333283a9b640a41"
+  },
+  "method": "Independently reread the complete persisted case unit for occurrence s1.o5, checked the repaired worksheet and compiled entry, validated the focused physical-lift regression, checked single-entry exact and attribution reports, and compared the current worksheet and entry bytes to the compile receipt. No repaired artifact was edited.",
+  "fullCase": {
+    "source": "T/T47/T47n1999.xml",
+    "fromLb": "0968a05",
+    "toLb": "0968a08",
+    "text": "上堂。平白地上。拈起一絲毫頭。盡大地人。亡鋒結舌。遠過恒沙國。近在口皮邊。會則碓嘴生花。不會則鐵牛㘅草。去却兩頭機。如何通信。良久云。久雨不晴。脚下泥深三尺。",
+    "packetBinding": {
+      "path": "maintenance/iriya-C007-release-gate-repair-full250-attribution-packets.json",
+      "sha256": "f97ad900efffba3de73aa69c57af3e08c3b3a3bf0611339f5854a422fec1a2ab"
+    }
+  },
+  "finding": {
+    "coordinate": "C007.s1.o5",
+    "hardPass": true,
+    "actor": "Mi'an Xianjie",
+    "voice": "direct hall utterance",
+    "contextMasters": [
+      {
+        "masterName": "Mi'an Xianjie",
+        "roles": ["utterer"]
+      }
+    ],
+    "finding": "The release-gate premise of a quoted-original speaker with Mi'an Xianjie merely as later-raiser is disproved by the complete case. This is an uninterrupted standalone 上堂: Mi'an physically performs 拈起一絲毫頭 and directly continues through the headword statement and 良久云. No 舉, 引, 古人道, speaker switch, or quotation marker introduces another utterer. The repair correctly preserves Mi'an as direct utterer, contains no later-raiser context role, and rewrites the proof and public attribution prose so 拈起 is a physical lift rather than raising or quoting an earlier saying."
+  },
+  "checks": {
+    "compileParity": {
+      "path": "maintenance/iriya-C007-release-gate-repair-compile.json",
+      "sha256": "e50a63a4df3eae7c0e483b2aa4d902be2a127ba78641e1e500044f2383e70eb2",
+      "hardPass": true,
+      "currentWorksheetHashMatch": true,
+      "currentEntryHashMatch": true
+    },
+    "currentArtifacts": {
+      "worksheetPath": "fresh-build/entries/t_b1230513fb42/evidence.draft.json",
+      "worksheetSha256": "c1a53a0f5ebce9cde940d126542d72ff874f5f0a5dfcb84f60de6009b00afd6c",
+      "entryPath": "fresh-build/entries/t_b1230513fb42/entry.v2.json",
+      "entrySha256": "459d637d2fca82d7bad4570c6840b42173bb7c3695ca6cb140852a5ce098da98"
+    },
+    "singleAttribution": {
+      "path": "maintenance/iriya-C007-release-gate-repair-attribution.json",
+      "sha256": "9ba8146e163f8a7d5d5e50d623936e49a1ebc44f879bf90948d7a62151878db4",
+      "occurrences": 6,
+      "hardFailures": 0
+    },
+    "singleExact": {
+      "path": "maintenance/iriya-C007-release-gate-repair-zc.json",
+      "sha256": "f9b3284601e18595fa2caf9184434ff22b74b9d1ef4655cb17f41d214b058c28",
+      "verified": 6,
+      "failureCount": 0
+    },
+    "narrowRegression": {
+      "path": "maintenance/iriya-C007-release-gate-repair-regression.json",
+      "sha256": "0ca1c9b623d53ff4a1f1f5cce12c593fc78f6fa557f77c8c61ad3c37d18951a7",
+      "hardPass": true,
+      "physicalHairTipLiftClassifiedAsLaterQuoter": false,
+      "explicitOldSayingControlsClassifiedAsLaterQuoter": true,
+      "failureCount": 0
+    },
+    "releaseDimensions": {
+      "path": "maintenance/iriya-C007-release-gate-repair-full250.json",
+      "sha256": "b83d9b4c932e2d1d5f209f256c2bbd9c9556e8b3d02de85084b800c68d03dd67",
+      "attributionHardFailures": 0,
+      "exactFailures": 0,
+      "roundtripChecked": 250,
+      "roundtripFailures": 0
+    }
+  },
+  "hardPass": true,
+  "residuals": [],
+  "residualCoordinateCount": 0,
+  "note": "The cohort's unrelated pre-existing public-feedback review flags are outside this changed-only attribution/exact/parity rereview."
+}

@@ -1,0 +1,78 @@
+{
+  "schemaVersion": "iriya-independent-fullcase-review-v2",
+  "lane": "C",
+  "positions": [71, 80],
+  "reviewer": "Codex rotated independent C full-case reviewer",
+  "reviewedEntryCount": 10,
+  "reviewedOccurrenceCount": 40,
+  "hardPass": false,
+  "rule19Applicability": "voiceLayer is mandatory only at lane position 81 and later; its absence in C71-80 is neutral and was not treated as a delta.",
+  "method": "Every persisted occurrence was joined by its explicit candidate caseIndex to the immutable C061-160 author packet. The complete speechFrame, exact governed headword clause, KWIC, grammatical proof, exact utterer or verse/narration state, ContextMasters, sense prose, English-first presentation, flyswatter boundary, and work-distinct support were reread independently. Mechanical gates and fresh worksheet compilation were then run over the exact ten authoritative paths. No entry, worksheet, lineage, install, or merge artifact was edited.",
+  "inputBindings": {
+    "decisions": {"path": "maintenance/iriya-author-C071-080-decisions.json", "sha256": "65e3fe69f89baafc83a4a6f0098067aca9572b78d683cd43c509e18acf0efbb1"},
+    "fullCasePacket": {"path": "maintenance/iriya-author-packet-C061-160-v1.json", "sha256": "e78f03edbd59d3ef2572e340affc495d655a9e1d9e13bdc493b8ecf084c03597"}
+  },
+  "artifactBindings": {
+    "t_2abe4bdede72": {"entrySha256": "cc1ac3422848c47e7cfea29c11ddfbd0c9b39a29be1861ff7069f8bb9c71c1c1", "worksheetSha256": "baa07ca5d324fb268f9798ef7cfa771b775e77afd7aa9950af56bccab16e0dcc"},
+    "t_124a4cacfd54": {"entrySha256": "e11bf6e3c5d66532f67412467b0f0a94c11c130f7ef539177ce79de20a449e37", "worksheetSha256": "54ec3a94d674d33338cf1ea6b72ccd6f5f736e0baa7bb376aedac53552b84822"},
+    "t_6e720d672741": {"entrySha256": "1e9f7291634fc1ba47d851c8cc853ffd8388bf2a604352e83890ab2ce8cd2405", "worksheetSha256": "d0207d28712d9a3a739bd941433603ae9032b9dccaf264dc695e0dd398da580e"},
+    "t_9a3195baa841": {"entrySha256": "f2bb67c13da7fc15d19fa016294c0f0353b1aaa23b0b6d9865dc29278d5408a7", "worksheetSha256": "c5c8dbe6aac735044719529228d63d7597973f048c554ba0b75106f7c65591ef"},
+    "t_fe792b801e2b": {"entrySha256": "5936eb82b0dc74f7433e0ea6c9131104834d83fc7b65c125fce7ebfdfb1cb026", "worksheetSha256": "0f7caa1c0dbbf5873cb5f453a17582908902f814d8a36b7aa480990c93d3ba17"},
+    "t_170a03a209f4": {"entrySha256": "b4320a8dfc55baefb14c754bd238c2f63280a034b2ab350af47030a6f981651e", "worksheetSha256": "976ad5bb20bbc68c83eefdd85263d7b5fc3ba7107c07c73662a70fed65387faa"},
+    "t_207d9561b245": {"entrySha256": "aafa2d48319264e87e7d56a426781677f8b2fbb67bcbabd8117ffe24d46eb628", "worksheetSha256": "e28017102f782ee4472739c1922e0b2a68cc5338951f511737a2344def69abde"},
+    "t_8de2d4d4ae7e": {"entrySha256": "05f0bef71862e6b60ee7f2a751a0ad58384ed1fbd4f5d5992344018f73a4a6b2", "worksheetSha256": "af9b137b7e6537bdf299a58c617bf302a2454e89303c999c0c1efda1a1ece97e"},
+    "t_5c8adc7ebd4d": {"entrySha256": "29c309ecb3214f64d91ba09c3e1299a54d80e0d0b4f83a1a4ebb1fbcc68e9df1", "worksheetSha256": "9111aa2c7bdaee69a352da9d5e16b1ea004785bf8f84de3d6884092417f70c10"},
+    "t_5d4a58fe87fa": {"entrySha256": "3dcf52bf76a3384a47ba102eaed07740f2484c429010eca16990e75f5d270996", "worksheetSha256": "bf5baa0bb3eefb962300110708b4b20d45c6d39dcfccef37cd7c6e9b9d2b8041"}
+  },
+  "semanticConclusion": "All ten one-sense structures, preferred targets, evidence bodies, notes, English-first wording, and flyswatter limits are supported by the complete cases without outside doctrinal or symbolic interpretation. All forty exact headword clauses have one governed retained span and all ten senses have four work-distinct witnesses. Exact utterer attribution is correct except for C79.s1.o1's exception-state classification. Eleven additional coordinates omit roster-linkable context figures that the complete cases identify.",
+  "deltas": [
+    {"coordinate": "C71.s1.o2", "deltaKinds": ["context-master"], "finding": "Tian'an Sheng is correctly the unlinked utterer, but Huangbo Xiyun is the predicted shamefaced case figure and Linji Yixuan is the counterfactual receiver of the blows; both are roster-linkable and absent from ContextMasters."},
+    {"coordinate": "C71.s1.o3", "deltaKinds": ["context-master"], "finding": "Chulin Shangrui is correctly the utterer; Linji Yixuan is the explicitly raised and appraised case figure but is absent from ContextMasters."},
+    {"coordinate": "C71.s1.o4", "deltaKinds": ["context-master"], "finding": "Baiyu is correctly the unlinked outer utterer; Mazu Daoyi's illness saying is the raised case and Mazu is the predicted target, but he is absent from ContextMasters."},
+    {"coordinate": "C72.s1.o4", "deltaKinds": ["context-master"], "finding": "Hongzhi Zhengjue is correctly the utterer; Piyun Zhiji is a roster-linked participant in the explicitly appraised Tianxian-Piyun exchange but is absent from ContextMasters."},
+    {"coordinate": "C74.s1.o3", "deltaKinds": ["context-master"], "finding": "Hengxiulin Falin is correctly the outer utterer; Longtan Chongxin is the roster-linked figure in the raised old case but is absent from ContextMasters."},
+    {"coordinate": "C74.s1.o4", "deltaKinds": ["context-master"], "finding": "Baiyu Jingsi is correctly the utterer; Baiyun Shouduan is explicitly named as the appraised prior commentator but is absent from ContextMasters."},
+    {"coordinate": "C75.s1.o1", "deltaKinds": ["context-master"], "finding": "Jifei Ruyi correctly owns the encomium verse; Huineng is its roster-linked person-described and is absent from ContextMasters."},
+    {"coordinate": "C76.s1.o2", "deltaKinds": ["context-master"], "finding": "Baiyun Shouduan is correctly the quoted comment's utterer; Nanquan Puyuan is a roster-linked figure in the raised Yunji pearl case but is absent from ContextMasters."},
+    {"coordinate": "C77.s1.o1", "deltaKinds": ["context-master"], "finding": "Dahui Zonggao is correctly the explicit outer commentator; Baofu Congzhan is the roster-linked figure whose exchange is raised but is absent from ContextMasters."},
+    {"coordinate": "C77.s1.o3", "deltaKinds": ["context-master"], "finding": "Yuanwu Keqin is correctly the explicit outer commentator; Danxia Tianran and Pang Yun are the roster-linked participants in the raised encounter but are absent from ContextMasters."},
+    {"coordinate": "C78.s1.o2", "deltaKinds": ["context-master"], "finding": "Jieshi Zhipeng is correctly the hall utterer; Xinghua Cunjiang is a roster-linked cited example in the headword-bearing warning but is absent from ContextMasters."},
+    {"coordinate": "C79.s1.o1", "deltaKinds": ["actor-status"], "finding": "The marked monk reply directly utters the headword and the following 師云 starts Moshan Youqi's response. ActorLabel and proof are correct, but ActorAttribution.Status is wrongly persisted as narrated. This must be a reviewed-unnamed speaking non-master state, not compiler narration."}
+  ],
+  "deltaCoordinates": ["C71.s1.o2", "C71.s1.o3", "C71.s1.o4", "C72.s1.o4", "C74.s1.o3", "C74.s1.o4", "C75.s1.o1", "C76.s1.o2", "C77.s1.o1", "C77.s1.o3", "C78.s1.o2", "C79.s1.o1"],
+  "deltaCoordinateCount": 12,
+  "mechanicalChecks": {
+    "strictAttribution": {"entries": 10, "occurrences": 40, "hardFailures": 0},
+    "zc": {"entries": 10, "occurrencesVerified": 40, "failureCount": 0, "exactTextFromLbToLb": true},
+    "workSourceValidation": {"entries": 10, "hardFailures": 0},
+    "semanticTemplate": {"entries": 10, "failureCount": 0},
+    "depthSense": {"audited": 10, "hardFailed": 0, "reviewFlagged": 10, "reviewFlagReason": "All ten entries have four occurrences at the numerical floor; complete-case review found no omitted distinct deployment, but the cluster remains a documented review signal."},
+    "worksheetEntryParity": {"checked": 10, "passed": 10, "failures": 0, "method": "Fresh temporary compilation followed by byte-for-byte comparison with each sibling entry."},
+    "workDistinctEvidence": {"entries": 10, "passed": 10, "failures": 0},
+    "singleGovernedSpan": {"occurrences": 40, "passed": 40, "failures": 0}
+  },
+  "companionChangedOnlyCheck": {
+    "scope": "C61-70 mechanical cleanup only; no second semantic full-case reread",
+    "cleanupReceipt": {"path": "maintenance/iriya-author-C061-070-mechanical-cleanup-receipt.json", "sha256": "5ba7895bdb7229d079edf8786440bc145b9e242027bfc8d270d0f4829ff90dfc"},
+    "currentAuthority": {"path": "maintenance/iriya-author-C061-160-decisions.json", "sha256": "567cf8318eeb9e291dffec986dd2ddb67588526ebf7df77db251317e3d91fef3"},
+    "trailingLabelLocationsChecked": ["C61.s1.o2", "C61.s1.o5", "C63.s1.o1", "C63.s1.o4", "C65.s1.o1", "C65.s1.o4", "C67.s1.o2", "C68.s1.o1", "C69.s1.o2"],
+    "allNineLabelsExactlyTrimmed": true,
+    "C61ModifierControls": {"currentCount": 1, "nestedDecisionObjects": 0, "removedAccidentalObjects": 2},
+    "semanticActorProseChanges": 0,
+    "worksheetEntryParity": {"checked": 10, "passed": 10, "failures": 0},
+    "currentEntryHashes": {
+      "t_c7553199aa5d": "51e356c47af02cd713802dbe8cc01c757067ed315aea0d9de54e339407677b4f",
+      "t_6fdc7c6b2aef": "0e6c7b7ef4c9bef75fe889434ba17396fae3560c3f464e33e96fb10681b54fb4",
+      "t_ed578f03c4ae": "563778db84a894bc33b38959f67b6641e48e7bdf608e0ec1ae62d4adc322b9f0",
+      "t_2ef96f278a80": "c2f1bf39c0bdabcedaf93e50d92eeb09cfcac6105a9aef6a95afc43ab8af274e",
+      "t_d1c6491421c7": "69b51271370575cb3c3e75d52016711acb236f653e76a6b1a2de1bf3b3facbef",
+      "t_16cafaa9e3dd": "c43712905f966d50062176463806c3383050d50cffb55af6473e1672cd163b91",
+      "t_d489e99dbb38": "7a960635f2ac8166d3d2357393f3249f0394ab55abdc6f85f6a4a430da9e795f",
+      "t_ba12f330487c": "c286d58dd8cbcbd075be1fa5b24e9b76db684579ef0397e665672d4430926b74",
+      "t_ac7d80f92316": "ae9f917d7ea6a0d092048b320b7481fb7ca04c9e9217ea321efe3651111a076d",
+      "t_a0ccd5ef09ce": "af7657107620a31aff1a7165d2f7569c20aa0c1cfa1a64425a52adf3d3643f99"
+    },
+    "hardPass": true
+  },
+  "nextRequiredAction": "Repair the twelve exact C71-80 coordinates in their authoritative evidence.draft.json worksheets, regenerate entries, rerun focused gates and 10/10 parity, then have a fresh independent reviewer reread only the changed coordinates."
+}

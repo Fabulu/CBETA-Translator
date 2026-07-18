@@ -1,0 +1,277 @@
+{
+  "SchemaVersion": 1,
+  "Entry": {
+    "Id": "t_855f8b4b2b2f",
+    "SourceTerm": "安身立命",
+    "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+    "CreatedBy": "Codex Iriya cohort001 Lane A evidence-first",
+    "WrittenUtc": "2026-07-18T06:45:00Z",
+    "Senses": [
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "a settled footing for one's life",
+        "AlternateTargets": [
+          "a place to stand and live"
+        ],
+        "SearchAliases": [
+          "place to stand",
+          "settled footing",
+          "settle oneself",
+          "establish one's life"
+        ],
+        "Status": "preferred",
+        "Validation": "multi-source",
+        "Note": "The records repeatedly ask where such a footing is found and overturn proposed places; the phrase does not itself certify that any offered position is secure.",
+        "Occurrences": [
+          {
+            "RelPath": "T/T47/T47n1997.xml",
+            "FromLb": "0719a23",
+            "ToLb": "0719a25",
+            "Kwic": "上堂。僧問。橫穿碧落倒卓須彌。未審是什麼人分上事。師云。入地獄人分上事。進云。却是他安身立命處。師云。瓦解氷消。",
+            "Curated": true,
+            "AttributionNote": "Source record (T/T47/T47n1997.xml). Recorded Sayings of Chan Master Yuanwu Foguo. An unnamed monk proposes that this is another person's settled footing; Yuanwu Keqin answers that tile and ice dissolve.",
+            "ContextMasters": [
+              {
+                "MasterName": "Yuanwu Keqin",
+                "Roles": [
+                  "respondent"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "GrammaticalSubject": "the unnamed monk marked by 進云",
+              "FullCaseDecision": "The headword occurs in the monk's follow-up after Yuanwu Keqin answers; the following 師云 begins Yuanwu's response."
+            },
+            "ActorAttribution": {
+              "Status": "reviewed-unnamed",
+              "Kind": "monk",
+              "ActorLabel": "the unnamed questioning monk",
+              "ActorRole": "questioner",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "進云 introduces the monk's exact headword-bearing proposal, and 師云 immediately after it transfers the next turn to Yuanwu Keqin.",
+              "ReviewedBy": "Codex Iriya Lane A author",
+              "ReviewedUtc": "2026-07-18T06:45:00Z"
+            }
+          },
+          {
+            "RelPath": "T/T47/T47n1998A.xml",
+            "FromLb": "0827c14",
+            "ToLb": "0827c15",
+            "Kwic": "若揀得出。非唯親見香嚴。亦使虎頭上座無安身立命處。",
+            "MasterName": "Dahui Zonggao",
+            "Curated": true,
+            "AttributionNote": "Source record (T/T47/T47n1998A.xml). Recorded Sayings of Chan Master Dahui Pujue. Dahui Zonggao says that sorting out the two dangers would leave the named head monk with no settled footing.",
+            "ContextMasters": [
+              {
+                "MasterName": "Dahui Zonggao",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "亦使虎頭上座無安身立命處。",
+              "SpeechFrame": "The paragraph is Dahui Zonggao's continuous comment after raising Xiangyan's exchange.",
+              "FullCaseDecision": "No speaker shift interrupts Dahui's comment before the exact clause."
+            }
+          },
+          {
+            "RelPath": "T/T48/T48n2001.xml",
+            "FromLb": "0006b21",
+            "ToLb": "0006b24",
+            "Kwic": "師云。室生虛白。眼照清光。猶未是衲僧安身立命處。且道。畢竟作麼生。良久云。三更月落夜巢寒。瓊林不宿千年鶴。",
+            "MasterName": "Hongzhi Zhengjue",
+            "Curated": true,
+            "AttributionNote": "Source record (T/T48/T48n2001.xml). Extensive Record of Chan Master Hongzhi. Hongzhi Zhengjue says that a chamber filled with clarity is still not a patch-robed monk's settled footing, then asks what finally is.",
+            "ContextMasters": [
+              {
+                "MasterName": "Hongzhi Zhengjue",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "猶未是衲僧安身立命處。",
+              "SpeechFrame": "師云 introduces Hongzhi Zhengjue's comment and 良久云 continues his same address.",
+              "FullCaseDecision": "Hongzhi is the exact utterer of the uninterrupted comment."
+            }
+          },
+          {
+            "RelPath": "T/T48/T48n2003.xml",
+            "FromLb": "0206b02",
+            "ToLb": "0206b04",
+            "Kwic": "苟或箇箇如此。山僧且打退鼓。諸人向什麼處。安身立命岌崿。",
+            "MasterName": "Yuanwu Keqin",
+            "Curated": true,
+            "AttributionNote": "Source record (T/T48/T48n2003.xml). Blue Cliff Record by Chan Master Yuanwu Foguo. Yuanwu Keqin asks the assembly where they will establish a settled footing after saying he would beat the retreat drum.",
+            "ContextMasters": [
+              {
+                "MasterName": "Yuanwu Keqin",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "諸人向什麼處。安身立命岌崿。",
+              "SpeechFrame": "The first-person 山僧 and direct address 諸人 occur inside Yuanwu Keqin's continuous prose comment.",
+              "FullCaseDecision": "Yuanwu is the authorial speaker of the exact question."
+            }
+          },
+          {
+            "RelPath": "X/X79/X79n1557.xml",
+            "FromLb": "0110a06",
+            "ToLb": "0110a07",
+            "Kwic": "且問儞等諸人向甚麼處安身立命？",
+            "MasterName": "Shishuang Chuyuan",
+            "Curated": true,
+            "AttributionNote": "Source record (X/X79/X79n1557.xml). Essential Compendium of the United Lamp. Shishuang Chuyuan asks the assembly where they settle themselves and establish their lives.",
+            "ContextMasters": [
+              {
+                "MasterName": "Shishuang Chuyuan",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "且問儞等諸人向甚麼處安身立命？",
+              "SpeechFrame": "The named Chuyuan section carries a continuous 示眾 address whose direct question contains the headword.",
+              "FullCaseDecision": "The section identity and uninterrupted address assign the question to Shishuang Chuyuan."
+            }
+          },
+          {
+            "RelPath": "T/T51/T51n2077.xml",
+            "FromLb": "0475c14",
+            "ToLb": "0475c16",
+            "Kwic": "問生死到來如何迴避。師曰。定花板上。曰莫便是他安身立命處也無。師曰。符到奉行。",
+            "Curated": true,
+            "AttributionNote": "Source record (T/T51/T51n2077.xml). Continued Record of the Transmission of the Lamp. An unnamed monk asks whether the master's first answer is precisely the settled footing in question; the master answers again.",
+            "ContextMasters": [],
+            "DraftActorProof": {
+              "GrammaticalSubject": "the unnamed monk marked by 曰 after the master's answer",
+              "FullCaseDecision": "The exact headword is in the monk's follow-up; the bracketing 師曰 formulas assign the surrounding responses to the section master, not the headword turn."
+            },
+            "ActorAttribution": {
+              "Status": "reviewed-unnamed",
+              "Kind": "monk",
+              "ActorLabel": "the unnamed questioning monk",
+              "ActorRole": "questioner",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "The sequence 問…師曰…曰…師曰 marks the headword-bearing middle 曰 as the unnamed monk's follow-up question.",
+              "ReviewedBy": "Codex Iriya Lane A author",
+              "ReviewedUtc": "2026-07-18T06:45:00Z"
+            }
+          },
+          {
+            "RelPath": "X/X80/X80n1565.xml",
+            "FromLb": "0094c08",
+            "ToLb": "0094c10",
+            "Kwic": "問。學人不據地時如何。師曰。汝向甚麼處安身立命。曰。却據地時如何。師曰。拖出死屍著。",
+            "MasterName": "Changsha Jingcen",
+            "Curated": true,
+            "AttributionNote": "Source record (X/X80/X80n1565.xml). Five Lamps Compendium. Changsha Jingcen asks where the monk will establish a settled footing when he does not rely on the ground.",
+            "ContextMasters": [
+              {
+                "MasterName": "Changsha Jingcen",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "汝向甚麼處安身立命。",
+              "SpeechFrame": "師曰 directly introduces Changsha Jingcen's headword-bearing reply to the monk.",
+              "FullCaseDecision": "The exact turn belongs to Changsha Jingcen; the following 曰 returns speech to the monk."
+            }
+          }
+        ],
+        "ClaimAnchors": [],
+        "SourceTexts": [
+          "T/T47/T47n1997.xml",
+          "T/T47/T47n1998A.xml",
+          "T/T48/T48n2001.xml",
+          "T/T48/T48n2003.xml",
+          "X/X79/X79n1557.xml",
+          "T/T51/T51n2077.xml",
+          "X/X80/X80n1565.xml"
+        ],
+        "RelatedMasters": [
+          "Yuanwu Keqin",
+          "Dahui Zonggao",
+          "Hongzhi Zhengjue",
+          "Shishuang Chuyuan",
+          "Changsha Jingcen"
+        ],
+        "RelatedTerms": [
+          "安身",
+          "立命"
+        ],
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "A settled footing for one's life is what the Chan record repeatedly demands when it asks where someone can stand and live after an offered ground or position has been removed.",
+          "EvidenceBody": [
+            "Changsha Jingcen asks a monk who claims not to rely on the ground where he will establish such a footing. Yuanwu Keqin records a monk proposing one, then answers that it dissolves like tile and ice; elsewhere Yuanwu asks an assembly the same where-question.",
+            "Hongzhi Zhengjue says that even a chamber filled with clarity is not yet a patch-robed monk's settled footing. Shishuang Chuyuan puts the question directly to everyone present, so the phrase works as a public test rather than a promise that any stated place is secure."
+          ]
+        },
+        "DraftEvidence": {
+          "OpeningClaimEvidenceKeys": [
+            "o1",
+            "o3",
+            "o4",
+            "o5",
+            "o7"
+          ],
+          "ZenBend": "The ordinary language of settling and establishing a life becomes a recurring public question that tests any claimed ground or position.",
+          "CounterexampleOrLimit": "The records alternately propose and remove apparent loci, so the headword does not name one fixed state or guarantee approval.",
+          "DifferentThingTest": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "settling and establishing one's life",
+              "the footing repeatedly questioned in Chan encounters"
+            ],
+            "Reason": "Questions, denials, and proposals all concern the same settled footing; their appraisal and grammar differ, not the referent."
+          },
+          "AliasRationale": "The aliases retrieve the same footing/locus without turning longer compounds into meanings of the headword.",
+          "ModifierControls": [
+            {
+              "finding": "not-applicable",
+              "reason": "No apparent material or color modifier occurs."
+            }
+          ],
+          "FamilyControls": [
+            {
+              "finding": "checked",
+              "reason": "The components and longer form meaning 'the place of settled footing' were compared and did not create a separate referent or pad exact depth."
+            }
+          ],
+          "IndependentWorkIds": [
+            "work:T47n1997",
+            "work:T47n1998A",
+            "work:T48n2001",
+            "work:T48n2003",
+            "work:X79n1557",
+            "work:T51n2077",
+            "work:X80n1565"
+          ]
+        }
+      }
+    ]
+  }
+}

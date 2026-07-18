@@ -1,0 +1,77 @@
+{
+  "schemaVersion": "iriya-final1-independent-rereview-v1",
+  "lane": "A",
+  "positions": [61, 70],
+  "reviewer": "Codex original independent reviewer; did not author or repair lane A",
+  "generatedUtc": "2026-07-18T13:22:00+00:00",
+  "scope": ["A64.s1.o5"],
+  "closureBinding": {
+    "path": "maintenance/iriya-A061-070-final1-repair-closure.json",
+    "sha256": "60fa5986863cfffe401722ea465b58475663383caa33ecc168f33f8f25952d97"
+  },
+  "priorRereviewBinding": {
+    "path": "maintenance/iriya-A061-070-review-repair-independent-rereview.json",
+    "sha256": "b2b187301791f6ad7dbb4438760a76696622112b49e2921350eb2929c3188785"
+  },
+  "authorityBinding": {
+    "path": "maintenance/iriya-decisions-A061-070-reconciled.json",
+    "sha256": "ba4b1d134fcfe5c5c1498b42328b8973ff7ce15ed8ac11f27ef01232212c199f"
+  },
+  "packetBinding": {
+    "path": "maintenance/iriya-author-packet-A061-160-v1.json",
+    "sha256": "10e519a4dbf0d5315c1df4763e6e88ddf7836ad6904c6446c0140ec9ae7c0c19"
+  },
+  "method": "Independently reread only A64.s1.o5 against its complete immutable speechFrame and the prior residual. Confirmed the persisted canonical roster identity, role, actor, voice, and exact governed KWIC boundary. Independently checked the final-one reports for all sixty occurrences and compared all ten current entry, worksheet, and WORK hashes byte-for-byte with the emitter receipt; sibling parity is 10/10. No repaired authority or entry artifact was edited.",
+  "findings": [
+    {
+      "coordinate": "A64.s1.o5",
+      "hardPass": true,
+      "finding": "The sole residual is closed. Zhaozhou Congshen remains the exact actor of the quoted-original reply, the KWIC remains the accepted single governed span, Yunju Daoying remains context as case-figure, and roster-canonical Yuanjie Jingying is now retained in contextMasters with role later-raiser. The closure's requested label Yuanjie Ying is correctly canonicalized to the read-only roster name Yuanjie Jingying."
+    }
+  ],
+  "mechanicalChecks": {
+    "strictAttribution": {
+      "path": "maintenance/iriya-A061-070-final1-attribution.json",
+      "sha256": "c6be23b04029f3288ddf97b3d2779a5cadb2cf132e57c294773d9d8a7cd0b6df",
+      "occurrences": 60,
+      "hardFailures": 0
+    },
+    "exactZc": {
+      "path": "maintenance/iriya-A061-070-final1-exact.json",
+      "sha256": "4fa2fc54adeed2b8c26cc2a86583799825808dacaac09cd6d018233bd2e4ed2e",
+      "occurrencesVerified": 60,
+      "failureCount": 0
+    },
+    "workSource": {
+      "path": "maintenance/iriya-A061-070-final1-work.json",
+      "sha256": "486c51c341cf8b3cb1bba3575653586ff5b8b56a075f73f237d81c3f73352e04",
+      "entries": 10,
+      "hardFailures": 0
+    },
+    "template": {
+      "path": "maintenance/iriya-A061-070-final1-template.json",
+      "sha256": "b63b8ab36fd53e087dea82a0db287bc6fd110c52dccaba2ad0f5ea629febda32",
+      "entries": 10,
+      "failureCount": 0
+    },
+    "depth": {
+      "path": "maintenance/iriya-A061-070-final1-depth.json",
+      "sha256": "52815533863abc3bec63c8dc959723282b095d81aefa8cc7cce965460995fa42",
+      "entries": 10,
+      "hardFailures": 0
+    },
+    "currentParity": {
+      "path": "maintenance/iriya-author-A061-070-final1-emitter.json",
+      "sha256": "6e06f46da80e56208887777caabe98faa61ac0942277ebde50844f5c942ec500",
+      "checked": 10,
+      "currentHashMatches": 10,
+      "siblingParityPassed": 10,
+      "failures": 0
+    }
+  },
+  "hardPass": true,
+  "residuals": [],
+  "residualCoordinates": [],
+  "residualCoordinateCount": 0,
+  "nextAction": "A061-A070 final-one repair is independently accepted."
+}

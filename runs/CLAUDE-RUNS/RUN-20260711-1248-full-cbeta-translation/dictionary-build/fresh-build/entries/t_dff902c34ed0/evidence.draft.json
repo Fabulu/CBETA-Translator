@@ -1,0 +1,247 @@
+{
+  "SchemaVersion": 1,
+  "Entry": {
+    "Id": "t_dff902c34ed0",
+    "SourceTerm": "路逢達道人，不將語默對",
+    "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+    "CreatedBy": "Codex Iriya construction lane C evidence-first",
+    "WrittenUtc": "2026-07-18T04:57:17.536825Z",
+    "Senses": [
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "when meeting an accomplished person on the road, do not answer with speech or silence",
+        "AlternateTargets": [
+          "meet an adept without responding verbally or silently",
+          "neither speech nor silence will answer an accomplished traveler"
+        ],
+        "SearchAliases": [
+          "meet accomplished person road",
+          "not answer speech silence",
+          "neither words nor silence",
+          "路逢達道人"
+        ],
+        "Status": "preferred",
+        "Validation": "multi-source",
+        "Note": "Three quoted questions and one verse support “when meeting an accomplished person on the road, do not answer with speech or silence” across four independent works.",
+        "Occurrences": [
+          {
+            "RelPath": "X/X81/X81n1571.xml",
+            "FromLb": "0521c05",
+            "ToLb": "0521c06",
+            "Kwic": "問：古人道：路逢達道人，不將語默對。未審將甚麼對？師曰：喫茶去。",
+            "MasterName": null,
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Xuefeng Yicun",
+                "Roles": [
+                  "respondent"
+                ]
+              }
+            ],
+            "AttributionNote": "Source record (X/X81/X81n1571.xml). Complete Five Lamps (五燈全書(第1卷-第33卷)). English Label: the unnamed monastic questioner quotes the maxim and asks what response remains; Xuefeng sends him to drink tea.",
+            "ActorAttribution": {
+              "Status": "reviewed-unnamed",
+              "Kind": "monastic questioner",
+              "ActorLabel": "the unnamed monastic questioner",
+              "ActorRole": "questioner",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "The 問 frame assigns the maxim-bearing question to an unnamed monastic; 師曰 or 師云 begins the named teacher's reply.",
+              "ReviewedBy": "Codex Iriya construction lane C",
+              "ReviewedUtc": "2026-07-18T04:57:17.536825Z"
+            },
+            "DraftActorProof": {
+              "ExactHeadwordClause": "問：古人道：路逢達道人，不將語默對。未審將甚麼對？師曰：喫茶去。",
+              "GrammaticalSubject": "the unnamed monastic questioner",
+              "SpeechFrame": "quotes the maxim and asks what response remains; Xuefeng sends him to drink tea.",
+              "FullCaseDecision": "The unnamed questioner owns the quoted maxim; Xuefeng Yicun owns only the reply."
+            }
+          },
+          {
+            "RelPath": "X/X81/X81n1568.xml",
+            "FromLb": "0036c20",
+            "ToLb": "0036c21",
+            "Kwic": "問：路逢達道人，不將語默對。未審將甚麼對？師曰：瞥爾三千界。",
+            "MasterName": null,
+            "Curated": true,
+            "ContextMasters": [],
+            "AttributionNote": "Source record (X/X81/X81n1568.xml). Strict Lineage of the Five Lamps (五燈嚴統(第10卷-第25卷)). English Label: the unnamed monastic questioner asks what can answer beyond speech and silence; Shoushan replies that it flashes through the three-thousandfold world. Unlinked context figure: Shoushan Shengnian (respondent); identity and role are preserved here without a broken ContextMasters link.",
+            "ActorAttribution": {
+              "Status": "reviewed-unnamed",
+              "Kind": "monastic questioner",
+              "ActorLabel": "the unnamed monastic questioner",
+              "ActorRole": "questioner",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "The 問 frame assigns the maxim-bearing question to an unnamed monastic; 師曰 or 師云 begins the named teacher's reply.",
+              "ReviewedBy": "Codex Iriya construction lane C",
+              "ReviewedUtc": "2026-07-18T04:57:17.536825Z"
+            },
+            "DraftActorProof": {
+              "ExactHeadwordClause": "問：路逢達道人，不將語默對。未審將甚麼對？師曰：瞥爾三千界。",
+              "GrammaticalSubject": "the unnamed monastic questioner",
+              "SpeechFrame": "asks what can answer beyond speech and silence; Shoushan replies that it flashes through the three-thousandfold world.",
+              "FullCaseDecision": "The unnamed questioner owns the quoted maxim; Shoushan Shengnian owns only the reply."
+            }
+          },
+          {
+            "RelPath": "X/X66/X66n1297.xml",
+            "FromLb": "0399b21",
+            "ToLb": "0399b22",
+            "Kwic": "趙州因僧問：路逢達道人，不將語默對。未審將甚麼對？師曰：人從陳州來，不得許州信。",
+            "MasterName": null,
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Zhaozhou Congshen",
+                "Roles": [
+                  "respondent"
+                ]
+              }
+            ],
+            "AttributionNote": "Source record (X/X66/X66n1297.xml). Lineage Mirror and Grove (宗鑑法林). English Label: the unnamed monastic questioner asks Zhaozhou how to meet the maxim; Zhaozhou answers with a traveler who brings no news from the neighboring prefecture.",
+            "ActorAttribution": {
+              "Status": "reviewed-unnamed",
+              "Kind": "monastic questioner",
+              "ActorLabel": "the unnamed monastic questioner",
+              "ActorRole": "questioner",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "The 問 frame assigns the maxim-bearing question to an unnamed monastic; 師曰 or 師云 begins the named teacher's reply.",
+              "ReviewedBy": "Codex Iriya construction lane C",
+              "ReviewedUtc": "2026-07-18T04:57:17.536825Z"
+            },
+            "DraftActorProof": {
+              "ExactHeadwordClause": "趙州因僧問：路逢達道人，不將語默對。未審將甚麼對？師曰：人從陳州來，不得許州信。",
+              "GrammaticalSubject": "the unnamed monastic questioner",
+              "SpeechFrame": "asks Zhaozhou how to meet the maxim; Zhaozhou answers with a traveler who brings no news from the neighboring prefecture.",
+              "FullCaseDecision": "The unnamed questioner owns the quoted maxim; Zhaozhou Congshen owns only the reply."
+            }
+          },
+          {
+            "RelPath": "X/X83/X83n1578.xml",
+            "FromLb": "0633c19",
+            "ToLb": "0633c21",
+            "Kwic": "雪竇顯頌：問曾不知，答還不會，月冷風高，古巖寒檜。堪笑路逢達道人，不將語默對",
+            "MasterName": "Xuedou Chongxian",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Xuedou Chongxian",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "AttributionNote": "Source record (X/X83/X83n1578.xml). Record of Pointing at the Moon (指月錄). English Label: Xuedou Chongxian includes the maxim in a verse that first says the question did not know and the answer still did not understand.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "雪竇顯頌：問曾不知，答還不會，月冷風高，古巖寒檜。堪笑路逢達道人，不將語默對",
+              "GrammaticalSubject": "Xuedou Chongxian",
+              "SpeechFrame": "includes the maxim in a verse that first says the question did not know and the answer still did not understand.",
+              "FullCaseDecision": "Xuedou Chongxian owns the exact headword-bearing turn in the complete case."
+            }
+          }
+        ],
+        "SourceTexts": [
+          "X/X81/X81n1571.xml",
+          "X/X81/X81n1568.xml",
+          "X/X66/X66n1297.xml",
+          "X/X83/X83n1578.xml"
+        ],
+        "RelatedMasters": [
+          "Xuefeng Yicun",
+          "Zhaozhou Congshen",
+          "Xuedou Chongxian"
+        ],
+        "RelatedTerms": [
+          "達道人",
+          "語默",
+          "路逢",
+          "不將語默對"
+        ],
+        "ClaimAnchors": [],
+        "Explanation": "When meeting an accomplished person on the road, do not answer with speech or silence states its prohibition through the paired objects speech and silence. Three unnamed monastics quote it and ask what to use instead; Xuefeng answers 'drink tea,' Shoushan says it flashes through the three-thousandfold world, and Zhaozhou speaks of a traveler without neighboring news. Xuedou's verse quotes the same line after saying that neither question nor answer understood.",
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "When meeting an accomplished person on the road, do not answer with speech or silence states its prohibition through the paired objects speech and silence.",
+          "EvidenceBody": [
+            "Three unnamed monastics quote it and ask what to use instead; Xuefeng answers 'drink tea,' Shoushan says it flashes through the three-thousandfold world, and Zhaozhou speaks of a traveler without neighboring news. Xuedou's verse quotes the same line after saying that neither question nor answer understood."
+          ]
+        },
+        "DraftEvidence": {
+          "OpeningClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3",
+            "o4"
+          ],
+          "ZenBend": "The stored turns preserve the speech-and-silence prohibition, three distinct replies, and Xuedou's explicit criticism of both question and answer.",
+          "CounterexampleOrLimit": "The maxim does not prohibit all speaking: every stored teacher replies, but none treats an abstract choice between speech and silence as sufficient.",
+          "DifferentThingTest": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "路逢達道人、不將語默對",
+              "when meeting an accomplished person on the road, do not answer with speech or silence"
+            ],
+            "Reason": "Every stored 路逢達道人、不將語默對 token retains the same lexical construction; the surrounding turns vary without introducing another referent."
+          },
+          "AliasRationale": "For 路逢達道人、不將語默對, the probes preserve these attested lexical axes: meet accomplished person road; not answer speech silence; neither words nor silence; 路逢達道人.",
+          "ModifierControls": [
+            {
+              "Control": "negative instrumental construction",
+              "Finding": "不將語默對 rejects using either speech or silence as the answering instrument."
+            }
+          ],
+          "FamilyControls": [
+            {
+              "Term": "達道人",
+              "Finding": "The accomplished person is the encounter partner, not a title for every traveler."
+            },
+            {
+              "Term": "語默",
+              "Finding": "Speech and silence form the rejected pair but also occur outside this maxim."
+            }
+          ],
+          "IndependentWorkIds": [
+            "work:wudeng-quanshu",
+            "work:wudeng-yantong",
+            "chan:zongjian-falin",
+            "chan:zhiyue-lu"
+          ]
+        },
+        "DraftAcceptedDerivedFields": {
+          "SourceTexts": [
+            "X/X81/X81n1571.xml",
+            "X/X81/X81n1568.xml",
+            "X/X66/X66n1297.xml",
+            "X/X83/X83n1578.xml"
+          ],
+          "RelatedMasters": [
+            "Xuefeng Yicun",
+            "Zhaozhou Congshen",
+            "Xuedou Chongxian"
+          ]
+        }
+      }
+    ]
+  }
+}

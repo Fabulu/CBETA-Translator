@@ -1,0 +1,325 @@
+{
+  "SchemaVersion": 1,
+  "Entry": {
+    "Id": "t_0e7f1765bcc5",
+    "SourceTerm": "三十年後",
+    "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+    "CreatedBy": "Codex Iriya cohort001 Lane A evidence-first",
+    "WrittenUtc": "2026-07-18T07:30:00Z",
+    "Senses": [
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "thirty years later",
+        "AlternateTargets": [
+          "thirty years from now"
+        ],
+        "SearchAliases": [
+          "thirty years later",
+          "thirty years from now",
+          "in thirty years",
+          "later judgment"
+        ],
+        "Status": "preferred",
+        "Validation": "multi-source",
+        "Note": "The interval remains literal future time. Its recurring Chan job is to defer how a saying, encounter, or person will be judged, remembered, or repeated.",
+        "Occurrences": [
+          {
+            "EvidenceKey": "o1",
+            "RelPath": "T/T47/T47n1997.xml",
+            "FromLb": "0751a06",
+            "ToLb": "0751a07",
+            "Kwic": "且道。把住好放行好。三十年後逢人不得錯舉。",
+            "MasterName": "Yuanwu Keqin",
+            "Curated": true,
+            "AttributionNote": "Source record (T/T47/T47n1997.xml). Recorded Sayings of Chan Master Yuanwu Foguo. Yuanwu Keqin asks whether holding fast or letting go is better and warns the assembly not to repeat it wrongly thirty years later.",
+            "ContextMasters": [
+              {
+                "MasterName": "Yuanwu Keqin",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "三十年後逢人不得錯舉。",
+              "SpeechFrame": "The first-person hall address continues through the headword clause without a speaker shift.",
+              "FullCaseDecision": "Yuanwu Keqin is the exact utterer."
+            }
+          },
+          {
+            "EvidenceKey": "o2",
+            "RelPath": "T/T47/T47n1998A.xml",
+            "FromLb": "0825c22",
+            "ToLb": "0825c22",
+            "Kwic": "僧喝一喝云。三十年後大有人笑在。",
+            "Curated": true,
+            "AttributionNote": "Source record (T/T47/T47n1998A.xml). Recorded Sayings of Chan Master Dahui Pujue. An unnamed monk gives a shout and predicts that many people will laugh thirty years later; Dahui Zonggao answers him in the following turn.",
+            "ContextMasters": [
+              {
+                "MasterName": "Dahui Zonggao",
+                "Roles": [
+                  "respondent"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "GrammaticalSubject": "the unnamed monk marked by 僧喝一喝云",
+              "FullCaseDecision": "The exact phrase belongs to the monk's forecast; the following 師云 transfers the reply to Dahui Zonggao."
+            },
+            "ActorAttribution": {
+              "Status": "reviewed-unnamed",
+              "Kind": "monk",
+              "ActorLabel": "the unnamed questioning monk",
+              "ActorRole": "questioner",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "僧喝一喝云 explicitly introduces the monk's exact headword-bearing forecast; the following 師云 begins Dahui Zonggao's reply.",
+              "ReviewedBy": "Codex Iriya Lane A author",
+              "ReviewedUtc": "2026-07-18T07:30:00Z"
+            }
+          },
+          {
+            "EvidenceKey": "o3",
+            "RelPath": "T/T48/T48n2003.xml",
+            "FromLb": "0204c29",
+            "ToLb": "0205a01",
+            "Kwic": "畢竟在什麼處。三十年後。待山僧換骨出來。却向爾道。",
+            "MasterName": "Yuanwu Keqin",
+            "Curated": true,
+            "AttributionNote": "Source record (T/T48/T48n2003.xml). Blue Cliff Record by Chan Master Yuanwu Foguo. Yuanwu Keqin asks where the matter finally lies and says he will tell the reader after this mountain monk changes his bones thirty years later.",
+            "ContextMasters": [
+              {
+                "MasterName": "Yuanwu Keqin",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "三十年後。待山僧換骨出來。却向爾道。",
+              "SpeechFrame": "The self-reference 山僧 occurs inside Yuanwu Keqin's continuous case comment.",
+              "FullCaseDecision": "Yuanwu is the exact utterer of the deferred-answer line."
+            }
+          },
+          {
+            "EvidenceKey": "o4",
+            "RelPath": "X/X79/X79n1557.xml",
+            "FromLb": "0034c13",
+            "ToLb": "0034c14",
+            "Kwic": "師云：去聖時遙，人多懈怠，三十年後討箇師僧也難得。",
+            "MasterName": "Nanyang Huizhong",
+            "Curated": true,
+            "AttributionNote": "Source record (X/X79/X79n1557.xml). Essential Compendium of the United Lamp. Nanyang Huizhong says that with the sages remote and people lax, thirty years later even finding a genuine monk will be difficult.",
+            "ContextMasters": [
+              {
+                "MasterName": "Nanyang Huizhong",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "三十年後討箇師僧也難得。",
+              "SpeechFrame": "師云 follows Danxia Tianran's departure inside Nanyang Huizhong's named section.",
+              "FullCaseDecision": "The section master Nanyang Huizhong is the exact utterer."
+            }
+          },
+          {
+            "EvidenceKey": "o5",
+            "RelPath": "X/X79/X79n1557.xml",
+            "FromLb": "0065b07",
+            "ToLb": "0065b08",
+            "Kwic": "師云：這箇因緣，三十年後擲地作金聲。仰云：須是和尚提唱始得。",
+            "MasterName": "Guishan Lingyou",
+            "Curated": true,
+            "AttributionNote": "Source record (X/X79/X79n1557.xml). Essential Compendium of the United Lamp. Guishan Lingyou says that this encounter will strike the ground with a golden ring thirty years later; Yangshan Huiji answers that Guishan must proclaim it.",
+            "ContextMasters": [
+              {
+                "MasterName": "Guishan Lingyou",
+                "Roles": [
+                  "utterer"
+                ]
+              },
+              {
+                "MasterName": "Yangshan Huiji",
+                "Roles": [
+                  "respondent"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "這箇因緣，三十年後擲地作金聲。",
+              "SpeechFrame": "師云 introduces Guishan Lingyou's turn; 仰云 explicitly begins Yangshan Huiji's reply afterward.",
+              "FullCaseDecision": "Guishan is the exact headword utterer."
+            }
+          },
+          {
+            "EvidenceKey": "o6",
+            "RelPath": "T/T51/T51n2077.xml",
+            "FromLb": "0479c23",
+            "ToLb": "0479c25",
+            "Kwic": "問靈山一會何異今日。師曰。莫妄想。僧云。作家宗師。師曰。三十年後自有人知。",
+            "MasterName": "Kaixian Shanxian",
+            "Curated": true,
+            "AttributionNote": "Source record (T/T51/T51n2077.xml). Continued Record of the Transmission of the Lamp. Kaixian Shanxian answers that thirty years later someone will know, after a monk calls him an accomplished lineage master.",
+            "ContextMasters": [
+              {
+                "MasterName": "Kaixian Shanxian",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "師曰。三十年後自有人知。",
+              "SpeechFrame": "The exchange alternates 問, 師曰, 僧云, 師曰; the final 師曰 directly governs the headword.",
+              "FullCaseDecision": "The named section master Kaixian Shanxian is the exact utterer."
+            }
+          },
+          {
+            "EvidenceKey": "o7",
+            "RelPath": "X/X82/X82n1571.xml",
+            "FromLb": "0002a23",
+            "ToLb": "0002b01",
+            "Kwic": "且道衲僧據箇甚麼？良久曰：三十年後莫孤負人。卓拄杖，下座。",
+            "MasterName": "Chengxin Shengzong",
+            "Curated": true,
+            "AttributionNote": "Source record (X/X82/X82n1571.xml). Complete Five Lamps (Vols. 34–120). Chengxin Shengzong asks what patch-robed monks rely on, pauses, and warns them not to fail him thirty years later.",
+            "ContextMasters": [
+              {
+                "MasterName": "Chengxin Shengzong",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "良久曰：三十年後莫孤負人。",
+              "SpeechFrame": "The line belongs to Chengxin Shengzong's named uninterrupted 上堂 address and precedes his descent from the seat.",
+              "FullCaseDecision": "Chengxin Shengzong is the exact utterer."
+            }
+          },
+          {
+            "EvidenceKey": "o8",
+            "RelPath": "T/T47/T47n1998A.xml",
+            "FromLb": "0850b12",
+            "ToLb": "0850b13",
+            "Kwic": "僧拍手一下便出。師云。三十年後悟去在。",
+            "MasterName": "Dahui Zonggao",
+            "Curated": true,
+            "AttributionNote": "Source record (T/T47/T47n1998A.xml). Recorded Sayings of Chan Master Dahui Pujue. After a monk claps and leaves, Dahui Zonggao says that he will understand thirty years later.",
+            "ContextMasters": [
+              {
+                "MasterName": "Dahui Zonggao",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "師云。三十年後悟去在。",
+              "SpeechFrame": "師云 directly introduces Dahui's response after the monk exits.",
+              "FullCaseDecision": "Dahui Zonggao is the exact utterer."
+            }
+          }
+        ],
+        "ClaimAnchors": [],
+        "SourceTexts": [
+          "T/T47/T47n1997.xml",
+          "T/T47/T47n1998A.xml",
+          "T/T48/T48n2003.xml",
+          "X/X79/X79n1557.xml",
+          "T/T51/T51n2077.xml",
+          "X/X82/X82n1571.xml"
+        ],
+        "RelatedMasters": [
+          "Yuanwu Keqin",
+          "Dahui Zonggao",
+          "Nanyang Huizhong",
+          "Guishan Lingyou",
+          "Yangshan Huiji",
+          "Kaixian Shanxian",
+          "Chengxin Shengzong"
+        ],
+        "RelatedTerms": [
+          "三十年"
+        ],
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "Thirty years later is ordinary future time turned into a recurring public reckoning: the Chan records use it to forecast how a saying, encounter, or person will be laughed at, understood, repeated, or misreported.",
+          "EvidenceBody": [
+            "Yuanwu Keqin warns his assembly not to repeat his holding-fast and letting-go question wrongly thirty years later; elsewhere he postpones an answer until this mountain monk has changed his bones. When a monk predicts that people will laugh in thirty years, Dahui Zonggao immediately asks why wait and says people already laugh. Nanyang Huizhong predicts that a genuine monk will be hard to find, Guishan Lingyou says an encounter will later ring when struck, and Kaixian Shanxian says future people will know. Chengxin Shengzong's warning not to fail him later keeps the expression a forecast and test, not an instruction to wait a prescribed interval."
+          ]
+        },
+        "DraftEvidence": {
+          "OpeningClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3",
+            "o4",
+            "o5",
+            "o6",
+            "o7",
+            "o8"
+          ],
+          "ZenBend": "A plain future date repeatedly caps present encounters by deferring their public recognition, laughter, repetition, or correction.",
+          "CounterexampleOrLimit": "The words also occur as ordinary chronology, and Dahui challenges the delay itself; the phrase does not lexically mean verdict or prescribe a waiting period.",
+          "DifferentThingTest": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "a point thirty years in the future",
+              "that future point used as a deferred public reckoning"
+            ],
+            "Reason": "The discourse job changes while the temporal referent remains the same."
+          },
+          "AliasRationale": "The aliases retrieve the same temporal phrase and one cautious deployment label; none changes the literal interval.",
+          "ModifierControls": [
+            {
+              "finding": "not-applicable",
+              "reason": "No apparent material or color modifier occurs."
+            }
+          ],
+          "FamilyControls": [
+            {
+              "finding": "checked",
+              "reason": "Near temporal forms and longer forecasts were compared; only exact 三十年後 rows count toward depth."
+            }
+          ],
+          "IndependentWorkIds": [
+            "work:T47n1997",
+            "work:T47n1998A",
+            "work:T48n2003",
+            "work:X79n1557",
+            "work:T51n2077",
+            "work:wudeng-quanshu"
+          ]
+        },
+        "DraftAcceptedDerivedFields": {
+          "SourceTexts": [
+            "T/T47/T47n1997.xml",
+            "T/T47/T47n1998A.xml",
+            "T/T48/T48n2003.xml",
+            "X/X79/X79n1557.xml",
+            "T/T51/T51n2077.xml",
+            "X/X82/X82n1571.xml"
+          ],
+          "RelatedMasters": [
+            "Yuanwu Keqin",
+            "Dahui Zonggao",
+            "Nanyang Huizhong",
+            "Guishan Lingyou",
+            "Yangshan Huiji",
+            "Kaixian Shanxian",
+            "Chengxin Shengzong"
+          ]
+        }
+      }
+    ]
+  }
+}

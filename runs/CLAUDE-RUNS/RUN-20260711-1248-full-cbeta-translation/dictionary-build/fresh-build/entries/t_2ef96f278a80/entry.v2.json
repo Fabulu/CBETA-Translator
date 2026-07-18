@@ -1,0 +1,109 @@
+{
+  "Id": "t_2ef96f278a80",
+  "SourceTerm": "藥病相治",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "CreatedBy": "Codex Iriya lane C61-160 exact-turn author",
+  "WrittenUtc": "2026-07-18T14:05:00+02:00",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "medicine and illness treat one another",
+      "AlternateTargets": [
+        "remedy and ailment counter-treat each other"
+      ],
+      "SearchAliases": [
+        "medicine and illness",
+        "remedy and ailment"
+      ],
+      "Status": "preferred",
+      "Validation": "multi-source",
+      "Note": "The phrase's reciprocal wording is essential: the records do not present a permanent remedy standing apart from an illness, and the retained passages explicitly limit the relevant sayings to a temporary counter-treatment.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T48/T48n2003.xml",
+          "FromLb": "0212a11",
+          "ToLb": "0212a13",
+          "Kwic": "舉。雲門示眾云。藥病相治盡大地是藥那箇是自己治。",
+          "MasterName": "Yunmen Wenyan",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Yunmen Wenyan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (T/T48/T48n2003.xml). Blue Cliff Record by Chan Master Yuanwu Foguo (佛果圜悟禪師碧巖錄). Speaker: Yunmen Wenyan."
+        },
+        {
+          "RelPath": "X/X78/X78n1553.xml",
+          "FromLb": "0462b22",
+          "ToLb": "0462b23",
+          "Kwic": "色空亦是藥病相治語。法界觀云：不可言即色不即色，亦不可言即空不即空。",
+          "MasterName": "Baizhang Huaihai",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Baizhang Huaihai",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (X/X78/X78n1553.xml). Tiansheng Expanded Lamp Record (天聖廣燈錄). Speaker: Baizhang Huaihai."
+        },
+        {
+          "RelPath": "J/J23/J23nB134.xml",
+          "FromLb": "0523c01",
+          "ToLb": "0523c01",
+          "Kwic": "山僧說處，皆是一期藥病相治，總無實法。",
+          "MasterName": "Linji Yixuan",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Linji Yixuan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (J/J23/J23nB134.xml). Recorded Sayings of the Five Houses (Selections) (五家語錄（選錄）). Speaker: Linji Yixuan."
+        },
+        {
+          "RelPath": "X/X67/X67n1299.xml",
+          "FromLb": "0038c15",
+          "ToLb": "0038c16",
+          "Kwic": "法眼道：話作兩橛，大似藥病相治。",
+          "MasterName": "Fayan Wenyi",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Fayan Wenyi",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (X/X67/X67n1299.xml). Classified Anthology of the Chan Grove (禪林類聚). Speaker: Fayan Wenyi."
+        }
+      ],
+      "SourceTexts": [
+        "T/T48/T48n2003.xml",
+        "X/X78/X78n1553.xml",
+        "J/J23/J23nB134.xml",
+        "X/X67/X67n1299.xml"
+      ],
+      "RelatedMasters": [
+        "Yunmen Wenyan",
+        "Baizhang Huaihai",
+        "Linji Yixuan",
+        "Fayan Wenyi"
+      ],
+      "RelatedTerms": [],
+      "ClaimAnchors": [],
+      "Explanation": "In these records, medicine and illness are a reciprocal pair: a saying functions as medicine only against a corresponding illness, and medicine retained after the illness is gone becomes illness itself. Yunmen Wenyan raises the formula and asks, when the whole earth is medicine, what cures oneself. Baizhang Huaihai calls language about form and emptiness medicine-and-illness counter-treatment. Linji Yixuan says his own speaking is only a temporary counter-treatment and contains no fixed thing. Fayan Wenyi calls splitting a statement into two pieces something like medicine and illness treating one another. The surrounding corpus passage also states directly that medicine left after illness is gone becomes illness, which bounds the reciprocal image without supplying another sense."
+    }
+  ]
+}

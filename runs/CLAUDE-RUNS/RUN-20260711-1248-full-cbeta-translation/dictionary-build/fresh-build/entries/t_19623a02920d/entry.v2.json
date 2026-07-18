@@ -1,0 +1,186 @@
+{
+  "Id": "t_19623a02920d",
+  "SourceTerm": "天上天下、唯我獨尊",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "CreatedBy": "Codex Iriya Lane B B071-B080 full-case author",
+  "WrittenUtc": "2026-07-18T11:16:52.053234+00:00",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "Above heaven and beneath heaven, I alone am honored",
+      "AlternateTargets": [],
+      "SearchAliases": [
+        "Above heaven and beneath heaven, I alone am honored",
+        "above",
+        "heaven",
+        "beneath"
+      ],
+      "Status": "preferred",
+      "Validation": "multi-source",
+      "Note": "The retained cases distinguish Shakyamuni’s quoted birth declaration from later masters and contemporary monks who raise, copy, or appraise it; Yangqi Fanghui’s hall address explicitly depicts contemporary monks copying it.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0039c24",
+          "ToLb": "0040a01",
+          "Kwic": "上堂：釋迦老子當時一手指天，一手指地，曰：天上天下，唯我獨尊。",
+          "MasterName": null,
+          "Curated": true,
+          "ContextMasters": [],
+          "AttributionNote": "Source record (X/X82/X82n1571.xml). Complete Five Lamps (Vols. 34–120) (五燈全書(第34卷-第120卷)). Speaker: Shakyamuni.",
+          "ActorAttribution": {
+            "Status": "identified-unlinked-master",
+            "Kind": "quoted original speaker",
+            "ActorLabel": "Shakyamuni 釋迦牟尼",
+            "ActorRole": "case-figure",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "Shakyamuni 釋迦牟尼: The hall speaker explicitly introduces 釋迦老子當時 and 曰 before the complete declaration; the later hall speaker raises the line but does not utter it as his own claim. Longqing Qingxian is the marked later raiser.",
+            "ReviewedBy": "Codex Iriya Lane B full-case author",
+            "ReviewedUtc": "2026-07-18T11:16:52.053234+00:00",
+            "AuthoredVoiceRiskReviewed": true
+          },
+          "EvidenceRole": "variant",
+          "VariantForm": "天上天下，唯我獨尊",
+          "VariantKind": "editorial-punctuation"
+        },
+        {
+          "RelPath": "X/X79/X79n1559.xml",
+          "FromLb": "0303c01",
+          "ToLb": "0303c02",
+          "Kwic": "今時衲僧盡皆打模𦘕樣，便道：天上天下，唯我獨尊。",
+          "MasterName": null,
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Yangqi Fanghui",
+              "Roles": [
+                "later-raiser",
+                "section-subject"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (X/X79/X79n1559.xml). Jiatai Universal Lamp Record (嘉泰普燈錄). Speaker: the unnamed monks copying the birth pose.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "contemporary copying monks",
+            "ActorLabel": "the unnamed monks copying the birth pose",
+            "ActorRole": "utterer",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "今時衲僧 is the explicit subject of 便道, so unnamed contemporary monks utter the copied formula; Yangqi Fanghui is the outer hall raiser who then stages his own distinct following example.",
+            "ReviewedBy": "Codex B071-B075 independent-delta repair",
+            "ReviewedUtc": "2026-07-18T12:40:00+00:00",
+            "AuthoredVoiceRiskReviewed": true
+          },
+          "EvidenceRole": "variant",
+          "VariantForm": "天上天下，唯我獨尊",
+          "VariantKind": "editorial-punctuation"
+        },
+        {
+          "RelPath": "X/X64/X64n1260.xml",
+          "FromLb": "0025a07",
+          "ToLb": "0025a09",
+          "Kwic": "又道：毗籃園內，右脇降生，七步周行，四方目顧，天上天下，唯我獨尊。",
+          "MasterName": null,
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Kaifu Daoning",
+              "Roles": [
+                "later-raiser"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (X/X64/X64n1260.xml). Outline Record of the Successive Patriarchs (列祖提綱錄). Speaker: Shakyamuni.",
+          "ActorAttribution": {
+            "Status": "identified-unlinked-master",
+            "Kind": "quoted original speaker",
+            "ActorLabel": "Shakyamuni 釋迦牟尼",
+            "ActorRole": "case-figure",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "Shakyamuni 釋迦牟尼: Kaifu Daoning's address says the newborn performed the gestures and 又道 before the complete declaration, grammatically assigning it to Shakyamuni.",
+            "ReviewedBy": "Codex Iriya Lane B full-case author",
+            "ReviewedUtc": "2026-07-18T11:16:52.053234+00:00",
+            "AuthoredVoiceRiskReviewed": true
+          },
+          "EvidenceRole": "variant",
+          "VariantForm": "天上天下，唯我獨尊",
+          "VariantKind": "editorial-punctuation"
+        },
+        {
+          "RelPath": "X/X84/X84n1583.xml",
+          "FromLb": "0415b11",
+          "ToLb": "0415b12",
+          "Kwic": "釋迦老子初生下來，便作箇笑具，一手指天，一手指地，云：天上天下，唯我獨尊。",
+          "MasterName": null,
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Dagui Foxing Fatai",
+              "Roles": [
+                "later-raiser"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (X/X84/X84n1583.xml). Orthodox Continuation of the Lamp (續燈正統). Speaker: Shakyamuni.",
+          "ActorAttribution": {
+            "Status": "identified-unlinked-master",
+            "Kind": "quoted original speaker",
+            "ActorLabel": "Shakyamuni 釋迦牟尼",
+            "ActorRole": "case-figure",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "Shakyamuni 釋迦牟尼: Dagui Foxing Fatai narrates 釋迦老子初生下來 and uses 云 immediately before the declaration; Yunmen and Fatai occur only in the following raised comment.",
+            "ReviewedBy": "Codex Iriya Lane B full-case author",
+            "ReviewedUtc": "2026-07-18T11:16:52.053234+00:00",
+            "AuthoredVoiceRiskReviewed": true
+          },
+          "EvidenceRole": "variant",
+          "VariantForm": "天上天下，唯我獨尊",
+          "VariantKind": "editorial-punctuation"
+        }
+      ],
+      "SourceTexts": [
+        "X/X82/X82n1571.xml",
+        "X/X79/X79n1559.xml",
+        "X/X64/X64n1260.xml",
+        "X/X84/X84n1583.xml"
+      ],
+      "RelatedMasters": [
+        "Yangqi Fanghui",
+        "Kaifu Daoning",
+        "Dagui Foxing Fatai"
+      ],
+      "RelatedTerms": [],
+      "ClaimAnchors": [],
+      "Explanation": "In heaven above and earth below, I alone am honored is the paired birth declaration as quoted, copied, and appraised in later encounter records. The records distinguish Shakyamuni’s birth declaration from later handling. In Yangqi Fanghui’s hall address, unnamed contemporary monks utter the headword in the clause introduced as their saying; Yangqi then follows with a separate self-staged example. Kaifu Daoning and Dagui Foxing Fatai independently raise and appraise the declaration."
+    }
+  ]
+}

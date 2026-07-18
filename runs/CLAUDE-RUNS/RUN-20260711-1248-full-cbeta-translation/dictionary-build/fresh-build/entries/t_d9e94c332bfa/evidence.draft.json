@@ -1,0 +1,247 @@
+{
+  "SchemaVersion": 1,
+  "Entry": {
+    "Id": "t_d9e94c332bfa",
+    "SourceTerm": "倚天長劍逼人寒",
+    "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+    "CreatedBy": "Codex Iriya construction lane C evidence-first",
+    "WrittenUtc": "2026-07-18T06:50:51.935330Z",
+    "Senses": [
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "a sky-propping long sword presses its cold upon people",
+        "AlternateTargets": [
+          "the towering sword chills whoever faces it",
+          "a long sword reaching the sky confronts people with cold"
+        ],
+        "SearchAliases": [
+          "sky high sword chills people",
+          "towering sword cold",
+          "long sword pressing cold",
+          "sword reaching heaven"
+        ],
+        "Status": "preferred",
+        "Validation": "multi-source",
+        "Note": "Four distinct answer, test, and capping deployments span four independent works.",
+        "Occurrences": [
+          {
+            "RelPath": "J/J26/J26nB187.xml",
+            "FromLb": "0714a05",
+            "ToLb": "0714a07",
+            "Kwic": "問：「有結有解，已是病鳥棲蘆；無解無結，猶為困魚止濼。祇如出格一句作麼生道？」師云：「倚天長劍逼人寒。」",
+            "MasterName": "Tian'an Sheng",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Tian'an Sheng",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "AttributionNote": "Source record (J/J26/J26nB187.xml). Recorded Sayings of Chan Master Tian’an Sheng. Tian'an Sheng answers the request for an exceptional sentence with the sky-propping sword's human-chilling cold.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "問：「有結有解，已是病鳥棲蘆；無解無結，猶為困魚止濼。祇如出格一句作麼生道？」師云：「倚天長劍逼人寒。」",
+              "GrammaticalSubject": "Tian'an Sheng",
+              "SpeechFrame": "Tian'an Sheng answers the request for an exceptional sentence with the sky-propping sword's human-chilling cold.",
+              "FullCaseDecision": "Tian'an Sheng owns the exact answer."
+            }
+          },
+          {
+            "RelPath": "J/J37/J37nB386.xml",
+            "FromLb": "0336b21",
+            "ToLb": "0336b24",
+            "Kwic": "問：「寶印初開，十方齊暢，向上一機如何舉唱？」師云：「一雨普滋。」進云：「袖裏金鎚光燦爛，倚天長劍逼人寒。」師云：「切忌承虛。」",
+            "MasterName": null,
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Yuan'an Liao",
+                "Roles": [
+                  "respondent",
+                  "section-subject"
+                ]
+              }
+            ],
+            "AttributionNote": "Source record (J/J37/J37nB386.xml). Recorded Sayings of Chan Master Yuan’an Feng. The record's unnamed questioner advances the sword line after Yuan'an Feng answers that one rain universally moistens; Yuan'an warns him against relying on emptiness.",
+            "ActorAttribution": {
+              "Status": "reviewed-unnamed",
+              "Kind": "monk",
+              "ActorLabel": "the record's unnamed questioner",
+              "ActorRole": "utterer",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "The advance frame (進云) explicitly owns the headword-bearing line, while the preceding and following master-answer frames (師云) belong to Yuan'an Feng; all six rungs leave the questioner personally unnamed.",
+              "ReviewedBy": "Codex Iriya construction lane C",
+              "ReviewedUtc": "2026-07-18T06:50:51.935330Z"
+            },
+            "DraftActorProof": {
+              "ExactHeadwordClause": "問：「寶印初開，十方齊暢，向上一機如何舉唱？」師云：「一雨普滋。」進云：「袖裏金鎚光燦爛，倚天長劍逼人寒。」師云：「切忌承虛。」",
+              "GrammaticalSubject": "the record's unnamed questioner",
+              "SpeechFrame": "The record's unnamed questioner advances the sword line after Yuan'an Feng answers that one rain universally moistens; Yuan'an warns him against relying on emptiness.",
+              "FullCaseDecision": "The advance frame (進云) explicitly owns the headword-bearing line, while the preceding and following master-answer frames (師云) belong to Yuan'an Feng; all six rungs leave the questioner personally unnamed."
+            }
+          },
+          {
+            "RelPath": "X/X82/X82n1571.xml",
+            "FromLb": "0467a08",
+            "ToLb": "0467a09",
+            "Kwic": "且高超物表一句作麼生道？倚天長劍逼人寒，奪却珊瑚枝上月。",
+            "MasterName": null,
+            "Curated": true,
+            "ContextMasters": [],
+            "AttributionNote": "Source record (X/X82/X82n1571.xml). Complete Five Lamps (Vols. 34–120). Jingjue Xugao gives the sword line as his answer to the request for a sentence high beyond things, then says it takes the moon from the coral branch.",
+            "ActorAttribution": {
+              "Status": "identified-unlinked-master",
+              "Kind": "Chan master",
+              "ActorLabel": "Jingjue Xugao",
+              "ActorRole": "utterer",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "The enclosing heading explicitly names 瑞州五峰仰山淨覺煦杲照禪師 (Jingjue Xugao), and the self-answered 上堂 question assigns him the exact sword line. Jingjue Xugao is named from the source but has no canonical roster link, so no lineage assertion is made.",
+              "ReviewedBy": "Codex Iriya construction lane C",
+              "ReviewedUtc": "2026-07-18T06:50:51.935330Z"
+            },
+            "DraftActorProof": {
+              "ExactHeadwordClause": "且高超物表一句作麼生道？倚天長劍逼人寒，奪却珊瑚枝上月。",
+              "GrammaticalSubject": "Jingjue Xugao",
+              "SpeechFrame": "Jingjue Xugao gives the sword line as his answer to the request for a sentence high beyond things, then says it takes the moon from the coral branch.",
+              "FullCaseDecision": "The enclosing heading explicitly names 瑞州五峰仰山淨覺煦杲照禪師 (Jingjue Xugao), and the self-answered 上堂 question assigns him the exact sword line. Jingjue Xugao is named from the source but has no canonical roster link, so no lineage assertion is made."
+            }
+          },
+          {
+            "RelPath": "X/X66/X66n1297.xml",
+            "FromLb": "0282b14",
+            "ToLb": "0282b16",
+            "Kwic": "平陽忞云：且道靈山有付囑無付囑？喝一喝，云：千聖不知何處去，倚天長劍逼人寒。",
+            "MasterName": null,
+            "Curated": true,
+            "ContextMasters": [],
+            "AttributionNote": "Source record (X/X66/X66n1297.xml). Tradition Mirror Grove. Pingyang Min asks whether there was entrustment at Vulture Peak, shouts, and then gives the sword line after saying a thousand sages do not know where to go.",
+            "ActorAttribution": {
+              "Status": "identified-unlinked-master",
+              "Kind": "Chan master",
+              "ActorLabel": "Pingyang Min",
+              "ActorRole": "utterer",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "The exact speech frame 平陽忞云 explicitly names Pingyang Min before both the question and the headword-bearing continuation; the complete case confirms one continuous turn. Pingyang Min is source-named but lacks a canonical roster link, so no lineage assertion is made.",
+              "ReviewedBy": "Codex Iriya construction lane C",
+              "ReviewedUtc": "2026-07-18T06:50:51.935330Z"
+            },
+            "DraftActorProof": {
+              "ExactHeadwordClause": "平陽忞云：且道靈山有付囑無付囑？喝一喝，云：千聖不知何處去，倚天長劍逼人寒。",
+              "GrammaticalSubject": "Pingyang Min",
+              "SpeechFrame": "Pingyang Min asks whether there was entrustment at Vulture Peak, shouts, and then gives the sword line after saying a thousand sages do not know where to go.",
+              "FullCaseDecision": "The exact speech frame 平陽忞云 explicitly names Pingyang Min before both the question and the headword-bearing continuation; the complete case confirms one continuous turn. Pingyang Min is source-named but lacks a canonical roster link, so no lineage assertion is made."
+            }
+          }
+        ],
+        "SourceTexts": [
+          "J/J26/J26nB187.xml",
+          "J/J37/J37nB386.xml",
+          "X/X82/X82n1571.xml",
+          "X/X66/X66n1297.xml"
+        ],
+        "RelatedMasters": [
+          "Tian'an Sheng",
+          "Yuan'an Liao"
+        ],
+        "RelatedTerms": [
+          "吹毛劍",
+          "殺人刀",
+          "金剛寶劍",
+          "倚天"
+        ],
+        "ClaimAnchors": [],
+        "Explanation": "A long sword propping against the sky presses its cold upon people: the line joins immense reach, a cutting weapon, and cold felt by anyone before it. Chan records wield it as an answer, an interlocutor’s testing line, and a capping image of an uncompromising command. Tian'an answers a request for an exceptional sentence; an unnamed questioner presents the line to Yuan'an and is cautioned; Jingjue answers a request to go beyond things; and Pingyang caps his question about Vulture Peak's entrustment with it.",
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "A long sword propping against the sky presses its cold upon people: the line joins immense reach, a cutting weapon, and cold felt by anyone before it. Chan records wield it as an answer, an interlocutor’s testing line, and a capping image of an uncompromising command.",
+          "EvidenceBody": [
+            "Tian'an answers a request for an exceptional sentence; an unnamed questioner presents the line to Yuan'an and is cautioned; Jingjue answers a request to go beyond things; and Pingyang caps his question about Vulture Peak's entrustment with it."
+          ]
+        },
+        "DraftEvidence": {
+          "OpeningClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3",
+            "o4"
+          ],
+          "ZenBend": "The martial image becomes a public answer and capping verdict whose cold is directed at the people encountering it.",
+          "CounterexampleOrLimit": "The witnesses license reach, sword, confrontation, and cold; they do not identify the sword with one unspoken doctrine.",
+          "DifferentThingTest": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "the sky-propping long sword",
+              "the cold it presses on people"
+            ],
+            "Reason": "The second predicate states the effect of the same sword image; answer and cap are deployment roles, not separate referents."
+          },
+          "AliasRationale": "Probes preserve sword, sky-reaching scale, cold, and human confrontation.",
+          "ModifierControls": [
+            {
+              "Control": "effect predicate",
+              "Finding": "逼人寒 makes the sword’s cold press upon people rather than merely describing cold metal."
+            }
+          ],
+          "FamilyControls": [
+            {
+              "Term": "吹毛劍",
+              "Finding": "A hair-blowing sharp sword image, not this exact sky-reaching line."
+            },
+            {
+              "Term": "殺人刀",
+              "Finding": "A killing blade named by function rather than scale and cold."
+            },
+            {
+              "Term": "金剛寶劍",
+              "Finding": "A diamond treasure sword, separately named."
+            },
+            {
+              "Term": "倚天",
+              "Finding": "The sky-propping modifier without the full sword-and-cold image."
+            }
+          ],
+          "IndependentWorkIds": [
+            "work:J26nB187",
+            "work:J37nB386",
+            "work:wudeng-quanshu",
+            "chan:zongjian-falin"
+          ]
+        },
+        "DraftAcceptedDerivedFields": {
+          "SourceTexts": [
+            "J/J26/J26nB187.xml",
+            "J/J37/J37nB386.xml",
+            "X/X82/X82n1571.xml",
+            "X/X66/X66n1297.xml"
+          ],
+          "RelatedMasters": [
+            "Tian'an Sheng",
+            "Yuan'an Liao"
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "Id": "t_3fc5d2f77d0d",
+  "SourceTerm": "以字不成，八字不是",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "CreatedBy": "Codex Iriya construction lane C evidence-first",
+  "WrittenUtc": "2026-07-18T06:23:46.258592Z",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "neither the ‘by-means-of’ graph nor the ‘eight’ graph",
+      "AlternateTargets": [
+        "neither the graph read ‘by means of’ nor the graph for ‘eight’",
+        "a character formed as neither familiar graph"
+      ],
+      "SearchAliases": [
+        "not yi not eight character",
+        "which Chinese character",
+        "graph riddle",
+        "strokes clear character"
+      ],
+      "Status": "preferred",
+      "Validation": "multi-source",
+      "Note": "Four independent deployments in three works preserve the paired graph question and its stroke, text, or commentary frames.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X71/X71n1414.xml",
+          "FromLb": "0312a11",
+          "ToLb": "0312a12",
+          "Kwic": "看藏經，上堂。以字不成，八字不是。玉轉珠回，煇天鑑地。",
+          "MasterName": "Liao'an Qingyu",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Liao'an Qingyu",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (X/X71/X71n1414.xml). Recorded Sayings of Chan Master Liao’an Qingyu. Liao'an Qingyu opens an address for viewing the canon with the paired graph line before saying jade turns, the pearl revolves, and light mirrors heaven and earth."
+        },
+        {
+          "RelPath": "X/X71/X71n1414.xml",
+          "FromLb": "0318a01",
+          "ToLb": "0318a02",
+          "Kwic": "上堂：以字不成，八字不是。大用現前，丹霄獨步。無偏無黨，皇道蕩蕩。",
+          "MasterName": "Liao'an Qingyu",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Liao'an Qingyu",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (X/X71/X71n1414.xml). Recorded Sayings of Chan Master Liao’an Qingyu. Liao'an Qingyu opens another hall address with the graph pair and follows it with ‘great function appears before you.’"
+        },
+        {
+          "RelPath": "J/J28/J28nB202.xml",
+          "FromLb": "0097a24",
+          "ToLb": "0097a26",
+          "Kwic": "示一葦藏主以字不成，八字不是，未審是什麼字？一大藏教是箇切腳，畢竟切那箇字？",
+          "MasterName": "Baichi Xingyuan",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Baichi Xingyuan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (J/J28/J28nB202.xml). Recorded Sayings of Chan Master Baichi. Baichi Xingyuan asks the canon keeper which graph is neither the ‘by-means-of’ graph (以) nor the ‘eight’ graph (八), and calls the entire canon a phonetic gloss leading to that graph."
+        },
+        {
+          "RelPath": "X/X85/X85n1593.xml",
+          "FromLb": "0439b19",
+          "ToLb": "0439b20",
+          "Kwic": "僧問：以字不成，八字不是，未審是甚麼字？師曰：汝實不會那？",
+          "MasterName": null,
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Luohan Guichen",
+              "Roles": [
+                "respondent",
+                "section-subject"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (X/X85/X85n1593.xml). Orthodox Line of the Chan School. An unnamed monk asks Luohan Guichen which graph is neither the ‘by-means-of’ graph (以) nor the ‘eight’ graph (八); Guichen begins by asking whether he truly does not understand.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monk",
+            "ActorLabel": "the record’s unnamed monk",
+            "ActorRole": "questioner",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "The question frame (僧問) explicitly governs the exact graph-pair question, while the answer frame (師曰) begins Luohan Guichen’s response; all six rungs leave the questioning monk personally unnamed.",
+            "ReviewedBy": "Codex Iriya construction lane C",
+            "ReviewedUtc": "2026-07-18T06:23:46.258592Z"
+          }
+        }
+      ],
+      "SourceTexts": [
+        "X/X71/X71n1414.xml",
+        "J/J28/J28nB202.xml",
+        "X/X85/X85n1593.xml"
+      ],
+      "RelatedMasters": [
+        "Liao'an Qingyu",
+        "Baichi Xingyuan",
+        "Luohan Guichen"
+      ],
+      "RelatedTerms": [
+        "點畫分明",
+        "看取下面註脚",
+        "一大藏教",
+        "正文"
+      ],
+      "ClaimAnchors": [],
+      "Explanation": "Neither the ‘by-means-of’ graph (以) nor the ‘eight’ graph (八) is a paired character puzzle: the whole formula asks what graph the visible strokes make if they are not accepted as either familiar character. Chan records keep both halves together and answer through strokes, main text and commentary, or the entire canon. Liao'an uses the pair to open two hall addresses; Baichi asks a canon keeper which graph it is and calls the canon its phonetic gloss; and an unnamed monk puts the same full question to Luohan Guichen."
+    }
+  ]
+}

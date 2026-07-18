@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "iriya-independent-changed-rereview-v1",
+  "lane": "A",
+  "positions": [71, 80],
+  "reviewer": "Codex rotated independent reviewer; author of the original full-case review, not author of the repairs",
+  "hardPass": true,
+  "scope": "Changed-only semantic rereview of the twenty coordinates identified by the original independent full-case review, plus hash verification of all ten artifacts, all-sixty closure mechanics, and fresh 10/10 worksheet-entry parity.",
+  "bindings": {
+    "originalReview": {"path":"maintenance/iriya-A071-080-independent-fullcase-review.json","sha256":"adc9ab08add0ed7f79511d1ff2ea2273eaa2ab8d07d01c63dbd60342b5db9e36"},
+    "repairClosure": {"path":"maintenance/iriya-A071-080-closed-repair-closure.json","sha256":"dd1b5e19d5f1b642bd1d77a3d51acbeca736c4b48edb6da8b80a550febac1517"},
+    "repairedAuthority": {"path":"maintenance/iriya-decisions-A071-080-closed-repair.json","sha256":"6fa19d2aa1e86a5c341a1fd9a588a16c1113c8d6c85a8d2ae10c10c0a0dfb694"}
+  },
+  "verifiedCoordinates": [
+    "A72.s1.o2", "A72.s1.o3", "A72.s1.o4", "A72.s1.o5",
+    "A74.s1.o3", "A74.s1.o4", "A74.s1.o6",
+    "A75.s1.o1", "A75.s1.o5",
+    "A76.s1.o1", "A76.s1.o3", "A76.s1.o4", "A76.s1.o5", "A76.s1.o6",
+    "A77.s1.o5", "A78.s1.o5",
+    "A79.s1.o3", "A79.s1.o4",
+    "A80.s1.o2", "A80.s1.o6"
+  ],
+  "verifiedCoordinateCount": 20,
+  "semanticFinding": "All twenty requested repairs exactly close their original actor, embedded-voice, section-boundary, context-master, and context-role findings. The repaired artifacts correctly preserve Xuefeng Yicun and Pang Yun as quoted-original utterers where applicable, the unnamed original questioner at A76.s1.o5, the four corrected section owners Kaiyuan Ying, Baizhang Daoheng, Simian Huaiqing, and Sansheng Huiran, and every listed interlocutor, respondent, later-raiser, commentator, or person-discussed role.",
+  "residualDeltas": [],
+  "residualDeltaCoordinates": [],
+  "residualDeltaCount": 0,
+  "mechanical": {
+    "attribution":{"report":"maintenance/iriya-A071-080-closed-repair-attribution.json","sha256":"7f1d5b3a7380ba0fe5d82f2a4063fb2190576124ead08054b1407f6f220aa8c4","occurrences":60,"hardFailures":0},
+    "exact":{"verified":60,"failures":0},
+    "template":{"report":"maintenance/iriya-A071-080-closed-repair-template.json","sha256":"b63b8ab36fd53e087dea82a0db287bc6fd110c52dccaba2ad0f5ea629febda32","failureCount":0},
+    "workSource":{"entries":10,"hardFailures":0},
+    "depth":{"report":"maintenance/iriya-A071-080-closed-repair-depth.json","sha256":"00eece9a86a1091997a3d3d4dbf4117cbffcb2012a51a2806745afce3701b0ae","hardFailed":0,"reviewFlagged":10,"finding":"The six-occurrence histogram is review-only and the original complete-case review found no padding."},
+    "closureParity":{"report":"maintenance/iriya-A071-080-closed-repair-parity.json","sha256":"28efd170778addf0d6d71024ad05f7226474249a25fbbbd4e46bff2d17f75ec8","passed":10,"failed":0},
+    "freshWorksheetEntryParity":{"checked":10,"passed":10,"failed":0,"method":"Fresh compile_draft output had zero errors and exact parsed-object equality for every persisted entry."},
+    "artifactHashBindings":{"checkedEntries":10,"worksheetEntryWorkTriples":10,"mismatches":0}
+  },
+  "nextRequiredAction": "None; A71-80 repair closure is independently confirmed."
+}

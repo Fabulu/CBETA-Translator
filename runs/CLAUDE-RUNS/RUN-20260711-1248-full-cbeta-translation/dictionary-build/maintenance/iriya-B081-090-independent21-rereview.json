@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "iriya-independent-changed-only-rereview-v1",
+  "lane": "B",
+  "positions": [81, 90],
+  "reviewer": "Codex independent reviewer returning changed-only; did not author lane B or its repair",
+  "scope": "the exact 21 repaired coordinates plus B89 compiler-cap guard and B90 direct-answer boundary",
+  "hardPass": true,
+  "bindings": {
+    "repairClosure": {"path":"maintenance/iriya-B081-090-independent21-repair-closure.json","sha256":"75fddf32cebf8e0fc467b963c93a0bc347bfcda9bc0569f67c8960a1be616679"},
+    "originalReview": {"path":"maintenance/iriya-B081-090-independent-fullcase-review.json","sha256":"a608d113cebf1f642fe495714fb22c643ec58140b99f039b4ae61261499eeb24"},
+    "decisions": {"path":"maintenance/iriya-decisions-B081-090.json","sha256":"5e03fdc563f5f35f05091410ff5101e3c6921928e0ef95eb88c01bed84b7b3cf"},
+    "emitter": {"path":"maintenance/iriya-B081-090-independent21-emitter.json","sha256":"3fa619eb1c95a01f0b6266c2a4024fc9858f422c217e1e9222e08c9f06c0de5e"},
+    "attribution": {"path":"maintenance/iriya-B081-090-independent21-attribution.json","sha256":"0f45803479ea0504098a43a1555c9a31a398dbd33a42b1f6ba1ada4537822f90"},
+    "template": {"path":"maintenance/iriya-B081-090-independent21-template.json","sha256":"b63b8ab36fd53e087dea82a0db287bc6fd110c52dccaba2ad0f5ea629febda32"},
+    "depth": {"path":"maintenance/iriya-B081-090-independent21-depth.json","sha256":"4f628990de67155ad604dcbe5e90402d63e291f77dc2cfd90f622feafc7e55b9"},
+    "zc": {"path":"maintenance/iriya-B081-090-independent21-zc.json","sha256":"1cd35a583ca3754120d211571c9cb594718abf1dc2246fed2ce9c4c49b558178"}
+  },
+  "changedCoordinateCount": 21,
+  "changedCoordinates": ["B81.s1.o4","B81.s1.o5","B82.s1.o5","B83.s1.o1","B83.s1.o2","B83.s1.o6","B84.s1.o3","B84.s1.o4","B84.s1.o5","B84.s1.o6","B85.s1.o1","B85.s1.o4","B86.s1.o3","B86.s1.o5","B86.s1.o6","B87.s1.o4","B88.s1.o4","B88.s1.o5","B88.s1.o6","B90.s1.o2","B90.s1.o4"],
+  "changedCoordinateResults": {
+    "contextMasterRepairsPassed": 11,
+    "contextRoleRepairsPassed": 3,
+    "actorOrLabelRepairsPassed": 5,
+    "voiceLayerRepairsPassed": 5,
+    "remainingDeltaCoordinates": [],
+    "finding": "Every changed coordinate now matches the complete-case utterer boundary and uses roster-linkable ContextMasters with closed roles. Yanju Deshen is the canonical roster identity for the Yunshan respondent in B84.o6; Yunfeng is a roster-attested identity for the 雲峰悅 commentator in B86.o5."
+  },
+  "specialGuardChecks": {
+    "B89.s1.o1": {"pass":true,"voiceLayer":"compiler-narration","actorStatus":"narrated","speechMarkerReviewed":true,"finding":"The headword remains in the independent compiler capping sequence after the Luzhu exchange; no source-dialogue 曰/云 governs it. The explicit review override is present."},
+    "B90.s1.o2": {"pass":true,"voiceLayer":"direct-turn","actorStatus":"reviewed-unnamed","finding":"The complete case's immediately preceding 問：重關工夫如何 governs this answer. The unidentified One-Thread Inscription author is now the direct utterer; compiler narration is no longer asserted."}
+  },
+  "mechanicalRerun": {
+    "occurrencesExactChecked": 60,
+    "exactZcFailures": 0,
+    "freshCompilationParityChecked": 10,
+    "freshCompilationParityPassed": 10,
+    "freshCompilationParityFailures": 0,
+    "strictAttributionHardFailures": 0,
+    "workSourceHardFailures": 0,
+    "semanticTemplateFailures": 0,
+    "depthHardFailures": 0
+  },
+  "conclusion": "The original 21-coordinate independent review is fully closed. No changed coordinate retains an actor, voice-layer, context, speech-marker, exact-span, work-support, or parity delta.",
+  "editsPerformed": false
+}

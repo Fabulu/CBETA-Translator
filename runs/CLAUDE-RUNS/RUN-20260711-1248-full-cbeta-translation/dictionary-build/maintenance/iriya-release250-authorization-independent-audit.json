@@ -1,0 +1,97 @@
+{
+  "schemaVersion": "iriya-release-authorization-independent-audit-v1",
+  "generatedUtc": "2026-07-18T13:28:04.006492+00:00",
+  "readOnly": true,
+  "installerExecuted": false,
+  "hardPass": true,
+  "authorization": {
+    "path": "maintenance/iriya-release250-final-authorization.json",
+    "sha256": "82676a96b7228932ab510ab2b361216cb27ebd553f4536266dacc40d681a8db5"
+  },
+  "manifest": {
+    "path": "maintenance/iriya-release250-install-manifest.json",
+    "sha256": "acb1554be1b5a84f7f7437c23bf8c0ece65b20d8a9305309fb4a96e25f966abd"
+  },
+  "installerSha256": "ef5e7e83dad5259079198bbebf69a2bec86d76b581d62f24c5a530f11ca049c5",
+  "checks": {
+    "authorizationFlags": true,
+    "selectionDeclaration": true,
+    "fullGateHash": true,
+    "fullGateEntryCount": true,
+    "fullGateMechanical": true,
+    "semanticReviewSignalExpected": true,
+    "independentReceipts": true,
+    "cohortHashEquality": true,
+    "currentFreshHashes": true,
+    "manifestContractFlags": true,
+    "manifestAuthorizationBinding": true,
+    "installerContract": true,
+    "selectionSegmentCounts": {
+      "A": 80,
+      "B": 90,
+      "C": 80
+    }
+  },
+  "receiptCount": 8,
+  "freshArtifactCount": 250,
+  "residuals": [],
+  "conclusion": "Authorization and manifest are hash-consistent with the declared A1–80/B1–90/C1–80 250-entry gate cohort, the complete cited finding/closure receipt chain, current fresh artifacts, and the installer contract.",
+  "receiptAudit": [
+    {
+      "path": "maintenance/iriya-strict-roster-repair-lane-c-final-independent-rereview.json",
+      "hashMatches": true,
+      "receiptDisposition": "passing-closure",
+      "hardPassField": null,
+      "status": "pass-after-exact-closure"
+    },
+    {
+      "path": "maintenance/iriya-A061-070-final1-independent-rereview.json",
+      "hashMatches": true,
+      "receiptDisposition": "passing-closure",
+      "hardPassField": true,
+      "status": null
+    },
+    {
+      "path": "maintenance/iriya-A071-080-independent-changed-rereview.json",
+      "hashMatches": true,
+      "receiptDisposition": "passing-closure",
+      "hardPassField": true,
+      "status": null
+    },
+    {
+      "path": "maintenance/iriya-B071-080-final2-independent-rereview.json",
+      "hashMatches": true,
+      "receiptDisposition": "passing-closure",
+      "hardPassField": true,
+      "status": null
+    },
+    {
+      "path": "maintenance/iriya-B081-090-independent21-rereview.json",
+      "hashMatches": true,
+      "receiptDisposition": "passing-closure",
+      "hardPassField": true,
+      "status": null
+    },
+    {
+      "path": "maintenance/iriya-C071-080-independent-fullcase-review.json",
+      "hashMatches": true,
+      "receiptDisposition": "finding-receipt-closed-by-later-cited-rereview",
+      "hardPassField": false,
+      "status": null
+    },
+    {
+      "path": "maintenance/iriya-C071-080-review-repair-independent-rereview.json",
+      "hashMatches": true,
+      "receiptDisposition": "passing-closure",
+      "hardPassField": true,
+      "status": null
+    },
+    {
+      "path": "maintenance/iriya-C007-release-gate-repair-independent-rereview.json",
+      "hashMatches": true,
+      "receiptDisposition": "passing-closure",
+      "hardPassField": true,
+      "status": null
+    }
+  ]
+}

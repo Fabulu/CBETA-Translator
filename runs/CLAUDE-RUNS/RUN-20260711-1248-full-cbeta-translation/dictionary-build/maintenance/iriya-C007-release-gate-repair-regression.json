@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "attribution-physical-lift-regression-v1",
+  "hardPass": true,
+  "cases": [
+    {
+      "name": "physical-hair-tip-lift",
+      "note": "Mi'an Xianjie raises a hair-tip on level ground and says that everyone loses edge and tongue.",
+      "expectedLaterQuoter": false,
+      "actualLaterQuoter": false,
+      "pass": true
+    },
+    {
+      "name": "old-saying-raiser",
+      "note": "Mi'an Xianjie raises an old saying before commenting.",
+      "expectedLaterQuoter": true,
+      "actualLaterQuoter": true,
+      "pass": true
+    },
+    {
+      "name": "explicit-quoter",
+      "note": "Mi'an Xianjie explicitly quotes Yunmen's verdict.",
+      "expectedLaterQuoter": true,
+      "actualLaterQuoter": true,
+      "pass": true
+    }
+  ]
+}

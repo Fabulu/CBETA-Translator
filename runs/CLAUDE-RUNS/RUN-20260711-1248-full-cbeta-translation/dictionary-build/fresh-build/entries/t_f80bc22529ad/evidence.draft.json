@@ -1,0 +1,135 @@
+{
+  "SchemaVersion": 1,
+  "Entry": {
+    "Id": "t_f80bc22529ad",
+    "SourceTerm": "生死事大、無常迅速",
+    "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+    "CreatedBy": "Codex Iriya cohort001 Lane B explicit full-case bulk author",
+    "WrittenUtc": "2026-07-18T04:49:31.185989+00:00",
+    "Senses": [
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "birth and death are the great matter, and impermanence is swift",
+        "AlternateTargets": [
+          "birth and death are serious and time passes quickly"
+        ],
+        "SearchAliases": [
+          "birth and death are serious and time passes quickly",
+          "the matter of life and death is great",
+          "impermanence comes swiftly",
+          "life and death are urgent"
+        ],
+        "Status": "preferred",
+        "Validation": "provisional",
+        "Note": "The paired warning makes mortality and rapidly passing time the stated reason not to postpone the undertaking; exact attestation is limited to two independent works.",
+        "Occurrences": [
+          {
+            "RelPath": "J/J27/J27nB191.xml",
+            "FromLb": "0174a26",
+            "ToLb": "0174a27",
+            "Kwic": "徑山道人不赴來日之齋，豈非痛念生死事大、無常迅速者乎？",
+            "MasterName": "Jinian Jingxian",
+            "Curated": true,
+            "AttributionNote": "Source record (J/J27/J27nB191.xml). Recorded Sayings of Xiangtian Jinian: Jinian Jingxian utters the exact headword-bearing sentence in the complete case.",
+            "ContextMasters": [
+              {
+                "MasterName": "Jinian Jingxian",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "徑山道人不赴來日之齋，豈非痛念生死事大、無常迅速者乎？",
+              "GrammaticalSubject": "Jinian Jingxian",
+              "SpeechFrame": "The rhetorical question occurs in Jinian Jingxian’s own record and is his direct authorial utterance.",
+              "FullCaseDecision": "Jinian Jingxian utters the exact headword-bearing sentence; quoted cases and nearby appraisals remain context."
+            }
+          },
+          {
+            "RelPath": "J/J39/J39nB440.xml",
+            "FromLb": "0282a17",
+            "ToLb": "0282a17",
+            "Kwic": "常聞生死事大、無常迅速。讀書寧免生死？",
+            "MasterName": null,
+            "Curated": true,
+            "AttributionNote": "Source record (J/J39/J39nB440.xml). Recorded Sayings of Gaofeng Qiaosong Yi: Gaofeng Qiaosong Yi utters the exact headword-bearing sentence in the complete case. Exact identified speaker: Gaofeng Qiaosong Yi; retained as an identified unlinked master because the current lineage roster has no exact canonical link. Unlinked context figure: Gaofeng Qiaosong Yi (utterer); identity and role are preserved here without a broken ContextMasters link.",
+            "ContextMasters": [],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "常聞生死事大、無常迅速。讀書寧免生死？",
+              "GrammaticalSubject": "Gaofeng Qiaosong Yi",
+              "SpeechFrame": "The biographical record directly quotes Qiaosong Yi’s youthful exclamation; he is the utterer of the exact couplet and following question.",
+              "FullCaseDecision": "Gaofeng Qiaosong Yi utters the exact headword-bearing sentence; quoted cases and nearby appraisals remain context."
+            },
+            "ActorAttribution": {
+              "Status": "identified-unlinked-master",
+              "Kind": "full-case-grammar-adjudication",
+              "ActorLabel": "Gaofeng Qiaosong Yi",
+              "ActorRole": "utterer",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "Gaofeng Qiaosong Yi: the complete retained case and governing speech frame identify Gaofeng Qiaosong Yi as the exact utterer of the headword; all six attribution rungs were checked, but no exact canonical roster link exists. Context role preserved without link: Gaofeng Qiaosong Yi (utterer).",
+              "ReviewedBy": "Codex strict-roster repair lane B",
+              "ReviewedUtc": "2026-07-18T00:00:00Z"
+            }
+          }
+        ],
+        "ClaimAnchors": [],
+        "SourceTexts": [
+          "J/J27/J27nB191.xml",
+          "J/J39/J39nB440.xml"
+        ],
+        "RelatedMasters": [
+          "Jinian Jingxian"
+        ],
+        "RelatedTerms": [],
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "Birth and death are the great matter; impermanence is swift is an urgency formula. In its two exact corpus deployments it interrupts postponement: Jinian Jingxian uses it to praise refusing tomorrow’s feast, while Gaofeng Qiaosong Yi recalls it when abandoning ordinary study over whether reading could escape birth and death.",
+          "EvidenceBody": [
+            "Jinian Jingxian asks whether the Wayfarer of Jingshan refused the next day’s feast precisely because he painfully kept the formula in mind, contrasting that refusal with accumulation and delay. Gaofeng Qiaosong Yi’s record places the formula in his own youthful question after seeing chrysanthemums wither and return: can reading avoid birth and death? The next sentence says he stopped his studies."
+          ]
+        },
+        "DraftEvidence": {
+          "OpeningClaimEvidenceKeys": [
+            "o1",
+            "o2"
+          ],
+          "ZenBend": "A general mortality warning is deployed as the explicit pressure behind two concrete refusals to postpone or substitute another activity.",
+          "CounterexampleOrLimit": "Only two exact independent works are available, so the entry remains provisional and does not claim that every exhortation about urgency belongs to this fixed couplet.",
+          "DifferentThingTest": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "the literal words of the image",
+              "the image in Chan deployment"
+            ],
+            "Reason": "The two clauses form one recurrent urgency formula; the great matter and swift impermanence are coordinated grounds for the same warning, not separate dictionary things."
+          },
+          "AliasRationale": "The aliases expose natural English lookup routes for the exact image 生死事大、無常迅速 without adding another sense.",
+          "ModifierControls": [
+            {
+              "finding": "not-applicable",
+              "reason": "事大 and 迅速 are predicates in one urgency formula, not ornamental modifiers; both stored works connect them to immediate refusal of delay."
+            }
+          ],
+          "FamilyControls": [
+            {
+              "finding": "checked",
+              "reason": "The retained 生死事大、無常迅速 witnesses cover distinct utterances and contrasts; parallel recensions are not counted as separate deployment classes."
+            }
+          ],
+          "IndependentWorkIds": [
+            "work:J27nB191",
+            "work:J39nB440"
+          ]
+        }
+      }
+    ]
+  }
+}

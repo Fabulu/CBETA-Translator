@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "iriya-review-repair-independent-rereview-v1",
+  "lane": "C",
+  "positions": [71, 80],
+  "reviewer": "Codex fresh changed-only independent rereviewer",
+  "scope": {
+    "sourceReview": "maintenance/iriya-C071-080-independent-fullcase-review.json",
+    "sourceReviewSha256": "5d16f03c3e702d89548813afbca0de514b20fab2c8391fce9705edeb0f9d9afd",
+    "coordinatesReread": ["C71.s1.o2", "C71.s1.o3", "C71.s1.o4", "C72.s1.o4", "C74.s1.o3", "C74.s1.o4", "C75.s1.o1", "C76.s1.o2", "C77.s1.o1", "C77.s1.o3", "C78.s1.o2", "C79.s1.o1"],
+    "coordinateCount": 12,
+    "method": "Fresh independent changed-only rereading of exactly the twelve repaired coordinates against their complete immutable source-case speech frames and current authoritative products. Confirmed exact headword utterer boundaries, canonical ContextMasters names and closed roles, and the direct unnamed-monk state. Recompiled all ten worksheets to temporary outputs for byte parity and reran the exact ten-path mechanical gates. No dictionary, worksheet, lineage, install, or merge artifact was edited."
+  },
+  "inputBindings": {
+    "decisions": {"path": "maintenance/iriya-author-C071-080-decisions.json", "sha256": "c6ad9a643dd6baa0bf818327b79776910f7e6b9bbb59ee56ac7eb58fb849d9b8"},
+    "fullCasePacket": {"path": "maintenance/iriya-author-packet-C061-160-v1.json", "sha256": "e78f03edbd59d3ef2572e340affc495d655a9e1d9e13bdc493b8ecf084c03597"}
+  },
+  "artifactBindings": {
+    "t_2abe4bdede72": {"entrySha256": "2773651cfbc3da14835e4ad6872b2064e7e67a7d66843d9f630aac37c77a6243", "worksheetSha256": "6c71fb4d34207cf81714c63dcd689dfe0dde63d34b3dc7f9c37a53ca38078d4c"},
+    "t_124a4cacfd54": {"entrySha256": "8f5ab1a6a3806ac008ee1cb9f3f258435baf76251be63a0a9776e655f4793d78", "worksheetSha256": "872b35de5306247485bb6c7825e9fb063ffdc857455932ce2260c26db92ee391"},
+    "t_6e720d672741": {"entrySha256": "1e9f7291634fc1ba47d851c8cc853ffd8388bf2a604352e83890ab2ce8cd2405", "worksheetSha256": "d0207d28712d9a3a739bd941433603ae9032b9dccaf264dc695e0dd398da580e"},
+    "t_9a3195baa841": {"entrySha256": "e0c8e671687e9b0571455d428795bb765c0210f6c355bcf4a2a82215d8f254a6", "worksheetSha256": "53864351ed759c6aaed3fe368f7ea607c2b6fef6a6155bed5631f48e74f518d6"},
+    "t_fe792b801e2b": {"entrySha256": "1b3079abe3a588efb1a8125e502c11b5a18bda85627cb5c432b43ed244e21ef8", "worksheetSha256": "a48e540e3d8dce7033f7ad6ecb8822b0566b2ec3a5d192a3e162a4d1ad182126"},
+    "t_170a03a209f4": {"entrySha256": "6482eecfed7a546c338308dff8a11d481be011a20961423df44b1df227bd35ee", "worksheetSha256": "b5c63f7fd1f5fe7b0cab2b1095ca43205dd0d74b10f0b2db2d9eeecb5764d5be"},
+    "t_207d9561b245": {"entrySha256": "797da43d05558e0d9e26d0333050871ab6cd35af4163fb4204ea9df20f9c3c92", "worksheetSha256": "61f37acec1f1c0a936fe66c0a4e3014f60082a33619d19ec59c56b39fe31df82"},
+    "t_8de2d4d4ae7e": {"entrySha256": "f2f1ca630454454cae52530b1b3f6546358adbe3620dc3b529868643644b44c3", "worksheetSha256": "a452cb3caafd772bc869f4af02cf4d8fc1d76b715eb4ddfa1ec3fe2373dcb1e6"},
+    "t_5c8adc7ebd4d": {"entrySha256": "c83ae07c07fe6fb322607582403b43bb1de90ed3dec3cb025f9bbc30a4afd376", "worksheetSha256": "3d07282c832abfade45debc541d264a99364729827461a157f4cb5b8cab361a8"},
+    "t_5d4a58fe87fa": {"entrySha256": "3dcf52bf76a3384a47ba102eaed07740f2484c429010eca16990e75f5d270996", "worksheetSha256": "bf5baa0bb3eefb962300110708b4b20d45c6d39dcfccef37cd7c6e9b9d2b8041"}
+  },
+  "coordinateVerdicts": [
+    {"coordinate": "C71.s1.o2", "verdict": "PASS", "finding": "Tian'an Sheng remains the exact unlinked utterer; Huangbo Xiyun is canonically linked as person-described and Linji Yixuan as case-figure."},
+    {"coordinate": "C71.s1.o3", "verdict": "PASS", "finding": "Chulin Shangrui remains the exact utterer; Linji Yixuan is canonically linked as person-discussed."},
+    {"coordinate": "C71.s1.o4", "verdict": "PASS", "finding": "Baiyu remains the exact unlinked outer utterer; Mazu Daoyi is canonically linked as case-figure."},
+    {"coordinate": "C72.s1.o4", "verdict": "PASS", "finding": "Hongzhi Zhengjue remains the exact outer commentator; Piyun Zhiji is canonically linked as case-figure."},
+    {"coordinate": "C74.s1.o3", "verdict": "PASS", "finding": "Hengxiulin Falin remains the exact outer utterer; Longtan Chongxin is canonically linked as case-figure."},
+    {"coordinate": "C74.s1.o4", "verdict": "PASS", "finding": "Baiyu Jingsi remains the exact utterer; Baiyun Shouduan is canonically linked as person-discussed."},
+    {"coordinate": "C75.s1.o1", "verdict": "PASS", "finding": "Jifei Ruyi remains the encomium verse author; Huineng is canonically linked as person-described."},
+    {"coordinate": "C76.s1.o2", "verdict": "PASS", "finding": "Baiyun Shouduan remains the exact quoted comment utterer; Nanquan Puyuan is canonically linked as case-figure."},
+    {"coordinate": "C77.s1.o1", "verdict": "PASS", "finding": "Dahui Zonggao remains the exact outer commentator; Baofu Congzhan is canonically linked as case-figure."},
+    {"coordinate": "C77.s1.o3", "verdict": "PASS", "finding": "Yuanwu Keqin remains the exact outer commentator; Danxia Tianran and Pang Yun are canonically linked as case-figures."},
+    {"coordinate": "C78.s1.o2", "verdict": "PASS", "finding": "Jieshi Zhipeng remains the exact hall utterer; Xinghua Cunjiang is canonically linked as person-discussed."},
+    {"coordinate": "C79.s1.o1", "verdict": "PASS", "finding": "The monk's marked reply directly utters the headword and the following master marker begins Moshan Youqi's response. The actor is now correctly persisted as reviewed-unnamed, kind unnamed monk, role utterer, rather than narrated."}
+  ],
+  "mechanicalChecks": {
+    "strictAttribution": {"entries": 10, "occurrences": 40, "hardFailures": 0},
+    "zc": {"entries": 10, "occurrencesVerified": 40, "failureCount": 0, "exactTextFromLbToLb": true},
+    "workSourceValidation": {"entries": 10, "hardFailures": 0},
+    "semanticTemplate": {"entries": 10, "failureCount": 0},
+    "depthSense": {"audited": 10, "hardFailed": 0, "reviewFlagged": 10, "reviewFlagReason": "The four-occurrence floor cluster remains a numerical review signal; it is not a residual in this changed-only scope."},
+    "worksheetEntryParity": {"checked": 10, "passed": 10, "failures": 0, "method": "Fresh temporary compilation and byte-for-byte comparison."},
+    "canonicalContextRepair": {"coordinatesChecked": 11, "passed": 11, "failures": 0},
+    "reviewedUnnamedDirectMonkRepair": {"coordinatesChecked": 1, "passed": 1, "failures": 0}
+  },
+  "residualCoordinates": [],
+  "residualCoordinateCount": 0,
+  "hardPass": true,
+  "nextRequiredAction": null
+}

@@ -1,0 +1,125 @@
+{
+  "Id": "t_4e12c958ac0e",
+  "SourceTerm": "指東劃西",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "CreatedBy": "Codex Iriya construction cohort 001 lane C clean packet",
+  "WrittenUtc": "2026-07-18T08:16:19.475888Z",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "point east and mark west",
+      "AlternateTargets": [
+        "gesture east and trace west",
+        "point one way and draw another"
+      ],
+      "SearchAliases": [
+        "point east west",
+        "evasive gesturing",
+        "talk around the matter",
+        "direct point contrast"
+      ],
+      "Status": "preferred",
+      "Validation": "multi-source",
+      "Note": "Four exchanges in four works show the phrase as a demand to stop gesturing around the matter and speak directly.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X79/X79n1557.xml",
+          "FromLb": "0083c18",
+          "ToLb": "0083c19",
+          "Kwic": "有一般不識好惡禿奴，便即見神見鬼，指東劃西，好晴好雨",
+          "MasterName": "Linji Yixuan",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Linji Yixuan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (X/X79/X79n1557.xml). Essential Compendium of the United Lamp. Linji Yixuan says an undiscerning shaved fellow sees spirits and points east and marks west."
+        },
+        {
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0523c10",
+          "ToLb": "0523c10",
+          "Kwic": "曰：不用指東劃西，便請直指。",
+          "MasterName": null,
+          "Curated": true,
+          "ContextMasters": [],
+          "AttributionNote": "Source record (X/X82/X82n1571.xml). Complete Five Lamps (Vols. 34–120). an unnamed monk says not to point east and mark west and asks for direct pointing.",
+          "ActorAttribution": {
+            "Status": "reviewed-unnamed",
+            "Kind": "monastic",
+            "ActorLabel": "an unnamed monk",
+            "ActorRole": "utterer",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "an unnamed monk: 曰 follows the monk’s question and precedes 師曰, so the monk owns the exact demand.",
+            "ReviewedBy": "Codex Iriya construction lane C",
+            "ReviewedUtc": "2026-07-18T08:16:19.224005Z"
+          }
+        },
+        {
+          "RelPath": "C/C077/C077n1710.xml",
+          "FromLb": "0644c08",
+          "ToLb": "0644c09",
+          "Kwic": "有一般不識好𢙣禿奴即指東劃西好晴好雨好燈籠露柱",
+          "MasterName": "Linji Yixuan",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Linji Yixuan",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (C/C077/C077n1710.xml). Recorded Sayings of the Ancient Worthies. Linji Yixuan says an undiscerning shaved fellow points east and marks west while praising weather and fixtures."
+        },
+        {
+          "RelPath": "X/X67/X67n1310.xml",
+          "FromLb": "0666a14",
+          "ToLb": "0666a14",
+          "Kwic": "佛鑑拈云：長沙雖指東劃西，大似認鐘作甕。",
+          "MasterName": "Fojian Huiqin",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Fojian Huiqin",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (X/X67/X67n1310.xml). Collected Commentaries on Old Cases. Fojian Huiqin says that although Changsha points east and marks west, he closely resembles someone mistaking a bell for a jar."
+        }
+      ],
+      "SourceTexts": [
+        "X/X79/X79n1557.xml",
+        "X/X82/X82n1571.xml",
+        "C/C077/C077n1710.xml",
+        "X/X67/X67n1310.xml"
+      ],
+      "RelatedMasters": [
+        "Linji Yixuan",
+        "Fojian Huiqin"
+      ],
+      "RelatedTerms": [
+        "直指",
+        "東語西話",
+        "指鹿為馬",
+        "顧左右而言他"
+      ],
+      "ClaimAnchors": [],
+      "Explanation": "To point east and mark west is to gesture around the matter instead of stating it directly. In Chan exchanges the phrase commonly appears under negation—“do not point east and mark west”—as a demand that the other person show the fundamental matter without evasive directional talk. Linji Yixuan twice lists pointing east and west among imitative behaviors of students who cannot discern their own condition. An unnamed monk demands that the respondent stop pointing east and west and point directly. Fojian Huiqin says Changsha’s pointing east and west resembles mistaking a bell for a jar."
+    }
+  ]
+}

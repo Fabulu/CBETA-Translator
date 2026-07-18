@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "hash-bound-installer-independent-audit-v1",
+  "generatedUtc": "2026-07-18T13:02:53.785925+00:00",
+  "auditedPath": "install_hash_bound_cohort.py",
+  "auditedSha256": "6557775918c4c75e319e694a77180e86e2e7a2b9c708d90bfb3a36e179b4ba82",
+  "readOnly": true,
+  "executedMutation": false,
+  "hardPass": false,
+  "summary": {
+    "mutationSafety": "fail",
+    "rollbackCorrectness": "fail",
+    "collisionHandling": "partial",
+    "manifestClosureHashBinding": "fail",
+    "compilerParity": "pass",
+    "publicDeployment": "pass"
+  },
+  "deltas": [
+    {
+      "severity": "hard",
+      "kind": "current-row-rollback-gap",
+      "lines": [
+        111,
+        115,
+        120,
+        129
+      ],
+      "finding": "The row is appended to written only after both target writes and the post-write hash check. Any exception while writing STATUS or checking the entry hash leaves the current row mutated but absent from the rollback list.",
+      "requiredRepair": "Register a rollback record before the first target mutation, or wrap each row in its own rollback guard that restores the current row as well as prior rows."
+    },
+    {
+      "severity": "hard",
+      "kind": "closure-binding-optional-and-semantic-state-unchecked",
+      "lines": [
+        56,
+        59
+      ],
+      "finding": "closureReceipts defaults to an empty list, so an authorized manifest can install without any closure binding. When receipts exist, only path/hash are checked; the receipt schema, hardPass, cohort identity, and listed artifact hashes are not validated.",
+      "requiredRepair": "Require a nonempty closureReceipts list and validate each bound closure schema, hardPass=true, cohort membership, and agreement between closure output hashes and manifest rows."
+    },
+    {
+      "severity": "hard",
+      "kind": "source-target-containment-gap",
+      "lines": [
+        65,
+        76,
+        111,
+        112
+      ],
+      "finding": "Entry IDs are lexically constrained, but resolved fresh-build source and terms target paths are never checked with contained(). A pre-existing symlink at fresh-build/entries/<id> or terms/<id> can redirect reads or writes outside the intended roots.",
+      "requiredRepair": "Reject symlinks and require every resolved source file under FRESH and every resolved target/temporary path under TERMS before reading or writing."
+    },
+    {
+      "severity": "medium",
+      "kind": "ledger-write-rollback-side-effect",
+      "lines": [
+        116,
+        129
+      ],
+      "finding": "A ledger write failure triggers term rollback, but a partially pre-existing ledger or ledger .tmp artifact is not included in rollback accounting. os.replace makes the final ledger atomic, yet stale temporary state is not cleaned.",
+      "requiredRepair": "Include ledger/tmp cleanup in the transaction and refuse or explicitly validate pre-existing ledger collisions."
+    }
+  ],
+  "passes": [
+    {
+      "kind": "manifest-hash-binding",
+      "finding": "The supplied manifest itself is constrained beneath maintenance and matched to the caller-provided SHA-256 before parsing."
+    },
+    {
+      "kind": "artifact-hash-and-compiler-parity",
+      "finding": "Each entry, worksheet, and WORK hash is checked, and the worksheet is compiled in memory and byte-compared with entry.v2.json before mutation."
+    },
+    {
+      "kind": "entry-collision-refusal",
+      "finding": "A different pre-existing term entry and a non-done STATUS are refused during preflight."
+    },
+    {
+      "kind": "no-public-deployment",
+      "finding": "The implementation writes only terms entries/status plus maintenance backups/ledger; it invokes neither merge nor deployment, and the ledger explicitly records both as false."
+    }
+  ],
+  "residualRisk": "Do not execute until the three hard defects are repaired and independently retested with injected failures and symlink fixtures."
+}

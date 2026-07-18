@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "hash-bound-installer-independent-reaudit-v1",
+  "generatedUtc": "2026-07-18T13:06:56.954604+00:00",
+  "scope": "three prior hard defects only",
+  "auditedPath": "install_hash_bound_cohort.py",
+  "auditedSha256": "ef5e7e83dad5259079198bbebf69a2bec86d76b581d62f24c5a530f11ca049c5",
+  "priorAudit": {
+    "path": "maintenance/hash-bound-installer-independent-audit.json",
+    "sha256": "0adaa130af31fbc3751b8a47678c93d7a392412490a0ae5f9af822697e5073cb"
+  },
+  "readOnly": true,
+  "mutationExecuted": false,
+  "hardPass": true,
+  "checks": [
+    {
+      "defect": "current-row rollback gap",
+      "status": "resolved",
+      "evidence": "The rollback record is appended at line 139 after backups succeed and before either target mutation at lines 140-143; therefore failures in either write or post-write hash validation include the current row in reversed rollback."
+    },
+    {
+      "defect": "mandatory passing final release authorization with exact cohort hashes",
+      "status": "resolved",
+      "evidence": "Lines 70-84 require exactly one receipt, verify its maintenance-contained path and hash, require releaseAuthorization=true and hardPass=true, and demand exact dictionary equality between release entryHashes and manifest entry/worksheet/WORK hashes."
+    },
+    {
+      "defect": "symlink/path containment",
+      "status": "resolved",
+      "evidence": "Lines 90-104 validate each source beneath FRESH with both component symlink rejection and resolved containment, and reject symlink components for both TERMS targets before mutation; entry IDs remain slash-restricted."
+    }
+  ],
+  "residuals": [],
+  "outOfScopeObservations": [
+    "This was a static targeted re-audit, not an injected-failure or concurrent filesystem-race test."
+  ],
+  "conclusion": "All three previously hard findings are resolved in the current installer bytes. No installer mode was invoked."
+}

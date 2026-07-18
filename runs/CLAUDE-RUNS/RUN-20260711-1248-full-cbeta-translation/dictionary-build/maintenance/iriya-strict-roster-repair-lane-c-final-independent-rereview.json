@@ -1,0 +1,70 @@
+{
+  "schemaVersion": "iriya-strict-roster-repair-lane-c-final-independent-rereview-v1",
+  "lane": "C",
+  "reviewer": "Codex final changed-only independent rereviewer",
+  "reviewDate": "2026-07-18",
+  "status": "pass-after-exact-closure",
+  "scope": {
+    "entries": 28,
+    "occurrencesZcVerified": 160,
+    "originalSemanticActorDeltasReread": 16,
+    "day-Noon-Strikes-Third-WatchRecutsReread": 5,
+    "allChangedActorLabelsAttributionNotesAndRelatedMastersReread": true,
+    "sampling": false
+  },
+  "reviewConclusion": "The original sixteen semantic actor repairs are correct, the five recut 日午打三更 witnesses preserve their exact actor-bound turns, and the changed reader prose states the speaker or explicit anonymous actor. Changed-note rereading exposed three additional exact-turn defects. Those three coordinates were closed in both authoritative worksheets and compiled entries; no open semantic delta remains.",
+  "closedDeltas": [
+    {
+      "entryId": "t_49100bcb7049",
+      "term": "亘古亘今",
+      "coordinate": "Senses[0].Occurrences[4]",
+      "before": "identified-unlinked-master / 前福州長慶院慧稜禪師法嗣",
+      "after": "reviewed-unnamed / the source-unnamed questioning monk",
+      "completeCaseProof": "The exact turn is 僧曰。恁麼則亘古亘今, followed by 師曰。是什麼年中. The monk, not the responding section master or lineage heading, utters the headword.",
+      "publicProseClosure": "The attribution note now names the unnamed questioning monk as exact actor and Qiying of Longhua as the following respondent."
+    },
+    {
+      "entryId": "t_49100bcb7049",
+      "term": "亘古亘今",
+      "coordinate": "Senses[0].Occurrences[5]",
+      "before": "identified-unlinked-master / 福州枕峰觀音院清換禪師",
+      "after": "reviewed-unnamed / the source-unnamed questioning monk",
+      "completeCaseProof": "Under 杭州龍華寺契盈廣辯周智禪師 the question sequence has 曰。恁麼則亘古亘今, followed by 師曰。是甚麼年中. The anonymous monk owns the headword turn; the prior Qinghuan label was from a different section.",
+      "publicProseClosure": "The attribution note now names the unnamed questioning monk as exact actor and Qiying of Longhua as the following respondent."
+    },
+    {
+      "entryId": "t_9f05a5d64698",
+      "term": "坐斷十方",
+      "coordinate": "Senses[0].Occurrences[5]",
+      "before": "identified-unlinked-master / 建寧府迴龍古航道舟禪師",
+      "after": "identified-non-master / Yu Dacheng (余大成)",
+      "completeCaseProof": "The biography explicitly names 開府集生余大成居士 and introduces 上來書曰; the quoted letter contains 獨是坐斷十方密移一步. Yu Dacheng, not a nearby master heading, authors the retained headword use.",
+      "publicProseClosure": "The attribution note now names the layman Yu Dacheng and identifies the quoted letter as the governing voice."
+    }
+  ],
+  "gateResults": {
+    "hardPass": true,
+    "zcVerify": {"verified": 160, "failures": 0, "fromAndToLbExact": true},
+    "strictAttribution": {"hardFailures": 0},
+    "workSource": {"hardFailures": 0},
+    "template": {"hardFailures": 0},
+    "depth": {"hardFailures": 0, "qualitativeClusterReview": "The pre-existing floor cluster is a review signal only; the changed-only actor repair adds no evidence padding and omits no newly discovered deployment."},
+    "publicFeedback": {"failures": 0},
+    "worksheetEntryParity": {"checked": 28, "byteExact": 28, "failures": 0},
+    "lineageRosterUntouched": true
+  },
+  "currentHashes": {
+    "t_49100bcb7049.entry.v2.json": "c37e0e008b52b42055f002d84a8920e6a8081522de7fedb65e884f12eac2a36b",
+    "t_49100bcb7049.evidence.draft.json": "7e8ea75af176a7f61c20976e0708b65dacf9d5dee83bca9d7bb2c697e58b80c4",
+    "t_9f05a5d64698.entry.v2.json": "4311f82fd1798c0d038b82fc7515cf0afad2a02d6a9f29227dfbaba2152f8ec2",
+    "t_9f05a5d64698.evidence.draft.json": "a4185e11fdf6488511a59dbf3b6dff7ab58fec1b6a78c41ddbd2cb5bb4f02591",
+    "finalGateReport": "320b4471f497d25bc8c024a4abfcfea2aa5e3bb821cebe629f66b27d07e17bfe",
+    "lineageMasters": "33c008e98468ecab8b89bbb6dcd6008fba631bee01f4909091c7d2887dce1ded"
+  },
+  "sourceReceipts": {
+    "rejectingIndependentReviewSha256": "19577f70b79e56527198389af252e43ac023411453de439ae0372975453355fa",
+    "semanticRepairClosureSha256": "12fc568ce9e1086e677113762ea546c7cb1c8dacb6e7fc93135a4b044c54c160",
+    "residualGateClosureSha256": "d05e5ae30528f8836ab6c7dd7df705f5e9e469ae32301693c8e9a1747593f24a"
+  },
+  "installOrMergePerformed": false
+}

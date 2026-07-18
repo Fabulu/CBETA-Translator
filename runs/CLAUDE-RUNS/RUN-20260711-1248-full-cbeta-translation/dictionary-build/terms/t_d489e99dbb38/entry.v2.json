@@ -1,0 +1,136 @@
+{
+  "Id": "t_d489e99dbb38",
+  "SourceTerm": "人從橋上過、橋流水不流",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "CreatedBy": "Codex Iriya lane C61-160 exact-turn author",
+  "WrittenUtc": "2026-07-18T15:05:00+02:00",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "the bridge-and-still-water reversal",
+      "AlternateTargets": [
+        "the person passes over; the bridge flows and the water stands still"
+      ],
+      "SearchAliases": [
+        "person crosses the bridge",
+        "bridge flows but water does not"
+      ],
+      "Status": "preferred",
+      "Validation": "multi-source",
+      "Note": "The queue display uses a list comma, while the retained corpus form uses the ordinary comma. The punctuation difference is governed and does not create a separate phrase.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0095b19",
+          "ToLb": "0095b20",
+          "Kwic": "師曰：人從橋上過，橋流水不流。",
+          "MasterName": "Dahui Zonggao",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Dahui Zonggao",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (X/X82/X82n1571.xml). Complete Five Lamps (Vols. 34–120) (五燈全書(第34卷-第120卷)). Speaker: Dahui Zonggao.",
+          "EvidenceRole": "variant",
+          "VariantForm": "人從橋上過，橋流水不流",
+          "VariantKind": "editorial-punctuation"
+        },
+        {
+          "RelPath": "X/X64/X64n1260.xml",
+          "FromLb": "0037a23",
+          "ToLb": "0037b01",
+          "Kwic": "二十年前，空手把鋤頭，步行騎水牛；二十年後，人從橋上過，橋流水不流。",
+          "MasterName": null,
+          "Curated": true,
+          "ContextMasters": [],
+          "AttributionNote": "Source record (X/X64/X64n1260.xml). Outline Record of the Successive Patriarchs (列祖提綱錄). Speaker: Xiaoyin Xin.",
+          "ActorAttribution": {
+            "Status": "identified-unlinked-master",
+            "Kind": "named address-giver",
+            "ActorLabel": "Xiaoyin Xin",
+            "ActorRole": "utterer",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "Xiaoyin Xin: The complete memorial address explicitly begins by naming Xiaoyin Xin; the twenty-years contrast remains in his uninterrupted current address.",
+            "ReviewedBy": "Codex full-case exact-turn review",
+            "ReviewedUtc": "2026-07-18T13:31:00Z"
+          },
+          "EvidenceRole": "variant",
+          "VariantForm": "人從橋上過，橋流水不流",
+          "VariantKind": "editorial-punctuation"
+        },
+        {
+          "RelPath": "X/X81/X81n1568.xml",
+          "FromLb": "0105c06",
+          "ToLb": "0105c07",
+          "Kwic": "上堂，舉傅大士法身頌云：空手把鋤頭，步行騎水牛。人從橋上過，橋流水不流。",
+          "MasterName": "Shanhui Dashi",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Shanhui Dashi",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (X/X81/X81n1568.xml). Strict Lineage of the Five Lamps (Vols. 10–25) (五燈嚴統(第10卷-第25卷)). Speaker: Shanhui Dashi.",
+          "EvidenceRole": "variant",
+          "VariantForm": "人從橋上過，橋流水不流",
+          "VariantKind": "editorial-punctuation"
+        },
+        {
+          "RelPath": "X/X83/X83n1578.xml",
+          "FromLb": "0669c16",
+          "ToLb": "0669c18",
+          "Kwic": "一日，為張無盡舉傅大士頌曰：空手把鉏頭，步行騎水牛。人從橋上過，橋流水不流。",
+          "MasterName": "Shanhui Dashi",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Shanhui Dashi",
+              "Roles": [
+                "utterer"
+              ]
+            },
+            {
+              "MasterName": "Yunju Shun",
+              "Roles": [
+                "later-raiser"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (X/X83/X83n1578.xml). Record Pointing at the Moon (指月錄). Speaker: Shanhui Dashi.",
+          "EvidenceRole": "variant",
+          "VariantForm": "人從橋上過，橋流水不流",
+          "VariantKind": "editorial-punctuation"
+        }
+      ],
+      "SourceTexts": [
+        "X/X82/X82n1571.xml",
+        "X/X64/X64n1260.xml",
+        "X/X81/X81n1568.xml",
+        "X/X83/X83n1578.xml"
+      ],
+      "RelatedMasters": [
+        "Dahui Zonggao",
+        "Shanhui Dashi",
+        "Yunju Shun"
+      ],
+      "RelatedTerms": [],
+      "ClaimAnchors": [],
+      "Explanation": "This reversed-motion couplet says that the person crosses the bridge while the bridge flows and the water does not; the records preserve it as an answer, an address line, and a repeatedly raised verse. Dahui Zonggao speaks the pair as an answer and then comments separately that the first line has misled many people while the second is somewhat closer. Xiaoyin Xin sets the full pair after a twenty-years-before and twenty-years-after contrast. Wengan Sizong raises it as the latter half of Shanhui Dashi's four-line verse before commenting on Yunmen. Yunju Shun raises the same verse for the layman Zhang Wujin and contrasts it with another verse. The pair's literal reversal stays fixed across these deployments; the texts assign it no further gloss."
+    }
+  ]
+}

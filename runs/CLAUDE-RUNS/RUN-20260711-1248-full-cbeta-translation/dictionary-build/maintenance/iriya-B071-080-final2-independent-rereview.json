@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "iriya-final2-independent-rereview-v1",
+  "lane": "B",
+  "positions": [71, 80],
+  "reviewer": "Codex fresh final-two changed-only independent rereviewer",
+  "scope": {
+    "coordinatesReread": ["B75.s1.o2", "B79.s1.o5"],
+    "coordinateCount": 2,
+    "method": "Fresh independent rereading of exactly the two repaired coordinates against their complete immutable source-case speech frames, with exact utterer, outer-raiser, section-boundary, ContextMasters, and reader-prose review. Mechanically recompiled all ten authoritative worksheets and compared them byte-for-byte with their sibling entries, then reran the hash-aware depth/zc audit over the exact ten entry paths. No dictionary, lineage, install, or merge artifact was edited."
+  },
+  "inputBindings": {
+    "repairClosure": {"path": "maintenance/iriya-B071-080-final2-repair-closure.json", "sha256": "1db2531761a4778a8355fad02807bd003fd0434a21102b8ca45beb9f028f014a"},
+    "decisions": {"path": "maintenance/iriya-decisions-B071-080.json", "sha256": "94c91c01eb460eceaaa5e54ba33bba5e8f13d809d9c511f3a57cc356ffd86723"},
+    "fullCaseTransport": {"path": "maintenance/iriya-author-packet-B071-167-v1.json", "sha256": "a981635abe531e80beae72af97a9f2a372b1f465feba5f1e9135b44a5964d913"}
+  },
+  "artifactBindings": {
+    "t_fdc5563de476": {"entrySha256": "2cb618d218eaa56d4d2e7cf5accb4bceb19e22e016615a103c845e80d7a45126", "worksheetSha256": "033c03536ece08823b550d7e11f4df3bc65c7bdfa24e0364920ec27fae7394fe"},
+    "t_c077c845b9e8": {"entrySha256": "ba2d01b6958614be3293f9c1e4e80fed91807df3e6d090149cef71c301b8f7b1", "worksheetSha256": "4f2a85402c30f54079b0fac50dc2ff2ea483bda0225fd2cb5701e8000f2c647a"},
+    "t_7eb912de96ac": {"entrySha256": "b04050e9ca23eecd26c58847b3aa2e056fd713fbb55e2f8d60ad79c3667125de", "worksheetSha256": "339a6c56292310b9b36919c3af2702bd4317822d2f35a8b10c6547e898bc1c41"},
+    "t_a0d16980d700": {"entrySha256": "8a4d4344cf09af1cce3c50fa6fa1de4252f48deeae081d12ad15d572a834ce72", "worksheetSha256": "24baba89766293f6a4030b64928879f36ce1c1ce3239ff336a02552ba6bc0b27"},
+    "t_19623a02920d": {"entrySha256": "de3eb654672347dc1c127e92debd1a4eab887a317e3fb41c165861714beae6f2", "worksheetSha256": "fd269304d78c3c297eac181e770d8652100f83bcc5accc350b756866cd0d464a"},
+    "t_be8d96824a15": {"entrySha256": "088594a6ebfacabe9f581f39acc2908155dd0927042548c2c716864ede5d9be8", "worksheetSha256": "c28fe44094ee26741d7553196a48fb7df2d2b05b26212f97104b9e326a157019"},
+    "t_4ab9b991927b": {"entrySha256": "638cb7586b66bba09bbb2903dfe55d12f5446dbfeb33609a53d9e5ad662a7f3d", "worksheetSha256": "bacd80fd831dab0d4adb77d48aa42f277d451f302af0ce8878d88ffda8ba5998"},
+    "t_bfafea75bcc6": {"entrySha256": "cb941e791363b42ede2b0caf96154e96a44c3e028cacef250e23bf6bb867103d", "worksheetSha256": "e5574c22b4fbe5e4ab47d43cbe9aa86e4f6a223a692a7324beec4d4aaea296b3"},
+    "t_7b5c463ecb67": {"entrySha256": "cc4f2e8cd23b7faf808f5e357f9e9f7abbf574b4eae3fe8496d14bfe40b42da9", "worksheetSha256": "5517c9588cb8bba57562646e878b86a2bc71dc6bbf717ee58bc2d4e69c274f71"},
+    "t_2958b93055c4": {"entrySha256": "2c84b4dc1b2e645552f3d11475788514505810fa2c70989fea58db1e839efc49", "worksheetSha256": "020ca1a164a606cf77b287e0cdbabd449f531a7b93dc41270aecee70e07078b5"}
+  },
+  "coordinateVerdicts": [
+    {
+      "coordinate": "B75.s1.o2",
+      "verdict": "PASS",
+      "finding": "今時衲僧 is the explicit subject of 便道, so the unnamed contemporary monks utter the copied headword formula. Yangqi Fanghui is correctly linked as outer later-raiser and section-subject, and the prose now explicitly distinguishes the monks' utterance from Yangqi's separate following self-staged example."
+    },
+    {
+      "coordinate": "B79.s1.o5",
+      "verdict": "PASS",
+      "finding": "林曰 assigns the quoted headword answer to Xianglin Chengyuan. The complete case changes to the 蘇州虎丘蒺藜曇 section before the retained 上堂舉, and both proof and prose now correctly identify Jili Tan as the non-roster outer raiser/appraiser rather than Yun'an Puyan."
+    }
+  ],
+  "mechanicalChecks": {
+    "zc": {"entries": 10, "occurrencesVerified": 54, "failureCount": 0, "exactTextFromLbToLb": true},
+    "worksheetEntryParity": {"checked": 10, "passed": 10, "failures": 0, "method": "Fresh temporary compilation and byte-for-byte SHA-256 comparison."},
+    "depthSense": {"audited": 10, "hardFailed": 0, "reviewFlagged": 7, "reviewFlagReason": "Seven entries share the six-occurrence floor; this remains a numerical review signal, not a hard failure or a residual in the two-coordinate semantic scope."}
+  },
+  "residualCoordinates": [],
+  "residualCoordinateCount": 0,
+  "hardPass": true,
+  "nextRequiredAction": null
+}

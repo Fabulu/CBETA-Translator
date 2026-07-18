@@ -1,0 +1,213 @@
+{
+  "SchemaVersion": 1,
+  "Entry": {
+    "Id": "t_9a3195baa841",
+    "SourceTerm": "字經三寫、烏焉成馬",
+    "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+    "CreatedBy": "Codex Iriya lane C61-160 exact-turn author",
+    "WrittenUtc": "2026-07-18T15:05:00Z",
+    "Senses": [
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "after three copyings, wu and yan become ma",
+        "AlternateTargets": [
+          "repeated copying turns two similar graphs into the graph for horse"
+        ],
+        "SearchAliases": [
+          "after three copyings wu and yan become ma",
+          "repeated transmission corrupts the text"
+        ],
+        "Status": "preferred",
+        "Validation": "multi-source",
+        "Note": "The fixed saying uses graphic confusion in repeated copying as an image for accumulated corruption in transmission. The corpus applies it to misreported cases and interpretations; it does not claim that every textual variant is corrupt.",
+        "Occurrences": [
+          {
+            "RelPath": "X/X82/X82n1571.xml",
+            "FromLb": "0172b04",
+            "ToLb": "0172b05",
+            "Kwic": "師曰：世尊已是錯說，文殊已是錯傳，新鳳山今日已是錯舉。會麼？字經三寫，烏焉成馬？",
+            "MasterName": null,
+            "Curated": true,
+            "ContextMasters": [],
+            "AttributionNote": "Source record (X/X82/X82n1571.xml). Complete Five Lamps (Vols. 34–120) (五燈全書(第34卷-第120卷)). Speaker: Yiyuan Ling.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "字經三寫，烏焉成馬",
+              "GrammaticalSubject": "Yiyuan Ling",
+              "SpeechFrame": "The biography marks Yiyuan Ling's hall address and 師曰 directly assigns the three-error appraisal and headword verdict to him.",
+              "FullCaseDecision": "The biography marks Yiyuan Ling's hall address and 師曰 directly assigns the three-error appraisal and headword verdict to him.",
+              "VoiceLayer": "direct-turn"
+            },
+            "ActorAttribution": {
+              "Status": "identified-unlinked-master",
+              "Kind": "full-case speech turn",
+              "ActorLabel": "Yiyuan Ling",
+              "ActorRole": "utterer",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "Yiyuan Ling: The biography marks Yiyuan Ling's hall address and 師曰 directly assigns the three-error appraisal and headword verdict to him.",
+              "ReviewedBy": "Codex six-rung full-case exact-turn review",
+              "ReviewedUtc": "2026-07-18T15:05:00Z",
+              "AuthoredVoiceRiskReviewed": true
+            },
+            "EvidenceRole": "variant",
+            "VariantForm": "字經三寫，烏焉成馬",
+            "VariantKind": "editorial-punctuation"
+          },
+          {
+            "RelPath": "J/J26/J26nB177.xml",
+            "FromLb": "0010b22",
+            "ToLb": "0010b23",
+            "Kwic": "如何是諸佛出身處，熏風自南來，殿閣生微涼？咄！字經三寫，烏焉成馬。",
+            "MasterName": "Poshan Haiming",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Poshan Haiming",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "AttributionNote": "Source record (J/J26/J26nB177.xml). Recorded Sayings of Chan Master Poshan (破山禪師語錄). Speaker: Poshan Haiming.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "咄！字經三寫，烏焉成馬",
+              "GrammaticalSubject": "Poshan Haiming",
+              "SpeechFrame": "The marked hall address belongs to Poshan Haiming; he gives the third emergence answer and immediately utters the headword verdict without a voice change.",
+              "FullCaseDecision": "The marked hall address belongs to Poshan Haiming; he gives the third emergence answer and immediately utters the headword verdict without a voice change.",
+              "VoiceLayer": "direct-turn"
+            },
+            "EvidenceRole": "variant",
+            "VariantForm": "字經三寫，烏焉成馬",
+            "VariantKind": "editorial-punctuation"
+          },
+          {
+            "RelPath": "J/J36/J36nB355.xml",
+            "FromLb": "0549a05",
+            "ToLb": "0549a11",
+            "Kwic": "師云：「古德被龍潭一拶，只得淨地上撒屙；龍潭當下悟去，也是平地喫交。今日若有人問鹿苑：『不蒙和尚指示心要。』和聲便打，管教立地冰消。何故聻？字經三寫，烏焉成馬。諸兄還委悉麼？聽取一頌：心要不勞頻指示，十枚曾以一枚還，無端特地重申問，一棒須教髑髏乾。髑髏乾！低頭歸去也慚顏。",
+            "MasterName": "Hengxiulin Falin",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Hengxiulin Falin",
+                "Roles": [
+                  "utterer"
+                ]
+              },
+              {
+                "MasterName": "Longtan Chongxin",
+                "Roles": [
+                  "case-figure"
+                ]
+              }
+            ],
+            "AttributionNote": "Source record (J/J36/J36nB355.xml). Recorded Sayings of Chan Master Hengxiulin of Lülüo (綠蘿恒秀林禪師語錄). Speaker: Hengxiulin Falin.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "何故聻？字經三寫，烏焉成馬",
+              "GrammaticalSubject": "Hengxiulin Falin",
+              "SpeechFrame": "After raising the Longtan case, Hengxiulin Falin's master-marked appraisal proposes his own response and supplies the headword verdict in the same outer turn.",
+              "FullCaseDecision": "After raising the Longtan case, Hengxiulin Falin's master-marked appraisal proposes his own response and supplies the headword verdict in the same outer turn.",
+              "VoiceLayer": "direct-turn"
+            },
+            "EvidenceRole": "variant",
+            "VariantForm": "字經三寫，烏焉成馬",
+            "VariantKind": "editorial-punctuation"
+          },
+          {
+            "RelPath": "J/J36/J36nB359.xml",
+            "FromLb": "0630c28",
+            "ToLb": "0631a04",
+            "Kwic": "別有道理？諸人若檢點得出，山僧拄杖子兩手分付；苟或未然，幾度醉歸明月夜，歌聲引出畫堂前。」師云：「明眼宗師，天然猶在。」乃云：「白雲端公大似字經三寫，烏焉成馬；天童華老正是其父攘羊，而子證之。仔細較量將來，總是家醜外揚，未免傍觀者哂。弁山則不然，白雲要見百丈再參馬祖的麼？",
+            "MasterName": "Baiyu Jingsi",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Baiyu Jingsi",
+                "Roles": [
+                  "utterer"
+                ]
+              },
+              {
+                "MasterName": "Baiyun Shouduan",
+                "Roles": [
+                  "person-discussed"
+                ]
+              }
+            ],
+            "AttributionNote": "Source record (J/J36/J36nB359.xml). Recorded Sayings of Chan Master Baiyu (百愚禪師語錄). Speaker: Baiyu Jingsi.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "白雲端公大似字經三寫，烏焉成馬",
+              "GrammaticalSubject": "Baiyu Jingsi",
+              "SpeechFrame": "The Bianshan record's 師云 and 乃云 retain Baiyu Jingsi's outer voice through the headword appraisal; Baiyun Shouduan is the master being discussed.",
+              "FullCaseDecision": "The Bianshan record's 師云 and 乃云 retain Baiyu Jingsi's outer voice through the headword appraisal; Baiyun Shouduan is the master being discussed.",
+              "VoiceLayer": "direct-turn"
+            },
+            "EvidenceRole": "variant",
+            "VariantForm": "字經三寫，烏焉成馬",
+            "VariantKind": "editorial-punctuation"
+          }
+        ],
+        "SourceTexts": [],
+        "RelatedMasters": [
+          "Poshan Haiming",
+          "Hengxiulin Falin",
+          "Baiyu Jingsi"
+        ],
+        "RelatedTerms": [],
+        "ClaimAnchors": [],
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "After three copyings, wu and yan become ma: repeated transmission can distort wording or understanding until the result no longer matches its source.",
+          "EvidenceBody": [
+            "Yiyuan Ling applies the saying after calling Shakyamuni's speech, Manjushri's transmission, and his own raising of the case successive errors. Poshan Haiming places it after three divergent answers to the question about where buddhas emerge. Hengxiulin Falin uses it after rejecting both an old case's presentation and a proposed modern repetition. Baiyu Jingsi applies it to Baiyun Shouduan's appraisal before separately criticizing a later witness. Across these uses, the copying image marks cumulative distortion rather than a literal scribal event in each case."
+          ]
+        },
+        "DraftEvidence": {
+          "OpeningClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3",
+            "o4"
+          ],
+          "ZenBend": "Hall speakers use the scribal-corruption proverb to reject successively repeated case wording, answers, and inherited appraisals.",
+          "CounterexampleOrLimit": "The phrase diagnoses distortion in the cited sequence; it does not authorize treating every variant reading or later comment as an error.",
+          "DifferentThingTest": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "threefold case error",
+              "three emergence answers",
+              "Longtan case repetition",
+              "Baiyun appraisal"
+            ],
+            "Reason": "Each speaker invokes the same fixed copying proverb as a verdict on accumulated distortion; the material judged varies without producing a new lexical sense."
+          },
+          "AliasRationale": "The explanatory alias states the attested work of the proverb while the preferred target preserves its distinctive graphs and copying count.",
+          "ModifierControls": [
+            {
+              "Term": "three copyings",
+              "Finding": "The fixed count and the 烏/焉/馬 graph sequence belong to the proverb and must not be reduced to a generic error label."
+            }
+          ],
+          "FamilyControls": [
+            {
+              "Term": "corrupt transmission",
+              "Finding": "This is the shared contextual job supported by the retained verdicts, not a claim about the physical production history of each source."
+            }
+          ],
+          "IndependentWorkIds": [
+            "work:wudeng-quanshu",
+            "work:J26nB177",
+            "work:J36nB355",
+            "work:J36nB359"
+          ]
+        }
+      }
+    ]
+  }
+}

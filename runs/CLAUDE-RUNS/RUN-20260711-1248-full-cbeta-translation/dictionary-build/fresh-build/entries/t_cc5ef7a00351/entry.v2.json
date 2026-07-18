@@ -1,0 +1,135 @@
+{
+  "Id": "t_cc5ef7a00351",
+  "SourceTerm": "勾賊破家",
+  "CorpusBaselineSha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a",
+  "CreatedBy": "Codex Iriya construction cohort 001 lane C clean packet",
+  "WrittenUtc": "2026-07-18T08:15:53.599188Z",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "summon the thief who ruins the house",
+      "AlternateTargets": [
+        "invite the robber who wrecks one’s own household",
+        "call in the thief who destroys the home"
+      ],
+      "SearchAliases": [
+        "invite thief ruin house",
+        "summon own undoing",
+        "robber destroys household",
+        "teaching backfires"
+      ],
+      "Status": "preferred",
+      "Validation": "multi-source",
+      "Note": "Four distinct appraisals span four independent works.",
+      "Occurrences": [
+        {
+          "RelPath": "X/X66/X66n1296.xml",
+          "FromLb": "0118a22",
+          "ToLb": "0118a22",
+          "Kwic": "仰山寂云：黃檗大似勾賊破家。",
+          "MasterName": "Yangshan Huiji",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Yangshan Huiji",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (X/X66/X66n1296.xml). Compilation of the School Gate’s Raising Old Cases. Yangshan Huiji says Huangbo closely resembles someone summoning the thief who ruins the house."
+        },
+        {
+          "RelPath": "X/X82/X82n1571.xml",
+          "FromLb": "0060c12",
+          "ToLb": "0060c13",
+          "Kwic": "上堂：平高就下，勾賊破家。截鐵斬釘，狐狸戀窟。",
+          "MasterName": null,
+          "Curated": true,
+          "ContextMasters": [],
+          "AttributionNote": "Source record (X/X82/X82n1571.xml). Complete Five Lamps (Vols. 34–120). Foxin Bencai pairs leveling high and low with summoning the thief who ruins the house.",
+          "ActorAttribution": {
+            "Status": "identified-unlinked-master",
+            "Kind": "Chan master",
+            "ActorLabel": "Foxin Bencai",
+            "ActorRole": "utterer",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "Foxin Bencai: the heading names 潭州上封佛心本才禪師 and 上堂 assigns him the exact line.",
+            "ReviewedBy": "Codex Iriya construction lane C",
+            "ReviewedUtc": "2026-07-18T08:15:53.599080Z"
+          }
+        },
+        {
+          "RelPath": "X/X66/X66n1297.xml",
+          "FromLb": "0282a08",
+          "ToLb": "0282a09",
+          "Kwic": "綠雨蕉云：世尊大似勾賊破家，設使二人待問，便打豬一棒，云何不抵對？",
+          "MasterName": null,
+          "Curated": true,
+          "ContextMasters": [],
+          "AttributionNote": "Source record (X/X66/X66n1297.xml). Dharma Grove of the Tradition’s Mirror. Lüyu Jiao says the Buddha resembles someone summoning the thief who ruins the house by questioning the pig-carriers.",
+          "ActorAttribution": {
+            "Status": "identified-unlinked-master",
+            "Kind": "Chan master",
+            "ActorLabel": "Lüyu Jiao",
+            "ActorRole": "utterer",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "GrammarEvidence": "Lüyu Jiao: 綠雨蕉云 explicitly names and assigns him the exact appraisal.",
+            "ReviewedBy": "Codex Iriya construction lane C",
+            "ReviewedUtc": "2026-07-18T08:15:53.599080Z"
+          }
+        },
+        {
+          "RelPath": "X/X70/X70n1376.xml",
+          "FromLb": "0049a21",
+          "ToLb": "0049a22",
+          "Kwic": "召大眾云：隱山勾賊破家，不能擒賊，却反與他供款。",
+          "MasterName": "Chijue Daochong",
+          "Curated": true,
+          "ContextMasters": [
+            {
+              "MasterName": "Chijue Daochong",
+              "Roles": [
+                "utterer"
+              ]
+            }
+          ],
+          "AttributionNote": "Source record (X/X70/X70n1376.xml). Recorded Sayings of Chan Master Chijue Daochong. Chijue Daochong tells the assembly that Yinshan summons the thief who ruins the house and then supplies him a confession."
+        }
+      ],
+      "SourceTexts": [
+        "X/X66/X66n1296.xml",
+        "X/X82/X82n1571.xml",
+        "X/X66/X66n1297.xml",
+        "X/X70/X70n1376.xml"
+      ],
+      "RelatedMasters": [
+        "Yangshan Huiji",
+        "Chijue Daochong"
+      ],
+      "RelatedTerms": [
+        "賊不打貧兒家",
+        "家賊難防",
+        "供款",
+        "養子方知父慈"
+      ],
+      "ClaimAnchors": [],
+      "Explanation": "To summon the thief who ruins the house is to make a move that invites its own undoing. Chan critics apply the household image when a participant’s question, accommodation, or display gives the other party the opening that defeats it. Yangshan Huiji applies it to Huangbo’s exchange with Linji. Foxin Bencai places it beside leveling high and low. Lüyu Jiao applies it to the Buddha questioning two pig-carriers. Chijue Daochong says Yinshan summons the thief by answering Dongshan until he yields a confession."
+    }
+  ]
+}
