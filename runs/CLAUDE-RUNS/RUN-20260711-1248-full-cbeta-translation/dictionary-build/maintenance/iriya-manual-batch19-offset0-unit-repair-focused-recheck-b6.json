@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "iriya-manual-repair-focused-recheck.v1",
+  "reviewer": "b6",
+  "decision": "PASS",
+  "review": "maintenance/iriya-manual-batch19-offset0-independent-review-b6.json",
+  "reviewSha256": "4cf73ed52b088263a69975bb938903d7d132dd8a3ead64f4f118b1b95cb1cbe1",
+  "repairReceipt": "maintenance/iriya-manual-batch19-offset0-unit-repair-receipt-d7.json",
+  "repairReceiptSha256": "37e475c64c7aa71e6d3bba827601e5f2d9268ef90382e8e40386acbba54eab2a",
+  "ledger": "maintenance/iriya-manual-batch19-offset0-ledger.json",
+  "ledgerSha256Before": "dcb42ef9a8e8929a147f563a290533c1fd6231794586f9308f59819a5fe73851",
+  "ledgerSha256After": "34fdfce469f8047f7213e62f6a8a078e414bd198e4fcf4a1dd673113295ceaf3",
+  "coordinate": {"batchOrdinal": 9, "canonicalIndex": 636, "id": "t_1ad6c88b5775", "term": "錯認驢鞍橋、作阿爺下頷"},
+  "checks": {
+    "requestedUnitRepairPresent": true,
+    "dispositionIsKeepCouplet": true,
+    "unitIsCouplet": true,
+    "reasonQueryCountsEvidenceAndFormResolutionPreservedPerReceipt": true,
+    "otherNineRowsPreservedPerReceipt": true,
+    "summaryIsNineComponentsOneCouplet": true,
+    "cheapValidator": "PASS 10/10; 0 failures",
+    "fullValidator": "PASS 10/10; 0 failures"
+  },
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false,
+  "status": "FOCUSED_RECHECK_PASS"
+}

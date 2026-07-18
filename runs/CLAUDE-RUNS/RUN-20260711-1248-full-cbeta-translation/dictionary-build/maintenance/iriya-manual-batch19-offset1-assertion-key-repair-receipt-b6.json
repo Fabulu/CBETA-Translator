@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "iriya-manual-metadata-repair-receipt.v1",
+  "repairAuthor": "b6",
+  "selection": "maintenance/iriya-manual-batch19-offset1-selection.json",
+  "selectionSha256Before": "8e07e7d422eb23bacbbcb6e00826cf8407a9e55740148fa0b50d43c7173a566e",
+  "selectionSha256After": "8fd58d05ca046b3021c2c749d9c2ec434051579eb06c133be53b9e7b96c56528",
+  "ledger": "maintenance/iriya-manual-batch19-offset1-ledger.json",
+  "ledgerSha256Before": "3a0712f195b4d44087347845d775838a542fad0153d0bf437c979d1358b1177b",
+  "ledgerSha256After": "2667f7c91e6306e8855503bf971470cd9eb77b39c387d376890ec56a76286b45",
+  "repair": {
+    "fieldBefore": "absentLive664Registry",
+    "fieldAfter": "absentLive694Registry",
+    "valuePreserved": true,
+    "selectionAndLedgerAssertionRenamed": true,
+    "ledgerSelectionHashRebound": true
+  },
+  "allQueueIdentitiesDecisionsReasonsCountsEvidenceFormsAndSummaryPreserved": true,
+  "validators": {"cheapAssociation": "PASS 10/10; 0 failures", "fullZc": "PASS 10/10; 0 failures"},
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false,
+  "status": "READY_FOR_FOCUSED_RECHECK"
+}

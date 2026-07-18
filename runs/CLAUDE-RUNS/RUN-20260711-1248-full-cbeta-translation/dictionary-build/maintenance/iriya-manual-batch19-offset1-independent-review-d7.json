@@ -1,0 +1,72 @@
+{
+  "schemaVersion": "iriya-manual-independent-review.v1",
+  "generatedUtc": "2026-07-18T02:28:00Z",
+  "reviewer": "d7",
+  "decision": "REVISE",
+  "reviewedSelection": "maintenance/iriya-manual-batch19-offset1-selection.json",
+  "reviewedSelectionSha256": "8e07e7d422eb23bacbbcb6e00826cf8407a9e55740148fa0b50d43c7173a566e",
+  "reviewedLedger": "maintenance/iriya-manual-batch19-offset1-ledger.json",
+  "reviewedLedgerSha256": "3a0712f195b4d44087347845d775838a542fad0153d0bf437c979d1358b1177b",
+  "identityAndExclusionReview": {
+    "verdict": "REVISE stale assertion name only",
+    "authoritativeQueueTuplesExact": true,
+    "selectionMatchesLedgerExactly": true,
+    "canonicalIndexEqualsQueueNumberMinusOne": true,
+    "canonicalIndexModulo3Equals1": true,
+    "exactlyNextTenAgainstBoundLive694RegistryAndPriorLedgers": true,
+    "boundRegistryRows": 694,
+    "boundRegistrySha256Reproduced": true,
+    "absentBoundLive694Registry": true,
+    "absentAllTenPriorOffset1AuthorLedgersThroughBatch18": true,
+    "allTenRecordedPriorLedgerHashesReproduced": true,
+    "finding": "Selection assertions and ledger identityPreflight assertions retain the stale key absentLive664Registry even though both artifacts bind the current 694-row registry and the exclusion independently passes against that exact registry.",
+    "requiredRepair": "Replace the stale absentLive664Registry assertion with absentLive694Registry in both selection and ledger identityPreflight; preserve its true value and every other field."
+  },
+  "semanticDispositionAndUnitReview": {
+    "verdict": "PASS",
+    "fullCasesRead": 20,
+    "KEEP": 10,
+    "components": [
+      "言滿天下無口過",
+      "逆水之波",
+      "小魚呑大魚",
+      "血脈不斷",
+      "運出自己家珍",
+      "客聽主裁",
+      "養子方知父慈"
+    ],
+    "couplets": [
+      "吾心似秋月、碧潭清皎潔",
+      "風力所轉、終成敗壞",
+      "不是一番寒徹骨、爭得梅花撲鼻香"
+    ],
+    "semanticRevisionsRequired": []
+  },
+  "variantReview": {
+    "verdict": "PASS",
+    "everyRowHasExplicitFormResolution": true,
+    "吾心似秋月、碧潭清皎潔": "Enumeration separator is explicitly normalized to the attested full comma.",
+    "小魚呑大魚": "Printed 呑 is explicitly normalized to corpus 吞.",
+    "風力所轉、終成敗壞": "Enumeration separator is explicitly normalized to the attested full comma.",
+    "不是一番寒徹骨、爭得梅花撲鼻香": "Enumeration separator is explicitly normalized to the attested full comma.",
+    "otherRowsExactGraphForm": true
+  },
+  "mechanicalReview": {
+    "cheapValidator": {"status": "PASS", "failureCount": 0},
+    "fullValidator": {"status": "PASS", "failureCount": 0},
+    "exactCountTriplesReproduced": 10,
+    "evidenceWindowsVerified": 20,
+    "allLineBoundsTitlesAndCanonicalWorkIdsReproduced": true,
+    "twoCanonicalDistinctWorksPerDecision": true,
+    "summaryReproduced": {"KEEP_component": 7, "KEEP_couplet": 3, "REJECT": 0, "PROVISIONAL": 0}
+  },
+  "requiredRevisions": [
+    "Rename the stale absentLive664Registry assertion to absentLive694Registry in the selection and ledger identityPreflight assertions only."
+  ],
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false,
+  "reviewedArtifactsMutated": false
+}

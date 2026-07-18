@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "non-iriya-v2-frequency-independent-review.v1",
+  "reviewer": "b6",
+  "decision": "PASS",
+  "reviewedSelection": "maintenance/non-iriya-v2-frequency-batch15-navigation-selection.json",
+  "reviewedSelectionSha256": "a4454f8407d6a9a8546c06213bc4c88029539104ac9c3ee39b414ee18d234ce7",
+  "reviewedLedger": "maintenance/non-iriya-v2-frequency-batch15-semantic-ledger-d7.json",
+  "reviewedLedgerSha256": "08e29c093ee2bf801b47953991b09063ad24836132125257ab37e3e937e35794",
+  "mechanicalReview": {
+    "verdict": "PASS",
+    "selectionBinding": "PASS; all 25 frozen identities and ordinals reproduce",
+    "counts": "PASS; 25/25 exact hit/file/distinct-work triples reproduce",
+    "evidence": "PASS; 50/50 windows verify at stored line bounds, titles and canonical work IDs reproduce, and every pair is canonical-distinct",
+    "summary": "PASS; 1 KEEP, 24 REJECT, 0 PROVISIONAL matches the decision objects"
+  },
+  "semanticReview": {
+    "verdict": "PASS 25/25",
+    "fullCaseReading": true,
+    "falseNegativeAudit": {
+      "verdict": "PASS; no rejected candidate hides a deployable unit at its selected boundary",
+      "clippedOrCrossBoundary": ["現寶王", "世尊一", "逢人不得錯", "功不浪", "間相常住", "去無來", "雲門老", "臣道合", "不知落", "濟便打", "胎馬腹", "是人境兩俱奪", "且道山", "不肯承", "溈山問仰", "無夢無", "不喚作竹篦", "源一滴"],
+      "productiveGenericOrNarrative": ["化眾生", "恁麼去也", "一隻手", "大禪師", "仰山問", "不曾見"],
+      "borderlineFindings": {
+        "一隻手": "Cases exploit a hand in larger questions, but the classifier phrase alone remains ordinary and has no stable referent or case job.",
+        "不喚作竹篦": "Semantically pointed only as one incomplete arm of 喚作竹篦即觸、不喚作竹篦即背; the missing consequence is essential.",
+        "化眾生": "Buddhist verb-object language whose objects and surrounding claims vary; no compact Chan answer or verdict stabilizes the selected boundary.",
+        "不曾見": "The two full cases take unrelated complements, confirming productive negation rather than a lexical saying."
+      }
+    },
+    "keptRow": {
+      "batchOrdinal": 21,
+      "term": "拂子打圓相",
+      "verdict": "PASS KEEP/action",
+      "finding": "Both canonical-distinct cases directly enact the same encounter action: the master uses the fly-whisk to strike or draw a circular sign as an immediate response or demonstration."
+    }
+  },
+  "diminishingReturnsReview": {
+    "verdict": "PASS",
+    "finding": "The low yield is explained by the reservoir tail's heavy concentration of covered-parent substrings, narrative seams, incomplete formulas, and productive grammar; it is not evidence of indiscriminate rejection."
+  },
+  "summary": {"PASS": 25, "REVISE": 0, "confirmedKeep": 1, "confirmedReject": 24, "falseNegativeRepairsRequired": 0},
+  "authorLedgerMutated": false,
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "iriya-author-selection.v1",
+  "generatedUtc": "2026-07-18T01:48:00Z",
+  "batch": 19,
+  "offset": 0,
+  "mode": "FROZEN QUEUE TUPLES BEFORE SEMANTIC READING",
+  "authoritativeQueue": "IRIYA_SAYINGS_QUEUE.md",
+  "authoritativeQueueSha256": "162592a97f6a483b8f1c944ca6746bdafd0b99c6d4990b61db3e288ed5edc8be",
+  "trustedRegistry": "maintenance/iriya-trusted-registry.json",
+  "trustedRegistryRows": 664,
+  "trustedRegistrySha256": "735a581a9e832cdce4ff8c782c2a641b25e501740be19da9936e00d6dc331172",
+  "excludedPriorAuthorLedgers": [
+    {"path": "maintenance/iriya-manual-batch9-offset0-ledger.json", "sha256": "ab4ed206fb1b9e8f4f02364198f4e0979b98ddf5662650ecbd7f2e77836706d9"},
+    {"path": "maintenance/iriya-manual-batch10-offset0-ledger.json", "sha256": "8d4878f9de050abf29d361d60e84edd30af1c85d15c3b5684bfac43db36d1ab4"},
+    {"path": "maintenance/iriya-manual-batch11-offset0-ledger.json", "sha256": "c882d14df8ba37f0858d5f8c27308b054a228f07f48d71e8d4f0248d5467d388"},
+    {"path": "maintenance/iriya-manual-batch12-offset0-ledger.json", "sha256": "a4600236734e255b55f7510ca49116eec19556558a3dc2f702cb9381741e977c"},
+    {"path": "maintenance/iriya-manual-batch13-offset0-ledger.json", "sha256": "a411638ff73895d2e7477f429bdc6c4a1ead7441d9f8e20f149f3fc35e7403ce"},
+    {"path": "maintenance/iriya-manual-batch14-offset0-ledger.json", "sha256": "e221432f0d5035af6bfa3520d08b5f4ed3ba2228564b588b6c8412fd0c0beaea"},
+    {"path": "maintenance/iriya-manual-batch15-offset0-ledger.json", "sha256": "3bf3f5e60eb1f58735aa5808bb2c8b69506a340f984219ffa7e8e0eed1889ab2"},
+    {"path": "maintenance/iriya-manual-batch16-offset0-ledger.json", "sha256": "17ca15b8dcb0171366be9769d757288e6edc7db083cd1a79dd0ef1a10d4f2e6f"},
+    {"path": "maintenance/iriya-manual-batch17-offset0-ledger.json", "sha256": "d2ce25ee68f61dceec6b720ca12a8a2c441e036286c08f06713452d4094c6b3d"},
+    {"path": "maintenance/iriya-manual-batch18-offset0-ledger.json", "sha256": "669c6bc771ad52fdbdb44e97e4324d381b7cff79671f3efb8e9922f3f24a8e85"}
+  ],
+  "rows": [
+    {"queueNumber": 613, "canonicalIndex": 612, "id": "t_f8d67d0f04d5", "term": "千聞不如一見", "query": "千聞不如一見"},
+    {"queueNumber": 616, "canonicalIndex": 615, "id": "t_1adfbeb1f65c", "term": "逢強即弱", "query": "逢強即弱"},
+    {"queueNumber": 619, "canonicalIndex": 618, "id": "t_2be9faa53fce", "term": "三人證龜成鼈", "query": "三人證龜成鼈"},
+    {"queueNumber": 622, "canonicalIndex": 621, "id": "t_4986beff20be", "term": "四句百非", "query": "四句百非"},
+    {"queueNumber": 625, "canonicalIndex": 624, "id": "t_e01c9d778579", "term": "拈得鼻孔失却口", "query": "拈得鼻孔失却口"},
+    {"queueNumber": 628, "canonicalIndex": 627, "id": "t_fd44db86f7b6", "term": "放過則不可", "query": "放過則不可"},
+    {"queueNumber": 631, "canonicalIndex": 630, "id": "t_3eb7f4bc81e6", "term": "水中撈月", "query": "水中撈月"},
+    {"queueNumber": 634, "canonicalIndex": 633, "id": "t_ddf95c50e3ee", "term": "見機而作", "query": "見機而作"},
+    {"queueNumber": 637, "canonicalIndex": 636, "id": "t_1ad6c88b5775", "term": "錯認驢鞍橋、作阿爺下頷", "query": "錯認驢鞍橋作阿爺下頷"},
+    {"queueNumber": 640, "canonicalIndex": 639, "id": "t_2efb81b6ef7d", "term": "半青半黄", "query": "半青半黃"}
+  ],
+  "assertions": {
+    "exactlyNextTen": true,
+    "canonicalIndexEqualsQueueNumberMinusOne": true,
+    "canonicalIndexModulo3Equals0": true,
+    "absentLive664Registry": true,
+    "absentAllPriorOffset0AuthorLedgersThroughBatch18": true
+  },
+  "authorityMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false
+}

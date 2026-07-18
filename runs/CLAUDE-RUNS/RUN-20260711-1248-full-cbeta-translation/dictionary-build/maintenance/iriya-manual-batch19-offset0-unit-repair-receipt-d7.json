@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "iriya-manual-unit-repair-receipt.v1",
+  "generatedUtc": "2026-07-18T02:20:00Z",
+  "repairAuthor": "d7",
+  "review": "maintenance/iriya-manual-batch19-offset0-independent-review-b6.json",
+  "reviewSha256": "4cf73ed52b088263a69975bb938903d7d132dd8a3ead64f4f118b1b95cb1cbe1",
+  "ledger": "maintenance/iriya-manual-batch19-offset0-ledger.json",
+  "ledgerBeforeSha256": "dcb42ef9a8e8929a147f563a290533c1fd6231794586f9308f59819a5fe73851",
+  "ledgerAfterSha256": "34fdfce469f8047f7213e62f6a8a078e414bd198e4fcf4a1dd673113295ceaf3",
+  "repair": {
+    "batchOrdinal": 9,
+    "canonicalIndex": 636,
+    "id": "t_1ad6c88b5775",
+    "term": "錯認驢鞍橋、作阿爺下頷",
+    "before": {"disposition": "KEEP (component)", "unit": "component"},
+    "after": {"disposition": "KEEP (couplet)", "unit": "couplet"},
+    "closure": "Restores the authoritative two-clause lexical boundary while retaining the punctuation-normalized exact query."
+  },
+  "summaryAfter": {"KEEP (component)": 9, "KEEP (couplet)": 1},
+  "allIdentitiesPreserved": true,
+  "allReasonsPreserved": true,
+  "allCountsPreserved": true,
+  "allEvidencePreserved": true,
+  "allFormResolutionsPreserved": true,
+  "otherNineDispositionsAndUnitsPreserved": true,
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false,
+  "status": "READY_FOR_FOCUSED_RECHECK"
+}
