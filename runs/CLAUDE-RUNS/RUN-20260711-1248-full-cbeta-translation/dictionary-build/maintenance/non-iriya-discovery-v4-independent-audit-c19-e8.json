@@ -1,0 +1,70 @@
+{
+  "schemaVersion": "non-iriya-discovery-v4-independent-audit.v1",
+  "reviewer": "c19-e8",
+  "decision": "PASS_FOR_DISCOVERY_ONLY_USE",
+  "generator": "build_non_iriya_discovery_v4.py",
+  "generatorSha256": "2e1bfff826c5995be3754e8511f65a4e0e45635a7bfb4c6173b3fe7562b8c6c4",
+  "overlay": "maintenance/non-iriya-discovery-v4-overlay-20260718.json",
+  "overlaySha256": "0887fb0ab2a87591ac6e3fdce1c913bab332d7657563b455f95455823a2ad8dd",
+  "strategyAudit": "maintenance/non-iriya-discovery-v4-measured-strategy-audit-d7.json",
+  "strategyAuditSha256": "c9e919175e1cc2796ca4b2524dce8bc8d235a5c5005d676fd206965732f7a0ff",
+  "reproduction": {
+    "cleanGeneratorRerun": "PASS",
+    "comparison": "The clean rerun reproduced the entire overlay byte-for-data after removing only generatedUtc: method, corpus binding, exclusions, backtest, reservoir counts, ordered 300 rows, exact counts, and evidence all matched.",
+    "nestedFreshBuildEntries": 1698,
+    "exactBoundIdentities": 4592,
+    "settledSemanticIdentities": 371,
+    "emittedRows": 300,
+    "uniqueTerms": 300,
+    "emittedExclusionCollisions": 0,
+    "emittedSettledDecisionCollisions": 0,
+    "properIriyaPrintedFormsBound": 1845,
+    "properIriyaQueryFormsBound": 1845,
+    "printedQueryDifferencesBound": 698
+  },
+  "navigationAndCountReview": {
+    "exactCountTriplesReproduced": "PASS 300/300",
+    "navigationWindowsVerified": "PASS 600/600",
+    "canonicalDistinctEvidencePairs": "PASS 300/300",
+    "titleWorkIdAndLineBoundsReproduced": "PASS 600/600"
+  },
+  "backtestReview": {
+    "settledRowsMeasured": 371,
+    "eligibleRows": 360,
+    "eligibleSummary": {"KEEP": 171, "REJECT": 188, "PROVISIONAL": 1},
+    "laneMatrixReproduced": true,
+    "rankPrecisionReproduced": true,
+    "top25": {"KEEP": 17, "REJECT": 8, "keepRate": 0.68},
+    "finding": "The matrices and ordered precision figures reproduce exactly. Lane membership overlaps and the three-row action-object sample are explicitly disclosed, so these measurements are not presented as independent or autonomous admission evidence."
+  },
+  "laneReview": {
+    "PUNCTUATION_BOUNDED_COMPLETE_UNIT": 300,
+    "HIGH_COHESION_COLLOCATION": 300,
+    "SETTLED_FAMILY_COMPLETE_CLAUSE_GAP": 282,
+    "ACTION_OBJECT_CONSTRUCTION": 18,
+    "finding": "Membership counts reproduce and are not summed as independent observations or converted into dispositions."
+  },
+  "safetyReview": {
+    "discoveryOnly": true,
+    "noAutomaticKeep": true,
+    "noAutomaticReject": true,
+    "manualSemanticReviewStillRequired": true,
+    "exactRecountAtSelectionStillRequired": true,
+    "twoCanonicalDistinctFullCasesStillRequired": true,
+    "independentReviewStillRequired": true,
+    "absenceFromTop300IsNotRejection": true,
+    "finding": "Generator emits navigation JSON to stdout only, contains no authority/install/build path, assigns no semantic disposition, and labels every row DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED."
+  },
+  "limitationsConfirmed": [
+    "Exact identity dedupe does not resolve synonyms, variants, containment, or authority-family collisions; manual review remains mandatory.",
+    "Backtest thresholds were informed by prior failure analysis and are not an untouched holdout.",
+    "The action-object lane has only three settled backtest rows and cannot support autonomous preference."
+  ],
+  "authorityMutationPerformed": false,
+  "dictionaryMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "entriesBuilt": false,
+  "buildRun": false,
+  "lineageTouched": false
+}

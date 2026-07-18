@@ -1,0 +1,96 @@
+{
+  "schemaVersion": "non-iriya-discovery-v4-measured-strategy-audit.v1",
+  "generatedUtc": "2026-07-18T06:42:00Z",
+  "author": "d7",
+  "decision": "READY_FOR_INDEPENDENT_AUDIT; NOT AUTHORIZED FOR SEMANTIC ADMISSION",
+  "generator": "build_non_iriya_discovery_v4.py",
+  "generatorSha256": "2e1bfff826c5995be3754e8511f65a4e0e45635a7bfb4c6173b3fe7562b8c6c4",
+  "overlay": "maintenance/non-iriya-discovery-v4-overlay-20260718.json",
+  "overlaySha256": "0887fb0ab2a87591ac6e3fdce1c913bab332d7657563b455f95455823a2ad8dd",
+  "problemStatement": "Sequential v3 ranking reached 6 KEEP / 19 REJECT in batch18. V4 therefore stops consuming the same exhausted rank order and mines structurally different sources.",
+  "sourceLanes": [
+    {
+      "lane": "PUNCTUATION_BOUNDED_COMPLETE_UNIT",
+      "definition": "An entire 3-12 graph CJK span between corpus punctuation boundaries, with at least 8 attestations and 6 canonical works.",
+      "settledBacktest": {"rows": 208, "KEEP": 137, "REJECT": 71, "PROVISIONAL": 0},
+      "observedKeepRateExcludingProvisional": 0.6587
+    },
+    {
+      "lane": "HIGH_COHESION_COLLOCATION",
+      "definition": "A 3-8 graph collocation with at least 20 attestations and minimum cohesion across every internal split of at least 3 bits.",
+      "settledBacktest": {"rows": 357, "KEEP": 171, "REJECT": 185, "PROVISIONAL": 1},
+      "observedKeepRateExcludingProvisional": 0.4803,
+      "interpretation": "Useful only in combination with complete-boundary or construction evidence; weak as a standalone admission signal."
+    },
+    {
+      "lane": "ACTION_OBJECT_CONSTRUCTION",
+      "definition": "Attested bounded Chan action verb plus ritual/encounter object, support at least 5.",
+      "settledBacktest": {"rows": 3, "KEEP": 3, "REJECT": 0, "PROVISIONAL": 0},
+      "interpretation": "High observed precision but only three settled rows; sample is too small for autonomous use."
+    },
+    {
+      "lane": "SETTLED_FAMILY_COMPLETE_CLAUSE_GAP",
+      "definition": "A complete punctuation-bounded clause containing but extending a settled KEEP family member; it proposes uncovered family structure and never inherits the family disposition.",
+      "settledBacktest": null,
+      "interpretation": "Novel-gap lane cannot be truth-tested by exact identity without ceasing to be a gap; every output still requires full-case review."
+    }
+  ],
+  "backtest": {
+    "settledRowsMeasured": 371,
+    "eligibleRows": 360,
+    "eligibleSummary": {"KEEP": 171, "REJECT": 188, "PROVISIONAL": 1},
+    "rankPrecision": [
+      {"k": 25, "KEEP": 17, "REJECT": 8, "keepRate": 0.68},
+      {"k": 50, "KEEP": 31, "REJECT": 19, "keepRate": 0.62},
+      {"k": 100, "KEEP": 58, "REJECT": 42, "keepRate": 0.58},
+      {"k": 200, "KEEP": 116, "REJECT": 83, "PROVISIONAL": 1, "keepRateExcludingProvisional": 0.5829}
+    ],
+    "comparison": "The measured v4 top-25 association is 68% KEEP versus frequency batch18's realized 24% KEEP. This is an association/backtest result, not a prospective yield guarantee.",
+    "limitations": [
+      "The feature thresholds were motivated by prior failure analysis, so the settled backtest is not an untouched holdout.",
+      "Lane memberships overlap; lane counts must not be summed as independent observations.",
+      "Exact identity dedupe does not replace manual synonym, variant, containment, or authority-family collision review.",
+      "Action-object backtest n=3 is too small to justify automatic preference or admission."
+    ]
+  },
+  "reservoir": {
+    "rawDedupedPool": 198103,
+    "emittedRows": 300,
+    "uniqueTerms": 300,
+    "laneMemberships": {
+      "PUNCTUATION_BOUNDED_COMPLETE_UNIT": 300,
+      "HIGH_COHESION_COLLOCATION": 300,
+      "SETTLED_FAMILY_COMPLETE_CLAUSE_GAP": 282,
+      "ACTION_OBJECT_CONSTRUCTION": 18
+    },
+    "exactCountTriplesPresent": 300,
+    "canonicalDistinctNavigationPairsPresent": 300,
+    "verifiedNavigationWindows": 600
+  },
+  "dedupeAudit": {
+    "boundExactIdentityCount": 4592,
+    "freshBuildEntryFiles": 1698,
+    "nonIriyaSelectionFilesHashBound": true,
+    "iriyaPrintedAndQueryIdentitiesBound": true,
+    "settledSemanticIdentitiesExcluded": true,
+    "emittedExactCollisionCount": 0,
+    "correctionHistory": "A pre-handoff audit caught an initial non-recursive fresh-build glob that bound zero nested entries. The generator was corrected to fresh-build/entries/*/entry.v2.json and the overlay was fully regenerated; no superseded overlay was retained."
+  },
+  "operatingGuards": {
+    "discoveryOnly": true,
+    "noAutomaticKeep": true,
+    "noAutomaticReject": true,
+    "exactRecountRequiredAtSelection": true,
+    "twoCanonicalDistinctFullCasesRequired": true,
+    "manualSemanticBoundaryAndDeploymentReviewRequired": true,
+    "independentReviewRequired": true,
+    "absenceFromEmittedTop300DoesNotExcludeCandidate": true
+  },
+  "authorityMutationPerformed": false,
+  "dictionaryMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "entriesBuilt": false,
+  "buildRun": false,
+  "lineageTouched": false
+}
