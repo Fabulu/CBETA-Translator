@@ -1,0 +1,533 @@
+{
+  "schemaVersion": "iriya-compact-decisions-v1",
+  "entries": [
+    {
+      "id": "t_8198ceea288d",
+      "createdBy": "Codex Iriya lane C151-160 full-case author",
+      "writtenUtc": "2026-07-19T04:20:00Z",
+      "senses": [
+        {
+          "senseKey": null,
+          "masterName": null,
+          "preferredTarget": "to hang a line a thousand feet, intent on the deep pool",
+          "alternateTargets": [],
+          "searchAliases": [
+            "to hang a line a thousand feet, intent on the deep pool"
+          ],
+          "status": "preferred",
+          "validation": "multi-source",
+          "note": "The fishing imagery is explicit in the surrounding hook, line, pool, wave, and fish vocabulary; “intent” belongs to the spoken couplet and is not an inferred motive.",
+          "explanationParts": {
+            "corpusEarnedOpening": "Chuanzi asks Jiashan why he does not speak when the fishing line hangs a thousand feet and the intention lies in the deep pool; later hall sermons reuse the same long-line and deep-water pair.",
+            "evidenceBody": [
+              "The complete cases preserve fishing actions around the couplet: hanging line, hook, deep water, hooked fish, and Jiashan being pressed to speak."
+            ]
+          },
+          "relatedMasters": [],
+          "relatedTerms": [],
+          "draftEvidence": {
+            "OpeningClaimEvidenceKeys": [
+              "o1",
+              "o2",
+              "o3",
+              "o4",
+              "o5",
+              "o6",
+              "o7",
+              "o8"
+            ],
+            "ZenBend": "Chuanzi asks Jiashan why he does not speak when the fishing line hangs a thousand feet and the intention lies in the deep pool; later hall sermons reuse the same long-line and deep-water pair.",
+            "CounterexampleOrLimit": "The fishing imagery is explicit in the surrounding hook, line, pool, wave, and fish vocabulary; “intent” belongs to the spoken couplet and is not an inferred motive.",
+            "DifferentThingTest": {
+              "Decision": "one-thing",
+              "ComparedThings": [
+                "to hang a line a thousand feet, intent on the deep pool",
+                "the work-distinct retained uses"
+              ],
+              "Reason": "The complete cases preserve fishing actions around the couplet: hanging line, hook, deep water, hooked fish, and Jiashan being pressed to speak."
+            },
+            "AliasRationale": "The lookup spells out the thousand-foot line and its stated aim in the deep pool, preserving both halves of the fishing couplet.",
+            "ModifierControls": [
+              {
+                "Term": "to hang a line a thousand feet, intent on the deep pool",
+                "Finding": "The complete cases preserve fishing actions around the couplet: hanging line, hook, deep water, hooked fish, and Jiashan being pressed to speak."
+              }
+            ],
+            "FamilyControls": [
+              {
+                "Term": "shorter neighboring wording",
+                "Finding": "Occurrences containing only a long line, a deep pool, or fishing intent are excluded; the retained expression states all three together."
+              }
+            ]
+          },
+          "occurrences": [
+            {
+              "caseIndex": 0,
+              "fromLb": "0119c15",
+              "toLb": "0119c17",
+              "kwic": "堂、百丈、南泉翫月公案，師曰：馬大師垂絲千尺，意在深潭。西堂振𩮻，百丈擺尾。雖則衝波激浪，",
+              "exactHeadwordClause": "垂絲千尺，意在深潭",
+              "grammaticalProof": "In the complete 五燈全書(第34卷-第120卷) case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Lingyin Dao yin’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Lingyin Dao yin",
+                "role": "utterer",
+                "subject": "Lingyin Dao yin",
+                "reviewedBy": "Codex Iriya lane C151-160 full-case author",
+                "reviewedUtc": "2026-07-19T04:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 1,
+              "fromLb": "0090c14",
+              "toLb": "0090c16",
+              "kwic": "祇釣獰龍。格外玄機，為尋知己。上堂：垂絲千尺，意在深潭。一句橫空，白雲自異。孤舟獨棹，不犯",
+              "exactHeadwordClause": "垂絲千尺，意在深潭",
+              "grammaticalProof": "In the complete 五燈嚴統(第10卷-第25卷) case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Liangshan Yuanguan’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Liangshan Yuanguan"
+              }
+            },
+            {
+              "caseIndex": 2,
+              "fromLb": "0127a21",
+              "toLb": "0127a22",
+              "kwic": "曰：一句合頭語，萬劫繫驢橛。師又問：垂絲千尺，意在深潭。離鉤三寸，子何不道？山擬開口，師一",
+              "exactHeadwordClause": "垂絲千尺，意在深潭",
+              "grammaticalProof": "In the complete 錦江禪燈 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Chuanzi Decheng’s voice.",
+              "voiceLayer": "quoted-original",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Chuanzi Decheng"
+              },
+              "contextActors": [
+                {
+                  "type": "identified-unlinked-master",
+                  "label": "Jia shan Shanhui",
+                  "roles": [
+                    "interlocutor",
+                    "addressee"
+                  ],
+                  "grammaticalProof": "The complete encounter shows Jia shan Shanhui receiving Chuanzi Decheng’s question as the directly addressed interlocutor."
+                }
+              ],
+              "attributionContext": "The complete encounter identifies Jia shan Shanhui as Chuanzi Decheng’s directly addressed interlocutor and addressee.",
+              "quotedOriginalOuterFrameReviewed": true
+            },
+            {
+              "caseIndex": 3,
+              "fromLb": "0716a11",
+              "toLb": "0716a12",
+              "kwic": "師曰：一句合頭語，萬劫繫驢橛。又曰：垂絲千尺，意在深潭。離鉤三寸，子何不道？會擬開口，師以",
+              "exactHeadwordClause": "垂絲千尺，意在深潭",
+              "grammaticalProof": "In the complete 大光明藏 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Chuanzi Decheng’s voice.",
+              "voiceLayer": "quoted-original",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Chuanzi Decheng"
+              },
+              "contextActors": [
+                {
+                  "type": "identified-unlinked-master",
+                  "label": "Jia shan Shanhui",
+                  "roles": [
+                    "interlocutor",
+                    "addressee"
+                  ],
+                  "grammaticalProof": "The complete encounter shows Jia shan Shanhui receiving Chuanzi Decheng’s question as the directly addressed interlocutor."
+                }
+              ],
+              "attributionContext": "The complete encounter identifies Jia shan Shanhui as Chuanzi Decheng’s directly addressed interlocutor and addressee.",
+              "quotedOriginalOuterFrameReviewed": true
+            },
+            {
+              "caseIndex": 4,
+              "fromLb": "0537a13",
+              "toLb": "0537a15",
+              "kwic": "曰：一句合頭語，萬劫繫驢橛。師又問：垂絲千尺，意在深潭。離鈎三寸，子何不道？山擬開口，被師",
+              "exactHeadwordClause": "垂絲千尺，意在深潭",
+              "grammaticalProof": "In the complete 指月錄 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Chuanzi Decheng’s voice.",
+              "voiceLayer": "quoted-original",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Chuanzi Decheng"
+              },
+              "contextActors": [
+                {
+                  "type": "identified-unlinked-master",
+                  "label": "Jia shan Shanhui",
+                  "roles": [
+                    "interlocutor",
+                    "addressee"
+                  ],
+                  "grammaticalProof": "The complete encounter shows Jia shan Shanhui receiving Chuanzi Decheng’s question as the directly addressed interlocutor."
+                }
+              ],
+              "attributionContext": "The complete encounter identifies Jia shan Shanhui as Chuanzi Decheng’s directly addressed interlocutor and addressee.",
+              "quotedOriginalOuterFrameReviewed": true
+            },
+            {
+              "caseIndex": 5,
+              "fromLb": "0629c16",
+              "toLb": "0629c18",
+              "kwic": "曰：一句合頭語，萬劫繫驢橛。師又問：垂絲千尺，意在深潭。離鉤三寸，子何不道？山擬開口，被師",
+              "exactHeadwordClause": "垂絲千尺，意在深潭",
+              "grammaticalProof": "In the complete 宗鑑法林 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Chuanzi Decheng’s voice.",
+              "voiceLayer": "quoted-original",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Chuanzi Decheng"
+              },
+              "contextActors": [
+                {
+                  "type": "identified-unlinked-master",
+                  "label": "Jia shan Shanhui",
+                  "roles": [
+                    "interlocutor",
+                    "addressee"
+                  ],
+                  "grammaticalProof": "The complete encounter shows Jia shan Shanhui receiving Chuanzi Decheng’s question as the directly addressed interlocutor."
+                }
+              ],
+              "attributionContext": "The complete encounter identifies Jia shan Shanhui as Chuanzi Decheng’s directly addressed interlocutor and addressee.",
+              "quotedOriginalOuterFrameReviewed": true
+            },
+            {
+              "caseIndex": 6,
+              "fromLb": "0647c19",
+              "toLb": "0647c20",
+              "kwic": "橛。』」師曰：「活人劍。船子又問：『垂絲千尺，意在深潭。離鉤三寸，子何不道？』」師曰：「的",
+              "exactHeadwordClause": "垂絲千尺，意在深潭",
+              "grammaticalProof": "In the complete 頻吉祥禪師語錄 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Chuanzi Decheng’s voice.",
+              "voiceLayer": "quoted-original",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Chuanzi Decheng"
+              },
+              "contextActors": [
+                {
+                  "type": "identified-unlinked-master",
+                  "label": "Pinjixiang",
+                  "roles": [
+                    "later-raiser"
+                  ],
+                  "grammaticalProof": "The outer case explicitly names Pinjixiang in the surrounding encounter or appraisal frame."
+                }
+              ],
+              "attributionContext": "The complete outer frame explicitly identifies Pinjixiang as the later raiser or appraiser of the quoted wording.",
+              "quotedOriginalOuterFrameReviewed": true
+            },
+            {
+              "caseIndex": 7,
+              "fromLb": "0094a01",
+              "toLb": "0094a03",
+              "kwic": "云：一句合頭語，萬劫繫驢橛。師又問：垂絲千尺，意在深潭。離鈎三寸，子何不道？會擬開口，師拈",
+              "exactHeadwordClause": "垂絲千尺，意在深潭",
+              "grammaticalProof": "In the complete 禪林類聚 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Chuanzi Decheng’s voice.",
+              "voiceLayer": "quoted-original",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Chuanzi Decheng"
+              },
+              "contextActors": [
+                {
+                  "type": "identified-unlinked-master",
+                  "label": "Jia shan Shanhui",
+                  "roles": [
+                    "interlocutor",
+                    "addressee"
+                  ],
+                  "grammaticalProof": "The complete encounter shows Jia shan Shanhui receiving Chuanzi Decheng’s question as the directly addressed interlocutor."
+                }
+              ],
+              "attributionContext": "The complete encounter identifies Jia shan Shanhui as Chuanzi Decheng’s directly addressed interlocutor and addressee.",
+              "quotedOriginalOuterFrameReviewed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t_a371c03665d4",
+      "createdBy": "Codex Iriya lane C151-160 full-case author",
+      "writtenUtc": "2026-07-19T04:20:00Z",
+      "senses": [
+        {
+          "senseKey": null,
+          "masterName": null,
+          "preferredTarget": "to click the teeth three times",
+          "alternateTargets": [],
+          "searchAliases": [
+            "to click the teeth three times"
+          ],
+          "status": "preferred",
+          "validation": "multi-source",
+          "note": "The first click in several transmitted versions belongs to the unnamed chief seat, not Dadian; both later make the same gesture, so each retained span is actor-checked.",
+          "explanationParts": {
+            "corpusEarnedOpening": "In the Dadian encounter, the chief seat and Dadian each click their teeth three times; Chaozong later appraises those clicks, and the unnamed questioning monk performs them anew before Qiran Zhi.",
+            "evidenceBody": [
+              "The repeated gesture is not interchangeable with the bead count: the chief seat and Dadian each perform three audible tooth-clicks in the same inquiry."
+            ]
+          },
+          "relatedMasters": [],
+          "relatedTerms": [],
+          "draftEvidence": {
+            "OpeningClaimEvidenceKeys": [
+              "o1",
+              "o2",
+              "o3",
+              "o4",
+              "o5",
+              "o6",
+              "o7"
+            ],
+            "ZenBend": "In the Dadian encounter, the chief seat and Dadian each click their teeth three times; Chaozong later appraises those clicks, and the unnamed questioning monk performs them anew before Qiran Zhi.",
+            "CounterexampleOrLimit": "The first click in several transmitted versions belongs to the unnamed chief seat, not Dadian; both later make the same gesture, so each retained span is actor-checked.",
+            "DifferentThingTest": {
+              "Decision": "one-thing",
+              "ComparedThings": [
+                "to click the teeth three times",
+                "the work-distinct retained uses"
+              ],
+              "Reason": "The repeated gesture is not interchangeable with the bead count: the chief seat and Dadian each perform three audible tooth-clicks in the same inquiry."
+            },
+            "AliasRationale": "The lookup keeps the performed tooth-click, the count of three, and the repeated gesture rather than the nearby bead count of one hundred and eight.",
+            "ModifierControls": [
+              {
+                "Term": "to click the teeth three times",
+                "Finding": "The repeated gesture is not interchangeable with the bead count: the chief seat and Dadian each perform three audible tooth-clicks in the same inquiry."
+              }
+            ],
+            "FamilyControls": [
+              {
+                "Term": "shorter neighboring wording",
+                "Finding": "A single tooth click or an unspecified clicking gesture is not counted because the records specify three clicks."
+              }
+            ]
+          },
+          "occurrences": [
+            {
+              "caseIndex": 0,
+              "fromLb": "0452c24",
+              "toLb": "0453a01",
+              "kwic": "首見首座，云：晝夜一百八意旨如何？座扣齒三下。及至方丈，問大顛：晝夜一百八意旨如",
+              "exactHeadwordClause": "扣齒三下",
+              "grammaticalProof": "In the complete 了堂惟一禪師語錄 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in the unnamed chief seat’s voice.",
+              "voiceLayer": "quoted-original",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "reviewed-unnamed",
+                "kind": "full-case exact-turn adjudication",
+                "label": "the unnamed chief seat",
+                "role": "interlocutor",
+                "subject": "the unnamed chief seat",
+                "reviewedBy": "Codex Iriya lane C151-160 full-case author",
+                "reviewedUtc": "2026-07-19T04:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              },
+              "contextMasters": [
+                {
+                  "masterName": "Liaotang Weiyi",
+                  "roles": [
+                    "later-raiser"
+                  ]
+                }
+              ],
+              "quotedOriginalOuterFrameReviewed": true
+            },
+            {
+              "caseIndex": 1,
+              "fromLb": "0507b24",
+              "toLb": "0507c01",
+              "kwic": "首座，舉前話問：意旨如何？座扣齒三下。及見師，理前問，師亦扣齒三",
+              "exactHeadwordClause": "扣齒三下",
+              "grammaticalProof": "In the complete 指月錄 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in the unnamed chief seat’s voice.",
+              "voiceLayer": "quoted-original",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "reviewed-unnamed",
+                "kind": "full-case exact-turn adjudication",
+                "label": "the unnamed chief seat",
+                "role": "interlocutor",
+                "subject": "the unnamed chief seat",
+                "reviewedBy": "Codex Iriya lane C151-160 full-case author",
+                "reviewedUtc": "2026-07-19T04:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              },
+              "contextMasters": [
+                {
+                  "masterName": "Dadian Baotong",
+                  "roles": [
+                    "later-raiser"
+                  ]
+                }
+              ],
+              "quotedOriginalOuterFrameReviewed": true
+            },
+            {
+              "caseIndex": 2,
+              "fromLb": "0239a09",
+              "toLb": "0239a09",
+              "kwic": "擯首座，云：「扣齒三下，鎔百八於洪爐",
+              "exactHeadwordClause": "扣齒三下",
+              "grammaticalProof": "In the complete 朝宗禪師語錄 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Chaozong Tongren’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Chaozong Tongren"
+              }
+            },
+            {
+              "caseIndex": 3,
+              "fromLb": "0566b22",
+              "toLb": "0566b23",
+              "kwic": "：「前三三，後三三。」僧扣齒三下，云：「學人不謗老和尚。",
+              "exactHeadwordClause": "扣齒三下",
+              "grammaticalProof": "In the complete 奇然智禪師語錄 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in the unnamed questioning monk’s voice.",
+              "voiceLayer": "question-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "reviewed-unnamed",
+                "kind": "full-case exact-turn adjudication",
+                "label": "the unnamed questioning monk",
+                "role": "questioner",
+                "subject": "the unnamed questioning monk",
+                "reviewedBy": "Codex Iriya lane C151-160 full-case author",
+                "reviewedUtc": "2026-07-19T04:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              },
+              "contextActors": [
+                {
+                  "type": "identified-unlinked-master",
+                  "label": "Qiran Zhi",
+                  "roles": [
+                    "respondent",
+                    "interlocutor"
+                  ],
+                  "grammaticalProof": "The live exchange names Qiran Zhi as the presiding master who responds before the unnamed monk clicks his teeth."
+                }
+              ],
+              "attributionContext": "The live exchange identifies Qiran Zhi as the responding presiding master and interlocutor before the unnamed monk performs the three clicks."
+            },
+            {
+              "caseIndex": 4,
+              "fromLb": "0488c22",
+              "toLb": "0488c23",
+              "kwic": "首座，舉前話問：意旨如何？座扣齒三下。及見師，理前問，師亦扣齒三",
+              "exactHeadwordClause": "扣齒三下",
+              "grammaticalProof": "In the complete 五燈全書(第1卷-第33卷) case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in the unnamed chief seat’s voice.",
+              "voiceLayer": "quoted-original",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "reviewed-unnamed",
+                "kind": "full-case exact-turn adjudication",
+                "label": "the unnamed chief seat",
+                "role": "interlocutor",
+                "subject": "the unnamed chief seat",
+                "reviewedBy": "Codex Iriya lane C151-160 full-case author",
+                "reviewedUtc": "2026-07-19T04:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              },
+              "contextMasters": [
+                {
+                  "masterName": "Dadian Baotong",
+                  "roles": [
+                    "later-raiser"
+                  ]
+                }
+              ],
+              "quotedOriginalOuterFrameReviewed": true
+            },
+            {
+              "caseIndex": 5,
+              "fromLb": "0322b20",
+              "toLb": "0322b21",
+              "kwic": "座，舉前話問：意旨如何？首座扣齒三下。及見師，理前問，師亦扣齒三",
+              "exactHeadwordClause": "扣齒三下",
+              "grammaticalProof": "In the complete 教外別傳 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in the unnamed chief seat’s voice.",
+              "voiceLayer": "quoted-original",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "reviewed-unnamed",
+                "kind": "full-case exact-turn adjudication",
+                "label": "the unnamed chief seat",
+                "role": "interlocutor",
+                "subject": "the unnamed chief seat",
+                "reviewedBy": "Codex Iriya lane C151-160 full-case author",
+                "reviewedUtc": "2026-07-19T04:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              },
+              "contextMasters": [
+                {
+                  "masterName": "Dadian Baotong",
+                  "roles": [
+                    "later-raiser"
+                  ]
+                }
+              ],
+              "quotedOriginalOuterFrameReviewed": true
+            },
+            {
+              "caseIndex": 7,
+              "fromLb": "0205a17",
+              "toLb": "0205a19",
+              "kwic": "見首座，舉前話問：意旨如何？首座扣齒三下。及見大顛，理前問，大顛亦扣齒三",
+              "exactHeadwordClause": "扣齒三下",
+              "grammaticalProof": "In the complete 先覺宗乘 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in the unnamed chief seat’s voice.",
+              "voiceLayer": "quoted-original",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "reviewed-unnamed",
+                "kind": "full-case exact-turn adjudication",
+                "label": "the unnamed chief seat",
+                "role": "interlocutor",
+                "subject": "the unnamed chief seat",
+                "reviewedBy": "Codex Iriya lane C151-160 full-case author",
+                "reviewedUtc": "2026-07-19T04:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              },
+              "contextMasters": [
+                {
+                  "masterName": "Dadian Baotong",
+                  "roles": [
+                    "later-raiser"
+                  ]
+                }
+              ],
+              "quotedOriginalOuterFrameReviewed": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

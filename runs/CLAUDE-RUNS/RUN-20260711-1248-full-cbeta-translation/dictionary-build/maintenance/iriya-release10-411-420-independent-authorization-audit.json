@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "iriya-release-authorization-independent-audit-v1",
+  "scope": "Independent hash-bound release authorization audit for entries 411-420",
+  "releaseBindings": {
+    "spec": {"path": "maintenance/iriya-release10-411-420-spec.json", "sha256": "018e5806f986192f6a3cc813e9bf5a03ac964a874bfe880b3988b5b458bcd293"},
+    "gate": {"path": "maintenance/iriya-release10-411-420-full-cohort-gate.json", "sha256": "ad7cd6521f04fa9aeac01af906fdec9df21ae65541910cde11eab3f2989bfd7a"},
+    "semanticReview": {"path": "maintenance/iriya-C151-160-residual-independent-final-rereview.json", "sha256": "5ed6f846059541dbeeff1c73a3b04e9566fe9751e3982f59adc50d383a32e91c", "hardPass": true, "residualCount": 0},
+    "authorization": {"path": "maintenance/iriya-release10-411-420-final-authorization.json", "sha256": "313849e61c8c0a7713d859ab21c36852331e35ca80360f6da6dca45364539289"},
+    "manifest": {"path": "maintenance/iriya-release10-411-420-install-manifest.json", "sha256": "4956696dbc109da9aa5bc323d7a32505946288a97255adafd16764e1069c892d"}
+  },
+  "selectionAudit": {
+    "rule": "lane C positions 151-160 in exact lane order",
+    "count": 10,
+    "uniqueCount": 10,
+    "ids": ["t_8198ceea288d", "t_a371c03665d4", "t_73845f8ff8c7", "t_3e28049caf6d", "t_c22c78090fce", "t_d83895e85129", "t_9291c7cdc7c6", "t_fb84c96fd94c", "t_813bab90a154", "t_9b9a2350f9b3"],
+    "authorizationOrderMatches": true,
+    "manifestOrderMatches": true,
+    "gateOrderMatches": true,
+    "hardPass": true
+  },
+  "artifactAudit": {
+    "entryCount": 10,
+    "artifactTriplesChecked": 10,
+    "filesHashed": 30,
+    "allCurrentEntryWorksheetWorkHashesMatchAuthorization": true,
+    "authorizationRowsEqualManifestRows": true,
+    "failures": [],
+    "hardPass": true
+  },
+  "installedBoundaryAudit": {
+    "priorInstalledRows": 410,
+    "priorInstalledUniqueIds": 410,
+    "overlap": [],
+    "hardPass": true
+  },
+  "gateAudit": {
+    "hardPass": true,
+    "exactOccurrences": 78,
+    "exactFailures": 0,
+    "attributionFailures": 0,
+    "worksheetFailures": 0,
+    "templateFailures": 0,
+    "forbiddenEnglishFailures": 0,
+    "sourceWorkFailures": 0,
+    "depthSenseFailures": 0,
+    "lineageRosterFailures": 0,
+    "semanticReviewRequiredSignalExpected": true
+  },
+  "authorizationParity": {
+    "specGateReviewAndOutputBindingsMatch": true,
+    "authorizationReleaseSpecBindingMatches": true,
+    "manifestAuthorizationBindingMatches": true,
+    "releaseAuthorization": true,
+    "installAuthorized": true,
+    "publicDeploymentAuthorized": false,
+    "lineageRosterMutationAuthorized": false,
+    "hardPass": true
+  },
+  "officialInstallerDryRun": {
+    "exitCode": 0,
+    "hardPass": true,
+    "dryRun": true,
+    "entries": 10,
+    "manifestSha256": "4956696dbc109da9aa5bc323d7a32505946288a97255adafd16764e1069c892d"
+  },
+  "residuals": [],
+  "disposition": "AUTHORIZED_FOR_HASH_BOUND_INSTALLATION_ONLY",
+  "hardPass": true,
+  "installed": false,
+  "merged": false,
+  "publicDeploymentPerformed": false,
+  "lineageRosterModified": false
+}

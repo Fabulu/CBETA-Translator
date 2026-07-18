@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "iriya-author-decile-closure-v1",
+  "lane": "C",
+  "positions": [151, 152, 153, 154, 155, 156, 157, 158, 159, 160],
+  "status": "author-complete-awaiting-independent-full-case-review",
+  "frozenCorpus": {"files": 494, "works": 487, "sha256": "42d32a5294365a4aa4d5aa2b5f11729e147cb44324f4535065047e946e7b3a2a"},
+  "authoritativePacket": {"path": "maintenance/iriya-author-packet-C061-160-v1.json", "sha256": "e78f03edbd59d3ef2572e340affc495d655a9e1d9e13bdc493b8ecf084c03597"},
+  "fiveEntryCheckpoint": {"path": "maintenance/iriya-author-C151-155-checkpoint.json", "sha256": "a6150472242fcbff04ba43c8fe6b798913eed9b3d4bfdbee2f637e9ee4d6f278"},
+  "compactDecisions": {"path": "maintenance/iriya-author-C151-160-decisions.json", "sha256": "7d4c1ba6dbe7a36157c1bd5bcd69e391b7749c59f307ac3df6d8967690c7158c"},
+  "occurrences": 75,
+  "worksheetAuthoritative": true,
+  "fullCaseExactUttererRead": true,
+  "c156ActionVoiceAcknowledgement": {
+    "finding": "Seven knock/beat clauses were reread as spoken sermon wording, not narrated physical acts.",
+    "worksheet": "fresh-build/entries/t_d83895e85129/evidence.draft.json",
+    "worksheetSha256": "77fa317faa55a44e7c1ffadaae14fe2d29df0f129a8f3572a3677c3787f5d1d4",
+    "compileReceipt": "fresh-build/entries/t_d83895e85129/compile-receipt.json",
+    "compileReceiptSha256": "37626609583b05b74e287ab82a7de745ad158ec001b39214c31868a595eee9d6"
+  },
+  "entries": [
+    {"position":151,"id":"t_8198ceea288d","sha256":"d184ea5791ca564f59574116108cfb22e7194b7587366359b7a082210b8796d6"},
+    {"position":152,"id":"t_a371c03665d4","sha256":"1abac8dfed5f0f613840318d9d72957f3b634f0a755bb44cc3d3bdae098c5b58"},
+    {"position":153,"id":"t_73845f8ff8c7","sha256":"bb4e83e04d2fef481d6fbd94cfbfa69ebc8fd8d42489cc5eecaaa8cd78fac67d"},
+    {"position":154,"id":"t_3e28049caf6d","sha256":"fdb52247a6b2cdd660f7d865831d6cf52bc503ee1aed590cb5abeaf4b840f42f"},
+    {"position":155,"id":"t_c22c78090fce","sha256":"bf0c79a7f3e03e03b3619e37b7e87e82925afa4174a17b76854e28ea23ecd6a8"},
+    {"position":156,"id":"t_d83895e85129","sha256":"18cb2f0a01b67132bdf528f8eb7fe4bcc195609c4aa32d847221924ec49a0505"},
+    {"position":157,"id":"t_9291c7cdc7c6","sha256":"e15e705cdd16f965810cfec929b05ebfc921d4fd5299eb78feb5de73a731d9de"},
+    {"position":158,"id":"t_fb84c96fd94c","sha256":"025086542407d70013f9c2fd817e4e83b35a2e48854c4f38e03f5e61af7e6fc5"},
+    {"position":159,"id":"t_813bab90a154","sha256":"f76b17cb2027f8fdf97d6bbbc85a3d7c774b471bc3237286b8299d0625bfd53f"},
+    {"position":160,"id":"t_9b9a2350f9b3","sha256":"71acdafc1bf25a966c4da3d20073c5002ae436808ec300942cf27d589109b812"}
+  ],
+  "gates": {
+    "strictAttribution": {"hardFailures": 0, "report": "maintenance/iriya-author-C151-160-attribution-v2.json", "sha256": "7ed42eaa0c720015d5f245bd238e3fe4923dc515ea7e90bd40960681022a2991"},
+    "workSource": {"hardFailures": 0, "report": "maintenance/iriya-author-C151-160-work-source-v2.json", "sha256": "486c51c341cf8b3cb1bba3575653586ff5b8b56a075f73f237d81c3f73352e04"},
+    "semanticTemplates": {"failureCount": 0, "report": "maintenance/iriya-author-C151-160-templates-v2.json", "sha256": "b63b8ab36fd53e087dea82a0db287bc6fd110c52dccaba2ad0f5ea629febda32"},
+    "depthSense": {"hardFailed": 0, "reviewFlagged": 0, "report": "maintenance/iriya-author-C151-160-depth-v2.json", "sha256": "f1bd0f7fcf0e566925cab9832645992f4f4cf011a3d736e6526832a29f98df37"},
+    "preReview": {"passing": 10, "flagged": 0, "exactOccurrences": 75, "report": "maintenance/iriya-author-C151-160-pre-review-v5.json", "sha256": "a73f85120e250567c4a4d866c1dd129b1e1a91dab866b60d1ade7d7627653da6"},
+    "fullCohort": {"hardPass": true, "exactOccurrences": 75, "exactFailures": 0, "report": "maintenance/iriya-author-C151-160-full-gate.json", "sha256": "89f46edf96fcb26945d22eada55941e0a50f5a9835ff0fd84750bf05042aa482", "attributionPacketsSha256": "68d9e0b8bc4bab6f1d4d4b3e8a28c0811aa1fa1e22dedac448129a388c79c958"}
+  },
+  "installationPerformed": false,
+  "mergePerformed": false,
+  "rosterModified": false,
+  "selfReviewPerformed": false
+}

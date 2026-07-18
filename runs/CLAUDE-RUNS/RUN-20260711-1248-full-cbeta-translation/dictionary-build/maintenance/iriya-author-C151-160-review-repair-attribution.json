@@ -1,0 +1,47 @@
+{
+  "counts": {
+    "entries": 10,
+    "senses": 10,
+    "occurrences": 78,
+    "actor_identified_unlinked_master": 24,
+    "attribution_notes": 78,
+    "named_occurrences": 46,
+    "context_master_links": 54,
+    "actor_narrated": 2,
+    "supporting_occurrences": 24,
+    "governed_variant_occurrences": 24,
+    "context_actor_identities": 9,
+    "action_performer_in_utterer_field": 2,
+    "action_performer_context_missing": 2,
+    "actor_reviewed_unnamed": 6,
+    "vague_attributor": 1
+  },
+  "hardFailures": 5,
+  "failures": [
+    {
+      "kind": "action_performer_in_utterer_field",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_9291c7cdc7c6/entry.v2.json",
+      "detail": "百發百中 s1 o1: ['師拈']; MasterName is utterer-only, so represent the narrated performer in ContextMasters"
+    },
+    {
+      "kind": "action_performer_context_missing",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_9291c7cdc7c6/entry.v2.json",
+      "detail": "百發百中 s1 o1: explicit master action requires the named performer as person-described or case-figure; finer action detail belongs in GrammarEvidence"
+    },
+    {
+      "kind": "action_performer_in_utterer_field",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_a371c03665d4/entry.v2.json",
+      "detail": "扣齒三下 s1 o3: ['師舉']; MasterName is utterer-only, so represent the narrated performer in ContextMasters"
+    },
+    {
+      "kind": "action_performer_context_missing",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_a371c03665d4/entry.v2.json",
+      "detail": "扣齒三下 s1 o3: explicit master action requires the named performer as person-described or case-figure; finer action detail belongs in GrammarEvidence"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_a371c03665d4/entry.v2.json",
+      "detail": "扣齒三下 s1: 'a monk'"
+    }
+  ]
+}

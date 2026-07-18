@@ -1,0 +1,2201 @@
+{
+  "schemaVersion": "iriya-compact-decisions-v1",
+  "entries": [
+    {
+      "id": "t_8198ceea288d",
+      "createdBy": "Codex Iriya lane C151-160 full-case author",
+      "writtenUtc": "2026-07-19T04:20:00Z",
+      "senses": [
+        {
+          "senseKey": null,
+          "masterName": null,
+          "preferredTarget": "to hang a line a thousand feet, intent on the deep pool",
+          "alternateTargets": [],
+          "searchAliases": [
+            "to hang a line a thousand feet, intent on the deep pool"
+          ],
+          "status": "preferred",
+          "validation": "multi-source",
+          "note": "The fishing imagery is explicit in the surrounding hook, line, pool, wave, and fish vocabulary; “intent” belongs to the spoken couplet and is not an inferred motive.",
+          "explanationParts": {
+            "corpusEarnedOpening": "Chuanzi asks Jiashan why he does not speak when the fishing line hangs a thousand feet and the intention lies in the deep pool; later hall sermons reuse the same long-line and deep-water pair.",
+            "evidenceBody": [
+              "The complete cases preserve fishing actions around the couplet: hanging line, hook, deep water, hooked fish, and Jiashan being pressed to speak."
+            ]
+          },
+          "relatedMasters": [],
+          "relatedTerms": [],
+          "draftEvidence": {
+            "OpeningClaimEvidenceKeys": [
+              "o1",
+              "o2",
+              "o3",
+              "o4",
+              "o5",
+              "o6",
+              "o7",
+              "o8"
+            ],
+            "ZenBend": "Chuanzi asks Jiashan why he does not speak when the fishing line hangs a thousand feet and the intention lies in the deep pool; later hall sermons reuse the same long-line and deep-water pair.",
+            "CounterexampleOrLimit": "The fishing imagery is explicit in the surrounding hook, line, pool, wave, and fish vocabulary; “intent” belongs to the spoken couplet and is not an inferred motive.",
+            "DifferentThingTest": {
+              "Decision": "one-thing",
+              "ComparedThings": [
+                "to hang a line a thousand feet, intent on the deep pool",
+                "the work-distinct retained uses"
+              ],
+              "Reason": "The complete cases preserve fishing actions around the couplet: hanging line, hook, deep water, hooked fish, and Jiashan being pressed to speak."
+            },
+            "AliasRationale": "The lookup spells out the thousand-foot line and its stated aim in the deep pool, preserving both halves of the fishing couplet.",
+            "ModifierControls": [
+              {
+                "Term": "to hang a line a thousand feet, intent on the deep pool",
+                "Finding": "The complete cases preserve fishing actions around the couplet: hanging line, hook, deep water, hooked fish, and Jiashan being pressed to speak."
+              }
+            ],
+            "FamilyControls": [
+              {
+                "Term": "shorter neighboring wording",
+                "Finding": "Occurrences containing only a long line, a deep pool, or fishing intent are excluded; the retained expression states all three together."
+              }
+            ]
+          },
+          "occurrences": [
+            {
+              "caseIndex": 0,
+              "fromLb": "0119c15",
+              "toLb": "0119c17",
+              "kwic": "堂、百丈、南泉翫月公案，師曰：馬大師垂絲千尺，意在深潭。西堂振𩮻，百丈擺尾。雖則衝波激浪，",
+              "exactHeadwordClause": "垂絲千尺，意在深潭",
+              "grammaticalProof": "In the complete 五燈全書(第34卷-第120卷) case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Lingyin Dao yin’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Lingyin Dao yin",
+                "role": "utterer",
+                "subject": "Lingyin Dao yin",
+                "reviewedBy": "Codex Iriya lane C151-160 full-case author",
+                "reviewedUtc": "2026-07-19T04:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 1,
+              "fromLb": "0090c14",
+              "toLb": "0090c16",
+              "kwic": "祇釣獰龍。格外玄機，為尋知己。上堂：垂絲千尺，意在深潭。一句橫空，白雲自異。孤舟獨棹，不犯",
+              "exactHeadwordClause": "垂絲千尺，意在深潭",
+              "grammaticalProof": "In the complete 五燈嚴統(第10卷-第25卷) case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Liangshan Yuanguan’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Liangshan Yuanguan"
+              }
+            },
+            {
+              "caseIndex": 2,
+              "fromLb": "0127a21",
+              "toLb": "0127a22",
+              "kwic": "曰：一句合頭語，萬劫繫驢橛。師又問：垂絲千尺，意在深潭。離鉤三寸，子何不道？山擬開口，師一",
+              "exactHeadwordClause": "垂絲千尺，意在深潭",
+              "grammaticalProof": "In the complete 錦江禪燈 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Chuanzi Decheng’s voice.",
+              "voiceLayer": "quoted-original",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Chuanzi Decheng"
+              },
+              "contextActors": [
+                {
+                  "type": "identified-unlinked-master",
+                  "label": "Jia shan Shanhui",
+                  "roles": [
+                    "interlocutor",
+                    "addressee"
+                  ],
+                  "grammaticalProof": "The complete encounter shows Jia shan Shanhui receiving Chuanzi Decheng’s question as the directly addressed interlocutor."
+                }
+              ],
+              "attributionContext": "The complete encounter identifies Jia shan Shanhui as Chuanzi Decheng’s directly addressed interlocutor and addressee.",
+              "quotedOriginalOuterFrameReviewed": true
+            },
+            {
+              "caseIndex": 3,
+              "fromLb": "0716a11",
+              "toLb": "0716a12",
+              "kwic": "師曰：一句合頭語，萬劫繫驢橛。又曰：垂絲千尺，意在深潭。離鉤三寸，子何不道？會擬開口，師以",
+              "exactHeadwordClause": "垂絲千尺，意在深潭",
+              "grammaticalProof": "In the complete 大光明藏 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Chuanzi Decheng’s voice.",
+              "voiceLayer": "quoted-original",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Chuanzi Decheng"
+              },
+              "contextActors": [
+                {
+                  "type": "identified-unlinked-master",
+                  "label": "Jia shan Shanhui",
+                  "roles": [
+                    "interlocutor",
+                    "addressee"
+                  ],
+                  "grammaticalProof": "The complete encounter shows Jia shan Shanhui receiving Chuanzi Decheng’s question as the directly addressed interlocutor."
+                }
+              ],
+              "attributionContext": "The complete encounter identifies Jia shan Shanhui as Chuanzi Decheng’s directly addressed interlocutor and addressee.",
+              "quotedOriginalOuterFrameReviewed": true
+            },
+            {
+              "caseIndex": 4,
+              "fromLb": "0537a13",
+              "toLb": "0537a15",
+              "kwic": "曰：一句合頭語，萬劫繫驢橛。師又問：垂絲千尺，意在深潭。離鈎三寸，子何不道？山擬開口，被師",
+              "exactHeadwordClause": "垂絲千尺，意在深潭",
+              "grammaticalProof": "In the complete 指月錄 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Chuanzi Decheng’s voice.",
+              "voiceLayer": "quoted-original",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Chuanzi Decheng"
+              },
+              "contextActors": [
+                {
+                  "type": "identified-unlinked-master",
+                  "label": "Jia shan Shanhui",
+                  "roles": [
+                    "interlocutor",
+                    "addressee"
+                  ],
+                  "grammaticalProof": "The complete encounter shows Jia shan Shanhui receiving Chuanzi Decheng’s question as the directly addressed interlocutor."
+                }
+              ],
+              "attributionContext": "The complete encounter identifies Jia shan Shanhui as Chuanzi Decheng’s directly addressed interlocutor and addressee.",
+              "quotedOriginalOuterFrameReviewed": true
+            },
+            {
+              "caseIndex": 5,
+              "fromLb": "0629c16",
+              "toLb": "0629c18",
+              "kwic": "曰：一句合頭語，萬劫繫驢橛。師又問：垂絲千尺，意在深潭。離鉤三寸，子何不道？山擬開口，被師",
+              "exactHeadwordClause": "垂絲千尺，意在深潭",
+              "grammaticalProof": "In the complete 宗鑑法林 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Chuanzi Decheng’s voice.",
+              "voiceLayer": "quoted-original",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Chuanzi Decheng"
+              },
+              "contextActors": [
+                {
+                  "type": "identified-unlinked-master",
+                  "label": "Jia shan Shanhui",
+                  "roles": [
+                    "interlocutor",
+                    "addressee"
+                  ],
+                  "grammaticalProof": "The complete encounter shows Jia shan Shanhui receiving Chuanzi Decheng’s question as the directly addressed interlocutor."
+                }
+              ],
+              "attributionContext": "The complete encounter identifies Jia shan Shanhui as Chuanzi Decheng’s directly addressed interlocutor and addressee.",
+              "quotedOriginalOuterFrameReviewed": true
+            },
+            {
+              "caseIndex": 6,
+              "fromLb": "0647c19",
+              "toLb": "0647c20",
+              "kwic": "橛。』」師曰：「活人劍。船子又問：『垂絲千尺，意在深潭。離鉤三寸，子何不道？』」師曰：「的",
+              "exactHeadwordClause": "垂絲千尺，意在深潭",
+              "grammaticalProof": "In the complete 頻吉祥禪師語錄 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Chuanzi Decheng’s voice.",
+              "voiceLayer": "quoted-original",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Chuanzi Decheng"
+              },
+              "contextActors": [
+                {
+                  "type": "identified-unlinked-master",
+                  "label": "Pinjixiang",
+                  "roles": [
+                    "later-raiser"
+                  ],
+                  "grammaticalProof": "The outer case explicitly names Pinjixiang in the surrounding encounter or appraisal frame."
+                }
+              ],
+              "attributionContext": "The complete outer frame explicitly identifies Pinjixiang as the later raiser or appraiser of the quoted wording.",
+              "quotedOriginalOuterFrameReviewed": true
+            },
+            {
+              "caseIndex": 7,
+              "fromLb": "0094a01",
+              "toLb": "0094a03",
+              "kwic": "云：一句合頭語，萬劫繫驢橛。師又問：垂絲千尺，意在深潭。離鈎三寸，子何不道？會擬開口，師拈",
+              "exactHeadwordClause": "垂絲千尺，意在深潭",
+              "grammaticalProof": "In the complete 禪林類聚 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Chuanzi Decheng’s voice.",
+              "voiceLayer": "quoted-original",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Chuanzi Decheng"
+              },
+              "contextActors": [
+                {
+                  "type": "identified-unlinked-master",
+                  "label": "Jia shan Shanhui",
+                  "roles": [
+                    "interlocutor",
+                    "addressee"
+                  ],
+                  "grammaticalProof": "The complete encounter shows Jia shan Shanhui receiving Chuanzi Decheng’s question as the directly addressed interlocutor."
+                }
+              ],
+              "attributionContext": "The complete encounter identifies Jia shan Shanhui as Chuanzi Decheng’s directly addressed interlocutor and addressee.",
+              "quotedOriginalOuterFrameReviewed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t_a371c03665d4",
+      "createdBy": "Codex Iriya lane C151-160 full-case author",
+      "writtenUtc": "2026-07-19T04:20:00Z",
+      "senses": [
+        {
+          "senseKey": null,
+          "masterName": null,
+          "preferredTarget": "to click the teeth three times",
+          "alternateTargets": [],
+          "searchAliases": [
+            "to click the teeth three times"
+          ],
+          "status": "preferred",
+          "validation": "multi-source",
+          "note": "The first click in several transmitted versions belongs to the unnamed chief seat, not Dadian; both later make the same gesture, so each retained span is actor-checked.",
+          "explanationParts": {
+            "corpusEarnedOpening": "In the Dadian encounter, the chief seat and Dadian each click their teeth three times; Chaozong later appraises those clicks, and the unnamed questioning monk performs them anew before Qiran Zhi.",
+            "evidenceBody": [
+              "The repeated gesture is not interchangeable with the bead count: the chief seat and Dadian each perform three audible tooth-clicks in the same inquiry."
+            ]
+          },
+          "relatedMasters": [],
+          "relatedTerms": [],
+          "draftEvidence": {
+            "OpeningClaimEvidenceKeys": [
+              "o1",
+              "o2",
+              "o3",
+              "o4",
+              "o5",
+              "o6",
+              "o7"
+            ],
+            "ZenBend": "In the Dadian encounter, the chief seat and Dadian each click their teeth three times; Chaozong later appraises those clicks, and the unnamed questioning monk performs them anew before Qiran Zhi.",
+            "CounterexampleOrLimit": "The first click in several transmitted versions belongs to the unnamed chief seat, not Dadian; both later make the same gesture, so each retained span is actor-checked.",
+            "DifferentThingTest": {
+              "Decision": "one-thing",
+              "ComparedThings": [
+                "to click the teeth three times",
+                "the work-distinct retained uses"
+              ],
+              "Reason": "The repeated gesture is not interchangeable with the bead count: the chief seat and Dadian each perform three audible tooth-clicks in the same inquiry."
+            },
+            "AliasRationale": "The lookup keeps the performed tooth-click, the count of three, and the repeated gesture rather than the nearby bead count of one hundred and eight.",
+            "ModifierControls": [
+              {
+                "Term": "to click the teeth three times",
+                "Finding": "The repeated gesture is not interchangeable with the bead count: the chief seat and Dadian each perform three audible tooth-clicks in the same inquiry."
+              }
+            ],
+            "FamilyControls": [
+              {
+                "Term": "shorter neighboring wording",
+                "Finding": "A single tooth click or an unspecified clicking gesture is not counted because the records specify three clicks."
+              }
+            ]
+          },
+          "occurrences": [
+            {
+              "caseIndex": 0,
+              "fromLb": "0452c24",
+              "toLb": "0453a01",
+              "kwic": "首見首座，云：晝夜一百八意旨如何？座扣齒三下。及至方丈，問大顛：晝夜一百八意旨如",
+              "exactHeadwordClause": "扣齒三下",
+              "grammaticalProof": "In the complete 了堂惟一禪師語錄 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in the unnamed chief seat’s voice.",
+              "voiceLayer": "quoted-original",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "reviewed-unnamed",
+                "kind": "full-case exact-turn adjudication",
+                "label": "the unnamed chief seat",
+                "role": "interlocutor",
+                "subject": "the unnamed chief seat",
+                "reviewedBy": "Codex Iriya lane C151-160 full-case author",
+                "reviewedUtc": "2026-07-19T04:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              },
+              "contextMasters": [
+                {
+                  "masterName": "Liaotang Weiyi",
+                  "roles": [
+                    "later-raiser"
+                  ]
+                }
+              ],
+              "quotedOriginalOuterFrameReviewed": true
+            },
+            {
+              "caseIndex": 1,
+              "fromLb": "0507b24",
+              "toLb": "0507c01",
+              "kwic": "首座，舉前話問：意旨如何？座扣齒三下。及見師，理前問，師亦扣齒三",
+              "exactHeadwordClause": "扣齒三下",
+              "grammaticalProof": "In the complete 指月錄 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in the unnamed chief seat’s voice.",
+              "voiceLayer": "quoted-original",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "reviewed-unnamed",
+                "kind": "full-case exact-turn adjudication",
+                "label": "the unnamed chief seat",
+                "role": "interlocutor",
+                "subject": "the unnamed chief seat",
+                "reviewedBy": "Codex Iriya lane C151-160 full-case author",
+                "reviewedUtc": "2026-07-19T04:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              },
+              "contextMasters": [
+                {
+                  "masterName": "Dadian Baotong",
+                  "roles": [
+                    "later-raiser"
+                  ]
+                }
+              ],
+              "quotedOriginalOuterFrameReviewed": true
+            },
+            {
+              "caseIndex": 2,
+              "fromLb": "0239a09",
+              "toLb": "0239a09",
+              "kwic": "擯首座，云：「扣齒三下，鎔百八於洪爐",
+              "exactHeadwordClause": "扣齒三下",
+              "grammaticalProof": "In the complete 朝宗禪師語錄 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Chaozong Tongren’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Chaozong Tongren"
+              }
+            },
+            {
+              "caseIndex": 3,
+              "fromLb": "0566b22",
+              "toLb": "0566b23",
+              "kwic": "：「前三三，後三三。」僧扣齒三下，云：「學人不謗老和尚。",
+              "exactHeadwordClause": "扣齒三下",
+              "grammaticalProof": "In the complete 奇然智禪師語錄 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in the unnamed questioning monk’s voice.",
+              "voiceLayer": "question-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "reviewed-unnamed",
+                "kind": "full-case exact-turn adjudication",
+                "label": "the unnamed questioning monk",
+                "role": "questioner",
+                "subject": "the unnamed questioning monk",
+                "reviewedBy": "Codex Iriya lane C151-160 full-case author",
+                "reviewedUtc": "2026-07-19T04:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              },
+              "contextActors": [
+                {
+                  "type": "identified-unlinked-master",
+                  "label": "Qiran Zhi",
+                  "roles": [
+                    "respondent",
+                    "interlocutor"
+                  ],
+                  "grammaticalProof": "The live exchange names Qiran Zhi as the presiding master who responds before the unnamed monk clicks his teeth."
+                }
+              ],
+              "attributionContext": "The live exchange identifies Qiran Zhi as the responding presiding master and interlocutor before the unnamed monk performs the three clicks."
+            },
+            {
+              "caseIndex": 4,
+              "fromLb": "0488c22",
+              "toLb": "0488c23",
+              "kwic": "首座，舉前話問：意旨如何？座扣齒三下。及見師，理前問，師亦扣齒三",
+              "exactHeadwordClause": "扣齒三下",
+              "grammaticalProof": "In the complete 五燈全書(第1卷-第33卷) case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in the unnamed chief seat’s voice.",
+              "voiceLayer": "quoted-original",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "reviewed-unnamed",
+                "kind": "full-case exact-turn adjudication",
+                "label": "the unnamed chief seat",
+                "role": "interlocutor",
+                "subject": "the unnamed chief seat",
+                "reviewedBy": "Codex Iriya lane C151-160 full-case author",
+                "reviewedUtc": "2026-07-19T04:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              },
+              "contextMasters": [
+                {
+                  "masterName": "Dadian Baotong",
+                  "roles": [
+                    "later-raiser"
+                  ]
+                }
+              ],
+              "quotedOriginalOuterFrameReviewed": true
+            },
+            {
+              "caseIndex": 5,
+              "fromLb": "0322b20",
+              "toLb": "0322b21",
+              "kwic": "座，舉前話問：意旨如何？首座扣齒三下。及見師，理前問，師亦扣齒三",
+              "exactHeadwordClause": "扣齒三下",
+              "grammaticalProof": "In the complete 教外別傳 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in the unnamed chief seat’s voice.",
+              "voiceLayer": "quoted-original",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "reviewed-unnamed",
+                "kind": "full-case exact-turn adjudication",
+                "label": "the unnamed chief seat",
+                "role": "interlocutor",
+                "subject": "the unnamed chief seat",
+                "reviewedBy": "Codex Iriya lane C151-160 full-case author",
+                "reviewedUtc": "2026-07-19T04:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              },
+              "contextMasters": [
+                {
+                  "masterName": "Dadian Baotong",
+                  "roles": [
+                    "later-raiser"
+                  ]
+                }
+              ],
+              "quotedOriginalOuterFrameReviewed": true
+            },
+            {
+              "caseIndex": 7,
+              "fromLb": "0205a17",
+              "toLb": "0205a19",
+              "kwic": "見首座，舉前話問：意旨如何？首座扣齒三下。及見大顛，理前問，大顛亦扣齒三",
+              "exactHeadwordClause": "扣齒三下",
+              "grammaticalProof": "In the complete 先覺宗乘 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in the unnamed chief seat’s voice.",
+              "voiceLayer": "quoted-original",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "reviewed-unnamed",
+                "kind": "full-case exact-turn adjudication",
+                "label": "the unnamed chief seat",
+                "role": "interlocutor",
+                "subject": "the unnamed chief seat",
+                "reviewedBy": "Codex Iriya lane C151-160 full-case author",
+                "reviewedUtc": "2026-07-19T04:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              },
+              "contextMasters": [
+                {
+                  "masterName": "Dadian Baotong",
+                  "roles": [
+                    "later-raiser"
+                  ]
+                }
+              ],
+              "quotedOriginalOuterFrameReviewed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t_73845f8ff8c7",
+      "createdBy": "Codex Iriya lane C151-160 full-case author",
+      "writtenUtc": "2026-07-19T04:20:00Z",
+      "senses": [
+        {
+          "senseKey": null,
+          "masterName": null,
+          "preferredTarget": "to fall into the second position",
+          "alternateTargets": [],
+          "searchAliases": [
+            "to fall into the second position"
+          ],
+          "status": "preferred",
+          "validation": "multi-source",
+          "note": "“Second” is a stated ranking in these appraisals. The entry supplies no account of an unstated first position.",
+          "explanationParts": {
+            "corpusEarnedOpening": "Yangshan says awakening is not absent but still falls into the second position; later speakers apply the same ranking to claims about awakening, sayings, and displayed understanding.",
+            "evidenceBody": [
+              "The retained clauses explicitly rank the criticized saying or realization as second; they do not name a geographical or temporal “head.”"
+            ]
+          },
+          "relatedMasters": [],
+          "relatedTerms": [],
+          "draftEvidence": {
+            "OpeningClaimEvidenceKeys": [
+              "o1",
+              "o2",
+              "o3",
+              "o4",
+              "o5",
+              "o6",
+              "o7",
+              "o8"
+            ],
+            "ZenBend": "Yangshan says awakening is not absent but still falls into the second position; later speakers apply the same ranking to claims about awakening, sayings, and displayed understanding.",
+            "CounterexampleOrLimit": "“Second” is a stated ranking in these appraisals. The entry supplies no account of an unstated first position.",
+            "DifferentThingTest": {
+              "Decision": "one-thing",
+              "ComparedThings": [
+                "to fall into the second position",
+                "the work-distinct retained uses"
+              ],
+              "Reason": "The retained clauses explicitly rank the criticized saying or realization as second; they do not name a geographical or temporal “head.”"
+            },
+            "AliasRationale": "The lookup retains the verb “fall,” the ranked “second,” and 頭 as position; “second position” alone would omit the adverse movement.",
+            "ModifierControls": [
+              {
+                "Term": "to fall into the second position",
+                "Finding": "The retained clauses explicitly rank the criticized saying or realization as second; they do not name a geographical or temporal “head.”"
+              }
+            ],
+            "FamilyControls": [
+              {
+                "Term": "shorter neighboring wording",
+                "Finding": "Other references to a second item or second head lack the predicate of falling into that ranked position."
+              }
+            ]
+          },
+          "occurrences": [
+            {
+              "caseIndex": 0,
+              "fromLb": "0850b05",
+              "toLb": "0850b07",
+              "kwic": "是箇傳言語漢不干他曹洞事況言悟是建立落在第二頭故不在說也又見一老宿共我商量洞山夏末",
+              "exactHeadwordClause": "落在第二頭",
+              "grammaticalProof": "In the complete 大慧普覺禪師普說 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Dahui Zonggao’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Dahui Zonggao"
+              }
+            },
+            {
+              "caseIndex": 1,
+              "fromLb": "0910c23",
+              "toLb": "0910c25",
+              "kwic": "謼人。說悟為建立。說悟為把定。說悟為落在第二頭。披却師子皮。作野干鳴者。不可勝數。",
+              "exactHeadwordClause": "落在第二頭",
+              "grammaticalProof": "In the complete 大慧普覺禪師語錄 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Dahui Zonggao’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Dahui Zonggao"
+              }
+            },
+            {
+              "caseIndex": 2,
+              "fromLb": "0453a05",
+              "toLb": "0453a07",
+              "kwic": "。便打。磬山修云：風穴悟則不無，怎奈落在第二頭？山僧若作南院，待問：此間作麼生商量",
+              "exactHeadwordClause": "落在第二頭",
+              "grammaticalProof": "In the complete 宗鑑法林 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Qingshan Xiushan’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Qingshan Xiushan",
+                "role": "utterer",
+                "subject": "Qingshan Xiushan",
+                "reviewedBy": "Codex Iriya lane C151-160 full-case author",
+                "reviewedUtc": "2026-07-19T04:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 3,
+              "fromLb": "0245a19",
+              "toLb": "0245a21",
+              "kwic": "此經在。不見古人道：『悟則不無，爭奈落在第二頭何？』佛乃覺悟之意，悟既落第二，豈不",
+              "exactHeadwordClause": "落在第二頭",
+              "grammaticalProof": "In the complete 朝宗禪師語錄 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Chaozong Tongren’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Chaozong Tongren"
+              }
+            },
+            {
+              "caseIndex": 4,
+              "fromLb": "0128b03",
+              "toLb": "0128b05",
+              "kwic": "今時人還假悟否？山曰：悟即不無，怎奈落在第二頭。米深肯之。投子青云：仰山與麼道，還",
+              "exactHeadwordClause": "落在第二頭",
+              "grammaticalProof": "In the complete 宗門拈古彙集 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Yangshan Huiji’s voice.",
+              "voiceLayer": "quoted-original",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Yangshan Huiji"
+              },
+              "quotedOriginalOuterFrameReviewed": true
+            },
+            {
+              "caseIndex": 5,
+              "fromLb": "0032a07",
+              "toLb": "0032a09",
+              "kwic": "今時人還假悟不？山云：悟既不無，爭柰落在第二頭何？師聞肯之。投子青云：然仰山與麼道",
+              "exactHeadwordClause": "落在第二頭",
+              "grammaticalProof": "In the complete 禪林類聚 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Yangshan Huiji’s voice.",
+              "voiceLayer": "quoted-original",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Yangshan Huiji"
+              },
+              "quotedOriginalOuterFrameReviewed": true
+            },
+            {
+              "caseIndex": 6,
+              "fromLb": "0144b02",
+              "toLb": "0144b04",
+              "kwic": "脚事畢。師曰。汾陽雖則開口見膽。爭奈落在第二頭。驀拈拄杖曰。者個不得喚作拄杖子漆桶",
+              "exactHeadwordClause": "落在第二頭",
+              "grammaticalProof": "In the complete 五燈全書(第34卷-第120卷) case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Poan Zuxian’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Poan Zuxian",
+                "role": "utterer",
+                "subject": "Poan Zuxian",
+                "reviewedBy": "Codex Iriya lane C151-160 full-case author",
+                "reviewedUtc": "2026-07-19T04:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 7,
+              "fromLb": "0731b03",
+              "toLb": "0731b05",
+              "kwic": "問仰山今時還假悟去不仰云悟即不無爭奈落在第二頭何師乃肯之。續泐潭清云門󲊷施設米胡深",
+              "exactHeadwordClause": "落在第二頭",
+              "grammaticalProof": "In the complete 宗門統要正續集(第1卷-第12卷) case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Yangshan Huiji’s voice.",
+              "voiceLayer": "quoted-original",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Yangshan Huiji"
+              },
+              "quotedOriginalOuterFrameReviewed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t_3e28049caf6d",
+      "createdBy": "Codex Iriya lane C151-160 full-case author",
+      "writtenUtc": "2026-07-19T04:20:00Z",
+      "senses": [
+        {
+          "senseKey": null,
+          "masterName": null,
+          "preferredTarget": "to nurture the sacred embryo",
+          "alternateTargets": [],
+          "searchAliases": [
+            "to nurture the sacred embryo"
+          ],
+          "status": "preferred",
+          "validation": "multi-source",
+          "note": "The records themselves use gestation language of nurturing and maturation. This entry reports that imagery without treating it as physiology.",
+          "explanationParts": {
+            "corpusEarnedOpening": "Mazu places nurturing the sacred embryo beside wearing clothes, eating meals, and passing the time; later instructions locate it by waterside woods or after withdrawal from public teaching.",
+            "evidenceBody": [
+              "The witnesses connect the embryo with continued nourishment, maturation, and secluded residence after an initial attainment, preserving the gestational image."
+            ]
+          },
+          "relatedMasters": [],
+          "relatedTerms": [],
+          "draftEvidence": {
+            "OpeningClaimEvidenceKeys": [
+              "o1",
+              "o2",
+              "o3",
+              "o4",
+              "o5",
+              "o6",
+              "o7",
+              "o8"
+            ],
+            "ZenBend": "Mazu places nurturing the sacred embryo beside wearing clothes, eating meals, and passing the time; later instructions locate it by waterside woods or after withdrawal from public teaching.",
+            "CounterexampleOrLimit": "The records themselves use gestation language of nurturing and maturation. This entry reports that imagery without treating it as physiology.",
+            "DifferentThingTest": {
+              "Decision": "one-thing",
+              "ComparedThings": [
+                "to nurture the sacred embryo",
+                "the work-distinct retained uses"
+              ],
+              "Reason": "The witnesses connect the embryo with continued nourishment, maturation, and secluded residence after an initial attainment, preserving the gestational image."
+            },
+            "AliasRationale": "The lookup preserves both feeding or nurturing and the embryo image; “sacred embryo” alone would lose the continuing action.",
+            "ModifierControls": [
+              {
+                "Term": "to nurture the sacred embryo",
+                "Finding": "The witnesses connect the embryo with continued nourishment, maturation, and secluded residence after an initial attainment, preserving the gestational image."
+              }
+            ],
+            "FamilyControls": [
+              {
+                "Term": "shorter neighboring wording",
+                "Finding": "Embryo language without the verb for continued nurturing does not attest this action-image."
+              }
+            ]
+          },
+          "occurrences": [
+            {
+              "caseIndex": 0,
+              "fromLb": "0756b21",
+              "toLb": "0756b23",
+              "kwic": "道大事既明，為甚麼如喪考妣？水邊林下長養聖胎，不是教你光景留連空過日子的。首座鐵",
+              "exactHeadwordClause": "長養聖胎",
+              "grammaticalProof": "In the complete 雲溪俍亭挺禪師語錄 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Langting Tingsui’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Langting Tingsui",
+                "role": "utterer",
+                "subject": "Langting Tingsui",
+                "reviewedBy": "Codex Iriya lane C151-160 full-case author",
+                "reviewedUtc": "2026-07-19T04:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 1,
+              "fromLb": "0462a12",
+              "toLb": "0462a14",
+              "kwic": "出來，亦不移易，隨時任運，喫飯著衣，長養聖胎，不存知解，可不是省要徑截殊勝法門耶",
+              "exactHeadwordClause": "長養聖胎",
+              "grammaticalProof": "In the complete 佛果克勤禪師心要 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Yuanwu Keqin’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Yuanwu Keqin"
+              }
+            },
+            {
+              "caseIndex": 2,
+              "fromLb": "0051c10",
+              "toLb": "0051c12",
+              "kwic": "，究教七穿八穴，百了千當，向水邊林下長養聖胎，亦不枉受人天供養。雖然如是，臥雲門",
+              "exactHeadwordClause": "長養聖胎",
+              "grammaticalProof": "In the complete 五燈全書(第34卷-第120卷) case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Shouning Shanzi’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Shouning Shanzi",
+                "role": "utterer",
+                "subject": "Shouning Shanzi",
+                "reviewedBy": "Codex Iriya lane C151-160 full-case author",
+                "reviewedUtc": "2026-07-19T04:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 3,
+              "fromLb": "0453b04",
+              "toLb": "0453b06",
+              "kwic": "即不生。若了此意，乃可隨時著衣喫飯，長養聖胎。任運過時，更有何事？汝受吾教，聽吾",
+              "exactHeadwordClause": "長養聖胎",
+              "grammaticalProof": "In the complete 指月錄 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Mazu Daoyi’s voice.",
+              "voiceLayer": "quoted-original",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Mazu Daoyi"
+              },
+              "quotedOriginalOuterFrameReviewed": true
+            },
+            {
+              "caseIndex": 4,
+              "fromLb": "0382a21",
+              "toLb": "0382a22",
+              "kwic": "得其所；退者，如𦏰羊挂角，形影不彰，長養聖胎，漸成大器。此二者，自利利他，各不相",
+              "exactHeadwordClause": "長養聖胎",
+              "grammaticalProof": "In the complete 續古尊宿語要 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Furong Daokai’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Furong Daokai"
+              }
+            },
+            {
+              "caseIndex": 5,
+              "fromLb": "0588a02",
+              "toLb": "0588a03",
+              "kwic": "古人大徹大悟，參學事畢，且於水邊林下長養聖胎，不惜口頭生醭，龍天推出，方乃為人。",
+              "exactHeadwordClause": "長養聖胎",
+              "grammaticalProof": "In the complete 御選語錄 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in the compiler of the selected answer’s voice.",
+              "voiceLayer": "compiler-narration",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "narrated",
+                "kind": "full-case exact-turn adjudication",
+                "label": "the compiler of the selected answer",
+                "role": "compiler",
+                "subject": "the compiler of the selected answer",
+                "reviewedBy": "Codex Iriya lane C151-160 full-case author",
+                "reviewedUtc": "2026-07-19T04:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 6,
+              "fromLb": "0700c18",
+              "toLb": "0700c20",
+              "kwic": "即心是佛即心是法便承信去隨處茅茨石室長養聖胎只待道果成熟汝今何不効他行取仁者可煞",
+              "exactHeadwordClause": "長養聖胎",
+              "grammaticalProof": "In the complete 古尊宿語錄 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Zihu Lizong’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Zihu Lizong"
+              }
+            },
+            {
+              "caseIndex": 7,
+              "fromLb": "0572c12",
+              "toLb": "0572c14",
+              "kwic": "即不生。若了此意，乃可隨時著衣喫飯，長養聖胎。任運過時，更有何事？汝受吾教，聽吾",
+              "exactHeadwordClause": "長養聖胎",
+              "grammaticalProof": "In the complete 正法眼藏 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Mazu Daoyi’s voice.",
+              "voiceLayer": "quoted-original",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Mazu Daoyi"
+              },
+              "quotedOriginalOuterFrameReviewed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t_c22c78090fce",
+      "createdBy": "Codex Iriya lane C151-160 full-case author",
+      "writtenUtc": "2026-07-19T04:20:00Z",
+      "senses": [
+        {
+          "senseKey": null,
+          "masterName": null,
+          "preferredTarget": "when cheeks show behind the head, do not associate with him",
+          "alternateTargets": [],
+          "searchAliases": [
+            "when cheeks show behind the head, do not associate with him"
+          ],
+          "status": "preferred",
+          "validation": "multi-source",
+          "note": "The phrase is a warning formula, not evidence that the appraised person literally has an abnormal face.",
+          "explanationParts": {
+            "corpusEarnedOpening": "The records use cheeks visible behind the head as the identifying condition for the warning not to associate; Dahui, Hongzhi, Shaolong, and later speakers apply the whole warning as an appraisal.",
+            "evidenceBody": [
+              "Both clauses remain joined across direct answers, verse-like appraisals, and comments on earlier cases: the bodily sign supplies the reason for refusing association."
+            ]
+          },
+          "relatedMasters": [],
+          "relatedTerms": [],
+          "draftEvidence": {
+            "OpeningClaimEvidenceKeys": [
+              "o1",
+              "o2",
+              "o3",
+              "o4",
+              "o5",
+              "o6",
+              "o7",
+              "o8"
+            ],
+            "ZenBend": "The records use cheeks visible behind the head as the identifying condition for the warning not to associate; Dahui, Hongzhi, Shaolong, and later speakers apply the whole warning as an appraisal.",
+            "CounterexampleOrLimit": "The phrase is a warning formula, not evidence that the appraised person literally has an abnormal face.",
+            "DifferentThingTest": {
+              "Decision": "one-thing",
+              "ComparedThings": [
+                "when cheeks show behind the head, do not associate with him",
+                "the work-distinct retained uses"
+              ],
+              "Reason": "Both clauses remain joined across direct answers, verse-like appraisals, and comments on earlier cases: the bodily sign supplies the reason for refusing association."
+            },
+            "AliasRationale": "The lookup keeps the visible cheeks as the condition and refusal of association as its consequence.",
+            "ModifierControls": [
+              {
+                "Term": "when cheeks show behind the head, do not associate with him",
+                "Finding": "Both clauses remain joined across direct answers, verse-like appraisals, and comments on earlier cases: the bodily sign supplies the reason for refusing association."
+              }
+            ],
+            "FamilyControls": [
+              {
+                "Term": "shorter neighboring wording",
+                "Finding": "Cheeks behind the head without the accompanying refusal, or a refusal without the bodily sign, does not preserve the warning pair."
+              }
+            ]
+          },
+          "occurrences": [
+            {
+              "caseIndex": 0,
+              "fromLb": "0255a23",
+              "toLb": "0255b01",
+              "kwic": "，納盡敗闕。要識綱宗，先須識句。巖頭腦後見腮，莫與往來，總好與三十痛棒。還有不甘者麼？如無",
+              "exactHeadwordClause": "腦後見腮，莫與往來",
+              "grammaticalProof": "In the complete 五燈全書(第34卷-第120卷) case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Puzhao Bao’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Puzhao Bao",
+                "role": "utterer",
+                "subject": "Puzhao Bao",
+                "reviewedBy": "Codex Iriya lane C151-160 full-case author",
+                "reviewedUtc": "2026-07-19T04:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 1,
+              "fromLb": "0522a16",
+              "toLb": "0522a18",
+              "kwic": "會方始是。徑山杲云：要識五祖師翁麼？腦後見腮，莫與往來。雲居祐舉栢樹子話云：奇哉！古聖垂一",
+              "exactHeadwordClause": "腦後見腮，莫與往來",
+              "grammaticalProof": "In the complete 指月錄 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Dahui Zonggao’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Dahui Zonggao"
+              }
+            },
+            {
+              "caseIndex": 2,
+              "fromLb": "0412c16",
+              "toLb": "0412c18",
+              "kwic": "頭石，不覺撫掌呵呵大笑。且道笑甚麼？腦後見腮，莫與往來。上堂：當陽正體露堂堂，休謂當年付飲",
+              "exactHeadwordClause": "腦後見腮，莫與往來",
+              "grammaticalProof": "In the complete 續燈正統 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Huqiu Shaolong’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Huqiu Shaolong"
+              }
+            },
+            {
+              "caseIndex": 3,
+              "fromLb": "0027a20",
+              "toLb": "0027a22",
+              "kwic": "袋攔街截巷，直是無𢌞避處，還辨得麼？腦後見腮，莫與往來。徑山及云：慈氏如來三百六十骨節、八",
+              "exactHeadwordClause": "腦後見腮，莫與往來",
+              "grammaticalProof": "In the complete 宗門拈古彙集 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Hongzhi Zhengjue’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Hongzhi Zhengjue"
+              }
+            },
+            {
+              "caseIndex": 4,
+              "fromLb": "0115b03",
+              "toLb": "0115b05",
+              "kwic": "「畢竟是什麼人纔許他具眼？」師曰：「腦後見腮，莫與往來。」曰：「謝師答話。」師問僧：「如何",
+              "exactHeadwordClause": "腦後見腮，莫與往來",
+              "grammaticalProof": "In the complete 石雨禪師法檀 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Shiyu Mingfang’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Shiyu Mingfang"
+              }
+            },
+            {
+              "caseIndex": 5,
+              "fromLb": "0714c15",
+              "toLb": "0714c18",
+              "kwic": "度悲哀？拳頭巴掌響如雷。還識這漢麼？腦後見腮，莫與往來。正監院請正監院請穿衣喫飯、訶佛罵祖",
+              "exactHeadwordClause": "腦後見腮，莫與往來",
+              "grammaticalProof": "In the complete 三山來禪師語錄 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Sanshan Lai’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Sanshan Lai",
+                "role": "utterer",
+                "subject": "Sanshan Lai",
+                "reviewedBy": "Codex Iriya lane C151-160 full-case author",
+                "reviewedUtc": "2026-07-19T04:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 6,
+              "fromLb": "0747a03",
+              "toLb": "0747a05",
+              "kwic": "操無以荅，當時合得一轉語。」師云：「腦後見腮，莫與往來。」止一侍者問：「古人道個何必，則云",
+              "exactHeadwordClause": "腦後見腮，莫與往來",
+              "grammaticalProof": "In the complete 雲溪俍亭挺禪師語錄 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Langting Tingsui’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Langting Tingsui",
+                "role": "utterer",
+                "subject": "Langting Tingsui",
+                "reviewedBy": "Codex Iriya lane C151-160 full-case author",
+                "reviewedUtc": "2026-07-19T04:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 7,
+              "fromLb": "0503a02",
+              "toLb": "0503a04",
+              "kwic": "！攔街截巷，直是無迴避處。還辨得麼？腦後見腮，莫與往來。師云：善財開樓閣門，見遍法界皆是彌",
+              "exactHeadwordClause": "腦後見腮，莫與往來",
+              "grammaticalProof": "In the complete 萬松老人評唱天童覺和尚拈古請益錄 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Hongzhi Zhengjue’s voice.",
+              "voiceLayer": "quoted-original",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Hongzhi Zhengjue"
+              },
+              "contextMasters": [
+                {
+                  "masterName": "Wansong Xingxiu",
+                  "roles": [
+                    "later-raiser"
+                  ]
+                }
+              ],
+              "quotedOriginalOuterFrameReviewed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t_d83895e85129",
+      "createdBy": "Codex Iriya lane C151-160 full-case author",
+      "writtenUtc": "2026-07-19T04:20:00Z",
+      "senses": [
+        {
+          "senseKey": null,
+          "masterName": null,
+          "preferredTarget": "to knock the bones and beat the marrow",
+          "alternateTargets": [],
+          "searchAliases": [
+            "to knock the bones and beat the marrow"
+          ],
+          "status": "preferred",
+          "validation": "multi-source",
+          "note": "The paired anatomy is figurative in these sermons and instructions; no retained case reports bones or marrow being physically struck.",
+          "explanationParts": {
+            "corpusEarnedOpening": "Yunju says knocking bones and beating marrow must have a basis, while Huanglong casts the paired violence as the action of an enraged figure; later sermons retain it for severe verbal examination.",
+            "evidenceBody": [
+              "The witnesses retain both hard actions—knocking bone and beating marrow—inside clauses of exacting, forceful treatment; no literal injury is narrated."
+            ]
+          },
+          "relatedMasters": [],
+          "relatedTerms": [],
+          "draftEvidence": {
+            "OpeningClaimEvidenceKeys": [
+              "o1",
+              "o2",
+              "o3",
+              "o4",
+              "o5",
+              "o6",
+              "o7",
+              "o8"
+            ],
+            "ZenBend": "Yunju says knocking bones and beating marrow must have a basis, while Huanglong casts the paired violence as the action of an enraged figure; later sermons retain it for severe verbal examination.",
+            "CounterexampleOrLimit": "The paired anatomy is figurative in these sermons and instructions; no retained case reports bones or marrow being physically struck.",
+            "DifferentThingTest": {
+              "Decision": "one-thing",
+              "ComparedThings": [
+                "to knock the bones and beat the marrow",
+                "the work-distinct retained uses"
+              ],
+              "Reason": "The witnesses retain both hard actions—knocking bone and beating marrow—inside clauses of exacting, forceful treatment; no literal injury is narrated."
+            },
+            "AliasRationale": "The lookup names the two coordinated actions and their distinct anatomical objects: knocking bones and beating marrow.",
+            "ModifierControls": [
+              {
+                "Term": "to knock the bones and beat the marrow",
+                "Finding": "The witnesses retain both hard actions—knocking bone and beating marrow—inside clauses of exacting, forceful treatment; no literal injury is narrated."
+              }
+            ],
+            "FamilyControls": [
+              {
+                "Term": "shorter neighboring wording",
+                "Finding": "Bone or marrow imagery by itself does not reproduce the paired sequence of knocking and beating."
+              }
+            ]
+          },
+          "occurrences": [
+            {
+              "caseIndex": 0,
+              "fromLb": "0596b30",
+              "toLb": "0596c01",
+              "kwic": "輥毬，種種激揚，將謂爭奇弄怪，亦不過敲骨打髓，裂碎頂門，光迥迥地，不暇安排，心行",
+              "exactHeadwordClause": "敲骨打髓",
+              "grammaticalProof": "In the complete 天界覺浪盛禪師全錄 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Juelang Daosheng’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Juelang Daosheng"
+              }
+            },
+            {
+              "caseIndex": 1,
+              "fromLb": "0057b07",
+              "toLb": "0057b09",
+              "kwic": "，向闍黎手裡拱手歸降；或為忿怒那吒，敲骨打髓。正當恁麼時，還有同聲相應、同氣相求",
+              "exactHeadwordClause": "敲骨打髓",
+              "grammaticalProof": "In the complete 列祖提綱錄 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Huanglong Huinan’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Huanglong Huinan"
+              }
+            },
+            {
+              "caseIndex": 2,
+              "fromLb": "0267c23",
+              "toLb": "0267c24",
+              "kwic": "千里萬里。難為取攝。蓋為學處不著力。敲骨打髓。須有來由。言語如鉗如夾。如鉤如鎻。",
+              "exactHeadwordClause": "敲骨打髓",
+              "grammaticalProof": "In the complete 五燈會元 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Yunju Daoying’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Yunju Daoying"
+              }
+            },
+            {
+              "caseIndex": 3,
+              "fromLb": "0033c16",
+              "toLb": "0033c17",
+              "kwic": "，向闍黎手裏拱手歸降。或為忿怒那叱，敲骨打髓。正當恁麼時，還有同聲相應，同氣相求",
+              "exactHeadwordClause": "敲骨打髓",
+              "grammaticalProof": "In the complete 五燈全書(第34卷-第120卷) case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Huanglong Huinan’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Huanglong Huinan"
+              }
+            },
+            {
+              "caseIndex": 4,
+              "fromLb": "0071c23",
+              "toLb": "0071c24",
+              "kwic": "即千里萬里難為取攝。蓋為學處不著力，敲骨打髓，須有來由。言語如鉗如夾，如鉤如鎻，",
+              "exactHeadwordClause": "敲骨打髓",
+              "grammaticalProof": "In the complete 五燈嚴統(第10卷-第25卷) case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Yunju Daoying’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Yunju Daoying"
+              }
+            },
+            {
+              "caseIndex": 5,
+              "fromLb": "0058a25",
+              "toLb": "0058a27",
+              "kwic": "無事。體用何妨分不分。諸兄弟參禪漢。敲骨打髓。是恁麼地做。有一般漢便道。未話已前",
+              "exactHeadwordClause": "敲骨打髓",
+              "grammaticalProof": "In the complete 宏智禪師廣錄 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Hongzhi Zhengjue’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Hongzhi Zhengjue"
+              }
+            },
+            {
+              "caseIndex": 6,
+              "fromLb": "0780c12",
+              "toLb": "0780c14",
+              "kwic": "欲寬，擒拏欲大，機穽欲密，鉤錐欲辣，敲骨打髓，捱至百尺竿頭，痛劄深錐，漸到懸崖撒",
+              "exactHeadwordClause": "敲骨打髓",
+              "grammaticalProof": "In the complete 禪門鍛鍊說 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in the compiler of the Chan training treatise’s voice.",
+              "voiceLayer": "compiler-narration",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "narrated",
+                "kind": "full-case exact-turn adjudication",
+                "label": "the compiler of the Chan training treatise",
+                "role": "compiler",
+                "subject": "the compiler of the Chan training treatise",
+                "reviewedBy": "Codex Iriya lane C151-160 full-case author",
+                "reviewedUtc": "2026-07-19T04:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 7,
+              "fromLb": "0182b13",
+              "toLb": "0182b15",
+              "kwic": "照有法在照用同時驅耕夫之牛奪饑人之食敲骨打髓痛下針錐照用不同時有問有答立主立賔合",
+              "exactHeadwordClause": "敲骨打髓",
+              "grammaticalProof": "In the complete 天隱修禪師語錄 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Tianyin Yuanxiu’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Tianyin Yuanxiu"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t_9291c7cdc7c6",
+      "createdBy": "Codex Iriya lane C151-160 full-case author",
+      "writtenUtc": "2026-07-19T04:20:00Z",
+      "senses": [
+        {
+          "senseKey": null,
+          "masterName": null,
+          "preferredTarget": "a hundred shots, a hundred hits",
+          "alternateTargets": [],
+          "searchAliases": [
+            "a hundred shots, a hundred hits"
+          ],
+          "status": "preferred",
+          "validation": "multi-source",
+          "note": "Because speakers both commend and depreciate perfect hitting, the idiom alone records accuracy and does not guarantee approval.",
+          "explanationParts": {
+            "corpusEarnedOpening": "The archery idiom names complete accuracy, but Chan speakers also turn it against success: Xuzhou praises Baoshou as a hundred-for-a-hundred hitter before exposing all three participants, while Songyuan says such hits collide with walls.",
+            "evidenceBody": [
+              "Some cases praise reliable hitting, while others explicitly say the same perfect record remains inadequate or costly; the arrow-score image itself stays unchanged."
+            ]
+          },
+          "relatedMasters": [],
+          "relatedTerms": [],
+          "draftEvidence": {
+            "OpeningClaimEvidenceKeys": [
+              "o1",
+              "o2",
+              "o3",
+              "o4",
+              "o5",
+              "o6",
+              "o7"
+            ],
+            "ZenBend": "The archery idiom names complete accuracy, but Chan speakers also turn it against success: Xuzhou praises Baoshou as a hundred-for-a-hundred hitter before exposing all three participants, while Songyuan says such hits collide with walls.",
+            "CounterexampleOrLimit": "Because speakers both commend and depreciate perfect hitting, the idiom alone records accuracy and does not guarantee approval.",
+            "DifferentThingTest": {
+              "Decision": "one-thing",
+              "ComparedThings": [
+                "a hundred shots, a hundred hits",
+                "the work-distinct retained uses"
+              ],
+              "Reason": "Some cases praise reliable hitting, while others explicitly say the same perfect record remains inadequate or costly; the arrow-score image itself stays unchanged."
+            },
+            "AliasRationale": "The lookup preserves the numerical completeness of both attempts and hits; “perfect accuracy” is a useful gloss but not the literal arrow-count formula.",
+            "ModifierControls": [
+              {
+                "Term": "a hundred shots, a hundred hits",
+                "Finding": "Some cases praise reliable hitting, while others explicitly say the same perfect record remains inadequate or costly; the arrow-score image itself stays unchanged."
+              }
+            ],
+            "FamilyControls": [
+              {
+                "Term": "shorter neighboring wording",
+                "Finding": "Archery, hitting, or repeated success without the matched hundred attempts and hundred hits does not attest the fixed idiom."
+              }
+            ]
+          },
+          "occurrences": [
+            {
+              "caseIndex": 0,
+              "fromLb": "0085a22",
+              "toLb": "0085a23",
+              "kwic": "寶壽據碧油幢，百發百中；三聖向大虫口",
+              "exactHeadwordClause": "百發百中",
+              "grammaticalProof": "In the complete 虛舟普度禪師語錄 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Xuzhou Pudu’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Xuzhou Pudu"
+              }
+            },
+            {
+              "caseIndex": 1,
+              "fromLb": "0689b17",
+              "toLb": "0689b19",
+              "kwic": "七步成章。僧曰：如何是玄中玄？師云：百發百中。師云：三玄三要，大道直衝，活捉生擒",
+              "exactHeadwordClause": "百發百中",
+              "grammaticalProof": "In the complete 建中靖國續燈錄 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Yuquan Weifang’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Yuquan Weifang",
+                "role": "utterer",
+                "subject": "Yuquan Weifang",
+                "reviewedBy": "Codex Iriya lane C151-160 full-case author",
+                "reviewedUtc": "2026-07-19T04:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 2,
+              "fromLb": "0225a27",
+              "toLb": "0225a28",
+              "kwic": "逐，拿著明珠彈飛雀，莫道彈不著，縱饒百發百中，所得不償所失，便如鄧通守著一座錢山",
+              "exactHeadwordClause": "百發百中",
+              "grammaticalProof": "In the complete 千山剩人禪師語錄 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Qianshan Chengren’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Qianshan Chengren",
+                "role": "utterer",
+                "subject": "Qianshan Chengren",
+                "reviewedBy": "Codex Iriya lane C151-160 full-case author",
+                "reviewedUtc": "2026-07-19T04:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 3,
+              "fromLb": "0199b05",
+              "toLb": "0199b07",
+              "kwic": "。千箇與萬箇。是誰曾中的。能有幾箇。百發百中。相呼相喚歸去來。頌南泉道恁麼則不去",
+              "exactHeadwordClause": "百發百中",
+              "grammaticalProof": "In the complete 佛果圜悟禪師碧巖錄 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Yuanwu Keqin’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Yuanwu Keqin"
+              }
+            },
+            {
+              "caseIndex": 4,
+              "fromLb": "0180a14",
+              "toLb": "0180a16",
+              "kwic": "就把髻投衙。不假一椎，抱贓呌屈。直饒百發百中，雙放雙收，向我靈巖門下總用不著。拈",
+              "exactHeadwordClause": "百發百中",
+              "grammaticalProof": "In the complete 列祖提綱錄 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Shuzhong Wenyun’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Shuzhong Wenyun",
+                "role": "utterer",
+                "subject": "Shuzhong Wenyun",
+                "reviewedBy": "Codex Iriya lane C151-160 full-case author",
+                "reviewedUtc": "2026-07-19T04:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 6,
+              "fromLb": "0082c10",
+              "toLb": "0082c12",
+              "kwic": "風流？上堂，云：單刀直入，猶隔重關；百發百中，撞墻撞壁。直饒面南看北斗，知底盡掀",
+              "exactHeadwordClause": "百發百中",
+              "grammaticalProof": "In the complete 松源崇嶽禪師語錄 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Songyuan Chongyue’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Songyuan Chongyue"
+              }
+            },
+            {
+              "caseIndex": 7,
+              "fromLb": "0323a11",
+              "toLb": "0323a14",
+              "kwic": "，忽然瞥地。上堂：佛法不離日用，日用百發百中。衲僧家動弦別曲，葉落知秋。因什麼十",
+              "exactHeadwordClause": "百發百中",
+              "grammaticalProof": "In the complete 石田法薰禪師語錄 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Shitian Faxun’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Shitian Faxun"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t_fb84c96fd94c",
+      "createdBy": "Codex Iriya lane C151-160 full-case author",
+      "writtenUtc": "2026-07-19T04:20:00Z",
+      "senses": [
+        {
+          "senseKey": null,
+          "masterName": null,
+          "preferredTarget": "round lotus leaves like mirrors and sharp caltrop horns like awls",
+          "alternateTargets": [],
+          "searchAliases": [
+            "lotus leaves round, round like mirrors; caltrop horns sharp, sharp like awls"
+          ],
+          "status": "preferred",
+          "validation": "multi-source",
+          "note": "The couplet states ordinary visible resemblances. Later discussions call it a “resembling phrase,” but the images receive no hidden symbolic gloss.",
+          "explanationParts": {
+            "corpusEarnedOpening": "Jiashan answers a question about a “resembling phrase” with round lotus leaves like mirrors and pointed caltrops like awls; Huanglong, Xueyan, Sanshan, and Qiran preserve that answer inside later appraisal frames.",
+            "evidenceBody": [
+              "The two clauses compare circular leaf to mirror and pointed caltrop to awl; the following willow-floss and pear-blossom lines are a related continuation, not part of this headword."
+            ]
+          },
+          "relatedMasters": [],
+          "relatedTerms": [],
+          "draftEvidence": {
+            "OpeningClaimEvidenceKeys": [
+              "o1",
+              "o2",
+              "o3",
+              "o4",
+              "o5",
+              "o6",
+              "o7",
+              "o8"
+            ],
+            "ZenBend": "Jiashan answers a question about a “resembling phrase” with round lotus leaves like mirrors and pointed caltrops like awls; Huanglong, Xueyan, Sanshan, and Qiran preserve that answer inside later appraisal frames.",
+            "CounterexampleOrLimit": "The couplet states ordinary visible resemblances. Later discussions call it a “resembling phrase,” but the images receive no hidden symbolic gloss.",
+            "DifferentThingTest": {
+              "Decision": "one-thing",
+              "ComparedThings": [
+                "lotus leaves round, round like mirrors; caltrop horns sharp, sharp like awls",
+                "the work-distinct retained uses"
+              ],
+              "Reason": "The two clauses compare circular leaf to mirror and pointed caltrop to awl; the following willow-floss and pear-blossom lines are a related continuation, not part of this headword."
+            },
+            "AliasRationale": "The lookup retains both plant shapes, both repeated adjectives, and their separate mirror and awl comparisons.",
+            "ModifierControls": [
+              {
+                "Term": "lotus leaves round, round like mirrors; caltrop horns sharp, sharp like awls",
+                "Finding": "The two clauses compare circular leaf to mirror and pointed caltrop to awl; the following willow-floss and pear-blossom lines are a related continuation, not part of this headword."
+              }
+            ],
+            "FamilyControls": [
+              {
+                "Term": "shorter neighboring wording",
+                "Finding": "The willow-floss and pear-blossom continuation is excluded: it lacks the lotus-leaf mirror and caltrop-awl comparisons that define this couplet."
+              }
+            ]
+          },
+          "occurrences": [
+            {
+              "caseIndex": 0,
+              "fromLb": "0073c17",
+              "toLb": "0073c20",
+              "kwic": "云：風吹柳絮毛毬走，雨打棃花白雪飛。荷葉團團團似鏡，菱角尖尖尖似錐。若於此見得，便捉敗他父子三人。龐公",
+              "exactHeadwordClause": "荷葉團團團似鏡，菱角尖尖尖似錐",
+              "grammaticalProof": "In the complete 宗門拈古彙集 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Fengshan Qiming’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Fengshan Qiming",
+                "role": "utterer",
+                "subject": "Fengshan Qiming",
+                "reviewedBy": "Codex Iriya lane C151-160 full-case author",
+                "reviewedUtc": "2026-07-19T04:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 1,
+              "fromLb": "0358c14",
+              "toLb": "0358c16",
+              "kwic": "。舉：僧問夾山：如何是相似句？山云：荷葉團團團似鏡，菱角尖尖尖似錐。復云：會麼？僧云：不會。山云：風吹",
+              "exactHeadwordClause": "荷葉團團團似鏡，菱角尖尖尖似錐",
+              "grammaticalProof": "In the complete 續古尊宿語要 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Jia shan Shanhui’s voice.",
+              "voiceLayer": "quoted-original",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Jia shan Shanhui",
+                "role": "utterer",
+                "subject": "Jia shan Shanhui",
+                "reviewedBy": "Codex Iriya lane C151-160 full-case author",
+                "reviewedUtc": "2026-07-19T04:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              },
+              "contextMasters": [
+                {
+                  "masterName": "Huanglong Huinan",
+                  "roles": [
+                    "commentator",
+                    "later-raiser"
+                  ]
+                }
+              ],
+              "quotedOriginalOuterFrameReviewed": true
+            },
+            {
+              "caseIndex": 2,
+              "fromLb": "0599c08",
+              "toLb": "0599c10",
+              "kwic": "，舉：僧問夾山：如何是相似句？山云：荷葉團團團似鏡，菱角尖尖尖似錐。僧云：學人不會。山云：風吹柳絮毛毬",
+              "exactHeadwordClause": "荷葉團團團似鏡，菱角尖尖尖似錐",
+              "grammaticalProof": "In the complete 雪巖祖欽禪師語錄 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Jia shan Shanhui’s voice.",
+              "voiceLayer": "quoted-original",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Jia shan Shanhui",
+                "role": "utterer",
+                "subject": "Jia shan Shanhui",
+                "reviewedBy": "Codex Iriya lane C151-160 full-case author",
+                "reviewedUtc": "2026-07-19T04:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              },
+              "contextMasters": [
+                {
+                  "masterName": "Xueyan Zuqin",
+                  "roles": [
+                    "commentator",
+                    "later-raiser"
+                  ]
+                }
+              ],
+              "quotedOriginalOuterFrameReviewed": true
+            },
+            {
+              "caseIndex": 3,
+              "fromLb": "0043c17",
+              "toLb": "0043c19",
+              "kwic": "雲霞遮不得，個中猶道不如歸。復何歸？荷葉團團團似鏡，菱角尖尖尖似錐。上堂：三世諸佛，不知有恩無重報。狸",
+              "exactHeadwordClause": "荷葉團團團似鏡，菱角尖尖尖似錐",
+              "grammaticalProof": "In the complete 五燈全書(第34卷-第120卷) case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Sixin Wuxin’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Sixin Wuxin"
+              }
+            },
+            {
+              "caseIndex": 4,
+              "fromLb": "0056b24",
+              "toLb": "0056c02",
+              "kwic": "人到這裏，且作麼生辯圓覺？良久，曰：荷葉團團團似鏡，菱角尖尖尖似錐。以拂擊禪牀。上堂。古人道，山河石壁",
+              "exactHeadwordClause": "荷葉團團團似鏡，菱角尖尖尖似錐",
+              "grammaticalProof": "In the complete 五燈嚴統(第10卷-第25卷) case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Yunfeng Wenyue’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Yunfeng"
+              }
+            },
+            {
+              "caseIndex": 5,
+              "fromLb": "0411a23",
+              "toLb": "0411b01",
+              "kwic": "了知，於無了知不辨真實。徑山杲頌云：荷葉團團團似鏡，菱角尖尖尖似錐。風吹柳絮毛毬走，雨打梨花蛺蝶飛。師",
+              "exactHeadwordClause": "荷葉團團團似鏡，菱角尖尖尖似錐",
+              "grammaticalProof": "In the complete 指月錄 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Dahui Zonggao’s voice.",
+              "voiceLayer": "transmitted-verse",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Dahui Zonggao"
+              },
+              "explicitVerseAttribution": true
+            },
+            {
+              "caseIndex": 6,
+              "fromLb": "0701b09",
+              "toLb": "0701b12",
+              "kwic": "是出格句子？冬瓜夏放花。」小參。「『荷葉團團團似鏡，菱角尖尖尖似錐，風吹柳絮毛毬走，雨打梨花蛺蝶飛。』",
+              "exactHeadwordClause": "荷葉團團團似鏡，菱角尖尖尖似錐",
+              "grammaticalProof": "In the complete 三山來禪師語錄 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Jia shan Shanhui’s voice.",
+              "voiceLayer": "quoted-original",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Jia shan Shanhui",
+                "role": "utterer",
+                "subject": "Jia shan Shanhui",
+                "reviewedBy": "Codex Iriya lane C151-160 full-case author",
+                "reviewedUtc": "2026-07-19T04:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              },
+              "contextActors": [
+                {
+                  "type": "identified-unlinked-master",
+                  "label": "Sanshan Lai",
+                  "roles": [
+                    "commentator",
+                    "later-raiser"
+                  ],
+                  "grammaticalProof": "The outer case explicitly names Sanshan Lai in the surrounding encounter or appraisal frame."
+                }
+              ],
+              "attributionContext": "The complete outer frame explicitly identifies Sanshan Lai as the later raiser or appraiser of the quoted wording.",
+              "quotedOriginalOuterFrameReviewed": true
+            },
+            {
+              "caseIndex": 7,
+              "fromLb": "0565a20",
+              "toLb": "0565a22",
+              "kwic": "僧問夾山：『如何是相似句？』山云：『荷葉團團團似鏡，菱角尖尖尖似錐。』僧云：『學人不會。』山云：『風吹",
+              "exactHeadwordClause": "荷葉團團團似鏡，菱角尖尖尖似錐",
+              "grammaticalProof": "In the complete 奇然智禪師語錄 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Jia shan Shanhui’s voice.",
+              "voiceLayer": "quoted-original",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Jia shan Shanhui",
+                "role": "utterer",
+                "subject": "Jia shan Shanhui",
+                "reviewedBy": "Codex Iriya lane C151-160 full-case author",
+                "reviewedUtc": "2026-07-19T04:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              },
+              "contextActors": [
+                {
+                  "type": "identified-unlinked-master",
+                  "label": "Qiran Zhi",
+                  "roles": [
+                    "commentator",
+                    "later-raiser"
+                  ],
+                  "grammaticalProof": "The outer case explicitly names Qiran Zhi in the surrounding encounter or appraisal frame."
+                }
+              ],
+              "attributionContext": "The complete outer frame explicitly identifies Qiran Zhi as the later raiser or appraiser of the quoted wording.",
+              "quotedOriginalOuterFrameReviewed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t_813bab90a154",
+      "createdBy": "Codex Iriya lane C151-160 full-case author",
+      "writtenUtc": "2026-07-19T04:20:00Z",
+      "senses": [
+        {
+          "senseKey": null,
+          "masterName": null,
+          "preferredTarget": "to pour foul water straight over the head",
+          "alternateTargets": [],
+          "searchAliases": [
+            "to pour foul water straight over the head"
+          ],
+          "status": "preferred",
+          "validation": "multi-source",
+          "note": "The foul-water wording is an insult or adverse appraisal in these cases; it is not a sanitation description.",
+          "explanationParts": {
+            "corpusEarnedOpening": "The phrase is a hostile drenching with foul water: Donglin Changzong says the foreign monk poured it over Yangshan, while Buddha-birthday verses apply it to the infant Buddha’s washing.",
+            "evidenceBody": [
+              "The verb phrase specifies bad water, sudden direct impact, the head, and pouring; its targets range from interlocutors to the Buddha-bathing event."
+            ]
+          },
+          "relatedMasters": [],
+          "relatedTerms": [],
+          "draftEvidence": {
+            "OpeningClaimEvidenceKeys": [
+              "o1",
+              "o2",
+              "o3",
+              "o4",
+              "o5",
+              "o6",
+              "o7",
+              "o8"
+            ],
+            "ZenBend": "The phrase is a hostile drenching with foul water: Donglin Changzong says the foreign monk poured it over Yangshan, while Buddha-birthday verses apply it to the infant Buddha’s washing.",
+            "CounterexampleOrLimit": "The foul-water wording is an insult or adverse appraisal in these cases; it is not a sanitation description.",
+            "DifferentThingTest": {
+              "Decision": "one-thing",
+              "ComparedThings": [
+                "to pour foul water straight over the head",
+                "the work-distinct retained uses"
+              ],
+              "Reason": "The verb phrase specifies bad water, sudden direct impact, the head, and pouring; its targets range from interlocutors to the Buddha-bathing event."
+            },
+            "AliasRationale": "The lookup keeps foul water, abrupt head-on direction, the head, and pouring; “drenching” alone loses the hostile material and direction.",
+            "ModifierControls": [
+              {
+                "Term": "to pour foul water straight over the head",
+                "Finding": "The verb phrase specifies bad water, sudden direct impact, the head, and pouring; its targets range from interlocutors to the Buddha-bathing event."
+              }
+            ],
+            "FamilyControls": [
+              {
+                "Term": "shorter neighboring wording",
+                "Finding": "Other water pouring and other insults are excluded unless foul water is poured abruptly onto the head."
+              }
+            ]
+          },
+          "occurrences": [
+            {
+              "caseIndex": 0,
+              "fromLb": "0125b15",
+              "toLb": "0125b17",
+              "kwic": "目擊迦維路不遙。果是當時曾示現，宜乎惡水驀頭澆。上堂：熱月須搖扇，寒來旋著衣。若言",
+              "exactHeadwordClause": "惡水驀頭澆",
+              "grammaticalProof": "In the complete 五燈全書(第34卷-第120卷) case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Jiantang Xingji’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Jiantang Xingji",
+                "role": "utterer",
+                "subject": "Jiantang Xingji",
+                "reviewedBy": "Codex Iriya lane C151-160 full-case author",
+                "reviewedUtc": "2026-07-19T04:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 1,
+              "fromLb": "0065a12",
+              "toLb": "0065a14",
+              "kwic": "前通個消息師曰會取進云生下又如何師曰惡水驀頭澆士禮拜師曰珍重下座江行道中師筆記云開",
+              "exactHeadwordClause": "惡水驀頭澆",
+              "grammaticalProof": "In the complete 雪嶠信禪師語錄(第7卷-第10卷) case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Xuejiao Yuanxin’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Xuejiao Yuanxin",
+                "role": "utterer",
+                "subject": "Xuejiao Yuanxin",
+                "reviewedBy": "Codex Iriya lane C151-160 full-case author",
+                "reviewedUtc": "2026-07-19T04:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 2,
+              "fromLb": "0519a24",
+              "toLb": "0519b02",
+              "kwic": "小釋迦。東林總云：大小仰山被他將兩杓惡水驀頭澆了也。當時集雲峰下自有正令，何不施行",
+              "exactHeadwordClause": "惡水驀頭澆",
+              "grammaticalProof": "In the complete 宗鑑法林 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Donglin Changzong’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Donglin Changzong"
+              }
+            },
+            {
+              "caseIndex": 3,
+              "fromLb": "0033b24",
+              "toLb": "0033b25",
+              "kwic": "，各各嘴皮笑破。「若道為予祝壽，似將惡水驀頭澆；更云為彼慶生，猶屬外邊閒之遶。殊不",
+              "exactHeadwordClause": "惡水驀頭澆",
+              "grammaticalProof": "In the complete 百癡禪師語錄 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Baichi Xingyuan’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Baichi Xingyuan"
+              }
+            },
+            {
+              "caseIndex": 4,
+              "fromLb": "0573a30",
+              "toLb": "0573c01",
+              "kwic": "驚蛇，未免兜三惹四。還知落處麼？年年惡水驀頭澆，別有聲光動天地。」喝一喝。林我禪師",
+              "exactHeadwordClause": "惡水驀頭澆",
+              "grammaticalProof": "In the complete 林我禪師語錄 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Linwo Tongjian’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Linwo Tongjian",
+                "role": "utterer",
+                "subject": "Linwo Tongjian",
+                "reviewedBy": "Codex Iriya lane C151-160 full-case author",
+                "reviewedUtc": "2026-07-19T04:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 5,
+              "fromLb": "0140b09",
+              "toLb": "0140b11",
+              "kwic": "寺度僧。有何功德。磨云。無功德。早是惡水驀頭澆。若透得這箇無功德話。許爾親見達磨。",
+              "exactHeadwordClause": "惡水驀頭澆",
+              "grammaticalProof": "In the complete 佛果圜悟禪師碧巖錄 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Yuanwu Keqin’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Yuanwu Keqin"
+              }
+            },
+            {
+              "caseIndex": 6,
+              "fromLb": "0434c20",
+              "toLb": "0434c21",
+              "kwic": "目擊迦維路不遙，果是當時曾示現，宜乎惡水驀頭澆。上堂。道生一，無角鐵牛眠少室。一生",
+              "exactHeadwordClause": "惡水驀頭澆",
+              "grammaticalProof": "In the complete 續燈正統 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Jiantang Xingji’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Jiantang Xingji",
+                "role": "utterer",
+                "subject": "Jiantang Xingji",
+                "reviewedBy": "Codex Iriya lane C151-160 full-case author",
+                "reviewedUtc": "2026-07-19T04:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 7,
+              "fromLb": "0248a03",
+              "toLb": "0248a05",
+              "kwic": "目擊迦維路不遙。果是當時曾示現，宜乎惡水驀頭澆。上堂：熱月須搖扇，寒來旋著衣。若言",
+              "exactHeadwordClause": "惡水驀頭澆",
+              "grammaticalProof": "In the complete 五燈嚴統(第10卷-第25卷) case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Jiantang Xingji’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Jiantang Xingji",
+                "role": "utterer",
+                "subject": "Jiantang Xingji",
+                "reviewedBy": "Codex Iriya lane C151-160 full-case author",
+                "reviewedUtc": "2026-07-19T04:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t_9b9a2350f9b3",
+      "createdBy": "Codex Iriya lane C151-160 full-case author",
+      "writtenUtc": "2026-07-19T04:20:00Z",
+      "senses": [
+        {
+          "senseKey": null,
+          "masterName": null,
+          "preferredTarget": "the young horse tramples everyone under heaven to death",
+          "alternateTargets": [],
+          "searchAliases": [
+            "the young horse tramples everyone under heaven to death"
+          ],
+          "status": "preferred",
+          "validation": "multi-source",
+          "note": "“Young horse” is the traditional epithet invoked for Mazu in the retained Chan passages; the trampling remains appraisal language, not a death report.",
+          "explanationParts": {
+            "corpusEarnedOpening": "The “young horse” is Mazu: later appraisals and verses say he tramples everyone under heaven, sometimes linking the line to his “Zang’s head is white, Hai’s head is black” response or his shout.",
+            "evidenceBody": [
+              "The horse-colt epithet and trampling predicate recur together in verse and appraisal; the surrounding cases identify Mazu rather than an unnamed literal animal."
+            ]
+          },
+          "relatedMasters": [],
+          "relatedTerms": [],
+          "draftEvidence": {
+            "OpeningClaimEvidenceKeys": [
+              "o1",
+              "o2",
+              "o3",
+              "o4",
+              "o5",
+              "o6",
+              "o7",
+              "o8"
+            ],
+            "ZenBend": "The “young horse” is Mazu: later appraisals and verses say he tramples everyone under heaven, sometimes linking the line to his “Zang’s head is white, Hai’s head is black” response or his shout.",
+            "CounterexampleOrLimit": "“Young horse” is the traditional epithet invoked for Mazu in the retained Chan passages; the trampling remains appraisal language, not a death report.",
+            "DifferentThingTest": {
+              "Decision": "one-thing",
+              "ComparedThings": [
+                "the young horse tramples everyone under heaven to death",
+                "the work-distinct retained uses"
+              ],
+              "Reason": "The horse-colt epithet and trampling predicate recur together in verse and appraisal; the surrounding cases identify Mazu rather than an unnamed literal animal."
+            },
+            "AliasRationale": "The lookup identifies the colt, the fatal trampling predicate, and its world-wide object; “Mazu prevails” would erase the recorded animal image.",
+            "ModifierControls": [
+              {
+                "Term": "the young horse tramples everyone under heaven to death",
+                "Finding": "The horse-colt epithet and trampling predicate recur together in verse and appraisal; the surrounding cases identify Mazu rather than an unnamed literal animal."
+              }
+            ],
+            "FamilyControls": [
+              {
+                "Term": "shorter neighboring wording",
+                "Finding": "Other horse and trampling lines are excluded unless the colt tramples all people under heaven."
+              }
+            ]
+          },
+          "occurrences": [
+            {
+              "caseIndex": 0,
+              "fromLb": "0023a04",
+              "toLb": "0023a05",
+              "kwic": "非，智藏、海兄都不知。會麼？不見道：馬駒踏殺天下人。五祖演云：馬大師無著慚惶處，只道得",
+              "exactHeadwordClause": "馬駒踏殺天下人",
+              "grammaticalProof": "In the complete 禪林類聚 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Weishan Zhe’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Weishan Zhe",
+                "role": "utterer",
+                "subject": "Weishan Zhe",
+                "reviewedBy": "Codex Iriya lane C151-160 full-case author",
+                "reviewedUtc": "2026-07-19T04:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 1,
+              "fromLb": "0201b05",
+              "toLb": "0201b08",
+              "kwic": "雪竇頌云。藏頭白海頭黑明眼衲僧會不得馬駒踏殺天下人臨濟未是白拈賊離四句絕百非天上人間唯",
+              "exactHeadwordClause": "馬駒踏殺天下人",
+              "grammaticalProof": "In the complete 佛果圜悟禪師碧巖錄 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Xuedou Chongxian’s voice.",
+              "voiceLayer": "transmitted-verse",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Xuedou Chongxian"
+              },
+              "explicitVerseAttribution": true
+            },
+            {
+              "caseIndex": 2,
+              "fromLb": "0608b15",
+              "toLb": "0608b18",
+              "kwic": "成塗轍。畫餅不可充饑，喫鹽那能止渴？馬駒踏殺天下人，未是當時這一喝。舉：道吾至一家吊慰",
+              "exactHeadwordClause": "馬駒踏殺天下人",
+              "grammaticalProof": "In the complete 楚石梵琦禪師語錄 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Chushi Fanqi’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Chushi Fanqi"
+              }
+            },
+            {
+              "caseIndex": 3,
+              "fromLb": "0562b03",
+              "toLb": "0562b07",
+              "kwic": "離四句絕百非智藏海兄都不知會麼不見道馬駒踏殺天下人。續五祖演云馬大師無著慙惶處只道得箇",
+              "exactHeadwordClause": "馬駒踏殺天下人",
+              "grammaticalProof": "In the complete 宗門統要正續集(第1卷-第12卷) case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Weishan Zhe’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Weishan Zhe",
+                "role": "utterer",
+                "subject": "Weishan Zhe",
+                "reviewedBy": "Codex Iriya lane C151-160 full-case author",
+                "reviewedUtc": "2026-07-19T04:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 4,
+              "fromLb": "0599a27",
+              "toLb": "0599a28",
+              "kwic": "，迥脫古今，妙用無私，超絕凡聖，所以馬駒踏殺天下人，獨有歸宗較些子。且道歸宗有甚麼長處",
+              "exactHeadwordClause": "馬駒踏殺天下人",
+              "grammaticalProof": "In the complete 天界覺浪盛禪師全錄 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Juelang Daosheng’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Juelang Daosheng"
+              }
+            },
+            {
+              "caseIndex": 5,
+              "fromLb": "0736a03",
+              "toLb": "0736a05",
+              "kwic": "拂袖便行，掉棒打月。一即三，三即一，馬駒踏殺天下人，兔子何曹離得窟？上堂。山前一片閑田",
+              "exactHeadwordClause": "馬駒踏殺天下人",
+              "grammaticalProof": "In the complete 偃溪廣聞禪師語錄 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Yanxi Guangwen’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Yanxi Guangwen"
+              }
+            },
+            {
+              "caseIndex": 6,
+              "fromLb": "0116a21",
+              "toLb": "0116a23",
+              "kwic": "師方便。師喝云：退後！退後！師乃云：馬駒踏殺天下人，江北江南知音者少；瞎驢滅却正法眼，",
+              "exactHeadwordClause": "馬駒踏殺天下人",
+              "grammaticalProof": "In the complete 月江正印禪師語錄 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Yuejiang Zhengyin’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Yuejiang Zhengyin"
+              }
+            },
+            {
+              "caseIndex": 7,
+              "fromLb": "0395a20",
+              "toLb": "0395a22",
+              "kwic": "渠面目；尋扭住作聲時，全無巴鼻。誰云馬駒踏殺天下人？出得這一箇，得恁衰氣，元來不直半分",
+              "exactHeadwordClause": "馬駒踏殺天下人",
+              "grammaticalProof": "In the complete 羅湖野錄 case, the local 曰/云, quotation, verse, or continuous sermon boundary places the headword-bearing clause in Baizhang Zhen’s voice.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and its local speech markers were read before assigning this voice.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Baizhang Zhen",
+                "role": "utterer",
+                "subject": "Baizhang Zhen",
+                "reviewedBy": "Codex Iriya lane C151-160 full-case author",
+                "reviewedUtc": "2026-07-19T04:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

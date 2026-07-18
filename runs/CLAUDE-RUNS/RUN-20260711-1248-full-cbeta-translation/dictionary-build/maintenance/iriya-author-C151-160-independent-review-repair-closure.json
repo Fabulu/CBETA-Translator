@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "iriya-independent-review-repair-closure-v1",
+  "lane": "C151-160",
+  "status": "review-deltas-applied-awaiting-independent-changed-coordinate-rereview",
+  "triggerReview": {"path": "maintenance/iriya-C151-160-independent-fullcase-review.json", "sha256": "619c0d858cb0ccb593b0afea66c867b26ca81964dd69500e0cafe64360a714ec"},
+  "affectedPositions": [151, 152, 157, 158],
+  "repairs": {
+    "C151": "Jiashan Shanhui is Chuanzi Decheng's interlocutor/addressee in cases 2, 3, 4, 5, and 7; Pinjixiang remains the later raiser in case 6.",
+    "C152": "Restored Chaozong Tongren's case-2 appraisal and the unnamed monk's case-3 live performance; case 6 remains omitted.",
+    "C157": "Restored Xuzhou Pudu's Baoshou appraisal in case 0; ordinary occupational case 5 remains omitted.",
+    "C158": "Cases 1, 2, 6, and 7 now assign the anchored quoted answer to Jiashan Shanhui and preserve each later speaker as outer commentator/raiser."
+  },
+  "finalOccurrenceCount": 78,
+  "entryBindings": [
+    {"position":151,"id":"t_8198ceea288d","sha256":"4d848670de8d5c6b824f957490ff4b124bc79fc95cc17dc28ed4ab16c8211672"},
+    {"position":152,"id":"t_a371c03665d4","sha256":"758ce30196be1d586515f94a827cafc1d5734eb1542bc469f634f45d0bd5b471"},
+    {"position":157,"id":"t_9291c7cdc7c6","sha256":"a150af55f06b0482a6e5f7dddb988912bd1f382deea04f6cefb8855ec32bc842"},
+    {"position":158,"id":"t_fb84c96fd94c","sha256":"079e7c1d083aa3b9fe8e608261502bc92368f5d7a57479e209664f1594c8e85f"}
+  ],
+  "gates": {
+    "strictAttribution": {"hardFailures":0,"sha256":"ae89d338f66e6d67401742bc731960394f6c266243370da127ef8036952063a9"},
+    "workSource": {"hardFailures":0,"sha256":"486c51c341cf8b3cb1bba3575653586ff5b8b56a075f73f237d81c3f73352e04"},
+    "semanticTemplates": {"failureCount":0,"sha256":"b63b8ab36fd53e087dea82a0db287bc6fd110c52dccaba2ad0f5ea629febda32"},
+    "depthSense": {"hardFailed":0,"reviewFlagged":0,"sha256":"75af8c6e240c6fb2d4a361ada99f0aea1cf22fd93942cc129045855bd4aef380"},
+    "preReview": {"passing":10,"flagged":0,"exactOccurrences":78,"exactFailures":0,"sha256":"35e14d4c300983667e5032e13c677da59fb6e63b7ca56559dc34b8a11d78a508"},
+    "fullCohort": {"hardPass":true,"exactOccurrences":78,"exactFailures":0,"sha256":"3a1758c9b0912143545aca8f2672c8b71d88354bdca6f93869a7946a4339b2bd","attributionPacketsSha256":"c766dc926ee49eecbf4b6397c07b7f4a07eefaf983fd820c8752f1b1fc664424"}
+  },
+  "installationPerformed": false,
+  "mergePerformed": false,
+  "rosterModified": false,
+  "selfReviewPerformed": false
+}

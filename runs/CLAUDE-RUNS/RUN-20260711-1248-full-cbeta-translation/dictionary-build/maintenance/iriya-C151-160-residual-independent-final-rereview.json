@@ -1,0 +1,118 @@
+{
+  "schemaVersion": "iriya-independent-changed-coordinate-final-rereview-v1",
+  "lane": "C151-160",
+  "status": "final-hard-pass",
+  "readOnlyReview": true,
+  "priorRereview": {
+    "path": "maintenance/iriya-C151-160-repair-independent-changed-coordinate-rereview.json",
+    "sha256": "32547182dfc2b8d6c5ba452c1fbea2d9fcfd5c619963575b45e6a3ade335f7c5",
+    "hashMatches": true
+  },
+  "repairClosure": {
+    "path": "maintenance/iriya-author-C151-160-residual-repair-closure.json",
+    "sha256": "7b0c3ee95a78eaea9f848c585dc582735e2aec4f6cb4c8a6da723cb22f0a9ba8",
+    "hashMatches": true
+  },
+  "scopeRead": {
+    "positions": [151, 152],
+    "C151CaseIndices": [2, 3, 4, 5, 7],
+    "C152CaseIndices": [3],
+    "completeCasesReread": true,
+    "structuredActorFieldsAndReaderProseReread": true
+  },
+  "coordinateReview": [
+    {
+      "position": 151,
+      "id": "t_8198ceea288d",
+      "entrySha256": "5d21588a87d518702d2442f32eff050c1d638692f12e7884e5af97c2ece90968",
+      "caseIndices": [2, 3, 4, 5, 7],
+      "finding": "Chuanzi Decheng remains the exact utterer of the headword-bearing question. Each complete encounter directly addresses Jiashan Shanhui, and all five ContextActors now use interlocutor/addressee with GrammarEvidence that explicitly describes him receiving Chuanzi's question. Each AttributionNote independently says the same thing and no longer calls Jiashan a later raiser or appraiser.",
+      "hardPass": true
+    },
+    {
+      "position": 152,
+      "id": "t_a371c03665d4",
+      "entrySha256": "b89cc5fd2409c42de5d30684128e0cbee672bfb71f43a1046f37ef46ca5fbb9d",
+      "caseIndices": [3],
+      "finding": "The complete live exchange has Qiran Zhi answer '前三三，後三三', after which the unnamed questioning monk clicks his teeth three times and speaks. MasterName remains null and ActorAttribution correctly preserves that unnamed monk as exact headword actor. Qiran is now respondent/interlocutor in ContextActors, and both GrammarEvidence and AttributionNote call him the responding presiding master rather than a later raiser.",
+      "hardPass": true
+    }
+  ],
+  "artifactBinding": {
+    "changedEntryHashesMatchRepairClosure": true,
+    "worksheetEntrySiblingParity": true,
+    "renderReceipt": {
+      "path": "maintenance/iriya-author-C151-C152-residual-repair-render-receipt-v2.json",
+      "sha256": "35738a9f5fb1e983e6675ab7423d87a7e5659ef958d95d37d6549dda88403a13",
+      "hardPass": true
+    },
+    "decisions": {
+      "path": "maintenance/iriya-author-C151-C152-residual-repair-decisions.json",
+      "sha256": "ddb8c171f63058d387c2003bfc2918088586855e160536143df4f97b1c545ea7"
+    },
+    "workLedgerBindingNote": "The current WORK.md hashes postdate the emitter receipt's initial output hashes; the final depth and full-cohort gates were regenerated over the current artifacts and bind the resulting cohort state.",
+    "hardPass": true
+  },
+  "collateralAudit": {
+    "positionsChecked": [153, 154, 155, 156, 157, 158, 159, 160],
+    "allEntryHashesMatchPriorBoundReviews": true,
+    "currentOccurrenceCount": 78,
+    "collateralFailures": [],
+    "hardPass": true
+  },
+  "gateAudit": {
+    "strictAttribution": {
+      "path": "maintenance/iriya-author-C151-160-residual-attribution.json",
+      "sha256": "ae89d338f66e6d67401742bc731960394f6c266243370da127ef8036952063a9",
+      "hardFailures": 0
+    },
+    "workSource": {
+      "path": "maintenance/iriya-author-C151-160-residual-work-source.json",
+      "sha256": "486c51c341cf8b3cb1bba3575653586ff5b8b56a075f73f237d81c3f73352e04",
+      "hardFailures": 0
+    },
+    "semanticTemplates": {
+      "path": "maintenance/iriya-author-C151-160-residual-templates.json",
+      "sha256": "b63b8ab36fd53e087dea82a0db287bc6fd110c52dccaba2ad0f5ea629febda32",
+      "failureCount": 0
+    },
+    "depthSense": {
+      "path": "maintenance/iriya-author-C151-160-residual-depth.json",
+      "sha256": "24e509d22c99b4b180947bb83dcb09e0f087480cc020871a30db917c0ff4b875",
+      "hardFailed": 0,
+      "reviewFlagged": 0
+    },
+    "preReview": {
+      "path": "maintenance/iriya-author-C151-160-residual-pre-review.json",
+      "sha256": "8f7006075558125051295a22b504d37a57ddad1f0f9322dc6346316478ac10b7",
+      "hardPass": true,
+      "exactOccurrences": 78,
+      "exactFailures": 0
+    },
+    "fullCohort": {
+      "path": "maintenance/iriya-author-C151-160-residual-full-gate.json",
+      "sha256": "eaf16221ac4327b8cf5626a561181e7cf816208d99c9a79843f06ea9865b3995",
+      "hardPass": true,
+      "exactOccurrences": 78,
+      "exactFailures": 0
+    },
+    "attributionPackets": {
+      "path": "maintenance/iriya-author-C151-160-residual-full-gate-attribution-packets.json",
+      "sha256": "c766dc926ee49eecbf4b6397c07b7f4a07eefaf983fd820c8752f1b1fc664424",
+      "hardPass": true
+    },
+    "hardPass": true
+  },
+  "confirmedClosedResidualGroups": [
+    "C151 cases 2, 3, 4, 5, and 7: Jiashan interlocutor/addressee wording",
+    "C152 case 3: unnamed monk exact actor and Qiran respondent/interlocutor wording"
+  ],
+  "residuals": [],
+  "residualCount": 0,
+  "hardPass": true,
+  "disposition": "SEMANTICALLY_CLOSED_FOR_RELEASE_AUTHORIZATION",
+  "installationPerformed": false,
+  "mergePerformed": false,
+  "rosterModified": false,
+  "entryEditsPerformed": false
+}

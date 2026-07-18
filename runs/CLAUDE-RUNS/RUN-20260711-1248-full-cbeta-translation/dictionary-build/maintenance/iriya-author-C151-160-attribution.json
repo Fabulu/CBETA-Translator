@@ -1,0 +1,61 @@
+{
+  "counts": {
+    "entries": 10,
+    "senses": 10,
+    "occurrences": 79,
+    "actor_identified_unlinked_master": 22,
+    "attribution_notes": 79,
+    "named_occurrences": 48,
+    "context_master_links": 55,
+    "actor_narrated": 2,
+    "vague_attributor": 1,
+    "supporting_occurrences": 24,
+    "governed_variant_occurrences": 24,
+    "context_actor_identities": 9,
+    "action_performer_in_utterer_field": 2,
+    "action_performer_context_missing": 2,
+    "actor_reviewed_unnamed": 7,
+    "reviewed_unnamed_label_not_explicit": 1,
+    "explicit_master_turn_left_anonymous": 1,
+    "chinese_strings": 1,
+    "anchored_chinese": 1
+  },
+  "hardFailures": 7,
+  "failures": [
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_813bab90a154/entry.v2.json",
+      "detail": "惡水驀頭澆 s1: 'a speaker'"
+    },
+    {
+      "kind": "action_performer_in_utterer_field",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_9291c7cdc7c6/entry.v2.json",
+      "detail": "百發百中 s1 o1: ['師拈']; MasterName is utterer-only, so represent the narrated performer in ContextMasters"
+    },
+    {
+      "kind": "action_performer_context_missing",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_9291c7cdc7c6/entry.v2.json",
+      "detail": "百發百中 s1 o1: explicit master action requires the named performer as person-described or case-figure; finer action detail belongs in GrammarEvidence"
+    },
+    {
+      "kind": "action_performer_in_utterer_field",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_a371c03665d4/entry.v2.json",
+      "detail": "扣齒三下 s1 o3: ['師舉']; MasterName is utterer-only, so represent the narrated performer in ContextMasters"
+    },
+    {
+      "kind": "action_performer_context_missing",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_a371c03665d4/entry.v2.json",
+      "detail": "扣齒三下 s1 o3: explicit master action requires the named performer as person-described or case-figure; finer action detail belongs in GrammarEvidence"
+    },
+    {
+      "kind": "reviewed_unnamed_label_not_explicit",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_a371c03665d4/entry.v2.json",
+      "detail": "扣齒三下 s1 o4: reviewed-unnamed ActorLabel must explicitly say unnamed"
+    },
+    {
+      "kind": "explicit_master_turn_left_anonymous",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_a371c03665d4/entry.v2.json",
+      "detail": "扣齒三下 s1 o7: ['師云']; read the complete case and name the exact master"
+    }
+  ]
+}

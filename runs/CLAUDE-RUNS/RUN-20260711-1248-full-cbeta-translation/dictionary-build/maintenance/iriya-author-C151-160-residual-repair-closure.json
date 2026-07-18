@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "iriya-residual-repair-closure-v1",
+  "lane": "C151-160",
+  "status": "two-residual-groups-applied-awaiting-independent-final-rereview",
+  "triggerRereview": {"path": "maintenance/iriya-C151-160-repair-independent-changed-coordinate-rereview.json", "sha256": "32547182dfc2b8d6c5ba452c1fbea2d9fcfd5c619963575b45e6a3ade335f7c5"},
+  "affectedPositions": [151, 152],
+  "repairs": {
+    "C151": "Cases 2, 3, 4, 5, and 7 now describe Jiashan Shanhui as Chuanzi Decheng's directly addressed interlocutor/addressee in ContextActors GrammarEvidence and AttributionNote; Chuanzi remains exact utterer.",
+    "C152": "Case 3 retains the unnamed questioning monk as exact actor and now describes Qiran Zhi as respondent/interlocutor and responding presiding master in structured and prose fields."
+  },
+  "decisions": {"path":"maintenance/iriya-author-C151-C152-residual-repair-decisions.json","sha256":"ddb8c171f63058d387c2003bfc2918088586855e160536143df4f97b1c545ea7"},
+  "renderReceipt": {"path":"maintenance/iriya-author-C151-C152-residual-repair-render-receipt-v2.json","sha256":"35738a9f5fb1e983e6675ab7423d87a7e5659ef958d95d37d6549dda88403a13"},
+  "entryBindings": [
+    {"position":151,"id":"t_8198ceea288d","sha256":"5d21588a87d518702d2442f32eff050c1d638692f12e7884e5af97c2ece90968"},
+    {"position":152,"id":"t_a371c03665d4","sha256":"b89cc5fd2409c42de5d30684128e0cbee672bfb71f43a1046f37ef46ca5fbb9d"}
+  ],
+  "finalOccurrenceCount": 78,
+  "gates": {
+    "strictAttribution": {"hardFailures":0,"sha256":"ae89d338f66e6d67401742bc731960394f6c266243370da127ef8036952063a9"},
+    "workSource": {"hardFailures":0,"sha256":"486c51c341cf8b3cb1bba3575653586ff5b8b56a075f73f237d81c3f73352e04"},
+    "semanticTemplates": {"failureCount":0,"sha256":"b63b8ab36fd53e087dea82a0db287bc6fd110c52dccaba2ad0f5ea629febda32"},
+    "depthSense": {"hardFailed":0,"reviewFlagged":0,"sha256":"24e509d22c99b4b180947bb83dcb09e0f087480cc020871a30db917c0ff4b875"},
+    "preReview": {"passing":10,"flagged":0,"exactOccurrences":78,"exactFailures":0,"sha256":"8f7006075558125051295a22b504d37a57ddad1f0f9322dc6346316478ac10b7"},
+    "fullCohort": {"hardPass":true,"exactOccurrences":78,"exactFailures":0,"sha256":"eaf16221ac4327b8cf5626a561181e7cf816208d99c9a79843f06ea9865b3995","attributionPacketsSha256":"c766dc926ee49eecbf4b6397c07b7f4a07eefaf983fd820c8752f1b1fc664424"}
+  },
+  "installationPerformed": false,
+  "mergePerformed": false,
+  "rosterModified": false,
+  "selfReviewPerformed": false
+}

@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "iriya-author-from-packet-receipt-log-v1",
+  "runs": [
+    {
+      "schemaVersion": "iriya-author-from-packet-receipt-v1",
+      "hardPass": true,
+      "packet": "maintenance/iriya-author-packet-C061-160-v1.json",
+      "packetSha256": "e78f03edbd59d3ef2572e340affc495d655a9e1d9e13bdc493b8ecf084c03597",
+      "decisions": "maintenance/iriya-author-C151-C152-residual-repair-decisions.json",
+      "decisionsSha256": "ddb8c171f63058d387c2003bfc2918088586855e160536143df4f97b1c545ea7",
+      "dryRun": false,
+      "entryCount": 2,
+      "elapsedSeconds": 0.189614,
+      "secondsPerEntry": 0.094807,
+      "outputs": [
+        {
+          "id": "t_8198ceea288d",
+          "worksheetSha256": "5c638e06d3b2fdbd66221fa150655eca359295b7ae781619728d4233e56e37a5",
+          "entrySha256": "5d21588a87d518702d2442f32eff050c1d638692f12e7884e5af97c2ece90968",
+          "workSha256": "6bf7832ee095fcb91f50176813cb4bf5e47a3a5fde81a9cb82035f9f8924f752",
+          "siblingEntryParity": true
+        },
+        {
+          "id": "t_a371c03665d4",
+          "worksheetSha256": "1638214f405a0af7ef40ddbe1b83503c2c9b8e08ec1b106e010cd89b62ce1de0",
+          "entrySha256": "b89cc5fd2409c42de5d30684128e0cbee672bfb71f43a1046f37ef46ca5fbb9d",
+          "workSha256": "7b340da2428e9fe2a0943c80ed1e88a91556c5e1f6aa78d3516b08f7602a3f2e",
+          "siblingEntryParity": true
+        }
+      ]
+    }
+  ]
+}

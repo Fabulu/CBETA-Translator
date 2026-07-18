@@ -1,0 +1,133 @@
+{
+  "schemaVersion": "iriya-independent-changed-coordinate-rereview-v1",
+  "lane": "C151-160",
+  "status": "residual-repair-required",
+  "readOnlyReview": true,
+  "triggerReview": {
+    "path": "maintenance/iriya-C151-160-independent-fullcase-review.json",
+    "sha256": "619c0d858cb0ccb593b0afea66c867b26ca81964dd69500e0cafe64360a714ec"
+  },
+  "repairClosure": {
+    "path": "maintenance/iriya-author-C151-160-independent-review-repair-closure.json",
+    "sha256": "072f09a46dcaa025e28e670c26b18cb362a90e5f58da261e60c2661475bb7355",
+    "hashMatches": true
+  },
+  "scopeRead": {
+    "changedPositions": [151, 152, 157, 158],
+    "changedCasesReadInFullContext": {
+      "C151": [2, 3, 4, 5, 6, 7],
+      "C152": [2, 3, 6],
+      "C157": [0, 5],
+      "C158": [1, 2, 6, 7]
+    },
+    "actorEvidenceAdditionsAndOmissionsReviewed": true,
+    "entryMeaningAndProseReviewed": true
+  },
+  "artifactAndCollateralAudit": {
+    "changedEntryBindingsMatchClosure": true,
+    "unchangedC153ToC156AndC159ToC160HashesMatchOriginalReview": true,
+    "currentCohortOccurrenceCount": 78,
+    "worksheetEntryRoundtripClaimedHardPassByBoundFullGate": true,
+    "lineageRosterModified": false,
+    "failures": []
+  },
+  "gateBindingAudit": {
+    "strictAttribution": {
+      "path": "maintenance/iriya-author-C151-160-review-repair-attribution-v2.json",
+      "sha256": "ae89d338f66e6d67401742bc731960394f6c266243370da127ef8036952063a9",
+      "hashMatches": true,
+      "hardFailures": 0
+    },
+    "workSource": {
+      "path": "maintenance/iriya-author-C151-160-review-repair-work-source-v2.json",
+      "sha256": "486c51c341cf8b3cb1bba3575653586ff5b8b56a075f73f237d81c3f73352e04",
+      "hashMatches": true,
+      "hardFailures": 0
+    },
+    "semanticTemplates": {
+      "path": "maintenance/iriya-author-C151-160-review-repair-templates-v2.json",
+      "sha256": "b63b8ab36fd53e087dea82a0db287bc6fd110c52dccaba2ad0f5ea629febda32",
+      "hashMatches": true,
+      "failureCount": 0
+    },
+    "depthSense": {
+      "path": "maintenance/iriya-author-C151-160-review-repair-depth-v2.json",
+      "sha256": "75af8c6e240c6fb2d4a361ada99f0aea1cf22fd93942cc129045855bd4aef380",
+      "hashMatches": true,
+      "hardFailed": 0,
+      "reviewFlagged": 0
+    },
+    "preReview": {
+      "path": "maintenance/iriya-author-C151-160-review-repair-pre-review-v2.json",
+      "sha256": "35e14d4c300983667e5032e13c677da59fb6e63b7ca56559dc34b8a11d78a508",
+      "hashMatches": true,
+      "exactOccurrences": 78,
+      "exactFailures": 0
+    },
+    "fullCohort": {
+      "path": "maintenance/iriya-author-C151-160-review-repair-full-gate.json",
+      "sha256": "3a1758c9b0912143545aca8f2672c8b71d88354bdca6f93869a7946a4339b2bd",
+      "hashMatches": true,
+      "hardPass": true,
+      "exactOccurrences": 78,
+      "exactFailures": 0
+    },
+    "attributionPackets": {
+      "path": "maintenance/iriya-author-C151-160-review-repair-full-gate-attribution-packets.json",
+      "sha256": "c766dc926ee49eecbf4b6397c07b7f4a07eefaf983fd820c8752f1b1fc664424",
+      "hashMatches": true
+    },
+    "mechanicalConclusion": "All repair-closure gate artifacts remain hash-bound and mechanically green. The two residuals below require full-case semantic reading and are not disproved by those gates."
+  },
+  "closedCoordinates": [
+    {
+      "position": 152,
+      "id": "t_a371c03665d4",
+      "caseIndex": 2,
+      "finding": "Chaozong Tongren himself speaks the restored hall-sermon appraisal; the exact actor and headword span are correct."
+    },
+    {
+      "position": 157,
+      "id": "t_9291c7cdc7c6",
+      "caseIndex": 0,
+      "finding": "Xuzhou Pudu speaks the restored Baoshou appraisal. The exact actor, source, and distinct Chan deployment are correct; ordinary occupational case 5 remains correctly omitted."
+    },
+    {
+      "position": 158,
+      "id": "t_fb84c96fd94c",
+      "caseIndices": [1, 2, 6, 7],
+      "finding": "Each persisted span is the quoted Jiashan Shanhui answer. Huanglong Huinan, Xueyan Zuqin, Sanshan Lai, and Qiran Zhi remain separately represented in their outer commentator/later-raiser frames. The fact that cases 6 and 7 later repeat the wording does not change the utterer of the selected first quoted span."
+    },
+    {
+      "position": 152,
+      "id": "t_a371c03665d4",
+      "caseIndex": 6,
+      "finding": "The omitted Tianyin Xiu passage is another extended retelling/appraisal of the Dadian encounter; its omission does not remove the restored live enacted deployment."
+    }
+  ],
+  "residuals": [
+    {
+      "position": 151,
+      "id": "t_8198ceea288d",
+      "kind": "attribution-note-contradicts-repaired-context-role",
+      "caseIndices": [2, 3, 4, 5, 7],
+      "currentFinding": "The structured ContextActors now correctly give Jia shan Shanhui the roles interlocutor and addressee, but every corresponding AttributionNote still says that the complete outer frame identifies him as the later raiser or appraiser. In these complete cases he is Chuanzi Decheng's directly addressed interlocutor, not a later raiser.",
+      "requiredCorrection": "Rewrite the five AttributionNotes to name Jia shan Shanhui as Chuanzi Decheng's interlocutor/addressee. Preserve Chuanzi as exact utterer. Preserve case 6 separately with Pinjixiang as later raiser/appraiser. Also make the ContextActors GrammarEvidence say encounter/interlocutor rather than the generic 'encounter or appraisal frame' so the repaired role is unambiguous."
+    },
+    {
+      "position": 152,
+      "id": "t_a371c03665d4",
+      "kind": "restored-live-exchange-wrong-context-role",
+      "caseIndices": [3],
+      "currentFinding": "The restored J/J36/J36nB356.xml span correctly assigns the performed headword to the unnamed questioning monk: after Qiran Zhi answers '前三三，後三三', the monk clicks his teeth three times and speaks. But Qiran is stored as later-raiser and the AttributionNote calls him a later raiser or appraiser. He is the named respondent/interlocutor in this same live exchange.",
+      "requiredCorrection": "Keep MasterName null and retain the reviewed-unnamed questioning monk as exact headword actor. Change Qiran Zhi's ContextActors role to respondent (interlocutor is also supportable if retained alongside it), and rewrite the AttributionNote and GrammarEvidence to identify him as the responding presiding master in the live exchange, not as a later raiser/appraiser."
+    }
+  ],
+  "residualCount": 2,
+  "hardPass": false,
+  "disposition": "REPAIR_TWO_ATTRIBUTION_COORDINATES_AND_REREAD",
+  "installationPerformed": false,
+  "mergePerformed": false,
+  "rosterModified": false,
+  "entryEditsPerformed": false
+}

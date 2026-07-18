@@ -1,0 +1,94 @@
+{
+  "schemaVersion": "iriya-independent-fullcase-review-v1",
+  "lane": "C151-160",
+  "status": "semantic-delta-required",
+  "readOnlyReview": true,
+  "boundAuthorClosure": {
+    "path": "maintenance/iriya-author-C151-160-closure-receipt.json",
+    "sha256": "40f55f95e2fd89987dc17639aa2e4327a1bf3bfa0e536bf57c436a8193a472e1"
+  },
+  "boundInputs": {
+    "authoritativePacket": {
+      "path": "maintenance/iriya-author-packet-C061-160-v1.json",
+      "sha256": "e78f03edbd59d3ef2572e340affc495d655a9e1d9e13bdc493b8ecf084c03597"
+    },
+    "compactDecisions": {
+      "path": "maintenance/iriya-author-C151-160-decisions.json",
+      "sha256": "7d4c1ba6dbe7a36157c1bd5bcd69e391b7749c59f307ac3df6d8967690c7158c"
+    },
+    "frozenCorpusBaselineSha256": "42d32a7f28fd711cc6ea51a9376c366cc7815b880b864513e1c4f56f970303ed"
+  },
+  "scopeRead": {
+    "positions": [151, 152, 153, 154, 155, 156, 157, 158, 159, 160],
+    "persistedOccurrencesReadInCompleteCases": 75,
+    "candidateCasesRead": 80,
+    "omittedCandidateCasesRead": 5,
+    "entriesReadForMeaningAndProse": 10,
+    "specialC156SpokenClausesRead": 7
+  },
+  "entryArtifactBindings": [
+    {"position": 151, "id": "t_8198ceea288d", "sha256": "d184ea5791ca564f59574116108cfb22e7194b7587366359b7a082210b8796d6"},
+    {"position": 152, "id": "t_a371c03665d4", "sha256": "1abac8dfed5f0f613840318d9d72957f3b634f0a755bb44cc3d3bdae098c5b58"},
+    {"position": 153, "id": "t_73845f8ff8c7", "sha256": "bb4e83e04d2fef481d6fbd94cfbfa69ebc8fd8d42489cc5eecaaa8cd78fac67d"},
+    {"position": 154, "id": "t_3e28049caf6d", "sha256": "fdb52247a6b2cdd660f7d865831d6cf52bc503ee1aed590cb5abeaf4b840f42f"},
+    {"position": 155, "id": "t_c22c78090fce", "sha256": "bf0c79a7f3e03e03b3619e37b7e87e82925afa4174a17b76854e28ea23ecd6a8"},
+    {"position": 156, "id": "t_d83895e85129", "sha256": "18cb2f0a01b67132bdf528f8eb7fe4bcc195609c4aa32d847221924ec49a0505"},
+    {"position": 157, "id": "t_9291c7cdc7c6", "sha256": "e15e705cdd16f965810cfec929b05ebfc921d4fd5299eb78feb5de73a731d9de"},
+    {"position": 158, "id": "t_fb84c96fd94c", "sha256": "025086542407d70013f9c2fd817e4e83b35a2e48854c4f38e03f5e61af7e6fc5"},
+    {"position": 159, "id": "t_813bab90a154", "sha256": "f76b17cb2027f8fdf97d6bbbc85a3d7c774b471bc3237286b8299d0625bfd53f"},
+    {"position": 160, "id": "t_9b9a2350f9b3", "sha256": "71acdafc1bf25a966c4da3d20073c5002ae436808ec300942cf27d589109b812"}
+  ],
+  "repairDelta": [
+    {
+      "position": 151,
+      "id": "t_8198ceea288d",
+      "kind": "context-role",
+      "caseIndices": [2, 3, 4, 5, 7],
+      "currentDefect": "Jiashan Shanhui is labelled later-raiser in transmissions of his encounter with Chuanzi.",
+      "requiredCorrection": "Keep Chuanzi Decheng as exact utterer, but change Jiashan's context role to interlocutor/addressee. These complete cases narrate Jiashan receiving and answering Chuanzi's words; Jiashan is not the later raiser. Case 6 is different and correctly keeps Pinjixiang as later raiser/appraiser."
+    },
+    {
+      "position": 152,
+      "id": "t_a371c03665d4",
+      "kind": "unique-deployment-underharvest",
+      "caseIndices": [2, 3],
+      "currentDefect": "Two work-distinct Chan deployments were omitted while five retellings of the original Dadian case were retained.",
+      "requiredCorrection": "Add case 2 (Chaizong Tongren explicitly appraises the three clicks in a hall sermon) and case 3 (a monk performs the three clicks in a new live exchange and the presiding master answers him). Actor-check the exact selected spans. Case 6 may remain omitted as another retelling of the original Dadian encounter.",
+      "reason": "The 4-6 depth band is not a cap when evidence has a different observable Chan job; case 3 in particular is a fresh enacted use, not another recension."
+    },
+    {
+      "position": 157,
+      "id": "t_9291c7cdc7c6",
+      "kind": "unique-deployment-underharvest",
+      "caseIndices": [0],
+      "currentDefect": "The retained six omit a distinct Chan appraisal in which Baoshou is called a hundred-for-a-hundred hitter and then Baoshou, Sansheng, and the monk are said to expose their failures.",
+      "requiredCorrection": "Add candidate case 0 and attribute the exact spoken clause to the presiding master of the Shushan Baiyun record. Continue omitting case 5: its fortune-text promises of perfect accuracy for healers and physiognomers are contained ordinary usage, not Chan deployment."
+    },
+    {
+      "position": 158,
+      "id": "t_fb84c96fd94c",
+      "kind": "exact-utterer-and-outer-frame",
+      "caseIndices": [1, 2, 6, 7],
+      "currentDefect": "The persisted KWICs anchor the quoted Jiashan answer, but MasterName is assigned to the later speaker/commentator (Huanglong Huinan, Xueyan Zuqin, Sanshan Lai, or Qiran Zhi). Case 1 even marks the voice quoted-original while naming Huanglong and reverses Jiashan into later-raiser.",
+      "requiredCorrection": "Set the exact utterer of the anchored quotation to Jiashan Shanhui in cases 1, 2, 6, and 7. Put Huanglong Huinan, Xueyan Zuqin, Sanshan Lai, and Qiran Zhi respectively in the outer-frame context as later raiser/appraiser where the complete case supports that role. For case 6, 古人道 is resolved to Jiashan by the parallel complete cases; the current master then repeats the formula later in the same sermon, but that is not the currently anchored span."
+    }
+  ],
+  "hardPassEntries": [153, 154, 155, 156, 159, 160],
+  "c156Finding": {
+    "status": "hard-pass",
+    "spokenClauseCount": 7,
+    "finding": "Cases 0, 1, 2, 3, 4, 5, and 7 are genuinely spoken sermon or instruction wording, not narrated physical acts. Case 6 is correctly classified as compiler/treatise narration. The figurative prose limit and one-sense treatment hold."
+  },
+  "mechanicalGateReview": {
+    "authorClosureClaimedHardPass": true,
+    "authorClosureExactOccurrences": 75,
+    "entryHashesStillMatchClosure": true,
+    "sourceTitleAndWorkGateClaimedFailures": 0,
+    "strictAttributionGateClaimedFailures": 0,
+    "semanticConclusion": "Mechanical gates remain green but did not detect the exact-utterer reversals or unique-deployment underharvest above. This cohort is not semantically ready until the listed delta is applied and independently reread."
+  },
+  "installationPerformed": false,
+  "mergePerformed": false,
+  "rosterModified": false,
+  "siteModified": false
+}
