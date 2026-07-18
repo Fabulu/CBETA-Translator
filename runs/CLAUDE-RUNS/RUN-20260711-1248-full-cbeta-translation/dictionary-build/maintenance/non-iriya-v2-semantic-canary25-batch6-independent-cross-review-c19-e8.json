@@ -1,0 +1,67 @@
+{
+  "schemaVersion": "non-iriya-v2-semantic-independent-cross-review.v1",
+  "batch": 6,
+  "selection": {
+    "path": "maintenance/non-iriya-v2-semantic-canary25-batch6-selection.json",
+    "sha256": "5a19481a339d90c1245ad3ae705f826e4883614f8c1b958342aaf89c242a0701"
+  },
+  "ledger": {
+    "path": "maintenance/non-iriya-v2-semantic-canary25-batch6-ledger.json",
+    "sha256": "2249a96ca4164d96a8c1bea334373d67bfd82abec9bbd519ebe9a143ed9d71a2"
+  },
+  "sourceAdaptivePacket": {
+    "path": "maintenance/non-iriya-v2-adaptive-next100-navigation-packet.json",
+    "sha256": "960914703ac0706887da02e636a0ae88e32941737ad21e92fb96ae0fbb749a3f"
+  },
+  "overallVerdict": "PASS",
+  "selectionIdentityReview": {
+    "verdict": "PASS",
+    "selectedCount": 25,
+    "exactlyFirst25AdaptivePacketOrdinals": true,
+    "allTermsRanksBandsCountsAndFamilyMetadataMatchPacket": true,
+    "sourcePacketHashMatches": true,
+    "selectionHashMatchesLedger": true,
+    "priorFiveSelectionHashesMatchPacketManifest": true,
+    "noExactIdentityReuseFromPrior125": true
+  },
+  "mechanicalReview": {
+    "verdict": "PASS",
+    "reproducedExactCounts": 25,
+    "verifiedEvidenceWindows": 50,
+    "allTitlesAndLineBoundsReproduced": true,
+    "allEvidenceWorkIdsReproduced": true,
+    "twoCanonicalDistinctWorksPerDecision": true
+  },
+  "semanticSummary": {
+    "verdict": "PASS",
+    "KEEP": 4,
+    "REJECT": 21,
+    "PROVISIONAL": 0,
+    "keepTerms": ["周行七步", "大善知識", "大涅槃", "黃面瞿曇"],
+    "keepBoundaryFindings": {
+      "周行七步": "A bounded Buddha-birth action repeatedly raised and criticized by masters; not reducible to generic walking.",
+      "大善知識": "A stable Chan title and address whose corpus contrasts it with ordinary teachers; the covered 善知識 does not erase the superlative role.",
+      "大涅槃": "A stable named doctrinal term used as the object of direct interview and as an abiding ground; it is not merely a random 大 modifier on 涅槃.",
+      "黃面瞿曇": "A stable whole critical epithet for the Zen-deployed Śākyamuni; the rejected suffix 面瞿曇 lacks its defining first graph."
+    },
+    "rejectFamilies": {
+      "covered-action-or-narrator-compositions": ["卓拄杖下座", "驀拈拄杖云", "師拈拄杖", "舉起拂子", "僧又喝", "拄杖云", "喝一喝云"],
+      "truncated-boundary-fragments": ["不與萬法為侶者是", "不與萬法為侶者", "與萬法為侶者是", "卓拄杖下", "行七步", "杖下座", "舉起拂", "達磨未", "面瞿曇", "起拂子云"],
+      "productive-compositions-with-covered-core": ["見文殊", "一圓相", "入涅槃", "僧來參"]
+    },
+    "allIndividualDispositionsPass": true,
+    "allUnitsPass": true,
+    "allReasonsPass": true
+  },
+  "diminishingReturnsReview": {
+    "verdict": "PASS with scope qualification",
+    "observedYield": "4/25 KEEP = 16%",
+    "rejectionYield": "21/25 REJECT = 84%",
+    "finding": "This checkpoint does show severe local diminishing returns: most manual time was spent rejecting narrator expansions, covered-family compositions, and strings cut at bad boundaries.",
+    "scopeLimit": "It does not by itself prove that the full validated reservoir is exhausted. Batch5 yielded 19/25 KEEP, so the sharp batch6 drop also diagnoses weak navigation within this adaptive checkpoint.",
+    "processRepair": "Before dispatching another manual packet, mechanically suppress candidates that begin or end inside an already covered term, add only a narrator/quotation verb to a covered term, or duplicate an accepted action by an aspectual 起. Preserve manual review for the survivors; do not automate semantic acceptance or rejection."
+  },
+  "requiredRepairs": [],
+  "authorityMutationPerformed": false,
+  "reviewedArtifactsMutated": false
+}
