@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "iriya-independent-changed-only-rereview.v1",
+  "scope": "B138 outer-frame residual closure only",
+  "closure": {"path": "maintenance/iriya-B138-outer-frame-residual-closure.json", "sha256": "a9475cba88c6cd5200f71349271968d00517d6730816198939beccb0429d6312"},
+  "decisions": {"path": "maintenance/iriya-decisions-B131-140.json", "sha256": "e446ddbdb243c005587ca1feb628a61e4b6983682cebd37f05ef91b9bad66f9f"},
+  "reviewedCoordinates": ["B138 occurrence 2", "B138 occurrence 3", "B138 occurrence 4", "B138 occurrence 6"],
+  "findings": [
+    "Occurrences 2 and 6 correctly identify Nanyue Huairang as the embedded-copy utterer and retain Hanyue Fazang and Tianyin Yuanxiu as later outer speakers.",
+    "Occurrences 3 and 4 correctly classify Nanyue Huairang as quoted-original and retain Feiyin Tongrong and Juelang Daosheng as later outer speakers.",
+    "The grammatical proofs, ContextMasters, attribution notes, and compiled semantic fields agree; no collateral changed-case drift was found."
+  ],
+  "strengthenedGateReview": {"exactActor": "pass", "outerFrame": "pass", "voiceLayer": "pass", "prose": "pass", "boundClosureGates": "pass"},
+  "residuals": [],
+  "hardPass": true,
+  "entriesEdited": false,
+  "installed": false,
+  "merged": false,
+  "rosterModified": false
+}

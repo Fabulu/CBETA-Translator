@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "iriya-independent-changed-only-rereview.v1",
+  "scope": "C131-140 eight independent-review repair groups only",
+  "closure": {"path": "maintenance/iriya-author-C131-140-independent-review-repair-closure.json", "sha256": "df1b514987341c9469e90264a9d7363096d4225b1fe4c5e25ef495aab54238ff"},
+  "decisions": {"path": "maintenance/iriya-author-C131-140-decisions.json", "sha256": "d02095f4cbb9628fed74ce7d3d7c7bdcfe3f9040318b72da5a71c666326d8a19"},
+  "reviewedCoordinates": ["C131 semantic sequence", "C133 authored ritual voice", "C135 Touzi Datong", "C136 two quoted commentators", "C137 two quoted commentators", "C139 Fojian Huiqin with Songshan context", "C140 Baoning Mao", "C140 leakage-formula prose"],
+  "findings": [
+    "C131 and C140 prose now follows the attested sequences and gives concrete opening interpretations without unsupported abstraction.",
+    "C133, C135, C136, C137, C139, and C140 actors and voice layers follow their explicit speech or authorship markers.",
+    "C139 correctly names Fojian Huiqin as utterer while preserving Songshan as an identified-unlinked case figure; C140 correctly keeps Baoning Mao identified but unlinked rather than inventing a roster match.",
+    "No collateral drift was found in the reviewed changed groups."
+  ],
+  "strengthenedGateReview": {"semanticSequence": "pass", "exactActor": "pass", "outerFrame": "pass", "voiceLayer": "pass", "prose": "pass", "boundClosureGates": "pass"},
+  "residuals": [],
+  "hardPass": true,
+  "entriesEdited": false,
+  "installed": false,
+  "merged": false,
+  "rosterModified": false
+}

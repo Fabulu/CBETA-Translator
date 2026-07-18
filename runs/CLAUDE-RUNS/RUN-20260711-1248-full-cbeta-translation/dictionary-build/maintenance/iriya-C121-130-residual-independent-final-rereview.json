@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "iriya-independent-changed-only-rereview.v1",
+  "scope": "C121-130 five residual semantic repairs only",
+  "closure": {"path": "maintenance/iriya-author-C121-130-residual-repair-closure.json", "sha256": "3515253cf6d3d044352973cab886cbe0847b4ca7c2c096fc9c972d81731902e4"},
+  "decisions": {"path": "maintenance/iriya-author-C121-130-decisions.json", "sha256": "a997fffe3edee9abaad233977c3fc53164f3db94df391655e5448d8cbbb08d05"},
+  "reviewedCoordinates": ["C123 evidence/reason", "C124 evidence/reason", "C126 evidence/reason", "C127 evidence/reason", "C130 evidence/reason"],
+  "findings": [
+    "Each repaired explanation now names the concrete speakers and observable deployment instead of substituting abstract interpretive prose.",
+    "C123, C124, C126, C127, and C130 remain internally consistent with their stored occurrences and attribution fields.",
+    "No actor, outer-frame, or unrelated semantic drift was found in the changed coordinates."
+  ],
+  "strengthenedGateReview": {"corpusGroundedProse": "pass", "exactActor": "pass", "outerFrame": "pass", "boundClosureGates": "pass"},
+  "residuals": [],
+  "hardPass": true,
+  "entriesEdited": false,
+  "installed": false,
+  "merged": false,
+  "rosterModified": false
+}
