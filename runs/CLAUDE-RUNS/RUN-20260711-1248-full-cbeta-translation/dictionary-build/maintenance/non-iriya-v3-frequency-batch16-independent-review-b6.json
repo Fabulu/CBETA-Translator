@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "non-iriya-v3-frequency-independent-review.v1",
+  "reviewer": "b6",
+  "decision": "PASS",
+  "reviewedSelection": "maintenance/non-iriya-v3-frequency-batch16-navigation-selection.json",
+  "reviewedSelectionSha256": "0a79ad4e6ed517a825af913025968415d27c19cd7f757ae0921a71e3d73fda39",
+  "reviewedLedger": "maintenance/non-iriya-v3-frequency-batch16-semantic-ledger-d7.json",
+  "reviewedLedgerSha256": "91396e50718b8ad9f3c1d01a777200114b519fefae19f4eb6882f6c8d0a3a15c",
+  "mechanicalReview": {
+    "verdict": "PASS",
+    "selectionBinding": "PASS; all 25 frozen identities, ordinals, navigation records, and frozen count objects reproduce",
+    "provenanceBinding": "PASS; source-v2, ranker, v3 overlay, v3 audit, post-audit receipt, and declared prior-selection bindings are explicit in the frozen selection",
+    "counts": "PASS; 25/25 exact hit/file/distinct-work triples reproduce and match both zcExact and zcExactAtFreeze",
+    "evidence": "PASS; 50/50 windows verify at stored line bounds, titles and canonical work IDs reproduce, and every evidence pair is canonical-distinct",
+    "summary": "PASS; 20 KEEP, 5 REJECT, 0 PROVISIONAL matches the decision objects"
+  },
+  "semanticReview": {
+    "verdict": "PASS 25/25",
+    "fullCaseReading": true,
+    "falsePositiveAudit": {
+      "verdict": "PASS; every KEEP has a recurrent observable boundary and case job rather than frequency alone",
+      "institutionalOrDoctrinalActions": ["請上堂", "轉法輪", "當觀第一義"],
+      "encounterActionsOrUtterances": ["驀拈拄杖", "阿呵呵", "展兩手"],
+      "fixedVerdictsImagesOrPracticeTerms": ["大丈夫", "做工夫", "百雜碎", "老古錐", "奇特事", "大光明", "新年頭", "現寶王剎", "逢人不得錯舉", "無去無來", "不知落處", "驢胎馬腹", "無夢無想", "不喚作竹篦即背"],
+      "borderlineFindings": {
+        "請上堂": "Not merely adjacent prose: both cases mark the recurrent institutional act that occasions a formal Dharma-seat address.",
+        "奇特事": "The selected boundary repeatedly serves as the explicit object of case questions and elicits the master's distinctive response.",
+        "新年頭": "The cases stabilize it as the recurrent New Year occasion formula, including the conventional question about Buddha-dharma at the new year.",
+        "不喚作竹篦即背": "Unlike the clipped batch15 candidate 不喚作竹篦, this completed boundary retains the essential consequence and functions as a full arm of the bamboo-splint dilemma."
+      }
+    },
+    "falseNegativeAudit": {
+      "verdict": "PASS; no rejected candidate hides a deployable unit at its selected boundary",
+      "rejectedTerms": ["顧左右", "便歸方丈", "雲門老漢", "且道山僧", "不肯承當"],
+      "findings": {
+        "顧左右": "Narrative glance whose semantic work is supplied by the following utterance.",
+        "便歸方丈": "Narrative closure recording return to quarters, not a stable ritual or lexical act.",
+        "雲門老漢": "Productive master-name plus epithet; surrounding appraisals carry the case jobs.",
+        "且道山僧": "Incomplete question frame whose following complement supplies the proposition.",
+        "不肯承當": "Productive negation of the already covered base act 承當; the witnesses add no stable specialized consequence or independent boundary job."
+      }
+    }
+  },
+  "summary": {"PASS": 25, "REVISE": 0, "confirmedKeep": 20, "confirmedReject": 5, "falsePositiveRepairsRequired": 0, "falseNegativeRepairsRequired": 0},
+  "authorLedgerMutated": false,
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false
+}
