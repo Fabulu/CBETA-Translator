@@ -1,0 +1,133 @@
+{
+  "schemaVersion": "iriya-manual-independent-review.v1",
+  "generatedUtc": "2026-07-18T02:34:28Z",
+  "reviewer": "b6",
+  "decision": "PASS",
+  "reviewedSelection": "maintenance/iriya-manual-batch23-offset0-selection.json",
+  "reviewedSelectionSha256": "fc37d57298ac05f05b6134a98a339cc5fdb029cf3aa2767140646928d7da09a6",
+  "reviewedLedger": "maintenance/iriya-manual-batch23-offset0-ledger.json",
+  "reviewedLedgerSha256": "66690e8dce38e3278c54651d69c5d97e10c35e25dc85a943f101dc3dfcd3a044",
+  "identityAndExclusionReview": {
+    "verdict": "PASS",
+    "authoritativeQueueSha256Reproduced": true,
+    "authoritativeQueueTuplesExact": true,
+    "selectionMatchesLedgerExactly": true,
+    "selectionHashBindingReproduced": true,
+    "canonicalIndexEqualsQueueNumberMinusOne": true,
+    "canonicalIndexModulo3Equals0": true,
+    "exactlyNextTenAgainstBoundLive814RegistryAndPriorLedgers": true,
+    "boundRegistryRows": 814,
+    "boundRegistrySha256Reproduced": true,
+    "absentBoundLive814Registry": true,
+    "absentAllFourteenPriorOffset0AuthorLedgersThroughBatch22": true,
+    "allFourteenRecordedPriorLedgerHashesReproduced": true
+  },
+  "semanticDispositionAndUnitReview": {
+    "verdict": "PASS",
+    "fullCasesRead": 20,
+    "KEEP": 10,
+    "REJECT": 0,
+    "components": [
+      "啐啄之機",
+      "隔靴抓癢",
+      "古帆未掛",
+      "變生作熟",
+      "面熱汗下",
+      "如虎戴角",
+      "機關木人"
+    ],
+    "couplets": [
+      "富嫌千口少、貧恨一身多",
+      "心生種種法生、心滅種種法滅",
+      "逢佛殺佛、逢祖殺祖"
+    ],
+    "rowFindings": [
+      {
+        "canonicalIndex": 732,
+        "verdict": "PASS",
+        "finding": "Both cases support the precisely timed chick-and-hen response mechanism."
+      },
+      {
+        "canonicalIndex": 735,
+        "verdict": "PASS",
+        "finding": "Both cases use the boot-scratching image for indirect, ineffective handling."
+      },
+      {
+        "canonicalIndex": 738,
+        "verdict": "PASS",
+        "finding": "The complete abundance/lack contrast and its evaluative force are explicit."
+      },
+      {
+        "canonicalIndex": 741,
+        "verdict": "PASS",
+        "finding": "The complete mind-arising/mind-ceasing causal pair is preserved."
+      },
+      {
+        "canonicalIndex": 744,
+        "verdict": "PASS",
+        "finding": "Both cases establish the unhoisted ancient sail as a fixed test phrase."
+      },
+      {
+        "canonicalIndex": 747,
+        "verdict": "PASS",
+        "finding": "Both cases support transformation from raw into worked-through command."
+      },
+      {
+        "canonicalIndex": 750,
+        "verdict": "PASS",
+        "finding": "Both cases explicitly present heat and sweat as exposure under questioning."
+      },
+      {
+        "canonicalIndex": 753,
+        "verdict": "PASS",
+        "finding": "The complete Linji command breaks attachment to buddhas and patriarchs."
+      },
+      {
+        "canonicalIndex": 756,
+        "verdict": "PASS",
+        "finding": "Both cases support the horned-tiger image of augmented formidable capacity."
+      },
+      {
+        "canonicalIndex": 759,
+        "verdict": "PASS",
+        "finding": "Both cases use the wooden automaton for lifeless mechanical cultivation or response."
+      }
+    ],
+    "semanticRevisionsRequired": []
+  },
+  "variantReview": {
+    "verdict": "PASS",
+    "everyRowHasExplicitFormResolution": true,
+    "threePrintedEnumerationSeparatorsNormalizedToCorpusCommas": true,
+    "otherSevenQueriesExactGraphForm": true,
+    "directionalChangesRecorded": true
+  },
+  "mechanicalReview": {
+    "cheapValidator": {
+      "status": "PASS",
+      "failureCount": 0
+    },
+    "fullValidator": {
+      "status": "PASS",
+      "failureCount": 0
+    },
+    "exactCountTriplesReproduced": 10,
+    "evidenceWindowsVerified": 20,
+    "allLineBoundsTitlesAndCanonicalWorkIdsReproduced": true,
+    "twoCanonicalDistinctWorksPerDecision": true,
+    "summaryReproduced": {
+      "KEEP_component": 7,
+      "KEEP_couplet": 3,
+      "REJECT": 0,
+      "PROVISIONAL": 0
+    }
+  },
+  "requiredRevisions": [],
+  "authorLedgerMutated": false,
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false,
+  "reviewedArtifactsMutated": false
+}

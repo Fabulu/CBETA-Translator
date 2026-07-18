@@ -1,8 +1,8 @@
 {
   "schemaVersion": "iriya-trusted-registry-receipt.v1",
-  "generatedUtc": "2026-07-18T02:19:29Z",
+  "generatedUtc": "2026-07-18T02:35:31Z",
   "registry": "maintenance/iriya-trusted-registry.json",
-  "registrySha256": "ecf1278ddc1fcdf446824454fd2b227cd25d8921bf9fbe754c4d6343e2501122",
+  "registrySha256": "bf73ae1095d4e7bb8cb2e865dd19a140baaea62cd18301c503e09e6b8920d78a",
   "sourceInputs": [
     {
       "role": "method-audit",
@@ -1136,6 +1136,42 @@
       "offset": 2,
       "path": "maintenance/iriya-manual-batch22-offset2-reason-repair-focused-recheck-c19-e8.json",
       "sha256": "b7bd71cb13d3ea0ade85705411d2b72ed5b2f7c97cc190200c759d57d90a07f3"
+    },
+    {
+      "role": "batch23-ledger",
+      "offset": 0,
+      "path": "maintenance/iriya-manual-batch23-offset0-ledger.json",
+      "sha256": "66690e8dce38e3278c54651d69c5d97e10c35e25dc85a943f101dc3dfcd3a044"
+    },
+    {
+      "role": "batch23-review",
+      "offset": 0,
+      "path": "maintenance/iriya-manual-batch23-offset0-independent-review-b6.json",
+      "sha256": "f961c5fb054b229d1059686598002523fdd9046c4b8d766c6e2c1052f31639f1"
+    },
+    {
+      "role": "batch23-ledger",
+      "offset": 1,
+      "path": "maintenance/iriya-manual-batch23-offset1-ledger.json",
+      "sha256": "bd4a5fc07929ddd4235db84de23dc0b2c3011e6f2fe7cb663ba59d5e9f14d786"
+    },
+    {
+      "role": "batch23-review",
+      "offset": 1,
+      "path": "maintenance/iriya-manual-batch23-offset1-independent-review-b6.json",
+      "sha256": "2cabc47cebf5a2f5cea12b146f74afe02e9c318ef5424168275365dd529d07cf"
+    },
+    {
+      "role": "batch23-ledger",
+      "offset": 2,
+      "path": "maintenance/iriya-manual-batch23-offset2-ledger.json",
+      "sha256": "842fb554058d88dc976a7a5629b88509cdf92539a9c6f2bb82b1016d5757d2d5"
+    },
+    {
+      "role": "batch23-review",
+      "offset": 2,
+      "path": "maintenance/iriya-manual-batch23-offset2-independent-review-c19-e8.json",
+      "sha256": "203cd81c4f99cf9613537153d885422618bf139fb59b1b2ec5cd8d89466addcf"
     }
   ],
   "verification": {
@@ -2064,6 +2100,46 @@
         "repairSha256": "0ff42924be6ada5b0363fee80a756f48a5eaa86be84dc67551a1c25b71b3aced",
         "focusedRecheck": "maintenance/iriya-manual-batch22-offset2-reason-repair-focused-recheck-c19-e8.json",
         "focusedRecheckSha256": "b7bd71cb13d3ea0ade85705411d2b72ed5b2f7c97cc190200c759d57d90a07f3"
+      }
+    ]
+  },
+  "batch23Seal": {
+    "config": "maintenance/iriya-batch23-seal-config.json",
+    "configSha256": "afa359258dc2cef6b959c09327b8758c6d0eac3a729355d9211513f4e89c8bd7",
+    "priorReceiptSha256": "a670859989829beca5555eda44fbc74118f466ca8121f78e716e8764a6520f59",
+    "priorRegistrySha256": "ecf1278ddc1fcdf446824454fd2b227cd25d8921bf9fbe754c4d6343e2501122",
+    "priorRegistryRows": 814,
+    "appendedRows": 30,
+    "finalRegistryRows": 844,
+    "priorObjectsPreservedExactly": true,
+    "canonicalQueueBindingsExact": true,
+    "exactEvidenceValidated": true,
+    "canonicalWorkProvenanceValidated": true,
+    "singleBatchedCountTraversal": true,
+    "publicationOrBuildAuthorization": false,
+    "queueAdvanced": false,
+    "lineageTouched": false,
+    "authorityChains": [
+      {
+        "offset": 0,
+        "ledger": "maintenance/iriya-manual-batch23-offset0-ledger.json",
+        "ledgerSha256": "66690e8dce38e3278c54651d69c5d97e10c35e25dc85a943f101dc3dfcd3a044",
+        "review": "maintenance/iriya-manual-batch23-offset0-independent-review-b6.json",
+        "reviewSha256": "f961c5fb054b229d1059686598002523fdd9046c4b8d766c6e2c1052f31639f1"
+      },
+      {
+        "offset": 1,
+        "ledger": "maintenance/iriya-manual-batch23-offset1-ledger.json",
+        "ledgerSha256": "bd4a5fc07929ddd4235db84de23dc0b2c3011e6f2fe7cb663ba59d5e9f14d786",
+        "review": "maintenance/iriya-manual-batch23-offset1-independent-review-b6.json",
+        "reviewSha256": "2cabc47cebf5a2f5cea12b146f74afe02e9c318ef5424168275365dd529d07cf"
+      },
+      {
+        "offset": 2,
+        "ledger": "maintenance/iriya-manual-batch23-offset2-ledger.json",
+        "ledgerSha256": "842fb554058d88dc976a7a5629b88509cdf92539a9c6f2bb82b1016d5757d2d5",
+        "review": "maintenance/iriya-manual-batch23-offset2-independent-review-c19-e8.json",
+        "reviewSha256": "203cd81c4f99cf9613537153d885422618bf139fb59b1b2ec5cd8d89466addcf"
       }
     ]
   }

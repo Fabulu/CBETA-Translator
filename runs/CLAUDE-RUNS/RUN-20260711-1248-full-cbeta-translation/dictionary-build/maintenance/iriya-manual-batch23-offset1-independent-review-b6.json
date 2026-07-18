@@ -1,0 +1,133 @@
+{
+  "schemaVersion": "iriya-manual-independent-review.v1",
+  "generatedUtc": "2026-07-18T02:24:58Z",
+  "reviewer": "b6",
+  "decision": "PASS",
+  "reviewedSelection": "maintenance/iriya-manual-batch23-offset1-selection.json",
+  "reviewedSelectionSha256": "fa88e8ec750a150cceed0deb0cb312d9ba28c2e7b7988a2d6aaa58ee367b8f82",
+  "reviewedLedger": "maintenance/iriya-manual-batch23-offset1-ledger.json",
+  "reviewedLedgerSha256": "bd4a5fc07929ddd4235db84de23dc0b2c3011e6f2fe7cb663ba59d5e9f14d786",
+  "identityAndExclusionReview": {
+    "verdict": "PASS",
+    "authoritativeQueueSha256Reproduced": true,
+    "authoritativeQueueTuplesExact": true,
+    "selectionMatchesLedgerExactly": true,
+    "selectionHashBindingReproduced": true,
+    "canonicalIndexEqualsQueueNumberMinusOne": true,
+    "canonicalIndexModulo3Equals1": true,
+    "exactlyNextTenAgainstBoundLive814RegistryAndPriorLedgers": true,
+    "boundRegistryRows": 814,
+    "boundRegistrySha256Reproduced": true,
+    "absentBoundLive814Registry": true,
+    "absentAllFourteenPriorOffset1AuthorLedgersThroughBatch22": true,
+    "allFourteenRecordedPriorLedgerHashesReproduced": true
+  },
+  "semanticDispositionAndUnitReview": {
+    "verdict": "PASS",
+    "fullCasesRead": 20,
+    "KEEP": 10,
+    "REJECT": 0,
+    "components": [
+      "弄鬼眼睛",
+      "無角鐵牛眠少室",
+      "銀椀裏盛雪",
+      "半開半合",
+      "打皷普請看",
+      "昨夜三更月到窗",
+      "滿口含霜"
+    ],
+    "couplets": [
+      "衝開碧落松千尺、截斷紅塵水一溪",
+      "正令當行、十方坐斷",
+      "東家人死、西家人助哀"
+    ],
+    "rowFindings": [
+      {
+        "canonicalIndex": 832,
+        "verdict": "PASS",
+        "finding": "The complete landscape couplet and its decisive capping use are explicit in both cases."
+      },
+      {
+        "canonicalIndex": 835,
+        "verdict": "PASS",
+        "finding": "Both cases use the fixed pejorative phrase for contrived teaching display."
+      },
+      {
+        "canonicalIndex": 838,
+        "verdict": "PASS",
+        "finding": "The complete hornless-iron-ox-at-Shaoshi image functions as a compact Chan presentation."
+      },
+      {
+        "canonicalIndex": 841,
+        "verdict": "PASS",
+        "finding": "Both cases preserve Baling’s established silver-bowl-and-snow answer."
+      },
+      {
+        "canonicalIndex": 844,
+        "verdict": "PASS",
+        "finding": "The paired true-command/ten-directions declaration is complete and semantically coherent."
+      },
+      {
+        "canonicalIndex": 847,
+        "verdict": "PASS",
+        "finding": "Both cases preserve the complete east-house/west-house proverb and misplaced-involvement force."
+      },
+      {
+        "canonicalIndex": 850,
+        "verdict": "PASS",
+        "finding": "The fixed half-open/half-closed paired state explicitly characterizes teaching operation."
+      },
+      {
+        "canonicalIndex": 853,
+        "verdict": "PASS",
+        "finding": "Both cases preserve the public drum-and-general-summons imperative formula."
+      },
+      {
+        "canonicalIndex": 856,
+        "verdict": "PASS",
+        "finding": "The complete third-watch moon-at-the-window poetic line functions as the presentation."
+      },
+      {
+        "canonicalIndex": 859,
+        "verdict": "PASS",
+        "finding": "Both cases support the fixed frost-filled-mouth image for severe or ominous speech."
+      }
+    ],
+    "semanticRevisionsRequired": []
+  },
+  "variantReview": {
+    "verdict": "PASS",
+    "everyRowHasExplicitFormResolution": true,
+    "threePrintedEnumerationSeparatorsNormalizedToCorpusCommas": true,
+    "otherSevenQueriesExactGraphForm": true,
+    "directionalChangesRecorded": true
+  },
+  "mechanicalReview": {
+    "cheapValidator": {
+      "status": "PASS",
+      "failureCount": 0
+    },
+    "fullValidator": {
+      "status": "PASS",
+      "failureCount": 0
+    },
+    "exactCountTriplesReproduced": 10,
+    "evidenceWindowsVerified": 20,
+    "allLineBoundsTitlesAndCanonicalWorkIdsReproduced": true,
+    "twoCanonicalDistinctWorksPerDecision": true,
+    "summaryReproduced": {
+      "KEEP_component": 7,
+      "KEEP_couplet": 3,
+      "REJECT": 0,
+      "PROVISIONAL": 0
+    }
+  },
+  "requiredRevisions": [],
+  "authorLedgerMutated": false,
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false,
+  "reviewedArtifactsMutated": false
+}

@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "iriya-manual-independent-review.v1",
+  "reviewer": "c19-e8",
+  "decision": "PASS",
+  "reviewedSelection": "maintenance/iriya-manual-batch23-offset2-selection.json",
+  "reviewedSelectionSha256": "60460fa604b13f996d461531089cd8c2419128e03bea9d01b6b5f4e683440d72",
+  "reviewedLedger": "maintenance/iriya-manual-batch23-offset2-ledger.json",
+  "reviewedLedgerSha256": "842fb554058d88dc976a7a5629b88509cdf92539a9c6f2bb82b1016d5757d2d5",
+  "identityReview": {
+    "verdict": "PASS",
+    "finding": "All ten selection/ledger identities agree, canonical indexes follow offset 2, and the rebound artifacts are internally consistent."
+  },
+  "mechanicalReview": {
+    "cheapValidator": "PASS 10/10",
+    "fullValidator": "PASS 10/10",
+    "counts": "PASS; exact hit/file/distinct-work counts reproduce under the frozen work-aware corpus.",
+    "evidence": "PASS; both stored witnesses per row verify at their bounds and are canonically work-distinct.",
+    "variantsAndUnits": "PASS; couplets remain complete formulas and component rulings do not smuggle adjacent text into the lexical unit."
+  },
+  "semanticReview": {
+    "verdict": "PASS 10/10",
+    "finding": "Each KEEP reason is supported by the full stored cases as an observable Chan deployment rather than mere containment. The reasons distinguish literal wording from corpus job without importing Japanese-dictionary definitions. Particular checks included the control image in 穿人鼻孔, the contrasted current/helm deployment of 順水推船, the explicit fixed-length challenge behind the prior long/short repair boundary, the recognition parallel 是精識精/是賊識賊, and 百不知、百不會 as a direct description of the 無事人 rather than generic ignorance.",
+    "passingCanonicalIndexes": [839, 842, 845, 848, 851, 854, 857, 860, 863, 866]
+  },
+  "summary": {
+    "PASS": 10,
+    "REVISE": 0,
+    "evidenceOrCountRepairsRequired": 0
+  },
+  "authorLedgerMutated": false,
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false
+}
