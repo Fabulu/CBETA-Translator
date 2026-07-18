@@ -1,0 +1,305 @@
+{
+  "schemaVersion": "iriya-changed-only-rereview-v1",
+  "generatedUtc": "2026-07-18T13:01:50.129426+00:00",
+  "scope": "B091-B100 eight-coordinate changed-only read-only rereview",
+  "hardPass": true,
+  "repairClosure": {
+    "path": "maintenance/iriya-B091-100-independent8-repair-closure.json",
+    "sha256": "0180aa5c87d9c2923110c8ca0d1be47843c65ad9dd997e9dc56183ff252c0afa"
+  },
+  "currentBindings": {
+    "decisionsSha256": "c6f1ee00a1ba940b24300f7e9876acbd9989b5d60b01316690458b055924a40d",
+    "packetSha256": "a981635abe531e80beae72af97a9f2a372b1f465feba5f1e9135b44a5964d913"
+  },
+  "changedCoordinates": [
+    {
+      "coordinate": "B91.s1.o5",
+      "term": "二龍爭珠",
+      "relPath": "B/B14/B14n0082.xml",
+      "fromLb": "0241a11",
+      "toLb": "0241a11",
+      "actor": {
+        "type": "reviewed-unnamed",
+        "kind": "explicit question turn",
+        "label": "the unnamed questioning monk",
+        "role": "questioner",
+        "subject": "the unnamed questioning monk",
+        "reviewedBy": "Codex Iriya Lane B canary author",
+        "reviewedUtc": "2026-07-18T13:45:00+00:00",
+        "authoredVoiceRiskReviewed": true
+      },
+      "contextMasters": [
+        {
+          "masterName": "Yantou Quanhuo",
+          "roles": [
+            "respondent"
+          ]
+        }
+      ],
+      "conclusion": "Unnamed monk owns the question; Yantou Quanhuo is the marked respondent.",
+      "residuals": []
+    },
+    {
+      "coordinate": "B95.s1.o2",
+      "term": "大用現前、不存軌則",
+      "relPath": "X/X70/X70n1382.xml",
+      "fromLb": "0262b14",
+      "toLb": "0262b14",
+      "actor": {
+        "type": "reviewed-unnamed",
+        "kind": "explicit question turn",
+        "label": "the unnamed questioning monk",
+        "role": "questioner",
+        "subject": "the unnamed questioning monk",
+        "reviewedBy": "Codex B pair author",
+        "reviewedUtc": "2026-07-18T14:15:00+00:00",
+        "authoredVoiceRiskReviewed": true
+      },
+      "contextMasters": [
+        {
+          "masterName": "Wuzhun Shifan",
+          "roles": [
+            "later-raiser",
+            "commentator"
+          ]
+        }
+      ],
+      "conclusion": "Unnamed monk owns the question; Wuzhun Shifan later raises and comments on it.",
+      "residuals": []
+    },
+    {
+      "coordinate": "B96.s1.o6",
+      "term": "六耳不同謀",
+      "relPath": "X/X71/X71n1405.xml",
+      "fromLb": "0024b20",
+      "toLb": "0024b21",
+      "actor": {
+        "type": "named-master",
+        "masterName": "Mazu Daoyi"
+      },
+      "contextMasters": [
+        {
+          "masterName": "Shixi Xinyue",
+          "roles": [
+            "later-raiser"
+          ]
+        }
+      ],
+      "conclusion": "Mazu Daoyi owns the quoted line; Shixi Xinyue raises it.",
+      "residuals": []
+    },
+    {
+      "coordinate": "B97.s1.o2",
+      "term": "不妨奇特",
+      "relPath": "X/X66/X66n1297.xml",
+      "fromLb": "0301c05",
+      "toLb": "0301c05",
+      "actor": {
+        "type": "named-master",
+        "masterName": "Wuzu Fayan"
+      },
+      "contextMasters": [
+        {
+          "masterName": "Shanhui Dashi",
+          "roles": [
+            "person-discussed"
+          ]
+        }
+      ],
+      "conclusion": "Wuzu Fayan owns the marked appraisal; Shanhui Dashi is discussed.",
+      "residuals": []
+    },
+    {
+      "coordinate": "B97.s1.o3",
+      "term": "不妨奇特",
+      "relPath": "X/X66/X66n1296.xml",
+      "fromLb": "0049b18",
+      "toLb": "0049b19",
+      "actor": {
+        "type": "named-master",
+        "masterName": "Fushan Fayuan"
+      },
+      "contextMasters": [
+        {
+          "masterName": "Mazu Daoyi",
+          "roles": [
+            "case-figure",
+            "person-discussed"
+          ]
+        },
+        {
+          "masterName": "Baizhang Huaihai",
+          "roles": [
+            "case-figure",
+            "person-discussed"
+          ]
+        }
+      ],
+      "conclusion": "Fushan Fayuan owns the marked appraisal of the Mazu-Baizhang encounter.",
+      "residuals": []
+    },
+    {
+      "coordinate": "B97.s1.o4",
+      "term": "不妨奇特",
+      "relPath": "X/X67/X67n1301.xml",
+      "fromLb": "0230a21",
+      "toLb": "0230a21",
+      "actor": {
+        "type": "named-master",
+        "masterName": "Yuanwu Keqin"
+      },
+      "contextMasters": [
+        {
+          "masterName": "Xuedou Chongxian",
+          "roles": [
+            "person-discussed"
+          ]
+        }
+      ],
+      "conclusion": "Yuanwu Keqin owns the appraisal; Xuedou Chongxian is discussed.",
+      "residuals": []
+    },
+    {
+      "coordinate": "B97.s1.o6",
+      "term": "不妨奇特",
+      "relPath": "X/X67/X67n1310.xml",
+      "fromLb": "0644b23",
+      "toLb": "0644b24",
+      "actor": {
+        "type": "named-master",
+        "masterName": "Yangshan Huiji"
+      },
+      "contextMasters": [
+        {
+          "masterName": "Yantou Quanhuo",
+          "roles": [
+            "case-figure",
+            "person-discussed"
+          ]
+        },
+        {
+          "masterName": "Baizhang Huaihai",
+          "roles": [
+            "case-figure",
+            "person-discussed"
+          ]
+        }
+      ],
+      "conclusion": "Yangshan Huiji owns the marked appraisal of Yantou and Baizhang.",
+      "residuals": []
+    },
+    {
+      "coordinate": "B98.s1.o6",
+      "term": "大地無寸土",
+      "relPath": "C/C078/C078n1720.xml",
+      "fromLb": "0741c05",
+      "toLb": "0741c06",
+      "actor": {
+        "type": "reviewed-unnamed",
+        "kind": "unattributed transmitted verse",
+        "label": "the unnamed transmitted verse author",
+        "role": "verse-author",
+        "subject": "the unnamed transmitted verse author",
+        "reviewedBy": "Codex B097-B098 full-case author",
+        "reviewedUtc": "2026-07-18T12:40:05.276081+00:00",
+        "authoredVoiceRiskReviewed": true
+      },
+      "contextMasters": [
+        {
+          "masterName": "Muzhou Daoming",
+          "roles": [
+            "case-figure",
+            "person-discussed"
+          ]
+        }
+      ],
+      "conclusion": "The unattributed transmitted verse owns the line; Muzhou Daoming is its case figure.",
+      "residuals": []
+    }
+  ],
+  "mechanicalChecks": {
+    "entries": 10,
+    "occurrences": 60,
+    "exactVerified": 60,
+    "exactFailures": 0,
+    "attributionHardFailures": 0,
+    "workHardFailures": 0,
+    "templateFailures": 0,
+    "depthHardFailures": 0,
+    "parityPassed": 10,
+    "currentArtifacts": [
+      {
+        "id": "t_9160dc74b061",
+        "equal": true,
+        "entrySha256": "2489ae944b225faecc103bc404fd0fdf2e3ec81c0a7c6fa6f137ee0b7397db1b",
+        "worksheetSha256": "cca46217675a97c95aad8981b3456e34eb4f99ca5cfa18f2df953b5a10f6dd70",
+        "workSha256": "59614b9c449104f1c1d93452fe0df099a83e86ba13d385fa53ad133d45d8726d"
+      },
+      {
+        "id": "t_8d70834f3423",
+        "equal": true,
+        "entrySha256": "dd68ae4348e96260a764bcb3709381abe38dfd7ca519f9cb8cda71f193031e2c",
+        "worksheetSha256": "04598da2a20992d21050542693f24b49609efc9c24afa2b078b520b436702237",
+        "workSha256": "e47b29272ae73d86520a69036aaca2df88c5f324654ffaa014aba8d6e6832f1d"
+      },
+      {
+        "id": "t_8de8429937b0",
+        "equal": true,
+        "entrySha256": "df4bc26316d6b56e4635eb2c76696126d4ac46856ac8cec33b8f03bbbac7e0a7",
+        "worksheetSha256": "fbfd9169a935e6546491acce4b09bb6d32a88d3d706763f5aa69debbf061f706",
+        "workSha256": "8bacbeee260c909e0899ceca4e0f1c7b814759cee184bcedd644a11e7ae57dd2"
+      },
+      {
+        "id": "t_7a2552d7551c",
+        "equal": true,
+        "entrySha256": "d121de24be0dc10d9a41a6ba91cfcb51f1835104e393221dbfa80392ce575e3e",
+        "worksheetSha256": "97599e4da94c9da97918335dcb4b6eff75c960d7c180002ffad8997ca10849ad",
+        "workSha256": "9ccf45d2c4128531bd87117d8b1b2b964795cf73cf177476a277a11f056966af"
+      },
+      {
+        "id": "t_26871ba0efce",
+        "equal": true,
+        "entrySha256": "6291b9fc316f54606ca43e2bfa6f736a5d5bd3650f9d36a0cdb185d3e1357a91",
+        "worksheetSha256": "9f36800c6a0bd635da8ef403ed41eea80141364a91787f24b24055769e9d1945",
+        "workSha256": "1da1de286496a55974c47d7e74768aba07c37402edb2175b2b5a8fadd291e3a9"
+      },
+      {
+        "id": "t_fdcb8acec36b",
+        "equal": true,
+        "entrySha256": "983f7b839e84b1742866a180067cf7659db653fd0a991b0c9cbca6e2584a454a",
+        "worksheetSha256": "5b7188711ddf2555c549d4ee2cb389b07a1582fc3683fbff52bb8ec7906b6194",
+        "workSha256": "ebf44897152dfa07323e0db470901bb3eef15e404ee489c9e52c45a0aa6d13b7"
+      },
+      {
+        "id": "t_98cbcc281cb5",
+        "equal": true,
+        "entrySha256": "dab66e1945e9fb76ffe34b1418e8e6ed7517914cec0c7968b28dc09adfc910f6",
+        "worksheetSha256": "9b7057529c78bff321607f17738e5b29242ad8cca0e481f7a9003ad954225be9",
+        "workSha256": "c7afe49ab2f4d445e15c52a9c7c85203f58b32047c6ce322ec786227c15b6075"
+      },
+      {
+        "id": "t_c7a491c987df",
+        "equal": true,
+        "entrySha256": "0f83bd2676ee3b8653c2cd71b01291b59ad991f5f85a83896276cfec1d107726",
+        "worksheetSha256": "eb184291fc4574a554af0174b3a496b767178ff426d34f8b574d766fec491160",
+        "workSha256": "a478222f11279395ef94751a050710e76ecad2af06e316de98e65fc029dc9d05"
+      },
+      {
+        "id": "t_0cb397704d96",
+        "equal": true,
+        "entrySha256": "fc32f4e54fdf82c628ebf4804b40993d9659d55781b7c2a382488d4d38575c81",
+        "worksheetSha256": "64e828fbe2529da9e2d49bedd39cad60b8e2d090028358559ac91db2f7cc7d37",
+        "workSha256": "7f3805e470655f660a34497aae3a3224183ef1ee979cd887021aa89b22b82c06"
+      },
+      {
+        "id": "t_118919afdfbe",
+        "equal": true,
+        "entrySha256": "959ad48ac59b8566f657a930e3e2357f63a3e32d5e8031747e3c9d05de7b8325",
+        "worksheetSha256": "6a79f4b03bdb31189ee68f503585015e341a267ea84a685401bcf9cea424e366",
+        "workSha256": "748f525de39076a4e0a4d5fcf8c4f0deb9220a221cd9c94d916546a22033e156"
+      }
+    ]
+  },
+  "residuals": [],
+  "readOnly": true
+}

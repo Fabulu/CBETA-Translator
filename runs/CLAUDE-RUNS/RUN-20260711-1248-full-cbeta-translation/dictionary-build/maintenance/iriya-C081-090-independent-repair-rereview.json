@@ -1,0 +1,266 @@
+{
+  "schemaVersion": "iriya-independent-repair-rereview-v1",
+  "generatedUtc": "2026-07-18T13:36:01.934739+00:00",
+  "scope": "C081-C090 exact twelve-coordinate changed-only rereview",
+  "readOnly": true,
+  "hardPass": true,
+  "repairClosure": {
+    "path": "maintenance/iriya-C081-090-independent-review-repair-closure.json",
+    "sha256": "3b576c1ac1ff5ca292b4362dc4b21450530784db4d7165a1f6a0f2d1373325b0"
+  },
+  "reviewSha256": "f232eded810232bed810d6c2333f500de1ebd16c2ccde7410639d9f2a538c6b5",
+  "reviewedCoordinates": [
+    {
+      "coordinate": "C81.s1.o1",
+      "resolution": "Ying’an Tanhua’s explicitly introduced original hall turn.",
+      "currentActor": {
+        "type": "identified-unlinked-master",
+        "kind": "full-case exact-turn adjudication",
+        "label": "Ying'an Tanhua",
+        "role": "utterer",
+        "subject": "Ying'an Tanhua",
+        "reviewedBy": "Codex Iriya lane C81-90 full-case author",
+        "reviewedUtc": "2026-07-18T19:30:00Z",
+        "authoredVoiceRiskReviewed": true
+      },
+      "currentVoiceLayer": "embedded-copy",
+      "currentContextMasters": [],
+      "resolved": true,
+      "collateralSemanticDrift": false
+    },
+    {
+      "coordinate": "C81.s1.o3",
+      "resolution": "Baiyun Shouduan’s explicitly quoted original hall saying.",
+      "currentActor": {
+        "type": "named-master",
+        "masterName": "Baiyun Shouduan"
+      },
+      "currentVoiceLayer": "embedded-copy",
+      "currentContextMasters": [],
+      "resolved": true,
+      "collateralSemanticDrift": false
+    },
+    {
+      "coordinate": "C85.s1.o1",
+      "resolution": "All named figures in Dahui’s two-part contrast are linked.",
+      "currentActor": {
+        "type": "named-master",
+        "masterName": "Dahui Zonggao"
+      },
+      "currentVoiceLayer": "direct-turn",
+      "currentContextMasters": [],
+      "resolved": true,
+      "collateralSemanticDrift": false
+    },
+    {
+      "coordinate": "C85.s1.o5",
+      "resolution": "Both immediately raised sayings are linked.",
+      "currentActor": {
+        "type": "identified-unlinked-master",
+        "kind": "full-case exact-turn adjudication",
+        "label": "Xuzhou Pudu",
+        "role": "utterer",
+        "subject": "Xuzhou Pudu",
+        "reviewedBy": "Codex Iriya lane C81-90 full-case author",
+        "reviewedUtc": "2026-07-18T19:30:00Z",
+        "authoredVoiceRiskReviewed": true
+      },
+      "currentVoiceLayer": "direct-turn",
+      "currentContextMasters": [],
+      "resolved": true,
+      "collateralSemanticDrift": false
+    },
+    {
+      "coordinate": "C86.s1.o2",
+      "resolution": "Mingjue’s testing role is retained as context.",
+      "currentActor": {
+        "type": "named-master",
+        "masterName": "Tianyi Yihuai"
+      },
+      "currentVoiceLayer": "direct-turn",
+      "currentContextMasters": [],
+      "resolved": true,
+      "collateralSemanticDrift": false
+    },
+    {
+      "coordinate": "C86.s1.o6",
+      "resolution": "Parallel biography receives the same closed context link.",
+      "currentActor": {
+        "type": "named-master",
+        "masterName": "Tianyi Yihuai"
+      },
+      "currentVoiceLayer": "embedded-copy",
+      "currentContextMasters": [],
+      "resolved": true,
+      "collateralSemanticDrift": false
+    },
+    {
+      "coordinate": "C88.s1.o2",
+      "resolution": "僧問 owns the stored quoted question.",
+      "currentActor": {
+        "type": "named-master",
+        "masterName": "Xuefeng Yicun"
+      },
+      "currentVoiceLayer": "embedded-copy",
+      "currentContextMasters": [],
+      "resolved": true,
+      "collateralSemanticDrift": false
+    },
+    {
+      "coordinate": "C88.s1.o6",
+      "resolution": "The Guoqing record owner’s raising and appraisal are linked.",
+      "currentActor": {
+        "type": "named-master",
+        "masterName": "Xuefeng Yicun"
+      },
+      "currentVoiceLayer": "embedded-copy",
+      "currentContextMasters": [],
+      "resolved": true,
+      "collateralSemanticDrift": false
+    },
+    {
+      "coordinate": "C89.s1.o4",
+      "resolution": "The 瑞州廣蘗志因 section heading governs the hall comment.",
+      "currentActor": {
+        "type": "named-master",
+        "masterName": "Huishan Zhihai"
+      },
+      "currentVoiceLayer": "embedded-copy",
+      "currentContextMasters": [],
+      "resolved": true,
+      "collateralSemanticDrift": false
+    },
+    {
+      "coordinate": "C90.s1.o2",
+      "resolution": "All figures in Yuanwu’s comparison are linked.",
+      "currentActor": {
+        "type": "named-master",
+        "masterName": "Yuanwu Keqin"
+      },
+      "currentVoiceLayer": "direct-turn",
+      "currentContextMasters": [
+        {
+          "masterName": "Yangshan Huiji",
+          "roles": [
+            "person-discussed"
+          ]
+        }
+      ],
+      "resolved": true,
+      "collateralSemanticDrift": false
+    },
+    {
+      "coordinate": "C90.s1.o3",
+      "resolution": "All explicitly raised figures in the sustained appraisal are linked.",
+      "currentActor": {
+        "type": "named-master",
+        "masterName": "Yuanwu Keqin"
+      },
+      "currentVoiceLayer": "direct-turn",
+      "currentContextMasters": [],
+      "resolved": true,
+      "collateralSemanticDrift": false
+    },
+    {
+      "coordinate": "C90.s1.o6",
+      "resolution": "The present record master’s marked replies are linked to Sun Qi’ao’s question.",
+      "currentActor": {
+        "type": "identified-non-master",
+        "kind": "full-case exact-turn adjudication",
+        "label": "Sun Qi'ao, grand secretary",
+        "role": "questioner",
+        "subject": "Sun Qi'ao, grand secretary",
+        "reviewedBy": "Codex Iriya lane C81-90 full-case author",
+        "reviewedUtc": "2026-07-18T19:30:00Z",
+        "authoredVoiceRiskReviewed": true
+      },
+      "currentVoiceLayer": "question-turn",
+      "currentContextMasters": [],
+      "resolved": true,
+      "collateralSemanticDrift": false
+    }
+  ],
+  "counts": {
+    "coordinates": 12,
+    "resolved": 12,
+    "exactVerified": 60,
+    "exactFailures": 0,
+    "attributionHardFailures": 0,
+    "compileParity": "10/10",
+    "hashMatches": "10/10"
+  },
+  "currentArtifacts": [
+    {
+      "id": "t_a68f9a04d31b",
+      "entrySha256": "dbbf29e17f79649210fa50098747d5c79dbcc9be7ecddc556468b3c2a3126897",
+      "worksheetSha256": "c8c790cc6bde497c4fd6138955bdeeeefa6e07b2700437b469ad75f4b2b97081",
+      "workSha256": "37f7ca59675bc28a9f4048be1b64adfced2bc2d02c2ea29a21af2b6323d308cb",
+      "matchesClosure": true
+    },
+    {
+      "id": "t_f92732e998a3",
+      "entrySha256": "48a37fece5ba2c542eda39dc8fbfcb4deee733dba38a25bc79ae8a1430893f5b",
+      "worksheetSha256": "68bb391280636a5ce3a5511c790b9b52968b78f2b4f4acba4a76b3166ac12a71",
+      "workSha256": "7c10ef6d2a6751a42328286d0440c9fdb0122509adf728f4bf9354a3c3aada73",
+      "matchesClosure": true
+    },
+    {
+      "id": "t_80910f078303",
+      "entrySha256": "9d461671fa2bc6d051f132fed8eda016759de10531a6ec514529df9524e8fb42",
+      "worksheetSha256": "0f521772b4792c12162bb81b3d9fdd4f61973deae553c7f171463cc684d6894f",
+      "workSha256": "1103aa9ddbf78a7d10d0d0dd33d11945971cf9da2ab9de7ce6541f381a0f5a15",
+      "matchesClosure": true
+    },
+    {
+      "id": "t_ab07e5f352c0",
+      "entrySha256": "aee450d7ad0be81646ae49047264168e9f743d3638c747ff637557a76d01fe82",
+      "worksheetSha256": "549000340b112a0a8498b17a8b50a942d34d3e040a6e6c24bc053659b40b0d0f",
+      "workSha256": "5802b78c3ac38cc4d17a9104b047db79473759a01d23eaa16b7264c93986d7e2",
+      "matchesClosure": true
+    },
+    {
+      "id": "t_19559c6691da",
+      "entrySha256": "06dd52719872dc914521cab74f15c8f1406902343835d328d5fb134d20a9f358",
+      "worksheetSha256": "d8896e61d783ba518ead8a78e736ebe08ae112e4504016c12d6441c3b96324dd",
+      "workSha256": "a9823ab13907b34d612bbf46d53defe1515ce0ce7e6cb0cf78bcbeb142d34024",
+      "matchesClosure": true
+    },
+    {
+      "id": "t_4a1e3236efaa",
+      "entrySha256": "f7f750db52c0cdaa03efc55e04acf0394b22035a076b0bb2437df61fac645ce5",
+      "worksheetSha256": "9da95b18399ec192d70f9ce452c7ee3c28aa950a9a736dd85e8041a69e3b4e58",
+      "workSha256": "8a35feaf695e18e42523754a5e446366f8f9003ecb9128879b299be2e0816aab",
+      "matchesClosure": true
+    },
+    {
+      "id": "t_34c7d74f8c89",
+      "entrySha256": "86d07370ec6835fbecb4f299dcad71f94660b1dafcdb486c1977d89e959d73af",
+      "worksheetSha256": "dac5047505f235970cb85302dc62a8b81339ceb0f15252e96bea0b5f166d865e",
+      "workSha256": "890d1d602ee71de978ef671e292dfbeeb59d27e3f3fc8d5f4046bec0146d9c56",
+      "matchesClosure": true
+    },
+    {
+      "id": "t_1e02aedcbea1",
+      "entrySha256": "c8075c62b24d4afa106d7368d483dce9b80f4fbe23efa8c6fb23ec5a1213de0d",
+      "worksheetSha256": "7efe86f6e5298f036a65298db87f149eabaa73118d52d767bc52d5144a7d1610",
+      "workSha256": "e9f24e526a40da60b1e153b27d887de623f54169b04a810a51fb66cc5c904bac",
+      "matchesClosure": true
+    },
+    {
+      "id": "t_7b5328124660",
+      "entrySha256": "263fd4f1dd04fcb005edef9177e1ab945a2406af22b4c3154d5f83e68b8f93ec",
+      "worksheetSha256": "c7233757bd119ed63be603ff5f18547af5289488d9376319cc4dd2a572a642fa",
+      "workSha256": "3e126e9035a4f0781fa6cdb7c96e05fe0f7895f1f46d459727b4ccc09364beb1",
+      "matchesClosure": true
+    },
+    {
+      "id": "t_95ed005ba0c5",
+      "entrySha256": "9e3b12929bc68d3931bcb2cc24601524364674269639b28382ee3310a2fde63a",
+      "worksheetSha256": "0ec2a7500bd6644b895c6476b3c3dea4e23270e44ca7eaf60977defb5ce2039d",
+      "workSha256": "8b52021fa8c79688b607ffde0ca4b38c93fa36ecbbd2b8ea6cdbd19dd093ae12",
+      "matchesClosure": true
+    }
+  ],
+  "residuals": [],
+  "conclusion": "All twelve original findings are resolved with no collateral semantic drift."
+}

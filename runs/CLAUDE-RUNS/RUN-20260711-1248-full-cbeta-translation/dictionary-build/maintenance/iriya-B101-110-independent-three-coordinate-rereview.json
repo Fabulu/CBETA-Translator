@@ -1,0 +1,401 @@
+{
+  "schemaVersion": "iriya-independent-changed-only-rereview-v1",
+  "laneReviewed": "B",
+  "positions": [
+    101,
+    110
+  ],
+  "scopeCoordinates": [
+    "B106.s1.o1",
+    "B106.s1.o4",
+    "B110.s1.o2"
+  ],
+  "repairClosure": "maintenance/iriya-B101-110-independent-review-repair-closure.json",
+  "repairClosureSha256": "b6a2e7dc230bb980cf3308d0a0f729851a680a7b266ac652dc02d03a2fed3180",
+  "originalReview": "maintenance/iriya-B101-110-independent-review-receipt.json",
+  "originalReviewSha256": "cb48040bf69d9efc3ab7bdebada91f8a7b6727f7d4043be2930186d5c665c28d",
+  "originalReviewBindingMatch": true,
+  "bindingChecks": {
+    "review": {
+      "path": "maintenance/iriya-B101-110-independent-review-receipt.json",
+      "expected": "cb48040bf69d9efc3ab7bdebada91f8a7b6727f7d4043be2930186d5c665c28d",
+      "actual": "cb48040bf69d9efc3ab7bdebada91f8a7b6727f7d4043be2930186d5c665c28d",
+      "match": true
+    },
+    "packet": {
+      "path": "maintenance/iriya-author-packet-B071-167-v1.json",
+      "expected": "a981635abe531e80beae72af97a9f2a372b1f465feba5f1e9135b44a5964d913",
+      "actual": "a981635abe531e80beae72af97a9f2a372b1f465feba5f1e9135b44a5964d913",
+      "match": true
+    },
+    "decisions": {
+      "path": "maintenance/iriya-decisions-B101-110.json",
+      "expected": "f4216262a490df3e330a8abd0a57f6ff4586b35eb1550d7d163b3a0bcfa2cff4",
+      "actual": "f4216262a490df3e330a8abd0a57f6ff4586b35eb1550d7d163b3a0bcfa2cff4",
+      "match": true
+    },
+    "emitter": {
+      "path": "maintenance/iriya-B101-110-repair-emitter.json",
+      "expected": "5460039fa41c5f2b8535659b51cec98eaa2697e4cdcab1a0e6cbd2aebd99afd3",
+      "actual": "5460039fa41c5f2b8535659b51cec98eaa2697e4cdcab1a0e6cbd2aebd99afd3",
+      "match": true
+    },
+    "attribution": {
+      "path": "maintenance/iriya-B101-110-repair-attribution.json",
+      "expected": "ec2b73582d2c7233243aa5017a9b32c6b386719a4fcc6c74bd85e89108546cda",
+      "actual": "ec2b73582d2c7233243aa5017a9b32c6b386719a4fcc6c74bd85e89108546cda",
+      "match": true
+    },
+    "workSource": {
+      "path": "maintenance/iriya-B101-110-repair-work.json",
+      "expected": "486c51c341cf8b3cb1bba3575653586ff5b8b56a075f73f237d81c3f73352e04",
+      "actual": "486c51c341cf8b3cb1bba3575653586ff5b8b56a075f73f237d81c3f73352e04",
+      "match": true
+    },
+    "template": {
+      "path": "maintenance/iriya-B101-110-repair-template.json",
+      "expected": "b63b8ab36fd53e087dea82a0db287bc6fd110c52dccaba2ad0f5ea629febda32",
+      "actual": "b63b8ab36fd53e087dea82a0db287bc6fd110c52dccaba2ad0f5ea629febda32",
+      "match": true
+    },
+    "depth": {
+      "path": "maintenance/iriya-B101-110-repair-depth.json",
+      "expected": "bb8b1a44cbaeb4103ba085e6ccc252c00b0bf30959a86477d7ddc84834ba2b15",
+      "actual": "bb8b1a44cbaeb4103ba085e6ccc252c00b0bf30959a86477d7ddc84834ba2b15",
+      "match": true
+    },
+    "zc": {
+      "path": "maintenance/iriya-B101-110-repair-zc.json",
+      "expected": "fe420e90ec01a1a8d7ce078a43b722f2fb55f34a9f4b09f6ac8bcea7e092a713",
+      "actual": "fe420e90ec01a1a8d7ce078a43b722f2fb55f34a9f4b09f6ac8bcea7e092a713",
+      "match": true
+    }
+  },
+  "coordinateChecks": [
+    {
+      "coordinate": "B106.s1.o1",
+      "voiceLayer": "question-turn",
+      "masterName": null,
+      "actorAttribution": {
+        "Status": "reviewed-unnamed",
+        "Kind": "explicit question turn",
+        "ActorLabel": "the unnamed questioning monk",
+        "ActorRole": "questioner",
+        "RungsChecked": [
+          "line",
+          "expanded-context",
+          "section-header",
+          "book-title",
+          "tei-header",
+          "parallel-passage"
+        ],
+        "GrammarEvidence": "僧問 explicitly assigns the mirror-platform phrase to the unnamed monk; the record master answers about Foyan afterward.",
+        "ReviewedBy": "Codex Lane B B101-B105 full-case author",
+        "ReviewedUtc": "2026-07-18T15:00:00+00:00",
+        "AuthoredVoiceRiskReviewed": true
+      },
+      "explicitVerseAttribution": false,
+      "exactPass": true,
+      "fullCaseReread": true
+    },
+    {
+      "coordinate": "B106.s1.o4",
+      "voiceLayer": "transmitted-verse",
+      "masterName": "Xuedou Chongxian",
+      "actorAttribution": null,
+      "explicitVerseAttribution": true,
+      "exactPass": true,
+      "fullCaseReread": true
+    },
+    {
+      "coordinate": "B110.s1.o2",
+      "voiceLayer": "transmitted-verse",
+      "masterName": null,
+      "actorAttribution": {
+        "Status": "narrated",
+        "Kind": "unattributed transmitted verse",
+        "ActorLabel": "the unidentified verse author",
+        "ActorRole": "verse-author",
+        "RungsChecked": [
+          "line",
+          "expanded-context",
+          "section-header",
+          "book-title",
+          "tei-header",
+          "parallel-passage"
+        ],
+        "GrammarEvidence": "The metrical 頌古 line has no local personal author marker; it belongs to an unidentified verse author rather than compiler prose.",
+        "ReviewedBy": "Codex Lane B B106-B110 full-case author",
+        "ReviewedUtc": "2026-07-18T16:00:00+00:00",
+        "AuthoredVoiceRiskReviewed": true
+      },
+      "explicitVerseAttribution": false,
+      "exactPass": true,
+      "fullCaseReread": true
+    }
+  ],
+  "currentAttribution": {
+    "hardFailures": 0,
+    "occurrences": 60
+  },
+  "compileParity": {
+    "passed": 10,
+    "total": 10,
+    "hardPass": true,
+    "entries": [
+      {
+        "id": "t_632118e3a261",
+        "hardPass": true,
+        "errors": []
+      },
+      {
+        "id": "t_821c947ecbf5",
+        "hardPass": true,
+        "errors": []
+      },
+      {
+        "id": "t_ec461447e33b",
+        "hardPass": true,
+        "errors": []
+      },
+      {
+        "id": "t_ee00dd9e7b4d",
+        "hardPass": true,
+        "errors": []
+      },
+      {
+        "id": "t_a7e2dea0ff5c",
+        "hardPass": true,
+        "errors": []
+      },
+      {
+        "id": "t_91341fdae389",
+        "hardPass": true,
+        "errors": []
+      },
+      {
+        "id": "t_7bf152d37d97",
+        "hardPass": true,
+        "errors": []
+      },
+      {
+        "id": "t_cd15dfe582b6",
+        "hardPass": true,
+        "errors": []
+      },
+      {
+        "id": "t_1dea44941098",
+        "hardPass": true,
+        "errors": []
+      },
+      {
+        "id": "t_7092e62ce49e",
+        "hardPass": true,
+        "errors": []
+      }
+    ]
+  },
+  "artifactChecks": [
+    {
+      "position": 101,
+      "id": "t_632118e3a261",
+      "current": {
+        "worksheet": "96fd5da4c5a2f42a072428399d5cac0d0113c7a0c57f4e141cc06766544b56b4",
+        "entry": "59f7c6a5a70082271d21097550064b3b3f1855fafdaf62f9b5fd03de48cc1c87",
+        "work": "a0b1fe6f634530f54931f5907dcdfe97c8fe2435ef4c74a29de64f493ced7f5b"
+      },
+      "expectedAfterRepair": {
+        "worksheet": "96fd5da4c5a2f42a072428399d5cac0d0113c7a0c57f4e141cc06766544b56b4",
+        "entry": "59f7c6a5a70082271d21097550064b3b3f1855fafdaf62f9b5fd03de48cc1c87",
+        "work": "a0b1fe6f634530f54931f5907dcdfe97c8fe2435ef4c74a29de64f493ced7f5b"
+      },
+      "matches": {
+        "worksheet": true,
+        "entry": true,
+        "work": true
+      }
+    },
+    {
+      "position": 102,
+      "id": "t_821c947ecbf5",
+      "current": {
+        "worksheet": "7ececcc6fd2e5c75f00faf0ca42100ed6da157ed4b256ad34ee2c71bc07dbaa4",
+        "entry": "a90f223c9a2acbe418cdf284514490fc8a8cfe887ade9bd55ffdb5b4493319d1",
+        "work": "0cfdfe36666e7fb7592e792dfbf0327ef16dcfd63b7fd69fc52fdbe05172937a"
+      },
+      "expectedAfterRepair": {
+        "worksheet": "7ececcc6fd2e5c75f00faf0ca42100ed6da157ed4b256ad34ee2c71bc07dbaa4",
+        "entry": "a90f223c9a2acbe418cdf284514490fc8a8cfe887ade9bd55ffdb5b4493319d1",
+        "work": "0cfdfe36666e7fb7592e792dfbf0327ef16dcfd63b7fd69fc52fdbe05172937a"
+      },
+      "matches": {
+        "worksheet": true,
+        "entry": true,
+        "work": true
+      }
+    },
+    {
+      "position": 103,
+      "id": "t_ec461447e33b",
+      "current": {
+        "worksheet": "b261b9dca356a0d5fbe0a3fcc3274444c1a4186f500872ccfc9e3d4b97034994",
+        "entry": "22593b7337d548b3e8c3f5a7c8be38c6c1c6a4897f3148e7598ed8f8a9747d9b",
+        "work": "73c0c45d91bd280295fce78cc018a5628f193694b2c2ece1ca7b67e52de085d2"
+      },
+      "expectedAfterRepair": {
+        "worksheet": "b261b9dca356a0d5fbe0a3fcc3274444c1a4186f500872ccfc9e3d4b97034994",
+        "entry": "22593b7337d548b3e8c3f5a7c8be38c6c1c6a4897f3148e7598ed8f8a9747d9b",
+        "work": "73c0c45d91bd280295fce78cc018a5628f193694b2c2ece1ca7b67e52de085d2"
+      },
+      "matches": {
+        "worksheet": true,
+        "entry": true,
+        "work": true
+      }
+    },
+    {
+      "position": 104,
+      "id": "t_ee00dd9e7b4d",
+      "current": {
+        "worksheet": "880e65ddc4316cbbef88e730fa419679422afb078d7c0b7508a27c75e6c4b929",
+        "entry": "d347c4a74550c982131f907a58d04412aacc80df9d5582797f148eb3ea728fc9",
+        "work": "8a64c5174867a54ab155c594366f718aa616627074469245b51f9c249b814597"
+      },
+      "expectedAfterRepair": {
+        "worksheet": "880e65ddc4316cbbef88e730fa419679422afb078d7c0b7508a27c75e6c4b929",
+        "entry": "d347c4a74550c982131f907a58d04412aacc80df9d5582797f148eb3ea728fc9",
+        "work": "8a64c5174867a54ab155c594366f718aa616627074469245b51f9c249b814597"
+      },
+      "matches": {
+        "worksheet": true,
+        "entry": true,
+        "work": true
+      }
+    },
+    {
+      "position": 105,
+      "id": "t_a7e2dea0ff5c",
+      "current": {
+        "worksheet": "06d3f6498ab38c467f4f9eb6c0669cf2336aa0ee5030755011e6ced6fc6264ac",
+        "entry": "7f9b45b31b9a5f6d0519e8cb3168d4b8f165d74128a1271aea67730bd57c8f99",
+        "work": "6814e69f9cf67866f841432c2457523ba02f21fd1beee67d95730e2e94226b71"
+      },
+      "expectedAfterRepair": {
+        "worksheet": "06d3f6498ab38c467f4f9eb6c0669cf2336aa0ee5030755011e6ced6fc6264ac",
+        "entry": "7f9b45b31b9a5f6d0519e8cb3168d4b8f165d74128a1271aea67730bd57c8f99",
+        "work": "6814e69f9cf67866f841432c2457523ba02f21fd1beee67d95730e2e94226b71"
+      },
+      "matches": {
+        "worksheet": true,
+        "entry": true,
+        "work": true
+      }
+    },
+    {
+      "position": 106,
+      "id": "t_91341fdae389",
+      "current": {
+        "worksheet": "05a5f123cb7deddd7b2de074e8eb53a0e35534a4b721cd65374da64f022b3a6f",
+        "entry": "2c55056faab9fe278748e9f14ad36938b0705b94b3eb3f19353cd04b0765e774",
+        "work": "b76c27619df83959bb10dd24e5d887ff2ac67459e0ec559afe59a6ff5d911230"
+      },
+      "expectedAfterRepair": {
+        "worksheet": "05a5f123cb7deddd7b2de074e8eb53a0e35534a4b721cd65374da64f022b3a6f",
+        "entry": "2c55056faab9fe278748e9f14ad36938b0705b94b3eb3f19353cd04b0765e774",
+        "work": "b76c27619df83959bb10dd24e5d887ff2ac67459e0ec559afe59a6ff5d911230"
+      },
+      "matches": {
+        "worksheet": true,
+        "entry": true,
+        "work": true
+      }
+    },
+    {
+      "position": 107,
+      "id": "t_7bf152d37d97",
+      "current": {
+        "worksheet": "c2b28eb5abe404086e159221441da844ac7ff4cad09d72480c376be255b52552",
+        "entry": "61cf72034c82aee10f75579533b8f85a85500e65c582e832e64d4cd597f677ce",
+        "work": "fb94c8c3e48b17ad6bfaabe9fed0be79db31b68924c5d96e033e304eafd141b6"
+      },
+      "expectedAfterRepair": {
+        "worksheet": "c2b28eb5abe404086e159221441da844ac7ff4cad09d72480c376be255b52552",
+        "entry": "61cf72034c82aee10f75579533b8f85a85500e65c582e832e64d4cd597f677ce",
+        "work": "fb94c8c3e48b17ad6bfaabe9fed0be79db31b68924c5d96e033e304eafd141b6"
+      },
+      "matches": {
+        "worksheet": true,
+        "entry": true,
+        "work": true
+      }
+    },
+    {
+      "position": 108,
+      "id": "t_cd15dfe582b6",
+      "current": {
+        "worksheet": "75dc4ff4bda3bbb61892ba18410abdf8efa3a108e9cd44655c32632a15b782d7",
+        "entry": "e9c88c493fc6e8d221ee3c4c11a5261dc757edb31dcbc56cef9d92cf58e22153",
+        "work": "35ba70ef9a670fb1814a8b87d176a8142d1d220839776f4ffa2ebe7ec7218bfd"
+      },
+      "expectedAfterRepair": {
+        "worksheet": "75dc4ff4bda3bbb61892ba18410abdf8efa3a108e9cd44655c32632a15b782d7",
+        "entry": "e9c88c493fc6e8d221ee3c4c11a5261dc757edb31dcbc56cef9d92cf58e22153",
+        "work": "35ba70ef9a670fb1814a8b87d176a8142d1d220839776f4ffa2ebe7ec7218bfd"
+      },
+      "matches": {
+        "worksheet": true,
+        "entry": true,
+        "work": true
+      }
+    },
+    {
+      "position": 109,
+      "id": "t_1dea44941098",
+      "current": {
+        "worksheet": "908faaa1732d68bee486374e03a0f072be37e2f74e42eae26d6d07e0f51ff2a6",
+        "entry": "27541f96ecc0e1f423d2eee38edfff34a287bacda6765da7c705e30a3547b5fd",
+        "work": "9418f85bc50107d93ccad1c543daaae507f9196208812b108834527abd3f30d2"
+      },
+      "expectedAfterRepair": {
+        "worksheet": "908faaa1732d68bee486374e03a0f072be37e2f74e42eae26d6d07e0f51ff2a6",
+        "entry": "27541f96ecc0e1f423d2eee38edfff34a287bacda6765da7c705e30a3547b5fd",
+        "work": "9418f85bc50107d93ccad1c543daaae507f9196208812b108834527abd3f30d2"
+      },
+      "matches": {
+        "worksheet": true,
+        "entry": true,
+        "work": true
+      }
+    },
+    {
+      "position": 110,
+      "id": "t_7092e62ce49e",
+      "current": {
+        "worksheet": "209ece0e4d412b813c0337cbc062066b719581d6ddcf261bfceb766597df90c4",
+        "entry": "66f735515bc7269ffd6462656d88bbf24962b27b6a059fe19834b29a1749772f",
+        "work": "1de774225b2e4af4c7da9d6545ae4e08c1b2cf8397c67d1a17b96f55fdfc4447"
+      },
+      "expectedAfterRepair": {
+        "worksheet": "209ece0e4d412b813c0337cbc062066b719581d6ddcf261bfceb766597df90c4",
+        "entry": "66f735515bc7269ffd6462656d88bbf24962b27b6a059fe19834b29a1749772f",
+        "work": "1de774225b2e4af4c7da9d6545ae4e08c1b2cf8397c67d1a17b96f55fdfc4447"
+      },
+      "matches": {
+        "worksheet": true,
+        "entry": true,
+        "work": true
+      }
+    }
+  ],
+  "collateralDrift": [],
+  "collateralDriftCount": 0,
+  "residuals": [],
+  "residualCount": 0,
+  "hardPass": true,
+  "disposition": "PASS",
+  "readOnly": true,
+  "authoredFilesModified": false,
+  "installed": false,
+  "merged": false,
+  "rosterModified": false
+}

@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "iriya-independent-fullcase-review-v2",
+  "lane": "A",
+  "positions": [91, 100],
+  "reviewer": "Codex rotated independent reviewer; did not author lane A",
+  "reviewedEntryCount": 10,
+  "reviewedOccurrenceCount": 61,
+  "hardPass": true,
+  "method": "Every persisted occurrence in the recovered A91-100 checkpoint was joined by RelPath and FromLb to exactly one immutable packet candidate case. All sixty-one complete speechFrame cases, exact spans, KWICs, actor turns, implied voice boundaries, context roles, sense prose, English-first presentation, flyswatter limits, and distinct-work support were reread. Current strict gates and fresh worksheet compilation with exact object parity were run. No entry, worksheet, WORK, decision, roster, install, or merge artifact was edited.",
+  "inputBindings": {
+    "checkpoint": {"path":"maintenance/iriya-author-checkpoint-A091-100.json","sha256":"9e3d0cc158aa1dbd3aa13d2e4f7f5a3d30fc9522d5a99e8d112bbadfe58abdee"},
+    "manualPreflight": {"path":"maintenance/iriya-A091-100-manual-preflight.json","sha256":"0859992dd1f8932aafc0c0ae732cd20593f1191cdf5bfa1acd58469a9478ea61"},
+    "fullCasePacket": {"path":"maintenance/iriya-author-packet-A061-160-v1.json","sha256":"10e519a4dbf0d5315c1df4763e6e88ddf7836ad6904c6446c0140ec9ae7c0c19"},
+    "quarantineManifest": {"path":"maintenance/iriya-A091-100-failed-products-quarantine-manifest.json","sha256":"782015ec33573880b5e23399c8ce12d2f1c5d5c61e26f792d5ab3d4cb26b865e"},
+    "failedDecisionsNotSemanticAuthority": {"path":"maintenance/iriya-decisions-A091-100.json","sha256":"1549072ab2047c39953e5e88f413f89238697e2a94a04bb8ab02dcd9b5497302"}
+  },
+  "provenanceConclusion": "The compact decisions file and its emitter receipt describe failed products that the quarantine manifest says were removed. They are not the semantic authority for the current checkpoint. The checkpoint and manual preflight bind the subsequently recovered persisted worksheets, entries, and WORK files reviewed here. Re-running the current compact emitter on the quarantined decisions correctly hard-fails at A91.s1.o1 because compiler-narration in a speech-marked complete case lacks speechMarkerReviewed=true; this does not describe any current persisted occurrence.",
+  "artifactEntryBindings": {
+    "t_c7c80ebd1e13":"c0ad35b2fce958254f293b544bc9dc66ba520eb84ef6b4c6eb5be0b250f8d715",
+    "t_c72069ad2b45":"93dab0f09a9ddc328a1a49b8a076c116d40ad36c5080238be20cd329741a4002",
+    "t_ef075c6664ef":"4326762bc735e464f56ab42cdeaf94356abca0f2622e9fcec37e255e005adf9e",
+    "t_744799df0748":"00133cace7eeb883450465ee01b3bbc9f5e441347076ed997e437b230ce2a13d",
+    "t_d42de1441e4e":"640a78700658e4f59087bc9596514e703a301aac0fc03655eb51658736ae4c66",
+    "t_6a36bf01ea70":"98005f608cece824adec5a7dc36404bdd0adee49dca6eb8870e5275db83632e0",
+    "t_ff3bc00436ea":"4403710b45841c353e16f6b620f07aed778bbd825fd2ac25f1f0107930806333",
+    "t_7c404920d206":"e1fbddd382aa9505351e5af9543fbe9dada74cb20533de171ffb8d85b7f76822",
+    "t_8b0f58efdaf5":"a8668ce2efc09d7e40070c68f429b5d85d6a735b9c80ac89d3f1773b79112b22",
+    "t_dea7e97fa45e":"ba873cc90b6149208af8699bb0b88fd57eeb01b4d627170f41306ebbf5781823"
+  },
+  "semanticConclusion": "All sixty-one persisted occurrences preserve the correct utterer or reviewed actor, local voice boundary, roster-linked context roles, and attested sense. The ten one-sense entries have supported targets, explanations, notes, aliases, restrained prose, and no flyswatter overclaim. No repair delta was found.",
+  "deltas": [],
+  "deltaCoordinates": [],
+  "deltaCoordinateCount": 0,
+  "compilerNarrationSpeechMarkerRule": {
+    "applicablePersistedOccurrences": 0,
+    "hardFailures": 0,
+    "finding": "No current persisted occurrence is attributed to compiler-narration. Explicit speech-marker and embedded-turn boundaries were nevertheless acknowledged by complete-case review and are represented through named, identified-unlinked, identified-non-master, or reviewed-unnamed utterer attribution. The quarantined compact decisions fail the current rule and remain excluded from authority."
+  },
+  "mechanicalChecks": {
+    "strictAttribution":{"entries":10,"occurrences":61,"hardFailures":0,"reportSha256":"106ad7d3f2491291571090cfeaa22e9aa032a6840c580b0676220722dbdcf44c"},
+    "workSourceValidation":{"entries":10,"multiSource":10,"hardFailures":0},
+    "semanticTemplate":{"entries":10,"failureCount":0,"reportSha256":"b63b8ab36fd53e087dea82a0db287bc6fd110c52dccaba2ad0f5ea629febda32"},
+    "depthSense":{"audited":10,"hardFailed":0,"reviewFlagged":0,"reportSha256":"9dbf0ae77c866ac0a4d71b2ced33ef0a3198bbf30c0027927461c0b311fcb87b"},
+    "zc":{"entries":10,"occurrencesVerified":61,"failureCount":0,"exactTextFromLbToLb":true},
+    "worksheetEntryParity":{"checked":10,"passed":10,"failures":0,"method":"Fresh compile_draft results had zero errors and exact parsed-object equality with every persisted entry.v2.json."},
+    "workDistinctEvidence":{"entries":10,"passed":10,"failures":0},
+    "singleCompleteCaseJoin":{"occurrences":61,"uniqueMatches":61,"failures":0}
+  },
+  "nextRequiredAction": "None for the persisted A91-100 checkpoint; retain the failed compact decisions and emitter products only as quarantined provenance, never as regeneration authority."
+}

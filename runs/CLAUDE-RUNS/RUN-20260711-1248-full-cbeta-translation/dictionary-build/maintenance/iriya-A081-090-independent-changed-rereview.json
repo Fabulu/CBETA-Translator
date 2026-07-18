@@ -1,0 +1,149 @@
+{
+  "schemaVersion": "iriya-independent-changed-rereview-v1",
+  "lane": "A",
+  "positions": [
+    81,
+    90
+  ],
+  "reviewer": "Codex original independent reviewer; did not author or repair lane A",
+  "generatedUtc": "2026-07-18T12:58:56.380631+00:00",
+  "closureBinding": {
+    "path": "maintenance/iriya-A081-090-closed-repair-closure.json",
+    "sha256": "bc9824566e0d1d6fd46b4e78d41f0fb6d6ffe6c9b7ed8cad4f5bbd57d4a376c5"
+  },
+  "authorityBinding": {
+    "path": "maintenance/iriya-decisions-A081-090.json",
+    "sha256": "f2f65618fe8d378231fe66960c0cefedf0ee5604f64930edad5b9fa5c27eff8b"
+  },
+  "packetBinding": {
+    "path": "maintenance/iriya-author-packet-A061-160-v1.json",
+    "sha256": "10e519a4dbf0d5315c1df4763e6e88ddf7836ad6904c6446c0140ec9ae7c0c19"
+  },
+  "changedCoordinates": [
+    "A82.s1.o3",
+    "A83.s1.o1",
+    "A83.s1.o4",
+    "A83.s1.o5",
+    "A84.s1.o3",
+    "A84.s1.o5",
+    "A84.s1.o6",
+    "A85.s1.o4",
+    "A86.s1.o2",
+    "A86.s1.o5",
+    "A87.s1.o6",
+    "A88.s1.o3",
+    "A88.s1.o4",
+    "A89.s1.o3"
+  ],
+  "changedCoordinateCount": 14,
+  "method": "All fourteen repaired coordinates were reread against their complete immutable packet speechFrame and checked against the original findings. All sixty persisted occurrences were rerun through attribution, work-source, semantic-template, depth, exact-text, and current dry parity checks. No file other than this rereview was edited.",
+  "changedFindings": [
+    {
+      "coordinate": "A82.s1.o3",
+      "hardPass": true,
+      "finding": "The closed repair matches the original full-case finding and preserves exact utterer/voice/context boundaries."
+    },
+    {
+      "coordinate": "A83.s1.o1",
+      "hardPass": true,
+      "finding": "The closed repair matches the original full-case finding and preserves exact utterer/voice/context boundaries."
+    },
+    {
+      "coordinate": "A83.s1.o4",
+      "hardPass": true,
+      "finding": "The closed repair matches the original full-case finding and preserves exact utterer/voice/context boundaries."
+    },
+    {
+      "coordinate": "A83.s1.o5",
+      "hardPass": true,
+      "finding": "The closed repair matches the original full-case finding and preserves exact utterer/voice/context boundaries."
+    },
+    {
+      "coordinate": "A84.s1.o3",
+      "hardPass": true,
+      "finding": "The closed repair matches the original full-case finding and preserves exact utterer/voice/context boundaries."
+    },
+    {
+      "coordinate": "A84.s1.o5",
+      "hardPass": true,
+      "finding": "The closed repair matches the original full-case finding and preserves exact utterer/voice/context boundaries."
+    },
+    {
+      "coordinate": "A84.s1.o6",
+      "hardPass": true,
+      "finding": "The closed repair matches the original full-case finding and preserves exact utterer/voice/context boundaries."
+    },
+    {
+      "coordinate": "A85.s1.o4",
+      "hardPass": true,
+      "finding": "The closed repair matches the original full-case finding and preserves exact utterer/voice/context boundaries."
+    },
+    {
+      "coordinate": "A86.s1.o2",
+      "hardPass": true,
+      "finding": "The closed repair matches the original full-case finding and preserves exact utterer/voice/context boundaries."
+    },
+    {
+      "coordinate": "A86.s1.o5",
+      "hardPass": true,
+      "finding": "The closed repair matches the original full-case finding and preserves exact utterer/voice/context boundaries."
+    },
+    {
+      "coordinate": "A87.s1.o6",
+      "hardPass": true,
+      "finding": "The closed repair matches the original full-case finding and preserves exact utterer/voice/context boundaries."
+    },
+    {
+      "coordinate": "A88.s1.o3",
+      "hardPass": true,
+      "finding": "The closed repair matches the original full-case finding and preserves exact utterer/voice/context boundaries."
+    },
+    {
+      "coordinate": "A88.s1.o4",
+      "hardPass": true,
+      "finding": "The closed repair matches the original full-case finding and preserves exact utterer/voice/context boundaries."
+    },
+    {
+      "coordinate": "A89.s1.o3",
+      "hardPass": true,
+      "finding": "The closed repair matches the original full-case finding and preserves exact utterer/voice/context boundaries."
+    }
+  ],
+  "mechanicalChecks": {
+    "strictAttribution": {
+      "occurrences": 60,
+      "hardFailures": 0,
+      "sha256": "0d82cd77249c97d5913fb18e9c99e64e033f443a336fac329716aa9488424d64"
+    },
+    "workSource": {
+      "entries": 10,
+      "hardFailures": 0,
+      "sha256": "486c51c341cf8b3cb1bba3575653586ff5b8b56a075f73f237d81c3f73352e04"
+    },
+    "template": {
+      "entries": 10,
+      "failureCount": 0,
+      "sha256": "b63b8ab36fd53e087dea82a0db287bc6fd110c52dccaba2ad0f5ea629febda32"
+    },
+    "depth": {
+      "entries": 10,
+      "hardFailures": 0,
+      "sha256": "b971b4dcfa853a53f6453d05c61f582f88e34efa5dcd40b67e33922d51893864"
+    },
+    "zc": {
+      "occurrencesVerified": 60,
+      "failureCount": 0,
+      "sha256": "2b041eff08a5a98cdbddd3c04c8a50bf9bdcd55a474c3db82388e64e24199258"
+    },
+    "parity": {
+      "checked": 10,
+      "passed": 10,
+      "failures": 0,
+      "sha256": "6024e48f25d666ef0edc1ce8b038f77c362969545c64a386efd1be222410d5ca"
+    }
+  },
+  "hardPass": true,
+  "deltaCoordinates": [],
+  "deltaCoordinateCount": 0,
+  "nextAction": "A081-A090 closed repair is independently accepted."
+}
