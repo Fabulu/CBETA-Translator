@@ -1,0 +1,80 @@
+{
+  "schemaVersion": "non-iriya-frequency-semantic-repair-focused-independent-recheck.v1",
+  "generatedUtc": "2026-07-18T01:38:00Z",
+  "reviewer": "d7",
+  "decision": "PASS",
+  "reviewedLedger": "maintenance/non-iriya-v2-frequency-batch13-semantic-ledger-b6.json",
+  "reviewedLedgerSha256": "2bea0ec98789e55b99942ad14c6dca25ce92a6e86ec13d2a3d6b64c2c1833861",
+  "rejectingReview": "maintenance/non-iriya-v2-frequency-batch13-independent-review-c19-e8.json",
+  "rejectingReviewSha256": "1db2809f79d3dbf6160cb08ccf7b497173bdb49313ee6824b9b6c1a5d084e51d",
+  "repairReceipt": "maintenance/non-iriya-v2-frequency-batch13-repair-receipt-b6.json",
+  "repairReceiptSha256": "3fb8c1ad0c8a42ac10a171e79fc8d1c314ebf6d3907ae7bed6d82efccec2d3f6",
+  "selection": "maintenance/non-iriya-v2-frequency-batch13-navigation-selection.json",
+  "selectionSha256": "7c69f38240efcd74c34a8cb3afc1c96c2528871ed3b3d6b1de8d37bd07ef5844",
+  "bindingReview": {
+    "verdict": "PASS",
+    "reviewHashMatchesReceipt": true,
+    "repairedLedgerHashMatchesReceipt": true,
+    "ledgerSelectionHashMatchesCurrentSelection": true,
+    "receiptBeforeHashMatchesRejectingReviewTarget": true
+  },
+  "focusedSemanticClosures": [
+    {
+      "batchOrdinal": 3,
+      "term": "荊棘林中",
+      "disposition": "REJECT",
+      "unit": null,
+      "verdict": "PASS",
+      "closure": "Correctly rejects a transparent locative expansion of covered 荊棘林; the repaired reason removes the unsupported practice framing and identifies the absent independent Chan job."
+    },
+    {
+      "batchOrdinal": 8,
+      "term": "大丈夫漢",
+      "disposition": "KEEP",
+      "unit": "component",
+      "verdict": "PASS",
+      "closure": "The two full cases support a Chan exhortative/verdict category for the decisive, fully capable person: cutting through in one stroke and acting freely amid severe obstructions, without defining masculinity."
+    },
+    {
+      "batchOrdinal": 22,
+      "term": "元正啟祚",
+      "disposition": "KEEP",
+      "unit": "institutional-formula",
+      "verdict": "PASS",
+      "closure": "The corrected reason accurately reads the recurrent New Year answer and capping formula as the first day beginning auspicious fortune or blessing, paired with all things becoming new; it no longer imports a change of reign."
+    },
+    {
+      "batchOrdinal": 23,
+      "term": "過後張弓",
+      "disposition": "REJECT",
+      "unit": null,
+      "verdict": "PASS",
+      "closure": "Both full cases expose the exact hit as the clipped tail of covered 賊過後張弓; removing 賊 removes the proverb's subject, so the substring count does not establish independent deployment."
+    }
+  ],
+  "preservationReview": {
+    "verdict": "PASS",
+    "all25SelectionToLedgerIdentitiesAndOrderExact": true,
+    "all25NestedFamilyObjectsPreservedFromSelection": true,
+    "all25CountTriplesPreservedFromSelection": true,
+    "all50EvidenceObjectsPreservedFromSelection": true,
+    "other21DecisionObjectsPreservedByHashLinkedRepairReceipt": true,
+    "evidenceCountsAndIdentitiesChanged": false
+  },
+  "summaryReview": {
+    "verdict": "PASS",
+    "KEEP": 12,
+    "REJECT": 13,
+    "PROVISIONAL": 0,
+    "recomputedFrom25Decisions": true,
+    "matchesLedgerSummary": true,
+    "matchesRepairReceiptSummaryAfter": true
+  },
+  "requiredRevisions": [],
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false,
+  "reviewedLedgerMutated": false
+}

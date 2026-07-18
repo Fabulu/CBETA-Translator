@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "non-iriya-frequency-semantic-repair-receipt.v1",
+  "batch": 13,
+  "repairAuthor": "b6",
+  "rejectingReview": "maintenance/non-iriya-v2-frequency-batch13-independent-review-c19-e8.json",
+  "rejectingReviewSha256": "1db2809f79d3dbf6160cb08ccf7b497173bdb49313ee6824b9b6c1a5d084e51d",
+  "ledger": "maintenance/non-iriya-v2-frequency-batch13-semantic-ledger-b6.json",
+  "ledgerBeforeSha256": "d32a3d548a3cf647a0fb6cc592fe7459bcf743e9034264e505d78f9c14a4b10e",
+  "ledgerAfterSha256": "2bea0ec98789e55b99942ad14c6dca25ce92a6e86ec13d2a3d6b64c2c1833861",
+  "repairs": [
+    {
+      "coordinate": {"batchOrdinal": 3, "term": "荊棘林中"},
+      "before": {"disposition": "KEEP", "unit": "component"},
+      "after": {"disposition": "REJECT", "unit": null},
+      "closure": "Transparent locative expansion of covered 荊棘林; removed the unsupported practice framing."
+    },
+    {
+      "coordinate": {"batchOrdinal": 8, "term": "大丈夫漢"},
+      "before": {"disposition": "REJECT", "unit": null},
+      "after": {"disposition": "KEEP", "unit": "component"},
+      "closure": "Stable Chan exhortative and verdict category for the decisive, fully capable person."
+    },
+    {
+      "coordinate": {"batchOrdinal": 22, "term": "元正啟祚"},
+      "before": {"disposition": "KEEP", "unit": "institutional-formula"},
+      "after": {"disposition": "KEEP", "unit": "institutional-formula"},
+      "closure": "Reason corrected to the New Year's first day beginning auspicious fortune or blessing, not a new reign."
+    },
+    {
+      "coordinate": {"batchOrdinal": 23, "term": "過後張弓"},
+      "before": {"disposition": "KEEP", "unit": "component"},
+      "after": {"disposition": "REJECT", "unit": null},
+      "closure": "Clipped tail of the covered parent 賊過後張弓."
+    }
+  ],
+  "summaryBefore": {"KEEP": 13, "REJECT": 12, "PROVISIONAL": 0},
+  "summaryAfter": {"KEEP": 12, "REJECT": 13, "PROVISIONAL": 0},
+  "otherTwentyOneDecisionObjectsPreserved": true,
+  "evidenceCountsAndIdentitiesChanged": false,
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "buildRun": false,
+  "registryMutationPerformed": false,
+  "lineageTouched": false,
+  "status": "READY_FOR_FOCUSED_RECHECK"
+}

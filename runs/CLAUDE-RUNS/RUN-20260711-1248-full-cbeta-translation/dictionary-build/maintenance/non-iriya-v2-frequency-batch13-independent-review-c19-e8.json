@@ -1,0 +1,79 @@
+{
+  "schemaVersion": "non-iriya-frequency-semantic-independent-review.v1",
+  "reviewer": "c19-e8",
+  "decision": "REVISE",
+  "reviewedSelection": "maintenance/non-iriya-v2-frequency-batch13-navigation-selection.json",
+  "reviewedSelectionSha256": "7c69f38240efcd74c34a8cb3afc1c96c2528871ed3b3d6b1de8d37bd07ef5844",
+  "reviewedLedger": "maintenance/non-iriya-v2-frequency-batch13-semantic-ledger-b6.json",
+  "reviewedLedgerSha256": "d32a3d548a3cf647a0fb6cc592fe7459bcf743e9034264e505d78f9c14a4b10e",
+  "mechanicalReview": {
+    "verdict": "PASS",
+    "identity": "25/25 selection-to-ledger identities and order preserved",
+    "counts": "25/25 hit/file/distinct-work triples independently reproduced with zc.batch_count",
+    "evidence": "50/50 windows independently passed zc.verify at exact stored line bounds; titles and manifest work IDs reproduce",
+    "workIndependence": "25/25 evidence pairs use two canonical-distinct works",
+    "nestedMetadata": "Selection nestedFamily metadata is preserved row-for-row in the ledger"
+  },
+  "semanticReview": {
+    "verdict": "REVISE 4 rows; PASS 21",
+    "rows": [
+      {
+        "batchOrdinal": 3,
+        "term": "荊棘林中",
+        "current": "KEEP component",
+        "verdict": "REVISE to REJECT",
+        "finding": "荊棘林 is already covered and 中 is a transparent locative suffix. Both cases use ‘in the thorn forest’ with the same terrain image; the added graph creates no new referent or Chan job. The reason’s ‘practice within difficulty’ also imports a practice framing not stated by the phrase.",
+        "requiredRepair": "REJECT as a transparent locative expansion of covered 荊棘林; retain the evidence as boundary proof."
+      },
+      {
+        "batchOrdinal": 8,
+        "term": "大丈夫漢",
+        "current": "REJECT generic evaluative role",
+        "verdict": "REVISE to KEEP",
+        "finding": "The supplied full cases do more than contain a generic role. Masters define the qualifying Chan person through the label: one who cuts in a single stroke and who can knock off fetters in the black prison and act among hungry ghosts. This is an observable exhortative/verdict category with a corpus-specific deployment.",
+        "requiredRepair": "KEEP as a component meaning the decisive, fully capable person in a master’s challenge; anchor the interpretation in the two supplied demands and avoid defining it as masculinity."
+      },
+      {
+        "batchOrdinal": 22,
+        "term": "元正啟祚",
+        "current": "KEEP institutional-formula",
+        "verdict": "REVISE reason only",
+        "finding": "The complete New Year formula is correctly kept, but ‘opening the new reign’ misreads the case. 元正 is New Year’s first day and 啟祚 opens auspicious fortune/blessing; the paired continuation is ‘all things are renewed.’ Nothing in either witness requires a change of reign.",
+        "requiredRepair": "Define it as ‘the New Year begins auspicious fortune/blessing,’ used as the recurrent answer/capping formula; preserve KEEP, unit, counts, and evidence."
+      },
+      {
+        "batchOrdinal": 23,
+        "term": "過後張弓",
+        "current": "KEEP component",
+        "verdict": "REVISE to REJECT",
+        "finding": "Every supplied occurrence is the clipped tail of the declared parent 賊過後張弓, ‘drawing the bow after the thief has passed.’ Removing 賊 deletes the subject that makes the proverb intelligible; the exact count is substring inflation, not independent deployment.",
+        "requiredRepair": "REJECT as a clipped covered-parent candidate and retain the full proverb at 賊過後張弓."
+      }
+    ],
+    "passingBatchOrdinals": [1, 2, 4, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 24, 25]
+  },
+  "boundaryReview": {
+    "verdict": "REVISE the two missed boundaries above; otherwise PASS",
+    "confirmedRejects": ["菩提達磨", "中獨露身", "百億須彌", "逐四時凋", "大唐國裏", "地水火風", "大悲千手"],
+    "confirmedDistinctDespiteCoveredParts": {
+      "生死大事": "stable compound naming the urgent matter, not a sum of 生死 and 大事",
+      "面門出入": "first witness independently uses the shortened formula; stable Linji face-gate action",
+      "釋迦彌勒": "recurrent paired figures used as a totalizing comparison",
+      "象王行處": "stable terrain/path image independently used before its longer fox-track continuation"
+    }
+  },
+  "summary": {
+    "PASS": 21,
+    "REVISE": 4,
+    "keepToReject": 2,
+    "rejectToKeep": 1,
+    "reasonOnly": 1,
+    "countOrEvidenceRepairs": 0
+  },
+  "authorLedgerMutated": false,
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false
+}
