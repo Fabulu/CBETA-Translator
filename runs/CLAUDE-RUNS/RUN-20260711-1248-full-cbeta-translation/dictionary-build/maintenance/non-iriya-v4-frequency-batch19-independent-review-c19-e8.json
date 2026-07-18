@@ -1,0 +1,88 @@
+{
+  "schemaVersion": "non-iriya-v4-frequency-independent-review-v1",
+  "reviewer": "c19-e8",
+  "batch": 19,
+  "verdict": "REVISE",
+  "selection": "maintenance/non-iriya-v4-frequency-batch19-selection.json",
+  "selectionSha256": "614aa190be54ec2f825a5feca64a48f26451ad10e3304803d7893f802aae014f",
+  "ledger": "maintenance/non-iriya-v4-frequency-batch19-semantic-ledger-b6.json",
+  "ledgerSha256": "2a7236e61341b61f564705063b6c0c0568bac972eb00c5b66e7459f500400d4b",
+  "reviewedCount": 25,
+  "mechanicalAudit": {
+    "selectionLedgerIdentity": "PASS: all 25 batch ordinals, terms, and v4 ranks agree",
+    "exactRecount": "PASS: all 25 hit/file/distinct-work triples reproduce with zc.batch_count",
+    "evidenceVerification": "PASS: all 50 KWICs reproduce under zc.verify with exact stored lb bounds",
+    "sourceMetadata": "PASS: all 50 titles and work IDs reproduce from the frozen corpus manifest",
+    "prohibitedProse": "PASS: zero case-insensitive occurrences of Buddhism, Buddhist, meditation, or zazen",
+    "mutation": "No selection, ledger, dictionary, authority, build-run, or lineage mutation performed"
+  },
+  "semanticAudit": {
+    "falseNegativeReview": "PASS: the three REJECT rows are boundaries rather than independent units. 學人乍入叢林 is a productive question preface; 放下手 is consistently continued by 來/元來/卻是 material or functions inside the longer Yunmen saying; 陂擬開口 is a named subject plus narrative action in the Lupi case.",
+    "unchallengedRows": [
+      3,
+      6,
+      7,
+      9,
+      10,
+      11,
+      14,
+      15,
+      16,
+      18,
+      21,
+      22,
+      23,
+      24,
+      25
+    ],
+    "revisionFindings": [
+      {
+        "batchOrdinals": [1],
+        "terms": ["般若波羅蜜"],
+        "kind": "deployment-evidence mismatch",
+        "finding": "The KEEP reason calls this an established technical expression, but both selected witnesses merely contain quoted scripture or a scripture title. They do not show the observable Chan deployment required to promote the candidate.",
+        "requiredAction": "Replace at least one witness with a full-case Chan deployment and rewrite the reason to state that deployment, or change the disposition if no such deployment survives full-case reading."
+      },
+      {
+        "batchOrdinals": [2],
+        "terms": ["摩訶般若波羅蜜"],
+        "kind": "deployment-evidence mismatch",
+        "finding": "The chosen witnesses are a liturgical closing formula and the Platform Sutra title/opening exposition. Neither supports the ledger's implied independent Chan lexical deployment. Other corpus passages visibly use the phrase as a hall answer or case action, but those were not selected or adjudicated here.",
+        "requiredAction": "Re-anchor the KEEP decision in canonical-distinct full cases where a master actively deploys the phrase, then state the exact Chan job; do not promote on the current evidence."
+      },
+      {
+        "batchOrdinals": [4, 12],
+        "terms": ["喚作竹篦則觸", "喚作竹篦即觸"],
+        "kind": "unresolved variant collision",
+        "finding": "The two rows are wording variants of the same bamboo-splint dilemma, but both are independently kept without deciding canonical headword versus searchable variant/alias.",
+        "requiredAction": "Adjudicate one lexical family explicitly and prevent two independent entries from presenting the same unit as unrelated headwords."
+      },
+      {
+        "batchOrdinals": [5, 8],
+        "terms": ["釋迦彌勒是他奴", "釋迦彌勒猶是他奴"],
+        "kind": "unresolved containment/variant collision",
+        "finding": "Adding 猶 creates an attested wording variant, not a separately explained semantic unit on the evidence supplied. Both were kept independently without a canonical/alias ruling.",
+        "requiredAction": "Choose the canonical formula and register the other as an attested searchable variant unless full-case evidence establishes a distinct lexical job."
+      },
+      {
+        "batchOrdinals": [13, 20],
+        "terms": ["忽遇樹倒藤枯", "及乎樹倒藤枯"],
+        "kind": "unresolved variant collision",
+        "finding": "忽遇 and 及乎 introduce the same tree-falls/vine-withers continuation. The ledger recognizes both as continuations but does not justify two independent dictionary units.",
+        "requiredAction": "Resolve them as one saying family with searchable variants, or document corpus evidence for genuinely separate units."
+      },
+      {
+        "batchOrdinals": [17, 19],
+        "terms": ["迥脫根塵", "逈脫根塵"],
+        "kind": "unresolved graphic-variant collision",
+        "finding": "These differ only by the graphic variants 迥/逈. Calling row 19 a graphic variant does not itself perform the required canonical-headword/variant association.",
+        "requiredAction": "Retain one canonical headword and register the other spelling as a verified graphic variant; do not promote two independent semantic entries."
+      }
+    ]
+  },
+  "promotionGate": "BLOCKED until every revision finding is resolved and independently rechecked",
+  "authorityMutationPerformed": false,
+  "dictionaryMutationPerformed": false,
+  "buildRun": null,
+  "lineageTouched": false
+}

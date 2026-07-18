@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "non-iriya-v4-frequency-repair-focused-recheck-v1",
+  "reviewer": "c19-e8",
+  "batch": 19,
+  "verdict": "PASS",
+  "originalReview": "maintenance/non-iriya-v4-frequency-batch19-independent-review-c19-e8.json",
+  "originalReviewSha256": "62c0615c74ef5e08c329e938a07c805a3737bb027b7b8ba1b85e74072a5ae21b",
+  "repairReceipt": "maintenance/non-iriya-v4-frequency-batch19-repair-receipt-b6.json",
+  "repairReceiptSha256": "f545fa0a1f0e10f1e63ea528a2dafd0b144e9b10ba1e0233a7aa54a1e776a2ba",
+  "repairedLedger": "maintenance/non-iriya-v4-frequency-batch19-semantic-ledger-b6.json",
+  "repairedLedgerSha256": "cb893c7f9db2addfcb6b0aa5d3ff5bfb2b8c22a69b0d141adbd099e5cac3fca4",
+  "focusedFindings": [
+    {
+      "batchOrdinals": [1],
+      "terms": ["般若波羅蜜"],
+      "status": "PASS",
+      "finding": "Both replacement witnesses actively deploy the headword. Longchi explicitly raises the whisk, asks what should be called prajnaparamita, then identifies the whisk with it; Chushi Fanqi closes a hall address with the formula. The revised reason states these observable jobs without relying on quoted scripture."
+    },
+    {
+      "batchOrdinals": [2],
+      "terms": ["摩訶般若波羅蜜"],
+      "status": "PASS",
+      "finding": "The replacement witnesses are active hall deployments: one supplies the formula as the answer identifying the monk's nose immediately before dismissing the assembly to general work; the other raises the staff and invokes the expanded formula in the dragon-king sequence."
+    },
+    {
+      "batchOrdinals": [4, 12],
+      "terms": ["喚作竹篦則觸", "喚作竹篦即觸"],
+      "status": "PASS",
+      "finding": "The dominant 則觸 wording remains KEEP and the 即觸 wording is explicitly rejected as its attested alias-family duplicate. The two are no longer promoted as unrelated entries."
+    },
+    {
+      "batchOrdinals": [5, 8],
+      "terms": ["釋迦彌勒是他奴", "釋迦彌勒猶是他奴"],
+      "status": "PASS",
+      "finding": "The ledger now treats the reduced wording as an alias-family duplicate and retains the complete traditional formula containing 猶. Frequency alone does not create two lexical units, and the family relation is explicit."
+    },
+    {
+      "batchOrdinals": [13, 20],
+      "terms": ["忽遇樹倒藤枯", "及乎樹倒藤枯"],
+      "status": "PASS",
+      "finding": "Full-case reading establishes distinct jobs rather than mere interchangeable wording: 忽遇 introduces Shushan's recurring direct question about where the phrase goes, whereas 及乎 is used as the declarative transition in a separate hall exposition before its own predicates. Both may remain searchable units."
+    },
+    {
+      "batchOrdinals": [17, 19],
+      "terms": ["迥脫根塵", "逈脫根塵"],
+      "status": "PASS",
+      "finding": "The dominant 迥 spelling remains KEEP and the 逈 spelling is explicitly rejected as a graphic-variant duplicate. The batch no longer promotes two semantic entries for one phrase."
+    }
+  ],
+  "mechanicalRecheck": {
+    "selectionLedgerIdentity": "PASS 25/25",
+    "exactCountTriples": "PASS 25/25, reproduced with zc.batch_count",
+    "evidenceWindowsAndBounds": "PASS 50/50 under zc.verify",
+    "canonicalDistinctWorkPairs": "PASS 25/25",
+    "summary": "PASS: 19 KEEP, 6 REJECT, 0 PROVISIONAL",
+    "prohibitedProse": "PASS: zero findings"
+  },
+  "promotionGate": "CLEAR",
+  "authorityMutationPerformed": false,
+  "dictionaryMutationPerformed": false,
+  "buildRun": null,
+  "lineageTouched": false
+}

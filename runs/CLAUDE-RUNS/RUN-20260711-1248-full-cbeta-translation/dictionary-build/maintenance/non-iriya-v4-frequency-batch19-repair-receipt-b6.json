@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "non-iriya-v4-frequency-repair-receipt.v1",
+  "repairAuthor": "b6",
+  "review": "maintenance/non-iriya-v4-frequency-batch19-independent-review-c19-e8.json",
+  "reviewSha256": "62c0615c74ef5e08c329e938a07c805a3737bb027b7b8ba1b85e74072a5ae21b",
+  "ledger": "maintenance/non-iriya-v4-frequency-batch19-semantic-ledger-b6.json",
+  "ledgerBeforeSha256": "2a7236e61341b61f564705063b6c0c0568bac972eb00c5b66e7459f500400d4b",
+  "ledgerAfterSha256": "cb893c7f9db2addfcb6b0aa5d3ff5bfb2b8c22a69b0d141adbd099e5cac3fca4",
+  "repairs": {
+    "activeWitnessReplacements": ["般若波羅蜜", "摩訶般若波羅蜜"],
+    "canonicalAliasResolutions": ["喚作竹篦則觸 / 喚作竹篦即觸", "釋迦彌勒猶是他奴 / 釋迦彌勒是他奴", "迥脫根塵 / 逈脫根塵"],
+    "distinctFamilyUnitsRetained": ["忽遇樹倒藤枯 / 及乎樹倒藤枯"]
+  },
+  "summaryAfter": {"KEEP": 19, "REJECT": 6, "PROVISIONAL": 0},
+  "exactCountTriples": "PASS 25/25",
+  "evidenceWindows": "PASS 50/50",
+  "canonicalDistinctPairs": "PASS 25/25",
+  "prohibitedProse": "PASS 0 findings",
+  "unaffectedRowsPreserved": true,
+  "authorityMutationPerformed": false,
+  "dictionaryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false,
+  "status": "READY_FOR_FOCUSED_RECHECK"
+}
