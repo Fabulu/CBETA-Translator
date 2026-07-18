@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "iriya-manual-independent-review.v1",
+  "reviewer": "c19-e8",
+  "decision": "REVISE",
+  "reviewedSelection": "maintenance/iriya-manual-batch22-offset2-selection.json",
+  "reviewedSelectionSha256": "3749d9c78a265f6ef18719a6d5a9c5508bf2c08e0c83abf6cf1396cd67f40fab",
+  "reviewedLedger": "maintenance/iriya-manual-batch22-offset2-ledger.json",
+  "reviewedLedgerSha256": "525b757a0bb3dcd060c447f688a05fa01ebf11a6ac230eeb2e50a5b7fc0377f4",
+  "identityReview": {
+    "verdict": "PASS",
+    "finding": "All ten queue/selection/ledger tuples reproduce, all canonical indexes are 2 modulo 3, all sixteen prior-ledger hashes reproduce, and every selected id is absent from the frozen registry and prior offset-2 ledgers."
+  },
+  "mechanicalReview": {
+    "cheapValidator": "PASS 10/10",
+    "fullValidator": "PASS 10/10",
+    "counts": "PASS; all exact hit/file/distinct-work triples reproduce",
+    "evidence": "PASS; all stored windows verify at their line bounds, titles/work IDs reproduce, and buildable rows use canonical-work-distinct evidence",
+    "rejectHandling": "PASS; 何似這箇 is correctly rejected as a productive deictic frame rather than treated as a lexical entry",
+    "variantsAndUnits": "PASS mechanically; one reason needs corpus-first qualification"
+  },
+  "semanticReview": {
+    "verdict": "REVISE 1 reason; PASS 9 rows",
+    "rows": [
+      {
+        "canonicalIndex": 815,
+        "term": "長者長法身、短者短法身",
+        "verdict": "REVISE reason only",
+        "finding": "The literal pair and KEEP/couplet ruling are supported, but 'asserting responsive manifestation without erasing distinctions' makes the distinction sound finally preserved. In the first stored case the master immediately says that on awakening, the long is not long and the short is not short, then asks what is called Dharma-body. The second commentary asks whether the pure Dharma-body has length at all, then explains the saying through manifestation in response to things. Both witnesses raise the visible long/short forms and then problematize treating length as a fixed property of Dharma-body.",
+        "requiredRepair": "State the literal pair, then report that the cases use responsive long/short manifestation while explicitly denying that Dharma-body is fixed as long or short. Remove 'without erasing distinctions,' or qualify it so it cannot be read as preserving fixed lengths. Preserve disposition, couplet unit, count, and both witnesses."
+      }
+    ],
+    "passingCanonicalIndexes": [809, 812, 818, 821, 824, 827, 830, 833, 836]
+  },
+  "summary": {"PASS": 9, "REVISE": 1, "reasonOnlyRepairsRequired": 1, "evidenceOrCountRepairsRequired": 0},
+  "authorLedgerMutated": false,
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false
+}

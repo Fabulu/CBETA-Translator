@@ -1,0 +1,70 @@
+{
+  "schemaVersion": "iriya-manual-independent-review.v1",
+  "generatedUtc": "2026-07-18T05:31:00Z",
+  "reviewer": "d7",
+  "decision": "PASS",
+  "reviewedSelection": "maintenance/iriya-manual-batch22-offset1-selection.json",
+  "reviewedSelectionSha256": "2a409611df7c42cca7789aee1d36d3775ee3857af98c7c1b7d613fb6ac3d4bcd",
+  "reviewedLedger": "maintenance/iriya-manual-batch22-offset1-ledger.json",
+  "reviewedLedgerSha256": "b76c4520e751005811d36a5ba897ed43f0796b3452bd3e50de983df7fe91e123",
+  "identityAndExclusionReview": {
+    "verdict": "PASS",
+    "authoritativeQueueSha256Reproduced": true,
+    "authoritativeQueueTuplesExact": true,
+    "selectionMatchesLedgerExactly": true,
+    "selectionHashBindingReproduced": true,
+    "canonicalIndexEqualsQueueNumberMinusOne": true,
+    "canonicalIndexModulo3Equals1": true,
+    "exactlyNextTenAgainstBoundLive754RegistryAndPriorLedgers": true,
+    "boundRegistryRows": 754,
+    "boundRegistrySha256Reproduced": true,
+    "absentBoundLive754Registry": true,
+    "absentAllThirteenPriorOffset1AuthorLedgersThroughBatch21": true,
+    "allThirteenRecordedPriorLedgerHashesReproduced": true
+  },
+  "semanticDispositionAndUnitReview": {
+    "verdict": "PASS",
+    "fullCasesRead": 20,
+    "KEEP": 10,
+    "REJECT": 0,
+    "components": ["妙觸宣明", "求珠不離泥", "高枕無憂", "佇思停機", "大似春意", "對牛彈琴"],
+    "couplets": ["龍象蹴踏、非驢所堪", "一曲兩曲無人會、雨過夜塘秋水深", "無人知此意、令我憶南泉", "千江有水千江月、萬里無雲萬里天"],
+    "rowFindings": [
+      {"canonicalIndex": 802, "verdict": "PASS", "finding": "The Bhadrapala tactile-awakening phrase and direct-realization deployment are explicit."},
+      {"canonicalIndex": 805, "verdict": "PASS", "finding": "Both cases preserve the fixed pearl-in-mud image for direct engagement."},
+      {"canonicalIndex": 808, "verdict": "PASS", "finding": "The established worry-free high-pillow idiom and both reported deployments are supported."},
+      {"canonicalIndex": 811, "verdict": "PASS", "finding": "The complete dragon-elephant/donkey warning and capacity contrast are explicit."},
+      {"canonicalIndex": 814, "verdict": "PASS", "finding": "The complete poetic couplet is preserved and caps an ungrasped presentation in both cases."},
+      {"canonicalIndex": 817, "verdict": "PASS", "finding": "Both cases diagnose deliberative hesitation with the complete fixed phrase."},
+      {"canonicalIndex": 820, "verdict": "PASS", "finding": "The stable spring-feeling appraisal is bound to Changsha's recurrent exchange without extra abstraction."},
+      {"canonicalIndex": 823, "verdict": "PASS", "finding": "The fixed ox-and-lute proverb and unreceptive-hearer deployment are supported."},
+      {"canonicalIndex": 826, "verdict": "PASS", "finding": "The complete remembrance couplet explicitly turns lack of recognition toward Nanquan."},
+      {"canonicalIndex": 829, "verdict": "PASS", "finding": "The complete thousand-rivers/cloudless-sky verse and unobstructed-manifestation deployment are supported."}
+    ],
+    "semanticRevisionsRequired": []
+  },
+  "variantReview": {
+    "verdict": "PASS",
+    "everyRowHasExplicitFormResolution": true,
+    "fourPrintedEnumerationSeparatorsNormalizedToCorpusCommas": true,
+    "otherSixQueriesExactGraphForm": true,
+    "directionalChangesRecorded": true
+  },
+  "mechanicalReview": {
+    "cheapValidator": {"status": "PASS", "failureCount": 0},
+    "fullValidator": {"status": "PASS", "failureCount": 0},
+    "exactCountTriplesReproduced": 10,
+    "evidenceWindowsVerified": 20,
+    "allLineBoundsTitlesAndCanonicalWorkIdsReproduced": true,
+    "twoCanonicalDistinctWorksPerDecision": true,
+    "summaryReproduced": {"KEEP_component": 6, "KEEP_couplet": 4, "REJECT": 0, "PROVISIONAL": 0}
+  },
+  "requiredRevisions": [],
+  "authorLedgerMutated": false,
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false,
+  "reviewedArtifactsMutated": false
+}

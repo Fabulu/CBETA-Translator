@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "iriya-author-reason-repair-receipt.v1",
+  "generatedUtc": "2026-07-18T05:56:00Z",
+  "author": "d7",
+  "ledger": "maintenance/iriya-manual-batch22-offset2-ledger.json",
+  "ledgerSha256Before": "525b757a0bb3dcd060c447f688a05fa01ebf11a6ac230eeb2e50a5b7fc0377f4",
+  "ledgerSha256After": "91c8a3dce645152c96bd7d895a99c3c4d4cd77ea76c5ee8d1435dc7f95479af8",
+  "canonicalIndex": 815,
+  "term": "長者長法身、短者短法身",
+  "scope": "reason text only",
+  "reasonBefore": "Complete paired formula that the long manifests a long Dharma-body and the short a short Dharma-body, asserting responsive manifestation without erasing distinctions.",
+  "reasonAfter": "Complete paired formula that the long manifests a long Dharma-body and the short a short Dharma-body; both cases present responsive manifestation while denying that Dharma-body has fixed length.",
+  "reviewFindingAddressed": "Removed the unsupported suggestion that distinctions remain fixed and stated the shared corpus result: responsive manifestation while both cases deny fixed Dharma-body length.",
+  "preserved": {
+    "selectionAndIdentity": true,
+    "disposition": true,
+    "unit": true,
+    "countTriple": true,
+    "bothEvidenceWindowsAndBounds": true,
+    "allOtherDecisionFields": true,
+    "allOtherRows": true
+  },
+  "validators": {
+    "cheap": {"status": "PASS", "reviewedRows": 10, "failureCount": 0},
+    "full": {"status": "PASS", "reviewedRows": 10, "failureCount": 0}
+  },
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false
+}

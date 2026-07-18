@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "iriya-manual-independent-review.v1",
+  "reviewer": "c19-e8",
+  "decision": "REVISE",
+  "reviewedSelection": "maintenance/iriya-manual-batch22-offset0-selection.json",
+  "reviewedSelectionSha256": "35f9266d4d1ae8a69b633c5e7d6c69ed5d2d8fd06a3d31e5f6d878c7588bffa3",
+  "reviewedLedger": "maintenance/iriya-manual-batch22-offset0-ledger.json",
+  "reviewedLedgerSha256": "a9c3b34ba2ad21912baa2c231a9db6d3a9f485403a0356c4673a651ed21de140",
+  "identityReview": {
+    "verdict": "PASS WITH DOCUMENTED PRIOR REPAIR CHAIN",
+    "finding": "All ten queue/selection/ledger tuples reproduce, all canonical indexes are 0 modulo 3, and selected ids are absent from the frozen registry. Eleven declared prior-ledger hashes reproduce directly. Batch-21 offset-0 no longer has its pre-repair 2f2d... hash because its independently requested reason-only repair produced b449...; the signed repair receipt pins 2f2d... as ledgerBeforeSha256, preserves every identity, and the focused recheck passes. This is documented historical drift, not a selection collision."
+  },
+  "mechanicalReview": {
+    "cheapValidator": "PASS 10/10",
+    "fullValidator": "PASS 10/10",
+    "counts": "PASS; all ten exact hit/file/distinct-work triples reproduce",
+    "evidence": "PASS; 20/20 windows verify at stored line bounds, titles and canonical work IDs reproduce, and every evidence pair is work-distinct",
+    "variantsAndUnits": "PASS mechanically; one reason misassociates a neighbouring verdict with the headword"
+  },
+  "semanticReview": {
+    "verdict": "REVISE 1 reason; PASS 9 rows",
+    "rows": [
+      {
+        "canonicalIndex": 708,
+        "term": "方木逗圓孔",
+        "verdict": "REVISE reason only",
+        "finding": "The literal mismatch image and KEEP/component ruling are supported, but the reason says the cases apply it to 'clinging to words.' In Yuanwu's stored passage, clinging to words receives the separate verdict 泥裏洗土塊; 方木逗圓孔 is attached specifically to not approaching or understanding through the words (不向言句上會). The second witness compares applying finite body-and-mind toward the unlimited with fitting square wood into a round hole. The current reason assigns the neighbouring verdict's target to this headword.",
+        "requiredRepair": "Keep the literal square-wood/round-hole mismatch. Report Yuanwu's application specifically to avoiding or failing to engage the phrases, and the second case's application to directing finite body-and-mind toward the unlimited. Remove 'clinging to words,' which belongs to the adjacent mud-washing-earth-clod verdict. Preserve disposition, component unit, counts, and both witnesses."
+      }
+    ],
+    "passingCanonicalIndexes": [702, 705, 711, 714, 717, 720, 723, 726, 729]
+  },
+  "summary": {"PASS": 9, "REVISE": 1, "reasonOnlyRepairsRequired": 1, "evidenceOrCountRepairsRequired": 0},
+  "authorLedgerMutated": false,
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false
+}

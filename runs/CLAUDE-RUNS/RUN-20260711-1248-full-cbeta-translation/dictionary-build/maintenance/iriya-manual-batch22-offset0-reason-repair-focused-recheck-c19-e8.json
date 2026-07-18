@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "iriya-manual-review-repair-focused-recheck.v1",
+  "reviewer": "c19-e8",
+  "reviewArtifact": "maintenance/iriya-manual-batch22-offset0-independent-review-c19-e8.json",
+  "reviewArtifactSha256": "64a092cf182da3be402121d46238bd2c386c226796d795d339d5b45bd0022505",
+  "repairReceipt": "maintenance/iriya-manual-batch22-offset0-reason-repair-receipt-b6.json",
+  "repairReceiptSha256": "6e6f550138255244d428ff3497a14502b2ef72d39fc28e305bb924eaa0f542e3",
+  "repairedLedger": "maintenance/iriya-manual-batch22-offset0-ledger.json",
+  "repairedLedgerSha256": "63a49ba19ee8e216e4af0d0c812ecb7c75b8683048c098677a2bf52df65e4a06",
+  "decision": "PASS",
+  "focusedRow": {
+    "canonicalIndex": 708,
+    "term": "方木逗圓孔",
+    "verdict": "PASS",
+    "finding": "The reason now assigns Yuanwu's phrase to 不向言句上會 rather than importing the adjacent 泥裏洗土塊 verdict, and separately reports the finite body-and-mind aimed at the unlimited in the second case."
+  },
+  "deltaReview": {
+    "verdict": "PASS",
+    "finding": "The receipt pins before/after hashes and confirms reason as the sole changed field; identities, dispositions, units, counts, evidence, form resolutions, and the other nine reasons are preserved."
+  },
+  "mechanicalRecheck": {"cheapValidator": "PASS 10/10", "fullValidator": "PASS 10/10"},
+  "authorLedgerMutatedByReviewer": false,
+  "authorityMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false
+}
