@@ -1,0 +1,227 @@
+{
+  "schemaVersion": "iriya-independent-decile-review-v1",
+  "laneReviewed": "B",
+  "positions": [
+    111,
+    120
+  ],
+  "authorClosure": "maintenance/iriya-B111-120-author-closure.json",
+  "authorClosureSha256": "1a6cce54143038bbb3fcab534dc82b32e466450478852eac8cff5486e9c1d866",
+  "reviewerIndependence": "Reviewer did not author Lane B111-120 and made no changes to its decisions, entries, worksheets, or author receipts.",
+  "entryCount": 10,
+  "occurrenceCount": 60,
+  "completeCasesRead": 60,
+  "speechMarkersReviewed": 60,
+  "zcVerified": 60,
+  "zcFailures": 0,
+  "parityChecked": 10,
+  "parityFailures": 0,
+  "bindingChecks": {
+    "packet": {
+      "path": "maintenance/iriya-author-packet-B071-167-v1.json",
+      "expectedSha256": "a981635abe531e80beae72af97a9f2a372b1f465feba5f1e9135b44a5964d913",
+      "actualSha256": "a981635abe531e80beae72af97a9f2a372b1f465feba5f1e9135b44a5964d913",
+      "match": true
+    },
+    "decisions": {
+      "path": "maintenance/iriya-decisions-B111-120.json",
+      "expectedSha256": "1d90fa21f4d52d4ece1e5161142d9a999875625d86f94264123809d59907758a",
+      "actualSha256": "1d90fa21f4d52d4ece1e5161142d9a999875625d86f94264123809d59907758a",
+      "match": true
+    },
+    "emitter": {
+      "path": "maintenance/iriya-B111-120-emitter.json",
+      "expectedSha256": "793179a6889e8a3dfc8b1778197aad8320778ee8fb78dc7c97d08862ac746cbf",
+      "actualSha256": "793179a6889e8a3dfc8b1778197aad8320778ee8fb78dc7c97d08862ac746cbf",
+      "match": true
+    },
+    "attribution": {
+      "path": "maintenance/iriya-B111-120-final-attribution.json",
+      "expectedSha256": "3d0629a8b64559a48a27c37e1b4dd11e4ce3804a106ffdcb2665fc9a6a1f809d",
+      "actualSha256": "3d0629a8b64559a48a27c37e1b4dd11e4ce3804a106ffdcb2665fc9a6a1f809d",
+      "match": true
+    },
+    "workSource": {
+      "path": "maintenance/iriya-B111-120-final-work.json",
+      "expectedSha256": "486c51c341cf8b3cb1bba3575653586ff5b8b56a075f73f237d81c3f73352e04",
+      "actualSha256": "486c51c341cf8b3cb1bba3575653586ff5b8b56a075f73f237d81c3f73352e04",
+      "match": true
+    },
+    "template": {
+      "path": "maintenance/iriya-B111-120-final-template.json",
+      "expectedSha256": "b63b8ab36fd53e087dea82a0db287bc6fd110c52dccaba2ad0f5ea629febda32",
+      "actualSha256": "b63b8ab36fd53e087dea82a0db287bc6fd110c52dccaba2ad0f5ea629febda32",
+      "match": true
+    },
+    "depth": {
+      "path": "maintenance/iriya-B111-120-final-depth.json",
+      "expectedSha256": "e3aaa4aa5e42715acf2458a551c55774d0c24a860112970017a5fe36be8ced23",
+      "actualSha256": "e3aaa4aa5e42715acf2458a551c55774d0c24a860112970017a5fe36be8ced23",
+      "match": true
+    },
+    "zc": {
+      "path": "maintenance/iriya-B111-120-final-zc.json",
+      "expectedSha256": "c9a78caba823ade0d83fb9115d77e3c542c8e3c8da90c9efae9713848310e600",
+      "actualSha256": "c9a78caba823ade0d83fb9115d77e3c542c8e3c8da90c9efae9713848310e600",
+      "match": true
+    }
+  },
+  "currentEntryHashes": [
+    {
+      "id": "t_88d66f2191a7",
+      "path": "fresh-build/entries/t_88d66f2191a7/entry.v2.json",
+      "sha256": "7b8f0b076fd74ecacadc723fb45e14b3283423274be43800a2883fddcf1064c5"
+    },
+    {
+      "id": "t_76c7623702ce",
+      "path": "fresh-build/entries/t_76c7623702ce/entry.v2.json",
+      "sha256": "daa77fcbfa3d0b031906ebd23330c9bfb36b223629ddae60166c633cf0f1d8e7"
+    },
+    {
+      "id": "t_082000a23ddf",
+      "path": "fresh-build/entries/t_082000a23ddf/entry.v2.json",
+      "sha256": "b8597ec28022d95e9daea437a117c8ba0a062c57ee89772d5e4acde683dfcca9"
+    },
+    {
+      "id": "t_378360e5114a",
+      "path": "fresh-build/entries/t_378360e5114a/entry.v2.json",
+      "sha256": "cf9c507406e5296c2429da3f5b7b8080f91e14d3b522b69ff8c3fdcd72e8c1a3"
+    },
+    {
+      "id": "t_f8d5bba160d8",
+      "path": "fresh-build/entries/t_f8d5bba160d8/entry.v2.json",
+      "sha256": "bfedcee4632c2e78d63d32c2eeeba9163ad604b5319d914ce0e450979b08abf6"
+    },
+    {
+      "id": "t_e7758465f236",
+      "path": "fresh-build/entries/t_e7758465f236/entry.v2.json",
+      "sha256": "20bccb9569749ecdb6fc12dc2005652a15ccae6f6c05ebb2d8b780d7e365c4b7"
+    },
+    {
+      "id": "t_275552dfd220",
+      "path": "fresh-build/entries/t_275552dfd220/entry.v2.json",
+      "sha256": "831a99844a01e9ae354adab9739c51fcd2d64105e26ef9d4dc50e07579d50dce"
+    },
+    {
+      "id": "t_207cda0e51cd",
+      "path": "fresh-build/entries/t_207cda0e51cd/entry.v2.json",
+      "sha256": "11a5e4da8a9072cecbf5267959231ca0a1092dfb88fb78c025f6dc767c384f20"
+    },
+    {
+      "id": "t_6120ca4b6774",
+      "path": "fresh-build/entries/t_6120ca4b6774/entry.v2.json",
+      "sha256": "d415a4add14a816f12491040f61b743a057bfca4d3906811c94b0f6310064c5f"
+    },
+    {
+      "id": "t_a35bd0a2babf",
+      "path": "fresh-build/entries/t_a35bd0a2babf/entry.v2.json",
+      "sha256": "8455b9bae1a86c7e7d11744076efea4009e7449ba5bacbd4c30d3e1aef27d537"
+    }
+  ],
+  "currentGates": {
+    "attribution": {
+      "path": "maintenance/iriya-B111-120-independent-current-attribution.json",
+      "sha256": "3d0629a8b64559a48a27c37e1b4dd11e4ce3804a106ffdcb2665fc9a6a1f809d",
+      "hardPass": true,
+      "failureCount": 0
+    },
+    "template": {
+      "path": "maintenance/iriya-B111-120-independent-current-template.json",
+      "sha256": "b63b8ab36fd53e087dea82a0db287bc6fd110c52dccaba2ad0f5ea629febda32",
+      "hardPass": true,
+      "failureCount": 0
+    },
+    "depth": {
+      "path": "maintenance/iriya-B111-120-independent-current-depth.json",
+      "sha256": "5a1494877e0f1f13970e55f60c72258858f412e5944f29c9181e230ae6d45383",
+      "hardPass": true,
+      "failureCount": 0
+    }
+  },
+  "ledgers": [
+    "maintenance/iriya-B111-120-independent-review-ledger-20.json",
+    "maintenance/iriya-B111-120-independent-review-ledger-40.json",
+    "maintenance/iriya-B111-120-independent-review-ledger-60.json"
+  ],
+  "deltas": [
+    {
+      "deltaId": "B111-120-D01",
+      "entryId": "t_378360e5114a",
+      "position": 114,
+      "sense": 1,
+      "occurrence": 3,
+      "caseIndex": 2,
+      "sequence": 21,
+      "field": "ActorAttribution/VoiceLayer",
+      "current": "the unnamed old man at Wutai / direct-turn",
+      "required": "Mi'an Xianjie / quoted-original",
+      "evidence": "天童傑云 explicitly attributes the occurrence-bearing 前三三，後三三 line to Mi'an Xianjie; the unnamed old man belongs to the earlier Wutai encounter, not this later quotation.",
+      "status": "closed-repair-required"
+    },
+    {
+      "deltaId": "B111-120-D02",
+      "entryId": "t_378360e5114a",
+      "position": 114,
+      "sense": 1,
+      "occurrence": 6,
+      "caseIndex": 5,
+      "sequence": 24,
+      "field": "ActorAttribution/VoiceLayer",
+      "current": "the unnamed old man at Wutai / embedded-copy",
+      "required": "Manjusri / quoted-original",
+      "evidence": "翠巖芝云：文殊道 explicitly embeds and attributes the occurrence-bearing line to Manjusri; Cuiyan Shouzhi is the later raiser.",
+      "status": "closed-repair-required"
+    },
+    {
+      "deltaId": "B111-120-D03",
+      "entryId": "t_207cda0e51cd",
+      "position": 118,
+      "sense": 1,
+      "occurrence": 4,
+      "caseIndex": 5,
+      "sequence": 46,
+      "field": "ActorAttribution",
+      "current": "Tianning record master",
+      "required": "Shoushan Xingnian",
+      "evidence": "The complete 天聖廣燈錄 case is under 汝州寶應禪院省念禪師, and 師云 introduces Xingnian's occurrence-bearing reply.",
+      "status": "closed-repair-required"
+    },
+    {
+      "deltaId": "B111-120-D04",
+      "entryId": "t_6120ca4b6774",
+      "position": 119,
+      "sense": 1,
+      "occurrence": 5,
+      "caseIndex": 4,
+      "sequence": 53,
+      "field": "VoiceLayer",
+      "current": "direct-turn",
+      "required": "compiler-narration",
+      "evidence": "咄！洞山漏逗不少 is the portrait-series narrator's appraisal following the quoted Dongshan verse, not a direct dialog turn.",
+      "status": "closed-repair-required"
+    },
+    {
+      "deltaId": "B111-120-D05",
+      "entryId": "t_a35bd0a2babf",
+      "position": 120,
+      "sense": 1,
+      "occurrence": 3,
+      "caseIndex": 3,
+      "sequence": 57,
+      "field": "ActorAttribution/VoiceLayer",
+      "current": "Li Daoyi / embedded-copy",
+      "required": "Xiaoyin Daxin / quoted-original",
+      "evidence": "Li Daoyi's preface explicitly says 笑隱亦抗聲於晦機云 before the occurrence-bearing line, identifying Xiaoyin Daxin as its speaker and Li as quoter.",
+      "status": "closed-repair-required"
+    }
+  ],
+  "deltaCount": 5,
+  "allDeltasClosed": true,
+  "reviewComplete": true,
+  "hardPass": false,
+  "disposition": "author-repair-required",
+  "readOnly": true,
+  "installed": false,
+  "merged": false,
+  "rosterModified": false
+}

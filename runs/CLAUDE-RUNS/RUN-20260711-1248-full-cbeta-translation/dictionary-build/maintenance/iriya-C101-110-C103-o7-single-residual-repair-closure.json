@@ -1,0 +1,71 @@
+{
+  "schemaVersion": "iriya-single-residual-repair-closure-v1",
+  "lane": "C",
+  "positions": [
+    101,
+    110
+  ],
+  "coordinate": "C103.s1.o7",
+  "sourceResidualReceiptSha256": "2c4816763910cecd435810ceb62984ed5f46a824c2757ea8133572e8e89bd92d",
+  "resolution": "Dahui Zonggao remains the quoted-original exact utterer; Miyun Yuanwu is the outer later-raiser/commentator introduced by the following appraisal marker.",
+  "coordinateHardPass": true,
+  "bindings": {
+    "independentResidualReview": {
+      "path": "maintenance/iriya-C101-110-independent-final-repaired-rereview.json",
+      "sha256": "2c4816763910cecd435810ceb62984ed5f46a824c2757ea8133572e8e89bd92d"
+    },
+    "fullRepairClosure": {
+      "path": "maintenance/iriya-C101-110-independent-fullcase-review-repair-closure.json",
+      "sha256": "85b1a48dedd4d8840f3f5c6d324d9fb23291ea3040273b97d6f6d0afe9fd1e0b"
+    },
+    "compile": {
+      "path": "maintenance/iriya-C101-110-C103-o7-residual-compile.json",
+      "sha256": "54f33d5e699ca21be71226913445cfb98b8bacafdd748db7dcdceaa9c5206d9a"
+    },
+    "attribution": {
+      "path": "maintenance/iriya-C101-110-review-repair-attribution.json",
+      "sha256": "36b453655135b236a40611a164d8511b17e89c1cbb6b9a03b58c9a0de85839f0"
+    },
+    "workSource": {
+      "path": "maintenance/iriya-C101-110-review-repair-work.json",
+      "sha256": "486c51c341cf8b3cb1bba3575653586ff5b8b56a075f73f237d81c3f73352e04"
+    },
+    "template": {
+      "path": "maintenance/iriya-C101-110-review-repair-template.json",
+      "sha256": "b63b8ab36fd53e087dea82a0db287bc6fd110c52dccaba2ad0f5ea629febda32"
+    },
+    "depth": {
+      "path": "maintenance/iriya-C101-110-review-repair-depth.json",
+      "sha256": "c2cbb545c6dcd5cae273a9c1f17a22ccfb7334fa547aeb9c8f6ef2cd7255efd7"
+    },
+    "exactZc": {
+      "path": "maintenance/iriya-C101-110-review-repair-zc.json",
+      "sha256": "f2a35cd40cb479b10555960ab18d29be8a178b29c39f63cc6a4296331470b013"
+    },
+    "parity": {
+      "path": "maintenance/iriya-C101-110-review-repair-parity.json",
+      "sha256": "70b55fde5ca40d51220750aed83be42b21f315725033ec0893958b17c01839f1"
+    }
+  },
+  "changedArtifact": {
+    "id": "t_07dab7ffa5b8",
+    "worksheetSha256": "f17b334955c53d6e46e002bc91e8f5948347d24b1388b83014a81be6cdd13e96",
+    "entrySha256": "ea65abd250df485ecbd10fb10cdc36ed305e5bb274a1a4a54427a183e2839671",
+    "workSha256": "88876a1b2d84e0c24394b69102a06dc4e1e023228693faf9201f174971000c90"
+  },
+  "gates": {
+    "attributionFailures": 0,
+    "workSourceFailures": 0,
+    "templateFailures": 0,
+    "depthFailures": 0,
+    "exactZcFailures": 0,
+    "compileParityFailures": 0
+  },
+  "hardPass": true,
+  "reviewStatus": "awaiting-independent-B-changed-only-rereview",
+  "selfReviewPerformed": false,
+  "installed": false,
+  "merged": false,
+  "rosterModified": false,
+  "otherEdits": false
+}

@@ -1,0 +1,149 @@
+{
+  "schemaVersion": "iriya-independent-single-coordinate-changed-rereview-v1",
+  "lane": "C",
+  "positions": [
+    101,
+    110
+  ],
+  "coordinate": "C103.s1.o7",
+  "generatedUtc": "2026-07-18T14:42:45.263115+00:00",
+  "reviewer": "Codex independent changed-only rereviewer",
+  "readOnly": true,
+  "bindings": {
+    "repairClosure": {
+      "path": "maintenance/iriya-C101-110-C103-o7-single-residual-repair-closure.json",
+      "sha256": "c2b0e37a354c3c43113b5b7f61ced72269e9e1bff106b031205550025316c183"
+    },
+    "priorReceipt": {
+      "path": "maintenance/iriya-C101-110-independent-final-repaired-rereview.json",
+      "sha256": "2c4816763910cecd435810ceb62984ed5f46a824c2757ea8133572e8e89bd92d"
+    },
+    "attribution": {
+      "path": "maintenance/iriya-C101-110-C103-o7-final-rereview-attribution.json",
+      "sha256": "36b453655135b236a40611a164d8511b17e89c1cbb6b9a03b58c9a0de85839f0"
+    },
+    "template": {
+      "path": "maintenance/iriya-C101-110-C103-o7-final-rereview-template.json",
+      "sha256": "b63b8ab36fd53e087dea82a0db287bc6fd110c52dccaba2ad0f5ea629febda32"
+    },
+    "workSource": {
+      "path": "maintenance/iriya-C101-110-C103-o7-final-rereview-work.json",
+      "sha256": "486c51c341cf8b3cb1bba3575653586ff5b8b56a075f73f237d81c3f73352e04"
+    },
+    "depth": {
+      "path": "maintenance/iriya-C101-110-C103-o7-final-rereview-depth.json",
+      "sha256": "5320e36d59e052254c8a173acfe87146159e94aeca19b01cd7354c24d6d12c9f"
+    },
+    "exactZc": {
+      "path": "maintenance/iriya-C101-110-C103-o7-final-rereview-zc.json",
+      "sha256": "2325ca459d3098beb265988abcc761adcfffc2bb5d0d5d189014ed457ac3a080"
+    }
+  },
+  "closureSha256Expected": "c2b0e37a354c3c43113b5b7f61ced72269e9e1bff106b031205550025316c183",
+  "closureSha256Matched": true,
+  "priorReceiptSha256Matched": true,
+  "coordinateCheck": {
+    "exactUtterer": "Dahui Zonggao",
+    "voiceLayer": "quoted-original",
+    "contextMaster": "Miyun Yuanwu",
+    "contextRoles": [
+      "later-raiser",
+      "commentator"
+    ],
+    "attributionNoteSynchronized": true,
+    "hardPass": true
+  },
+  "changedArtifactHashMatch": true,
+  "currentArtifacts": [
+    {
+      "position": 101,
+      "id": "t_9455ca078a15",
+      "worksheetSha256": "dad457c777c7156468f8d5089c75a6be41e46257d682f08ce7e6833a14cadac8",
+      "entrySha256": "e2ed0b72bbf185f607b22385e219a34c661661b57bdc4f86ee16234e3e36a515",
+      "workSha256": "bea862879300f9960dce692b81a1cab2b2256548de8cdbf977a3b8b25d499600"
+    },
+    {
+      "position": 102,
+      "id": "t_0c68f7fe8f37",
+      "worksheetSha256": "5ce98bd933145825d6b4d78690eb1241fbabda2b64d67bf836e9cefbd04124dc",
+      "entrySha256": "3229f7480f48ecc8bf5a049b3ced54f2db352219e8a3ad66f2095f083a6ca9b3",
+      "workSha256": "43aa40cbfbddce51ebc9ae76c4bae731d30acf91957bfe27051aa9d4cdb9e726"
+    },
+    {
+      "position": 103,
+      "id": "t_07dab7ffa5b8",
+      "worksheetSha256": "f17b334955c53d6e46e002bc91e8f5948347d24b1388b83014a81be6cdd13e96",
+      "entrySha256": "ea65abd250df485ecbd10fb10cdc36ed305e5bb274a1a4a54427a183e2839671",
+      "workSha256": "88876a1b2d84e0c24394b69102a06dc4e1e023228693faf9201f174971000c90"
+    },
+    {
+      "position": 104,
+      "id": "t_74ce805485c3",
+      "worksheetSha256": "4f20662e54046260620e5f94f0afaf5bd64f92a34e0d31da0f6f61a0e26dccdb",
+      "entrySha256": "228b3e92527bdfec040fdc1b49159473191d840a792b33903b254c382689a532",
+      "workSha256": "41518100ba782b5797431a28bb77384273ea544e3eb2ba7b4bad0000a42a4a00"
+    },
+    {
+      "position": 105,
+      "id": "t_c8e9d50a5b03",
+      "worksheetSha256": "2f198329793699eb7d9d896a028ca6945c24e24be925cd8b44cf7848d9e849f6",
+      "entrySha256": "7e901e590756d14b46c19088ff10bb249f5516b95fecc0d1df4a2abd8dadd316",
+      "workSha256": "4b0a361c746be890c3b609b74a0ba9e69e1dc331615fac370c7cd52e1feebcfa"
+    },
+    {
+      "position": 106,
+      "id": "t_3060e047d179",
+      "worksheetSha256": "2bbf11b58b26bbef1daa5f136bdba25eab63d5f421da7743de64274164abb942",
+      "entrySha256": "785f9a04351f79e23b07b122e828d5f222a6f893476945b30a8e9b586fb0f888",
+      "workSha256": "4ec27c6e5f75067015f1fcec6368311a8edad682886f3b3c996460fb710ddd06"
+    },
+    {
+      "position": 107,
+      "id": "t_0a96885869b7",
+      "worksheetSha256": "4a047a14b1907fcaac50aaa562de643f15370a31c554c2c922f4422fa17f1555",
+      "entrySha256": "799589dfefc4dc2d9074a6784a251ca4036db42b06a95db1aa340c0b93c4b458",
+      "workSha256": "bf16b02f156a3d0353178c445ae2e0a978cc960c288d074405ed28fa33ccabe8"
+    },
+    {
+      "position": 108,
+      "id": "t_044eb6f12080",
+      "worksheetSha256": "8d344f3ee32a35fcf8b265d9e066ebae5ff517106341359b0503472741a47b09",
+      "entrySha256": "54d3dbd25edac1d2333f86b54ffc085240a8a6b1502b887a0e0517e1c6d5a8fb",
+      "workSha256": "489792d5a861b94a6f3d01b9b32f9856eaad82cfddbbe788d85fa59b1d696832"
+    },
+    {
+      "position": 109,
+      "id": "t_0c0e460d84ee",
+      "worksheetSha256": "029365aa5078cc3799d6e14d7e984c676d178f00de2a3f8df3e7ea995e4c399a",
+      "entrySha256": "d1fea1f969c22f0df379040176d7ef52548ce9d4760b7d198f644f3f6ba32afa",
+      "workSha256": "4c37e68827ec32bf03d0daddd981013a90b128edd62a38ac271c8fd43f49393e"
+    },
+    {
+      "position": 110,
+      "id": "t_88b8f7499667",
+      "worksheetSha256": "d11e2c1e1c16f84d0918d9e6e0dd584436ee6845bc459109a38c2d222e33748d",
+      "entrySha256": "1979c667149edbb1254209809b1f574cc71c410f801194c31850d96b67db3131",
+      "workSha256": "181b75ab58bf71a3e1abee6318cc1433cb5f82484c1d16368de9676120b1538f"
+    }
+  ],
+  "collateralDriftCount": 0,
+  "collateralDrift": [],
+  "mechanicalChecks": {
+    "compileParity": "10/10",
+    "attributionHardFailures": 0,
+    "templateFailures": 0,
+    "workSourceHardFailures": 0,
+    "depthHardFailures": 0,
+    "depthReviewFlags": 0,
+    "exactVerified": 80,
+    "exactFailures": 0
+  },
+  "residualCount": 0,
+  "hardPass": true,
+  "disposition": "PASS",
+  "authoredFilesModified": false,
+  "installed": false,
+  "merged": false,
+  "rosterModified": false,
+  "status": "closed"
+}

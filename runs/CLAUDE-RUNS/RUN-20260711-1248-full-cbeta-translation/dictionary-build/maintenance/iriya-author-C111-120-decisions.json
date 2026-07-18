@@ -1,0 +1,2144 @@
+{
+  "schemaVersion": "iriya-compact-decisions-v1",
+  "entries": [
+    {
+      "id": "t_cad9e36013fe",
+      "createdBy": "Codex Iriya lane C111-120 full-case author",
+      "writtenUtc": "2026-07-18T23:20:00Z",
+      "senses": [
+        {
+          "senseKey": null,
+          "masterName": null,
+          "preferredTarget": "you head toward Xiaoxiang, while I head toward Qin",
+          "alternateTargets": [],
+          "searchAliases": [
+            "you head toward Xiaoxiang, while I head toward Qin"
+          ],
+          "status": "preferred",
+          "validation": "multi-source",
+          "note": "A farewell line sends two people toward different regions and so marks decisive divergence.",
+          "explanationParts": {
+            "corpusEarnedOpening": "Foyan uses the line as the answer where neither intention nor wording arrives, while poems reuse its two diverging destinations.",
+            "evidenceBody": [
+              "Foyan’s dialogue, Chushi’s guest position, and later farewell verses all preserve the addressed traveler going to Xiaoxiang while the speaking traveler goes to Qin."
+            ]
+          },
+          "relatedMasters": [],
+          "relatedTerms": [],
+          "draftEvidence": {
+            "OpeningClaimEvidenceKeys": [
+              "o1",
+              "o2",
+              "o3",
+              "o4",
+              "o5",
+              "o6",
+              "o7",
+              "o8"
+            ],
+            "ZenBend": "Foyan uses the line as the answer where neither intention nor wording arrives, while poems reuse its two diverging destinations.",
+            "CounterexampleOrLimit": "A farewell line sends two people toward different regions and so marks decisive divergence.",
+            "DifferentThingTest": {
+              "Decision": "one-thing",
+              "ComparedThings": [
+                "you head toward Xiaoxiang, while I head toward Qin",
+                "the retained cases"
+              ],
+              "Reason": "Foyan’s dialogue, Chushi’s guest position, and later farewell verses all preserve the addressed traveler going to Xiaoxiang while the speaking traveler goes to Qin."
+            },
+            "AliasRationale": "The alias retains the opposed destinations and first-/second-person split.",
+            "ModifierControls": [
+              {
+                "Term": "opposed destinations",
+                "Finding": "The two place names anchor opposite routes rather than describing one itinerary."
+              }
+            ],
+            "FamilyControls": [
+              {
+                "Term": "farewell lines",
+                "Finding": "Other farewell poetry is excluded unless it preserves both destinations."
+              }
+            ]
+          },
+          "occurrences": [
+            {
+              "caseIndex": 0,
+              "fromLb": "0088b23",
+              "toLb": "0088c01",
+              "kwic": "手，通身是眼睛。曰：如何是意句俱不到？師曰：君向瀟湘我向秦。徽宗政和癸巳十一月四日，淨髮沐浴。次日齋罷",
+              "exactHeadwordClause": "君向瀟湘我向秦",
+              "grammaticalProof": "The complete 五燈全書(第34卷-第120卷) case and its local speech markers assign the headword-bearing turn to Foyan Qingyuan.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Foyan Qingyuan"
+              }
+            },
+            {
+              "caseIndex": 1,
+              "fromLb": "0309b16",
+              "toLb": "0309b19",
+              "kwic": "江頭楊柳春，楊花愁殺渡頭人，一聲羗笛離亭晚，君向瀟湘我向秦。得人一牛，還人一馬。有往有來，可知禮也。船",
+              "exactHeadwordClause": "君向瀟湘我向秦",
+              "grammaticalProof": "The metrical passage is explicitly presented as a verse; the unidentified farewell-verse author is the verse author established by the complete 宗鑑法林 case.",
+              "voiceLayer": "transmitted-verse",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "narrated",
+                "kind": "full-case exact-turn adjudication",
+                "label": "the unidentified farewell-verse author",
+                "role": "verse-author",
+                "subject": "the unidentified farewell-verse author",
+                "reviewedBy": "Codex Iriya lane C111-120 full-case author",
+                "reviewedUtc": "2026-07-18T23:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 2,
+              "fromLb": "0284b22",
+              "toLb": "0284b24",
+              "kwic": "：更要第二杓惡水在。問：如何是賓中賓？師曰：君向瀟湘我向秦。曰：如何是賓中主？師曰：常在途中，不離家舍",
+              "exactHeadwordClause": "君向瀟湘我向秦",
+              "grammaticalProof": "The complete 揞黑豆集 case and its local speech markers assign the headword-bearing turn to Chushi Fanqi.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Chushi Fanqi"
+              }
+            },
+            {
+              "caseIndex": 3,
+              "fromLb": "0622a19",
+              "toLb": "0622a21",
+              "kwic": "大眾！畢竟歸宗道的是？昭慶道的是？儻若躊躇，君向瀟湘我向秦。」薦亡，請上堂。「滿林秋色正芬芳，帶醉芙蓉",
+              "exactHeadwordClause": "君向瀟湘我向秦",
+              "grammaticalProof": "The complete 百愚禪師語錄 case and its local speech markers assign the headword-bearing turn to Baiyu Jingsi.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Baiyu Jingsi"
+              }
+            },
+            {
+              "caseIndex": 4,
+              "fromLb": "0215a03",
+              "toLb": "0215a05",
+              "kwic": "手，通身是眼睛。曰：如何是意句俱不到？師曰：君向瀟湘我向秦。政和三年十一月四日，淨髮沐浴。次日齋罷小參",
+              "exactHeadwordClause": "君向瀟湘我向秦",
+              "grammaticalProof": "The complete 五燈嚴統(第10卷-第25卷) case and its local speech markers assign the headword-bearing turn to Foyan Qingyuan.",
+              "voiceLayer": "embedded-copy",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Foyan Qingyuan"
+              }
+            },
+            {
+              "caseIndex": 5,
+              "fromLb": "0645b03",
+              "toLb": "0645b06",
+              "kwic": "厘揚子江頭楊柳春楊花愁殺渡頭人一聲羗笛離亭晚君向瀟湘我向秦作家手叚天然別不辞臂墯除妖孽万里歌謠賀太平夜",
+              "exactHeadwordClause": "君向瀟湘我向秦",
+              "grammaticalProof": "The metrical passage is explicitly presented as a verse; the unidentified Linked-Pearls verse author is the verse author established by the complete 禪宗頌古聯珠通集 case.",
+              "voiceLayer": "transmitted-verse",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "narrated",
+                "kind": "full-case exact-turn adjudication",
+                "label": "the unidentified Linked-Pearls verse author",
+                "role": "verse-author",
+                "subject": "the unidentified Linked-Pearls verse author",
+                "reviewedBy": "Codex Iriya lane C111-120 full-case author",
+                "reviewedUtc": "2026-07-18T23:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 6,
+              "fromLb": "0145b29",
+              "toLb": "0145c02",
+              "kwic": "此拈提意在於何？」良久云：「數聲羌笛離亭晚，君向瀟湘我向秦。」遂喝一喝，卓拄杖下座。鹽城縣永寧寺大機上",
+              "exactHeadwordClause": "君向瀟湘我向秦",
+              "grammaticalProof": "The complete 費隱禪師語錄 case and its local speech markers assign the headword-bearing turn to Feiyin Tongrong.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Feiyin Tongrong"
+              }
+            },
+            {
+              "caseIndex": 7,
+              "fromLb": "0708c10",
+              "toLb": "0708c13",
+              "kwic": "江頭楊柳春，楊花愁殺渡頭人，一聲羌笛離亭晚，君向瀟湘我向秦。」下座。晚參。「你若居平地，與你把手上高山",
+              "exactHeadwordClause": "君向瀟湘我向秦",
+              "grammaticalProof": "The complete 天岸昇禪師語錄 case and its local speech markers assign the headword-bearing turn to Tian’an Sheng.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Tian’an Sheng",
+                "role": "utterer",
+                "subject": "Tian’an Sheng",
+                "reviewedBy": "Codex Iriya lane C111-120 full-case author",
+                "reviewedUtc": "2026-07-18T23:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t_74894b5bf9e9",
+      "createdBy": "Codex Iriya lane C111-120 full-case author",
+      "writtenUtc": "2026-07-18T23:20:00Z",
+      "senses": [
+        {
+          "senseKey": null,
+          "masterName": null,
+          "preferredTarget": "a fierce tiger sits across the road",
+          "alternateTargets": [],
+          "searchAliases": [
+            "a fierce tiger sits across the road"
+          ],
+          "status": "preferred",
+          "validation": "multi-source",
+          "note": "The tiger blocks the route as an image of an answer whose force cannot be passed casually.",
+          "explanationParts": {
+            "corpusEarnedOpening": "Sheng’s answer wins Huangbo because the seated tiger turns a verbal test into an impassable roadblock.",
+            "evidenceBody": [
+              "Biographical copies, Dahui’s retelling, and Xutang’s later challenge all preserve Sheng’s exact answer."
+            ]
+          },
+          "relatedMasters": [],
+          "relatedTerms": [],
+          "draftEvidence": {
+            "OpeningClaimEvidenceKeys": [
+              "o1",
+              "o2",
+              "o3",
+              "o4",
+              "o5",
+              "o6",
+              "o7",
+              "o8"
+            ],
+            "ZenBend": "Sheng’s answer wins Huangbo because the seated tiger turns a verbal test into an impassable roadblock.",
+            "CounterexampleOrLimit": "The tiger blocks the route as an image of an answer whose force cannot be passed casually.",
+            "DifferentThingTest": {
+              "Decision": "one-thing",
+              "ComparedThings": [
+                "a fierce tiger sits across the road",
+                "the retained cases"
+              ],
+              "Reason": "Biographical copies, Dahui’s retelling, and Xutang’s later challenge all preserve Sheng’s exact answer."
+            },
+            "AliasRationale": "The alias keeps both the tiger’s ferocity and its position on the road.",
+            "ModifierControls": [
+              {
+                "Term": "road-blocking seat",
+                "Finding": "The sitting occurs squarely across the route; it is not a general tiger portrait."
+              }
+            ],
+            "FamilyControls": [
+              {
+                "Term": "tiger images",
+                "Finding": "Other crouching-tiger images lack the road-blocking answer."
+              }
+            ]
+          },
+          "occurrences": [
+            {
+              "caseIndex": 0,
+              "fromLb": "0034c10",
+              "toLb": "0034c12",
+              "kwic": "脚下種菜。有人下得語契，便往住持。勝上座曰：猛虎當路坐。龍遂令去住黃檗。順不覺曰：勝首座祇下得一轉",
+              "exactHeadwordClause": "猛虎當路坐",
+              "grammaticalProof": "The complete 五燈全書(第34卷-第120卷) case and its local speech markers assign the headword-bearing turn to senior seat Sheng.",
+              "voiceLayer": "embedded-copy",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "identified-non-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "senior seat Sheng",
+                "role": "respondent",
+                "subject": "senior seat Sheng",
+                "reviewedBy": "Codex Iriya lane C111-120 full-case author",
+                "reviewedUtc": "2026-07-18T23:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 1,
+              "fromLb": "0249a10",
+              "toLb": "0249a12",
+              "kwic": "單越噇眠。鐘樓上念讚，床脚下種菜。勝首座道，猛虎當路坐，摘楊花，摘楊花。用彰俊禪師謝首座、知客、侍",
+              "exactHeadwordClause": "猛虎當路坐",
+              "grammaticalProof": "The complete 列祖提綱錄 case and its local speech markers assign the headword-bearing turn to senior seat Sheng.",
+              "voiceLayer": "embedded-copy",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "identified-non-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "senior seat Sheng",
+                "role": "respondent",
+                "subject": "senior seat Sheng",
+                "reviewedBy": "Codex Iriya lane C111-120 full-case author",
+                "reviewedUtc": "2026-07-18T23:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 2,
+              "fromLb": "0169b18",
+              "toLb": "0169b20",
+              "kwic": "脚下種菜。有人下得語契，便往住持。勝上座云：猛虎當路坐。龍遂令去住黃檗。順不覺云：勝首座祇下得一轉",
+              "exactHeadwordClause": "猛虎當路坐",
+              "grammaticalProof": "The complete 五燈嚴統(第10卷-第25卷) case and its local speech markers assign the headword-bearing turn to senior seat Sheng.",
+              "voiceLayer": "embedded-copy",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "identified-non-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "senior seat Sheng",
+                "role": "respondent",
+                "subject": "senior seat Sheng",
+                "reviewedBy": "Codex Iriya lane C111-120 full-case author",
+                "reviewedUtc": "2026-07-18T23:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 3,
+              "fromLb": "0866b10",
+              "toLb": "0866b12",
+              "kwic": "上念讚牀脚下種菜時如何眾下語皆不契唯勝首座云猛虎當路坐南深肯之命次補黃蘗順曰他只下得一轉語好便得院",
+              "exactHeadwordClause": "猛虎當路坐",
+              "grammaticalProof": "The complete 大慧普覺禪師普說 case and its local speech markers assign the headword-bearing turn to Dahui Zonggao.",
+              "voiceLayer": "compiler-narration",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Dahui Zonggao"
+              }
+            },
+            {
+              "caseIndex": 4,
+              "fromLb": "0266b22",
+              "toLb": "0266c01",
+              "kwic": "脚下種菜。有人下得語契，便往住持。勝上座曰：猛虎當路坐。黃龍遂令去住黃檗。順不覺曰：勝首座祇下得一",
+              "exactHeadwordClause": "猛虎當路坐",
+              "grammaticalProof": "The complete 教外別傳 case and its local speech markers assign the headword-bearing turn to senior seat Sheng.",
+              "voiceLayer": "embedded-copy",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "identified-non-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "senior seat Sheng",
+                "role": "respondent",
+                "subject": "senior seat Sheng",
+                "reviewedBy": "Codex Iriya lane C111-120 full-case author",
+                "reviewedUtc": "2026-07-18T23:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 5,
+              "fromLb": "0469a02",
+              "toLb": "0469a05",
+              "kwic": "，牀脚下種菜，眾皆下語不契。一日，勝首座曰：猛虎當路坐。師退，黃檗與勝住。道峰珍云：鐘樓上念讚南斗",
+              "exactHeadwordClause": "猛虎當路坐",
+              "grammaticalProof": "The complete 宗鑑法林 case and its local speech markers assign the headword-bearing turn to senior seat Sheng.",
+              "voiceLayer": "embedded-copy",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "identified-non-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "senior seat Sheng",
+                "role": "respondent",
+                "subject": "senior seat Sheng",
+                "reviewedBy": "Codex Iriya lane C111-120 full-case author",
+                "reviewedUtc": "2026-07-18T23:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 6,
+              "fromLb": "0843a07",
+              "toLb": "0843a11",
+              "kwic": "鍾樓上念讚床脚下種菜眾皆下語不契一日勝首座云猛虎當路坐師乃退黃蘗與勝住。頌曰。鍾樓上念讚床脚下種菜",
+              "exactHeadwordClause": "猛虎當路坐",
+              "grammaticalProof": "The metrical passage is explicitly presented as a verse; the unidentified Linked-Pearls verse author is the verse author established by the complete 禪宗頌古聯珠通集 case.",
+              "voiceLayer": "transmitted-verse",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "narrated",
+                "kind": "full-case exact-turn adjudication",
+                "label": "the unidentified Linked-Pearls verse author",
+                "role": "verse-author",
+                "subject": "the unidentified Linked-Pearls verse author",
+                "reviewedBy": "Codex Iriya lane C111-120 full-case author",
+                "reviewedUtc": "2026-07-18T23:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 7,
+              "fromLb": "0997a29",
+              "toLb": "0997b03",
+              "kwic": "。明甚麼邊事。師云。刮皮見骨。僧云。勝首座道猛虎當路坐聻。師云。乞兒席袋。乃舉。鷄鳴丑愁見起來。還",
+              "exactHeadwordClause": "猛虎當路坐",
+              "grammaticalProof": "The complete 虛堂和尚語錄 case and its local speech markers assign the headword-bearing turn to Xutang Zhiyu.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Xutang Zhiyu"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t_99395dc4d190",
+      "createdBy": "Codex Iriya lane C111-120 full-case author",
+      "writtenUtc": "2026-07-18T23:20:00Z",
+      "senses": [
+        {
+          "senseKey": null,
+          "masterName": null,
+          "preferredTarget": "as soon as right and wrong arise, the mind is thrown into confusion",
+          "alternateTargets": [],
+          "searchAliases": [
+            "as soon as right and wrong arise, the mind is thrown into confusion"
+          ],
+          "status": "preferred",
+          "validation": "multi-source",
+          "note": "The couplet warns that discriminative assent and rejection immediately disturb the mind.",
+          "explanationParts": {
+            "corpusEarnedOpening": "Zhaozhou turns the Faith-in-Mind couplet into a live question about whether any reply remains possible.",
+            "evidenceBody": [
+              "Sengcan’s inscription supplies the warning, while Zhaozhou’s hall versions test it in dialogue and Juelang cites it doctrinally."
+            ]
+          },
+          "relatedMasters": [],
+          "relatedTerms": [],
+          "draftEvidence": {
+            "OpeningClaimEvidenceKeys": [
+              "o1",
+              "o2",
+              "o3",
+              "o4",
+              "o5",
+              "o6",
+              "o7",
+              "o8"
+            ],
+            "ZenBend": "Zhaozhou turns the Faith-in-Mind couplet into a live question about whether any reply remains possible.",
+            "CounterexampleOrLimit": "The couplet warns that discriminative assent and rejection immediately disturb the mind.",
+            "DifferentThingTest": {
+              "Decision": "one-thing",
+              "ComparedThings": [
+                "as soon as right and wrong arise, the mind is thrown into confusion",
+                "the retained cases"
+              ],
+              "Reason": "Sengcan’s inscription supplies the warning, while Zhaozhou’s hall versions test it in dialogue and Juelang cites it doctrinally."
+            },
+            "AliasRationale": "The alias preserves the causal move from 是非 to loss of mental composure.",
+            "ModifierControls": [
+              {
+                "Term": "immediate arising",
+                "Finding": "The moment discriminative judgment appears, confusion follows."
+              }
+            ],
+            "FamilyControls": [
+              {
+                "Term": "right-and-wrong language",
+                "Finding": "Generic right-and-wrong language lacks the full warning about losing the mind."
+              }
+            ]
+          },
+          "occurrences": [
+            {
+              "caseIndex": 0,
+              "fromLb": "0150b09",
+              "toLb": "0150b11",
+              "kwic": "相範禪師明州雪竇無相範禪師上堂，舉：趙州道：纔有是非，紛然失心。還有答話分也無？僧舉似洛浦，浦扣齒。又舉似",
+              "exactHeadwordClause": "纔有是非，紛然失心",
+              "grammaticalProof": "The complete 五燈全書(第34卷-第120卷) case and its local speech markers assign the headword-bearing turn to Zhaozhou Congshen.",
+              "voiceLayer": "embedded-copy",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Zhaozhou Congshen"
+              }
+            },
+            {
+              "caseIndex": 1,
+              "fromLb": "0061c04",
+              "toLb": "0061c06",
+              "kwic": "相應。直饒如是，衲僧分上未為奇特。何故如此？纔有是非，紛然失心。咄！上堂，拈拄杖曰：未入山僧手中，萬法宛然",
+              "exactHeadwordClause": "纔有是非，紛然失心",
+              "grammaticalProof": "The complete 五燈嚴統(第10卷-第25卷) case and its local speech markers assign the headword-bearing turn to Letan Jingxiang.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Letan Jingxiang"
+              }
+            },
+            {
+              "caseIndex": 2,
+              "fromLb": "0184a05",
+              "toLb": "0184a07",
+              "kwic": "見。不用求真，唯須息見。二見不住，慎莫追尋。纔有是非，紛然失心。二由一有，一亦莫守。一心不生，萬法無咎。無",
+              "exactHeadwordClause": "纔有是非，紛然失心",
+              "grammaticalProof": "The metrical passage is explicitly presented as a verse; Sengcan is the verse author established by the complete 教外別傳 case.",
+              "voiceLayer": "transmitted-verse",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Sengcan"
+              },
+              "explicitVerseAttribution": true
+            },
+            {
+              "caseIndex": 3,
+              "fromLb": "0440a04",
+              "toLb": "0440a06",
+              "kwic": "見。不用求真，惟須息見。二見不住，慎莫追尋。纔有是非，紛然失心。二由一有，一亦莫守。一心不生，萬法無咎。無",
+              "exactHeadwordClause": "纔有是非，紛然失心",
+              "grammaticalProof": "The metrical passage is explicitly presented as a verse; Sengcan is the verse author established by the complete 指月錄 case.",
+              "voiceLayer": "transmitted-verse",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Sengcan"
+              },
+              "explicitVerseAttribution": true
+            },
+            {
+              "caseIndex": 4,
+              "fromLb": "0058a15",
+              "toLb": "0058a18",
+              "kwic": "身作一枝草，佛即是煩惱，煩惱即是佛。示眾云：纔有是非，紛然失心，還有答話分也無？後僧舉似洛浦，浦扣齒。又舉",
+              "exactHeadwordClause": "纔有是非，紛然失心",
+              "grammaticalProof": "The complete 聯燈會要 case and its local speech markers assign the headword-bearing turn to Zhaozhou Congshen.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Zhaozhou Congshen"
+              }
+            },
+            {
+              "caseIndex": 5,
+              "fromLb": "0384c02",
+              "toLb": "0384c04",
+              "kwic": "見。不用求真，唯須息見。二見不住，慎莫追尋。纔有是非，紛然失心。二由一有，一亦莫守。一心不生，萬法無咎。無",
+              "exactHeadwordClause": "纔有是非，紛然失心",
+              "grammaticalProof": "The metrical passage is explicitly presented as a verse; Sengcan is the verse author established by the complete 禪宗正脉 case.",
+              "voiceLayer": "transmitted-verse",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Sengcan"
+              },
+              "explicitVerseAttribution": true
+            },
+            {
+              "caseIndex": 6,
+              "fromLb": "0399a13",
+              "toLb": "0399a16",
+              "kwic": "問即有酬，更若求玄妙，猢猻築氣毬。趙州上堂：纔有是非，紛然失心。還有答話分也無？僧舉似洛浦，浦扣齒。又舉似",
+              "exactHeadwordClause": "纔有是非，紛然失心",
+              "grammaticalProof": "The complete 宗鑑法林 case and its local speech markers assign the headword-bearing turn to Zhaozhou Congshen.",
+              "voiceLayer": "embedded-copy",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Zhaozhou Congshen"
+              }
+            },
+            {
+              "caseIndex": 7,
+              "fromLb": "0631c10",
+              "toLb": "0631c12",
+              "kwic": "：『不用求真，唯須息見。但莫憎愛，洞然明白。纔有是非，紛然失心。一念不生，萬法無咎。』初祖亦云：『一念回光",
+              "exactHeadwordClause": "纔有是非，紛然失心",
+              "grammaticalProof": "The complete 天界覺浪盛禪師全錄 case and its local speech markers assign the headword-bearing turn to Juelang Daosheng.",
+              "voiceLayer": "compiler-narration",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Juelang Daosheng"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t_f423297d3ed8",
+      "createdBy": "Codex Iriya lane C111-120 full-case author",
+      "writtenUtc": "2026-07-18T23:20:00Z",
+      "senses": [
+        {
+          "senseKey": null,
+          "masterName": null,
+          "preferredTarget": "to see a thousand miles farther, climb one more storey",
+          "alternateTargets": [],
+          "searchAliases": [
+            "to see a thousand miles farther, climb one more storey"
+          ],
+          "status": "preferred",
+          "validation": "multi-source",
+          "note": "The tower line makes greater vision depend on ascending beyond the present vantage.",
+          "explanationParts": {
+            "corpusEarnedOpening": "The familiar tower verse becomes a Chan demand to move beyond an already elevated view.",
+            "evidenceBody": [
+              "Letan’s hall verse, Gaofeng’s quoted teaching, and later tower imagery all join wider sight to one further ascent."
+            ]
+          },
+          "relatedMasters": [],
+          "relatedTerms": [],
+          "draftEvidence": {
+            "OpeningClaimEvidenceKeys": [
+              "o1",
+              "o2",
+              "o3",
+              "o4",
+              "o5",
+              "o6",
+              "o7",
+              "o8"
+            ],
+            "ZenBend": "The familiar tower verse becomes a Chan demand to move beyond an already elevated view.",
+            "CounterexampleOrLimit": "The tower line makes greater vision depend on ascending beyond the present vantage.",
+            "DifferentThingTest": {
+              "Decision": "one-thing",
+              "ComparedThings": [
+                "to see a thousand miles farther, climb one more storey",
+                "the retained cases"
+              ],
+              "Reason": "Letan’s hall verse, Gaofeng’s quoted teaching, and later tower imagery all join wider sight to one further ascent."
+            },
+            "AliasRationale": "The alias states the visual aim before the required additional climb.",
+            "ModifierControls": [
+              {
+                "Term": "one further storey",
+                "Finding": "更 marks an ascent beyond the current level, not the initial climb."
+              }
+            ],
+            "FamilyControls": [
+              {
+                "Term": "high-view sayings",
+                "Finding": "General high-view language does not reproduce the tower couplet."
+              }
+            ]
+          },
+          "occurrences": [
+            {
+              "caseIndex": 0,
+              "fromLb": "0106b20",
+              "toLb": "0106b22",
+              "kwic": "向上事。久雨不晴，咄！上堂：一葉落，天下秋。欲窮千里目，更上一層樓。一塵起，大地收。嘉州打大像，陝府灌鐵牛。明",
+              "exactHeadwordClause": "欲窮千里目，更上一層樓",
+              "grammaticalProof": "The complete 五燈全書(第34卷-第120卷) case and its local speech markers assign the headword-bearing turn to Letan Zeming.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Letan Zeming",
+                "role": "utterer",
+                "subject": "Letan Zeming",
+                "reviewedBy": "Codex Iriya lane C111-120 full-case author",
+                "reviewedUtc": "2026-07-18T23:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 1,
+              "fromLb": "0581b22",
+              "toLb": "0581b25",
+              "kwic": "恁麼地，可謂知歸。報恩門下未肯點首在。何也？欲窮千里目，更上一層樓。」高郵萬居士祈壽，請上堂。「德布人間世，仁",
+              "exactHeadwordClause": "欲窮千里目，更上一層樓",
+              "grammaticalProof": "The complete 浮石禪師語錄 case and its local speech markers assign the headword-bearing turn to Fushi.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Fushi",
+                "role": "utterer",
+                "subject": "Fushi",
+                "reviewedBy": "Codex Iriya lane C111-120 full-case author",
+                "reviewedUtc": "2026-07-18T23:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 2,
+              "fromLb": "0074c05",
+              "toLb": "0074c07",
+              "kwic": "師德清湯氏子。年十七，聞禪者誦高峰妙上堂，舉欲窮千里目，更上一層樓語，乃曰：此大善知識，必能為人拔釘去楔。遂往",
+              "exactHeadwordClause": "欲窮千里目，更上一層樓",
+              "grammaticalProof": "The complete 續指月錄 case and its local speech markers assign the headword-bearing turn to Gaofeng Yuanmiao.",
+              "voiceLayer": "embedded-copy",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Gaofeng Yuanmiao"
+              }
+            },
+            {
+              "caseIndex": 3,
+              "fromLb": "0671a12",
+              "toLb": "0671a14",
+              "kwic": "之大。即今還有到頂到底者麼？」卓拄杖，云：「欲窮千里目，更上一層樓。」上堂。問：「昔日僧問趙州和尚：『甲子多少",
+              "exactHeadwordClause": "欲窮千里目，更上一層樓",
+              "grammaticalProof": "The complete 天岸昇禪師語錄 case and its local speech markers assign the headword-bearing turn to Tian’an Sheng.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Tian’an Sheng",
+                "role": "utterer",
+                "subject": "Tian’an Sheng",
+                "reviewedBy": "Codex Iriya lane C111-120 full-case author",
+                "reviewedUtc": "2026-07-18T23:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 4,
+              "fromLb": "0479a02",
+              "toLb": "0479a05",
+              "kwic": "，那堪更被葛藤絆倒？即今還有人免得此過者麼？欲窮千里目，更上一層樓。」頌：天涯一錫任遨遊，山自清兮水自流，忽被",
+              "exactHeadwordClause": "欲窮千里目，更上一層樓",
+              "grammaticalProof": "The complete 神鼎一揆禪師語錄 case and its local speech markers assign the headword-bearing turn to Shending Yikui.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Shending Yikui",
+                "role": "utterer",
+                "subject": "Shending Yikui",
+                "reviewedBy": "Codex Iriya lane C111-120 full-case author",
+                "reviewedUtc": "2026-07-18T23:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 5,
+              "fromLb": "0506c21",
+              "toLb": "0506c24",
+              "kwic": "之德清湯氏子。年十七，有禪者誦高峰上堂語曰：欲窮千里目，更上一層樓。師曰：此大善知識，必能為人抽釘拔楔。遂往見",
+              "exactHeadwordClause": "欲窮千里目，更上一層樓",
+              "grammaticalProof": "The complete 五燈會元續略 case and its local speech markers assign the headword-bearing turn to Gaofeng Yuanmiao.",
+              "voiceLayer": "embedded-copy",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Gaofeng Yuanmiao"
+              }
+            },
+            {
+              "caseIndex": 6,
+              "fromLb": "0422c23",
+              "toLb": "0423a01",
+              "kwic": "向上事。久雨不晴，咄！上堂：一葉落，天下秋。欲窮千里目，更上一層樓。一塵起，大地收。嘉州打大像，陝府灌鐵牛。明",
+              "exactHeadwordClause": "欲窮千里目，更上一層樓",
+              "grammaticalProof": "The complete 續燈正統 case and its local speech markers assign the headword-bearing turn to Letan Zeming.",
+              "voiceLayer": "embedded-copy",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Letan Zeming",
+                "role": "utterer",
+                "subject": "Letan Zeming",
+                "reviewedBy": "Codex Iriya lane C111-120 full-case author",
+                "reviewedUtc": "2026-07-18T23:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 7,
+              "fromLb": "0728b17",
+              "toLb": "0728b19",
+              "kwic": "之德清湯氏子。年十七，聞禪者誦高峯上堂語曰：欲窮千里目，更上一層樓。師曰：有大善知識，必能為人拔釘去楔。遂往參",
+              "exactHeadwordClause": "欲窮千里目，更上一層樓",
+              "grammaticalProof": "The complete 續燈存稿 case and its local speech markers assign the headword-bearing turn to Gaofeng Yuanmiao.",
+              "voiceLayer": "embedded-copy",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Gaofeng Yuanmiao"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t_fe7100d007a7",
+      "createdBy": "Codex Iriya lane C111-120 full-case author",
+      "writtenUtc": "2026-07-18T23:20:00Z",
+      "senses": [
+        {
+          "senseKey": null,
+          "masterName": null,
+          "preferredTarget": "to strike the correct through the mistaken",
+          "alternateTargets": [],
+          "searchAliases": [
+            "to strike the correct through the mistaken"
+          ],
+          "status": "preferred",
+          "validation": "multi-source",
+          "note": "The idiom describes accidentally reaching a correct point while responding from a mistaken premise.",
+          "explanationParts": {
+            "corpusEarnedOpening": "The phrase is double-edged: an answer may land correctly even though the line of attack that produced it was skewed.",
+            "evidenceBody": [
+              "Xuedou’s five-powers appraisal, Linked-Pearls verse, and later hall uses preserve the correction-through-error relation."
+            ]
+          },
+          "relatedMasters": [],
+          "relatedTerms": [],
+          "draftEvidence": {
+            "OpeningClaimEvidenceKeys": [
+              "o1",
+              "o2",
+              "o3",
+              "o4",
+              "o5",
+              "o6",
+              "o7",
+              "o8"
+            ],
+            "ZenBend": "The phrase is double-edged: an answer may land correctly even though the line of attack that produced it was skewed.",
+            "CounterexampleOrLimit": "The idiom describes accidentally reaching a correct point while responding from a mistaken premise.",
+            "DifferentThingTest": {
+              "Decision": "one-thing",
+              "ComparedThings": [
+                "to strike the correct through the mistaken",
+                "the retained cases"
+              ],
+              "Reason": "Xuedou’s five-powers appraisal, Linked-Pearls verse, and later hall uses preserve the correction-through-error relation."
+            },
+            "AliasRationale": "The alias keeps 邪 as the occasion and 正 as the point struck.",
+            "ModifierControls": [
+              {
+                "Term": "error and correct hit",
+                "Finding": "The mistaken premise causes the accidental correct hit; the terms are not interchangeable."
+              }
+            ],
+            "FamilyControls": [
+              {
+                "Term": "reversed striking formula",
+                "Finding": "The reversed formula is an explicit contrast, not the same lexical entry."
+              }
+            ]
+          },
+          "occurrences": [
+            {
+              "caseIndex": 0,
+              "fromLb": "0342c09",
+              "toLb": "0342c12",
+              "kwic": "。掀翻四大海，擊碎五須彌。女子出定是定非定，因邪打正。女子瞿曇，急急如令。僧問汾陽：「如何是祖師",
+              "exactHeadwordClause": "因邪打正",
+              "grammaticalProof": "The complete 介菴進禪師語錄 case and its local speech markers assign the headword-bearing turn to Jie’an Jin.",
+              "voiceLayer": "compiler-narration",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Jie’an Jin",
+                "role": "compiler",
+                "subject": "Jie’an Jin",
+                "reviewedBy": "Codex Iriya lane C111-120 full-case author",
+                "reviewedUtc": "2026-07-18T23:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 1,
+              "fromLb": "0276c08",
+              "toLb": "0276c11",
+              "kwic": "一通你問我？明覺顯云：老胡元不知有那一通，却因邪打正。瑯琊覺云：世尊不知，可謂因正而打邪；五通不",
+              "exactHeadwordClause": "因邪打正",
+              "grammaticalProof": "The complete 宗鑑法林 case and its local speech markers assign the headword-bearing turn to Xuedou Chongxian.",
+              "voiceLayer": "embedded-copy",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Xuedou Chongxian"
+              }
+            },
+            {
+              "caseIndex": 2,
+              "fromLb": "0475b04",
+              "toLb": "0475b07",
+              "kwic": "云那一通你問我。雪竇顯云老胡元不知有那一通却因邪打正。瑯瑘覺云世尊不知可謂因正而打邪五通因邪而打",
+              "exactHeadwordClause": "因邪打正",
+              "grammaticalProof": "The complete 宗門統要正續集(第1卷-第12卷) case and its local speech markers assign the headword-bearing turn to Xuedou Chongxian.",
+              "voiceLayer": "embedded-copy",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Xuedou Chongxian"
+              }
+            },
+            {
+              "caseIndex": 3,
+              "fromLb": "0629a14",
+              "toLb": "0629a18",
+              "kwic": "出定今日重新打翻舊令女子瞿曇在我心鏡入定出定因邪打正堪咲文殊春行秋令長江輥底浪如銀秋日白蘋紅蓼新",
+              "exactHeadwordClause": "因邪打正",
+              "grammaticalProof": "The metrical passage is explicitly presented as a verse; the unidentified Linked-Pearls verse author is the verse author established by the complete 禪宗頌古聯珠通集 case.",
+              "voiceLayer": "transmitted-verse",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "narrated",
+                "kind": "full-case exact-turn adjudication",
+                "label": "the unidentified Linked-Pearls verse author",
+                "role": "verse-author",
+                "subject": "the unidentified Linked-Pearls verse author",
+                "reviewedBy": "Codex Iriya lane C111-120 full-case author",
+                "reviewedUtc": "2026-07-18T23:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 4,
+              "fromLb": "0106b23",
+              "toLb": "0106b26",
+              "kwic": "，一槌兩當。」耆舊疏。「叢林標榜，古今一轍，因邪打正，應箇時節。」指法座，云：「秪者箇，不落階級",
+              "exactHeadwordClause": "因邪打正",
+              "grammaticalProof": "The complete 屾峰憲禪師語錄 case and its local speech markers assign the headword-bearing turn to Shanfeng Xian.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Shanfeng Xian",
+                "role": "utterer",
+                "subject": "Shanfeng Xian",
+                "reviewedBy": "Codex Iriya lane C111-120 full-case author",
+                "reviewedUtc": "2026-07-18T23:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 5,
+              "fromLb": "0754b08",
+              "toLb": "0754b10",
+              "kwic": "箇知音能善委？」晚參。「道吾舞笏，秘魔擎叉。因邪打正，因正打邪。有般漢聞恁麼說話，便道：蒹葭自白",
+              "exactHeadwordClause": "因邪打正",
+              "grammaticalProof": "The complete 觀濤奇禪師語錄 case and its local speech markers assign the headword-bearing turn to Guantao Qi.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Guantao Qi",
+                "role": "utterer",
+                "subject": "Guantao Qi",
+                "reviewedBy": "Codex Iriya lane C111-120 full-case author",
+                "reviewedUtc": "2026-07-18T23:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 6,
+              "fromLb": "0243c05",
+              "toLb": "0243c07",
+              "kwic": "牛兒來。此乃全身入草養子之緣。侍者無對。却也因邪打正。只是自不知有。投子代云。不辭拈出。恐頭角不",
+              "exactHeadwordClause": "因邪打正",
+              "grammaticalProof": "The complete 萬松老人評唱天童覺和尚頌古從容庵錄 case and its local speech markers assign the headword-bearing turn to Wansong Xingxiu.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Wansong Xingxiu"
+              }
+            },
+            {
+              "caseIndex": 7,
+              "fromLb": "0009a21",
+              "toLb": "0009a24",
+              "kwic": "一通你問我？雪竇顯云：老胡元不知有那一通，却因邪打正。瑯瑘覺云：世尊不知，可謂因正而打邪；五通不",
+              "exactHeadwordClause": "因邪打正",
+              "grammaticalProof": "The metrical passage is explicitly presented as a verse; the unidentified verse author is the verse author established by the complete 宗門拈古彙集 case.",
+              "voiceLayer": "transmitted-verse",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "narrated",
+                "kind": "full-case exact-turn adjudication",
+                "label": "the unidentified verse author",
+                "role": "verse-author",
+                "subject": "the unidentified verse author",
+                "reviewedBy": "Codex Iriya lane C111-120 full-case author",
+                "reviewedUtc": "2026-07-18T23:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t_ab94d1fd4bff",
+      "createdBy": "Codex Iriya lane C111-120 full-case author",
+      "writtenUtc": "2026-07-18T23:20:00Z",
+      "senses": [
+        {
+          "senseKey": null,
+          "masterName": null,
+          "preferredTarget": "to stretch one’s body across the cosmos",
+          "alternateTargets": [],
+          "searchAliases": [
+            "to stretch one’s body across the cosmos"
+          ],
+          "status": "preferred",
+          "validation": "multi-source",
+          "note": "The phrase pictures an unconfined body spanning the entire cosmos.",
+          "explanationParts": {
+            "corpusEarnedOpening": "Spanning the cosmos presents the body as unobstructed activity rather than an object located inside space.",
+            "evidenceBody": [
+              "Huaizhong’s answer, Hongjue Min’s hall line, and Boshan’s lay exchange all use 橫身 to erase spatial constraint."
+            ]
+          },
+          "relatedMasters": [],
+          "relatedTerms": [],
+          "draftEvidence": {
+            "OpeningClaimEvidenceKeys": [
+              "o1",
+              "o2",
+              "o3",
+              "o4",
+              "o5",
+              "o6",
+              "o7",
+              "o8"
+            ],
+            "ZenBend": "Spanning the cosmos presents the body as unobstructed activity rather than an object located inside space.",
+            "CounterexampleOrLimit": "The phrase pictures an unconfined body spanning the entire cosmos.",
+            "DifferentThingTest": {
+              "Decision": "one-thing",
+              "ComparedThings": [
+                "to stretch one’s body across the cosmos",
+                "the retained cases"
+              ],
+              "Reason": "Huaizhong’s answer, Hongjue Min’s hall line, and Boshan’s lay exchange all use 橫身 to erase spatial constraint."
+            },
+            "AliasRationale": "The alias renders 宇宙 as the whole cosmos and 橫身 as bodily extension across it.",
+            "ModifierControls": [
+              {
+                "Term": "body spanning space",
+                "Finding": "The transverse bodily action is essential; 宇宙 alone supplies only the setting."
+              }
+            ],
+            "FamilyControls": [
+              {
+                "Term": "whole-body formulas",
+                "Finding": "Other whole-body formulas concern totality but not cosmic spanning."
+              }
+            ]
+          },
+          "occurrences": [
+            {
+              "caseIndex": 0,
+              "fromLb": "0320a19",
+              "toLb": "0320a22",
+              "kwic": "杲云：怎奈在髑髏前作妄想？烏石道：別前語云：橫身當宇宙。別後語云：赤脚上刀山。帶鎻擔枷招罪犯，安禪",
+              "exactHeadwordClause": "橫身當宇宙",
+              "grammaticalProof": "The complete 宗鑑法林 case and its local speech markers assign the headword-bearing turn to the unidentified appraisal author.",
+              "voiceLayer": "compiler-narration",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "narrated",
+                "kind": "full-case exact-turn adjudication",
+                "label": "the unidentified appraisal author",
+                "role": "compiler",
+                "subject": "the unidentified appraisal author",
+                "reviewedBy": "Codex Iriya lane C111-120 full-case author",
+                "reviewedUtc": "2026-07-18T23:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 1,
+              "fromLb": "0079b14",
+              "toLb": "0080a02",
+              "kwic": "片下揚州進云料揀已蒙師指示如今佛法囑何人師云橫身當宇宙一句定綱宗進云學人分上又作麼生師打云正好喫棒",
+              "exactHeadwordClause": "橫身當宇宙",
+              "grammaticalProof": "The complete 明覺聰禪師語錄 case and its local speech markers assign the headword-bearing turn to Mingjue Cong.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Mingjue Cong"
+              }
+            },
+            {
+              "caseIndex": 2,
+              "fromLb": "0034a02",
+              "toLb": "0034a04",
+              "kwic": "者裏又且不然，有問：如何是大脩行底人？向道：橫身當宇宙。如何是大作業底人？赤脚上刀山。且道與古人是",
+              "exactHeadwordClause": "橫身當宇宙",
+              "grammaticalProof": "The complete 宗門拈古彙集 case and its local speech markers assign the headword-bearing turn to Guoyi Daoqin.",
+              "voiceLayer": "embedded-copy",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Guoyi Daoqin",
+                "role": "utterer",
+                "subject": "Guoyi Daoqin",
+                "reviewedBy": "Codex Iriya lane C111-120 full-case author",
+                "reviewedUtc": "2026-07-18T23:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 3,
+              "fromLb": "0508a04",
+              "toLb": "0508a06",
+              "kwic": "作。遵曰：此猶是文言，如何是和尚家風？師曰：橫身當宇宙，誰是出頭人？遵無語，師遂同歸山。纔人事了，",
+              "exactHeadwordClause": "橫身當宇宙",
+              "grammaticalProof": "The complete 五燈全書(第1卷-第33卷) case and its local speech markers assign the headword-bearing turn to Xiaoyao Huaizhong.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Xiaoyao Huaizhong",
+                "role": "utterer",
+                "subject": "Xiaoyao Huaizhong",
+                "reviewedBy": "Codex Iriya lane C111-120 full-case author",
+                "reviewedUtc": "2026-07-18T23:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 4,
+              "fromLb": "0090a03",
+              "toLb": "0090a06",
+              "kwic": "則覿面無私去也師云刺瞎汝眼乃云不用靈符羨禁方橫身當宇宙堂堂土虺坐斷難開口始顯天童別有長。晚參此事貴",
+              "exactHeadwordClause": "橫身當宇宙",
+              "grammaticalProof": "The complete 弘覺忞禪師語錄 case and its local speech markers assign the headword-bearing turn to Tiantong Hongjue Min.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Tiantong Hongjue Min",
+                "role": "utterer",
+                "subject": "Tiantong Hongjue Min",
+                "reviewedBy": "Codex Iriya lane C111-120 full-case author",
+                "reviewedUtc": "2026-07-18T23:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 5,
+              "fromLb": "0414a01",
+              "toLb": "0414a03",
+              "kwic": "乃可問向上事，即今請問：如何是理？」師曰：「橫身當宇宙，大地沒遮攔。」進云：「如何即得全身入？」師",
+              "exactHeadwordClause": "橫身當宇宙",
+              "grammaticalProof": "The complete 博山無異大師語錄集要 case and its local speech markers assign the headword-bearing turn to Boshan Wuyi.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Boshan Wuyi",
+                "role": "utterer",
+                "subject": "Boshan Wuyi",
+                "reviewedBy": "Codex Iriya lane C111-120 full-case author",
+                "reviewedUtc": "2026-07-18T23:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 6,
+              "fromLb": "0027a10",
+              "toLb": "0027a12",
+              "kwic": "新佛法，說不到處只須說，行不到處只須行。若要橫身當宇宙，揭開腦蓋萬重雲；若是克家之子，務要掀出八寶",
+              "exactHeadwordClause": "橫身當宇宙",
+              "grammaticalProof": "The complete 佛冤禪師語錄 case and its local speech markers assign the headword-bearing turn to Foyuan.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Foyuan",
+                "role": "utterer",
+                "subject": "Foyuan",
+                "reviewedBy": "Codex Iriya lane C111-120 full-case author",
+                "reviewedUtc": "2026-07-18T23:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 7,
+              "fromLb": "0558b13",
+              "toLb": "0558b15",
+              "kwic": "已盡開。」僧問：「如何是誕生王子？」師曰：「橫身當宇宙。」曰：「如何是朝生王子？」師曰：「化外有權",
+              "exactHeadwordClause": "橫身當宇宙",
+              "grammaticalProof": "The complete 元潔瑩禪師語錄 case and its local speech markers assign the headword-bearing turn to Yuanjie Ying.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Yuanjie Ying",
+                "role": "utterer",
+                "subject": "Yuanjie Ying",
+                "reviewedBy": "Codex Iriya lane C111-120 full-case author",
+                "reviewedUtc": "2026-07-18T23:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t_a19382e4a0a4",
+      "createdBy": "Codex Iriya lane C111-120 full-case author",
+      "writtenUtc": "2026-07-18T23:20:00Z",
+      "senses": [
+        {
+          "senseKey": null,
+          "masterName": null,
+          "preferredTarget": "three sections, each different",
+          "alternateTargets": [],
+          "searchAliases": [
+            "three sections, each different"
+          ],
+          "status": "preferred",
+          "validation": "multi-source",
+          "note": "The formula distinguishes three successive demonstrations before gathering them into one rubric.",
+          "explanationParts": {
+            "corpusEarnedOpening": "The stock closure ‘collect them under the preceding rubric’ only works because the three demonstrations have first been kept distinct.",
+            "evidenceBody": [
+              "Sanyi’s staff sequence, Chulin’s citation, and Guangwen’s platform gestures all mark three different sections before closure."
+            ]
+          },
+          "relatedMasters": [],
+          "relatedTerms": [],
+          "draftEvidence": {
+            "OpeningClaimEvidenceKeys": [
+              "o1",
+              "o2",
+              "o3",
+              "o4",
+              "o5",
+              "o6",
+              "o7",
+              "o8"
+            ],
+            "ZenBend": "The stock closure ‘collect them under the preceding rubric’ only works because the three demonstrations have first been kept distinct.",
+            "CounterexampleOrLimit": "The formula distinguishes three successive demonstrations before gathering them into one rubric.",
+            "DifferentThingTest": {
+              "Decision": "one-thing",
+              "ComparedThings": [
+                "three sections, each different",
+                "the retained cases"
+              ],
+              "Reason": "Sanyi’s staff sequence, Chulin’s citation, and Guangwen’s platform gestures all mark three different sections before closure."
+            },
+            "AliasRationale": "The alias keeps the count and the assertion of difference.",
+            "ModifierControls": [
+              {
+                "Term": "three sections",
+                "Finding": "The numeral identifies an ordered triad rather than an indefinite set."
+              }
+            ],
+            "FamilyControls": [
+              {
+                "Term": "gathering formula",
+                "Finding": "The gathering formula may follow the phrase but does not replace its three-part distinction."
+              }
+            ]
+          },
+          "occurrences": [
+            {
+              "caseIndex": 0,
+              "fromLb": "0342a13",
+              "toLb": "0342a15",
+              "kwic": "。驀拈拄杖，卓一卓，曰：大眾會麼？復卓，云：三段不同，收歸上科。後遷磁州滹沱二祖墖院。上堂：二祖",
+              "exactHeadwordClause": "三段不同",
+              "grammaticalProof": "The complete 五燈全書(第34卷-第120卷) case and its local speech markers assign the headword-bearing turn to Sanyi Mingyu.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Sanyi Mingyu"
+              }
+            },
+            {
+              "caseIndex": 1,
+              "fromLb": "0533a12",
+              "toLb": "0533a15",
+              "kwic": "是；道者，處處無礙淨光是。』」喝一喝，云：「三段不同，可恕走殺無位真人。」霖垓闍黎斷七，小參。「",
+              "exactHeadwordClause": "三段不同",
+              "grammaticalProof": "The complete 北京楚林禪師語錄 case and its local speech markers assign the headword-bearing turn to Chulin.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Chulin",
+                "role": "utterer",
+                "subject": "Chulin",
+                "reviewedBy": "Codex Iriya lane C111-120 full-case author",
+                "reviewedUtc": "2026-07-18T23:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 2,
+              "fromLb": "0323a19",
+              "toLb": "0323a21",
+              "kwic": "了也。忽有箇漢出來道：是什麼語話？劈脊棒云：三段不同，收歸上科。霜𩯭老婆年七十，巧臨糚次整花容，",
+              "exactHeadwordClause": "三段不同",
+              "grammaticalProof": "The complete 宗鑑法林 case and its local speech markers assign the headword-bearing turn to the unidentified Dharma-Grove appraiser.",
+              "voiceLayer": "compiler-narration",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "narrated",
+                "kind": "full-case exact-turn adjudication",
+                "label": "the unidentified Dharma-Grove appraiser",
+                "role": "compiler",
+                "subject": "the unidentified Dharma-Grove appraiser",
+                "reviewedBy": "Codex Iriya lane C111-120 full-case author",
+                "reviewedUtc": "2026-07-18T23:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 3,
+              "fromLb": "0227c04",
+              "toLb": "0227c06",
+              "kwic": "宗乘事若何也不離者箇消息？」又拂一拂，云：「三段不同，收歸上科，也不離者箇消息。若也透得，出息不",
+              "exactHeadwordClause": "三段不同",
+              "grammaticalProof": "The complete 朝宗禪師語錄 case and its local speech markers assign the headword-bearing turn to Chaozong.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Chaozong",
+                "role": "utterer",
+                "subject": "Chaozong",
+                "reviewedBy": "Codex Iriya lane C111-120 full-case author",
+                "reviewedUtc": "2026-07-18T23:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 4,
+              "fromLb": "0038b03",
+              "toLb": "0038b06",
+              "kwic": "了也。忽有個漢出來道：是什麼語話？劈脊棒云：三段不同，收歸上科。國師問紫璘供奉：佛是什麼義？曰：",
+              "exactHeadwordClause": "三段不同",
+              "grammaticalProof": "The complete 宗門拈古彙集 case and its local speech markers assign the headword-bearing turn to the unidentified collected appraiser.",
+              "voiceLayer": "compiler-narration",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "narrated",
+                "kind": "full-case exact-turn adjudication",
+                "label": "the unidentified collected appraiser",
+                "role": "compiler",
+                "subject": "the unidentified collected appraiser",
+                "reviewedBy": "Codex Iriya lane C111-120 full-case author",
+                "reviewedUtc": "2026-07-18T23:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 5,
+              "fromLb": "0726c13",
+              "toLb": "0726c15",
+              "kwic": "過者邊著。摩訶衍法，離四句，絕百非。喝一喝，三段不同，収歸上科。中秋，故舊至，上堂。若論此事，如",
+              "exactHeadwordClause": "三段不同",
+              "grammaticalProof": "The complete 偃溪廣聞禪師語錄 case and its local speech markers assign the headword-bearing turn to Yanxi Guangwen.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Yanxi Guangwen"
+              }
+            },
+            {
+              "caseIndex": 6,
+              "fromLb": "0128c22",
+              "toLb": "0128c24",
+              "kwic": "波，海浸孤天。畢竟而有恁麼履踐者麼？一喝曰，三段不同。霜曰：山上欄外，水下檻前，夜兔光雪，晝烏氣",
+              "exactHeadwordClause": "三段不同",
+              "grammaticalProof": "The complete 淨慈慧暉禪師語錄 case and its local speech markers assign the headword-bearing turn to Jingci Huihui.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Jingci Huihui",
+                "role": "utterer",
+                "subject": "Jingci Huihui",
+                "reviewedBy": "Codex Iriya lane C111-120 full-case author",
+                "reviewedUtc": "2026-07-18T23:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 7,
+              "fromLb": "0364c19",
+              "toLb": "0364c21",
+              "kwic": "㘞地風雷起，大地山河悉仰止，出頭天外覓知音，三段不同入泥水。從前知己反為讎，擲劍揮空截眾流，魚龍",
+              "exactHeadwordClause": "三段不同",
+              "grammaticalProof": "The metrical passage is explicitly presented as a verse; Xieyun Ji is the verse author established by the complete 燮雲璣禪師國清無畏堂語錄 case.",
+              "voiceLayer": "transmitted-verse",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Xieyun Ji",
+                "role": "verse-author",
+                "subject": "Xieyun Ji",
+                "reviewedBy": "Codex Iriya lane C111-120 full-case author",
+                "reviewedUtc": "2026-07-18T23:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              },
+              "explicitVerseAttribution": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t_16c276cbbb12",
+      "createdBy": "Codex Iriya lane C111-120 full-case author",
+      "writtenUtc": "2026-07-18T23:20:00Z",
+      "senses": [
+        {
+          "senseKey": null,
+          "masterName": null,
+          "preferredTarget": "with the forehead against the ground",
+          "alternateTargets": [],
+          "searchAliases": [
+            "with the forehead against the ground"
+          ],
+          "status": "preferred",
+          "validation": "multi-source",
+          "note": "The posture marks complete defeat, submission, or being thrown down before an encounter.",
+          "explanationParts": {
+            "corpusEarnedOpening": "Forehead to earth turns understanding into a bodily verdict: even powerful figures are shown flattened before the encounter.",
+            "evidenceBody": [
+              "Xiatang’s appraisal, Zisheng’s answer, Zhufeng’s departure line, and Wuzhun’s gate instruction share the same downward posture."
+            ]
+          },
+          "relatedMasters": [],
+          "relatedTerms": [],
+          "draftEvidence": {
+            "OpeningClaimEvidenceKeys": [
+              "o1",
+              "o2",
+              "o3",
+              "o4",
+              "o5",
+              "o6",
+              "o7",
+              "o8"
+            ],
+            "ZenBend": "Forehead to earth turns understanding into a bodily verdict: even powerful figures are shown flattened before the encounter.",
+            "CounterexampleOrLimit": "The posture marks complete defeat, submission, or being thrown down before an encounter.",
+            "DifferentThingTest": {
+              "Decision": "one-thing",
+              "ComparedThings": [
+                "with the forehead against the ground",
+                "the retained cases"
+              ],
+              "Reason": "Xiatang’s appraisal, Zisheng’s answer, Zhufeng’s departure line, and Wuzhun’s gate instruction share the same downward posture."
+            },
+            "AliasRationale": "The alias names the forehead-ground contact without deciding whether it is bowing or defeat in every case.",
+            "ModifierControls": [
+              {
+                "Term": "forehead contact",
+                "Finding": "The forehead, not the whole head generically, is the body part brought to earth."
+              }
+            ],
+            "FamilyControls": [
+              {
+                "Term": "prostration formulas",
+                "Finding": "Formal prostration is related but does not supply this exact encounter verdict."
+              }
+            ]
+          },
+          "occurrences": [
+            {
+              "caseIndex": 0,
+              "fromLb": "0028c06",
+              "toLb": "0028c08",
+              "kwic": "他宿命，其中未必好心，國王雖則據令而行，未免腦門著地。二十五祖婆舍斯多尊者二十五祖婆舍斯多尊者因",
+              "exactHeadwordClause": "腦門著地",
+              "grammaticalProof": "The complete 宗門拈古彙集 case and its local speech markers assign the headword-bearing turn to Baoshou Xin.",
+              "voiceLayer": "embedded-copy",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Baoshou Xin",
+                "role": "utterer",
+                "subject": "Baoshou Xin",
+                "reviewedBy": "Codex Iriya lane C111-120 full-case author",
+                "reviewedUtc": "2026-07-18T23:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 1,
+              "fromLb": "0559c10",
+              "toLb": "0559c11",
+              "kwic": "成敗壞大似望空設拜拈了也。委悉麼？如是如是，腦門著地；不是不夜，叉手長跪；是與不是，轉無巴鼻。北",
+              "exactHeadwordClause": "腦門著地",
+              "grammaticalProof": "The complete 瞎堂慧遠禪師廣錄 case and its local speech markers assign the headword-bearing turn to Xiatang Huiyuan.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Xiatang Huiyuan"
+              }
+            },
+            {
+              "caseIndex": 2,
+              "fromLb": "0705a11",
+              "toLb": "0705a13",
+              "kwic": "？師云：三門頭合掌。問：如何是大用句？師云：腦門著地。問：如何是無事句？師云：橫眠大道。問：如何",
+              "exactHeadwordClause": "腦門著地",
+              "grammaticalProof": "The complete 建中靖國續燈錄 case and its local speech markers assign the headword-bearing turn to Zisheng Jie.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Zisheng Jie",
+                "role": "utterer",
+                "subject": "Zisheng Jie",
+                "reviewedBy": "Codex Iriya lane C111-120 full-case author",
+                "reviewedUtc": "2026-07-18T23:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 3,
+              "fromLb": "0229a24",
+              "toLb": "0229a25",
+              "kwic": "南，辭院，上堂：「三十餘年前住此，腦門著地，三十餘年後去此，腳板朝天。腦門著",
+              "exactHeadwordClause": "腦門著地",
+              "grammaticalProof": "The complete 竺峰敏禪師語錄 case and its local speech markers assign the headword-bearing turn to Zhufeng Min.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Zhufeng Min",
+                "role": "utterer",
+                "subject": "Zhufeng Min",
+                "reviewedBy": "Codex Iriya lane C111-120 full-case author",
+                "reviewedUtc": "2026-07-18T23:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 4,
+              "fromLb": "0566b09",
+              "toLb": "0567a03",
+              "kwic": "南泉一期逞俊爭奈平地起堆趙州雖是覿面投機不覺腦門著地。師因至莊偶莊主預備迎奉師云老僧居常出入不與",
+              "exactHeadwordClause": "腦門著地",
+              "grammaticalProof": "The complete 宗門統要正續集(第1卷-第12卷) case and its local speech markers assign the headword-bearing turn to Jiashan Ling.",
+              "voiceLayer": "embedded-copy",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Jiashan Ling",
+                "role": "utterer",
+                "subject": "Jiashan Ling",
+                "reviewedBy": "Codex Iriya lane C111-120 full-case author",
+                "reviewedUtc": "2026-07-18T23:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 5,
+              "fromLb": "0984c03",
+              "toLb": "0984c06",
+              "kwic": "道。文殊三處度夏。直饒黃面老子別有神通。也須腦門著地。次日上堂。秋風浙浙秋水冷冷。千辛萬苦。負笈",
+              "exactHeadwordClause": "腦門著地",
+              "grammaticalProof": "The complete 虛堂和尚語錄 case and its local speech markers assign the headword-bearing turn to Xutang Zhiyu.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Xutang Zhiyu"
+              }
+            },
+            {
+              "caseIndex": 6,
+              "fromLb": "0079b20",
+              "toLb": "0079b22",
+              "kwic": "卜度？直饒會得倜儻分明，若遇臨濟、德山，便須腦門著地。且道伊有甚麼長處？良久曰：曾經大海休誇水，",
+              "exactHeadwordClause": "腦門著地",
+              "grammaticalProof": "The complete 列祖提綱錄 case and its local speech markers assign the headword-bearing turn to the unidentified outline compiler.",
+              "voiceLayer": "compiler-narration",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "narrated",
+                "kind": "full-case exact-turn adjudication",
+                "label": "the unidentified outline compiler",
+                "role": "compiler",
+                "subject": "the unidentified outline compiler",
+                "reviewedBy": "Codex Iriya lane C111-120 full-case author",
+                "reviewedUtc": "2026-07-18T23:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 7,
+              "fromLb": "0224b11",
+              "toLb": "0224b14",
+              "kwic": "動門扇。佛殿。你不識我，我不識你。狹路相逢，腦門著地。仁者見之謂之仁，智者見之謂之智。方丈，橫按",
+              "exactHeadwordClause": "腦門著地",
+              "grammaticalProof": "The complete 無準師範禪師語錄 case and its local speech markers assign the headword-bearing turn to Wuzhun Shifan.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Wuzhun Shifan"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t_482a316b51f1",
+      "createdBy": "Codex Iriya lane C111-120 full-case author",
+      "writtenUtc": "2026-07-18T23:20:00Z",
+      "senses": [
+        {
+          "senseKey": null,
+          "masterName": null,
+          "preferredTarget": "receive a cow from someone and return a horse",
+          "alternateTargets": [],
+          "searchAliases": [
+            "receive a cow from someone and return a horse"
+          ],
+          "status": "preferred",
+          "validation": "multi-source",
+          "note": "The exchange proverb answers another’s move in kind while deliberately changing the returned item.",
+          "explanationParts": {
+            "corpusEarnedOpening": "The returned horse is not repayment in identical currency; the altered return shows responsive equivalence with a fresh move.",
+            "evidenceBody": [
+              "Collected appraisals, Yunxi’s Huangbo comment, initiation speeches, and Miyun’s cases all preserve cow received and horse returned."
+            ]
+          },
+          "relatedMasters": [],
+          "relatedTerms": [],
+          "draftEvidence": {
+            "OpeningClaimEvidenceKeys": [
+              "o1",
+              "o2",
+              "o3",
+              "o4",
+              "o5",
+              "o6",
+              "o7",
+              "o8"
+            ],
+            "ZenBend": "The returned horse is not repayment in identical currency; the altered return shows responsive equivalence with a fresh move.",
+            "CounterexampleOrLimit": "The exchange proverb answers another’s move in kind while deliberately changing the returned item.",
+            "DifferentThingTest": {
+              "Decision": "one-thing",
+              "ComparedThings": [
+                "receive a cow from someone and return a horse",
+                "the retained cases"
+              ],
+              "Reason": "Collected appraisals, Yunxi’s Huangbo comment, initiation speeches, and Miyun’s cases all preserve cow received and horse returned."
+            },
+            "AliasRationale": "The alias keeps the unequal animals and reciprocal direction.",
+            "ModifierControls": [
+              {
+                "Term": "receiving and returning",
+                "Finding": "Receiving and returning establish the exchange; 牛 and 馬 distinguish its two sides."
+              }
+            ],
+            "FamilyControls": [
+              {
+                "Term": "reciprocal-gift proverbs",
+                "Finding": "Other reciprocal-gift proverbs are separate images."
+              }
+            ]
+          },
+          "occurrences": [
+            {
+              "caseIndex": 0,
+              "fromLb": "0309b16",
+              "toLb": "0309b19",
+              "kwic": "愁殺渡頭人，一聲羗笛離亭晚，君向瀟湘我向秦。得人一牛，還人一馬。有往有來，可知禮也。船子下揚州，浮萍逐水流",
+              "exactHeadwordClause": "得人一牛，還人一馬",
+              "grammaticalProof": "The complete 宗鑑法林 case and its local speech markers assign the headword-bearing turn to the unidentified Dharma-Grove appraiser.",
+              "voiceLayer": "compiler-narration",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "narrated",
+                "kind": "full-case exact-turn adjudication",
+                "label": "the unidentified Dharma-Grove appraiser",
+                "role": "compiler",
+                "subject": "the unidentified Dharma-Grove appraiser",
+                "reviewedBy": "Codex Iriya lane C111-120 full-case author",
+                "reviewedUtc": "2026-07-18T23:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 1,
+              "fromLb": "0065b09",
+              "toLb": "0065b12",
+              "kwic": "中得活，萬中無一。好與云：蒼天！蒼天！何故？得人一牛，還人一馬。麻谷使扇次，僧問：風性常住，無處不周。和尚",
+              "exactHeadwordClause": "得人一牛，還人一馬",
+              "grammaticalProof": "The complete 宗門拈古彙集 case and its local speech markers assign the headword-bearing turn to the unidentified collected appraiser.",
+              "voiceLayer": "compiler-narration",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "narrated",
+                "kind": "full-case exact-turn adjudication",
+                "label": "the unidentified collected appraiser",
+                "role": "compiler",
+                "subject": "the unidentified collected appraiser",
+                "reviewedBy": "Codex Iriya lane C111-120 full-case author",
+                "reviewedUtc": "2026-07-18T23:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 2,
+              "fromLb": "0763b15",
+              "toLb": "0763b17",
+              "kwic": "甚麼虎鬚虎頭，當時也是騎虎之勢。黃蘗！黃蘗！得人一牛，還人一馬。」臨濟陞堂，有僧出，濟便喝，僧亦喝，便拜，",
+              "exactHeadwordClause": "得人一牛，還人一馬",
+              "grammaticalProof": "The complete 雲溪俍亭挺禪師語錄 case and its local speech markers assign the headword-bearing turn to Yunxi Langting.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Yunxi Langting",
+                "role": "utterer",
+                "subject": "Yunxi Langting",
+                "reviewedBy": "Codex Iriya lane C111-120 full-case author",
+                "reviewedUtc": "2026-07-18T23:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 3,
+              "fromLb": "0029a19",
+              "toLb": "0029a22",
+              "kwic": "今狹路相逢，不妨眾等也各各與他一杓。不見道：得人一牛，還人一馬。捨身與受身，誰是報恩者？擊拂，下座。密雲悟",
+              "exactHeadwordClause": "得人一牛，還人一馬",
+              "grammaticalProof": "The complete 列祖提綱錄 case and its local speech markers assign the headword-bearing turn to the unidentified outline compiler.",
+              "voiceLayer": "compiler-narration",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "narrated",
+                "kind": "full-case exact-turn adjudication",
+                "label": "the unidentified outline compiler",
+                "role": "compiler",
+                "subject": "the unidentified outline compiler",
+                "reviewedBy": "Codex Iriya lane C111-120 full-case author",
+                "reviewedUtc": "2026-07-18T23:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 4,
+              "fromLb": "0027a22",
+              "toLb": "0027a24",
+              "kwic": "師曰：會得此三種語了，好個不快活漢。山僧祇是得人一牛，還人一馬，潑水相唾，插觜廝罵。卓拄杖曰：平出！平出！",
+              "exactHeadwordClause": "得人一牛，還人一馬",
+              "grammaticalProof": "The complete 五燈全書(第34卷-第120卷) case and its local speech markers assign the headword-bearing turn to Wannian Chuyou.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Wannian Chuyou",
+                "role": "utterer",
+                "subject": "Wannian Chuyou",
+                "reviewedBy": "Codex Iriya lane C111-120 full-case author",
+                "reviewedUtc": "2026-07-18T23:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 5,
+              "fromLb": "0514a02",
+              "toLb": "0514a05",
+              "kwic": "是否？曰：是。師曰：因甚大愚肋下築三拳？曰：得人一牛，還人一馬。師頷之，誾禮拜。師一日入堂，見誾危坐屹然。",
+              "exactHeadwordClause": "得人一牛，還人一馬",
+              "grammaticalProof": "The complete 徑石滴乳集 case and its local speech markers assign the headword-bearing turn to Yuetang Yin.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Yuetang Yin",
+                "role": "respondent",
+                "subject": "Yuetang Yin",
+                "reviewedBy": "Codex Iriya lane C111-120 full-case author",
+                "reviewedUtc": "2026-07-18T23:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 6,
+              "fromLb": "0052b14",
+              "toLb": "0052b17",
+              "kwic": "：「濟掀倒禪床處，若作臨濟拽禪床驀面擲，可謂得人一牛，還人一馬；但掀倒禪床，大似不柰船何打破戽斗。」舉：「",
+              "exactHeadwordClause": "得人一牛，還人一馬",
+              "grammaticalProof": "The complete 密雲禪師語錄 case and its local speech markers assign the headword-bearing turn to Miyun Yuanwu.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Miyun Yuanwu"
+              }
+            },
+            {
+              "caseIndex": 7,
+              "fromLb": "0543a27",
+              "toLb": "0543a29",
+              "kwic": "作麼生轉得自己歸山河大地去？』圓悟和尚云：『得人一牛，還人一馬。』」師拈云：「饒你轉得山河大地歸自己去，卻",
+              "exactHeadwordClause": "得人一牛，還人一馬",
+              "grammaticalProof": "The complete 天隱和尚語錄 case and its local speech markers assign the headword-bearing turn to Tianyin.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Tianyin",
+                "role": "utterer",
+                "subject": "Tianyin",
+                "reviewedBy": "Codex Iriya lane C111-120 full-case author",
+                "reviewedUtc": "2026-07-18T23:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t_9792823e2382",
+      "createdBy": "Codex Iriya lane C111-120 full-case author",
+      "writtenUtc": "2026-07-18T23:20:00Z",
+      "senses": [
+        {
+          "senseKey": null,
+          "masterName": null,
+          "preferredTarget": "the donkey grazes in the back garden",
+          "alternateTargets": [],
+          "searchAliases": [
+            "the donkey grazes in the back garden"
+          ],
+          "status": "preferred",
+          "validation": "multi-source",
+          "note": "Yantou’s plain answer relocates the unfurled-sail question to a donkey grazing behind the house.",
+          "explanationParts": {
+            "corpusEarnedOpening": "The answer is deliberately mundane: asked about the ancient sail, Yantou points to a donkey eating grass behind the house.",
+            "evidenceBody": [
+              "Yantou records, Xue’an’s verse, lamp copies, and the Yunju official’s reuse keep the back-garden donkey as the answer."
+            ]
+          },
+          "relatedMasters": [],
+          "relatedTerms": [],
+          "draftEvidence": {
+            "OpeningClaimEvidenceKeys": [
+              "o1",
+              "o2",
+              "o3",
+              "o4",
+              "o5",
+              "o6",
+              "o7",
+              "o8"
+            ],
+            "ZenBend": "The answer is deliberately mundane: asked about the ancient sail, Yantou points to a donkey eating grass behind the house.",
+            "CounterexampleOrLimit": "Yantou’s plain answer relocates the unfurled-sail question to a donkey grazing behind the house.",
+            "DifferentThingTest": {
+              "Decision": "one-thing",
+              "ComparedThings": [
+                "the donkey grazes in the back garden",
+                "the retained cases"
+              ],
+              "Reason": "Yantou records, Xue’an’s verse, lamp copies, and the Yunju official’s reuse keep the back-garden donkey as the answer."
+            },
+            "AliasRationale": "The alias preserves the domestic location and ordinary grazing action.",
+            "ModifierControls": [
+              {
+                "Term": "back-garden location",
+                "Finding": "The back garden fixes the scene; donkey-and-grass references elsewhere are too broad."
+              }
+            ],
+            "FamilyControls": [
+              {
+                "Term": "ancient-sail prompt",
+                "Finding": "The sail question is the encounter prompt, not a second meaning of the donkey answer."
+              }
+            ]
+          },
+          "occurrences": [
+            {
+              "caseIndex": 0,
+              "fromLb": "0776c15",
+              "toLb": "0776c18",
+              "kwic": "訣自是深明防漢高巖頭因僧問古帆不掛時如何師曰後園驢喫草。頌曰。槌打不碎火燒不着天上人間何處安泊阿呵",
+              "exactHeadwordClause": "後園驢喫草",
+              "grammaticalProof": "The metrical passage is explicitly presented as a verse; the unidentified Linked-Pearls verse author is the verse author established by the complete 禪宗頌古聯珠通集 case.",
+              "voiceLayer": "transmitted-verse",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "narrated",
+                "kind": "full-case exact-turn adjudication",
+                "label": "the unidentified Linked-Pearls verse author",
+                "role": "verse-author",
+                "subject": "the unidentified Linked-Pearls verse author",
+                "reviewedBy": "Codex Iriya lane C111-120 full-case author",
+                "reviewedUtc": "2026-07-18T23:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 1,
+              "fromLb": "0094b17",
+              "toLb": "0094b19",
+              "kwic": "，處處得逢渠。巖頭僧問：古帆掛後如何？師云：後園驢喫草。海印信頌云：槌打不碎，火燒不著，天上人間，",
+              "exactHeadwordClause": "後園驢喫草",
+              "grammaticalProof": "The complete 禪林類聚 case and its local speech markers assign the headword-bearing turn to Yantou Quanhuo.",
+              "voiceLayer": "embedded-copy",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Yantou Quanhuo"
+              }
+            },
+            {
+              "caseIndex": 2,
+              "fromLb": "0082a24",
+              "toLb": "0082b02",
+              "kwic": "一何早，鶻臭布衫今脫了。要識雲居一句元，珍重後園驢喫草。召大眾曰：此一瓣香薰天炙地去也。印曰：今日",
+              "exactHeadwordClause": "後園驢喫草",
+              "grammaticalProof": "The complete 五燈全書(第34卷-第120卷) case and its local speech markers assign the headword-bearing turn to the unnamed lay official in the Yunju encounter.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "reviewed-unnamed",
+                "kind": "full-case exact-turn adjudication",
+                "label": "the unnamed lay official in the Yunju encounter",
+                "role": "utterer",
+                "subject": "the unnamed lay official in the Yunju encounter",
+                "reviewedBy": "Codex Iriya lane C111-120 full-case author",
+                "reviewedUtc": "2026-07-18T23:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 3,
+              "fromLb": "0273b24",
+              "toLb": "0273c03",
+              "kwic": "日黃花蝶也愁。巖頭因僧問古帆不掛時如何師曰後園驢喫草巖頭因僧問：古帆不掛時如何？師曰：後園驢喫",
+              "exactHeadwordClause": "後園驢喫草",
+              "grammaticalProof": "The metrical passage is explicitly presented as a verse; Xue’an Congjin is the verse author established by the complete 雪菴從瑾禪師頌古 case.",
+              "voiceLayer": "transmitted-verse",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Xue’an Congjin",
+                "role": "verse-author",
+                "subject": "Xue’an Congjin",
+                "reviewedBy": "Codex Iriya lane C111-120 full-case author",
+                "reviewedUtc": "2026-07-18T23:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              },
+              "explicitVerseAttribution": true
+            },
+            {
+              "caseIndex": 4,
+              "fromLb": "0144c21",
+              "toLb": "0144c22",
+              "kwic": "時如何。師曰。小魚吞大魚。又僧如前問。師曰。後園驢喫草。邇後人或問佛．問法．問道．問禪者。師皆作噓",
+              "exactHeadwordClause": "後園驢喫草",
+              "grammaticalProof": "The complete 五燈會元 case and its local speech markers assign the headword-bearing turn to Yantou Quanhuo.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Yantou Quanhuo"
+              }
+            },
+            {
+              "caseIndex": 5,
+              "fromLb": "0129b16",
+              "toLb": "0129b18",
+              "kwic": "省，入室陳所解。山曰：子作麼生會？師回顧曰：後園驢喫草。山然之。後至雪竇，竇與語，喜其超邁，目曰：",
+              "exactHeadwordClause": "後園驢喫草",
+              "grammaticalProof": "The complete 五燈嚴統(第10卷-第25卷) case and its local speech markers assign the headword-bearing turn to Jiufeng Qin.",
+              "voiceLayer": "direct-turn",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "identified-unlinked-master",
+                "kind": "full-case exact-turn adjudication",
+                "label": "Jiufeng Qin",
+                "role": "utterer",
+                "subject": "Jiufeng Qin",
+                "reviewedBy": "Codex Iriya lane C111-120 full-case author",
+                "reviewedUtc": "2026-07-18T23:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 6,
+              "fromLb": "0269a14",
+              "toLb": "0269a16",
+              "kwic": "一何早，鶻臭布衫今脫了。要識雲居一句玄，珍重後園驢喫草。召大眾曰：此一瓣香熏天炙地去也。佛印曰：今",
+              "exactHeadwordClause": "後園驢喫草",
+              "grammaticalProof": "The complete 教外別傳 case and its local speech markers assign the headword-bearing turn to the unnamed lay official in the Yunju encounter.",
+              "voiceLayer": "embedded-copy",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "reviewed-unnamed",
+                "kind": "full-case exact-turn adjudication",
+                "label": "the unnamed lay official in the Yunju encounter",
+                "role": "utterer",
+                "subject": "the unnamed lay official in the Yunju encounter",
+                "reviewedBy": "Codex Iriya lane C111-120 full-case author",
+                "reviewedUtc": "2026-07-18T23:20:00Z",
+                "authoredVoiceRiskReviewed": true
+              }
+            },
+            {
+              "caseIndex": 7,
+              "fromLb": "0583b09",
+              "toLb": "0583b11",
+              "kwic": "掛時如何？曰：小魚吞大魚。曰：掛後如何？曰：後園驢喫草。瑞巖問：如何是本常理？師云：動也。曰：動時",
+              "exactHeadwordClause": "後園驢喫草",
+              "grammaticalProof": "The complete 五家正宗贊 case and its local speech markers assign the headword-bearing turn to Yantou Quanhuo.",
+              "voiceLayer": "embedded-copy",
+              "speechMarkerReviewed": true,
+              "speechMarkerAcknowledgement": "The complete case and every local 曰/云/問/答 boundary were read before this closed voice-layer assignment.",
+              "actor": {
+                "type": "named-master",
+                "masterName": "Yantou Quanhuo"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

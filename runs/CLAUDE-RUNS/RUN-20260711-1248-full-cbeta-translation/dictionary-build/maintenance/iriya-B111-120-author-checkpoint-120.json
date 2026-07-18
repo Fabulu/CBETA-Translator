@@ -1,0 +1,64 @@
+{
+  "lane": "B",
+  "positions": [
+    111,
+    120
+  ],
+  "completedThrough": 120,
+  "entryCount": 10,
+  "occurrenceCount": 60,
+  "generatedUtc": "2026-07-18T14:12:09.793955+00:00",
+  "bindings": {
+    "packet": {
+      "path": "maintenance/iriya-author-packet-B071-167-v1.json",
+      "sha256": "a981635abe531e80beae72af97a9f2a372b1f465feba5f1e9135b44a5964d913"
+    },
+    "decisions": {
+      "path": "maintenance/iriya-decisions-B111-120.json",
+      "sha256": "1d90fa21f4d52d4ece1e5161142d9a999875625d86f94264123809d59907758a"
+    },
+    "emitter": {
+      "path": "maintenance/iriya-B111-120-emitter.json",
+      "sha256": "793179a6889e8a3dfc8b1778197aad8320778ee8fb78dc7c97d08862ac746cbf"
+    },
+    "attribution": {
+      "path": "maintenance/iriya-B111-120-final-attribution.json",
+      "sha256": "3d0629a8b64559a48a27c37e1b4dd11e4ce3804a106ffdcb2665fc9a6a1f809d"
+    },
+    "workSource": {
+      "path": "maintenance/iriya-B111-120-final-work.json",
+      "sha256": "486c51c341cf8b3cb1bba3575653586ff5b8b56a075f73f237d81c3f73352e04"
+    },
+    "template": {
+      "path": "maintenance/iriya-B111-120-final-template.json",
+      "sha256": "b63b8ab36fd53e087dea82a0db287bc6fd110c52dccaba2ad0f5ea629febda32"
+    },
+    "depth": {
+      "path": "maintenance/iriya-B111-120-final-depth.json",
+      "sha256": "e3aaa4aa5e42715acf2458a551c55774d0c24a860112970017a5fe36be8ced23"
+    },
+    "zc": {
+      "path": "maintenance/iriya-B111-120-final-zc.json",
+      "sha256": "c9a78caba823ade0d83fb9115d77e3c542c8e3c8da90c9efae9713848310e600"
+    }
+  },
+  "gates": {
+    "emitterHardPass": true,
+    "attributionFailures": 0,
+    "attributionOccurrences": 60,
+    "workSourceFailures": 0,
+    "templateFailures": 0,
+    "depthHardFailures": 0,
+    "zcVerified": 60,
+    "zcFailures": 0,
+    "parityChecked": 10,
+    "parityFailures": 0
+  },
+  "hardPass": true,
+  "selfReviewPerformed": false,
+  "installed": false,
+  "merged": false,
+  "rosterModified": false,
+  "schemaVersion": "iriya-author-checkpoint-v1",
+  "nextAction": "Await independent review; do not continue Lane B from this packet."
+}

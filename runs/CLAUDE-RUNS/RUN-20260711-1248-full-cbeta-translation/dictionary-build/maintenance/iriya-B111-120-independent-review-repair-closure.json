@@ -1,0 +1,247 @@
+{
+  "schemaVersion": "iriya-independent-review-repair-closure-v1",
+  "lane": "B",
+  "positions": [
+    111,
+    120
+  ],
+  "sourceReview": "maintenance/iriya-B111-120-independent-review-receipt.json",
+  "closedDeltaCount": 5,
+  "appliedDeltaCount": 5,
+  "coordinateResolutions": [
+    {
+      "deltaId": "B111-120-D01",
+      "coordinate": "B114.s1.o3",
+      "field": "ActorAttribution/VoiceLayer",
+      "before": "the unnamed old man at Wutai / direct-turn",
+      "after": "Mi'an Xianjie / quoted-original",
+      "evidence": "天童傑云 explicitly attributes the occurrence-bearing 前三三，後三三 line to Mi'an Xianjie; the unnamed old man belongs to the earlier Wutai encounter, not this later quotation.",
+      "status": "applied"
+    },
+    {
+      "deltaId": "B111-120-D02",
+      "coordinate": "B114.s1.o6",
+      "field": "ActorAttribution/VoiceLayer",
+      "before": "the unnamed old man at Wutai / embedded-copy",
+      "after": "Manjusri / quoted-original",
+      "evidence": "翠巖芝云：文殊道 explicitly embeds and attributes the occurrence-bearing line to Manjusri; Cuiyan Shouzhi is the later raiser.",
+      "status": "applied"
+    },
+    {
+      "deltaId": "B111-120-D03",
+      "coordinate": "B118.s1.o4",
+      "field": "ActorAttribution",
+      "before": "Tianning record master",
+      "after": "Shoushan Xingnian",
+      "evidence": "The complete 天聖廣燈錄 case is under 汝州寶應禪院省念禪師, and 師云 introduces Xingnian's occurrence-bearing reply.",
+      "status": "applied"
+    },
+    {
+      "deltaId": "B111-120-D04",
+      "coordinate": "B119.s1.o5",
+      "field": "VoiceLayer",
+      "before": "direct-turn",
+      "after": "compiler-narration",
+      "evidence": "咄！洞山漏逗不少 is the portrait-series narrator's appraisal following the quoted Dongshan verse, not a direct dialog turn.",
+      "status": "applied"
+    },
+    {
+      "deltaId": "B111-120-D05",
+      "coordinate": "B120.s1.o3",
+      "field": "ActorAttribution/VoiceLayer",
+      "before": "Li Daoyi / embedded-copy",
+      "after": "Xiaoyin Daxin / quoted-original",
+      "evidence": "Li Daoyi's preface explicitly says 笑隱亦抗聲於晦機云 before the occurrence-bearing line, identifying Xiaoyin Daxin as its speaker and Li as quoter.",
+      "status": "applied"
+    }
+  ],
+  "bindings": {
+    "review": {
+      "path": "maintenance/iriya-B111-120-independent-review-receipt.json",
+      "sha256": "289cc9108c7554905ee7ce63cc3b90f873abc961f03d6413c3b84931ed965ae0"
+    },
+    "packet": {
+      "path": "maintenance/iriya-author-packet-B071-167-v1.json",
+      "sha256": "a981635abe531e80beae72af97a9f2a372b1f465feba5f1e9135b44a5964d913"
+    },
+    "decisions": {
+      "path": "maintenance/iriya-decisions-B111-120.json",
+      "sha256": "a2844ef97e93e797f61ba196bc3b531837540c74f34fdf639a74cf04e4803c90"
+    },
+    "emitter": {
+      "path": "maintenance/iriya-B111-120-review-repair-emitter.json",
+      "sha256": "1af471a54a87adbc792ff7346d0c589b7590268f514d42cd387eb5fa051d76a1"
+    },
+    "attribution": {
+      "path": "maintenance/iriya-B111-120-review-repair-attribution.json",
+      "sha256": "118e719659e14a2dacd98db42f2c59f4278bf1e136a067f88c303e8358ff50a0"
+    },
+    "workSource": {
+      "path": "maintenance/iriya-B111-120-review-repair-work.json",
+      "sha256": "486c51c341cf8b3cb1bba3575653586ff5b8b56a075f73f237d81c3f73352e04"
+    },
+    "template": {
+      "path": "maintenance/iriya-B111-120-review-repair-template.json",
+      "sha256": "b63b8ab36fd53e087dea82a0db287bc6fd110c52dccaba2ad0f5ea629febda32"
+    },
+    "depth": {
+      "path": "maintenance/iriya-B111-120-review-repair-depth.json",
+      "sha256": "7914d4ee197e721e77de5470a3a72cf737d40fcdd887db10d17fe0a4c1cf56c4"
+    },
+    "zc": {
+      "path": "maintenance/iriya-B111-120-review-repair-zc.json",
+      "sha256": "71251a3165fbf987b5fac7d25a0335710aec6b41abd3b2ad2a8917d63f338c32"
+    }
+  },
+  "artifactHashes": [
+    {
+      "position": 111,
+      "id": "t_88d66f2191a7",
+      "worksheetSha256": "8d4fd546e62ad6cadbb9e7e6bfc2590d71770f8425a67eb56eff2e748a647771",
+      "entrySha256": "7b8f0b076fd74ecacadc723fb45e14b3283423274be43800a2883fddcf1064c5",
+      "workSha256": "7fad3a29d4da988e66ce61c6effeb9d0d72af5defeadfb6763bcdfe6148d02f3"
+    },
+    {
+      "position": 112,
+      "id": "t_76c7623702ce",
+      "worksheetSha256": "98c21ff6ee09c234a369aeeaf817a50476b0895be2fadf8519d245591b815539",
+      "entrySha256": "daa77fcbfa3d0b031906ebd23330c9bfb36b223629ddae60166c633cf0f1d8e7",
+      "workSha256": "2cc64345808ea79d579ac33c3aa3ecbfb40659be5d6be5fc28627232985ee3df"
+    },
+    {
+      "position": 113,
+      "id": "t_082000a23ddf",
+      "worksheetSha256": "6990431756b3f8bcfc529295d5e345109f71afab7e0446953257d563ae8df498",
+      "entrySha256": "b8597ec28022d95e9daea437a117c8ba0a062c57ee89772d5e4acde683dfcca9",
+      "workSha256": "835881fbbf2dccc6f6222128f2d25e2e2d6a893cd34ad9bc5ca48d354c8d3242"
+    },
+    {
+      "position": 114,
+      "id": "t_378360e5114a",
+      "worksheetSha256": "22201b9994abb4759dca015addb8b393e7c9f4c7f0fe3491e1e321d704cbd0cd",
+      "entrySha256": "ee79f91f90b1343567c920e5c2a944d368d8d4e781e7991fbe6eba32ac07ba38",
+      "workSha256": "f51c031f39b73b22cc874107fb50f6e460e6bfde2f561b685cc7efe4fb486338"
+    },
+    {
+      "position": 115,
+      "id": "t_f8d5bba160d8",
+      "worksheetSha256": "2a86621b54b50531f7d54138d3a07522a86ca56f5f1f42e67ca1150ed584c377",
+      "entrySha256": "bfedcee4632c2e78d63d32c2eeeba9163ad604b5319d914ce0e450979b08abf6",
+      "workSha256": "72cb681a23dac577103f269bda50d2448e4eda6c47e94b2f88aa7d48f565093e"
+    },
+    {
+      "position": 116,
+      "id": "t_e7758465f236",
+      "worksheetSha256": "653f22755fb800287b6492f2688edc73d3824a38fd6fcfdf00a529d1776bbd02",
+      "entrySha256": "20bccb9569749ecdb6fc12dc2005652a15ccae6f6c05ebb2d8b780d7e365c4b7",
+      "workSha256": "fa0076ea010a6a62c13f15809d71c1208be2ae4cbf0a937f0917c35b97103bb2"
+    },
+    {
+      "position": 117,
+      "id": "t_275552dfd220",
+      "worksheetSha256": "d033f51f7d0138cb77104aa445880d3977d4caceea2515f18356aab1ba3820ee",
+      "entrySha256": "831a99844a01e9ae354adab9739c51fcd2d64105e26ef9d4dc50e07579d50dce",
+      "workSha256": "71d19a9350dfd13c87ab53e4d5e257e54295ca949315ce651ef771980d6c9355"
+    },
+    {
+      "position": 118,
+      "id": "t_207cda0e51cd",
+      "worksheetSha256": "5b5797f668007a059b75281e53f072ad04b17850947b33af4ff2a665721bdd9c",
+      "entrySha256": "3ed8c67649074f2d76570cf197d29a00d7d35956a51d0d794227af235104c950",
+      "workSha256": "cbc854a4fd5d9cbc84328148259de3aa451c5616d772d9ffc185fdc25b9c585a"
+    },
+    {
+      "position": 119,
+      "id": "t_6120ca4b6774",
+      "worksheetSha256": "f3fd534ad1dd38852e660ba657cc92689e584bd3b4af5e64b8fa24ca3bf8d07f",
+      "entrySha256": "d415a4add14a816f12491040f61b743a057bfca4d3906811c94b0f6310064c5f",
+      "workSha256": "3d9b0708c2548d3147bccfdb77adf356b6f5d4a9e6c8f374b2779b26b916fbef"
+    },
+    {
+      "position": 120,
+      "id": "t_a35bd0a2babf",
+      "worksheetSha256": "b02d0c9a18e8220e7614988e71ca784d84d2bcfcd765d9c81a974543daffb176",
+      "entrySha256": "ec80515c55ff314516821dead0f2893b61ae05559c1a927010126476e4fa2e50",
+      "workSha256": "e81df0904df46d9f2633e94327b4ce453bd430202cfeff61faf159eb8a8485bf"
+    }
+  ],
+  "compileParity": [
+    {
+      "position": 111,
+      "id": "t_88d66f2191a7",
+      "exactEquality": true,
+      "compileErrors": []
+    },
+    {
+      "position": 112,
+      "id": "t_76c7623702ce",
+      "exactEquality": true,
+      "compileErrors": []
+    },
+    {
+      "position": 113,
+      "id": "t_082000a23ddf",
+      "exactEquality": true,
+      "compileErrors": []
+    },
+    {
+      "position": 114,
+      "id": "t_378360e5114a",
+      "exactEquality": true,
+      "compileErrors": []
+    },
+    {
+      "position": 115,
+      "id": "t_f8d5bba160d8",
+      "exactEquality": true,
+      "compileErrors": []
+    },
+    {
+      "position": 116,
+      "id": "t_e7758465f236",
+      "exactEquality": true,
+      "compileErrors": []
+    },
+    {
+      "position": 117,
+      "id": "t_275552dfd220",
+      "exactEquality": true,
+      "compileErrors": []
+    },
+    {
+      "position": 118,
+      "id": "t_207cda0e51cd",
+      "exactEquality": true,
+      "compileErrors": []
+    },
+    {
+      "position": 119,
+      "id": "t_6120ca4b6774",
+      "exactEquality": true,
+      "compileErrors": []
+    },
+    {
+      "position": 120,
+      "id": "t_a35bd0a2babf",
+      "exactEquality": true,
+      "compileErrors": []
+    }
+  ],
+  "gates": {
+    "emitterHardFailures": 0,
+    "attributionHardFailures": 0,
+    "workSourceHardFailures": 0,
+    "templateFailures": 0,
+    "depthHardFailures": 0,
+    "exactVerified": 60,
+    "exactFailures": 0,
+    "compileParityFailures": 0,
+    "siblingParityFailures": 0
+  },
+  "hardPass": true,
+  "reviewStatus": "awaiting-independent-rereview",
+  "selfReviewPerformed": false,
+  "installed": false,
+  "merged": false,
+  "rosterModified": false
+}
