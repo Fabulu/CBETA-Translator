@@ -49,6 +49,12 @@ FORBIDDEN_STRUCTURAL_STOCK = tuple(re.compile(pattern) for pattern in (
     r"^the alias exposes the .+ wording without adding an interpretive substitute\.?$",
     r"^every meaning-bearing element of the .+ construction remains governed\.?$",
     r"^nearby sayings are excluded unless they reproduce the .+ unit\.?$",
+    r"^the rendering of <lane> keeps its distinctive .+ instead of replacing it with a generic chan abstraction\.?$",
+    r"^for <lane>, shorter matches lose the semantic control supplied by the full retained expression\.?$",
+    r"^<lane> excludes neighboring imagery whose actors or actions do not reproduce this entry.s exact governed span\.?$",
+    # Lane ordinals are process coordinates, never corpus evidence. Their
+    # appearance in semantic prose proves batch-position substitution.
+    r"^.*<lane>.*$",
 ))
 
 
@@ -69,6 +75,7 @@ def normalize(text: str, entry: dict, sense: dict) -> str:
     for token in sorted({str(x) for x in replacements if x}, key=len, reverse=True):
         value = value.replace(token.lower(), "<term>")
     value = CJK.sub("<cjk>", value)
+    value = re.sub(r"\b[abc]\d{2,4}\b", "<lane>", value)
     value = re.sub(r"\b\d+\b", "<n>", value)
     return SPACE.sub(" ", value).strip()
 

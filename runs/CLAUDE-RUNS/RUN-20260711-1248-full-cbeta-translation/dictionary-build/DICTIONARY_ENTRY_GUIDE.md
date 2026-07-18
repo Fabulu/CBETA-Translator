@@ -835,6 +835,15 @@ specification. Do not throw that evidence away merely to obtain uniform prose.
       headword's actual cases—who asks, answers, quotes, raises, appraises, contrasts, or limits it.
       `audit_batch_semantic_templates.py` normalizes these structural frames and must pass author-side;
       a unique adjective or compound noun cannot disguise empty reader prose.
+      **A lane ordinal is never semantic evidence.** `A101`, `B131`, `C121`, or any comparable batch
+      coordinate may appear in a ledger or receipt, but never in `CorpusEarnedOpening`, `EvidenceBody`,
+      `Note`, `ZenBend`, `CounterexampleOrLimit`, `DifferentThingTest`, `AliasRationale`,
+      `ModifierControls`, or `FamilyControls`. Sentences such as “the rendering of C121 keeps its
+      distinctive image,” “for C121 shorter matches lose semantic control,” and “C121 excludes nearby
+      imagery” are prohibited templates even when the substituted descriptor is unique. The cohort gate
+      normalizes every lane ordinal to `<lane>` and fails it immediately. After changing this detector,
+      rerun it retrospectively on every authored-but-uninstalled cohort; an old green receipt does not
+      grandfather prose that the strengthened gate can now identify.
       The discovered filler “X is the corpus expression for the action, image, or judgment described by
       the stored cases; the witnesses place it in direct answers, challenges, verses, appraisals, and
       narrative controls” is explicitly forbidden. Capitalizing a preferred target and inserting it into

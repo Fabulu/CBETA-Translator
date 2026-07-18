@@ -29,6 +29,14 @@ class StructuralSemanticStockTests(unittest.TestCase):
             "Tianyi asks how many break through the pass yet still meet Bodhidharma in delusion; Yantou uses the phrase as a reply to a monk."
         ))
 
+    def test_lane_ordinal_substitution_is_never_semantic_evidence(self):
+        self.assertTrue(self.stock(
+            "The rendering of C121 keeps its distinctive moon image instead of replacing it with a generic Chan abstraction."
+        ))
+        self.assertTrue(self.stock(
+            "For C121, shorter matches lose the semantic control supplied by the full retained expression."
+        ))
+
 
 if __name__ == "__main__":
     unittest.main()
