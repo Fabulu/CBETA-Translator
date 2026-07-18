@@ -19,6 +19,12 @@ sys.path.insert(0, str(ROOT))
 import zc  # noqa: E402
 
 
+# Reader-facing dictionary prose must name the corpus-visible tradition and
+# activity precisely.  These English umbrella terms are prohibited project
+# vocabulary, so fail before an expensive independent semantic review.
+FORBIDDEN_READER_TERM = re.compile(r"\b(?:buddhis\w*|meditat\w*)\b", re.IGNORECASE)
+
+
 def queue_rows(path: Path) -> dict[str, dict]:
     rows = {}
     pattern = re.compile(r"\| (\d+) \| `([^`]+)` \| ([^|]+?) \| `([^`]+)`")
@@ -61,6 +67,15 @@ def validate_ledger(ledger: dict, authority: dict[str, dict], full: bool = False
     seen_indexes = set()
     for ordinal, row in enumerate(decisions, 1):
         prefix = f"row {ordinal} ({row.get('id')})"
+        reason = row.get("reason")
+        if not isinstance(reason, str) or not reason.strip():
+            failures.append(f"{prefix}: missing nonempty reason")
+        else:
+            forbidden = sorted({match.group(0) for match in FORBIDDEN_READER_TERM.finditer(reason)})
+            if forbidden:
+                failures.append(
+                    f"{prefix}: reason contains prohibited reader-facing term(s) {forbidden!r}"
+                )
         if row.get("batchOrdinal") != ordinal:
             failures.append(
                 f"{prefix}: batchOrdinal={row.get('batchOrdinal')!r}, expected {ordinal}"

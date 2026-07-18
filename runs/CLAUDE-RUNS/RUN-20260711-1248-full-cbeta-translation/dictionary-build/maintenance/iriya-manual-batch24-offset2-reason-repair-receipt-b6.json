@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "iriya-manual-reason-repair-receipt.v1",
+  "generatedUtc": "2026-07-18T02:45:32Z",
+  "repairAuthor": "b6",
+  "review": "maintenance/iriya-manual-batch24-offset2-independent-review-c19-e8.json",
+  "reviewSha256": "2d8f065cb085f189056bb7f231953047d3453b909302e7c8d66add37211530ad",
+  "ledger": "maintenance/iriya-manual-batch24-offset2-ledger.json",
+  "ledgerBeforeSha256": "90a89acea735be81e158af089924adec89d1609f6f4cd7233db7752b92323c55",
+  "ledgerAfterSha256": "e7eb77cf3178c51afffcf0def47a0ead5f80e5814f0f3a6c1e607b9dbbe69e35",
+  "repair": {
+    "canonicalIndex": 887,
+    "id": "t_c8134e571636",
+    "term": "喫鐵棒有日在",
+    "field": "reason",
+    "closure": "Removes the prohibited project term and grounds the warning in the stored witness's explicit 若作佛法商量 context: treating the matter as 佛法 discussion."
+  },
+  "cheapValidator": "PASS 10/10; 0 failures",
+  "fullValidator": "PASS 10/10; 0 failures",
+  "allIdentitiesPreserved": true,
+  "allDispositionsAndUnitsPreserved": true,
+  "allCountsPreserved": true,
+  "allEvidencePreserved": true,
+  "allFormResolutionsPreserved": true,
+  "otherNineReasonsPreserved": true,
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false,
+  "status": "READY_FOR_FOCUSED_RECHECK"
+}

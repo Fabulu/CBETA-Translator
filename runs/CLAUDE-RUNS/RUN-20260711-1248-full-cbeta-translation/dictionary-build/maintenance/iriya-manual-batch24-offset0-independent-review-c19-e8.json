@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "iriya-manual-independent-review.v1",
+  "reviewer": "c19-e8",
+  "decision": "REVISE",
+  "reviewedSelection": "maintenance/iriya-manual-batch24-offset0-selection.json",
+  "reviewedSelectionSha256": "f89fc5bcc9b2966f4004d2c44f9bffbb39f2d1d6467de7c5c981928516fb34aa",
+  "reviewedLedger": "maintenance/iriya-manual-batch24-offset0-ledger.json",
+  "reviewedLedgerSha256": "664a8d9893eeb487237a2738e56a9b77c06bc12dc6ae9413ee2ce30f0e8b2fbe",
+  "identityReview": {
+    "verdict": "PASS",
+    "finding": "All ten frozen selection/ledger tuples agree, preserve offset-0 identity, and remain internally associated."
+  },
+  "mechanicalReview": {
+    "cheapValidator": "PASS 10/10",
+    "fullValidator": "PASS 10/10",
+    "counts": "PASS; exact hit/file/distinct-work triples reproduce.",
+    "evidence": "PASS; stored windows verify at their line bounds and each row carries two canonically distinct works.",
+    "variantsAndUnits": "PASS; paired sayings remain complete couplets and component rulings do not inflate their lexical boundary."
+  },
+  "semanticReview": {
+    "verdict": "REVISE 1 reason; PASS 9 rows",
+    "rows": [
+      {
+        "canonicalIndex": 762,
+        "term": "踏著秤鎚硬似鐵",
+        "verdict": "REVISE reason only",
+        "finding": "The witnesses support the literal fixed line and its immediate pairing with 八兩元來是半斤, but neither stored case explicitly turns it into 'direct contact with an uncompromising fact.' That abstraction is plausible commentary imported beyond what these cases visibly say. The corpus gives a hard iron balance-weight and immediately states the equivalence of eight liang and half a jin.",
+        "requiredRepair": "Describe the literal hard balance-weight and its attested coupling to 八兩元來是半斤; if naming a Chan job, limit it to functioning as the master's capping line. Remove or corpus-anchor the claim about direct contact with an uncompromising fact. Preserve KEEP/component, counts, and both witnesses."
+      }
+    ],
+    "passingCanonicalIndexes": [765, 768, 771, 774, 777, 780, 783, 786, 789]
+  },
+  "summary": {
+    "PASS": 9,
+    "REVISE": 1,
+    "reasonOnlyRepairsRequired": 1,
+    "evidenceOrCountRepairsRequired": 0
+  },
+  "authorLedgerMutated": false,
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false
+}

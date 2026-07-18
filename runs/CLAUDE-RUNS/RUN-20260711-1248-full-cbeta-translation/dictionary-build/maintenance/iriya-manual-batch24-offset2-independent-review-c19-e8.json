@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "iriya-manual-independent-review.v1",
+  "reviewer": "c19-e8",
+  "decision": "REVISE",
+  "reviewedSelection": "maintenance/iriya-manual-batch24-offset2-selection.json",
+  "reviewedSelectionSha256": "a7eca0445b8e3dbd9cd423414d7ba83ee37943cf729896d7802504a30298056c",
+  "reviewedLedger": "maintenance/iriya-manual-batch24-offset2-ledger.json",
+  "reviewedLedgerSha256": "90a89acea735be81e158af089924adec89d1609f6f4cd7233db7752b92323c55",
+  "identityReview": {"verdict": "PASS", "finding": "All ten frozen selection/ledger tuples agree and preserve offset-2 identity."},
+  "mechanicalReview": {
+    "cheapValidator": "PASS 10/10",
+    "fullValidator": "PASS 10/10",
+    "counts": "PASS; exact hit/file/distinct-work triples reproduce.",
+    "evidence": "PASS; stored windows verify and each row has canonical-work-distinct witnesses.",
+    "variantsAndUnits": "PASS; all five paired units remain complete and component boundaries are stable."
+  },
+  "semanticReview": {
+    "verdict": "REVISE 1 prohibited-word reason; PASS 9 rows",
+    "rows": [
+      {
+        "canonicalIndex": 887,
+        "term": "喫鐵棒有日在",
+        "verdict": "REVISE reason only",
+        "finding": "The warning formula, future blow, and criticism of interpretive handling are corpus-supported, but the reason uses the prohibited project term 'Buddhist.' The user and dictionary process bar that category because it conflates distinct traditions; it cannot appear in dictionary prose.",
+        "requiredRepair": "Replace 'mistaken Buddhist interpretation' with corpus-grounded wording such as 'treating the matter as 佛法 discussion' or 'a mistaken doctrinal interpretation.' Preserve KEEP/component, warning sense, counts, and both witnesses."
+      }
+    ],
+    "passingCanonicalIndexes": [869, 872, 875, 878, 881, 884, 890, 893, 896]
+  },
+  "summary": {"PASS": 9, "REVISE": 1, "reasonOnlyRepairsRequired": 1, "evidenceOrCountRepairsRequired": 0},
+  "authorLedgerMutated": false,
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false
+}
