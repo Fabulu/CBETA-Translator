@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "iriya-manual-reason-repair-receipt.v1",
+  "generatedUtc": "2026-07-18T02:53:54Z",
+  "repairAuthor": "b6",
+  "review": "maintenance/iriya-manual-batch25-offset1-independent-review-d7.json",
+  "reviewSha256": "b23141c66078c6dce52c60f8720bcf4e0a8eec72383ab2ca36c821824f99acb8",
+  "ledger": "maintenance/iriya-manual-batch25-offset1-ledger.json",
+  "ledgerBeforeSha256": "631381d4415d51c224086eb35113efcff13420aa9769b3e8b966a7b3c063ff4b",
+  "ledgerAfterSha256": "62823daeea9871a042c9c80e965e5049d04425f0bc1ae2c017373ee96a48bc20",
+  "repair": {
+    "canonicalIndex": 931,
+    "id": "t_b2cc691aecf3",
+    "term": "渾金璞玉",
+    "field": "reason",
+    "closure": "Defines unalloyed native worth in an unworked state and reports the two deployments separately: appraisal of 法師無語 and appraisal of Xuedou's two-line verse on Panshan. Removes the conflation with observer discrimination and polish."
+  },
+  "cheapValidator": "PASS 10/10; 0 failures",
+  "fullValidator": "PASS 10/10; 0 failures",
+  "allIdentitiesPreserved": true,
+  "allDispositionsAndUnitsPreserved": true,
+  "allCountsPreserved": true,
+  "allEvidencePreserved": true,
+  "allFormResolutionsPreserved": true,
+  "otherNineReasonsPreserved": true,
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false,
+  "status": "READY_FOR_FOCUSED_RECHECK"
+}

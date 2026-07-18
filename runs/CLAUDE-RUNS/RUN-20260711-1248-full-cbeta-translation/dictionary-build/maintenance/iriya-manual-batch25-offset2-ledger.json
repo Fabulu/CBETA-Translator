@@ -1,0 +1,562 @@
+{
+  "schemaVersion": "iriya-manual-semantic-adjudication-v2",
+  "generatedUtc": "2026-07-18T12:20:00Z",
+  "mode": "manual full-case reading only; no automation/default",
+  "selection": "maintenance/iriya-manual-batch25-offset2-selection.json",
+  "selectionSha256": "06e7e0fec73a3675a411ec7f25c70a60ec2628788f07b02c13cd7dd86d8d35d3",
+  "authoritativeQueue": "IRIYA_SAYINGS_QUEUE.md",
+  "authoritativeQueueSha256AtSelection": "162592a97f6a483b8f1c944ca6746bdafd0b99c6d4990b61db3e288ed5edc8be",
+  "trustedRegistry": "maintenance/iriya-trusted-registry.json",
+  "trustedRegistryRowsAtSelection": 874,
+  "trustedRegistrySha256AtSelection": "798a9443c1affcebd6ad15f7847f21045facf33c7c2fbb6d92c79d5e2471094a",
+  "excludedPriorAuthorLedgers": [
+    {
+      "path": "maintenance/iriya-manual-batch6-offset2-ledger.json",
+      "sha256": "f3dae2d7942168dcf3f817099e87507d60aa6992d785bc897488cd2a4d178326"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch7-offset2-ledger.json",
+      "sha256": "72947067eccfd0298a3ee63ffa9eae3fa9c24bfee5885cc958e7ee5dcea25625"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch8-offset2-ledger.json",
+      "sha256": "27e1d2bb499b2c9fd8dcb8ebec933c0e5362a9d3bbc4fc88a1c47cc1a16f4f20"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch9-offset2-ledger.json",
+      "sha256": "c2b0b631d7e33cb4e4380020b59d0e402808aebe2a911245da56e6a319ebb49f"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch10-offset2-ledger.json",
+      "sha256": "39bb2bd10f9da8d7ee07923c1d288e3131d3e94c42f57b627cff4001ab1f228d"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch11-offset2-ledger.json",
+      "sha256": "92ff22c9e3bee1bdcdb904f10072128950449ae148288496a1ea239ef8cb852f"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch12-offset2-ledger.json",
+      "sha256": "5cb52637203b18aa50504c65f65e16d76aaf01e3594c4b73351279ce62c70823"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch13-offset2-ledger.json",
+      "sha256": "f12508b25d09406313909d9802e0fa95a560b16349ce3717e5ba546277d3de80"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch14-offset2-ledger.json",
+      "sha256": "ab0f3bb625f4aa9e5d5fc4648f80b120b6cef9a8e476ebc09c8657f5f53622df"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch15-offset2-ledger.json",
+      "sha256": "32dd3a9842c92f998c8512a6597cb0490c4f706c1e0beebc7217685356373f89"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch16-offset2-ledger.json",
+      "sha256": "e51aae68d88fed9f178faa199a78342b9156d84c24051a00a065662df9996bc2"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch17-offset2-ledger.json",
+      "sha256": "2076d0bf02aa4d0147627dab444dd8520e1bb84aaa53b08481f2b2b220915fbd"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch18-offset2-ledger.json",
+      "sha256": "43bf589375b8960e4a1668a5884d704a0978ca64021c3b933aac0345dd53bc4f"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch19-offset2-ledger.json",
+      "sha256": "349d63d07e51eafa2d7287ebfdcc36a5493b6365be81de60a47ce048c6f7be25"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch20-offset2-ledger.json",
+      "sha256": "85aebc866c33121e12ca6a265bcd66b0e69a18e2ce93e7b732cf156f3b87281a"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch21-offset2-ledger.json",
+      "sha256": "e75919f69f5952057786c38bc2c91ef8ae4194f9149cbcf54aba6b328ff65608"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch22-offset2-ledger.json",
+      "sha256": "91c8a3dce645152c96bd7d895a99c3c4d4cd77ea76c5ee8d1435dc7f95479af8"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch23-offset2-ledger.json",
+      "sha256": "842fb554058d88dc976a7a5629b88509cdf92539a9c6f2bb82b1016d5757d2d5"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch24-offset2-ledger.json",
+      "sha256": "e7eb77cf3178c51afffcf0def47a0ead5f80e5814f0f3a6c1e607b9dbbe69e35"
+    }
+  ],
+  "identityPreflight": {
+    "status": "PASS",
+    "canonicalIndexes": [
+      899,
+      902,
+      905,
+      908,
+      911,
+      914,
+      917,
+      920,
+      923,
+      926
+    ],
+    "assertions": {
+      "exactlyNextTenAfterBatch24": true,
+      "canonicalIndexEqualsQueueNumberMinusOne": true,
+      "canonicalIndexModulo3Equals2": true,
+      "absentLive874Registry": true,
+      "absentAllPriorOffset2AuthorLedgersThroughBatch24": true,
+      "disjointBatch24": true
+    }
+  },
+  "offset": 2,
+  "batch": 25,
+  "reviewedCount": 10,
+  "decisions": [
+    {
+      "queueNumber": 900,
+      "canonicalIndex": 899,
+      "id": "t_565fb82e367f",
+      "term": "刁刀相似、魚魯參差",
+      "query": "刁刀相似，魚魯參差",
+      "batchOrdinal": 1,
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "validation": "manual full-case multi-source; zc.py batch exact count/find/verify; canonical-distinct works; explicit form resolution",
+      "reason": "Established paired warning that easily confused forms, like 刁/刀 and 魚/魯, can produce a minute-looking but decisive error in judgment.",
+      "zcExact": {
+        "hits": 24,
+        "files": 14,
+        "distinctWorks": 14
+      },
+      "evidence": [
+        {
+          "source": "X/X66/X66n1296.xml",
+          "title": "宗門拈古彙集",
+          "workId": "work:X66n1296",
+          "hitFromLb": "0013b23",
+          "hitToLb": "0013c01",
+          "kwic": "天寧琦云：妙喜與麼批判，刁刀相似，魚魯參差。殊不知釋迦自釋迦，調達自調達，地獄自地獄，料掉沒交涉。",
+          "verified": true
+        },
+        {
+          "source": "X/X71/X71n1412.xml",
+          "title": "古林清茂禪師語錄",
+          "workId": "work:X71n1412",
+          "hitFromLb": "0229a20",
+          "hitToLb": "0229a21",
+          "kwic": "然刁刀相似，魚魯參差，若是明眼漢，瞞他一點不得。",
+          "verified": true
+        }
+      ],
+      "formResolution": {
+        "printedTerm": "刁刀相似、魚魯參差",
+        "exactQuery": "刁刀相似，魚魯參差",
+        "directionalChanges": [
+          "authoritative separator normalized to exact corpus punctuation"
+        ]
+      }
+    },
+    {
+      "queueNumber": 903,
+      "canonicalIndex": 902,
+      "id": "t_49e7c2086d87",
+      "term": "三尺杖子攪黄河",
+      "query": "三尺杖子攪黃河",
+      "batchOrdinal": 2,
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "manual full-case multi-source; zc.py batch exact count/find/verify; canonical-distinct works; explicit form resolution",
+      "reason": "Fixed hyperbolic image of stirring the Yellow River with a three-foot staff, presenting the staff's activity as vast, disruptive, and beyond ordinary scale.",
+      "zcExact": {
+        "hits": 22,
+        "files": 15,
+        "distinctWorks": 15
+      },
+      "evidence": [
+        {
+          "source": "X/X80/X80n1565.xml",
+          "title": "五燈會元",
+          "workId": "work:X80n1565",
+          "hitFromLb": "0295b05",
+          "hitToLb": "0295b06",
+          "kwic": "三尺杖子攪黃河。八臂那吒冷眼窺。無限魚龍盡奔走。",
+          "verified": true
+        },
+        {
+          "source": "T/T51/T51n2077.xml",
+          "title": "續傳燈錄",
+          "workId": "work:T51n2077",
+          "hitFromLb": "0479b10",
+          "hitToLb": "0479b11",
+          "kwic": "有人問我居山事。三尺杖子攪黃河。",
+          "verified": true
+        }
+      ],
+      "formResolution": {
+        "printedTerm": "三尺杖子攪黄河",
+        "exactQuery": "三尺杖子攪黃河",
+        "directionalChanges": [
+          "黄 normalized directionally to corpus 黃"
+        ]
+      }
+    },
+    {
+      "queueNumber": 906,
+      "canonicalIndex": 905,
+      "id": "t_48eb250ffea8",
+      "term": "受人處分",
+      "query": "受人處分",
+      "batchOrdinal": 3,
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "manual full-case multi-source; zc.py batch exact count/find/verify; canonical-distinct works; explicit form resolution",
+      "reason": "Stable Chan admonition for being handled, directed, or defined by another person rather than acting from one's own footing.",
+      "zcExact": {
+        "hits": 21,
+        "files": 17,
+        "distinctWorks": 17
+      },
+      "evidence": [
+        {
+          "source": "J/J40/J40nB494.xml",
+          "title": "雨山和尚語錄",
+          "workId": "work:J40nB494",
+          "hitFromLb": "0551c12",
+          "hitToLb": "0551c13",
+          "kwic": "佛殿裏燒香，山門頭合掌，是則是夥信心男子，然未免受人處分。",
+          "verified": true
+        },
+        {
+          "source": "J/J34/J34nB306.xml",
+          "title": "內紹種禪師語錄",
+          "workId": "work:J34nB306",
+          "hitFromLb": "0410c14",
+          "hitToLb": "0410c16",
+          "kwic": "同參出，云：「大丈夫漢不可受人處分也。」師驀豎拳，云：「這個因何喚作拳？」",
+          "verified": true
+        }
+      ],
+      "formResolution": {
+        "printedTerm": "受人處分",
+        "exactQuery": "受人處分",
+        "directionalChanges": []
+      }
+    },
+    {
+      "queueNumber": 909,
+      "canonicalIndex": 908,
+      "id": "t_a4a3bbcba2ed",
+      "term": "明月蘆花不似他",
+      "query": "明月蘆花不似他",
+      "batchOrdinal": 4,
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "manual full-case multi-source; zc.py batch exact count/find/verify; canonical-distinct works; explicit form resolution",
+      "reason": "Fixed poetic line asserting that moonlight and reed blossoms, though visually intermingled in whiteness, are not the same, marking nonidentity within apparent sameness.",
+      "zcExact": {
+        "hits": 25,
+        "files": 23,
+        "distinctWorks": 22
+      },
+      "evidence": [
+        {
+          "source": "M/M59/M59n1540.xml",
+          "title": "大慧普覺禪師普說",
+          "workId": "chan:dahui-pushuo",
+          "hitFromLb": "0898a15",
+          "hitToLb": "0898a16",
+          "kwic": "鷺鷥立雪非同色明月蘆花不似他師云你却做得天童侍者",
+          "verified": true
+        },
+        {
+          "source": "X/X72/X72n1442.xml",
+          "title": "為霖禪師旅泊菴稿",
+          "workId": "work:X72n1442",
+          "hitFromLb": "0694b24",
+          "hitToLb": "0694c02",
+          "kwic": "鷺鷥立雪非同色，明月蘆花不似他。了了了時無可了，玄玄玄處亦須呵。",
+          "verified": true
+        }
+      ],
+      "formResolution": {
+        "printedTerm": "明月蘆花不似他",
+        "exactQuery": "明月蘆花不似他",
+        "directionalChanges": []
+      }
+    },
+    {
+      "queueNumber": 912,
+      "canonicalIndex": 911,
+      "id": "t_d484de1fdca0",
+      "term": "粥飯因縁",
+      "query": "粥飯因緣",
+      "batchOrdinal": 5,
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "manual full-case multi-source; zc.py batch exact count/find/verify; canonical-distinct works; explicit form resolution",
+      "reason": "Established monastic phrase for the sustaining circumstances of shared gruel and rice, extended to the ordinary institutional conditions under which a teacher teaches and practitioners meet.",
+      "zcExact": {
+        "hits": 27,
+        "files": 24,
+        "distinctWorks": 24
+      },
+      "evidence": [
+        {
+          "source": "X/X66/X66n1296.xml",
+          "title": "宗門拈古彙集",
+          "workId": "work:X66n1296",
+          "hitFromLb": "0221b04",
+          "hitToLb": "0221b05",
+          "kwic": "於此四句語中見得分明，也作個脫灑衲僧，根椽片瓦，粥飯因緣，堪與人天為善知識。",
+          "verified": true
+        },
+        {
+          "source": "X/X68/X68n1319.xml",
+          "title": "御選語錄",
+          "workId": "work:X68n1319",
+          "hitFromLb": "0631c15",
+          "hitToLb": "0631c15",
+          "kwic": "我此間粥飯因緣，為兄弟舉唱，終是不常。",
+          "verified": true
+        }
+      ],
+      "formResolution": {
+        "printedTerm": "粥飯因縁",
+        "exactQuery": "粥飯因緣",
+        "directionalChanges": [
+          "縁 normalized directionally to corpus 緣"
+        ]
+      }
+    },
+    {
+      "queueNumber": 915,
+      "canonicalIndex": 914,
+      "id": "t_e4e28c6b6025",
+      "term": "苦哉佛陀耶",
+      "query": "苦哉佛陀耶",
+      "batchOrdinal": 6,
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "manual full-case multi-source; zc.py batch exact count/find/verify; canonical-distinct works; explicit form resolution",
+      "reason": "Fixed exclamatory refrain, 'Alas, O Buddha!', deployed as an abrupt answer or ironic lament that cuts through conceptual or celebratory framing of buddhahood.",
+      "zcExact": {
+        "hits": 24,
+        "files": 21,
+        "distinctWorks": 21
+      },
+      "evidence": [
+        {
+          "source": "T/T51/T51n2077.xml",
+          "title": "續傳燈錄",
+          "workId": "work:T51n2077",
+          "hitFromLb": "0503b23",
+          "hitToLb": "0503b24",
+          "kwic": "問百骸俱潰散一物鎮長靈。如何是一物。師曰。苦哉佛陀耶。",
+          "verified": true
+        },
+        {
+          "source": "X/X70/X70n1394.xml",
+          "title": "斷橋妙倫禪師語錄",
+          "workId": "work:X70n1394",
+          "hitFromLb": "0557c12",
+          "hitToLb": "0557c13",
+          "kwic": "若謂今朝始誕梵王家，苦哉佛陀耶！苦哉佛陀耶！",
+          "verified": true
+        }
+      ],
+      "formResolution": {
+        "printedTerm": "苦哉佛陀耶",
+        "exactQuery": "苦哉佛陀耶",
+        "directionalChanges": []
+      }
+    },
+    {
+      "queueNumber": 918,
+      "canonicalIndex": 917,
+      "id": "t_4a6a75365726",
+      "term": "鉤頭有餌",
+      "query": "鉤頭有餌",
+      "batchOrdinal": 7,
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "manual full-case multi-source; zc.py batch exact count/find/verify; canonical-distinct works; explicit form resolution",
+      "reason": "Established angling metaphor that a teacher's utterance or maneuver has bait on the hook: it deliberately entices a respondent into revealing or committing himself.",
+      "zcExact": {
+        "hits": 24,
+        "files": 22,
+        "distinctWorks": 22
+      },
+      "evidence": [
+        {
+          "source": "J/J40/J40nB494.xml",
+          "title": "雨山和尚語錄",
+          "workId": "work:J40nB494",
+          "hitFromLb": "0545c17",
+          "hitToLb": "0545c18",
+          "kwic": "好雪點點，不落別處，龐居士鉤頭有餌；且道落在甚麼處？全禪客秤尾無星。",
+          "verified": true
+        },
+        {
+          "source": "X/X66/X66n1297.xml",
+          "title": "宗鑑法林",
+          "workId": "chan:zongjian-falin",
+          "hitFromLb": "0379b05",
+          "hitToLb": "0379b06",
+          "kwic": "古南門云：黃檗鉤頭有餌，者僧隨鉤直上。",
+          "verified": true
+        }
+      ],
+      "formResolution": {
+        "printedTerm": "鉤頭有餌",
+        "exactQuery": "鉤頭有餌",
+        "directionalChanges": []
+      }
+    },
+    {
+      "queueNumber": 921,
+      "canonicalIndex": 920,
+      "id": "t_dff016df0760",
+      "term": "一翳在眼、空華亂墜",
+      "query": "一翳在眼，空華亂墜",
+      "batchOrdinal": 8,
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "validation": "manual full-case multi-source; zc.py batch exact count/find/verify; canonical-distinct works; explicit form resolution",
+      "reason": "Established cause-and-effect pair: one obstruction in the eye makes illusory flowers fall everywhere, warning that a single delusive fixation proliferates an entire false display.",
+      "zcExact": {
+        "hits": 23,
+        "files": 19,
+        "distinctWorks": 19
+      },
+      "evidence": [
+        {
+          "source": "J/J28/J28nB208.xml",
+          "title": "古雪哲禪師語錄",
+          "workId": "work:J28nB208",
+          "hitFromLb": "0321a23",
+          "hitToLb": "0321a24",
+          "kwic": "僧云：『如何保任？』宗云：『一翳在眼，空華亂墜。』",
+          "verified": true
+        },
+        {
+          "source": "J/J27/J27nB189.xml",
+          "title": "三宜盂禪師語錄",
+          "workId": "work:J27nB189",
+          "hitFromLb": "0037a24",
+          "hitToLb": "0037a25",
+          "kwic": "進云：「還假保任否？」師云：「一翳在眼，空華亂墜。」",
+          "verified": true
+        }
+      ],
+      "formResolution": {
+        "printedTerm": "一翳在眼、空華亂墜",
+        "exactQuery": "一翳在眼，空華亂墜",
+        "directionalChanges": [
+          "authoritative separator normalized to exact corpus punctuation"
+        ]
+      }
+    },
+    {
+      "queueNumber": 924,
+      "canonicalIndex": 923,
+      "id": "t_3223652812c7",
+      "term": "一日不作、一日不食",
+      "query": "一日不作，一日不食",
+      "batchOrdinal": 9,
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "validation": "manual full-case multi-source; zc.py batch exact count/find/verify; canonical-distinct works; explicit form resolution",
+      "reason": "Established maxim attributed to Baizhang: if he did not work for a day, he would not eat that day, expressing personal participation in communal labor rather than dependence on others.",
+      "zcExact": {
+        "hits": 27,
+        "files": 23,
+        "distinctWorks": 23
+      },
+      "evidence": [
+        {
+          "source": "X/X80/X80n1568.xml",
+          "title": "五燈嚴統(第1卷-第9卷)",
+          "workId": "work:wudeng-yantong",
+          "hitFromLb": "0626a10",
+          "hitToLb": "0626a12",
+          "kwic": "既徧求作具不獲，而亦妄飡，故有一日不作，一日不食之語，流播寰宇矣。",
+          "verified": true
+        },
+        {
+          "source": "X/X81/X81n1571.xml",
+          "title": "五燈全書(第1卷-第33卷)",
+          "workId": "work:wudeng-quanshu",
+          "hitFromLb": "0449a15",
+          "hitToLb": "0449a16",
+          "kwic": "既徧求作具不獲，而亦忘飡。故有一日不作，一日不食之語，流播寰宇矣。",
+          "verified": true
+        }
+      ],
+      "formResolution": {
+        "printedTerm": "一日不作、一日不食",
+        "exactQuery": "一日不作，一日不食",
+        "directionalChanges": [
+          "authoritative separator normalized to exact corpus punctuation"
+        ]
+      }
+    },
+    {
+      "queueNumber": 927,
+      "canonicalIndex": 926,
+      "id": "t_fa76eb7a768c",
+      "term": "一佛二菩薩",
+      "query": "一佛二菩薩",
+      "batchOrdinal": 10,
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "manual full-case multi-source; zc.py batch exact count/find/verify; canonical-distinct works; explicit form resolution",
+      "reason": "Stable triadic formula, 'one buddha and two bodhisattvas'; doctrinal exposition identifies Vairocana as principle with Mañjuśrī as wisdom and Samantabhadra as practice, while encounter dialogue also uses the compact formula as a direct answer.",
+      "zcExact": {
+        "hits": 20,
+        "files": 10,
+        "distinctWorks": 9
+      },
+      "evidence": [
+        {
+          "source": "B/B25/B25n0144.xml",
+          "title": "祖堂集",
+          "workId": "work:B25n0144",
+          "hitFromLb": "0672b11",
+          "hitToLb": "0672b13",
+          "kwic": "通論三身，不無一佛二菩薩。雖有三人，而今見性成佛，故得成佛，功在文殊，故古人云：「文殊是諸佛母。」",
+          "verified": true
+        },
+        {
+          "source": "C/C077/C077n1710.xml",
+          "title": "古尊宿語錄",
+          "workId": "work:guzunsu-yulu",
+          "hitFromLb": "0721a23",
+          "hitToLb": "0721b01",
+          "kwic": "問如何是佛法大意云一佛二菩薩問如何是兄弟添十字師云我共汝說葛藤",
+          "verified": true
+        }
+      ],
+      "formResolution": {
+        "printedTerm": "一佛二菩薩",
+        "exactQuery": "一佛二菩薩",
+        "directionalChanges": []
+      }
+    }
+  ],
+  "summary": {
+    "KEEP": 10,
+    "REVISE": 0,
+    "REJECT": 0,
+    "units": {
+      "component": 7,
+      "couplet": 3
+    }
+  },
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false
+}

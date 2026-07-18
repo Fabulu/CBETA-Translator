@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "iriya-manual-independent-review.v1",
+  "generatedUtc": "2026-07-18T07:02:00Z",
+  "reviewer": "d7",
+  "decision": "REVISE",
+  "reviewedSelection": "maintenance/iriya-manual-batch25-offset1-selection.json",
+  "reviewedSelectionSha256": "a2e8d15dcd7d53aec5ad8126bc5f38296423af276771fe0f90af1984ef9f3e8f",
+  "reviewedLedger": "maintenance/iriya-manual-batch25-offset1-ledger.json",
+  "reviewedLedgerSha256": "631381d4415d51c224086eb35113efcff13420aa9769b3e8b966a7b3c063ff4b",
+  "identityAndExclusionReview": {
+    "verdict": "PASS",
+    "authoritativeQueueTuplesExact": true,
+    "selectionMatchesLedgerExactly": true,
+    "selectionHashBindingReproduced": true,
+    "canonicalIndexEqualsQueueNumberMinusOne": true,
+    "canonicalIndexModulo3Equals1": true,
+    "exactlyNextTenAgainstBoundLive844RegistryAndPriorLedgers": true,
+    "boundRegistryRows": 844,
+    "boundRegistrySha256Reproduced": true,
+    "absentBoundLive844Registry": true,
+    "absentAllSixteenPriorOffset1AuthorLedgersThroughBatch24": true,
+    "allSixteenRecordedPriorLedgerHashesReproduced": true
+  },
+  "semanticReview": {
+    "verdict": "REVISE 1 reason only; PASS 9 rows",
+    "fullCasesRead": 20,
+    "revision": {
+      "canonicalIndex": 931,
+      "term": "渾金璞玉",
+      "verdict": "REVISE reason only",
+      "finding": "KEEP/component is supported, but 'still lacking discriminating recognition or polish' merges two different relations. In the first case the Dharma teacher's silence is called native gold and uncarved jade, with the separate observation that a discerning mirror is rare. In the second, Xuedou's two lines themselves are praised as native gold and uncarved jade before the commentary warns readers against conceptual handling. Neither case says the bearer lacks discriminating recognition, and 'polish' is only the literal unworked image.",
+      "requiredRepair": "Define the idiom as unalloyed native worth in an unworked state, then report the deployments separately: praise for the teacher's silence though rarely recognized, and praise for Xuedou's direct lines before warning against conceptual handling. Preserve KEEP, component, count, and both witnesses."
+    },
+    "passingCanonicalIndexes": [892, 895, 898, 934, 937, 940, 943, 946, 949],
+    "semanticRejectionsRequired": 0
+  },
+  "variantReview": {"verdict": "PASS", "everyRowHasExplicitFormResolution": true, "directionalChangesRecorded": true},
+  "mechanicalReview": {
+    "cheapValidator": {"status": "PASS", "failureCount": 0},
+    "fullValidator": {"status": "PASS", "failureCount": 0},
+    "exactCountTriplesReproduced": 10,
+    "evidenceWindowsVerified": 20,
+    "allLineBoundsTitlesAndCanonicalWorkIdsReproduced": true,
+    "twoCanonicalDistinctWorksPerDecision": true,
+    "summaryReproduced": {"KEEP_component": 5, "KEEP_couplet": 5, "REJECT": 0, "PROVISIONAL": 0}
+  },
+  "requiredRevisions": ["Narrow 渾金璞玉 reason as specified; no disposition, unit, count, evidence, or other-row changes."],
+  "authorLedgerMutated": false,
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false,
+  "reviewedArtifactsMutated": false
+}

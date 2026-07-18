@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "iriya-manual-independent-review.v1",
+  "reviewer": "c19-e8",
+  "decision": "REVISE",
+  "reviewedSelection": "maintenance/iriya-manual-batch25-offset0-selection.json",
+  "reviewedSelectionSha256": "55e9381eb7907f2d128eb4f58c63aa9b563b600c5de9d84757424ba66ee28707",
+  "reviewedLedger": "maintenance/iriya-manual-batch25-offset0-ledger.json",
+  "reviewedLedgerSha256": "4930ddcad93dd94f8509a50d0a95f4c494c0508d1a5952393317e8de865609d0",
+  "identityReview": {"verdict": "PASS", "finding": "All ten frozen selection/ledger identities agree and preserve the offset-0 lane."},
+  "mechanicalReview": {
+    "cheapValidator": "PASS 10/10",
+    "fullValidator": "PASS 10/10",
+    "counts": "PASS; exact hit/file/distinct-work triples reproduce.",
+    "evidence": "PASS; stored windows verify and each row uses two canonical-work-distinct witnesses.",
+    "variantsAndUnits": "PASS; all four couplets are complete paired units and component boundaries are stable."
+  },
+  "semanticReview": {
+    "verdict": "REVISE 2 reasons; PASS 8 rows",
+    "rows": [
+      {
+        "canonicalIndex": 798,
+        "term": "不妨令人疑著",
+        "verdict": "REVISE reason only",
+        "finding": "The evaluative formula and doubt-producing result are attested, but the stored cases do not establish that the doubt is deliberately planted. In both, a commentator says the cited move or claim 不妨令人疑著 and then criticizes or interrogates it.",
+        "requiredRepair": "Remove 'deliberately.' Describe the corpus-visible result: the claim or maneuver leaves people with grounds for doubt or invites suspicion. Preserve KEEP/component, counts, and evidence."
+      },
+      {
+        "canonicalIndex": 813,
+        "term": "牛頭沒、馬頭囘",
+        "verdict": "REVISE reason only",
+        "finding": "The literal paired line and KEEP/couplet ruling are supported, but 'abrupt transformation beyond ordinary continuity' is not stated by either stored case. One uses it in a verse followed by 劒輪飛處絕纖埃; the other uses it as a capping line and immediately says 百億萬劫沒交涉. Neither explains ox-to-horse transformation as its semantic job.",
+        "requiredRepair": "State the literal ox-head-disappears/horse-head-returns pair and its attested use as a capping line; report the adjacent corpus language without converting it into an unanchored theory of transformation. Preserve KEEP/couplet, counts, and evidence."
+      }
+    ],
+    "passingCanonicalIndexes": [792, 795, 801, 804, 807, 810, 816, 819]
+  },
+  "summary": {"PASS": 8, "REVISE": 2, "reasonOnlyRepairsRequired": 2, "evidenceOrCountRepairsRequired": 0},
+  "authorLedgerMutated": false,
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false
+}

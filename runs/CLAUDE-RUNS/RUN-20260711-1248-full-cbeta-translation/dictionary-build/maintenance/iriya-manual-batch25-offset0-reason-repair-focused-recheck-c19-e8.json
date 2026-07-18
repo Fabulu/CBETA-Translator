@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "iriya-reason-repair-focused-recheck.v1",
+  "reviewer": "c19-e8",
+  "verdict": "PASS",
+  "review": "maintenance/iriya-manual-batch25-offset0-independent-review-c19-e8.json",
+  "reviewSha256": "0ba5eb98b0d8df02e1e35056fb24ac107e2a1415219b4ab98ca7193b7c0a81c6",
+  "receipt": "maintenance/iriya-manual-batch25-offset0-reason-repair-receipt-b6.json",
+  "receiptSha256": "2d1c15972218a0199412fba5da5090ebd83345096e28426f8d76d56c5e9c3fce",
+  "ledger": "maintenance/iriya-manual-batch25-offset0-ledger.json",
+  "ledgerBeforeSha256": "4930ddcad93dd94f8509a50d0a95f4c494c0508d1a5952393317e8de865609d0",
+  "ledgerAfterSha256": "1994ac08ee44c47efa5c3982d3f3acb5787332fb670a5d39b07b39edc38fe01e",
+  "repairs": [
+    {
+      "canonicalIndex": 798,
+      "term": "不妨令人疑著",
+      "verdict": "PASS",
+      "finding": "The revised reason reports doubt only as the observable result and no longer invents deliberate intent."
+    },
+    {
+      "canonicalIndex": 813,
+      "term": "牛頭沒、馬頭囘",
+      "verdict": "PASS",
+      "finding": "The revised reason retains the literal paired capping line and its two attested adjacent phrases without imposing a theory of abrupt transformation."
+    }
+  ],
+  "preservationReview": "PASS: identity, disposition/unit, counts, evidence, form resolution, and the other eight reasons are receipt-recorded as preserved.",
+  "cheapValidation": "PASS 10/10",
+  "fullZcValidation": "PASS 10/10",
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false
+}

@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "iriya-manual-independent-review.v1",
+  "reviewer": "c19-e8",
+  "decision": "PASS",
+  "reviewedSelection": "maintenance/iriya-manual-batch25-offset2-selection.json",
+  "reviewedSelectionSha256": "06e7e0fec73a3675a411ec7f25c70a60ec2628788f07b02c13cd7dd86d8d35d3",
+  "reviewedLedger": "maintenance/iriya-manual-batch25-offset2-ledger.json",
+  "reviewedLedgerSha256": "99cf7a1c0d6f1ae2568ed278d83de8daf7620416d73f229f2738a947ec1f1d07",
+  "reviewProvenance": "The reviewer observed and explicitly refused an earlier changing half-write whose full validator failed. This review began only after the author declared SHA 99cf7a1c... atomically final; no conclusion relies on the superseded partial bytes.",
+  "identityReview": {
+    "verdict": "PASS",
+    "finding": "All ten final selection/ledger tuples agree, follow offset 2, are disjoint from batch24, and record absence from the live registry and all prior offset-2 ledgers."
+  },
+  "mechanicalReview": {
+    "cheapValidator": "PASS 10/10",
+    "fullValidator": "PASS 10/10",
+    "counts": "PASS; exact hit/file/distinct-work triples reproduce.",
+    "evidence": "PASS; all twenty final witnesses verify at the exact stored bounds and each row uses canonical-work-distinct sources.",
+    "variantsAndUnits": "PASS; five complete couplets and five components preserve their attested lexical boundaries."
+  },
+  "semanticReview": {
+    "verdict": "PASS 10/10",
+    "finding": "Every final reason is supported by its full cases as observable Chan deployment. Particular checks included 刁刀相似、魚魯參差 as a minute-looking but decisive textual/judgment error; 明月蘆花不似他 as nonidentity amid visually similar whiteness; 粥飯因縁 as the ordinary institutional circumstances in which teaching and meeting occur; 苦哉佛陀耶 as both abrupt answer and corrective refrain against birthday framing; 鉤頭有餌 as an intentionally baited encounter maneuver; and 一佛二菩薩 against its full exposition explicitly naming Vairocana as principle, Mañjuśrī as wisdom, and Samantabhadra as practice, plus its separate direct-answer deployment.",
+    "passingCanonicalIndexes": [899, 902, 905, 908, 911, 914, 917, 920, 923, 926]
+  },
+  "prohibitedWordReview": "PASS: none of the prohibited umbrella terms Buddhism, Buddhist, meditation, or zazen appears in the final reasons.",
+  "summary": {"PASS": 10, "REVISE": 0, "evidenceOrCountRepairsRequired": 0},
+  "authorLedgerMutated": false,
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false
+}

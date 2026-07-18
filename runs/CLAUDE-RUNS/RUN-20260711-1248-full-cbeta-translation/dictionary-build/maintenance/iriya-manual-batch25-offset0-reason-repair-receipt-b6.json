@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "iriya-manual-reason-repair-receipt.v1",
+  "generatedUtc": "2026-07-18T02:39:53Z",
+  "repairAuthor": "b6",
+  "review": "maintenance/iriya-manual-batch25-offset0-independent-review-c19-e8.json",
+  "reviewSha256": "0ba5eb98b0d8df02e1e35056fb24ac107e2a1415219b4ab98ca7193b7c0a81c6",
+  "ledger": "maintenance/iriya-manual-batch25-offset0-ledger.json",
+  "ledgerBeforeSha256": "4930ddcad93dd94f8509a50d0a95f4c494c0508d1a5952393317e8de865609d0",
+  "ledgerAfterSha256": "1994ac08ee44c47efa5c3982d3f3acb5787332fb670a5d39b07b39edc38fe01e",
+  "repairs": [
+    {
+      "canonicalIndex": 798,
+      "id": "t_27796e4665e9",
+      "term": "不妨令人疑著",
+      "field": "reason",
+      "closure": "Removes unsupported deliberate intent and reports doubt only as the stated result of the claim or maneuver."
+    },
+    {
+      "canonicalIndex": 813,
+      "id": "t_ab2b11ee3400",
+      "term": "牛頭沒、馬頭囘",
+      "field": "reason",
+      "closure": "Removes unanchored transformation theory and reports the literal paired capping line with its attested adjacent language 劒輪飛處絕纖埃 and 百億萬劫沒交涉."
+    }
+  ],
+  "cheapValidator": "PASS 10/10; 0 failures",
+  "fullValidator": "PASS 10/10; 0 failures",
+  "allIdentitiesPreserved": true,
+  "allDispositionsAndUnitsPreserved": true,
+  "allCountsPreserved": true,
+  "allEvidencePreserved": true,
+  "allFormResolutionsPreserved": true,
+  "otherEightReasonsPreserved": true,
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false,
+  "status": "READY_FOR_FOCUSED_RECHECK"
+}
