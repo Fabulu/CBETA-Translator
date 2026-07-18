@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "non-iriya-v2-frequency-review-repair-focused-recheck.v1",
+  "reviewer": "c19-e8",
+  "decision": "PASS",
+  "reviewArtifact": "maintenance/non-iriya-v2-frequency-batch14-independent-review-c19-e8.json",
+  "reviewArtifactSha256": "6eb7a463ad5e2a42e1ef1441fb3ab4cea15ce58cd80f8e9d7dd9d0aa22f90534",
+  "repairReceipt": "maintenance/non-iriya-v2-frequency-batch14-review-repair-receipt-b6.json",
+  "repairReceiptSha256": "cd45d558325019e85ecebc6ad2bbf686d3a35ba51b3865a49e1eac17dc274d16",
+  "repairedLedger": "maintenance/non-iriya-v2-frequency-batch14-semantic-ledger-b6.json",
+  "ledgerSha256BeforeFromBoundReceipt": "e033220a7f2dc73ce24547b7ef91f22ae65e958b10eb3e28808f997d9f064ef9",
+  "ledgerSha256AfterVerified": "8da60104e6f578f916c924782b077cbc2972e1dff22a1875c6db0d614d8ee6d0",
+  "findingClosure": {
+    "verdict": "PASS 12/12",
+    "dispositionRepairs": "PASS; 來時路, 快平生, 饑來喫, 海底泥, and 死根本 are now REJECT, while 宰官身 is KEEP with its Chan social deployment stated",
+    "reasonOnlyRepairs": "PASS; 恩大難酬, 五月五, 夜明簾外, 杲日當空, and 第二義 now use the required corpus-bounded descriptions",
+    "evidenceAndReasonRepair": "PASS; 第八識 now has a genuinely Chan-deployed replacement witness and a bounded reason"
+  },
+  "eighthConsciousnessFocusedReview": {
+    "verdict": "PASS",
+    "replacementSource": "B/B25/B25n0144.xml",
+    "replacementTitle": "祖堂集",
+    "replacementWorkId": "work:B25n0144",
+    "replacementAnchor": {
+      "fromLb": "0625b12",
+      "toLb": "0626b04"
+    },
+    "deploymentFinding": "This is direct master-disciple questioning, not contained doctrinal exposition: a question asks how the bodyless eighth consciousness can be turned into great mirror wisdom, and the master answers 'the name turns, not the substance' before giving a verse. The headword is therefore the explicit object of a Chan interview.",
+    "canonicalIndependence": "PASS; 祖堂集 (work:B25n0144) and 人天眼目 (work:T48n2006) are distinct manifest works",
+    "exactVerification": "PASS; both KWICs verify at the stored anchors and reproduce their title/work metadata"
+  },
+  "mechanicalRecheck": {
+    "counts": "PASS 25/25 exact hit/file/distinct-work triples",
+    "evidence": "PASS 50/50 exact KWIC windows, titles, work IDs, and line anchors",
+    "workPairs": "PASS 25/25 canonical-distinct pairs",
+    "summary": "PASS; KEEP 11, REJECT 14, PROVISIONAL 0 matches the decision objects"
+  },
+  "scopePreservation": {
+    "otherThirteenDecisionObjectsPreservedPerBoundReceipt": true,
+    "authorityMutationPerformed": false,
+    "queueMutationPerformed": false,
+    "registryMutationPerformed": false,
+    "buildRun": false,
+    "lineageTouched": false
+  }
+}

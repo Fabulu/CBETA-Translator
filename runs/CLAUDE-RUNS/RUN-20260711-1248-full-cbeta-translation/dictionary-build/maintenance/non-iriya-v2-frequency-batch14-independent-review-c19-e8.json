@@ -1,0 +1,133 @@
+{
+  "schemaVersion": "non-iriya-v2-frequency-independent-review.v1",
+  "reviewer": "c19-e8",
+  "decision": "REVISE",
+  "reviewedSelection": "maintenance/non-iriya-v2-frequency-batch14-navigation-selection.json",
+  "reviewedSelectionSha256": "1b35fca54a704e8396872ba17eaef2ad944a4a4031a482fbe646bca32d62cb4d",
+  "reviewedLedger": "maintenance/non-iriya-v2-frequency-batch14-semantic-ledger-b6.json",
+  "reviewedLedgerSha256": "e033220a7f2dc73ce24547b7ef91f22ae65e958b10eb3e28808f997d9f064ef9",
+  "mechanicalReview": {
+    "verdict": "PASS",
+    "selectionBinding": "PASS; ledger binds the supplied frozen navigation selection",
+    "counts": "PASS; 25/25 exact hit/file/distinct-work triples reproduce",
+    "evidence": "PASS; 50/50 KWIC windows verify at stored line bounds, source titles and work IDs reproduce, and every evidence pair is canonical-distinct",
+    "nestedBoundary": "REVISE semantically; five KEEP rulings overlook clipped parents despite mechanically exact substring counts"
+  },
+  "semanticReview": {
+    "verdict": "REVISE 12 rows; PASS 13",
+    "rows": [
+      {
+        "batchOrdinal": 4,
+        "term": "來時路",
+        "verdict": "REVISE KEEP to REJECT",
+        "finding": "Both full cases merely contain the ordinary 'road by which one came' inside literary verses (忘却來時路). Neither raises 來時路 itself as an answer, verdict, test-question, capping phrase, or stable case label. Calling recurrence inside verse a fixed Chan image confuses containment with deployment.",
+        "requiredRepair": "Reject as ordinary language contained in verse; preserve counts and witnesses as negative evidence."
+      },
+      {
+        "batchOrdinal": 6,
+        "term": "第八識",
+        "verdict": "REVISE evidence and reason",
+        "finding": "The second case is a real Chan recasting: the text explicitly labels and redescribes the eighth consciousness. The first is a conventional technical exposition of mental-process categories and supplies no observable Chan job. A generic doctrinal witness cannot establish a two-work Chan deployment gate.",
+        "requiredRepair": "Keep only if a second canonical-distinct full case directly questions, answers, judges, or recasts 第八識; otherwise mark provisional. Define the conventional eighth/storehouse consciousness first, then state exactly how the selected masters bend it."
+      },
+      {
+        "batchOrdinal": 8,
+        "term": "恩大難酬",
+        "verdict": "REVISE reason only",
+        "finding": "The KEEP is strong, but the reason reduces the phrase to ceremonial gratitude and lists unanchored beneficiary classes. In the first case it is an approved answer to 投明須到; in the second a master applies it to an elder's severe admonition and immediately critiques that admonition as incomplete.",
+        "requiredRepair": "Give the literal 'the kindness is great and hard to repay,' then foreground its answer/verdict deployments in the two cases rather than an unsupported Buddha/ruler/patron inventory."
+      },
+      {
+        "batchOrdinal": 9,
+        "term": "五月五",
+        "verdict": "REVISE reason only",
+        "finding": "The KEEP is justified because masters use the fifth day of the fifth month as the Dragon Boat teaching-seat occasion and bend its ritual customs into sermons. Calling it only a calendrical marker omits both the festival identity and the Chan deployment.",
+        "requiredRepair": "Identify the fifth day of the fifth month as the Dragon Boat festival date and describe the masters' teaching-seat reuse of charms, herbs, and associated customs."
+      },
+      {
+        "batchOrdinal": 13,
+        "term": "快平生",
+        "verdict": "REVISE KEEP to REJECT",
+        "finding": "Neither witness contains 快平生 as an independent unit: one has 暢快平生 and the other 慶快平生. Removing the preceding verb clips two different constructions, so the exact substring count is inflated and the proposed stable verdict is not evidenced.",
+        "requiredRepair": "Reject this clipped candidate; investigate 暢快平生 and 慶快平生 separately if they recur as complete units."
+      },
+      {
+        "batchOrdinal": 14,
+        "term": "饑來喫",
+        "verdict": "REVISE KEEP to REJECT",
+        "finding": "Both witnesses contain 饑來喫 only as the incomplete opening of 饑來喫飯. The missing object is part of the natural-functioning formula, not an optional gloss detail.",
+        "requiredRepair": "Reject the clipped form and route 饑來喫飯 as the complete candidate."
+      },
+      {
+        "batchOrdinal": 15,
+        "term": "海底泥",
+        "verdict": "REVISE KEEP to REJECT",
+        "finding": "Both selected witnesses contain only 海底泥牛, where 泥 modifies 牛 ('mud ox'). Parsing 海底泥 as 'mud at the bottom of the sea' creates a referent that the syntax does not contain and badly inflates a parent substring.",
+        "requiredRepair": "Reject the clipped form; retain or investigate the complete image 海底泥牛."
+      },
+      {
+        "batchOrdinal": 16,
+        "term": "宰官身",
+        "verdict": "REVISE REJECT to KEEP",
+        "finding": "The second full case is not a mere scriptural enumeration: a master directly characterizes a lay official/patron as manifesting the great official's body and speaking for the teaching. The first likewise invokes the transformation-body formula to tell a lay official that worldly office is not outside the teaching. This gives the term a concrete Chan social deployment.",
+        "requiredRepair": "Keep as the manifested body/role of a lay official, and state that masters apply it to officials who protect, patronize, or speak for the teaching. Anchor the literal scriptural category separately from this Chan-address use."
+      },
+      {
+        "batchOrdinal": 17,
+        "term": "死根本",
+        "verdict": "REVISE KEEP to REJECT",
+        "finding": "Both witnesses contain only 生死根本, 'root/basis of birth-and-death.' Dropping 生 does not abbreviate the same lexical unit; it changes the headword to 'root of death.' The stored reason silently restores the missing graph.",
+        "requiredRepair": "Reject the clipped candidate and route 生死根本 as the complete term."
+      },
+      {
+        "batchOrdinal": 19,
+        "term": "夜明簾外",
+        "verdict": "REVISE reason only",
+        "finding": "The second case directly raises 夜明簾外轉身 as a test-question, so KEEP is warranted. The first merely contains it in a verse. 'Dongshan-style' and 'a position beyond the luminous screen' are not established by the selected evidence and turn a literal location into an interpreted stage.",
+        "requiredRepair": "Define 'outside the night-bright curtain' literally, distinguish the contained verse from the direct test-question, and avoid assigning a stage or school without further evidence."
+      },
+      {
+        "batchOrdinal": 24,
+        "term": "杲日當空",
+        "verdict": "REVISE reason only",
+        "finding": "The KEEP and uses are sound, but 杲 is 'bright,' not 'blazing.' The first case explicitly pairs the bright sun overhead with universal illumination and asks how one cloud obscures it; the second makes it the master's answer to the first phrase.",
+        "requiredRepair": "Use 'the bright sun stands high in the sky' and retain the two observable deployments."
+      },
+      {
+        "batchOrdinal": 25,
+        "term": "第二義",
+        "verdict": "REVISE reason only",
+        "finding": "Both cases support the secondary gate or explanatory level used after the direct point is not met. Neither selected witness establishes the scholastic gloss 'secondary truth,' which risks conflating a Chan contrast with an outside doctrinal taxonomy.",
+        "requiredRepair": "Define the secondary level/gate of explanation and omit 'secondary truth' unless separately attested as that referent."
+      }
+    ],
+    "passingBatchOrdinals": [
+      1,
+      2,
+      3,
+      5,
+      7,
+      10,
+      11,
+      12,
+      18,
+      20,
+      21,
+      22,
+      23
+    ]
+  },
+  "summary": {
+    "PASS": 13,
+    "REVISE": 12,
+    "keepToReject": 5,
+    "rejectToKeep": 1,
+    "reasonOnly": 5,
+    "evidenceAndReason": 1,
+    "mechanicalCountOrAnchorRepairs": 0
+  },
+  "authorLedgerMutated": false,
+  "authorityMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false
+}

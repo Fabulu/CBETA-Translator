@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "non-iriya-frequency-semantic-repair-receipt.v1",
+  "batch": 14,
+  "repairAuthor": "b6",
+  "rejectingReview": "maintenance/non-iriya-v2-frequency-batch14-independent-review-c19-e8.json",
+  "rejectingReviewSha256": "6eb7a463ad5e2a42e1ef1441fb3ab4cea15ce58cd80f8e9d7dd9d0aa22f90534",
+  "ledger": "maintenance/non-iriya-v2-frequency-batch14-semantic-ledger-b6.json",
+  "ledgerBeforeSha256": "e033220a7f2dc73ce24547b7ef91f22ae65e958b10eb3e28808f997d9f064ef9",
+  "ledgerAfterSha256": "8da60104e6f578f916c924782b077cbc2972e1dff22a1875c6db0d614d8ee6d0",
+  "dispositionRepairs": [
+    {"batchOrdinal": 4, "term": "來時路", "before": ["KEEP", "component"], "after": ["REJECT", null]},
+    {"batchOrdinal": 13, "term": "快平生", "before": ["KEEP", "component"], "after": ["REJECT", null]},
+    {"batchOrdinal": 14, "term": "饑來喫", "before": ["KEEP", "component"], "after": ["REJECT", null]},
+    {"batchOrdinal": 15, "term": "海底泥", "before": ["KEEP", "component"], "after": ["REJECT", null]},
+    {"batchOrdinal": 16, "term": "宰官身", "before": ["REJECT", null], "after": ["KEEP", "component"]},
+    {"batchOrdinal": 17, "term": "死根本", "before": ["KEEP", "component"], "after": ["REJECT", null]}
+  ],
+  "reasonOnlyRepairs": [
+    {"batchOrdinal": 8, "term": "恩大難酬"},
+    {"batchOrdinal": 9, "term": "五月五"},
+    {"batchOrdinal": 19, "term": "夜明簾外"},
+    {"batchOrdinal": 24, "term": "杲日當空"},
+    {"batchOrdinal": 25, "term": "第二義"}
+  ],
+  "evidenceAndReasonRepair": {
+    "batchOrdinal": 6,
+    "term": "第八識",
+    "disposition": "KEEP",
+    "resolution": "Replaced the generic T48n2016 technical-exposition witness with B25n0144, where a master directly answers how the eighth consciousness turns into mirror wisdom; retained the canonical-distinct T48n2006 Chan recasting witness.",
+    "newWitness": {"source": "B/B25/B25n0144.xml", "workId": "work:B25n0144"}
+  },
+  "summaryBefore": {"KEEP": 15, "REJECT": 10, "PROVISIONAL": 0},
+  "summaryAfter": {"KEEP": 11, "REJECT": 14, "PROVISIONAL": 0},
+  "authorGates": {
+    "allTwentyFiveExactCountsReproduced": true,
+    "allElevenKeptRowsHaveTwoVerifiedCanonicalDistinctWorks": true,
+    "summaryMatchesDecisionObjects": true
+  },
+  "otherThirteenDecisionObjectsPreserved": true,
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false,
+  "status": "READY_FOR_FOCUSED_RECHECK"
+}
