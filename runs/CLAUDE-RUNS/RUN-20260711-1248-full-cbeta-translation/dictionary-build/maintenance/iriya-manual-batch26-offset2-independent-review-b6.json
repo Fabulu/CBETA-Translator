@@ -1,0 +1,134 @@
+{
+  "schemaVersion": "iriya-manual-independent-review.v1",
+  "generatedUtc": "2026-07-18T03:11:56Z",
+  "reviewer": "b6",
+  "decision": "PASS",
+  "reviewedSelection": "maintenance/iriya-manual-batch26-offset2-selection.json",
+  "reviewedSelectionSha256": "220345d9b446383eb1a6a4d9f50ef4e42e0cce1597260004eb674a5ee9899416",
+  "reviewedLedger": "maintenance/iriya-manual-batch26-offset2-ledger.json",
+  "reviewedLedgerSha256": "83894ba9728b966769245128e13c8732cc4fa790ea82f057518350034d7e4d93",
+  "identityAndExclusionReview": {
+    "verdict": "PASS",
+    "authoritativeQueueSha256Reproduced": true,
+    "authoritativeQueueTuplesExact": true,
+    "selectionMatchesLedgerExactly": true,
+    "selectionHashBindingReproduced": true,
+    "canonicalIndexEqualsQueueNumberMinusOne": true,
+    "canonicalIndexModulo3Equals2": true,
+    "exactlyNextTenAgainstBoundLive904RegistryAndPriorLedgers": true,
+    "boundRegistryRows": 904,
+    "boundRegistrySha256Reproduced": true,
+    "absentBoundLive904Registry": true,
+    "absentAllTwentyPriorOffset2AuthorLedgersThroughBatch25": true,
+    "allTwentyRecordedPriorLedgerHashesReproduced": true
+  },
+  "semanticDispositionAndUnitReview": {
+    "verdict": "PASS",
+    "fullCasesRead": 20,
+    "KEEP": 10,
+    "REJECT": 0,
+    "components": [
+      "擔枷帶鎖",
+      "瞻前顧後",
+      "開眼堂堂入鑊湯",
+      "出息不保入息",
+      "已在言前",
+      "波斯入閙市",
+      "赤土塗牛嬭"
+    ],
+    "couplets": [
+      "鄭州梨、青州棗",
+      "學道須是鐵漢、著手心頭便判",
+      "枯桑知天風、海水知天寒"
+    ],
+    "rowFindings": [
+      {
+        "canonicalIndex": 929,
+        "verdict": "PASS",
+        "finding": "Both cases support the cangue-and-chains bondage image in the stated encounter jobs."
+      },
+      {
+        "canonicalIndex": 932,
+        "verdict": "PASS",
+        "finding": "Both cases support the established looking-ahead-and-behind idiom and cautious appraisal."
+      },
+      {
+        "canonicalIndex": 935,
+        "verdict": "PASS",
+        "finding": "The complete cauldron verse line and newborn-Buddha critique are explicit."
+      },
+      {
+        "canonicalIndex": 938,
+        "verdict": "PASS",
+        "finding": "Both cases preserve the complete regional-produce pair."
+      },
+      {
+        "canonicalIndex": 941,
+        "verdict": "PASS",
+        "finding": "The complete iron-man/instant-decision opening pair and following verse are accurately bounded."
+      },
+      {
+        "canonicalIndex": 944,
+        "verdict": "PASS",
+        "finding": "Both cases preserve the complete mulberry/seawater poetic pair and its capping use."
+      },
+      {
+        "canonicalIndex": 947,
+        "verdict": "PASS",
+        "finding": "Both cases explicitly ground the outgoing-breath mortality warning."
+      },
+      {
+        "canonicalIndex": 950,
+        "verdict": "PASS",
+        "finding": "Both cases give the before-the-words response in the described request setting."
+      },
+      {
+        "canonicalIndex": 953,
+        "verdict": "PASS",
+        "finding": "Both cases support the Persian-in-the-market enigmatic capping image."
+      },
+      {
+        "canonicalIndex": 956,
+        "verdict": "PASS",
+        "finding": "Both commentarial cases preserve the red-earth-on-cow-milk verdict and needless-addition comparison."
+      }
+    ],
+    "semanticRevisionsRequired": []
+  },
+  "variantReview": {
+    "verdict": "PASS",
+    "everyRowHasExplicitFormResolution": true,
+    "directionalChangesRecorded": true
+  },
+  "mechanicalReview": {
+    "cheapValidator": {
+      "status": "PASS",
+      "failureCount": 0
+    },
+    "fullValidator": {
+      "status": "PASS",
+      "failureCount": 0
+    },
+    "exactCountTriplesReproduced": 10,
+    "evidenceWindowsVerified": 20,
+    "allLineBoundsTitlesAndCanonicalWorkIdsReproduced": true,
+    "twoCanonicalDistinctWorksPerDecision": true,
+    "summaryReproduced": {
+      "KEEP": 10,
+      "REVISE": 0,
+      "REJECT": 0,
+      "units": {
+        "component": 7,
+        "couplet": 3
+      }
+    }
+  },
+  "requiredRevisions": [],
+  "authorLedgerMutated": false,
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false,
+  "reviewedArtifactsMutated": false
+}

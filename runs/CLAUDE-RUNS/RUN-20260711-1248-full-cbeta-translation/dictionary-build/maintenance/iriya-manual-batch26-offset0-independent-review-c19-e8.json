@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "iriya-manual-independent-review.v1",
+  "reviewer": "c19-e8",
+  "decision": "PASS",
+  "reviewedSelection": "maintenance/iriya-manual-batch26-offset0-selection.json",
+  "reviewedSelectionSha256": "bb770cb4b130baea8a770f6b64b8dcff41c0fed1678583603a53f227c5a5ae85",
+  "reviewedLedger": "maintenance/iriya-manual-batch26-offset0-ledger.json",
+  "reviewedLedgerSha256": "11a20a32ec9bac06e3b8f55dcdb8ba7cd216e50798c8433708def92765f15879",
+  "identityReview": {
+    "verdict": "PASS",
+    "finding": "All ten frozen selection/ledger identities agree, preserve offset-0 identity, and carry no cross-row association drift."
+  },
+  "mechanicalReview": {
+    "cheapValidator": "PASS 10/10",
+    "fullValidator": "PASS 10/10",
+    "counts": "PASS; all exact hit/file/distinct-work triples reproduce.",
+    "evidence": "PASS; every stored window verifies at its bounds and every row uses two canonical-work-distinct witnesses.",
+    "variantsAndUnits": "PASS; the three couplets remain complete paired units and component boundaries are stable."
+  },
+  "semanticReview": {
+    "verdict": "PASS 10/10",
+    "finding": "Each reason remains within the observable full-case deployment. Particular checks included 理長則就 as yielded assent rather than an abstract metaphysical principle; 兔馬有角、牛羊無角 as an overt reversal without invented resolution; 無量劫來生死本、癡人喚作本來人 as the records' explicit warning against taking active 識神 for the original person; 已展不縮 as both the physical case line and a later declaration of non-withdrawal; and 三級浪高魚化龍、癡人猶戽夜塘水 as the attested contrast between completed change and continuing futile labor.",
+    "passingCanonicalIndexes": [822, 825, 828, 831, 834, 837, 840, 843, 846, 849]
+  },
+  "summary": {"PASS": 10, "REVISE": 0, "evidenceOrCountRepairsRequired": 0},
+  "authorLedgerMutated": false,
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false
+}

@@ -1,0 +1,64 @@
+{
+    "schemaVersion": "iriya-manual-independent-review.v1",
+    "generatedUtc": "2026-07-18T13:10:00Z",
+    "reviewer": "d7",
+    "selection": "maintenance/iriya-manual-batch26-offset1-selection.json",
+    "selectionSha256": "8bc6349b1ed6e872e1d0187f7fea2c5aa49e883a6d371b3accda36aa27c30a72",
+    "ledger": "maintenance/iriya-manual-batch26-offset1-ledger.json",
+    "ledgerSha256": "1471d00d28a9b4b2c84f951258cb4c649b445389225b235b18f0ad9a120048a6",
+    "scope": "all ten decisions; both full stored cases per decision; identity, corpus verification, metadata, counts, form resolution, unit, disposition, and reason closure",
+    "mechanicalGates": {
+        "identity": "PASS 10/10",
+        "witnessVerification": "PASS 20/20 with exact line bounds",
+        "sourceMetadata": "PASS 20/20",
+        "distinctWitnessWorks": "PASS 10/10",
+        "variantsAndFormResolution": "PASS 10/10"
+    },
+    "semanticFindings": [
+        {
+            "canonicalIndex": 952,
+            "id": "t_7bc5e3a14907",
+            "term": "打鎖敲枷",
+            "severity": "REVISE reason only",
+            "finding": "The current reason says the image criticizes work upon confinement rather than escape, but the first case positively coordinates 打鎖敲枷 with 去黏解縛 as the capacity of one who has decisively realized non-arising; the second contrasts such conventional activity with 法慶無可不可.",
+            "requiredRepair": "Define the image as breaking lock and cangue, an active liberation from bonds; report the positive deployment and the contrasting deployment separately. Preserve KEEP/component/counts/witnesses."
+        },
+        {
+            "canonicalIndex": 958,
+            "id": "t_ec8807f1f2fa",
+            "term": "馬前相撲",
+            "severity": "REVISE reason only",
+            "finding": "The cases support a high-risk, immediate encounter likened to wrestling before a horse, with no room for delay or proximity, but do not characterize the contest itself as rash.",
+            "requiredRepair": "Remove 'rash'; describe the compressed, dangerous, split-second encounter illustrated by the horse-front wrestling image. Preserve KEEP/component/counts/witnesses."
+        },
+        {
+            "canonicalIndex": 979,
+            "id": "t_d87f0efc4fa1",
+            "term": "薄處先穿",
+            "severity": "REVISE reason only",
+            "finding": "The cases support the literal proverb that the thin place is penetrated first, including contrast with a king falling on the heavy side and the patriarch piercing on the thin side. Generic 'weakness becoming the first point of failure' is narrower and imports a failure frame.",
+            "requiredRepair": "Define as 'the thin place is penetrated first' and report its case deployment without converting penetration into generic structural failure. Preserve KEEP/component/counts/witnesses."
+        }
+    ],
+    "unchallengedRows": [
+        955,
+        961,
+        964,
+        967,
+        970,
+        973,
+        976
+    ],
+    "summary": {
+        "status": "REVISE",
+        "reasonOnlyRepairs": 3,
+        "dispositionChanges": 0,
+        "unitChanges": 0,
+        "countChanges": 0,
+        "witnessChanges": 0
+    },
+    "authorityMutationPerformed": false,
+    "ledgerMutationPerformed": false,
+    "buildRun": false,
+    "lineageTouched": false
+}

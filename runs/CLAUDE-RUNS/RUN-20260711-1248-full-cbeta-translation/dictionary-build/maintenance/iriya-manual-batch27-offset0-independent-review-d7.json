@@ -1,0 +1,46 @@
+{
+    "schemaVersion": "iriya-manual-independent-review.v1",
+    "generatedUtc": "2026-07-18T14:00:00Z",
+    "reviewer": "d7",
+    "selection": "maintenance/iriya-manual-batch27-offset0-selection-c19-e8.json",
+    "selectionSha256": "ec846a3f7b66f66d971a4e73d68c2bef103c2074c5ddee8eff527c07418108f1",
+    "ledger": "maintenance/iriya-manual-batch27-offset0-ledger-c19-e8.json",
+    "ledgerSha256": "61657a86e9330e2954d10ea5d965b75a338e39504974bfb7ee984a1f299b5344",
+    "mechanicalGates": {
+        "identity": "PASS 10/10",
+        "witnessVerification": "PASS 20/20 exact bounds",
+        "sourceMetadata": "PASS 20/20",
+        "distinctWorks": "PASS 10/10",
+        "formResolution": "PASS 10/10"
+    },
+    "semanticFinding": {
+        "canonicalIndex": 861,
+        "id": "t_26c4dc748bfd",
+        "term": "葵花向日",
+        "severity": "REVISE reason only",
+        "finding": "The cases support the traditional image 葵花向日, paired with 柳絮隨風, but do not establish the modern botanical identification 'sunflower.' In premodern usage 葵 is safer rendered as kui/hollyhock or left botanically neutral.",
+        "requiredRepair": "Replace 'The sunflower turns toward the sun' with 'The kui (hollyhock) flower turns toward the sun' or botanically neutral equivalent. Preserve the case-deployment statement and all KEEP/component/count/witness fields."
+    },
+    "unchallengedCanonicalIndexes": [
+        852,
+        855,
+        858,
+        864,
+        867,
+        870,
+        873,
+        876,
+        879
+    ],
+    "summary": {
+        "status": "REVISE",
+        "reasonOnlyRepairs": 1,
+        "dispositionChanges": 0,
+        "unitChanges": 0,
+        "mechanicalFailures": 0
+    },
+    "authorityMutationPerformed": false,
+    "ledgerMutationPerformed": false,
+    "buildRun": false,
+    "lineageTouched": false
+}

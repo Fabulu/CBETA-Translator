@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "iriya-manual-reason-repair-receipt.v1",
+  "generatedUtc": "2026-07-18T03:13:33Z",
+  "repairAuthor": "b6",
+  "review": "maintenance/iriya-manual-batch26-offset1-independent-review-d7.json",
+  "reviewSha256": "1dd6033ced155fce0f1288bfdcdf32ab9967cdf3a42bb18635979183f7f22f37",
+  "ledger": "maintenance/iriya-manual-batch26-offset1-ledger.json",
+  "ledgerBeforeSha256": "1471d00d28a9b4b2c84f951258cb4c649b445389225b235b18f0ad9a120048a6",
+  "ledgerAfterSha256": "8a5b0d15c75a9bb75bb4f47702d057e0b076e3375f4d2e79e8af527202d20a47",
+  "repairs": [
+    {"canonicalIndex": 952, "term": "打鎖敲枷", "field": "reason", "closure": "States the positive breaking-open of locks and cangues and release from fetters."},
+    {"canonicalIndex": 958, "term": "馬前相撲", "field": "reason", "closure": "Removes unsupported rashness while retaining the dangerous-position wrestling image."},
+    {"canonicalIndex": 979, "term": "薄處先穿", "field": "reason", "closure": "States literal thin-place penetration without a generic failure abstraction."}
+  ],
+  "cheapValidator": "PASS 10/10; 0 failures",
+  "fullValidator": "PASS 10/10; 0 failures",
+  "allIdentitiesDispositionsUnitsCountsEvidenceAndFormResolutionsPreserved": true,
+  "otherSevenReasonsPreserved": true,
+  "authorityMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false,
+  "status": "READY_FOR_FOCUSED_RECHECK"
+}

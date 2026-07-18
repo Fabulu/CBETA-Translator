@@ -1,0 +1,10 @@
+{
+  "schemaVersion":"iriya-manual-independent-review.v1","generatedUtc":"2026-07-18T14:20:00Z","reviewer":"d7",
+  "selection":"maintenance/iriya-manual-batch27-offset1-selection.json","selectionSha256":"28df36de6a42848dd0f317602b08f363eed52de8a385b3b6f561de2af949fc8c",
+  "ledger":"maintenance/iriya-manual-batch27-offset1-ledger.json","ledgerSha256":"d3e12d5dda7857a822c0efe1c21518660e622303202b0592aa074174275cafa8",
+  "scope":"all ten rows and both stored full cases per row; identity, witness verification, source metadata, form resolution, unit, disposition, and case-bounded reason closure",
+  "gates":{"identity":"PASS 10/10","witnessVerification":"PASS 20/20 exact bounds","sourceMetadata":"PASS 20/20","distinctWorks":"PASS 10/10","formResolution":"PASS 10/10","semanticClosure":"PASS 10/10","prohibitedProse":"PASS 10/10"},
+  "notes":["麤言細語 is correctly defined as the contrasting verbal-register pair; the reason does not claim that either register alone guarantees realization.","一槌便成 remains an image of one-blow completion while its cases retain critical qualifications.","遠問近對 is correctly presented as a handling formula; the evidence includes both its historical use and a later critique of it as conceptual estimation."],
+  "summary":{"status":"PASS","reviewed":10,"repairsRequired":0},
+  "authorityMutationPerformed":false,"ledgerMutationPerformed":false,"buildRun":false,"lineageTouched":false
+}

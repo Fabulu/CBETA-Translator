@@ -1,0 +1,133 @@
+{
+  "schemaVersion": "iriya-manual-independent-review.v1",
+  "generatedUtc": "2026-07-18T03:21:22.953653+00:00",
+  "reviewer": "b6",
+  "decision": "PASS",
+  "reviewedSelection": "maintenance/iriya-manual-batch27-offset2-selection.json",
+  "reviewedSelectionSha256": "26d50c08c3c45b5ab39b7b233993b1a85fc028984062c7dfed6b4dd3b22caada",
+  "reviewedLedger": "maintenance/iriya-manual-batch27-offset2-ledger.json",
+  "reviewedLedgerSha256": "8d1b3723a01b20bfc51b118ee42d03a91f22c29721cfe27d45fab7261de53455",
+  "identityAndExclusionReview": {
+    "verdict": "PASS",
+    "authoritativeQueueSha256Reproduced": true,
+    "authoritativeQueueTuplesExact": true,
+    "selectionMatchesLedgerExactly": true,
+    "selectionHashBindingReproduced": true,
+    "canonicalIndexEqualsQueueNumberMinusOne": true,
+    "canonicalIndexModulo3Equals2": true,
+    "exactlyNextTenAgainstBoundRegistryAndPriorLedgers": true,
+    "boundRegistryRows": 904,
+    "boundRegistrySha256Reproduced": true,
+    "allRecordedPriorLedgerHashesReproduced": true
+  },
+  "semanticDispositionAndUnitReview": {
+    "verdict": "PASS",
+    "fullCasesRead": 20,
+    "KEEP": 10,
+    "REJECT": 0,
+    "components": [
+      "鬼爭漆桶",
+      "別是一家風",
+      "念念不停流",
+      "碓觜生花",
+      "風塵草動"
+    ],
+    "couplets": [
+      "國清才子貴、家富小兒驕",
+      "我眼本正、因師故邪",
+      "衆角雖多、一麟足矣",
+      "擬心即差、動念即乖",
+      "長安雖樂、不是久居"
+    ],
+    "rowFindings": [
+      {
+        "canonicalIndex": 959,
+        "verdict": "PASS",
+        "finding": "Both stored cases support the stated lexical unit, boundary, and deployment without semantic overreach."
+      },
+      {
+        "canonicalIndex": 962,
+        "verdict": "PASS",
+        "finding": "Both stored cases support the stated lexical unit, boundary, and deployment without semantic overreach."
+      },
+      {
+        "canonicalIndex": 965,
+        "verdict": "PASS",
+        "finding": "Both stored cases support the stated lexical unit, boundary, and deployment without semantic overreach."
+      },
+      {
+        "canonicalIndex": 968,
+        "verdict": "PASS",
+        "finding": "Both stored cases support the stated lexical unit, boundary, and deployment without semantic overreach."
+      },
+      {
+        "canonicalIndex": 971,
+        "verdict": "PASS",
+        "finding": "Both stored cases support the stated lexical unit, boundary, and deployment without semantic overreach."
+      },
+      {
+        "canonicalIndex": 974,
+        "verdict": "PASS",
+        "finding": "Both stored cases support the stated lexical unit, boundary, and deployment without semantic overreach."
+      },
+      {
+        "canonicalIndex": 977,
+        "verdict": "PASS",
+        "finding": "Both stored cases support the stated lexical unit, boundary, and deployment without semantic overreach."
+      },
+      {
+        "canonicalIndex": 980,
+        "verdict": "PASS",
+        "finding": "Both stored cases support the stated lexical unit, boundary, and deployment without semantic overreach."
+      },
+      {
+        "canonicalIndex": 983,
+        "verdict": "PASS",
+        "finding": "Both stored cases support the stated lexical unit, boundary, and deployment without semantic overreach."
+      },
+      {
+        "canonicalIndex": 986,
+        "verdict": "PASS",
+        "finding": "Both stored cases support the stated lexical unit, boundary, and deployment without semantic overreach."
+      }
+    ],
+    "semanticRevisionsRequired": []
+  },
+  "variantReview": {
+    "verdict": "PASS",
+    "everyRowHasExplicitFormResolution": true,
+    "directionalChangesRecorded": true
+  },
+  "mechanicalReview": {
+    "cheapValidator": {
+      "status": "PASS",
+      "failureCount": 0
+    },
+    "fullValidator": {
+      "status": "PASS",
+      "failureCount": 0
+    },
+    "exactCountTriplesReproduced": 10,
+    "evidenceWindowsVerified": 20,
+    "allLineBoundsTitlesAndCanonicalWorkIdsReproduced": true,
+    "twoCanonicalDistinctWorksPerDecision": true,
+    "prohibitedProseFindings": 0,
+    "summaryReproduced": {
+      "KEEP": 10,
+      "REVISE": 0,
+      "REJECT": 0,
+      "units": {
+        "component": 5,
+        "couplet": 5
+      }
+    }
+  },
+  "requiredRevisions": [],
+  "authorLedgerMutated": false,
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false,
+  "reviewedArtifactsMutated": false
+}
