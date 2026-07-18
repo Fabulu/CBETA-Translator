@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "iriya-author-from-packet-receipt-log-v1",
+  "runs": [
+    {
+      "schemaVersion": "iriya-author-from-packet-receipt-v1",
+      "hardPass": true,
+      "packet": "maintenance/iriya-author-packet-A061-160-v1.json",
+      "packetSha256": "10e519a4dbf0d5315c1df4763e6e88ddf7836ad6904c6446c0140ec9ae7c0c19",
+      "decisions": "maintenance/iriya-decisions-A111-115.json",
+      "decisionsSha256": "56a1ac1388fbd067716172b9642d2f4f11a9b2f63c59984da5ab4bad21f4f8d4",
+      "dryRun": false,
+      "entryCount": 5,
+      "elapsedSeconds": 0.270234,
+      "secondsPerEntry": 0.054047,
+      "outputs": [
+        {
+          "id": "t_15866bfa3d82",
+          "worksheetSha256": "78e4d8ac82e8eed546157c435e322ea567699c08b6052eeffa888a4d04c6b94a",
+          "entrySha256": "3dd2e15344721074de480da8ae54eeac08ba2a4a577629f680ccb8e8d7797dce",
+          "workSha256": "dfcf6b4f8e1f35dab344a02dfbb8e7bfab7d70731228430a1178d650db1327d4",
+          "siblingEntryParity": true
+        },
+        {
+          "id": "t_205a1d1331ae",
+          "worksheetSha256": "ed69ab1b74c2155f8c2d1733e251e26bc32f049c2b3101ba4606c5c5849cc652",
+          "entrySha256": "9e324b3e4314104dac9d8d4c449a538847655b519f2a0c05f673cbe98a9252b8",
+          "workSha256": "132a136c649ca0f8d88070f78e87dab9bbe028845d18b75efdfac2527ee7c5c7",
+          "siblingEntryParity": true
+        },
+        {
+          "id": "t_a07cb5197549",
+          "worksheetSha256": "fdb444d4723aaa6653ce483ea62c4d3c27fb95834c5702337d69b3383eb4b369",
+          "entrySha256": "bc1dc12d991d14a0f766ee96c44c4cbdc8848a1662e2c6a8bb791a0893fee57f",
+          "workSha256": "e0e02899335c22679bed890a4ec8fac66cc073b589571e11ea37ce31ce3102a4",
+          "siblingEntryParity": true
+        },
+        {
+          "id": "t_0ab9f8a0ffb2",
+          "worksheetSha256": "18405dee8b241d9881ce6dd7035f4d24c021b5aef03db64a3d69d98f7731bf3e",
+          "entrySha256": "3ffaeeb75288bc31f019058bb3de8ad124703876bd7797f293ce856acddfe852",
+          "workSha256": "da1bebcae53dc14941b226ffa655ac43a3e9137d0aec5166de173eeb720e4c7d",
+          "siblingEntryParity": true
+        },
+        {
+          "id": "t_809ec2e31de2",
+          "worksheetSha256": "8f06672931a6cded1bd75fa4807b5a58079fcaa304c3ec3e960a55f34cc50519",
+          "entrySha256": "6869dbb51537e2489ab42a8b3f006566149ae1caab85fb5508ee83f111f9bdc2",
+          "workSha256": "289ff505f42992425d3e99e36dff9ed1e3cfb2db467f556fd58c1ad509a0569a",
+          "siblingEntryParity": true
+        }
+      ]
+    }
+  ]
+}

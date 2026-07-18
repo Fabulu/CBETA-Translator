@@ -1,0 +1,134 @@
+{
+  "schemaVersion": "iriya-independent-delta-repair-ledger-v1",
+  "lane": "A",
+  "positions": [
+    111,
+    120
+  ],
+  "review": "maintenance/iriya-author-A111-120-independent-review.json",
+  "reviewSha256": "a7a8695053c8a4a42d64fb8102fdfa19708d809424574815675b9d87a751a877",
+  "deltaCount": 12,
+  "deltas": [
+    {
+      "deltaId": "A112-O3-ACTOR",
+      "entryId": "t_205a1d1331ae",
+      "coordinate": "X/X64/X64n1260.xml@0099c02",
+      "disposition": "applied",
+      "entrySha256After": "5e2faf61a4ce3aea8152c363017080bd82ff31cb2d7e7b3c5bf53cc28c0b39bc",
+      "requiredChange": "The headword is inside 德云：東村王老夜燒錢 in a raised old case, before 師頌云. Resolve 德 through the parallel passage as Shimen Huiche 石門慧徹 (identified-unlinked-master), set voiceLayer=quoted-original, and preserve the current section master as later raiser/commentator context if identifiable. It is not the following verse author's speech."
+    },
+    {
+      "deltaId": "A112-O6-ACTOR",
+      "entryId": "t_205a1d1331ae",
+      "coordinate": "J/J26/J26nB187.xml@0667c25",
+      "disposition": "applied",
+      "entrySha256After": "5e2faf61a4ce3aea8152c363017080bd82ff31cb2d7e7b3c5bf53cc28c0b39bc",
+      "requiredChange": "The exact headword is inside 德云 in the raised old case, not Tian'an Sheng's following 師頌. Resolve the quoted actor as Shimen Huiche 石門慧徹 via the parallel passage, use voiceLayer=quoted-original, and place Tian'an Sheng in ContextMasters as later-raiser/commentator."
+    },
+    {
+      "deltaId": "A113-O5-WEAK-ACTOR",
+      "entryId": "t_a07cb5197549",
+      "coordinate": "X/X66/X66n1297.xml@0292c21",
+      "disposition": "applied",
+      "entrySha256After": "c4f2713664e2b419f1b66e49c5eb52a98a99deb99978d20619444629ddb20715",
+      "requiredChange": "Do not label an unattributed verse voice as compiler narration. Prefer replacing this weak witness with omitted candidate caseIndex 6, T/T47/T47n1998A.xml@0813c16, where Dahui Zonggao directly handles 水不洗水 in a question-and-answer turn; re-cut and zc.verify the replacement."
+    },
+    {
+      "deltaId": "A114-O2-IDENTITY",
+      "entryId": "t_0ab9f8a0ffb2",
+      "coordinate": "X/X66/X66n1297.xml@0329a18",
+      "disposition": "applied",
+      "entrySha256After": "b07a7a0904d5c21b4775fdaaf0191087595533146de99b2924f543115b2e63a0",
+      "requiredChange": "The inline attribution is 徑山琇云, so the utterer is Jingshan Xiu 徑山琇, not Dahui Zonggao. Resolve against roster aliases; otherwise use identified-unlinked-master with that exact identity. Rewrite GrammarEvidence and AttributionNote consistently."
+    },
+    {
+      "deltaId": "A114-DEPTH-UNIQUE",
+      "entryId": "t_0ab9f8a0ffb2",
+      "coordinate": "omitted candidate J/J36/J36nB369.xml@0893c17",
+      "disposition": "applied",
+      "entrySha256After": "b07a7a0904d5c21b4775fdaaf0191087595533146de99b2924f543115b2e63a0",
+      "requiredChange": "Add or substitute this exact, attributable full-case witness. It uniquely generalizes the term across the old masters' varied establishments (總秖是應病與藥、憫物施權), materially supporting the article's cross-case opening. Re-cut, attribute the record owner from the full case, and zc.verify."
+    },
+    {
+      "deltaId": "A115-PROSE-INFERENCE",
+      "entryId": "t_809ec2e31de2",
+      "coordinate": "Senses[0].Explanation opening",
+      "disposition": "applied",
+      "entrySha256After": "36451fd56eef4318c3dd312af69e622d712de1f83a4ba0b6de7e81767f88d9a2",
+      "requiredChange": "Rewrite as the smallest corpus-earned description: the records predicate an 'echo in the words' of an utterance and use it as an appraisal in named cases. Do not assert an acoustic mechanism or offer response/implication as unproved readings. Keep the concrete deployments already anchored."
+    },
+    {
+      "deltaId": "A116-O2-IDENTITY",
+      "entryId": "t_3479a511a100",
+      "coordinate": "X/X66/X66n1297.xml@0405a21",
+      "disposition": "applied",
+      "entrySha256After": "a002d23de0a912e01a6ed5e744497df1ef65199b3c7af8a760582ccebe2c5881",
+      "requiredChange": "The inline speaker is 法林音 (Falin Yin), not Jialing Xingyin. Resolve against roster aliases; if absent, use identified-unlinked-master for Falin Yin 法林音. Rewrite ContextMasters, GrammarEvidence, and AttributionNote."
+    },
+    {
+      "deltaId": "A117-O1-QUOTED",
+      "entryId": "t_45f6855e7e48",
+      "coordinate": "X/X79/X79n1557.xml@0108a01",
+      "disposition": "applied",
+      "entrySha256After": "e891523d3498eea040e93a9428007b77fc94f041b612d74a125f0772fd43e7fd",
+      "requiredChange": "The exact headword is in Guanghui's quotation 趙州道：我十八上便會破家散宅. Set MasterName=Zhaozhou Congshen, voiceLayer=quoted-original, and retain Guanghui Lian as later-raiser/commentator context."
+    },
+    {
+      "deltaId": "A117-O2-QUOTED",
+      "entryId": "t_45f6855e7e48",
+      "coordinate": "X/X82/X82n1571.xml@0069c03",
+      "disposition": "applied",
+      "entrySha256After": "e891523d3498eea040e93a9428007b77fc94f041b612d74a125f0772fd43e7fd",
+      "requiredChange": "The exact headword is in Puxian's quotation of Zhaozhou. Set MasterName=Zhaozhou Congshen, voiceLayer=quoted-original, and retain Puxian Yuansu as later-raiser/commentator context."
+    },
+    {
+      "deltaId": "A117-O4-QUOTED",
+      "entryId": "t_45f6855e7e48",
+      "coordinate": "T/T51/T51n2077.xml@0654c05",
+      "disposition": "applied",
+      "entrySha256After": "e891523d3498eea040e93a9428007b77fc94f041b612d74a125f0772fd43e7fd",
+      "requiredChange": "The exact headword is in Yuanwu's quotation 趙州道：我十八上便解破家散宅. Set MasterName=Zhaozhou Congshen, voiceLayer=quoted-original, and retain Yuanwu Keqin as later-raiser/commentator context."
+    },
+    {
+      "deltaId": "A119-O3-QUOTED",
+      "entryId": "t_b9bbb81addc8",
+      "coordinate": "P/P155/P155n1519.xml@0117b09",
+      "disposition": "applied",
+      "entrySha256After": "d35dadd5cb209e966700dcba1a78382b7682285fdc9be0c14a53f0683eb1d3df",
+      "requiredChange": "The exact headword is explicitly in 長慶云：生也隨語生解, quoted inside Xuedou Zong's appraisal. Set MasterName=Changqing Huileng if roster-exact, voiceLayer=quoted-original, and retain Xuedou Zong as later-raiser/commentator context."
+    },
+    {
+      "deltaId": "A120-DUPLICATE-DEPLOYMENT",
+      "entryId": "t_20dfbe1264e7",
+      "coordinate": [
+        "L/L154/L154n1639.xml@0204a14",
+        "J/J25/J25nB171.xml@0549b02"
+      ],
+      "disposition": "applied",
+      "entrySha256After": "dac1cbfb95fd953a0887bf3e80f9c28bc5a08764af0d8297bf6408a395ae4a66",
+      "requiredChange": "Count these as one deployment class and retain at most one for depth. Replace the redundant row with omitted candidate caseIndex 7, J/J36/J36nB359.xml@0617c17, where Baiyu Jingsi directly applies 承虛接響 to Kāśyapa's response to the flower-sermon case. Re-cut, attribute Baiyu, and zc.verify."
+    }
+  ],
+  "entryHashesAfter": {
+    "t_15866bfa3d82": "3dd2e15344721074de480da8ae54eeac08ba2a4a577629f680ccb8e8d7797dce",
+    "t_205a1d1331ae": "5e2faf61a4ce3aea8152c363017080bd82ff31cb2d7e7b3c5bf53cc28c0b39bc",
+    "t_a07cb5197549": "c4f2713664e2b419f1b66e49c5eb52a98a99deb99978d20619444629ddb20715",
+    "t_0ab9f8a0ffb2": "b07a7a0904d5c21b4775fdaaf0191087595533146de99b2924f543115b2e63a0",
+    "t_809ec2e31de2": "36451fd56eef4318c3dd312af69e622d712de1f83a4ba0b6de7e81767f88d9a2",
+    "t_3479a511a100": "a002d23de0a912e01a6ed5e744497df1ef65199b3c7af8a760582ccebe2c5881",
+    "t_45f6855e7e48": "e891523d3498eea040e93a9428007b77fc94f041b612d74a125f0772fd43e7fd",
+    "t_22241e355dc9": "f038dfcba0e6ab712721356b178928ef15f9b7edb8323e9219616197f8fcc781",
+    "t_b9bbb81addc8": "d35dadd5cb209e966700dcba1a78382b7682285fdc9be0c14a53f0683eb1d3df",
+    "t_20dfbe1264e7": "dac1cbfb95fd953a0887bf3e80f9c28bc5a08764af0d8297bf6408a395ae4a66"
+  },
+  "immutableControls": {
+    "t_15866bfa3d82": {
+      "expected": "3dd2e15344721074de480da8ae54eeac08ba2a4a577629f680ccb8e8d7797dce",
+      "actual": "3dd2e15344721074de480da8ae54eeac08ba2a4a577629f680ccb8e8d7797dce"
+    },
+    "t_22241e355dc9": {
+      "expected": "f038dfcba0e6ab712721356b178928ef15f9b7edb8323e9219616197f8fcc781",
+      "actual": "f038dfcba0e6ab712721356b178928ef15f9b7edb8323e9219616197f8fcc781"
+    }
+  }
+}

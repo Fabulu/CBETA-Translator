@@ -1,0 +1,43 @@
+{
+  "counts": {
+    "entries": 5,
+    "senses": 5,
+    "occurrences": 30,
+    "actor_identified_unlinked_master": 16,
+    "roster_alias_used_as_unlinked": 2,
+    "attribution_notes": 30,
+    "named_occurrences": 12,
+    "context_master_links": 12,
+    "vague_attributor": 2,
+    "actor_narrated": 2,
+    "raised_old_saying_lacks_raiser": 1
+  },
+  "hardFailures": 5,
+  "failures": [
+    {
+      "kind": "roster_alias_used_as_unlinked",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0ab9f8a0ffb2/entry.v2.json",
+      "detail": "應病與藥 s1 o1: 'Yunfeng Wenyue 雲峰文悅' resolves to roster names[0] 'Yunfeng'; use the canonical MasterName"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0ab9f8a0ffb2/entry.v2.json",
+      "detail": "應病與藥 s1: 'the speaker'"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_0ab9f8a0ffb2/entry.v2.json",
+      "detail": "應病與藥 s1: 'a teacher'"
+    },
+    {
+      "kind": "roster_alias_used_as_unlinked",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_15866bfa3d82/entry.v2.json",
+      "detail": "傍觀者哂 s1 o4: 'Linquan Conglun 林泉從倫' resolves to roster names[0] 'Linquan Conglun'; use the canonical MasterName"
+    },
+    {
+      "kind": "raised_old_saying_lacks_raiser",
+      "entry": "/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_205a1d1331ae/entry.v2.json",
+      "detail": "東村王老夜燒錢 s1 o5: 古人/古德/先德云 marks quoted precedent; name the present speaker as later-raiser and resolve the quoted utterer separately"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "iriya-residual-repair-closure-v1",
+  "generatedUtc": "2026-07-18T16:38:14.296893+00:00",
+  "lane": "A",
+  "positions": [
+    111,
+    120
+  ],
+  "review": "maintenance/iriya-A111-120-changed-coordinate-independent-rereview.json",
+  "reviewSha256": "bd8be233338994981f0a43f88a754950ec5eae2586d1e04ee0596e8a30a3518b",
+  "residualCount": 5,
+  "affectedEntryCount": 4,
+  "entryCount": 10,
+  "occurrenceCount": 61,
+  "ledger": "maintenance/iriya-A111-120-residual-repair-ledger.json",
+  "ledgerSha256": "80f9e1196ff2183bde288184df220ad43a1af81790eb2114854165f5a5651795",
+  "decisions": "maintenance/iriya-decisions-A111-120-residual.json",
+  "decisionsSha256": "bd8bfa1f75545acddb466ed970abda9efad7a6b295e92d1cd20005adf09afcf0",
+  "gates": {
+    "emitterHardPass": true,
+    "siblingEntryParityFailures": 0,
+    "attributionHardFailures": 0,
+    "depthHardFailures": 0,
+    "sourceTitleFailures": 0,
+    "exactZcFailures": 0,
+    "collateralFailures": 0,
+    "deploymentDuplicationFlags": 1
+  },
+  "deploymentDuplicationRuling": {
+    "entryId": "t_205a1d1331ae",
+    "occurrences": [
+      3,
+      6
+    ],
+    "decision": "retain-both-as-source-recensions-count-as-one-deployment-class",
+    "reason": "The rereview confirms both as Shimen Huiche recensions in different transmission contexts; neither is counted as an independent deployment for depth."
+  },
+  "hardPass": true,
+  "installed": false,
+  "merged": false,
+  "rosterModified": false
+}

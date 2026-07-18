@@ -1,0 +1,89 @@
+{
+  "schemaVersion": "iriya-author-from-packet-receipt-log-v1",
+  "runs": [
+    {
+      "schemaVersion": "iriya-author-from-packet-receipt-v1",
+      "hardPass": true,
+      "packet": "maintenance/iriya-author-packet-A061-160-v1.json",
+      "packetSha256": "10e519a4dbf0d5315c1df4763e6e88ddf7836ad6904c6446c0140ec9ae7c0c19",
+      "decisions": "maintenance/iriya-decisions-A111-120-residual.json",
+      "decisionsSha256": "1b8db13ad87b5155f69cda5ca7d2099250dca107a9036132221aeaaa4aa525a2",
+      "dryRun": false,
+      "entryCount": 4,
+      "elapsedSeconds": 0.268022,
+      "secondsPerEntry": 0.067005,
+      "outputs": [
+        {
+          "id": "t_205a1d1331ae",
+          "worksheetSha256": "2db6a4d8d270f723670f7d9d3fb3b7120bfa83263c80b425bc4c14c6652c136f",
+          "entrySha256": "54c047c0d6b6740a38aac68aa140cc0a682f366cfa4a7f166742a322a8df0ba0",
+          "workSha256": "3c1b2e7b1bb0bcc8c6e330daa5870314f97bd57fa13fdb39038893ae7cc05f2c",
+          "siblingEntryParity": true
+        },
+        {
+          "id": "t_3479a511a100",
+          "worksheetSha256": "02f928bfabe873041b816d5a5af3ab74629b24d3d03e8894d89ffd98682941a4",
+          "entrySha256": "05e6c24fb4525e95e0aa58f350e143b751314f2a810ea4a1646b09f167814f8c",
+          "workSha256": "6c7f9932c2965dd57e1fa8db5b9608813a788d18d49e5098ad83490d31ca143f",
+          "siblingEntryParity": true
+        },
+        {
+          "id": "t_45f6855e7e48",
+          "worksheetSha256": "7058ab23d63ff04c698b2c62bb8e76c5a0ef6881a5a9075fdec122aaf012247e",
+          "entrySha256": "569246f97c67bcafca467780f42193e22032d998baab2566684a7e5a6e23c891",
+          "workSha256": "1b5e2122f7ea5e881535e86c643afbc788453a3bcdc58c1903c12f08d82ae99d",
+          "siblingEntryParity": true
+        },
+        {
+          "id": "t_20dfbe1264e7",
+          "worksheetSha256": "ae8d86c8204b3a2ccb471488e39e0ad1e6e6ed38dd4261ff75dd4d876f6a4cc2",
+          "entrySha256": "3b8fcf3cca0e82d2ffddd25813415162d6b4d3a59fc248853b92a160ac47deef",
+          "workSha256": "1918cc36a0c86a3beefe296b3e0fd1680161e3a8717eb77e9b4086609d12c425",
+          "siblingEntryParity": true
+        }
+      ]
+    },
+    {
+      "schemaVersion": "iriya-author-from-packet-receipt-v1",
+      "hardPass": true,
+      "packet": "maintenance/iriya-author-packet-A061-160-v1.json",
+      "packetSha256": "10e519a4dbf0d5315c1df4763e6e88ddf7836ad6904c6446c0140ec9ae7c0c19",
+      "decisions": "maintenance/iriya-decisions-A111-120-residual.json",
+      "decisionsSha256": "bd8bfa1f75545acddb466ed970abda9efad7a6b295e92d1cd20005adf09afcf0",
+      "dryRun": false,
+      "entryCount": 4,
+      "elapsedSeconds": 0.347421,
+      "secondsPerEntry": 0.086855,
+      "outputs": [
+        {
+          "id": "t_205a1d1331ae",
+          "worksheetSha256": "2db6a4d8d270f723670f7d9d3fb3b7120bfa83263c80b425bc4c14c6652c136f",
+          "entrySha256": "54c047c0d6b6740a38aac68aa140cc0a682f366cfa4a7f166742a322a8df0ba0",
+          "workSha256": "3c1b2e7b1bb0bcc8c6e330daa5870314f97bd57fa13fdb39038893ae7cc05f2c",
+          "siblingEntryParity": true
+        },
+        {
+          "id": "t_3479a511a100",
+          "worksheetSha256": "81399da73e22a10cabe29d00a7846a8a64e85514f4111c184680416914a9ad58",
+          "entrySha256": "a5873e526a43afd47e2c4c8abe927be09b7492643f8703eff0e8058f719df751",
+          "workSha256": "b581d7277e412280117defa9d381ca3fbf04338fd2313ceda1efb214366bc215",
+          "siblingEntryParity": true
+        },
+        {
+          "id": "t_45f6855e7e48",
+          "worksheetSha256": "7058ab23d63ff04c698b2c62bb8e76c5a0ef6881a5a9075fdec122aaf012247e",
+          "entrySha256": "569246f97c67bcafca467780f42193e22032d998baab2566684a7e5a6e23c891",
+          "workSha256": "1b5e2122f7ea5e881535e86c643afbc788453a3bcdc58c1903c12f08d82ae99d",
+          "siblingEntryParity": true
+        },
+        {
+          "id": "t_20dfbe1264e7",
+          "worksheetSha256": "ae8d86c8204b3a2ccb471488e39e0ad1e6e6ed38dd4261ff75dd4d876f6a4cc2",
+          "entrySha256": "3b8fcf3cca0e82d2ffddd25813415162d6b4d3a59fc248853b92a160ac47deef",
+          "workSha256": "1918cc36a0c86a3beefe296b3e0fd1680161e3a8717eb77e9b4086609d12c425",
+          "siblingEntryParity": true
+        }
+      ]
+    }
+  ]
+}

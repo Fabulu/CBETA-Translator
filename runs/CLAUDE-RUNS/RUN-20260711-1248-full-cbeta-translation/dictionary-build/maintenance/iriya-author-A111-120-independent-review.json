@@ -1,0 +1,172 @@
+{
+  "schemaVersion": "iriya-independent-full-case-review-v1",
+  "lane": "A",
+  "positions": [111, 120],
+  "reviewedBy": "Codex independent A111-120 full-case reviewer",
+  "reviewedUtc": "2026-07-18T19:18:00Z",
+  "authorClosure": {
+    "path": "maintenance/iriya-author-A111-120-closure-receipt.json",
+    "sha256": "a7ff05c971de92cb284761b920d0077e0d03ed9dbd1263778c112193b8f3ba8f"
+  },
+  "boundInputs": {
+    "decisions": "maintenance/iriya-decisions-A111-120.json",
+    "decisionsSha256": "a17e7b4931d76f1252e74eed16fd7967be89f0e10ee42aa92f3835255fc0eccb",
+    "packet": "maintenance/iriya-author-packet-A061-160-v1.json",
+    "packetSha256": "10e519a4dbf0d5315c1df4763e6e88ddf7836ad6904c6446c0140ec9ae7c0c19",
+    "transportSha256": "4841abe755a661e9162486674f98d1d65538df2899def854144e55e5c16dce80"
+  },
+  "scope": {
+    "entriesRead": 10,
+    "retainedOccurrencesReadInCompleteCase": 60,
+    "omittedCandidatesReadInCompleteCase": 20,
+    "entryProductsEdited": 0,
+    "rosterEdited": false
+  },
+  "mechanicalReruns": {
+    "exact": {"path": "maintenance/iriya-A111-120-independent-exact-rerun.json", "occurrences": 60, "hardFailures": 0},
+    "attribution": {"path": "maintenance/iriya-A111-120-independent-attribution-rerun.json", "hardFailures": 0},
+    "workSource": {"hardFailures": 0},
+    "templates": {"path": "maintenance/iriya-A111-120-independent-template-rerun.json", "hardFailures": 0},
+    "depth": {"path": "maintenance/iriya-A111-120-independent-depth-rerun.json", "hardFailures": 0, "reviewFlags": 10},
+    "titles": {"path": "maintenance/iriya-A111-120-independent-titles-rerun.json", "hardFailures": 0},
+    "deploymentDuplication": {"path": "maintenance/iriya-A111-120-independent-deployment-rerun.json", "mechanicalFlags": 0, "humanFalseNegativeFound": 1}
+  },
+  "entryDispositions": [
+    {"position": 111, "id": "t_15866bfa3d82", "term": "傍觀者哂", "disposition": "KEEP"},
+    {"position": 112, "id": "t_205a1d1331ae", "term": "東村王老夜燒錢", "disposition": "REVISE", "deltaIds": ["A112-O3-ACTOR", "A112-O6-ACTOR"]},
+    {"position": 113, "id": "t_a07cb5197549", "term": "水不洗水", "disposition": "REVISE", "deltaIds": ["A113-O5-WEAK-ACTOR"]},
+    {"position": 114, "id": "t_0ab9f8a0ffb2", "term": "應病與藥", "disposition": "REVISE", "deltaIds": ["A114-O2-IDENTITY", "A114-DEPTH-UNIQUE"]},
+    {"position": 115, "id": "t_809ec2e31de2", "term": "言中有響", "disposition": "REVISE", "deltaIds": ["A115-PROSE-INFERENCE"]},
+    {"position": 116, "id": "t_3479a511a100", "term": "疑殺天下人", "disposition": "REVISE", "deltaIds": ["A116-O2-IDENTITY"]},
+    {"position": 117, "id": "t_45f6855e7e48", "term": "破家散宅", "disposition": "REVISE", "deltaIds": ["A117-O1-QUOTED", "A117-O2-QUOTED", "A117-O4-QUOTED"]},
+    {"position": 118, "id": "t_22241e355dc9", "term": "見成公案", "disposition": "KEEP"},
+    {"position": 119, "id": "t_b9bbb81addc8", "term": "隨語生解", "disposition": "REVISE", "deltaIds": ["A119-O3-QUOTED"]},
+    {"position": 120, "id": "t_20dfbe1264e7", "term": "承虚接響", "disposition": "REVISE", "deltaIds": ["A120-DUPLICATE-DEPLOYMENT"]}
+  ],
+  "deltas": [
+    {
+      "id": "A112-O3-ACTOR",
+      "entryId": "t_205a1d1331ae",
+      "occurrenceIndex": 2,
+      "coordinate": "X/X64/X64n1260.xml@0099c02",
+      "rejected": "ActorAttribution.Status=narrated; ActorLabel=the unidentified verse author",
+      "required": "The headword is inside 德云：東村王老夜燒錢 in a raised old case, before 師頌云. Resolve 德 through the parallel passage as Shimen Huiche 石門慧徹 (identified-unlinked-master), set voiceLayer=quoted-original, and preserve the current section master as later raiser/commentator context if identifiable. It is not the following verse author's speech.",
+      "proof": "復舉：僧問古德：年窮歲盡事如何？德云：東村王老夜燒錢。師頌云…"
+    },
+    {
+      "id": "A112-O6-ACTOR",
+      "entryId": "t_205a1d1331ae",
+      "occurrenceIndex": 5,
+      "coordinate": "J/J26/J26nB187.xml@0667c25",
+      "rejected": "MasterName=Tian'an Sheng; voiceLayer=direct-turn",
+      "required": "The exact headword is inside 德云 in the raised old case, not Tian'an Sheng's following 師頌. Resolve the quoted actor as Shimen Huiche 石門慧徹 via the parallel passage, use voiceLayer=quoted-original, and place Tian'an Sheng in ContextMasters as later-raiser/commentator.",
+      "proof": "復舉：僧問古德…德云：『東村王老夜燒錢。』師頌云…"
+    },
+    {
+      "id": "A113-O5-WEAK-ACTOR",
+      "entryId": "t_a07cb5197549",
+      "occurrenceIndex": 4,
+      "coordinate": "X/X66/X66n1297.xml@0292c21",
+      "rejected": "ActorAttribution.Status=narrated with an unidentified appraisal-verse author",
+      "required": "Do not label an unattributed verse voice as compiler narration. Prefer replacing this weak witness with omitted candidate caseIndex 6, T/T47/T47n1998A.xml@0813c16, where Dahui Zonggao directly handles 水不洗水 in a question-and-answer turn; re-cut and zc.verify the replacement.",
+      "proof": "The retained passage is an unattributed verse sequence under the 金剛 heading; the omitted Dahui case explicitly has 僧問…金不博金，水不洗水。師云…"
+    },
+    {
+      "id": "A114-O2-IDENTITY",
+      "entryId": "t_0ab9f8a0ffb2",
+      "occurrenceIndex": 1,
+      "coordinate": "X/X66/X66n1297.xml@0329a18",
+      "rejected": "ActorLabel=Jingshan Zonggao 徑山宗杲",
+      "required": "The inline attribution is 徑山琇云, so the utterer is Jingshan Xiu 徑山琇, not Dahui Zonggao. Resolve against roster aliases; otherwise use identified-unlinked-master with that exact identity. Rewrite GrammarEvidence and AttributionNote consistently.",
+      "proof": "徑山琇云：者僧無事生事，老宿應病與藥…"
+    },
+    {
+      "id": "A114-DEPTH-UNIQUE",
+      "entryId": "t_0ab9f8a0ffb2",
+      "occurrenceIndex": null,
+      "coordinate": "omitted candidate J/J36/J36nB369.xml@0893c17",
+      "rejected": "Omitted despite unique corpus-level deployment",
+      "required": "Add or substitute this exact, attributable full-case witness. It uniquely generalizes the term across the old masters' varied establishments (總秖是應病與藥、憫物施權), materially supporting the article's cross-case opening. Re-cut, attribute the record owner from the full case, and zc.verify.",
+      "proof": "以至天下老和尚逞盡伎倆、竭盡機思，總秖是應病與藥、憫物施權。"
+    },
+    {
+      "id": "A115-PROSE-INFERENCE",
+      "entryId": "t_809ec2e31de2",
+      "coordinate": "Senses[0].Explanation opening",
+      "rejected": "'an audible consequence carried inside an utterance' and a menu of 'response or implication'",
+      "required": "Rewrite as the smallest corpus-earned description: the records predicate an 'echo in the words' of an utterance and use it as an appraisal in named cases. Do not assert an acoustic mechanism or offer response/implication as unproved readings. Keep the concrete deployments already anchored.",
+      "proof": "The retained witnesses say 世尊言中有響, 外道…言中有響, and 言中有響破重圍 without self-glossing 響 as consequence, response, or implication."
+    },
+    {
+      "id": "A116-O2-IDENTITY",
+      "entryId": "t_3479a511a100",
+      "occurrenceIndex": 1,
+      "coordinate": "X/X66/X66n1297.xml@0405a21",
+      "rejected": "MasterName=Jialing Xingyin",
+      "required": "The inline speaker is 法林音 (Falin Yin), not Jialing Xingyin. Resolve against roster aliases; if absent, use identified-unlinked-master for Falin Yin 法林音. Rewrite ContextMasters, GrammarEvidence, and AttributionNote.",
+      "proof": "法林音云：院主道…不妨休去，管教疑殺天下人。"
+    },
+    {
+      "id": "A117-O1-QUOTED",
+      "entryId": "t_45f6855e7e48",
+      "occurrenceIndex": 0,
+      "coordinate": "X/X79/X79n1557.xml@0108a01",
+      "rejected": "MasterName=Guanghui Lian; voiceLayer=direct-turn",
+      "required": "The exact headword is in Guanghui's quotation 趙州道：我十八上便會破家散宅. Set MasterName=Zhaozhou Congshen, voiceLayer=quoted-original, and retain Guanghui Lian as later-raiser/commentator context.",
+      "proof": "示眾云：南泉道…趙州道：我十八上便會破家散宅。師云…"
+    },
+    {
+      "id": "A117-O2-QUOTED",
+      "entryId": "t_45f6855e7e48",
+      "occurrenceIndex": 1,
+      "coordinate": "X/X82/X82n1571.xml@0069c03",
+      "rejected": "MasterName=Puxian Yuansu; voiceLayer=direct-turn",
+      "required": "The exact headword is in Puxian's quotation of Zhaozhou. Set MasterName=Zhaozhou Congshen, voiceLayer=quoted-original, and retain Puxian Yuansu as later-raiser/commentator context.",
+      "proof": "上堂：南泉道…趙州道：我十八上便解破家散宅…"
+    },
+    {
+      "id": "A117-O4-QUOTED",
+      "entryId": "t_45f6855e7e48",
+      "occurrenceIndex": 3,
+      "coordinate": "T/T51/T51n2077.xml@0654c05",
+      "rejected": "ActorLabel=Zhaojue Yuanwu 昭覺圓悟; voiceLayer=direct-turn",
+      "required": "The exact headword is in Yuanwu's quotation 趙州道：我十八上便解破家散宅. Set MasterName=Zhaozhou Congshen, voiceLayer=quoted-original, and retain Yuanwu Keqin as later-raiser/commentator context.",
+      "proof": "又示眾舉：南泉道…趙州道：我十八上便解破家散宅。會麼…"
+    },
+    {
+      "id": "A119-O3-QUOTED",
+      "entryId": "t_b9bbb81addc8",
+      "occurrenceIndex": 2,
+      "coordinate": "P/P155/P155n1519.xml@0117b09",
+      "rejected": "ActorLabel=Xuedou Zong 雪竇宗; voiceLayer=direct-turn",
+      "required": "The exact headword is explicitly in 長慶云：生也隨語生解, quoted inside Xuedou Zong's appraisal. Set MasterName=Changqing Huileng if roster-exact, voiceLayer=quoted-original, and retain Xuedou Zong as later-raiser/commentator context.",
+      "proof": "雪竇宗云…長慶云生也隨語生解，只如宗上座又作麼生…"
+    },
+    {
+      "id": "A120-DUPLICATE-DEPLOYMENT",
+      "entryId": "t_20dfbe1264e7",
+      "occurrenceIndices": [2, 4],
+      "coordinates": ["L/L154/L154n1639.xml@0204a14", "J/J25/J25nB171.xml@0549b02"],
+      "rejected": "Both retained rows reproduce Tianyin Xiu's same 石頭/藥山 appraisal and were counted as two depth witnesses; the mechanical duplication gate missed the cross-edition repetition.",
+      "required": "Count these as one deployment class and retain at most one for depth. Replace the redundant row with omitted candidate caseIndex 7, J/J36/J36nB359.xml@0617c17, where Baiyu Jingsi directly applies 承虛接響 to Kāśyapa's response to the flower-sermon case. Re-cut, attribute Baiyu, and zc.verify.",
+      "proof": "Both retained frames contain the same 師云…承虛接響漢切忌動著 wording; Baiyu independently says 世尊拈花…迦葉微笑，承虛接響."
+    }
+  ],
+  "omissionAudit": {
+    "candidatesReviewed": 20,
+    "acceptedOmissions": 18,
+    "omissionsRequiringRecovery": ["A114-DEPTH-UNIQUE", "A120-DUPLICATE-DEPLOYMENT"],
+    "note": "A113's recommended replacement is also from the omitted pool, but it substitutes for a retained weak/unresolved verse rather than reversing an otherwise sound omission."
+  },
+  "summary": {
+    "keepEntries": 2,
+    "reviseEntries": 8,
+    "deltaCount": 12,
+    "exactActorOrVoiceDeltas": 9,
+    "identityDeltas": 2,
+    "proseDeltas": 1,
+    "depthOrDeploymentDeltas": 2,
+    "hardPass": false,
+    "installationAuthorized": false
+  }
+}

@@ -29,7 +29,12 @@ def main(argv=None):
     reviews=[]
     for name in spec["reviews"]:
         p=M/name; d=load(p)
-        if d.get("hardPass") is not True or (d.get("residuals") or []): raise SystemExit(f"review not residual-free hard pass: {name}")
+        disposition=d.get("disposition") or {}
+        review_hard_pass=d.get("hardPass") is True or disposition.get("hardPass") is True
+        residuals=d.get("residuals") or []
+        residual_count=disposition.get("residualCount", 0)
+        if not review_hard_pass or residuals or residual_count:
+            raise SystemExit(f"review not residual-free hard pass: {name}")
         reviews.append({"path":f"maintenance/{name}","sha256":sha(p)})
     hashes=[]
     for i in ids:

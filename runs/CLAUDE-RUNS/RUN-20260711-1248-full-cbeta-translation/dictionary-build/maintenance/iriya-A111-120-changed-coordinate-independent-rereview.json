@@ -1,0 +1,98 @@
+{
+  "schemaVersion": "iriya-changed-coordinate-independent-rereview-v1",
+  "generatedUtc": "2026-07-18T18:00:00Z",
+  "lane": "A",
+  "positions": [111, 120],
+  "scope": "Independent rereview of all twelve repaired coordinates, their full cases, replacement evidence, same-entry collateral, actors, prose, identity, recension handling, hashes, and gates.",
+  "bindings": {
+    "originalReview": "maintenance/iriya-author-A111-120-independent-review.json",
+    "originalReviewSha256": "a7a8695053c8a4a42d64fb8102fdfa19708d809424574815675b9d87a751a877",
+    "repairClosure": "maintenance/iriya-A111-120-independent-delta-repair-closure.json",
+    "repairClosureSha256": "06ea34cb361dd25b89227bf9618ba91de2511d00e2b844b12005bd2eec155fd4",
+    "repairLedger": "maintenance/iriya-A111-120-independent-delta-repair-ledger.json",
+    "repairLedgerSha256": "a57bbea439b36d370ab18dc74847f571d5c70cdb88bbcbd4e3b32c4bc22c4f00",
+    "repairDecisions": "maintenance/iriya-decisions-A111-120-repair.json",
+    "repairDecisionsSha256": "c578ad0dd7e7405c375973022f60b37db9405811cb5f5b6b7fd373928dadfede"
+  },
+  "reviewed": {
+    "requestedRepairCoordinates": 12,
+    "requestedRepairCoordinatesReadInFullCase": 12,
+    "repairedEntryCount": 8,
+    "controlEntryCount": 2,
+    "allRepairLedgerEntryHashesMatched": true,
+    "controlsA111AndA118Unchanged": true
+  },
+  "mechanicalGates": {
+    "exactZc": {"artifact": "maintenance/iriya-A111-120-changed-rereview-exact.json", "sha256": "91a1349bf89260797669996f34e7e379bfe72ac3fd9ac7752636569759dd51c1", "verified": 61, "total": 61, "failures": 0},
+    "attribution": {"artifact": "maintenance/iriya-A111-120-changed-rereview-attribution.json", "sha256": "8701c22ae0cbb22f500da5996d42642f2e8a51d3c34245700bb97f5d1b23c9cb", "hardFailures": 0},
+    "workSource": {"artifact": "maintenance/iriya-A111-120-changed-rereview-work-source.txt", "sha256": "486c51c341cf8b3cb1bba3575653586ff5b8b56a075f73f237d81c3f73352e04", "hardFailures": 0},
+    "template": {"artifact": "maintenance/iriya-A111-120-changed-rereview-template.json", "sha256": "b63b8ab36fd53e087dea82a0db287bc6fd110c52dccaba2ad0f5ea629febda32", "hardFailures": 0},
+    "depth": {"artifact": "maintenance/iriya-A111-120-changed-rereview-depth.json", "sha256": "3518bb49786c7c6ba9ad393973579c9e8a9a4d47032d64436a40f03bf39e1771", "hardFailures": 0, "reviewFlags": 9},
+    "titles": {"artifact": "maintenance/iriya-A111-120-changed-rereview-titles.json", "sha256": "ab2c2ea8d2b5cda030b58a96f0a11005cb5e904de9b63ebb2d5fc851ff5c832c", "hardFailures": 0},
+    "deployment": {"artifact": "maintenance/iriya-A111-120-changed-rereview-deployment.json", "sha256": "dbcb99a7a1b2789214fa2fd957cb319e8460dc1344e379d3f2bf5e01a80730a1", "duplicateFlags": 1, "ruling": "A112 occurrences 3 and 6 are source recensions of one Shimen Huiche deployment; retain both but count one deployment class."}
+  },
+  "confirmedRepairs": [
+    "A112: repaired Shimen Huiche exact actors are correct.",
+    "A113: weak unidentified verse was replaced by an attributable Dahui direct question-and-answer witness.",
+    "A114: Jingshan Xiu identity was corrected and Zhe'an Fan supplies an additional unique witness.",
+    "A115: prose no longer asserts an unsupported acoustic/response sense menu.",
+    "A117: three quoted Zhaozhou coordinates were corrected.",
+    "A119: Changqing Huileng is correctly represented as the quoted-original actor with Xuedou in context.",
+    "A120: duplicate Tianyin evidence was removed and replaced by Baiyu's flower-sermon/Kasyapa witness."
+  ],
+  "residuals": [
+    {
+      "position": 112,
+      "entryId": "t_205a1d1331ae",
+      "occurrenceIndexZeroBased": 0,
+      "source": "X/X82/X82n1571.xml@0154b18",
+      "severity": "required",
+      "finding": "The full case is Tuigeng Ning raising Xianglin's old case. Xianglin is the exact headword utterer, but the occurrence is still marked direct-turn and omits Tuigeng Ning.",
+      "requiredAction": "Set voiceLayer to quoted-original and record Tuigeng Ning as the later raiser/commentator context actor."
+    },
+    {
+      "position": 112,
+      "entryId": "t_205a1d1331ae",
+      "occurrenceIndexZeroBased": 2,
+      "source": "X/X64/X64n1260.xml@0099c02",
+      "severity": "required",
+      "finding": "Shimen Huiche is correctly identified as the exact old-case actor, but Xingyue is falsely asserted as later raiser/commentator. The XML names Xingyue only in the collector byline (行悅集); the target year-end verse paragraph itself does not identify its master.",
+      "requiredAction": "Remove the invented Xingyue context attribution unless the outer author can be independently resolved. Retain Shimen and retain the recension as one member of a single deployment class."
+    },
+    {
+      "position": 116,
+      "entryId": "t_3479a511a100",
+      "occurrenceIndexZeroBased": 1,
+      "source": "X/X66/X66n1297.xml@0405a21",
+      "severity": "required",
+      "finding": "The repair invents a person named 'Falin Yin, the commentary author' from 法林音. In 宗鑑法林 this is a recurring editorial/commentary label, not a personal master identity; the TEI header names 集雲堂 as compiler.",
+      "requiredAction": "Represent this as an editorial/compilation voice or other identified non-master branch. Do not create a master identity or link for 法林音."
+    },
+    {
+      "position": 117,
+      "entryId": "t_45f6855e7e48",
+      "occurrenceIndexZeroBased": 5,
+      "source": "X/X71/X71n1420.xml@0575b03",
+      "severity": "required-process-failure",
+      "finding": "The full case has Chushi Fanqi raise Zhaozhou's quoted saying (趙州道...). Zhaozhou Congshen, not Chushi, utters the headword. This untouched same-entry defect means the original changed-only review was incomplete.",
+      "requiredAction": "Set MasterName to Zhaozhou Congshen, voiceLayer to quoted-original, and retain Chushi Fanqi as later-raiser/commentator context."
+    },
+    {
+      "position": 120,
+      "entryId": "t_20dfbe1264e7",
+      "severity": "required-collateral",
+      "finding": "After replacing one Tianyin occurrence with Baiyu's flower-sermon/Kasyapa witness, the Explanation and draft Zen-bend/evidence prose still say 'both Tianyin records'.",
+      "requiredAction": "Change the public and draft prose to singular Tianyin and explicitly account for the Baiyu/Kasyapa deployment."
+    }
+  ],
+  "disposition": {
+    "status": "residual-revise",
+    "hardPass": false,
+    "installationAuthorized": false,
+    "residualCount": 5,
+    "entryEditsMadeByReviewer": false,
+    "installed": false,
+    "merged": false,
+    "rosterModified": false
+  }
+}

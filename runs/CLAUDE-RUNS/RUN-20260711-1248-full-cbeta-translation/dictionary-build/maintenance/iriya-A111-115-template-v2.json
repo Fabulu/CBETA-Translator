@@ -1,0 +1,86 @@
+{
+  "schemaVersion": "batch-semantic-template-audit.v1",
+  "entries": 5,
+  "repeatFloor": 5,
+  "hardPass": false,
+  "failureCount": 2,
+  "failures": [
+    {
+      "kind": "cross-entry-semantic-template",
+      "field": "alias-rationale",
+      "normalizedValue": "readers searching the complete english saying or its central image should reach <term>; component-only matches remain separate.",
+      "entryCount": 5,
+      "occurrences": [
+        {
+          "id": "t_15866bfa3d82",
+          "term": "傍觀者哂",
+          "sense": 1,
+          "path": "fresh-build/entries/t_15866bfa3d82/entry.v2.json"
+        },
+        {
+          "id": "t_205a1d1331ae",
+          "term": "東村王老夜燒錢",
+          "sense": 1,
+          "path": "fresh-build/entries/t_205a1d1331ae/entry.v2.json"
+        },
+        {
+          "id": "t_a07cb5197549",
+          "term": "水不洗水",
+          "sense": 1,
+          "path": "fresh-build/entries/t_a07cb5197549/entry.v2.json"
+        },
+        {
+          "id": "t_0ab9f8a0ffb2",
+          "term": "應病與藥",
+          "sense": 1,
+          "path": "fresh-build/entries/t_0ab9f8a0ffb2/entry.v2.json"
+        },
+        {
+          "id": "t_809ec2e31de2",
+          "term": "言中有響",
+          "sense": 1,
+          "path": "fresh-build/entries/t_809ec2e31de2/entry.v2.json"
+        }
+      ]
+    },
+    {
+      "kind": "cross-entry-semantic-template",
+      "field": "FamilyControls",
+      "normalizedValue": "only the complete expression <term> supports this article; component and longer-compound uses were checked separately.",
+      "entryCount": 5,
+      "occurrences": [
+        {
+          "id": "t_15866bfa3d82",
+          "term": "傍觀者哂",
+          "sense": 1,
+          "path": "fresh-build/entries/t_15866bfa3d82/entry.v2.json"
+        },
+        {
+          "id": "t_205a1d1331ae",
+          "term": "東村王老夜燒錢",
+          "sense": 1,
+          "path": "fresh-build/entries/t_205a1d1331ae/entry.v2.json"
+        },
+        {
+          "id": "t_a07cb5197549",
+          "term": "水不洗水",
+          "sense": 1,
+          "path": "fresh-build/entries/t_a07cb5197549/entry.v2.json"
+        },
+        {
+          "id": "t_0ab9f8a0ffb2",
+          "term": "應病與藥",
+          "sense": 1,
+          "path": "fresh-build/entries/t_0ab9f8a0ffb2/entry.v2.json"
+        },
+        {
+          "id": "t_809ec2e31de2",
+          "term": "言中有響",
+          "sense": 1,
+          "path": "fresh-build/entries/t_809ec2e31de2/entry.v2.json"
+        }
+      ]
+    }
+  ],
+  "rule": "Repeated semantic decisions across entries are forbidden; mechanical serialization may preserve only explicit headword-specific decisions."
+}

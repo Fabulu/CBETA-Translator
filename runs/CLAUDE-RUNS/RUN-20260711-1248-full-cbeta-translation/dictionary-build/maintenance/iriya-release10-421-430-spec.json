@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "bounded-hash-release-spec-v1",
+  "cohort": "Iriya construction batch 1 contiguous release 421–430",
+  "entries": 10,
+  "selection": [
+    {"lane": "A", "low": 111, "high": 120}
+  ],
+  "gate": "iriya-release10-421-430-full-cohort-gate.json",
+  "reviews": [
+    "iriya-A111-120-final-changed-coordinate-independent-rereview.json"
+  ],
+  "authorizationOutput": "iriya-release10-421-430-final-authorization.json",
+  "manifestOutput": "iriya-release10-421-430-install-manifest.json"
+}

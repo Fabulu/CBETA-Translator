@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "iriya-author-decile-closure-v1",
+  "lane": "A",
+  "positions": [
+    111,
+    120
+  ],
+  "entryCount": 10,
+  "occurrenceCount": 60,
+  "packet": "maintenance/iriya-author-packet-A061-160-v1.json",
+  "packetSha256": "10e519a4dbf0d5315c1df4763e6e88ddf7836ad6904c6446c0140ec9ae7c0c19",
+  "decisions": "maintenance/iriya-decisions-A111-120.json",
+  "decisionsSha256": "a17e7b4931d76f1252e74eed16fd7967be89f0e10ee42aa92f3835255fc0eccb",
+  "ledgers": [
+    "maintenance/iriya-author-A111-115-ledger.json",
+    "maintenance/iriya-author-A111-120-ledger.json"
+  ],
+  "gates": {
+    "strictAttributionHardFailures": 0,
+    "workSourceHardFailures": 0,
+    "templateHardFailures": 0,
+    "depthHardFailures": 0,
+    "exactZcFailures": 0,
+    "compileParityFailures": 0,
+    "sourceTitleFailures": 0,
+    "deploymentDuplicationFlags": 0,
+    "workFilesPresent": 10
+  },
+  "depthReview": {
+    "flagged": 10,
+    "humanDisposition": "qualitative-complete-no-padding",
+    "basis": "All eight packet candidates were read per term; six distinct-work, lexicographically useful witnesses remain."
+  },
+  "voiceLayer": {
+    "required": true,
+    "occurrencesAdjudicated": 60
+  },
+  "speechMarkerGuard": {
+    "completeCasesReviewed": 60,
+    "acknowledgementsPresent": 60
+  },
+  "hardPass": true,
+  "checkpoint": 120,
+  "reviewStatus": "awaiting-independent-review",
+  "selfReviewPerformed": true,
+  "installed": false,
+  "merged": false,
+  "rosterModified": false
+}

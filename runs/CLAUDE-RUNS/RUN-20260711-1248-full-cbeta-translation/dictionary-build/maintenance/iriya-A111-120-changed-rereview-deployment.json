@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "deployment-duplication-audit-v1",
+  "entries": 10,
+  "occurrencesChecked": 61,
+  "flagCount": 1,
+  "flags": [
+    {
+      "entry": "runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_205a1d1331ae/entry.v2.json",
+      "id": "t_205a1d1331ae",
+      "term": "東村王老夜燒錢",
+      "sense": 1,
+      "occurrences": [
+        3,
+        6
+      ],
+      "actor": "Shimen Huiche 石門慧徹",
+      "relPaths": [
+        "X/X64/X64n1260.xml",
+        "J/J26/J26nB187.xml"
+      ],
+      "similarity": 0.8485,
+      "reason": "likely-same-utterance-or-recension; human deployment-class ruling required"
+    }
+  ],
+  "hardPass": false,
+  "meaning": "A flag is a mandatory review stop, not an automatic deletion. Preserve useful recensions but count them as one deployment class and do not use them to satisfy depth."
+}

@@ -1,0 +1,86 @@
+{
+  "schemaVersion": "iriya-final-changed-coordinate-independent-rereview-v1",
+  "generatedUtc": "2026-07-18T18:40:00Z",
+  "lane": "A",
+  "positions": [111, 120],
+  "scope": "Final independent read-only verification of the five residual repairs, their full contexts, A112 recension handling, entry and collateral hashes, and all bound gates.",
+  "bindings": {
+    "priorRereview": "maintenance/iriya-A111-120-changed-coordinate-independent-rereview.json",
+    "priorRereviewSha256": "bd8be233338994981f0a43f88a754950ec5eae2586d1e04ee0596e8a30a3518b",
+    "residualRepairClosure": "maintenance/iriya-A111-120-residual-repair-closure.json",
+    "residualRepairClosureSha256": "03c3d00ff25a8d059062b18866264e73ec5079cfeee40aceaa3f63f3782f79b5",
+    "residualRepairLedger": "maintenance/iriya-A111-120-residual-repair-ledger.json",
+    "residualRepairLedgerSha256": "80f9e1196ff2183bde288184df220ad43a1af81790eb2114854165f5a5651795",
+    "residualDecisions": "maintenance/iriya-decisions-A111-120-residual.json",
+    "residualDecisionsSha256": "bd8bfa1f75545acddb466ed970abda9efad7a6b295e92d1cd20005adf09afcf0"
+  },
+  "repairVerification": [
+    {
+      "position": 112,
+      "entryId": "t_205a1d1331ae",
+      "occurrenceIndexZeroBased": 0,
+      "source": "X/X82/X82n1571.xml@0154b18",
+      "result": "pass",
+      "finding": "Xianglin Chengyuan remains the exact quoted-original utterer and Lingyin Tuigeng Ning is now explicitly linked as later raiser and commentator."
+    },
+    {
+      "position": 112,
+      "entryId": "t_205a1d1331ae",
+      "occurrenceIndexZeroBased": 2,
+      "source": "X/X64/X64n1260.xml@0099c02",
+      "result": "pass",
+      "finding": "Shimen Huiche remains the exact quoted-original utterer and the unsupported Xingyue later-raiser attribution has been removed."
+    },
+    {
+      "position": 116,
+      "entryId": "t_3479a511a100",
+      "occurrenceIndexZeroBased": 1,
+      "source": "X/X66/X66n1297.xml@0405a21",
+      "result": "pass",
+      "finding": "法林音 is now treated as the recurring editorial commentary label, with an unnamed editorial commentator/compiler actor rather than an invented master identity."
+    },
+    {
+      "position": 117,
+      "entryId": "t_45f6855e7e48",
+      "occurrenceIndexZeroBased": 5,
+      "source": "X/X71/X71n1420.xml@0575b03",
+      "result": "pass",
+      "finding": "Zhaozhou Congshen is now the exact quoted-original utterer and Chushi Fanqi is linked only as later raiser and commentator."
+    },
+    {
+      "position": 120,
+      "entryId": "t_20dfbe1264e7",
+      "result": "pass",
+      "finding": "Public explanation and construction prose now name one Tianyin witness and separately account for Baiyu Jingsi's Kasyapa/flower-sermon deployment; the stale 'both Tianyin records' collateral is gone."
+    }
+  ],
+  "entryHashes": {
+    "t_205a1d1331ae": "54c047c0d6b6740a38aac68aa140cc0a682f366cfa4a7f166742a322a8df0ba0",
+    "t_3479a511a100": "a5873e526a43afd47e2c4c8abe927be09b7492643f8703eff0e8058f719df751",
+    "t_45f6855e7e48": "569246f97c67bcafca467780f42193e22032d998baab2566684a7e5a6e23c891",
+    "t_20dfbe1264e7": "3b8fcf3cca0e82d2ffddd25813415162d6b4d3a59fc248853b92a160ac47deef"
+  },
+  "collateral": {
+    "unchangedEntryCount": 6,
+    "hashMismatches": 0,
+    "ids": ["t_15866bfa3d82", "t_a07cb5197549", "t_0ab9f8a0ffb2", "t_809ec2e31de2", "t_22241e355dc9", "t_b9bbb81addc8"]
+  },
+  "gates": {
+    "exactZc": {"artifact": "maintenance/iriya-A111-120-residual-zc.json", "sha256": "f0c48675837abf8f3487cb1dce57a006b807ea65a40f0735cd13667a715599e8", "verified": 61, "total": 61, "failures": 0},
+    "attribution": {"artifact": "maintenance/iriya-A111-120-residual-attribution.json", "sha256": "2aea983355e7d6edd93c48028ae9486112d7589f383187130f925320a047f9b1", "hardFailures": 0},
+    "depth": {"artifact": "maintenance/iriya-A111-120-residual-depth.json", "sha256": "9d9fa2d9254b975eb0e01391260c4b53d85614670fd01d94ed49f901826e417c", "hardFailures": 0},
+    "template": {"artifact": "maintenance/iriya-A111-120-residual-template.json", "sha256": "b63b8ab36fd53e087dea82a0db287bc6fd110c52dccaba2ad0f5ea629febda32", "failures": 0},
+    "titles": {"artifact": "maintenance/iriya-A111-120-residual-titles.json", "sha256": "ab2c2ea8d2b5cda030b58a96f0a11005cb5e904de9b63ebb2d5fc851ff5c832c", "failures": 0},
+    "deploymentDuplication": {"artifact": "maintenance/iriya-A111-120-residual-duplication.json", "sha256": "5e2199f178387fa7dc2af64f6df40678033f56af51b280a0a9f8a929b213f40d", "flags": 1, "humanRuling": "A112 occurrences 3 and 6 are two source recensions of the same Shimen Huiche utterance. Both may be preserved as transmission evidence, but together count as one deployment class and cannot independently satisfy depth."}
+  },
+  "disposition": {
+    "status": "final-hard-pass",
+    "hardPass": true,
+    "residualCount": 0,
+    "installationAuthorizedByThisReceipt": false,
+    "entryEditsMadeByReviewer": false,
+    "installed": false,
+    "merged": false,
+    "rosterModified": false
+  }
+}

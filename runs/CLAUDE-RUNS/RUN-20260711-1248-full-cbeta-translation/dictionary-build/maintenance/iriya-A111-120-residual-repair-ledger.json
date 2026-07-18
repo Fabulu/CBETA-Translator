@@ -1,0 +1,85 @@
+{
+  "schemaVersion": "iriya-residual-repair-ledger-v1",
+  "review": "maintenance/iriya-A111-120-changed-coordinate-independent-rereview.json",
+  "reviewSha256": "bd8be233338994981f0a43f88a754950ec5eae2586d1e04ee0596e8a30a3518b",
+  "residualCount": 5,
+  "residuals": [
+    {
+      "entryId": "t_205a1d1331ae",
+      "position": 112,
+      "occurrenceIndexZeroBased": 0,
+      "source": "X/X82/X82n1571.xml@0154b18",
+      "requiredAction": "Set voiceLayer to quoted-original and record Tuigeng Ning as the later raiser/commentator context actor.",
+      "disposition": "applied",
+      "entrySha256After": "54c047c0d6b6740a38aac68aa140cc0a682f366cfa4a7f166742a322a8df0ba0"
+    },
+    {
+      "entryId": "t_205a1d1331ae",
+      "position": 112,
+      "occurrenceIndexZeroBased": 2,
+      "source": "X/X64/X64n1260.xml@0099c02",
+      "requiredAction": "Remove the invented Xingyue context attribution unless the outer author can be independently resolved. Retain Shimen and retain the recension as one member of a single deployment class.",
+      "disposition": "applied",
+      "entrySha256After": "54c047c0d6b6740a38aac68aa140cc0a682f366cfa4a7f166742a322a8df0ba0"
+    },
+    {
+      "entryId": "t_3479a511a100",
+      "position": 116,
+      "occurrenceIndexZeroBased": 1,
+      "source": "X/X66/X66n1297.xml@0405a21",
+      "requiredAction": "Represent this as an editorial/compilation voice or other identified non-master branch. Do not create a master identity or link for 法林音.",
+      "disposition": "applied",
+      "entrySha256After": "a5873e526a43afd47e2c4c8abe927be09b7492643f8703eff0e8058f719df751"
+    },
+    {
+      "entryId": "t_45f6855e7e48",
+      "position": 117,
+      "occurrenceIndexZeroBased": 5,
+      "source": "X/X71/X71n1420.xml@0575b03",
+      "requiredAction": "Set MasterName to Zhaozhou Congshen, voiceLayer to quoted-original, and retain Chushi Fanqi as later-raiser/commentator context.",
+      "disposition": "applied",
+      "entrySha256After": "569246f97c67bcafca467780f42193e22032d998baab2566684a7e5a6e23c891"
+    },
+    {
+      "entryId": "t_20dfbe1264e7",
+      "position": 120,
+      "occurrenceIndexZeroBased": null,
+      "source": null,
+      "requiredAction": "Change the public and draft prose to singular Tianyin and explicitly account for the Baiyu/Kasyapa deployment.",
+      "disposition": "applied",
+      "entrySha256After": "3b8fcf3cca0e82d2ffddd25813415162d6b4d3a59fc248853b92a160ac47deef"
+    }
+  ],
+  "collateral": {
+    "t_15866bfa3d82": {
+      "expected": "3dd2e15344721074de480da8ae54eeac08ba2a4a577629f680ccb8e8d7797dce",
+      "actual": "3dd2e15344721074de480da8ae54eeac08ba2a4a577629f680ccb8e8d7797dce",
+      "unchanged": true
+    },
+    "t_a07cb5197549": {
+      "expected": "c4f2713664e2b419f1b66e49c5eb52a98a99deb99978d20619444629ddb20715",
+      "actual": "c4f2713664e2b419f1b66e49c5eb52a98a99deb99978d20619444629ddb20715",
+      "unchanged": true
+    },
+    "t_0ab9f8a0ffb2": {
+      "expected": "b07a7a0904d5c21b4775fdaaf0191087595533146de99b2924f543115b2e63a0",
+      "actual": "b07a7a0904d5c21b4775fdaaf0191087595533146de99b2924f543115b2e63a0",
+      "unchanged": true
+    },
+    "t_809ec2e31de2": {
+      "expected": "36451fd56eef4318c3dd312af69e622d712de1f83a4ba0b6de7e81767f88d9a2",
+      "actual": "36451fd56eef4318c3dd312af69e622d712de1f83a4ba0b6de7e81767f88d9a2",
+      "unchanged": true
+    },
+    "t_22241e355dc9": {
+      "expected": "f038dfcba0e6ab712721356b178928ef15f9b7edb8323e9219616197f8fcc781",
+      "actual": "f038dfcba0e6ab712721356b178928ef15f9b7edb8323e9219616197f8fcc781",
+      "unchanged": true
+    },
+    "t_b9bbb81addc8": {
+      "expected": "d35dadd5cb209e966700dcba1a78382b7682285fdc9be0c14a53f0683eb1d3df",
+      "actual": "d35dadd5cb209e966700dcba1a78382b7682285fdc9be0c14a53f0683eb1d3df",
+      "unchanged": true
+    }
+  }
+}

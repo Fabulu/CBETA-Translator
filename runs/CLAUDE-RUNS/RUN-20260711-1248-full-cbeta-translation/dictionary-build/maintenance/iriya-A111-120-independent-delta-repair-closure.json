@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "iriya-independent-delta-repair-closure-v1",
+  "generatedUtc": "2026-07-18T16:28:53.918030+00:00",
+  "lane": "A",
+  "positions": [
+    111,
+    120
+  ],
+  "review": "maintenance/iriya-author-A111-120-independent-review.json",
+  "reviewSha256": "a7a8695053c8a4a42d64fb8102fdfa19708d809424574815675b9d87a751a877",
+  "reviewedDeltaCount": 12,
+  "repairedEntryCount": 8,
+  "entryCount": 10,
+  "occurrenceCount": 61,
+  "repairLedger": "maintenance/iriya-A111-120-independent-delta-repair-ledger.json",
+  "repairLedgerSha256": "a57bbea439b36d370ab18dc74847f571d5c70cdb88bbcbd4e3b32c4bc22c4f00",
+  "decisions": "maintenance/iriya-decisions-A111-120-repair.json",
+  "decisionsSha256": "c578ad0dd7e7405c375973022f60b37db9405811cb5f5b6b7fd373928dadfede",
+  "gates": {
+    "emitterHardPass": true,
+    "siblingEntryParityFailures": 0,
+    "attributionHardFailures": 0,
+    "depthHardFailures": 0,
+    "sourceTitleFailures": 0,
+    "exactZcFailures": 0,
+    "immutableControlFailures": 0,
+    "deploymentDuplicationFlags": 1
+  },
+  "deploymentDuplicationRuling": {
+    "entryId": "t_205a1d1331ae",
+    "occurrences": [
+      3,
+      6
+    ],
+    "decision": "retain-both-as-source-recensions-count-as-one-deployment-class",
+    "reason": "The independent review explicitly requires both coordinates and identifies both as Shimen Huiche quoted by different later raisers. They preserve distinct transmission contexts but do not independently satisfy depth."
+  },
+  "depthReview": {
+    "hardFailures": 0,
+    "humanDisposition": "qualitative-complete; duplicate recensions count as one deployment class"
+  },
+  "hardPass": true,
+  "installed": false,
+  "merged": false,
+  "rosterModified": false
+}

@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "hash-bound-release-independent-authorization-audit-v1",
+  "generatedUtc": "2026-07-18T18:55:00Z",
+  "cohort": "Iriya construction batch 1 contiguous release 421–430",
+  "scope": "Independent pre-install authorization audit only; no installation, merge, public deployment, or roster mutation.",
+  "bindings": {
+    "releaseSpec": {"path": "maintenance/iriya-release10-421-430-spec.json", "sha256": "6aec392874bcb23d15df25b51e7f591ff18aa45f08d3b685fd175cd05bc82fa1"},
+    "authorization": {"path": "maintenance/iriya-release10-421-430-final-authorization.json", "sha256": "5cd3c78e860e8c31a2aa50324f8dc83b92ecfe63911743f384acee365b15650a"},
+    "installManifest": {"path": "maintenance/iriya-release10-421-430-install-manifest.json", "sha256": "b7d460cc5e164d9be4e7af1bcdf9b412642b760728982aaeffcfb4d6e9b27f83"},
+    "currentFullCohortGate": {"path": "maintenance/iriya-release10-421-430-full-cohort-gate.json", "sha256": "e5c31b20168e09f9086e8e3598afa490629ccadf19e32f3e2487b698e97326f3"},
+    "finalSemanticReview": {"path": "maintenance/iriya-A111-120-final-changed-coordinate-independent-rereview.json", "sha256": "c9d0355287cc6e80e76d6f877936ff429fb3dafde4dcb5365122655a5a986f9b"}
+  },
+  "queueOrder": [
+    {"position": 111, "id": "t_15866bfa3d82", "term": "傍觀者哂"},
+    {"position": 112, "id": "t_205a1d1331ae", "term": "東村王老夜燒錢"},
+    {"position": 113, "id": "t_a07cb5197549", "term": "水不洗水"},
+    {"position": 114, "id": "t_0ab9f8a0ffb2", "term": "應病與藥"},
+    {"position": 115, "id": "t_809ec2e31de2", "term": "言中有響"},
+    {"position": 116, "id": "t_3479a511a100", "term": "疑殺天下人"},
+    {"position": 117, "id": "t_45f6855e7e48", "term": "破家散宅"},
+    {"position": 118, "id": "t_22241e355dc9", "term": "見成公案"},
+    {"position": 119, "id": "t_b9bbb81addc8", "term": "隨語生解"},
+    {"position": 120, "id": "t_20dfbe1264e7", "term": "承虚接響"}
+  ],
+  "checks": {
+    "specSelectsExactlyA111ThroughA120": true,
+    "packetOrderMatchesAuthorizationOrder": true,
+    "authorizationOrderMatchesManifestOrder": true,
+    "entryCount": 10,
+    "currentEntryWorksheetWorkTriplesMatched": 10,
+    "tripleMismatches": 0,
+    "targetIdsAlreadyPresentUnderInstalledTerms": 0,
+    "overlapWithInstalledFirst420": false,
+    "fullCohortGateMechanicalFailures": 0,
+    "fullCohortGateSemanticReviewRequired": true,
+    "semanticReviewBindingExact": true,
+    "semanticReviewNestedDispositionRead": true,
+    "semanticReviewNestedStatus": "final-hard-pass",
+    "semanticReviewNestedHardPass": true,
+    "semanticReviewNestedResidualCount": 0,
+    "authorizationResolvesReviewSignalWithoutMisreadingGateTopLevelHardPass": true,
+    "publicDeploymentAuthorized": false,
+    "lineageRosterMutationAuthorized": false
+  },
+  "installerDryRun": {
+    "command": "python3 install_hash_bound_cohort.py --manifest maintenance/iriya-release10-421-430-install-manifest.json --expected-sha256 b7d460cc5e164d9be4e7af1bcdf9b412642b760728982aaeffcfb4d6e9b27f83 --dry-run",
+    "exitCode": 0,
+    "hardPass": true,
+    "dryRun": true,
+    "entries": 10,
+    "manifestSha256": "b7d460cc5e164d9be4e7af1bcdf9b412642b760728982aaeffcfb4d6e9b27f83"
+  },
+  "disposition": {
+    "status": "authorization-hard-pass",
+    "hardPass": true,
+    "residualCount": 0,
+    "installMayProceedUsingOnlyTheBoundManifestAndExpectedSha": true,
+    "installedByAuditor": false,
+    "mergedByAuditor": false,
+    "rosterModifiedByAuditor": false
+  }
+}
