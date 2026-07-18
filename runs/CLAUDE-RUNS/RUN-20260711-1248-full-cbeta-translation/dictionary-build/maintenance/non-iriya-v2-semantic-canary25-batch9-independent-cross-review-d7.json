@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "non-iriya-v2-semantic-independent-cross-review.v1",
+  "generatedUtc": "2026-07-18T00:46:04Z",
+  "reviewer": "d7",
+  "reviewedLedger": "maintenance/non-iriya-v2-semantic-canary25-batch9-ledger.json",
+  "reviewedLedgerSha256": "acd12d1bb22d6fbad6a5a49a78f035468fc0243208517c76de5cc9bea5740bf7",
+  "frozenSelection": "maintenance/non-iriya-v2-frequency-batch9-navigation-selection.json",
+  "frozenSelectionSha256": "f9c129dd8c3d421d349c4c686235a64b532374ee1cc79845b1ec97d887d260ef",
+  "reviewQualification": "Independent reviewer read both supplied full-case windows for every row and reproduced corpus mechanics; frequency was treated as navigation evidence only.",
+  "overallVerdict": "PASS",
+  "selectionReview": {
+    "verdict": "PASS",
+    "rows": 25,
+    "selectionOrderAndTermsMatchLedger": true,
+    "selectionWasFrozenBeforeSemanticReading": true,
+    "semanticDecisionsAbsentFromSelection": true
+  },
+  "mechanicalReview": {
+    "verdict": "PASS",
+    "exactCountsReproduced": 25,
+    "evidenceWindowsVerified": 50,
+    "allLineBoundsTitlesAndCanonicalWorkIdsReproduced": true,
+    "canonicalDistinctWorkPairs": 25,
+    "associationFailures": 0
+  },
+  "semanticDispositionAndUnitReview": {
+    "verdict": "PASS",
+    "KEEP": 17,
+    "REJECT": 8,
+    "PROVISIONAL": 0,
+    "rows": [
+      {"row": 1, "term": "狗子還有佛性也無", "verdict": "PASS", "disposition": "KEEP", "unit": "formula"},
+      {"row": 2, "term": "東海鯉魚打一棒", "verdict": "PASS", "disposition": "KEEP", "unit": "formula"},
+      {"row": 3, "term": "喝不作一喝用", "verdict": "PASS", "disposition": "REJECT", "unit": null},
+      {"row": 4, "term": "乍入叢林", "verdict": "PASS", "disposition": "REJECT", "unit": null},
+      {"row": 5, "term": "三乘十二分教", "verdict": "PASS", "disposition": "KEEP", "unit": "component"},
+      {"row": 6, "term": "十方同聚會", "verdict": "PASS", "disposition": "KEEP", "unit": "formula"},
+      {"row": 7, "term": "跳上三十三天", "verdict": "PASS", "disposition": "REJECT", "unit": null},
+      {"row": 8, "term": "萬里無寸草處", "verdict": "PASS", "disposition": "KEEP", "unit": "formula"},
+      {"row": 9, "term": "一生參學事", "verdict": "PASS", "disposition": "KEEP", "unit": "component"},
+      {"row": 10, "term": "樓閣門開", "verdict": "PASS", "disposition": "KEEP", "unit": "formula"},
+      {"row": 11, "term": "我手何似佛手", "verdict": "PASS", "disposition": "KEEP", "unit": "formula"},
+      {"row": 12, "term": "世尊拈花", "verdict": "PASS", "disposition": "KEEP", "unit": "formula"},
+      {"row": 13, "term": "祖師心印", "verdict": "PASS", "disposition": "KEEP", "unit": "component"},
+      {"row": 14, "term": "神通妙用", "verdict": "PASS", "disposition": "KEEP", "unit": "component"},
+      {"row": 15, "term": "對靈小參", "verdict": "PASS", "disposition": "KEEP", "unit": "component"},
+      {"row": 16, "term": "請師直指", "verdict": "PASS", "disposition": "REJECT", "unit": null},
+      {"row": 17, "term": "拂袖便出", "verdict": "PASS", "disposition": "REJECT", "unit": null},
+      {"row": 18, "term": "畫一圓相", "verdict": "PASS", "disposition": "KEEP", "unit": "action"},
+      {"row": 19, "term": "明眼衲僧", "verdict": "PASS", "disposition": "KEEP", "unit": "role"},
+      {"row": 20, "term": "文殊普賢", "verdict": "PASS", "disposition": "KEEP", "unit": "component"},
+      {"row": 21, "term": "盡十方世界", "verdict": "PASS", "disposition": "REJECT", "unit": null},
+      {"row": 22, "term": "菩提涅槃", "verdict": "PASS", "disposition": "KEEP", "unit": "component"},
+      {"row": 23, "term": "還知落處麼", "verdict": "PASS", "disposition": "REJECT", "unit": null},
+      {"row": 24, "term": "敢問諸人", "verdict": "PASS", "disposition": "REJECT", "unit": null},
+      {"row": 25, "term": "因齋慶讚", "verdict": "PASS", "disposition": "KEEP", "unit": "formula"}
+    ],
+    "requiredRevisions": []
+  },
+  "nestedFamilyReview": {
+    "verdict": "PASS",
+    "finding": "Covered-child containment was not treated mechanically. Complete named questions, allusions, ritual genres, doctrinal pairs, roles, and actions were retained when the larger form had independent deployment; boundary fragments, productive expansions, scaffolds, and ordinary narrative actions were rejected.",
+    "notableBoundaries": [
+      "狗子還有佛性也無 remains a complete named-case question despite containing 佛性 and 有佛性也無.",
+      "喝不作一喝用 is rejected as a boundary fragment of 一喝不作一喝用.",
+      "文殊普賢 remains an independently conventional pair despite being a substring of 文殊普賢是擔屎漢.",
+      "盡十方世界 is rejected as a productive exhaustive expansion of 十方世界."
+    ]
+  },
+  "diminishingReturnsReview": {
+    "verdict": "PASS",
+    "keepYield": "17/25 (68%)",
+    "finding": "Batch 9 does not justify stopping discovery: diversified navigation still yields substantial stable units. Diminishing returns are nevertheless visible in eight productive/scaffold rejects and in the amount of nested-family adjudication needed, so future batches should preserve diversity and family gates rather than rank semantic value by frequency."
+  },
+  "frequencyUsedAsSemanticEvidence": false,
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false,
+  "reviewedLedgerMutated": false
+}
