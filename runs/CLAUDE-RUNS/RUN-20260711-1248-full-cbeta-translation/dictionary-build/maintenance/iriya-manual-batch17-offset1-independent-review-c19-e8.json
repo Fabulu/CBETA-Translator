@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "iriya-manual-independent-review.v1",
+  "reviewer": "c19-e8",
+  "decision": "REVISE",
+  "reviewedSelection": "maintenance/iriya-manual-batch17-offset1-selection.json",
+  "reviewedSelectionSha256": "bff0f6a5421021613a11afe3dc2677a731e5c9e6d9510b959234bf7d397ec4d0",
+  "reviewedLedger": "maintenance/iriya-manual-batch17-offset1-ledger.json",
+  "reviewedLedgerSha256": "71a33d6570fc15429433aa73bce5eda0f546c964ba079b9d11270f4c5a2da7ed",
+  "identityReview": {
+    "verdict": "PASS",
+    "finding": "All ten authoritative queue/selection/ledger tuples match, all canonical indexes are 1 modulo 3, and every id is absent from the current trusted registry and the eight prior offset1 batch ledgers."
+  },
+  "mechanicalReview": {
+    "cheapValidator": "PASS 10/10",
+    "fullValidator": "PASS 10/10",
+    "counts": "PASS; all ten hit/file/distinct-work triples reproduce",
+    "evidence": "PASS; 20/20 exact windows, anchors, source titles, and canonical work IDs reproduce, with two distinct works per row",
+    "variants": "PASS; punctuation and graph normalizations are explicit",
+    "units": "PASS; six components and four complete couplets/images are coherently bounded"
+  },
+  "semanticReview": {
+    "verdict": "REVISE 2 reasons; PASS 8",
+    "rows": [
+      {
+        "canonicalIndex": 661,
+        "term": "將謂胡鬚赤、更有赤鬚胡",
+        "verdict": "REVISE reason only",
+        "finding": "The proverb does not reliably say that the second adept ‘surpasses’ the first. In the fox case Baizhang recognizes Huangbo as another red-bearded barbarian—another of the same formidable/unexpected kind, an answering match. The first witness likewise marks finding another comparable reversal. ‘Surpasses’ overstates the relation.",
+        "requiredRepair": "Define the deployment as discovering another of the same unexpected or formidable kind—an equal/answering match beyond the first expectation. Preserve KEEP, couplet unit, counts, and witnesses."
+      },
+      {
+        "canonicalIndex": 679,
+        "term": "出頭天外看、誰是我般人",
+        "verdict": "REVISE reason only",
+        "finding": "‘Transgressive’ imports a modern evaluative category not supplied by either case. The cases explicitly ground beyond-heaven, beyond-measure, unmatched Chan stature and a challenge to find one of the same kind.",
+        "requiredRepair": "Replace ‘transgressive’ with corpus-grounded ‘beyond-measure/unmatched’ language. Preserve KEEP, couplet unit, counts, and witnesses."
+      }
+    ],
+    "passingCanonicalIndexes": [652, 655, 658, 664, 667, 670, 673, 676]
+  },
+  "summary": {
+    "PASS": 8,
+    "REVISE": 2,
+    "reasonOnlyRepairsRequired": 2,
+    "dispositionUnitEvidenceOrCountRepairsRequired": 0
+  },
+  "authorLedgerMutated": false,
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "non-iriya-frequency-semantic-repair-receipt.v1",
+  "batch": 12,
+  "repairAuthor": "root",
+  "rejectingReview": "maintenance/non-iriya-v2-frequency-batch12-semantic-independent-cross-review-d7.json",
+  "rejectingReviewSha256": "700dd1100e5bb10c17a6ac531ed9b57bcde237074c9436b7cc0b403094725533",
+  "ledger": "maintenance/non-iriya-v2-frequency-batch12-semantic-ledger-b6.json",
+  "ledgerBeforeSha256": "b2651a03bc4dd889a9686f4c9887815b0c106b504b0a5d4ec10693252d5872a6",
+  "ledgerAfterSha256": "c530915efe8a947528c69ab4aadb5b881a84659016a26599f14e2207c7962161",
+  "coordinate": {"batchOrdinal": 23, "term": "靈雲見桃"},
+  "before": {"disposition": "KEEP", "unit": "named-case", "summary": {"KEEP": 15, "REJECT": 10, "PROVISIONAL": 0}},
+  "after": {"disposition": "REJECT", "unit": null, "summary": {"KEEP": 14, "REJECT": 11, "PROVISIONAL": 0}},
+  "closure": "Both supplied exact witnesses continue immediately with 花, so the selected string is a clipped prefix of 靈雲見桃花 / 靈雲見桃花悟道話 and cannot carry the parent case article.",
+  "otherTwentyFourDecisionObjectsPreserved": true,
+  "evidenceCountsAndIdentitiesChanged": false,
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "buildRun": false,
+  "registryMutationPerformed": false,
+  "lineageTouched": false,
+  "status": "READY_FOR_FOCUSED_RECHECK"
+}

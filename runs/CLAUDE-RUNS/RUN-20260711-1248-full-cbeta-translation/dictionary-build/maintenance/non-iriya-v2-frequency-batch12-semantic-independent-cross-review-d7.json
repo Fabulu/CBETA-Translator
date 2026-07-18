@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "non-iriya-v2-semantic-independent-cross-review.v1",
+  "generatedUtc": "2026-07-18T01:12:43Z",
+  "reviewer": "d7",
+  "reviewQualification": "Independent strict full-case review requiring observable Chan deployment and rejecting generic doctrine, productive enumeration, and clipped parent fragments.",
+  "reviewedLedger": "maintenance/non-iriya-v2-frequency-batch12-semantic-ledger-b6.json",
+  "reviewedLedgerSha256": "b2651a03bc4dd889a9686f4c9887815b0c106b504b0a5d4ec10693252d5872a6",
+  "frozenSelection": "maintenance/non-iriya-v2-frequency-batch12-navigation-selection.json",
+  "frozenSelectionSha256": "c57cfc1baf006638df925d47f98da22ba95ac1122ba6fb9d88fbac2baad7bdcc",
+  "overallVerdict": "REVISE",
+  "selectionAndMechanicalReview": {
+    "verdict": "PASS",
+    "selectionOrderAndTermsMatchLedger": true,
+    "exactCountTriplesReproduced": 25,
+    "evidenceWindowsVerified": 50,
+    "allLineBoundsTitlesAndCanonicalWorkIdsReproduced": true,
+    "canonicalDistinctWorkPairs": 25,
+    "associationFailures": 0
+  },
+  "semanticDispositionAndUnitReview": {
+    "verdict": "REVISE",
+    "rowsPassedWithoutRevision": 24,
+    "requiredRevisions": 1,
+    "currentSummary": {"KEEP": 15, "REJECT": 10, "PROVISIONAL": 0},
+    "requiredSummary": {"KEEP": 14, "REJECT": 11, "PROVISIONAL": 0}
+  },
+  "requiredRevisions": [
+    {
+      "row": 23,
+      "term": "靈雲見桃",
+      "currentDisposition": "KEEP",
+      "currentUnit": "named-case",
+      "requiredDisposition": "REJECT",
+      "requiredUnit": null,
+      "finding": "Both supplied exact witnesses continue the selected string immediately with 花: one reads 靈雲見桃花 and the other 靈雲見桃花悟道話. They establish the recognizable named case only in the longer parent form, not an independently bounded 靈雲見桃 unit.",
+      "requiredReason": "Reject as a clipped prefix of 靈雲見桃花; retain the named-case analysis for the complete parent form if separately selected."
+    }
+  ],
+  "strictBoundaryReview": {
+    "verdict": "PASS except row 23",
+    "genericDoctrineRejected": ["妄想執著", "發菩提心", "成等正覺", "語言文字"],
+    "productiveEnumerationRejected": ["日月星辰", "百千三昧", "四方八面", "草木叢林"],
+    "correctClippedParentRejections": ["一路涅槃", "霞燒木佛"],
+    "boundedFigureAndCaseKeeps": ["文殊師利", "靈山一會", "劫火洞然", "國師三喚"],
+    "finding": "The ledger otherwise separates figures, named cases, actions, and stable encounter idioms from generic doctrinal or enumerative material."
+  },
+  "frequencyUsedAsSemanticEvidence": false,
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false,
+  "reviewedLedgerMutated": false
+}

@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "iriya-focused-semantic-repair-recheck.v1",
+  "reviewer": "c19-e8",
+  "decision": "PASS",
+  "reviewAuthority": "maintenance/iriya-manual-batch17-offset2-independent-review-c19-e8.json",
+  "reviewAuthoritySha256": "eb3086bd969f98b8ac09e89d36db4a9162b5e06ee4169fb652ba00618bf61303",
+  "repairReceipt": "maintenance/iriya-manual-batch17-offset2-review-repair-receipt.json",
+  "repairReceiptSha256": "53c67e12c3930d06a279b243a6708ae9209ddf8f78af270626c7d686d66a7bd0",
+  "recheckedLedger": "maintenance/iriya-manual-batch17-offset2-ledger.json",
+  "recheckedLedgerSha256": "2076d0bf02aa4d0147627dab444dd8520e1bb84aaa53b08481f2b2b220915fbd",
+  "coordinates": [
+    {
+      "canonicalIndex": 674,
+      "term": "理事不二",
+      "verdict": "PASS",
+      "finding": "Now REJECT with no buildable unit. The reason correctly distinguishes a generic principle/phenomena nonduality assertion from an independently deployed Chan case unit."
+    },
+    {
+      "canonicalIndex": 677,
+      "term": "途中善爲",
+      "verdict": "PASS",
+      "finding": "Now REJECT with no buildable unit. The reason correctly treats the phrase as an ordinary road-farewell contained in departure contexts, not a Zen-bent lexical deployment."
+    },
+    {
+      "canonicalIndex": 680,
+      "term": "世尊有密語、迦葉不覆藏",
+      "verdict": "PASS",
+      "finding": "KEEP/couplet is preserved and the forbidden wording is replaced by the corpus-grounded ‘raised as a case and investigation topic concerning open disclosure.’"
+    }
+  ],
+  "preservation": {
+    "receiptDeclaresExactlyThreeAuthorizedCoordinates": true,
+    "otherSevenDecisionObjectsExact": true,
+    "allIdentitiesCountsAndTwentyWitnessesPreserved": true,
+    "targetNonAuthorizedFieldsPreserved": true,
+    "summaryAfterMatchesDecisions": true
+  },
+  "mechanicalGates": {
+    "cheapAssociation": "PASS 10/10",
+    "fullZc": "PASS 10/10"
+  },
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false
+}

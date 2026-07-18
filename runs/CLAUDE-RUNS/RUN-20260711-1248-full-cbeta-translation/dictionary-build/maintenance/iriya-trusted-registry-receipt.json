@@ -1,8 +1,8 @@
 {
   "schemaVersion": "iriya-trusted-registry-receipt.v1",
-  "generatedUtc": "2026-07-18T01:02:37Z",
+  "generatedUtc": "2026-07-18T01:14:59Z",
   "registry": "maintenance/iriya-trusted-registry.json",
-  "registrySha256": "38e1086eec724b363265c291da57a72c03e16314a8223bdfddbb8e52c6691c5c",
+  "registrySha256": "735a581a9e832cdce4ff8c782c2a641b25e501740be19da9936e00d6dc331172",
   "sourceInputs": [
     {
       "role": "method-audit",
@@ -788,6 +788,66 @@
       "offset": 2,
       "path": "maintenance/iriya-manual-batch16-offset2-semantic-repair-focused-recheck-c19-e8.json",
       "sha256": "91e4a6081afd3a221adffbb9e22f7c2e3836627dafaae100266762da5be31be1"
+    },
+    {
+      "role": "batch17-ledger",
+      "offset": 0,
+      "path": "maintenance/iriya-manual-batch17-offset0-ledger.json",
+      "sha256": "d2ce25ee68f61dceec6b720ca12a8a2c441e036286c08f06713452d4094c6b3d"
+    },
+    {
+      "role": "batch17-review",
+      "offset": 0,
+      "path": "maintenance/iriya-manual-batch17-offset0-independent-cross-review-d7.json",
+      "sha256": "1860f7ecce41a4431c2201140ee941c27f799d6163f2f2b5f758c4e6e9530f83"
+    },
+    {
+      "role": "batch17-ledger",
+      "offset": 1,
+      "path": "maintenance/iriya-manual-batch17-offset1-ledger.json",
+      "sha256": "11cb75b7568c14d2c38ac705a77dd06749eb16179b968c328885d550982e02a7"
+    },
+    {
+      "role": "batch17-review",
+      "offset": 1,
+      "path": "maintenance/iriya-manual-batch17-offset1-independent-review-c19-e8.json",
+      "sha256": "b49bce130d06b8235f0f4acb9cce70e328993d7a9920cc2ae23994905b20ef8f"
+    },
+    {
+      "role": "batch17-repair",
+      "offset": 1,
+      "path": "maintenance/iriya-manual-batch17-offset1-reason-repair-receipt.json",
+      "sha256": "7f07798a7cf078c9ac4f7212d3314fa9f1179a525b09bd028a762127238ba0e1"
+    },
+    {
+      "role": "batch17-focusedRecheck",
+      "offset": 1,
+      "path": "maintenance/iriya-manual-batch17-offset1-reason-repair-focused-recheck-c19-e8.json",
+      "sha256": "94126e6fdbd780c17e963b924fb37b00e841ee276b405c42d1063f218571d6b7"
+    },
+    {
+      "role": "batch17-ledger",
+      "offset": 2,
+      "path": "maintenance/iriya-manual-batch17-offset2-ledger.json",
+      "sha256": "2076d0bf02aa4d0147627dab444dd8520e1bb84aaa53b08481f2b2b220915fbd"
+    },
+    {
+      "role": "batch17-review",
+      "offset": 2,
+      "path": "maintenance/iriya-manual-batch17-offset2-independent-review-c19-e8.json",
+      "sha256": "eb3086bd969f98b8ac09e89d36db4a9162b5e06ee4169fb652ba00618bf61303"
+    },
+    {
+      "role": "batch17-repair",
+      "offset": 2,
+      "path": "maintenance/iriya-manual-batch17-offset2-review-repair-receipt.json",
+      "sha256": "53c67e12c3930d06a279b243a6708ae9209ddf8f78af270626c7d686d66a7bd0"
+    },
+    {
+      "role": "batch17-focusedRecheck",
+      "offset": 2,
+      "path": "maintenance/iriya-manual-batch17-offset2-review-repair-focused-recheck-c19-e8.json",
+      "sha256": "74c0e0659209945f7a46ad27f2c94696b6ee1ace2775d3968316d416440dcd39"
     }
   ],
   "verification": {
@@ -1432,6 +1492,54 @@
         "repairSha256": "4ef4f4c10e5ee3f15eb5aa657d9418d630124f3bb9dfc0ce0dd18df90e97bc98",
         "focusedRecheck": "maintenance/iriya-manual-batch16-offset2-semantic-repair-focused-recheck-c19-e8.json",
         "focusedRecheckSha256": "91e4a6081afd3a221adffbb9e22f7c2e3836627dafaae100266762da5be31be1"
+      }
+    ]
+  },
+  "batch17Seal": {
+    "config": "maintenance/iriya-batch17-seal-config.json",
+    "configSha256": "ba50f1489b178d02f7c2b7f1e9c9e9c509538181dac835bfac97d6f433faac91",
+    "priorReceiptSha256": "3aa5506b63ae7b0a4c3c8ce39d6d8e85aa5b47e90f1a7ee61a4525e4c68ad056",
+    "priorRegistrySha256": "38e1086eec724b363265c291da57a72c03e16314a8223bdfddbb8e52c6691c5c",
+    "priorRegistryRows": 634,
+    "appendedRows": 30,
+    "finalRegistryRows": 664,
+    "priorObjectsPreservedExactly": true,
+    "canonicalQueueBindingsExact": true,
+    "exactEvidenceValidated": true,
+    "canonicalWorkProvenanceValidated": true,
+    "singleBatchedCountTraversal": true,
+    "publicationOrBuildAuthorization": false,
+    "queueAdvanced": false,
+    "lineageTouched": false,
+    "authorityChains": [
+      {
+        "offset": 0,
+        "ledger": "maintenance/iriya-manual-batch17-offset0-ledger.json",
+        "ledgerSha256": "d2ce25ee68f61dceec6b720ca12a8a2c441e036286c08f06713452d4094c6b3d",
+        "review": "maintenance/iriya-manual-batch17-offset0-independent-cross-review-d7.json",
+        "reviewSha256": "1860f7ecce41a4431c2201140ee941c27f799d6163f2f2b5f758c4e6e9530f83"
+      },
+      {
+        "offset": 1,
+        "ledger": "maintenance/iriya-manual-batch17-offset1-ledger.json",
+        "ledgerSha256": "11cb75b7568c14d2c38ac705a77dd06749eb16179b968c328885d550982e02a7",
+        "review": "maintenance/iriya-manual-batch17-offset1-independent-review-c19-e8.json",
+        "reviewSha256": "b49bce130d06b8235f0f4acb9cce70e328993d7a9920cc2ae23994905b20ef8f",
+        "repair": "maintenance/iriya-manual-batch17-offset1-reason-repair-receipt.json",
+        "repairSha256": "7f07798a7cf078c9ac4f7212d3314fa9f1179a525b09bd028a762127238ba0e1",
+        "focusedRecheck": "maintenance/iriya-manual-batch17-offset1-reason-repair-focused-recheck-c19-e8.json",
+        "focusedRecheckSha256": "94126e6fdbd780c17e963b924fb37b00e841ee276b405c42d1063f218571d6b7"
+      },
+      {
+        "offset": 2,
+        "ledger": "maintenance/iriya-manual-batch17-offset2-ledger.json",
+        "ledgerSha256": "2076d0bf02aa4d0147627dab444dd8520e1bb84aaa53b08481f2b2b220915fbd",
+        "review": "maintenance/iriya-manual-batch17-offset2-independent-review-c19-e8.json",
+        "reviewSha256": "eb3086bd969f98b8ac09e89d36db4a9162b5e06ee4169fb652ba00618bf61303",
+        "repair": "maintenance/iriya-manual-batch17-offset2-review-repair-receipt.json",
+        "repairSha256": "53c67e12c3930d06a279b243a6708ae9209ddf8f78af270626c7d686d66a7bd0",
+        "focusedRecheck": "maintenance/iriya-manual-batch17-offset2-review-repair-focused-recheck-c19-e8.json",
+        "focusedRecheckSha256": "74c0e0659209945f7a46ad27f2c94696b6ee1ace2775d3968316d416440dcd39"
       }
     ]
   }

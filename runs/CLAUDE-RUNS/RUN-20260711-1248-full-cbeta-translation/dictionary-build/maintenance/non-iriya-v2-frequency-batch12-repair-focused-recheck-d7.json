@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "non-iriya-frequency-semantic-repair-focused-recheck.v1",
+  "generatedUtc": "2026-07-18T01:15:01Z",
+  "reviewer": "d7",
+  "reviewQualification": "Independent coordinate-bound focused semantic and byte-preservation recheck.",
+  "reviewedLedger": "maintenance/non-iriya-v2-frequency-batch12-semantic-ledger-b6.json",
+  "reviewedLedgerSha256": "c530915efe8a947528c69ab4aadb5b881a84659016a26599f14e2207c7962161",
+  "repairReceipt": "maintenance/non-iriya-v2-frequency-batch12-repair-receipt-root.json",
+  "repairReceiptSha256": "d9f93d05a53637f330382813107534823b6357b67dd4b3e2b91796e1480b9612",
+  "rejectingReview": "maintenance/non-iriya-v2-frequency-batch12-semantic-independent-cross-review-d7.json",
+  "rejectingReviewSha256": "700dd1100e5bb10c17a6ac531ed9b57bcde237074c9436b7cc0b403094725533",
+  "overallVerdict": "PASS",
+  "coordinateReview": {
+    "verdict": "PASS",
+    "batchOrdinal": 23,
+    "term": "靈雲見桃",
+    "disposition": "REJECT",
+    "unit": null,
+    "reason": "Clipped prefix of the complete named-case forms 靈雲見桃花 and 靈雲見桃花悟道話; the case analysis belongs to the parent phrase.",
+    "bothPreservedWitnessesContinueImmediatelyWith花": true,
+    "semanticClosureCorrect": true
+  },
+  "scopeReview": {
+    "verdict": "PASS",
+    "reconstructedPreRepairLedgerSha256": "b2651a03bc4dd889a9686f4c9887815b0c106b504b0a5d4ec10693252d5872a6",
+    "expectedPreRepairLedgerSha256": "b2651a03bc4dd889a9686f4c9887815b0c106b504b0a5d4ec10693252d5872a6",
+    "byteExactReconstruction": true,
+    "changedDecisionObjects": 1,
+    "otherTwentyFourDecisionObjectsPreservedExactly": true,
+    "allEvidenceCountsNestedFamiliesAndIdentitiesPreserved": true
+  },
+  "summaryReview": {
+    "verdict": "PASS",
+    "KEEP": 14,
+    "REJECT": 11,
+    "PROVISIONAL": 0,
+    "arithmeticAndSemanticClosureAgree": true
+  },
+  "requiredRevisions": [],
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false,
+  "reviewedLedgerMutated": false
+}

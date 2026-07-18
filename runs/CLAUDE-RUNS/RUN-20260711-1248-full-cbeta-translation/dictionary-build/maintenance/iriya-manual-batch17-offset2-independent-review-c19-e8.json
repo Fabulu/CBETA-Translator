@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "iriya-manual-independent-review.v1",
+  "reviewer": "c19-e8",
+  "decision": "REVISE",
+  "reviewedSelection": "maintenance/iriya-manual-batch17-offset2-selection.json",
+  "reviewedSelectionSha256": "8971072e88b2e4a45550bd0d70b76db1faea1291a39b3dd435535050c4e05eb4",
+  "reviewedLedger": "maintenance/iriya-manual-batch17-offset2-ledger.json",
+  "reviewedLedgerSha256": "6bb8938b67c0041b835d0b4dd8d21efcb48d2339d221c64888260bf4927c8ca7",
+  "identityReview": {
+    "verdict": "PASS",
+    "finding": "All ten queue/selection/ledger tuples are exact, all canonical indexes are 2 modulo 3, and all ids are absent from the current trusted registry and the eleven prior offset2 author ledgers."
+  },
+  "mechanicalReview": {
+    "cheapValidator": "PASS 10/10",
+    "fullValidator": "PASS 10/10",
+    "counts": "PASS; ten exact hit/file/distinct-work triples reproduce",
+    "evidence": "PASS; 20/20 windows verify at stored anchors with exact source titles and canonical work IDs, and every pair uses distinct works",
+    "variants": "PASS; punctuation and traditional/simplified graph normalizations are explicit",
+    "units": "PASS mechanically; semantic dispositions below require two changes"
+  },
+  "semanticReview": {
+    "verdict": "REVISE 3 rows; PASS 7",
+    "rows": [
+      {
+        "canonicalIndex": 674,
+        "term": "理事不二",
+        "verdict": "REVISE to REJECT",
+        "finding": "Both selected witnesses reproduce the same Guishan doctrinal exposition. The phrase states generic principle/phenomena nonduality but is not itself used as an answer, verdict, capping phrase, test-question, or raised case. This is doctrinal containment, not an independently observable Chan deployment.",
+        "requiredRepair": "Set disposition REJECT and unit generic doctrinal formula; state that corpus frequency and master authorship do not by themselves cross the deployment gate. Preserve counts and evidence as the rejection proof."
+      },
+      {
+        "canonicalIndex": 677,
+        "term": "途中善為",
+        "verdict": "REVISE to REJECT",
+        "finding": "The phrase is an ordinary farewell (‘fare well on the road’). One master says it to a departing monk and another uses it at the end of a release sermon, but neither bends its lexical meaning or raises it for adjudication. Calling ordinary closing placement a special Chan redeployment would make every conventional valediction eligible.",
+        "requiredRepair": "Set disposition REJECT and unit ordinary valediction/containment. Preserve counts and evidence as the negative proof."
+      },
+      {
+        "canonicalIndex": 680,
+        "term": "世尊有密語、迦葉不覆藏",
+        "verdict": "REVISE reason only",
+        "finding": "The KEEP/couplet ruling and cases are strong, but the reason contains the globally forbidden translation word ‘meditation.’ The evidence shows the formula raised as a case and continuous investigation topic concerning open disclosure.",
+        "requiredRepair": "Replace ‘meditation topic’ with corpus-grounded language such as ‘raised case and investigation topic’; preserve disposition, unit, counts, and witnesses."
+      }
+    ],
+    "passingCanonicalIndexes": [659, 662, 665, 668, 671, 683, 686]
+  },
+  "summary": {
+    "PASS": 7,
+    "REVISE": 3,
+    "semanticRejectionsRequired": 2,
+    "reasonOnlyRepairsRequired": 1,
+    "evidenceOrCountRepairsRequired": 0
+  },
+  "authorLedgerMutated": false,
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false
+}

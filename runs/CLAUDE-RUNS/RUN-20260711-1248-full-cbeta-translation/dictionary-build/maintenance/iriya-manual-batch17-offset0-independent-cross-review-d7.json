@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "iriya-manual-independent-cross-review-v1",
+  "generatedUtc": "2026-07-18T01:10:39Z",
+  "reviewer": "d7",
+  "reviewQualification": "Independent queue, exclusion, full-case semantic, unit, variant, evidence, count, and work-independence review.",
+  "reviewedLedger": "maintenance/iriya-manual-batch17-offset0-ledger.json",
+  "reviewedLedgerSha256": "d2ce25ee68f61dceec6b720ca12a8a2c441e036286c08f06713452d4094c6b3d",
+  "selection": "maintenance/iriya-manual-batch17-offset0-selection.json",
+  "selectionSha256": "8e651c53f32b385aa69b4c7de1f9d2a2ef672ed896886281809ef3c86144d4d7",
+  "overallVerdict": "PASS",
+  "identityAndExclusionReview": {
+    "verdict": "PASS",
+    "authoritativeQueueTuplesExact": true,
+    "selectionMatchesLedgerExactly": true,
+    "canonicalIndexEqualsQueueNumberMinusOne": true,
+    "canonicalIndexModulo3Equals0": true,
+    "exactlyNextTen": true,
+    "absentLive604Registry": true,
+    "absentAllEightPriorOffset0AuthorLedgersThroughBatch16": true
+  },
+  "semanticDispositionAndUnitReview": {
+    "verdict": "PASS",
+    "fullCasesRead": 20,
+    "KEEP": 10,
+    "components": [
+      "烹佛烹祖",
+      "空腹高心",
+      "驢前馬後漢",
+      "七零八落",
+      "善爲道路",
+      "成群作隊",
+      "寒灰枯木",
+      "滅胡種族",
+      "邪法難扶"
+    ],
+    "couplets": ["此夜一輪滿、清光何處無"],
+    "requiredRevisions": []
+  },
+  "variantReview": {
+    "verdict": "PASS",
+    "everyRowHasExplicitFormResolution": true,
+    "善爲道路": "Printed 爲 is explicitly normalized to the exact corpus query 善為道路.",
+    "此夜一輪滿、清光何處無": "The queue enumeration comma is explicitly normalized to the attested full comma while preserving the complete couplet.",
+    "otherRowsExactGraphForm": true
+  },
+  "mechanicalReview": {
+    "verdict": "PASS",
+    "cheapValidator": {"status": "PASS", "failureCount": 0},
+    "fullValidator": {"status": "PASS", "failureCount": 0},
+    "exactCountTriplesReproduced": 10,
+    "evidenceWindowsVerified": 20,
+    "allLineBoundsTitlesAndCanonicalWorkIdsReproduced": true,
+    "twoCanonicalDistinctWorksPerDecision": true
+  },
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false,
+  "reviewedLedgerMutated": false
+}

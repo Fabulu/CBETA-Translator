@@ -1,0 +1,128 @@
+{
+  "schemaVersion": "iriya-author-selection.v1",
+  "generatedUtc": "2026-07-18T01:07:55Z",
+  "batch": 17,
+  "offset": 1,
+  "mode": "FROZEN QUEUE TUPLES BEFORE SEMANTIC READING",
+  "authoritativeQueue": "IRIYA_SAYINGS_QUEUE.md",
+  "authoritativeQueueSha256": "162592a97f6a483b8f1c944ca6746bdafd0b99c6d4990b61db3e288ed5edc8be",
+  "trustedRegistry": "maintenance/iriya-trusted-registry.json",
+  "trustedRegistryRows": 634,
+  "trustedRegistrySha256": "38e1086eec724b363265c291da57a72c03e16314a8223bdfddbb8e52c6691c5c",
+  "excludedPriorAuthorLedgers": [
+    {
+      "path": "maintenance/iriya-manual-batch10-offset1-ledger.json",
+      "sha256": "a76d85f4d3f8e4175336310c5a03b9359c54d3f2ad22189875d86115d986fed6"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch11-offset1-ledger.json",
+      "sha256": "68a6034242d6831da719aec1b4d69f90005391e61854622badbf9ff6f97be840"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch12-offset1-ledger.json",
+      "sha256": "28d11d4fd4b4ead00e2f386632405d8cc7f9a4d11ea5622f1c82c304cb97f6ce"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch13-offset1-ledger.json",
+      "sha256": "2afcf18a931e544e857b001e5b00b016f89e6717bc84bff80b6724127b739f1e"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch14-offset1-ledger.json",
+      "sha256": "b2fe5d135fe937a606ae32f0f5ce88a25fb0b8c80232d47cdad69c567c505731"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch15-offset1-ledger.json",
+      "sha256": "074c46e1717d66061a4e69a455d70fcc5266d514797b72754a984d486360863c"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch16-offset1-ledger.json",
+      "sha256": "ab69b821bbdc4708c80a574ce1acb99518602144eab4a5f2fa9421e0d7ebd585"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch9-offset1-ledger.json",
+      "sha256": "ad01d444c37259e5679dfbd7f54638f49d0abe647ffe515198148012abe0e415"
+    }
+  ],
+  "rows": [
+    {
+      "queueNumber": 653,
+      "canonicalIndex": 652,
+      "id": "t_7c1795387964",
+      "term": "運籌帷幄",
+      "query": "運籌帷幄"
+    },
+    {
+      "queueNumber": 656,
+      "canonicalIndex": 655,
+      "id": "t_7a3d6a5c8494",
+      "term": "鮎魚上竹竿",
+      "query": "鮎魚上竹竿"
+    },
+    {
+      "queueNumber": 659,
+      "canonicalIndex": 658,
+      "id": "t_206907382540",
+      "term": "五逆聞雷",
+      "query": "五逆聞雷"
+    },
+    {
+      "queueNumber": 662,
+      "canonicalIndex": 661,
+      "id": "t_e3e77e0eb98e",
+      "term": "將謂胡鬚赤、更有赤鬚胡",
+      "query": "將謂胡鬚赤，更有赤鬚胡"
+    },
+    {
+      "queueNumber": 665,
+      "canonicalIndex": 664,
+      "id": "t_fc84ee6f5aec",
+      "term": "一場狼藉",
+      "query": "一場狼藉"
+    },
+    {
+      "queueNumber": 668,
+      "canonicalIndex": 667,
+      "id": "t_9e4626662aaf",
+      "term": "通身是手眼",
+      "query": "通身是手眼"
+    },
+    {
+      "queueNumber": 671,
+      "canonicalIndex": 670,
+      "id": "t_db099bbb62c0",
+      "term": "到頭霜夜月、任運落前溪",
+      "query": "到頭霜夜月，任運落前溪"
+    },
+    {
+      "queueNumber": 674,
+      "canonicalIndex": 673,
+      "id": "t_46a7b2d4605d",
+      "term": "獨掌不浪鳴",
+      "query": "獨掌不浪鳴"
+    },
+    {
+      "queueNumber": 677,
+      "canonicalIndex": 676,
+      "id": "t_45689be4e637",
+      "term": "船子下揚州",
+      "query": "船子下揚州"
+    },
+    {
+      "queueNumber": 680,
+      "canonicalIndex": 679,
+      "id": "t_77cbfd1044e2",
+      "term": "出頭天外看、誰是我般人",
+      "query": "出頭天外看，誰是我般人"
+    }
+  ],
+  "assertions": {
+    "exactlyNextTen": true,
+    "canonicalIndexEqualsQueueNumberMinusOne": true,
+    "canonicalIndexModulo3Equals1": true,
+    "absentLive634Registry": true,
+    "absentAllPriorOffset1AuthorLedgersThroughBatch16": true
+  },
+  "authorityMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false
+}
