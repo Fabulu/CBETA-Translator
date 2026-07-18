@@ -1,0 +1,72 @@
+{
+  "schemaVersion": "iriya-manual-independent-cross-review-v1",
+  "generatedUtc": "2026-07-18T01:32:00Z",
+  "reviewer": "d7",
+  "reviewQualification": "Independent queue, exclusion, full-case semantic, unit, variant, evidence, count, and work-independence review.",
+  "reviewedLedger": "maintenance/iriya-manual-batch18-offset1-ledger.json",
+  "reviewedLedgerSha256": "29cd8769e224463d2e1a6c5a94d80e43cb1f0390352aabd33693712aba9cab22",
+  "selection": "maintenance/iriya-manual-batch18-offset1-selection.json",
+  "selectionSha256": "a07049b7d47b38d92c37d6c4bbe60ab49d15bac70105e30957b8726ab32e0379",
+  "overallVerdict": "PASS",
+  "identityAndExclusionReview": {
+    "verdict": "PASS",
+    "authoritativeQueueTuplesExact": true,
+    "selectionMatchesLedgerExactly": true,
+    "canonicalIndexEqualsQueueNumberMinusOne": true,
+    "canonicalIndexModulo3Equals1": true,
+    "exactlyNextTen": true,
+    "absentLive664Registry": true,
+    "absentAllNinePriorOffset1AuthorLedgersThroughBatch17": true,
+    "allNineRecordedPriorLedgerHashesReproduced": true
+  },
+  "semanticDispositionAndUnitReview": {
+    "verdict": "PASS",
+    "fullCasesRead": 20,
+    "KEEP": 10,
+    "components": [
+      "唱拍相隨",
+      "一場好笑",
+      "別是一家春",
+      "放憨作麼",
+      "美食不中飽人喫",
+      "明破即不堪"
+    ],
+    "couplets": [
+      "禹力不到處、河聲流向西",
+      "衆生顛倒、迷己逐物",
+      "有條攀條、無條攀例",
+      "不是知音者、徒勞話歳寒"
+    ],
+    "requiredRevisions": []
+  },
+  "variantReview": {
+    "verdict": "PASS",
+    "everyRowHasExplicitFormResolution": true,
+    "禹力不到處、河聲流向西": "The queue enumeration separator is explicitly normalized to the attested full comma.",
+    "衆生顛倒、迷己逐物": "Printed 衆 and the enumeration separator are explicitly normalized to corpus 眾 and the attested full comma.",
+    "有條攀條、無條攀例": "The queue enumeration separator is explicitly normalized to the attested full comma.",
+    "不是知音者、徒勞話歳寒": "Printed 歳 and the enumeration separator are explicitly normalized to corpus 歲 and the attested full comma.",
+    "otherRowsExactGraphForm": true
+  },
+  "mechanicalReview": {
+    "verdict": "PASS",
+    "cheapValidator": {
+      "status": "PASS",
+      "failureCount": 0
+    },
+    "fullValidator": {
+      "status": "PASS",
+      "failureCount": 0
+    },
+    "exactCountTriplesReproduced": 10,
+    "evidenceWindowsVerified": 20,
+    "allLineBoundsTitlesAndCanonicalWorkIdsReproduced": true,
+    "twoCanonicalDistinctWorksPerDecision": true
+  },
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false,
+  "reviewedLedgerMutated": false
+}

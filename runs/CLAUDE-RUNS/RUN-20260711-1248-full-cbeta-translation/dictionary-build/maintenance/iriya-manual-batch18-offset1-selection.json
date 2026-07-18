@@ -1,0 +1,132 @@
+{
+  "schemaVersion": "iriya-author-selection.v1",
+  "generatedUtc": "2026-07-18T01:17:59Z",
+  "batch": 18,
+  "offset": 1,
+  "mode": "FROZEN QUEUE TUPLES BEFORE SEMANTIC READING",
+  "authoritativeQueue": "IRIYA_SAYINGS_QUEUE.md",
+  "authoritativeQueueSha256": "162592a97f6a483b8f1c944ca6746bdafd0b99c6d4990b61db3e288ed5edc8be",
+  "trustedRegistry": "maintenance/iriya-trusted-registry.json",
+  "trustedRegistryRows": 664,
+  "trustedRegistrySha256": "735a581a9e832cdce4ff8c782c2a641b25e501740be19da9936e00d6dc331172",
+  "excludedPriorAuthorLedgers": [
+    {
+      "path": "maintenance/iriya-manual-batch10-offset1-ledger.json",
+      "sha256": "a76d85f4d3f8e4175336310c5a03b9359c54d3f2ad22189875d86115d986fed6"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch11-offset1-ledger.json",
+      "sha256": "68a6034242d6831da719aec1b4d69f90005391e61854622badbf9ff6f97be840"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch12-offset1-ledger.json",
+      "sha256": "28d11d4fd4b4ead00e2f386632405d8cc7f9a4d11ea5622f1c82c304cb97f6ce"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch13-offset1-ledger.json",
+      "sha256": "2afcf18a931e544e857b001e5b00b016f89e6717bc84bff80b6724127b739f1e"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch14-offset1-ledger.json",
+      "sha256": "b2fe5d135fe937a606ae32f0f5ce88a25fb0b8c80232d47cdad69c567c505731"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch15-offset1-ledger.json",
+      "sha256": "074c46e1717d66061a4e69a455d70fcc5266d514797b72754a984d486360863c"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch16-offset1-ledger.json",
+      "sha256": "ab69b821bbdc4708c80a574ce1acb99518602144eab4a5f2fa9421e0d7ebd585"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch17-offset1-ledger.json",
+      "sha256": "11cb75b7568c14d2c38ac705a77dd06749eb16179b968c328885d550982e02a7"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch9-offset1-ledger.json",
+      "sha256": "ad01d444c37259e5679dfbd7f54638f49d0abe647ffe515198148012abe0e415"
+    }
+  ],
+  "rows": [
+    {
+      "queueNumber": 683,
+      "canonicalIndex": 682,
+      "id": "t_91920ca25504",
+      "term": "禹力不到處、河聲流向西",
+      "query": "禹力不到處，河聲流向西"
+    },
+    {
+      "queueNumber": 686,
+      "canonicalIndex": 685,
+      "id": "t_f1dc8e02b6c5",
+      "term": "唱拍相隨",
+      "query": "唱拍相隨"
+    },
+    {
+      "queueNumber": 689,
+      "canonicalIndex": 688,
+      "id": "t_e86441cb944d",
+      "term": "衆生顛倒、迷己逐物",
+      "query": "眾生顛倒，迷己逐物"
+    },
+    {
+      "queueNumber": 692,
+      "canonicalIndex": 691,
+      "id": "t_3f0781624967",
+      "term": "一場好笑",
+      "query": "一場好笑"
+    },
+    {
+      "queueNumber": 695,
+      "canonicalIndex": 694,
+      "id": "t_f6a5b328957e",
+      "term": "別是一家春",
+      "query": "別是一家春"
+    },
+    {
+      "queueNumber": 698,
+      "canonicalIndex": 697,
+      "id": "t_b3e9a3d88436",
+      "term": "放憨作麼",
+      "query": "放憨作麼"
+    },
+    {
+      "queueNumber": 701,
+      "canonicalIndex": 700,
+      "id": "t_dc54e1b5abda",
+      "term": "美食不中飽人喫",
+      "query": "美食不中飽人喫"
+    },
+    {
+      "queueNumber": 704,
+      "canonicalIndex": 703,
+      "id": "t_8ac1a4fb9731",
+      "term": "有條攀條、無條攀例",
+      "query": "有條攀條，無條攀例"
+    },
+    {
+      "queueNumber": 707,
+      "canonicalIndex": 706,
+      "id": "t_abbbdcb9311d",
+      "term": "不是知音者、徒勞話歳寒",
+      "query": "不是知音者，徒勞話歲寒"
+    },
+    {
+      "queueNumber": 710,
+      "canonicalIndex": 709,
+      "id": "t_c7c38b3cd5b7",
+      "term": "明破即不堪",
+      "query": "明破即不堪"
+    }
+  ],
+  "assertions": {
+    "exactlyNextTen": true,
+    "canonicalIndexEqualsQueueNumberMinusOne": true,
+    "canonicalIndexModulo3Equals1": true,
+    "absentLive664Registry": true,
+    "absentAllPriorOffset1AuthorLedgersThroughBatch17": true
+  },
+  "authorityMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false
+}

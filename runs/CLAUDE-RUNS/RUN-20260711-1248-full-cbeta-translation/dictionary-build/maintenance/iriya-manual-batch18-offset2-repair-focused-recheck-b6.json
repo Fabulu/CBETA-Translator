@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "iriya-manual-repair-focused-recheck.v1",
+  "reviewer": "b6",
+  "decision": "PASS",
+  "reviewArtifact": "maintenance/iriya-manual-batch18-offset2-independent-review-c19-e8.json",
+  "reviewArtifactSha256": "6fc99dab02541d6c8419d9a5ecb3cfa5180209cd75f61e745d0b5dcc7e2fc024",
+  "repairReceipt": "maintenance/iriya-manual-batch18-offset2-review-repair-receipt-c19-e8.json",
+  "repairReceiptSha256": "229bde19bff577f3997fdc06c0e61d2ee3e51bdddecfae32c480bc64b42a0d73",
+  "ledger": "maintenance/iriya-manual-batch18-offset2-ledger.json",
+  "ledgerSha256Before": "dda31b722fccdb77d6d70d15e1411c28c051a1720834dc3a4a5584adcb0964bc",
+  "ledgerSha256After": "43bf589375b8960e4a1668a5884d704a0978ca64021c3b933aac0345dd53bc4f",
+  "coordinate": {"canonicalIndex": 707, "id": "t_fb70c8507a9f", "term": "撈天摸地"},
+  "checks": {
+    "onlyDeclaredReasonChanged": true,
+    "preRepairLedgerReconstructedExactly": true,
+    "literalImageReported": true,
+    "twoDeploymentsKeptSeparate": true,
+    "unsupportedCollapsedAbstractionRemoved": true,
+    "dispositionComponentCountsEvidenceFormAndOtherRowsUnchanged": true,
+    "cheapValidator": "PASS 10/10; 0 failures",
+    "fullValidator": "PASS 10/10; 0 failures"
+  },
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false,
+  "status": "FOCUSED_RECHECK_PASS"
+}

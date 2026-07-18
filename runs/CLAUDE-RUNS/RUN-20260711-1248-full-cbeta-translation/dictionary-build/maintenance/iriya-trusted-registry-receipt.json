@@ -1,8 +1,8 @@
 {
   "schemaVersion": "iriya-trusted-registry-receipt.v1",
-  "generatedUtc": "2026-07-18T01:14:59Z",
+  "generatedUtc": "2026-07-18T01:30:45Z",
   "registry": "maintenance/iriya-trusted-registry.json",
-  "registrySha256": "735a581a9e832cdce4ff8c782c2a641b25e501740be19da9936e00d6dc331172",
+  "registrySha256": "75370e36a4747783282a138c3a14b31175d4dbe8dbf407495c559737f425e115",
   "sourceInputs": [
     {
       "role": "method-audit",
@@ -848,6 +848,66 @@
       "offset": 2,
       "path": "maintenance/iriya-manual-batch17-offset2-review-repair-focused-recheck-c19-e8.json",
       "sha256": "74c0e0659209945f7a46ad27f2c94696b6ee1ace2775d3968316d416440dcd39"
+    },
+    {
+      "role": "batch18-ledger",
+      "offset": 0,
+      "path": "maintenance/iriya-manual-batch18-offset0-ledger.json",
+      "sha256": "669c6bc771ad52fdbdb44e97e4324d381b7cff79671f3efb8e9922f3f24a8e85"
+    },
+    {
+      "role": "batch18-review",
+      "offset": 0,
+      "path": "maintenance/iriya-manual-batch18-offset0-independent-review-c19-e8.json",
+      "sha256": "821884a4002500b440717434cc9aeb9bde7b53c1af9213f127eb0784c896c3f3"
+    },
+    {
+      "role": "batch18-repair",
+      "offset": 0,
+      "path": "maintenance/iriya-manual-batch18-offset0-reason-repair-receipt-d7.json",
+      "sha256": "61f81c739c7237f1bf9229e4addbaf04b1cd82c50998295f76fb448174c9323a"
+    },
+    {
+      "role": "batch18-focusedRecheck",
+      "offset": 0,
+      "path": "maintenance/iriya-manual-batch18-offset0-reason-repair-focused-recheck-c19-e8.json",
+      "sha256": "f2a57a265359fab9cfce1f42a0300079e9c5b54ec12037cd2dcf5c29f7338736"
+    },
+    {
+      "role": "batch18-ledger",
+      "offset": 1,
+      "path": "maintenance/iriya-manual-batch18-offset1-ledger.json",
+      "sha256": "29cd8769e224463d2e1a6c5a94d80e43cb1f0390352aabd33693712aba9cab22"
+    },
+    {
+      "role": "batch18-review",
+      "offset": 1,
+      "path": "maintenance/iriya-manual-batch18-offset1-independent-cross-review-d7.json",
+      "sha256": "c5ca42efae35c9d92abd937e5b9c36865a823fe2400b1a59f9d284d5f1594c9c"
+    },
+    {
+      "role": "batch18-ledger",
+      "offset": 2,
+      "path": "maintenance/iriya-manual-batch18-offset2-ledger.json",
+      "sha256": "43bf589375b8960e4a1668a5884d704a0978ca64021c3b933aac0345dd53bc4f"
+    },
+    {
+      "role": "batch18-review",
+      "offset": 2,
+      "path": "maintenance/iriya-manual-batch18-offset2-independent-review-c19-e8.json",
+      "sha256": "6fc99dab02541d6c8419d9a5ecb3cfa5180209cd75f61e745d0b5dcc7e2fc024"
+    },
+    {
+      "role": "batch18-repair",
+      "offset": 2,
+      "path": "maintenance/iriya-manual-batch18-offset2-review-repair-receipt-c19-e8.json",
+      "sha256": "229bde19bff577f3997fdc06c0e61d2ee3e51bdddecfae32c480bc64b42a0d73"
+    },
+    {
+      "role": "batch18-focusedRecheck",
+      "offset": 2,
+      "path": "maintenance/iriya-manual-batch18-offset2-repair-focused-recheck-b6.json",
+      "sha256": "498e2b2d1df265f75695246cf9aa6e74677ca764d4577857e3f5f510c109dfda"
     }
   ],
   "verification": {
@@ -1540,6 +1600,54 @@
         "repairSha256": "53c67e12c3930d06a279b243a6708ae9209ddf8f78af270626c7d686d66a7bd0",
         "focusedRecheck": "maintenance/iriya-manual-batch17-offset2-review-repair-focused-recheck-c19-e8.json",
         "focusedRecheckSha256": "74c0e0659209945f7a46ad27f2c94696b6ee1ace2775d3968316d416440dcd39"
+      }
+    ]
+  },
+  "batch18Seal": {
+    "config": "maintenance/iriya-batch18-seal-config.json",
+    "configSha256": "31aebec9d914e718958b4f4697ede1ecdeebc48b283a3a7a9f33156809fcf8cc",
+    "priorReceiptSha256": "a794878fe4f692c1031d279ddb40af02f5f3581e229f3cba0ec19460f6c3ae26",
+    "priorRegistrySha256": "735a581a9e832cdce4ff8c782c2a641b25e501740be19da9936e00d6dc331172",
+    "priorRegistryRows": 664,
+    "appendedRows": 30,
+    "finalRegistryRows": 694,
+    "priorObjectsPreservedExactly": true,
+    "canonicalQueueBindingsExact": true,
+    "exactEvidenceValidated": true,
+    "canonicalWorkProvenanceValidated": true,
+    "singleBatchedCountTraversal": true,
+    "publicationOrBuildAuthorization": false,
+    "queueAdvanced": false,
+    "lineageTouched": false,
+    "authorityChains": [
+      {
+        "offset": 0,
+        "ledger": "maintenance/iriya-manual-batch18-offset0-ledger.json",
+        "ledgerSha256": "669c6bc771ad52fdbdb44e97e4324d381b7cff79671f3efb8e9922f3f24a8e85",
+        "review": "maintenance/iriya-manual-batch18-offset0-independent-review-c19-e8.json",
+        "reviewSha256": "821884a4002500b440717434cc9aeb9bde7b53c1af9213f127eb0784c896c3f3",
+        "repair": "maintenance/iriya-manual-batch18-offset0-reason-repair-receipt-d7.json",
+        "repairSha256": "61f81c739c7237f1bf9229e4addbaf04b1cd82c50998295f76fb448174c9323a",
+        "focusedRecheck": "maintenance/iriya-manual-batch18-offset0-reason-repair-focused-recheck-c19-e8.json",
+        "focusedRecheckSha256": "f2a57a265359fab9cfce1f42a0300079e9c5b54ec12037cd2dcf5c29f7338736"
+      },
+      {
+        "offset": 1,
+        "ledger": "maintenance/iriya-manual-batch18-offset1-ledger.json",
+        "ledgerSha256": "29cd8769e224463d2e1a6c5a94d80e43cb1f0390352aabd33693712aba9cab22",
+        "review": "maintenance/iriya-manual-batch18-offset1-independent-cross-review-d7.json",
+        "reviewSha256": "c5ca42efae35c9d92abd937e5b9c36865a823fe2400b1a59f9d284d5f1594c9c"
+      },
+      {
+        "offset": 2,
+        "ledger": "maintenance/iriya-manual-batch18-offset2-ledger.json",
+        "ledgerSha256": "43bf589375b8960e4a1668a5884d704a0978ca64021c3b933aac0345dd53bc4f",
+        "review": "maintenance/iriya-manual-batch18-offset2-independent-review-c19-e8.json",
+        "reviewSha256": "6fc99dab02541d6c8419d9a5ecb3cfa5180209cd75f61e745d0b5dcc7e2fc024",
+        "repair": "maintenance/iriya-manual-batch18-offset2-review-repair-receipt-c19-e8.json",
+        "repairSha256": "229bde19bff577f3997fdc06c0e61d2ee3e51bdddecfae32c480bc64b42a0d73",
+        "focusedRecheck": "maintenance/iriya-manual-batch18-offset2-repair-focused-recheck-b6.json",
+        "focusedRecheckSha256": "498e2b2d1df265f75695246cf9aa6e74677ca764d4577857e3f5f510c109dfda"
       }
     ]
   }

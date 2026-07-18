@@ -1,0 +1,144 @@
+{
+  "schemaVersion": "iriya-author-selection.v1",
+  "generatedUtc": "2026-07-18T01:16:11Z",
+  "batch": 18,
+  "offset": 2,
+  "mode": "FROZEN QUEUE TUPLES BEFORE SEMANTIC READING",
+  "authoritativeQueue": "IRIYA_SAYINGS_QUEUE.md",
+  "authoritativeQueueSha256": "162592a97f6a483b8f1c944ca6746bdafd0b99c6d4990b61db3e288ed5edc8be",
+  "trustedRegistry": "maintenance/iriya-trusted-registry.json",
+  "trustedRegistryRows": 664,
+  "trustedRegistrySha256": "735a581a9e832cdce4ff8c782c2a641b25e501740be19da9936e00d6dc331172",
+  "excludedPriorAuthorLedgers": [
+    {
+      "path": "maintenance/iriya-manual-batch10-offset2-ledger.json",
+      "sha256": "39bb2bd10f9da8d7ee07923c1d288e3131d3e94c42f57b627cff4001ab1f228d"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch11-offset2-ledger.json",
+      "sha256": "92ff22c9e3bee1bdcdb904f10072128950449ae148288496a1ea239ef8cb852f"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch12-offset2-ledger.json",
+      "sha256": "5cb52637203b18aa50504c65f65e16d76aaf01e3594c4b73351279ce62c70823"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch13-offset2-ledger.json",
+      "sha256": "f12508b25d09406313909d9802e0fa95a560b16349ce3717e5ba546277d3de80"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch14-offset2-ledger.json",
+      "sha256": "ab0f3bb625f4aa9e5d5fc4648f80b120b6cef9a8e476ebc09c8657f5f53622df"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch15-offset2-ledger.json",
+      "sha256": "32dd3a9842c92f998c8512a6597cb0490c4f706c1e0beebc7217685356373f89"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch16-offset2-ledger.json",
+      "sha256": "e51aae68d88fed9f178faa199a78342b9156d84c24051a00a065662df9996bc2"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch17-offset2-ledger.json",
+      "sha256": "2076d0bf02aa4d0147627dab444dd8520e1bb84aaa53b08481f2b2b220915fbd"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch6-offset2-ledger.json",
+      "sha256": "f3dae2d7942168dcf3f817099e87507d60aa6992d785bc897488cd2a4d178326"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch7-offset2-ledger.json",
+      "sha256": "72947067eccfd0298a3ee63ffa9eae3fa9c24bfee5885cc958e7ee5dcea25625"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch8-offset2-ledger.json",
+      "sha256": "27e1d2bb499b2c9fd8dcb8ebec933c0e5362a9d3bbc4fc88a1c47cc1a16f4f20"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch9-offset2-ledger.json",
+      "sha256": "c2b0b631d7e33cb4e4380020b59d0e402808aebe2a911245da56e6a319ebb49f"
+    }
+  ],
+  "rows": [
+    {
+      "queueNumber": 690,
+      "canonicalIndex": 689,
+      "id": "t_a52e25e80ab4",
+      "term": "懸羊頭、賣狗肉",
+      "query": "懸羊頭，賣狗肉"
+    },
+    {
+      "queueNumber": 693,
+      "canonicalIndex": 692,
+      "id": "t_72d4172f743b",
+      "term": "七凹八凸",
+      "query": "七凹八凸"
+    },
+    {
+      "queueNumber": 696,
+      "canonicalIndex": 695,
+      "id": "t_da554fbbd7bc",
+      "term": "天下衲僧跳不出",
+      "query": "天下衲僧跳不出"
+    },
+    {
+      "queueNumber": 699,
+      "canonicalIndex": 698,
+      "id": "t_cc1d43f7aba7",
+      "term": "破二作三",
+      "query": "破二作三"
+    },
+    {
+      "queueNumber": 702,
+      "canonicalIndex": 701,
+      "id": "t_c4d569f83e45",
+      "term": "袖裏金鎚",
+      "query": "袖裏金鎚"
+    },
+    {
+      "queueNumber": 705,
+      "canonicalIndex": 704,
+      "id": "t_9f01252c174a",
+      "term": "從苗辨地、因語識人",
+      "query": "從苗辨地，因語識人"
+    },
+    {
+      "queueNumber": 708,
+      "canonicalIndex": 707,
+      "id": "t_fb70c8507a9f",
+      "term": "撈天摸地",
+      "query": "撈天摸地"
+    },
+    {
+      "queueNumber": 711,
+      "canonicalIndex": 710,
+      "id": "t_9ed24aff0000",
+      "term": "是賊識賊",
+      "query": "是賊識賊"
+    },
+    {
+      "queueNumber": 714,
+      "canonicalIndex": 713,
+      "id": "t_74e87e68ef88",
+      "term": "該天括地",
+      "query": "該天括地"
+    },
+    {
+      "queueNumber": 717,
+      "canonicalIndex": 716,
+      "id": "t_5b4317992dd1",
+      "term": "重言不當吃",
+      "query": "重言不當吃"
+    }
+  ],
+  "assertions": {
+    "exactlyNextTen": true,
+    "canonicalIndexEqualsQueueNumberMinusOne": true,
+    "canonicalIndexModulo3Equals2": true,
+    "absentLive664Registry": true,
+    "absentAllPriorOffset2AuthorLedgersThroughBatch17": true
+  },
+  "authorityMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false
+}

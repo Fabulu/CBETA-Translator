@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "iriya-manual-review-repair-receipt.v1",
+  "repairer": "c19-e8",
+  "ledger": "maintenance/iriya-manual-batch18-offset2-ledger.json",
+  "ledgerSha256Before": "dda31b722fccdb77d6d70d15e1411c28c051a1720834dc3a4a5584adcb0964bc",
+  "ledgerSha256After": "43bf589375b8960e4a1668a5884d704a0978ca64021c3b933aac0345dd53bc4f",
+  "reviewArtifact": "maintenance/iriya-manual-batch18-offset2-independent-review-c19-e8.json",
+  "reviewArtifactSha256": "6fc99dab02541d6c8419d9a5ecb3cfa5180209cd75f61e745d0b5dcc7e2fc024",
+  "decision": "PASS",
+  "repairs": [
+    {
+      "canonicalIndex": 707,
+      "id": "t_fb70c8507a9f",
+      "term": "撈天摸地",
+      "field": "reason",
+      "before": "Stable image of sweeping or groping across heaven and earth, used for unbounded but often blind activity.",
+      "after": "Literally, to scoop at heaven and feel over the earth. One master uses the phrase as the answer for what follows after the correct eye is gouged blind; another gives it as the standalone answer for what follows after the red sun emerges. The two attested placements are reported separately rather than collapsed into one psychological or metaphysical reading.",
+      "findingResolved": "The literal image and the two observable deployments are now distinguished; the unsupported unbounded/blind abstraction was removed."
+    }
+  ],
+  "preservation": {
+    "identityUnchanged": true,
+    "dispositionUnchanged": true,
+    "unitUnchanged": true,
+    "countsUnchanged": true,
+    "evidenceUnchanged": true,
+    "formResolutionUnchanged": true,
+    "otherRowsUnchanged": true
+  },
+  "validators": {
+    "cheapAssociation": "PASS 10/10; 0 failures",
+    "fullZc": "PASS 10/10; 0 failures"
+  },
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false
+}

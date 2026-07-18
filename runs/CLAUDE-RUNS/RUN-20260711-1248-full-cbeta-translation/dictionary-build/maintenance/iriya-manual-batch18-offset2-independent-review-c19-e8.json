@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "iriya-manual-independent-review.v1",
+  "reviewer": "c19-e8",
+  "decision": "REVISE",
+  "reviewedSelection": "maintenance/iriya-manual-batch18-offset2-selection.json",
+  "reviewedSelectionSha256": "fad5de0d411cbf85c435cfcbb15a5c067269d86e55cd7dadd9c9d55be9a3e877",
+  "reviewedLedger": "maintenance/iriya-manual-batch18-offset2-ledger.json",
+  "reviewedLedgerSha256": "dda31b722fccdb77d6d70d15e1411c28c051a1720834dc3a4a5584adcb0964bc",
+  "identityReview": {
+    "verdict": "PASS",
+    "finding": "All ten queue/selection/ledger tuples reproduce exactly, all canonical indexes are 2 modulo 3, all twelve declared prior-ledger hashes reproduce, and every selected id is absent from both those prior ledgers and the frozen 664-row trusted registry."
+  },
+  "mechanicalReview": {
+    "cheapValidator": "PASS 10/10",
+    "fullValidator": "PASS 10/10",
+    "counts": "PASS; all ten exact hit/file/distinct-work triples reproduce",
+    "evidence": "PASS; 20/20 windows verify at the stored line bounds, source titles and manifest work IDs reproduce, and every row's pair uses canonical-distinct works",
+    "variants": "PASS; punctuation normalizations for the two printed 、 couplets are declared and all unchanged forms are explicit",
+    "units": "PASS mechanically; one semantic reason requires correction"
+  },
+  "semanticReview": {
+    "verdict": "REVISE 1 reason; PASS 9 rows",
+    "rows": [
+      {
+        "canonicalIndex": 707,
+        "term": "撈天摸地",
+        "verdict": "REVISE reason only",
+        "finding": "The KEEP/component ruling is supported, but the reason collapses two visibly different deployments into the unsupported generalization 'unbounded but often blind activity.' In the first full case the phrase answers what follows after the correct eye is gouged blind, so blind groping is directly observable. In the second it answers what happens after the red sun emerges; that case does not call the activity blind, and the stored evidence alone does not establish the proposed unbounded-action abstraction.",
+        "requiredRepair": "Define the literal image ('scoop at heaven and feel over the earth') and report the two attested deployments separately: blind groping after loss of the eye, and the master's standalone answer to what follows the red sun's emergence. Do not merge them into a single psychological or metaphysical reading without additional corpus evidence. Preserve disposition, component unit, count, and both witnesses."
+      }
+    ],
+    "passingCanonicalIndexes": [
+      689,
+      692,
+      695,
+      698,
+      701,
+      704,
+      710,
+      713,
+      716
+    ]
+  },
+  "summary": {
+    "PASS": 9,
+    "REVISE": 1,
+    "semanticRejectionsRequired": 0,
+    "reasonOnlyRepairsRequired": 1,
+    "evidenceOrCountRepairsRequired": 0
+  },
+  "authorLedgerMutated": false,
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false
+}

@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "iriya-manual-reason-repair-focused-recheck.v1",
+  "reviewer": "c19-e8",
+  "decision": "PASS",
+  "reviewArtifact": "maintenance/iriya-manual-batch18-offset0-independent-review-c19-e8.json",
+  "reviewArtifactSha256": "821884a4002500b440717434cc9aeb9bde7b53c1af9213f127eb0784c896c3f3",
+  "repairReceipt": "maintenance/iriya-manual-batch18-offset0-reason-repair-receipt-d7.json",
+  "repairedLedger": "maintenance/iriya-manual-batch18-offset0-ledger.json",
+  "ledgerSha256BeforeFromBoundReceipt": "75b543d536944ca183bfdf23af69cd52ab67e3f0b7e4da3b8f6f0e4ab8c03e77",
+  "ledgerSha256AfterVerified": "669c6bc771ad52fdbdb44e97e4324d381b7cff79671f3efb8e9922f3f24a8e85",
+  "scopeReview": {
+    "verdict": "PASS",
+    "finding": "The bound repair receipt records exactly three reason-only edits at canonical indexes 582, 588, and 606. The current ledger retains all ten original identities, dispositions, units, exact count triples, evidence objects, form resolutions, and the original summary; no additional repair is declared or visible in the repaired decision structure."
+  },
+  "semanticClosure": [
+    {
+      "canonicalIndex": 582,
+      "term": "東西不辨、南北不分",
+      "verdict": "PASS",
+      "finding": "The reason now defines literal directional inability and separately reports the pre-sunrise and monk-stated-result placements; the unsupported metaphysical pre-distinction framing is gone."
+    },
+    {
+      "canonicalIndex": 588,
+      "term": "大地載不起",
+      "verdict": "PASS",
+      "finding": "The reason now gives the literal hyperbole and separately names the beyond-convention matter and offered-incense applications; the unsupported virtue category is gone."
+    },
+    {
+      "canonicalIndex": 606,
+      "term": "滴水難消",
+      "verdict": "PASS",
+      "finding": "The reason now defines inability to digest or repay received water and reports the offering-speech and textual-knowledge/Way contrasts; the imported karmic mechanism and sufficiency prescription are gone."
+    }
+  ],
+  "validators": {
+    "cheapAssociation": "PASS 10/10; 0 failures",
+    "fullZc": "PASS 10/10; 0 failures"
+  },
+  "preservation": {
+    "identity": "PASS",
+    "dispositionsAndUnits": "PASS",
+    "counts": "PASS",
+    "evidenceAndAnchors": "PASS",
+    "variants": "PASS",
+    "summary": "PASS"
+  },
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false
+}

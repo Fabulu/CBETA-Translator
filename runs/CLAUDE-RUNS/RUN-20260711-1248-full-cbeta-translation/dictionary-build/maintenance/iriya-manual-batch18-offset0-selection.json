@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "iriya-author-selection.v1",
+  "generatedUtc": "2026-07-18T01:16:43Z",
+  "batch": 18,
+  "offset": 0,
+  "mode": "FROZEN QUEUE TUPLES BEFORE SEMANTIC READING",
+  "authoritativeQueue": "IRIYA_SAYINGS_QUEUE.md",
+  "authoritativeQueueSha256": "162592a97f6a483b8f1c944ca6746bdafd0b99c6d4990b61db3e288ed5edc8be",
+  "trustedRegistry": "maintenance/iriya-trusted-registry.json",
+  "trustedRegistryRows": 664,
+  "trustedRegistrySha256": "735a581a9e832cdce4ff8c782c2a641b25e501740be19da9936e00d6dc331172",
+  "excludedPriorAuthorLedgers": [
+    {"path":"maintenance/iriya-manual-batch9-offset0-ledger.json","sha256":"ab4ed206fb1b9e8f4f02364198f4e0979b98ddf5662650ecbd7f2e77836706d9"},
+    {"path":"maintenance/iriya-manual-batch10-offset0-ledger.json","sha256":"8d4878f9de050abf29d361d60e84edd30af1c85d15c3b5684bfac43db36d1ab4"},
+    {"path":"maintenance/iriya-manual-batch11-offset0-ledger.json","sha256":"c882d14df8ba37f0858d5f8c27308b054a228f07f48d71e8d4f0248d5467d388"},
+    {"path":"maintenance/iriya-manual-batch12-offset0-ledger.json","sha256":"a4600236734e255b55f7510ca49116eec19556558a3dc2f702cb9381741e977c"},
+    {"path":"maintenance/iriya-manual-batch13-offset0-ledger.json","sha256":"a411638ff73895d2e7477f429bdc6c4a1ead7441d9f8e20f149f3fc35e7403ce"},
+    {"path":"maintenance/iriya-manual-batch14-offset0-ledger.json","sha256":"e221432f0d5035af6bfa3520d08b5f4ed3ba2228564b588b6c8412fd0c0beaea"},
+    {"path":"maintenance/iriya-manual-batch15-offset0-ledger.json","sha256":"3bf3f5e60eb1f58735aa5808bb2c8b69506a340f984219ffa7e8e0eed1889ab2"},
+    {"path":"maintenance/iriya-manual-batch16-offset0-ledger.json","sha256":"17ca15b8dcb0171366be9769d757288e6edc7db083cd1a79dd0ef1a10d4f2e6f"},
+    {"path":"maintenance/iriya-manual-batch17-offset0-ledger.json","sha256":"d2ce25ee68f61dceec6b720ca12a8a2c441e036286c08f06713452d4094c6b3d"}
+  ],
+  "rows": [
+    {"batchOrdinal":1,"queueNumber":583,"canonicalIndex":582,"id":"t_c5b606013ddb","term":"東西不辨、南北不分","query":"東西不辨，南北不分"},
+    {"batchOrdinal":2,"queueNumber":586,"canonicalIndex":585,"id":"t_89917b986533","term":"落霞與孤鶩齊飛、秋水共長天一色","query":"落霞與孤鶩齊飛，秋水共長天一色"},
+    {"batchOrdinal":3,"queueNumber":589,"canonicalIndex":588,"id":"t_b423aa0403f6","term":"大地載不起","query":"大地載不起"},
+    {"batchOrdinal":4,"queueNumber":592,"canonicalIndex":591,"id":"t_788d5bf18e97","term":"把手拽不入","query":"把手拽不入"},
+    {"batchOrdinal":5,"queueNumber":595,"canonicalIndex":594,"id":"t_911399753dc4","term":"迅雷不及掩耳","query":"迅雷不及掩耳"},
+    {"batchOrdinal":6,"queueNumber":598,"canonicalIndex":597,"id":"t_e716db733203","term":"依稀似曲纔堪聽、又被風吹別調中","query":"依稀似曲纔堪聽，又被風吹別調中"},
+    {"batchOrdinal":7,"queueNumber":601,"canonicalIndex":600,"id":"t_14f55ab30f48","term":"一字不著畫","query":"一字不著畫"},
+    {"batchOrdinal":8,"queueNumber":604,"canonicalIndex":603,"id":"t_0f3f66838262","term":"同途不同轍","query":"同途不同轍"},
+    {"batchOrdinal":9,"queueNumber":607,"canonicalIndex":606,"id":"t_4169c0093448","term":"滴水難消","query":"滴水難消"},
+    {"batchOrdinal":10,"queueNumber":610,"canonicalIndex":609,"id":"t_ad6b869ac5ea","term":"一塵纔起、大地全收","query":"一塵纔起，大地全收"}
+  ],
+  "assertions": {
+    "exactlyNextTen": true,
+    "canonicalIndexEqualsQueueNumberMinusOne": true,
+    "canonicalIndexModulo3Equals0": true,
+    "absentLive664Registry": true,
+    "absentAllPriorOffset0AuthorLedgersThroughBatch17": true,
+    "authoritativeTuplesExact": true
+  },
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "buildRun": false,
+  "registryMutationPerformed": false,
+  "lineageTouched": false
+}

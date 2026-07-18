@@ -1,0 +1,69 @@
+{
+  "schemaVersion": "iriya-manual-independent-review.v1",
+  "reviewer": "c19-e8",
+  "decision": "REVISE",
+  "reviewedSelection": "maintenance/iriya-manual-batch18-offset0-selection.json",
+  "reviewedSelectionSha256": "8573f8c0f08c1f2a15cffb9847075a16a71893560252c6a7be479a2e500c752d",
+  "reviewedLedger": "maintenance/iriya-manual-batch18-offset0-ledger.json",
+  "reviewedLedgerSha256": "75b543d536944ca183bf23af69cd52ab67e3f0b7e4da3b8f6f0e4ab8c03e77",
+  "identityReview": {
+    "verdict": "PASS",
+    "finding": "All ten queue/selection/ledger tuples reproduce exactly, all canonical indexes are 0 modulo 3, all nine declared prior-ledger hashes reproduce, and every selected id is absent from both those prior ledgers and the frozen 664-row trusted registry."
+  },
+  "mechanicalReview": {
+    "cheapValidator": "PASS 10/10",
+    "fullValidator": "PASS 10/10",
+    "counts": "PASS; all ten exact hit/file/distinct-work triples reproduce",
+    "evidence": "PASS; 20/20 windows verify at stored line bounds with exact source titles and manifest work IDs, and every pair uses canonical-distinct works",
+    "variants": "PASS; punctuation normalization is explicitly declared for all four printed 、 couplets and unchanged forms are explicit",
+    "units": "PASS; four complete deployed couplets and six stable deployed components"
+  },
+  "semanticReview": {
+    "verdict": "REVISE 3 reasons; PASS 7 rows",
+    "rows": [
+      {
+        "canonicalIndex": 582,
+        "term": "東西不辨、南北不分",
+        "verdict": "REVISE reason only",
+        "finding": "The KEEP/couplet ruling is supported, but 'complete directional non-discrimination before distinctions become available' turns an observable inability to tell directions apart into a positive or metaphysical pre-distinction state. The first case uses it before the sun rises and contrasts it with good and ugly becoming hard to escape after sunrise; the second monk applies it to his own stated result and the master answers with another image. Neither case licenses the abstraction in the stored reason.",
+        "requiredRepair": "Define the phrase directly as being unable to distinguish east from west or north from south, then state its two attested encounter placements. Preserve disposition, couplet unit, count, and both witnesses."
+      },
+      {
+        "canonicalIndex": 588,
+        "term": "大地載不起",
+        "verdict": "REVISE reason only",
+        "finding": "The KEEP/component ruling is sound, but the list 'force, virtue, or offering' over-generalizes beyond the selected cases. One address applies the line to the matter beyond convention; the other applies it to a stick of incense offered in the imperial hall. Neither witness names virtue as the referent.",
+        "requiredRepair": "Keep the literal hyperbole that the great earth cannot bear the thing, and name the two attested applications separately: the beyond-convention matter and the offered incense. Remove the unsupported virtue category. Preserve disposition, unit, count, and witnesses."
+      },
+      {
+        "canonicalIndex": 606,
+        "term": "滴水難消",
+        "verdict": "REVISE reason only",
+        "finding": "The KEEP/component ruling is supported, but 'stable karmic warning' and 'without genuine practice or understanding' import a doctrinal mechanism and an evaluator's sufficiency test. The cases say more narrowly that even a drop of received water is hard to digest: one contrasts this with speech that can digest offerings, while the other contrasts merely learning textual knowledge with learning the Way.",
+        "requiredRepair": "Define the monastic warning literally as being unable to digest or repay even a drop of received water, then describe the two corpus contrasts. Do not label the mechanism karmic or prescribe 'genuine practice or understanding.' Preserve disposition, unit, count, and both witnesses."
+      }
+    ],
+    "passingCanonicalIndexes": [
+      585,
+      591,
+      594,
+      597,
+      600,
+      603,
+      609
+    ]
+  },
+  "summary": {
+    "PASS": 7,
+    "REVISE": 3,
+    "semanticRejectionsRequired": 0,
+    "reasonOnlyRepairsRequired": 3,
+    "evidenceOrCountRepairsRequired": 0
+  },
+  "authorLedgerMutated": false,
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false
+}
