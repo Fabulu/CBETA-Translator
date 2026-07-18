@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "non-iriya-v4-frequency-semantic-repair-receipt-v1",
+  "repairAuthor": "c19-e8",
+  "batch": 20,
+  "independentReview": "maintenance/non-iriya-v4-frequency-batch20-independent-review-d7.json",
+  "independentReviewSha256": "ef05dc2ad7ccfe1a01c66629d8a47a74dd3ab629f330c32b582963273696720b",
+  "ledger": "maintenance/non-iriya-v4-frequency-batch20-semantic-ledger-c19-e8.json",
+  "ledgerBeforeSha256": "1a0f23100a9fbdc45467e771a9032f8f1fff1e70ad1cd088e38857a6df0aaaae",
+  "ledgerAfterSha256": "c50390d8b897e4f050860659dfe4fc62fa14d6a95dc73dfdf6638fffebab60fe",
+  "repairs": [
+    {
+      "term": "用酬法乳之恩",
+      "from": "KEEP",
+      "to": "REJECT",
+      "reason": "ritual boilerplate"
+    },
+    {
+      "term": "放下拂子",
+      "from": "KEEP",
+      "to": "REJECT",
+      "reason": "ordinary stage direction"
+    },
+    {
+      "term": "直得三日耳聾",
+      "from": "KEEP",
+      "to": "REJECT",
+      "reason": "duplicate narrative expansion of 百丈三日耳聾"
+    },
+    {
+      "term": "驀豎拄杖",
+      "from": "KEEP",
+      "to": "REJECT",
+      "reason": "ordinary stage direction"
+    }
+  ],
+  "summaryAfter": {
+    "KEEP": 14,
+    "REJECT": 11,
+    "PROVISIONAL": 0
+  },
+  "unaffectedRowsPreserved": 21,
+  "countsChanged": false,
+  "evidenceChanged": false,
+  "selectionChanged": false,
+  "authorityMutationPerformed": false,
+  "dictionaryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false,
+  "status": "READY_FOR_FOCUSED_RECHECK"
+}

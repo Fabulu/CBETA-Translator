@@ -1,0 +1,17 @@
+{
+  "schemaVersion":"non-iriya-v4-frequency-independent-review.v1","generatedUtc":"2026-07-18T15:00:00Z","reviewer":"d7","batch":20,
+  "selection":"maintenance/non-iriya-v4-frequency-batch20-selection-c19-e8.json","selectionSha256":"8ce6bcf1f9b697999bd7c186eb5b1583672a442279f3a9e87f7c3ff7ed23c2ed",
+  "ledger":"maintenance/non-iriya-v4-frequency-batch20-semantic-ledger-c19-e8.json","ledgerSha256":"1a0f23100a9fbdc45467e771a9032f8f1fff1e70ad1cd088e38857a6df0aaaae",
+  "scope":"all 25 rows; both stored full cases; false-positive and false-negative audit; exact identity/count/evidence metadata; duplicate families; prohibited prose",
+  "mechanicalGates":{"selectionLedgerIdentity":"PASS 25/25","evidencePresence":"PASS 50/50","sourceMetadata":"PASS 50/50","countsAndFreezeBinding":"PASS 25/25","prohibitedProse":"PASS 25/25"},
+  "findings":[
+    {"term":"用酬法乳之恩","authorDisposition":"KEEP","reviewDisposition":"REJECT","kind":"false-positive ritual boilerplate","reason":"Both cases place the clause in standardized opening-seat incense dedications naming a teacher and repaying transmission debt. It is a productive liturgical sentence frame, not an independently raised answer, verdict, test, named case, or technical referent."},
+    {"term":"放下拂子","authorDisposition":"KEEP","reviewDisposition":"REJECT","kind":"false-positive ordinary stage direction","reason":"The cases record the ordinary bounded action 'lower/set down the fly whisk.' Its occurrence after demonstrations or as part of an answer does not lexicalize the generic action; retaining it would admit routine narrative stage directions."},
+    {"term":"直得三日耳聾","authorDisposition":"KEEP","reviewDisposition":"REJECT","kind":"false-positive duplicate case clause","reason":"This is the result clause within the same Mazu–Baizhang case already kept in this batch under the compact named-case label 百丈三日耳聾. The evidence does not establish a second independent lexical unit rather than a syntactic expansion of that family."},
+    {"term":"驀豎拄杖","authorDisposition":"KEEP","reviewDisposition":"REJECT","kind":"false-positive ordinary stage direction","reason":"The cases use the routine narrative action 'suddenly raise the staff upright.' Like other productive 驀+gesture stage directions, it introduces a demonstration but lacks independent saying, verdict, question, epithet, or technical-unit status."}
+  ],
+  "unchallengedCount":21,
+  "falseNegativeAudit":{"status":"PASS","finding":"No author REJECT among the remaining seven suppresses an independently warranted lexical unit; graph/wording aliases, truncations, address formula, and subjectless predicate are correctly rejected."},
+  "summary":{"status":"REVISE","reviewed":25,"falsePositives":4,"falseNegatives":0,"mechanicalFailures":0},
+  "authorityMutationPerformed":false,"ledgerMutationPerformed":false,"dictionaryMutationPerformed":false,"buildRun":false,"lineageTouched":false
+}
