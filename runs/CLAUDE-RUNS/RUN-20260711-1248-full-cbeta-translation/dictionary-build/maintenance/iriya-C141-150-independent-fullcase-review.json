@@ -1,0 +1,87 @@
+{
+  "schemaVersion": "iriya-independent-fullcase-review.v1",
+  "lane": "C",
+  "positions": [141, 150],
+  "closure": {
+    "path": "maintenance/iriya-author-C141-150-closure-receipt.json",
+    "sha256": "4933163e71db7c165fff17182bc68ab8251dd1b48f11e800b019870650d9df37"
+  },
+  "packet": {
+    "path": "maintenance/iriya-author-packet-C061-160-v1.json",
+    "sha256": "e78f03edbd59d3ef2572e340affc495d655a9e1d9e13bdc493b8ecf084c03597"
+  },
+  "decisions": {
+    "path": "maintenance/iriya-author-C141-150-decisions.json",
+    "sha256": "39edff4f83f309ce32f6e9da5f7c11376306b0c705c4036dce5cc39a75f87521"
+  },
+  "reviewCounts": {
+    "entries": 10,
+    "retainedCasesReadInFull": 75,
+    "omissionReasonsRead": 5,
+    "omissionsConfirmedValid": 3,
+    "omissionsRejected": 2
+  },
+  "checkpoints": [
+    {
+      "positions": [141, 145],
+      "retainedCases": 36,
+      "omissions": 4,
+      "result": "delta",
+      "summary": "Actors, outer frames, meanings, and Zen deployments are sound. C143 candidate cases 6 and 7 were incorrectly omitted as exact-form absent."
+    },
+    {
+      "positions": [146, 150],
+      "retainedCases": 39,
+      "omissions": 1,
+      "result": "delta",
+      "summary": "Actors and source depth are sound. C149 needs a literal English rendering and a grammatical opening repair."
+    }
+  ],
+  "entrySha256": {
+    "t_27470a1627ad": "aad0687af11f6c0e0f4ae424e21df0611f61d0517b52b23191d0f8d8734fffa5",
+    "t_4eff26ee61f5": "d3469760af831a543da08efc9b86518ac9c67e87d4ebf5169f14104841a665ab",
+    "t_b07642a16305": "f623b9bf1fe857bce67841232c1d2ddabcee18a863f3b632a12fb1a31bd1b1ff",
+    "t_d54405c966e3": "3a6a1f0891700193c3a8e6e121d3db1bf7772b4634a4ae702bc86758c21f3967",
+    "t_8553872f2c2f": "c4085371cc0e88a1d9b5cdb6c1c86b5323bd3bd4ff0b9560c5dc075ceea074e0",
+    "t_1d515392276b": "1083703ded89d85712832334fb35a5a30efd0d6c9635f9aaf427a5f2c4daf9ed",
+    "t_f161df4a38ca": "59d9d26be39315980f8e40539c6d6b31de5a60534acc628bdafc423726d07f4d",
+    "t_ccccf8526b80": "06d3394b66df21c1e30dda84521c5901cef180a6a087325e10e2180bf671b373",
+    "t_0d5a1f3e5af2": "c5eb62127e7e8afe41d16f88303f1d3ab8d17ddae153177d8a36769b7b31025a",
+    "t_2ad77aff9ec4": "c14f5fa00e488d1e2ff962e7d1ed95f58a39ef43e0eaad319237f2338e7b3908"
+  },
+  "gateReruns": {
+    "strengthenedTemplate": {"path": "maintenance/iriya-C141-150-independent-template-rerun.json", "sha256": "b63b8ab36fd53e087dea82a0db287bc6fd110c52dccaba2ad0f5ea629febda32", "hardPass": true},
+    "strictAttribution": {"path": "maintenance/iriya-C141-150-independent-attribution-rerun.json", "sha256": "c28ddec6de69bc91caf01026d781ea9c55c582a72bd939fd91392eb338113e2f", "hardFailures": 0},
+    "exactZc": {"path": "maintenance/iriya-C141-150-independent-zc-rerun.json", "sha256": "4f76552e8fee6c04e299e6c4d94b44c9823706fc02a2b89c16284ee8d22f5962", "verified": 75, "failures": 0},
+    "workSource": {"path": "maintenance/iriya-C141-150-independent-work-rerun.json", "sha256": "486c51c341cf8b3cb1bba3575653586ff5b8b56a075f73f237d81c3f73352e04", "hardFailures": 0},
+    "depthSense": {"path": "maintenance/iriya-C141-150-independent-depth-rerun.json", "sha256": "81d993f56e44d142b4689044292d053518f66d7a5e8227ce7c493a71947ec50c", "hardFailures": 0, "reviewFlags": 0}
+  },
+  "deltas": [
+    {
+      "position": 143,
+      "id": "t_b07642a16305",
+      "coordinates": ["candidate case 6", "candidate case 7"],
+      "severity": "substantive-omission",
+      "finding": "Both omissions claim that the frozen exact concordance lacks the normalized spelling, but both source files contain exact 大道透長安 hits inside the packet spans.",
+      "evidence": [
+        "zc.find J/J40/J40nB487.xml 大道透長安 returns two exact hits at 0298b12.",
+        "zc.find X/X70/X70n1377.xml 大道透長安 returns two exact hits at 0103c16 and 0103c18."
+      ],
+      "requiredRepair": "Retain and fully adjudicate these two immutable candidate cases, or replace the omission reasons with a different truthful hard-gate reason if another immutable gate genuinely bars them. Do not leave the false exact-absence claim."
+    },
+    {
+      "position": 149,
+      "id": "t_0d5a1f3e5af2",
+      "coordinates": ["PreferredTarget", "searchAliases", "corpusEarnedOpening"],
+      "severity": "semantic-prose",
+      "finding": "The English headword paraphrases the couplet merely as convergence and omits its explicit actions: the force of the thousand peaks stops at the great mountain's edge, and the sound of the myriad streams disappears at the sea. The opening also contains the grammatical error 'an beyond-rank statement'.",
+      "requiredRepair": "Give a concise literal English-first rendering that preserves stop and disappear/sound, retain useful convergence wording as an alias or explanation, and change 'an beyond-rank statement' to 'a beyond-rank statement'. Re-test the opening, Zen bend, and alias rationale together."
+    }
+  ],
+  "hardPass": false,
+  "status": "repair-required",
+  "entriesEdited": false,
+  "installed": false,
+  "merged": false,
+  "rosterModified": false
+}

@@ -1,0 +1,89 @@
+{
+  "schemaVersion": "iriya-independent-changed-coordinate-rereview-v1",
+  "generatedUtc": "2026-07-18T16:12:00Z",
+  "lane": "B",
+  "positions": [141, 150],
+  "reviewBinding": {
+    "path": "maintenance/iriya-B141-150-independent-fullcase-review.json",
+    "expectedSha256": "087010e03e778dd171bf2bab3db74b260fc7b3ded6e61b56d529005e5122714e",
+    "actualSha256": "087010e03e778dd171bf2bab3db74b260fc7b3ded6e61b56d529005e5122714e",
+    "hashPass": true
+  },
+  "repairClosureBinding": {
+    "path": "maintenance/iriya-B141-150-independent-review-repair-closure.json",
+    "expectedSha256": "f762052e332fe577b9456038d98043c3541f13196533d2d2e2b6f6defb600539",
+    "actualSha256": "f762052e332fe577b9456038d98043c3541f13196533d2d2e2b6f6defb600539",
+    "hashPass": true
+  },
+  "reviewedCoordinates": 19,
+  "fullCasesReread": 14,
+  "proseCoordinatesRereadAgainstAllSupportingCases": 5,
+  "actorCoordinatesPassing": 14,
+  "proseCoordinatesPassing": 4,
+  "closedCoordinates": 18,
+  "artifactHashBinding": {
+    "entries": 10,
+    "entryHashesMatched": 10,
+    "worksheetHashesMatched": 10,
+    "workHashesMatched": 10,
+    "unchangedEntryTriplesPreserved": 3,
+    "allPass": true
+  },
+  "gateBinding": {
+    "closureBoundFullGateHashPass": true,
+    "closureBoundTitlesHashPass": true,
+    "closureBoundDuplicationHashPass": true,
+    "closureBoundCollateralHashPass": true,
+    "freshExactKwicVerified": 59,
+    "freshExactKwicFailures": 0,
+    "freshAttributionExitCode": 0,
+    "freshWorksheetRoundtripFailures": 0,
+    "freshPublicFeedbackExitCode": 0,
+    "freshDepthSenseExitCode": 0,
+    "freshCountClaimsExitCode": 0,
+    "freshWorkSourceExitCode": 0,
+    "freshCorpusBaselineExitCode": 0,
+    "freshFrozenHistoricalExitCode": 0,
+    "freshLineageRosterExitCode": 0,
+    "freshSemanticTemplateExitCode": 0,
+    "freshForbiddenEnglishFailures": 0,
+    "allMechanicalFieldsZero": true,
+    "semanticReviewRequired": true
+  },
+  "confirmedRepairs": [
+    "t_caee400e45ce/s0/o3: Gushan Shenyan",
+    "t_89dd5d28e4c9/s0/o2: Qingfeng Chuanchu, spelling and full-case boundary confirmed",
+    "t_89dd5d28e4c9/s0/o3: Juean Mengzhen",
+    "t_89dd5d28e4c9/s0/prose",
+    "t_55247f90c19e/s0/o3: Liu Jingchen, identified non-master author",
+    "t_830e72ef5333/s0/o0: Wei'an Deran",
+    "t_830e72ef5333/s0/o1: Mengxi Heshang",
+    "t_830e72ef5333/s0/o3: Mengxi Heshang",
+    "t_830e72ef5333/s0/o4: Shi Shanren questioner, Guifeng Zongmi respondent",
+    "t_830e72ef5333/s0/prose",
+    "t_3f104190481c/s0/o0: Fushan Fayuan",
+    "t_3f104190481c/s0/o3: Baoben Huiyuan",
+    "t_3f104190481c/s0/prose",
+    "t_f220f22e7964/s0/o5: Miaozhan Hui",
+    "t_7b21cb2725ec/s0/o0: Husheng Yuqiu Jujing",
+    "t_7b21cb2725ec/s0/o2: unnamed monk questioner, Wanru Tongwei respondent",
+    "t_7b21cb2725ec/s0/o4: unnamed monk questioner, Jie'an Jin respondent",
+    "t_7b21cb2725ec/s0/prose"
+  ],
+  "residuals": [
+    {
+      "coordinate": "t_caee400e45ce/s0/prose",
+      "kind": "case-to-prose attribution",
+      "current": "Gushan Shenyan gives it as a direct answer after an opening ceremony.",
+      "required": "Separate the two attested events: Gushan Shenyan gives the phrase as a direct answer in an interview; Fengxian Shen uses it immediately after the opening ceremony's hammer formula.",
+      "evidence": "In X/X80/X80n1565.xml the Gushan occurrence is inside a monk's question sequence (問...師曰), with no opening ceremony. The opening ceremony belongs to the separate Fengxian Shen occurrence in X/X81/X81n1568.xml (維那白槌...師便曰). The actor field itself is now correct; only the repaired prose fused the two cases."
+    }
+  ],
+  "residualCount": 1,
+  "hardPass": false,
+  "disposition": "REPAIR",
+  "installed": false,
+  "merged": false,
+  "rosterModified": false,
+  "publicDeploymentPerformed": false
+}

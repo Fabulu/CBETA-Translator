@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "bounded-hash-release-spec-v1",
+  "cohort": "Iriya construction batch 1 contiguous release 391–410",
+  "entries": 20,
+  "selection": [
+    {"lane": "B", "low": 141, "high": 150},
+    {"lane": "C", "low": 141, "high": 150}
+  ],
+  "gate": "iriya-release20-391-410-full-cohort-gate.json",
+  "reviews": [
+    "iriya-B141-150-residual-independent-final-rereview.json",
+    "iriya-C143-residual-independent-final-hard-pass.json"
+  ],
+  "authorizationOutput": "iriya-release20-391-410-final-authorization.json",
+  "manifestOutput": "iriya-release20-391-410-install-manifest.json"
+}

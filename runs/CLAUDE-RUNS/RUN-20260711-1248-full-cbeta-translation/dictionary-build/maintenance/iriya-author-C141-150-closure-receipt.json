@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "iriya-author-decile-closure-v1",
+  "lane": "C",
+  "positions": [141, 150],
+  "writtenUtc": "2026-07-19T03:20:00Z",
+  "packet": {"path": "maintenance/iriya-author-packet-C061-160-v1.json", "sha256": "e78f03edbd59d3ef2572e340affc495d655a9e1d9e13bdc493b8ecf084c03597"},
+  "decisions": {"path": "maintenance/iriya-author-C141-150-decisions.json", "sha256": "39edff4f83f309ce32f6e9da5f7c11376306b0c705c4036dce5cc39a75f87521"},
+  "checkpoints": [
+    {"positions": [141,145], "decisions": "maintenance/iriya-author-C141-145-checkpoint-decisions.json", "renderReceipt": "maintenance/iriya-author-C141-145-render-receipt.json"},
+    {"positions": [146,150], "decisions": "maintenance/iriya-author-C146-150-checkpoint-decisions.json", "renderReceipt": "maintenance/iriya-author-C146-150-render-receipt.json"}
+  ],
+  "entryCount": 10,
+  "occurrenceCount": 75,
+  "candidateOmissions": [
+    {"position": 141, "caseIndex": 3, "reason": "immutable English title trips the English-depth Dharma-loan rule"},
+    {"position": 143, "caseIndex": 6, "reason": "frozen exact concordance does not contain packet normalized spelling at the candidate span"},
+    {"position": 143, "caseIndex": 7, "reason": "frozen exact concordance does not contain packet normalized spelling at the candidate span"},
+    {"position": 145, "caseIndex": 2, "reason": "immutable English title trips the English-depth Dharma-loan rule"},
+    {"position": 150, "caseIndex": 5, "reason": "immutable English title trips the English-depth Dharma-loan rule"}
+  ],
+  "preflight": {"canonicalAliasPreflight": true, "fullCasesRead": 80, "retainedCasesAdjudicated": 75, "frozenCorpus": true},
+  "semanticConstruction": {"bespokeOpenings": 10, "bespokeEvidenceBodies": 10, "bespokeDifferentThingReasons": 10, "bespokeAliasRationales": 10, "bespokeModifierControls": 10, "bespokeFamilyControls": 10},
+  "gates": {"compileFailures": 0, "strictAttributionHardFailures": 0, "workSourceHardFailures": 0, "strengthenedTemplateFailures": 0, "depthHardFailures": 0, "exactZcFailures": 0, "compileParityFailures": 0},
+  "hardPass": true,
+  "reviewStatus": "awaiting-independent-fullcase-review",
+  "selfReviewPerformed": false,
+  "installed": false,
+  "merged": false,
+  "rosterModified": false
+}

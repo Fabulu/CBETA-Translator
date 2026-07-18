@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "iriya-independent-changed-only-rereview.v1",
+  "scope": "C143 and C149 repair groups",
+  "closure": {"path": "maintenance/iriya-author-C141-150-independent-review-repair-closure.json", "sha256": "18d17a43bbc811e33ec2fd4f7e332a43c01a2a53f882356bcbfed89e130babfd"},
+  "decisions": {"path": "maintenance/iriya-author-C141-150-decisions.json", "sha256": "e93a8b68a0353afb12a70976d6f85ffdbb68fcea29d88671cb7b4066d0b49483"},
+  "collateralParity": {
+    "unchangedEntries": 8,
+    "changedEntries": ["t_b07642a16305", "t_0d5a1f3e5af2"],
+    "unexpectedChanges": 0
+  },
+  "review": {
+    "C143Case7": "pass: Zhaozhou Congshen is the quoted-original utterer and Songyuan Chongyue is retained as later-quoter.",
+    "C149": "pass: the literal PreferredTarget preserves peaks stopping and stream-sound disappearing; convergence remains a secondary alias; the opening grammar and connected semantic controls are coherent.",
+    "C143Case6": "residual: the selected KWIC begins on the repeated section-title occurrence and ends midway through the following repetition. It does not display the verse context that is used to assign Cuiya Bi as verse author."
+  },
+  "gateReruns": {
+    "template": {"sha256": "319268a8d9a51ccdcb63cae3d878fb13d8f1b96b79d014ba7a35b688fb664b65", "hardPass": true},
+    "attribution": {"sha256": "cc99953e85e7504a2b5b6fba9249de6643d6b2da9e7850c5a178b8952a0684f4", "hardFailures": 0},
+    "workSource": {"sha256": "ba2bc7c268e59e2247fb3d1ecfd31b23bda043957e145907ceec684417113906", "hardFailures": 0},
+    "depth": {"sha256": "6b733848e725f1a62e79f5228281cf2e5c106489766ebd9a029a45a2cf23ec09", "hardFailures": 0},
+    "zc": {"sha256": "38fcd24e5aab274febefadfa6f3b004a3362ca6d0bf893e08fccc08ab110be20", "verified": 16, "failures": 0}
+  },
+  "deltas": [
+    {
+      "position": 143,
+      "id": "t_b07642a16305",
+      "caseIndex": 6,
+      "finding": "The recut `失卻口。大道透長安大道透長` anchors the heading/repeated-title occurrence and truncates the next copy. A bare/repeated heading is not an utterance by Cuiya Bi and the visible KWIC supplies no verse-author evidence.",
+      "requiredRepair": "Re-cut to the second exact occurrence in the actual verse, with enough following text to show `大道透長安，終日騎牛更覓牛...`; then re-verify the verse-author attribution and FromLb/ToLb. Do not retain the title occurrence as an utterance."
+    }
+  ],
+  "hardPass": false,
+  "status": "one-residual-repair-required",
+  "entriesEdited": false,
+  "installed": false,
+  "merged": false,
+  "rosterModified": false
+}

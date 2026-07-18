@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "iriya-author-independent-review-repair-closure.v1",
+  "lane": "C",
+  "positions": [141, 150],
+  "writtenUtc": "2026-07-19T04:05:00Z",
+  "trigger": {"path": "maintenance/iriya-C141-150-independent-fullcase-review.json", "deltaGroups": 2},
+  "sourceClosure": {"path": "maintenance/iriya-author-C141-150-closure-receipt.json", "sha256": "4933163e71db7c165fff17182bc68ab8251dd1b48f11e800b019870650d9df37"},
+  "decisions": {"path": "maintenance/iriya-author-C141-150-decisions.json", "sha256": "e93a8b68a0353afb12a70976d6f85ffdbb68fcea29d88671cb7b4066d0b49483"},
+  "affectedOnlyRender": {"path": "maintenance/iriya-author-C143-C149-repair-decisions.json", "sha256": "d180ec8726f992b3c0080da79d09346f3155d93535f6a1ee7a7b81c0de11a075", "entryCount": 2},
+  "closedRepairs": [
+    {"position": 143, "result": "retained both proven witnesses", "details": "Candidate cases 6 and 7 are retained with non-bare exact recuts; case 6 is the Cuiya Bi verse and case 7 retains Zhaozhou’s quoted answer in Songyuan’s record."},
+    {"position": 149, "result": "literal actions restored", "details": "PreferredTarget and primary search alias preserve peaks stopping at the great mountain’s edge and stream-sound disappearing at the sea; convergence remains a secondary alias; the opening now says a beyond-rank statement."}
+  ],
+  "affectedEntryHashes": {"t_b07642a16305": "09d0e842c225d25677d0bda8aa80c6c81eebbda949a145eed877e66fae659a39", "t_0d5a1f3e5af2": "ca45ba08f36c06dfe9af06527253d20d905d957e65de504ab01d04c0db798420"},
+  "entryCount": 10,
+  "occurrenceCount": 77,
+  "gates": {"compileFailures": 0, "strictAttributionHardFailures": 0, "workSourceHardFailures": 0, "strengthenedTemplateFailures": 0, "depthHardFailures": 0, "exactZcFailures": 0, "compileParityFailures": 0},
+  "hardPass": true,
+  "reviewStatus": "awaiting-independent-changed-only-rereview",
+  "selfReviewPerformed": false,
+  "installed": false,
+  "merged": false,
+  "rosterModified": false
+}

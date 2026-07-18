@@ -1,0 +1,140 @@
+{
+  "schemaVersion": "iriya-independent-review-repair-closure-v1",
+  "lane": "B",
+  "positions": [
+    141,
+    150
+  ],
+  "review": {
+    "path": "maintenance/iriya-B141-150-independent-fullcase-review.json",
+    "sha256": "087010e03e778dd171bf2bab3db74b260fc7b3ded6e61b56d529005e5122714e",
+    "expectedSha256": "087010e03e778dd171bf2bab3db74b260fc7b3ded6e61b56d529005e5122714e",
+    "bindingMatched": true
+  },
+  "closedDeltaCount": 19,
+  "affectedEntryCount": 7,
+  "affectedIds": [
+    "t_3f104190481c",
+    "t_55247f90c19e",
+    "t_7b21cb2725ec",
+    "t_830e72ef5333",
+    "t_89dd5d28e4c9",
+    "t_caee400e45ce",
+    "t_f220f22e7964"
+  ],
+  "artifactHashes": [
+    {
+      "id": "t_caee400e45ce",
+      "affected": true,
+      "worksheetSha256": "484dd1a466397312ae1c30b96cde9d97ff1ba4c76358135fc2b2616f64e75b0c",
+      "entrySha256": "679fbfae2460693b2d17ad8175436b664421fd858c784f3f1cc43e3e60e713a4",
+      "workSha256": "84ae812289f7cf78fad106e69a4c0bd07bf4195a4b9db81481a4084864f2be50"
+    },
+    {
+      "id": "t_89dd5d28e4c9",
+      "affected": true,
+      "worksheetSha256": "4d374640ee0c4fc9c902cfe509d626a637b720e6f5fbd6b92e99c745a5fb846e",
+      "entrySha256": "6e55b99054279b5a69107ded4e0459e3c6abc40d6865d423cd877d45b9040df2",
+      "workSha256": "ac391ea94d11c90b58dffbd2247efb460768d9efb1d2a11f4eab2ccd9380b7e0"
+    },
+    {
+      "id": "t_55247f90c19e",
+      "affected": true,
+      "worksheetSha256": "50161fc5805965dd039c7acea5e69f350ca1dce234659a78b8eda174680ecaf2",
+      "entrySha256": "548d76031ceacc4c25db081b3efc210e676a2e66ad927319a07538e85ad7842e",
+      "workSha256": "e0e49286f833365ea23132977fc5b6c325ba06955295e7559d20590124f3f38d"
+    },
+    {
+      "id": "t_9beb4f507988",
+      "affected": false,
+      "worksheetSha256": "e603e13491667153d7b696a3d338fdbb07e2c285fff637bfddf71e44b55dc169",
+      "entrySha256": "1b9dd06c8ad1fcabdf6aa2a60772e27ddfa747341545cd5b98f64756064420c2",
+      "workSha256": "0912d6c9fd6fdc7a9b3db3df667017d8c65a29d94f923def688fb696641cdf0d"
+    },
+    {
+      "id": "t_830e72ef5333",
+      "affected": true,
+      "worksheetSha256": "7bcc98a87c7548b71a98f48b1541d010a2e3281d412f35d0104ac4ad2250aab0",
+      "entrySha256": "33db5ed83c312ac33c5da70e3b29d5162b36fc9c2fdae79effc4a3c254906fda",
+      "workSha256": "557753eede52c4aeca263f18a2de05b699da682ac6479becac348299db88716d"
+    },
+    {
+      "id": "t_3f104190481c",
+      "affected": true,
+      "worksheetSha256": "6b8f444ca179cae5c07c9ba1857509bab06d061f43bab45ddb957fcf6a3e885a",
+      "entrySha256": "fccace31b56c3ae7673f53c8e80f0af3b4751c0f6c60e5dda0dc2ccb94232096",
+      "workSha256": "62fa42a058b96685b2337f7909770c1de5eae964e5dae1e6659c3044e19e7dde"
+    },
+    {
+      "id": "t_f220f22e7964",
+      "affected": true,
+      "worksheetSha256": "e101cb93edb10a0bf79887a209d3cdd08bde165d5228c225d177324b129c6a4c",
+      "entrySha256": "5b7648d953ec6afb75fd07900c20857b4fbd2b3a497721e97007e3abcdad07e2",
+      "workSha256": "3b31a29ee6b05848109c24855175017d7d1e9a9766c3f425281d128a6a3109ce"
+    },
+    {
+      "id": "t_7b21cb2725ec",
+      "affected": true,
+      "worksheetSha256": "92529aaf1cc5027639dbaad4460f140e8150e2acfafb5fef5fc61a542901d3f5",
+      "entrySha256": "aa8e37ccf0ee7588e6e137ddc399927cb98028f99247965eebda7c2baabba564",
+      "workSha256": "cc1ed816bebd647ebdd10ccfe939c572b20e26bd41d4842ab3a26e7bfd183f8e"
+    },
+    {
+      "id": "t_4b2972cf341e",
+      "affected": false,
+      "worksheetSha256": "bbd5eb62e1d09dc72dee73790602f52454b8fe98f44a274fe857f6d04936c085",
+      "entrySha256": "f13437e51511b37a77e1d80d496251f7c0002d568e0a0d49bf388b188d3cbfe8",
+      "workSha256": "2839424b1bf054c199bfbe0ce884ecc21d2bb3761c77c8c49655e7c36b1ccccf"
+    },
+    {
+      "id": "t_e77c48557164",
+      "affected": false,
+      "worksheetSha256": "7329c0e6273017ae404e1df3ab17155f4295b89c3f23c873a66fbd79a1475b6d",
+      "entrySha256": "3ce2ac50b3626cbea9ce405fa4792db383e823e8f167c75350f2a7c2483fa689",
+      "workSha256": "c14a002d3812a9bfea63e5f38b55fb3570eb44e47c89e2dd5c106698fe6d2278"
+    }
+  ],
+  "gateBindings": {
+    "fullGate": {
+      "path": "maintenance/iriya-B141-150-review-repair-full-gate.json",
+      "sha256": "41982452a6d6533bbb5cb66d4a3c20cf39410f1214a87108f4b6cd7c0182ddd8"
+    },
+    "titles": {
+      "path": "maintenance/iriya-B141-150-review-repair-titles.json",
+      "sha256": "e5782c90f17cf694064145c7f12b2d133ddd8f5957f6beb03d12af4c59f6a7c0"
+    },
+    "duplication": {
+      "path": "maintenance/iriya-B141-150-review-repair-duplication.json",
+      "sha256": "d0d0f20862833effe6cc9e110ac818c1a216766c4c1032391802553f5c1dd86d"
+    },
+    "collateral": {
+      "path": "maintenance/iriya-B141-150-review-repair-collateral.json",
+      "sha256": "2143196b626a9bcb186d60f1a157f7bb6acaa05b1280682cb5ec7f8b10b5f01f"
+    }
+  },
+  "mechanicalGate": {
+    "exactKwicFailures": 0,
+    "worksheetRoundtripFailures": 0,
+    "attributionExitCode": 0,
+    "attributionHardFailures": 0,
+    "depthExitCode": 0,
+    "countClaimsExitCode": 0,
+    "workSourceExitCode": 0,
+    "corpusBaselineExitCode": 0,
+    "frozenHistoricalExitCode": 0,
+    "lineageRosterExitCode": 0,
+    "semanticTemplateExitCode": 0,
+    "forbiddenEnglishFailures": 0,
+    "attributionPacketsHardPass": true
+  },
+  "allMechanicalFieldsZero": true,
+  "semanticReviewRequired": true,
+  "collateralHardPass": true,
+  "titlesHardPass": true,
+  "duplicationHardPass": true,
+  "hardPass": true,
+  "reviewStatus": "closed deltas applied; awaiting independent changed-coordinate rereview",
+  "installed": false,
+  "merged": false,
+  "rosterModified": false
+}

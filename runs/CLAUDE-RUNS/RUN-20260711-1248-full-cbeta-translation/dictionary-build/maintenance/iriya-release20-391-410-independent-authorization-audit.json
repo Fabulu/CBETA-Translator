@@ -1,0 +1,135 @@
+{
+  "schemaVersion": "iriya-release-authorization-independent-audit-v1",
+  "generatedUtc": "2026-07-18T16:30:00Z",
+  "scope": "Independent hash-bound release authorization audit for Iriya construction entries 391-410",
+  "auditedRelease": {
+    "spec": {
+      "path": "maintenance/iriya-release20-391-410-spec.json",
+      "sha256": "f1ecf878e0475429d056bf4a09ea3303d8a728f7cb11ca2f3f7a2478e68dac53"
+    },
+    "authorization": {
+      "path": "maintenance/iriya-release20-391-410-final-authorization.json",
+      "sha256": "eb340b9df24cabf5896191ae70507e341dcea332f08664037e56854e043f9f4c"
+    },
+    "manifest": {
+      "path": "maintenance/iriya-release20-391-410-install-manifest.json",
+      "sha256": "e4b2b0275bea75021390bafd5dcf513a8e454399e63fe3d03ffa0116f27c9a6e"
+    },
+    "gate": {
+      "path": "maintenance/iriya-release20-391-410-full-cohort-gate.json",
+      "sha256": "660fafb195bdc4e89c9b75efc04f5f1d59e647f6b07ba550f1d4297c994a520b"
+    }
+  },
+  "selectionAudit": {
+    "rule": "lane B positions 141-150 followed by lane C positions 141-150",
+    "count": 20,
+    "uniqueCount": 20,
+    "exactOrderMatchesLanePlans": true,
+    "authorizationOrderMatches": true,
+    "manifestOrderMatches": true,
+    "gateOrderMatches": true,
+    "ids": [
+      "t_caee400e45ce",
+      "t_89dd5d28e4c9",
+      "t_55247f90c19e",
+      "t_9beb4f507988",
+      "t_830e72ef5333",
+      "t_3f104190481c",
+      "t_f220f22e7964",
+      "t_7b21cb2725ec",
+      "t_4b2972cf341e",
+      "t_e77c48557164",
+      "t_27470a1627ad",
+      "t_4eff26ee61f5",
+      "t_b07642a16305",
+      "t_d54405c966e3",
+      "t_8553872f2c2f",
+      "t_1d515392276b",
+      "t_f161df4a38ca",
+      "t_ccccf8526b80",
+      "t_0d5a1f3e5af2",
+      "t_2ad77aff9ec4"
+    ]
+  },
+  "artifactBindingAudit": {
+    "entryCount": 20,
+    "artifactTriplesChecked": 20,
+    "individualFilesHashed": 60,
+    "currentHashesMatchAuthorization": true,
+    "authorizationRowsMatchManifestExactly": true,
+    "failures": []
+  },
+  "installedBoundaryAudit": {
+    "manifests": [
+      {"path": "maintenance/iriya-release250-install-manifest.json", "entries": 250},
+      {"path": "maintenance/iriya-release60-251-310-install-manifest.json", "entries": 60},
+      {"path": "maintenance/iriya-release50-311-360-install-manifest.json", "entries": 50},
+      {"path": "maintenance/iriya-release30-361-390-install-manifest.json", "entries": 30}
+    ],
+    "installedEntryRows": 390,
+    "installedUniqueIds": 390,
+    "overlapWithRelease391To410": [],
+    "hardPass": true
+  },
+  "mechanicalGateAudit": {
+    "exactKwic": {"occurrencesVerified": 136, "failureCount": 0, "hardPass": true},
+    "attribution": {"hardPass": true},
+    "worksheetRoundtrip": {"hardPass": true},
+    "publicFeedback": {"hardPass": true},
+    "depthSense": {"hardPass": true},
+    "countClaims": {"hardPass": true},
+    "workSourceValidation": {"hardPass": true},
+    "corpusBaseline": {"hardPass": true},
+    "frozenHistoricalTerms": {"hardPass": true},
+    "lineageRosterUntouched": {"hardPass": true},
+    "batchSemanticTemplates": {"hardPass": true},
+    "forbiddenEnglish": {"failureCount": 0, "hardPass": true},
+    "attributionPackets": {"hardPass": true},
+    "semanticReviewRequiredSignalExpected": true,
+    "hardPass": true
+  },
+  "semanticReviewAudit": {
+    "receipts": [
+      {
+        "path": "maintenance/iriya-B141-150-residual-independent-final-rereview.json",
+        "sha256": "370cd3ca9fb1c5d49ae4324081d5091cb2c40e51fa461d99e99c4640b10951e5",
+        "hashMatchesAuthorization": true,
+        "hardPass": true,
+        "residualCount": 0
+      },
+      {
+        "path": "maintenance/iriya-C143-residual-independent-final-hard-pass.json",
+        "sha256": "449fc19fd2240bf50a331bd78dae2259dc3777eecaa23cdb80fa5d4b3b862fcc",
+        "hashMatchesAuthorization": true,
+        "hardPass": true,
+        "residualCount": 0
+      }
+    ],
+    "authorizationOpenResiduals": 0,
+    "hardPass": true
+  },
+  "authorizationParityAudit": {
+    "specSelectionAndOutputsMatch": true,
+    "authorizationReleaseSpecBindingMatches": true,
+    "manifestAuthorizationBindingMatches": true,
+    "releaseAuthorization": true,
+    "installAuthorized": true,
+    "publicDeploymentAuthorized": false,
+    "lineageRosterMutationAuthorized": false,
+    "hardPass": true
+  },
+  "officialInstallerDryRun": {
+    "exitCode": 0,
+    "hardPass": true,
+    "dryRun": true,
+    "entries": 20,
+    "manifestSha256": "e4b2b0275bea75021390bafd5dcf513a8e454399e63fe3d03ffa0116f27c9a6e"
+  },
+  "residuals": [],
+  "disposition": "AUTHORIZED_FOR_HASH_BOUND_INSTALLATION_ONLY",
+  "hardPass": true,
+  "installed": false,
+  "merged": false,
+  "publicDeploymentPerformed": false,
+  "lineageRosterModified": false
+}

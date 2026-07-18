@@ -1,0 +1,85 @@
+{
+  "schemaVersion": "iriya-independent-residual-final-rereview-v1",
+  "generatedUtc": "2026-07-18T16:16:00Z",
+  "lane": "B",
+  "positions": [141, 150],
+  "priorRereview": {
+    "path": "maintenance/iriya-B141-150-independent-changed-coordinate-rereview.json",
+    "expectedSha256": "d4a470f735196e005ee4a290f7863692d0d274aa8feba89974d95b0621f45a2f",
+    "actualSha256": "d4a470f735196e005ee4a290f7863692d0d274aa8feba89974d95b0621f45a2f",
+    "hashPass": true
+  },
+  "repairClosure": {
+    "path": "maintenance/iriya-B141-150-residual-repair-closure.json",
+    "expectedSha256": "0235182afb7b97d9c338d89d6d523cb0ceb74e7a9cb6ca3cf8dfd54d245cbd2f",
+    "actualSha256": "0235182afb7b97d9c338d89d6d523cb0ceb74e7a9cb6ca3cf8dfd54d245cbd2f",
+    "hashPass": true
+  },
+  "coordinate": "t_caee400e45ce/s0/prose",
+  "coordinateReview": {
+    "hardPass": true,
+    "currentProse": "Gushan Shenyan gives it as a direct interview answer; Fengxian Shen uses it immediately after the opening ceremony's hammer formula.",
+    "gushanCase": {
+      "relPath": "X/X80/X80n1565.xml",
+      "exactContext": "問。如何是包盡乾坤底句。師曰。近前來。僧近前。師曰。鈍置殺人。",
+      "zcVerify": {"ok": true, "fromLb": "0155c08", "toLb": "0155c09", "count": 1},
+      "finding": "The phrase is Gushan Shenyan's direct answer inside an interview, with no opening-ceremony claim attached."
+    },
+    "fengxianCase": {
+      "relPath": "X/X81/X81n1568.xml",
+      "exactContext": "維那白槌曰：法筵龍象眾，當觀第一義。師便曰：果然不識，鈍置殺人。",
+      "zcVerify": {"ok": true, "fromLb": "0116a23", "toLb": "0116b01", "count": 1},
+      "finding": "The opening ceremony and hammer formula belong only to Fengxian Shen's separate occurrence."
+    },
+    "caseSeparationPass": true,
+    "actorSpellingPass": true,
+    "provenanceFirewallPass": true
+  },
+  "artifactBinding": {
+    "t_caee400e45ce": {
+      "worksheetSha256": "a6dbb7edb95fb357ab35472764e1952e8a36168b176807e5a322a399fe14d0f9",
+      "entrySha256": "0b59f6ca12f68fb2521c5aa7ee5354cc197423553916bd22be4d2e2dcee1c421",
+      "workSha256": "84ae812289f7cf78fad106e69a4c0bd07bf4195a4b9db81481a4084864f2be50",
+      "allCurrent": true,
+      "worksheetEntryByteParity": true
+    },
+    "cohortTriplesChecked": 10,
+    "cohortTriplesMatched": 10,
+    "nonTargetCollateralDrift": 0
+  },
+  "boundGateHashes": {
+    "fullGate": true,
+    "titles": true,
+    "duplication": true,
+    "collateral": true
+  },
+  "freshCohortGate": {
+    "entries": 10,
+    "exactKwicVerified": 59,
+    "exactKwicFailures": 0,
+    "attributionFailures": 0,
+    "worksheetRoundtripFailures": 0,
+    "publicFeedbackFailures": 0,
+    "depthSenseFailures": 0,
+    "countClaimFailures": 0,
+    "workSourceFailures": 0,
+    "corpusBaselineFailures": 0,
+    "frozenHistoricalFailures": 0,
+    "lineageRosterFailures": 0,
+    "semanticTemplateFailures": 0,
+    "forbiddenEnglishFailures": 0,
+    "allMechanicalFieldsZero": true,
+    "semanticReviewRequired": true,
+    "note": "Overall machine hardPass remains false only because semantic review is an explicit external requirement; this receipt supplies the final residual-free independent semantic closure."
+  },
+  "originalRepairCoordinates": 19,
+  "confirmedClosedCoordinates": 19,
+  "residuals": [],
+  "residualCount": 0,
+  "hardPass": true,
+  "disposition": "PASS",
+  "installed": false,
+  "merged": false,
+  "rosterModified": false,
+  "publicDeploymentPerformed": false
+}
