@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "iriya-manual-semantic-repair-receipt.v1",
+  "generatedUtc": "2026-07-18T00:27:38Z",
+  "batch": 15,
+  "offset": 1,
+  "ledger": "maintenance/iriya-manual-batch15-offset1-ledger.json",
+  "ledgerBeforeSha256": "432479205cebd06c3f68227306716f94f6cefa0a62e42836f79c596ba42a9f03",
+  "ledgerAfterSha256": "074c46e1717d66061a4e69a455d70fcc5266d514797b72754a984d486360863c",
+  "independentReview": "maintenance/iriya-manual-batch15-offset1-cross-review-c19-e8.json",
+  "independentReviewSha256": "39c3a76a7d0fc08fe8e50daba52884d8b6023a421d88250d4e6f15db826bfe3a",
+  "correctedRows": 3,
+  "correctedTerms": [
+    "釣魚船上謝三郎",
+    "堆山積嶽",
+    "兩鏡相照"
+  ],
+  "reasonChanges": {
+    "釣魚船上謝三郎": {
+      "beforeReason": "“Xie Sanlang on the fishing boat” is a fixed person-and-setting image repeatedly raised as an answer or cap for an unconstrained adept beyond official identity.",
+      "afterReason": "“Xie Sanlang on the fishing boat” is a stock person-and-setting image repeatedly deployed from the fishing-boat scene as an answer or cap for an unconstrained adept."
+    },
+    "堆山積嶽": {
+      "beforeReason": "Piling up mountains and massing great peaks repeatedly characterizes enormous accumulated obstruction, merit, speech, or contrivance that a Chan move exposes or sweeps aside.",
+      "afterReason": "Piling mountains and massing great peaks is a fixed magnitude image for enormous accumulation across differing referents, including obstruction, merit, speech, and contrivance."
+    },
+    "兩鏡相照": {
+      "beforeReason": "Two mirrors illuminating one another repeatedly image unobstructed mutual recognition or responsive reflection without a fixed subject-object remainder.",
+      "afterReason": "Two mirrors illuminating one another presents responsive reflection, while the full cases explicitly challenge the claim that “no image exists between them”: that very assertion establishes an image and becomes the point under examination."
+    }
+  },
+  "preservedOtherRowsExactly": 7,
+  "evidencePreservedExactly": true,
+  "identitiesPreservedExactly": true,
+  "dispositionsPreservedExactly": true,
+  "focusedRecheckRequired": true,
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "buildRun": false,
+  "registryMutationPerformed": false,
+  "lineageTouched": false
+}

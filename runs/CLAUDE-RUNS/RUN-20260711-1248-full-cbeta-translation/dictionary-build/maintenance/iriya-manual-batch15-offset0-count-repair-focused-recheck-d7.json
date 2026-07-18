@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "iriya-manual-focused-count-repair-recheck-v1",
+  "generatedUtc": "2026-07-18T00:42:50Z",
+  "reviewer": "d7",
+  "reviewedLedger": "maintenance/iriya-manual-batch15-offset0-ledger.json",
+  "reviewedLedgerSha256": "3bf3f5e60eb1f58735aa5808bb2c8b69506a340f984219ffa7e8e0eed1889ab2",
+  "repairReceipt": "maintenance/iriya-manual-batch15-offset0-count-repair-receipt-c19-e8.json",
+  "repairReceiptSha256": "4cdbc66a5370a2659d4d472cb5346c30eeaa01e5cdc2d52ece496c439481c2d6",
+  "rejectingReview": "maintenance/iriya-manual-batch15-offset0-independent-cross-review-d7.json",
+  "rejectingReviewSha256": "cb1411ab72830e6f511c4777345ea212a21de0a385609ff9f21b8b92815a5cdd",
+  "overallVerdict": "PASS",
+  "scopeReview": {
+    "verdict": "PASS",
+    "method": "Reverse the two compact zcExact byte substrings in the current ledger and hash the resulting raw bytes.",
+    "reconstructedPreRepairLedgerSha256": "db1cb692667a872f2836670bc74aed5711bc7bff3f8179348dc4c9c54a03d8de",
+    "expectedPreRepairLedgerSha256": "db1cb692667a872f2836670bc74aed5711bc7bff3f8179348dc4c9c54a03d8de",
+    "byteExactReconstruction": true,
+    "changedFields": [
+      "decisions[id=t_3e1d96805ad3].zcExact",
+      "decisions[id=t_abfd08505661].zcExact"
+    ],
+    "otherEightRowsBytePreserved": true,
+    "allEvidenceReasonsIdentitiesDispositionsUnitsAndSummaryBytePreserved": true
+  },
+  "correctedCounts": [
+    {
+      "id": "t_3e1d96805ad3",
+      "term": "拗曲作直",
+      "storedAndReproduced": {"hits": 62, "files": 47, "distinctWorks": 46},
+      "verdict": "PASS"
+    },
+    {
+      "id": "t_abfd08505661",
+      "term": "藏身露影",
+      "storedAndReproduced": {"hits": 69, "files": 48, "distinctWorks": 47},
+      "verdict": "PASS"
+    }
+  ],
+  "validatorReview": {
+    "cheap": {
+      "command": "python3 validate_iriya_author_ledger.py maintenance/iriya-manual-batch15-offset0-ledger.json",
+      "status": "PASS",
+      "failureCount": 0
+    },
+    "full": {
+      "command": "python3 validate_iriya_author_ledger.py maintenance/iriya-manual-batch15-offset0-ledger.json --full",
+      "status": "PASS",
+      "reviewedRows": 10,
+      "failureCount": 0,
+      "allTwentyEvidenceWindowsAndCountTriplesReproduced": true
+    }
+  },
+  "priorSemanticDispositionAndUnitVerdictPreserved": "PASS",
+  "requiredRevisions": [],
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false,
+  "reviewedLedgerMutated": false
+}

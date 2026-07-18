@@ -102,3 +102,23 @@ For each candidate adjudicated: record `{term, disposition, unit (couplet|compon
 zc-evidence (the KWIC/deployment you found or the confirmed absence)}`. Write a running
 `IRIYA_ADJUDICATION_LOG.md`. Do not build entries for REJECT/decompose-to-component couplets; hand
 KEEP/PROVISIONAL forward to the normal build step under the guide.
+
+### 7a. Row-association gate before independent review
+
+Every author ledger must pass both:
+
+```
+python validate_iriya_author_ledger.py maintenance/<author-ledger>.json
+python validate_iriya_author_ledger.py maintenance/<author-ledger>.json --full
+```
+
+The cheap pass binds each row's queue number, canonical index, ID, printed term,
+and corpus query directly to the authoritative queue and requires its own query
+in its own evidence windows. The full pass additionally reproduces the exact
+hit/file/work totals, both line anchors, source titles, `zc.verify`, and canonical
+`work_id` values. A failure stays with the author and is never dispatched to an
+independent semantic reviewer. This gate exists because a batch once retained
+the correct selected IDs while copying the previous offset's queries, counts,
+reasons, and evidence into nine rows; identity-only preflight could not detect
+that cross-row template association defect. The validator makes no semantic
+decision and never substitutes for full-case independent reading.

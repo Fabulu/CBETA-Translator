@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "iriya-manual-focused-count-repair-receipt.v1",
+  "agent": "c19-e8",
+  "ledger": "maintenance/iriya-manual-batch15-offset0-ledger.json",
+  "scope": "Two stale zcExact triples only; all identities, decisions, reasons, variants, and evidence preserved.",
+  "independentReproduction": {
+    "methods": ["zc.count", "zc.batch_count"],
+    "agreement": true,
+    "allowlistedFiles": 494
+  },
+  "repairs": [
+    {
+      "canonicalIndex": 492,
+      "id": "t_3e1d96805ad3",
+      "term": "拗曲作直",
+      "before": {"hits": 55, "files": 40, "distinctWorks": 39},
+      "after": {"hits": 62, "files": 47, "distinctWorks": 46}
+    },
+    {
+      "canonicalIndex": 495,
+      "id": "t_abfd08505661",
+      "term": "藏身露影",
+      "before": {"hits": 50, "files": 38, "distinctWorks": 37},
+      "after": {"hits": 69, "files": 48, "distinctWorks": 47}
+    }
+  ],
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "queueAdvanced": false,
+  "lineageTouched": false,
+  "focusedIndependentRecheckRequired": true
+}

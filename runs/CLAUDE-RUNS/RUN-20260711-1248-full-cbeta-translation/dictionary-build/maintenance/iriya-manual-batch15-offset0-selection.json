@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "iriya-manual-selection-v1",
+  "authoritativeQueue": "IRIYA_SAYINGS_QUEUE.md",
+  "authoritativeQueueSha256": "162592a97f6a483b8f1c944ca6746bdafd0b99c6d4990b61db3e288ed5edc8be",
+  "trustedRegistry": "maintenance/iriya-trusted-registry.json",
+  "trustedRegistryRowsObserved": 574,
+  "trustedRegistrySha256": "70f28fedb42d82f5581b1e784280ad6e16337974a14c7f15f47891cc46f8db47",
+  "priorOffset0AuthorLedgersExcluded": [
+    "maintenance/iriya-manual-batch9-offset0-ledger.json",
+    "maintenance/iriya-manual-batch10-offset0-ledger.json",
+    "maintenance/iriya-manual-batch11-offset0-ledger.json",
+    "maintenance/iriya-manual-batch12-offset0-ledger.json",
+    "maintenance/iriya-manual-batch13-offset0-ledger.json",
+    "maintenance/iriya-manual-batch14-offset0-ledger.json"
+  ],
+  "identityPreflight": {
+    "status": "PASS",
+    "assertions": {
+      "copiedDirectlyFromAuthoritativeQueue": true,
+      "canonicalIndexEqualsQueueNumberMinusOne": true,
+      "canonicalIndexModulo3Equals0": true,
+      "absentFromLive574Registry": true,
+      "absentFromEveryPriorOffset0AuthorLedger": true,
+      "exactlyTen": true
+    }
+  },
+  "offset": 0,
+  "batch": 15,
+  "rows": [
+    {"queueNumber":493,"canonicalIndex":492,"id":"t_3e1d96805ad3","term":"拗曲作直","query":"拗曲作直"},
+    {"queueNumber":496,"canonicalIndex":495,"id":"t_abfd08505661","term":"藏身露影","query":"藏身露影"},
+    {"queueNumber":499,"canonicalIndex":498,"id":"t_5fe9c895043e","term":"見之不取、思之千里","query":"見之不取，思之千里"},
+    {"queueNumber":502,"canonicalIndex":501,"id":"t_71434d6c6001","term":"一不做、二不休","query":"一不做，二不休"},
+    {"queueNumber":505,"canonicalIndex":504,"id":"t_d9956b151554","term":"從門入者不是家珍","query":"從門入者不是家珍"},
+    {"queueNumber":508,"canonicalIndex":507,"id":"t_553a42d1b242","term":"見面不如聞名","query":"見面不如聞名"},
+    {"queueNumber":511,"canonicalIndex":510,"id":"t_925d4454850b","term":"冬至寒食一百五","query":"冬至寒食一百五"},
+    {"queueNumber":514,"canonicalIndex":513,"id":"t_9f17a84f037f","term":"觀音入理之門","query":"觀音入理之門"},
+    {"queueNumber":517,"canonicalIndex":516,"id":"t_6dc669e7a588","term":"雪後始知松柏操、事難方見丈夫心","query":"雪後始知松柏操，事難方見丈夫心"},
+    {"queueNumber":520,"canonicalIndex":519,"id":"t_9b0a2d7487c6","term":"更參三十年","query":"更參三十年"}
+  ]
+}

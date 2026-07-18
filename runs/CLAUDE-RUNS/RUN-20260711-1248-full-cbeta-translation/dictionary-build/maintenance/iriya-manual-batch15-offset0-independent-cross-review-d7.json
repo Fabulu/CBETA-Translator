@@ -1,0 +1,102 @@
+{
+  "schemaVersion": "iriya-manual-cross-review-v1",
+  "generatedUtc": "2026-07-18T00:35:35Z",
+  "reviewedLedger": "maintenance/iriya-manual-batch15-offset0-ledger.json",
+  "reviewedLedgerSha256": "db1cb692667a872f2836670bc74aed5711bc7bff3f8179348dc4c9c54a03d8de",
+  "selection": "maintenance/iriya-manual-batch15-offset0-selection.json",
+  "selectionSha256": "99ef7e2de7a58a3ff8fc21a22237da4b9aef1760704df41e5f87aec167fcdba8",
+  "overallVerdict": "REVISE",
+  "identityReview": {
+    "verdict": "PASS",
+    "registryRows": 574,
+    "registrySha256": "70f28fedb42d82f5581b1e784280ad6e16337974a14c7f15f47891cc46f8db47",
+    "allSelectionTuplesMatchLedgerExactly": true,
+    "canonicalIndexEqualsQueueNumberMinusOne": true,
+    "canonicalIndexModulo3Equals0": true,
+    "allTenAbsentFromRegistryAtSelection": true,
+    "allTenAbsentFromEveryPriorOffset0AuthorLedger": true,
+    "exactlyTen": true
+  },
+  "fullValidatorReview": {
+    "command": "python3 validate_iriya_author_ledger.py maintenance/iriya-manual-batch15-offset0-ledger.json --full",
+    "mode": "full-zc",
+    "verdict": "FAIL",
+    "reviewedRows": 10,
+    "failureCount": 2,
+    "allTwentyEvidenceWindowsVerified": true,
+    "allLineBoundsTitlesAndCanonicalWorkIdsReproduced": true,
+    "twoCanonicalDistinctWorksPerDecision": true,
+    "failures": [
+      {
+        "id": "t_3e1d96805ad3",
+        "term": "拗曲作直",
+        "field": "zcExact",
+        "stored": {
+          "hits": 55,
+          "files": 40,
+          "distinctWorks": 39
+        },
+        "reproduced": {
+          "hits": 62,
+          "files": 47,
+          "distinctWorks": 46
+        }
+      },
+      {
+        "id": "t_abfd08505661",
+        "term": "藏身露影",
+        "field": "zcExact",
+        "stored": {
+          "hits": 50,
+          "files": 38,
+          "distinctWorks": 37
+        },
+        "reproduced": {
+          "hits": 69,
+          "files": 48,
+          "distinctWorks": 47
+        }
+      }
+    ]
+  },
+  "semanticDispositionAndUnitReview": {
+    "verdict": "PASS",
+    "fullCasesRead": 20,
+    "KEEP": 10,
+    "components": [
+      "拗曲作直",
+      "藏身露影",
+      "從門入者不是家珍",
+      "見面不如聞名",
+      "冬至寒食一百五",
+      "觀音入理之門",
+      "更參三十年"
+    ],
+    "couplets": [
+      "見之不取、思之千里",
+      "一不做、二不休",
+      "雪後始知松柏操、事難方見丈夫心"
+    ],
+    "requiredSemanticRevisions": []
+  },
+  "requiredRevisions": [
+    {
+      "id": "t_3e1d96805ad3",
+      "term": "拗曲作直",
+      "scope": "zcExact",
+      "finding": "The mandatory full validator reproduces 62 hits, 47 files, and 46 distinct works, not the stored 55/40/39."
+    },
+    {
+      "id": "t_abfd08505661",
+      "term": "藏身露影",
+      "scope": "zcExact",
+      "finding": "The mandatory full validator reproduces 69 hits, 48 files, and 47 distinct works, not the stored 50/38/37."
+    }
+  ],
+  "protectedArtifactsMutated": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "queueAdvanced": false,
+  "lineageTouched": false,
+  "reviewedLedgerMutated": false
+}

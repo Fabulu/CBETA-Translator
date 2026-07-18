@@ -18,7 +18,7 @@ import sys, os, re, json, hashlib, pickle, tempfile
 from array import array
 from bisect import bisect_right
 from functools import lru_cache
-from collections import Counter
+from collections import Counter, OrderedDict
 
 _WINDOWS_CORPUS = r"C:\temp\NewTranslationrepos\CbetaZenTexts\xml-p5"
 _WINDOWS_ALLOW = r"C:\programmieren\MergeWorkCbeta\CBETA-Translator\Assets\Data\zen-corpus.json"
@@ -41,6 +41,7 @@ _NORMALIZER_VERSION = "zc-apparatus-clean-v3"
 _DISK_CACHE = os.environ.get("ZC_CACHE_DIR") or "/tmp/cbeta-zc-cache-v3"
 _DISK_CACHE_ENABLED = os.environ.get("ZC_DISABLE_DISK_CACHE", "").lower() not in {"1", "true", "yes"}
 _TRUST_FROZEN_CACHE = os.environ.get("ZC_TRUST_FROZEN_CACHE", "").lower() in {"1", "true", "yes"}
+_MEMORY_CACHE_FILES = max(1, int(os.environ.get("ZC_MEMORY_CACHE_FILES", "32")))
 
 
 class _LbMap:
@@ -147,15 +148,33 @@ def is_allowed(rel):
 def _abs(rel):
     return os.path.join(CORPUS, rel.replace("/", os.sep))
 
+
+def _remember_file(rel, payload):
+    """Keep only a small hot set; the durable normalized cache remains on disk.
+
+    A concordance count scans all 494 files. Retaining that whole scan in every
+    worker multiplied the complete normalized corpus by the number of parallel
+    agents and caused OOM kills. The LRU changes transport cost only: payload
+    bytes and all exact matching behavior remain unchanged.
+    """
+    files = _cache.setdefault("files", OrderedDict())
+    files[rel] = payload
+    files.move_to_end(rel)
+    while len(files) > _MEMORY_CACHE_FILES:
+        files.popitem(last=False)
+
 def _load(rel):
     """Return (norm_text, idx2lb) where norm_text is tag-stripped, apparatus-removed, whitespace-removed;
     idx2lb[j] = primary-edition lb n-value governing the j-th char of norm_text."""
-    if rel in _cache.get("files", {}):
-        return _cache["files"][rel]
+    files = _cache.get("files")
+    if files is not None and rel in files:
+        payload = files[rel]
+        files.move_to_end(rel)
+        return payload
     source = _abs(rel)
     cached = _read_disk_cache(rel, source)
     if cached is not None:
-        _cache.setdefault("files", {})[rel] = cached
+        _remember_file(rel, cached)
         return cached
     with open(source, encoding="utf-8") as handle:
         raw = handle.read()
@@ -199,7 +218,7 @@ def _load(rel):
     compact = _LbMap(starts, lb_values, len(value))
     res = (value, compact)
     _write_disk_cache(rel, source, value, starts, lb_values)
-    _cache.setdefault("files", {})[rel] = res
+    _remember_file(rel, res)
     return res
 
 def count(term, limit=0):
@@ -219,6 +238,41 @@ def count(term, limit=0):
     if limit: per = per[:limit]
     works = {work_id(rel) for rel, _ in per}
     return {"hits": total, "files": nfiles, "works": len(works), "per_file": per}
+
+
+def batch_count(terms, limit=0):
+    """Count many terms while traversing the frozen corpus only once.
+
+    This is exactly equivalent to ``{term: count(term)}`` (including work/file
+    accounting and ordering), but avoids repeating the 494-file iterator and
+    cache lookups for every headword in a construction wave.
+    """
+    normalized = list(dict.fromkeys(_WS.sub("", str(term)) for term in terms))
+    if any(not term for term in normalized):
+        raise ValueError("batch_count terms must be nonempty after whitespace removal")
+    totals = {term: 0 for term in normalized}
+    per = {term: [] for term in normalized}
+    for rel in _allow():
+        try:
+            norm, _ = _load(rel)
+        except Exception:
+            continue
+        for term in normalized:
+            current = norm.count(term)
+            if current:
+                totals[term] += current
+                per[term].append((rel, current))
+    result = {}
+    for term in normalized:
+        rows = sorted(per[term], key=lambda row: -row[1])
+        visible = rows[:limit] if limit else rows
+        result[term] = {
+            "hits": totals[term],
+            "files": len(rows),
+            "works": len({work_id(rel) for rel, _ in visible}),
+            "per_file": visible,
+        }
+    return result
 
 
 def _bridged_strip(text, with_positions=False):

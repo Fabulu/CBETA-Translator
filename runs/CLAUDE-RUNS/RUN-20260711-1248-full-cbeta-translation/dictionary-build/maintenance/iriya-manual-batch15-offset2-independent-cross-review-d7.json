@@ -1,0 +1,47 @@
+{
+  "schemaVersion":"iriya-manual-independent-cross-review.v1",
+  "reviewer":"d7",
+  "decision":"REVISE",
+  "reviewedLedger":"maintenance/iriya-manual-batch15-offset2-ledger.json",
+  "reviewedLedgerSha256":"b35c4df77fa797f53c01057f3ec7354c28f872cdacfd818c3f7d98e2e472948c",
+  "identityReview": {
+    "verdict":"PASS",
+    "liveRegistry":"maintenance/iriya-trusted-registry.json",
+    "liveRegistryRows":574,
+    "liveRegistrySha256":"70f28fedb42d82f5581b1e784280ad6e16337974a14c7f15f47891cc46f8db47",
+    "finding":"All ten canonicalIndex/queueNumber/id/term tuples match the authoritative queue, satisfy canonicalIndex modulo 3 equals 2, remain absent from live574, and are absent from the nine bound prior offset2 author ledgers."
+  },
+  "cohortFinding": {
+    "verdict":"REVISE rows 1-9; PASS row 10",
+    "failure":"Rows 1-9 have correct selected identity fields but their query, zcExact, reason, evidence, and formResolution were copied in order from batch15 offset1 terms. Each stored KWIC contains the wrong query and contains none of the selected headword. This invalidates their counts, full-case reading, unit/disposition support, and variant claims.",
+    "notASemanticRejection":"The nine selected headwords are not rejected by this review; they remain unadjudicated until correctly researched."
+  },
+  "rows": [
+    {"row":1,"term":"出身猶可易、脱體道應難","verdict":"REVISE","wrongQuery":"人平不語，水平不流","requiredQuery":"出身猶可易，脫體道應難","finding":"Reason/evidence concern the human-and-water stillness couplet, not this escape/body-transcendence couplet."},
+    {"row":2,"term":"口似磉盤","verdict":"REVISE","wrongQuery":"七事隨身","requiredQuery":"口似磉盤","finding":"Reason/evidence concern seven carried requisites, not the millstone-mouth image."},
+    {"row":3,"term":"大巧若拙","verdict":"REVISE","wrongQuery":"堆山積嶽","requiredQuery":"大巧若拙","finding":"Reason/evidence concern piled mountains, not great skill appearing clumsy."},
+    {"row":4,"term":"野狐精魅","verdict":"REVISE","wrongQuery":"邯鄲學唐步","requiredQuery":"野狐精魅","finding":"Reason/evidence concern Handan imitation, not the wild-fox spirit designation."},
+    {"row":5,"term":"五戒不持","verdict":"REVISE","wrongQuery":"一場敗缺","requiredQuery":"五戒不持","finding":"Reason/evidence concern a complete defeat, not failure to maintain the five precepts."},
+    {"row":6,"term":"換手搥胸","verdict":"REVISE","wrongQuery":"口似匾擔","requiredQuery":"換手搥胸","finding":"Reason/evidence concern carrying-pole mouth, not alternating hands to beat the breast."},
+    {"row":7,"term":"描不成、畫不就","verdict":"REVISE","wrongQuery":"道不虛行","requiredQuery":"描不成，畫不就","finding":"Reason/evidence concern the Way not travelling in vain, not the paired inability to depict."},
+    {"row":8,"term":"同道方知","verdict":"REVISE","wrongQuery":"兩鏡相照","requiredQuery":"同道方知","finding":"Reason/evidence concern mutually reflecting mirrors, not recognition by one of the same way."},
+    {"row":9,"term":"形直影端","verdict":"REVISE","wrongQuery":"家破人亡","requiredQuery":"形直影端","finding":"Reason/evidence concern household destruction, not the straight-form/upright-shadow formula."},
+    {"row":10,"term":"拏雲攫霧","verdict":"PASS","confirmedDisposition":"KEEP (component)","finding":"Identity/query align; both exact windows contain the headword, verify in canonical-distinct works, and support the recurrent extraordinary-capacity image. The spacing resolution is explicit and no imported interpretation is used."}
+  ],
+  "mechanicalReview": {
+    "row10ExactCount":"PASS 48 hits / 32 files / 32 canonical works",
+    "row10Evidence":"PASS 2/2 exact zc.verify; canonical-distinct work pair",
+    "rows1To9ExactEvidence":"FAIL 0/18 windows attest their selected terms; all 18 attest copied offset1 queries instead",
+    "variants":"REVISE rows 1-9; PASS row10 inter-graph spacing resolution",
+    "importedInterpretation":"PASS row10; rows1-9 cannot be assessed because their prose addresses different terms"
+  },
+  "requiredRepairs": [
+    "Preserve the ten identity tuples and row order.",
+    "For rows 1-9, replace query with the authoritative queue query and rerun exact zc hit/file/work counts.",
+    "Read at least two full cases in canonical-distinct works for each repaired term; replace both evidence objects and write term-specific reasons, units, dispositions, and variants without carrying over any offset1 content.",
+    "Recompute the summary after manual adjudication; do not assume the current nine KEEP decisions survive.",
+    "Preserve row10 unchanged and issue a scoped repair receipt followed by focused independent recheck."
+  ],
+  "summary":{"PASS":1,"REVISE":9,"semanticRejections":0},
+  "authorLedgerMutated":false,"registryMutationPerformed":false,"buildRun":false,"queueAdvanced":false,"lineageTouched":false
+}

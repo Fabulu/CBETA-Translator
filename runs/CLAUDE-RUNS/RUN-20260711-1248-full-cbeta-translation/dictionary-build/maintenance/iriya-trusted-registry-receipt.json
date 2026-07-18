@@ -1,8 +1,8 @@
 {
   "schemaVersion": "iriya-trusted-registry-receipt.v1",
-  "generatedUtc": "2026-07-18T00:14:08Z",
+  "generatedUtc": "2026-07-18T00:44:41Z",
   "registry": "maintenance/iriya-trusted-registry.json",
-  "registrySha256": "70f28fedb42d82f5581b1e784280ad6e16337974a14c7f15f47891cc46f8db47",
+  "registrySha256": "43312c2f8ca9ddb8b65641e749547b5cf8e0fce19cfed53b022f8c2389e1ba43",
   "sourceInputs": [
     {
       "role": "method-audit",
@@ -668,6 +668,78 @@
       "path": "maintenance/iriya-manual-batch14-offset2-repair-focused-recheck-c19-e8.json",
       "sha256": "e0873bf5785888f118597cad486208362dc3a217010af84bb2ac15ad3c3c8164",
       "offset": 2
+    },
+    {
+      "role": "batch15-ledger",
+      "offset": 0,
+      "path": "maintenance/iriya-manual-batch15-offset0-ledger.json",
+      "sha256": "3bf3f5e60eb1f58735aa5808bb2c8b69506a340f984219ffa7e8e0eed1889ab2"
+    },
+    {
+      "role": "batch15-review",
+      "offset": 0,
+      "path": "maintenance/iriya-manual-batch15-offset0-independent-cross-review-d7.json",
+      "sha256": "cb1411ab72830e6f511c4777345ea212a21de0a385609ff9f21b8b92815a5cdd"
+    },
+    {
+      "role": "batch15-repair",
+      "offset": 0,
+      "path": "maintenance/iriya-manual-batch15-offset0-count-repair-receipt-c19-e8.json",
+      "sha256": "4cdbc66a5370a2659d4d472cb5346c30eeaa01e5cdc2d52ece496c439481c2d6"
+    },
+    {
+      "role": "batch15-recheck",
+      "offset": 0,
+      "path": "maintenance/iriya-manual-batch15-offset0-count-repair-focused-recheck-d7.json",
+      "sha256": "3012ccd21ab3710bead0d8884c3b56e44fd6f543e1eca7618ccdf0a3026a87d3"
+    },
+    {
+      "role": "batch15-ledger",
+      "offset": 1,
+      "path": "maintenance/iriya-manual-batch15-offset1-ledger.json",
+      "sha256": "074c46e1717d66061a4e69a455d70fcc5266d514797b72754a984d486360863c"
+    },
+    {
+      "role": "batch15-review",
+      "offset": 1,
+      "path": "maintenance/iriya-manual-batch15-offset1-cross-review-c19-e8.json",
+      "sha256": "39c3a76a7d0fc08fe8e50daba52884d8b6023a421d88250d4e6f15db826bfe3a"
+    },
+    {
+      "role": "batch15-repair",
+      "offset": 1,
+      "path": "maintenance/iriya-manual-batch15-offset1-repair-receipt.json",
+      "sha256": "01835cdc1c3b0cf99319e65f9fe89dc09d37ed2a38cefaa8ce048f242f49a661"
+    },
+    {
+      "role": "batch15-recheck",
+      "offset": 1,
+      "path": "maintenance/iriya-manual-batch15-offset1-repair-focused-recheck-d7.json",
+      "sha256": "b873742c2c05955bf77389751b3e13c9d30fd1d88637754e37ef9ff72c3c9fe6"
+    },
+    {
+      "role": "batch15-ledger",
+      "offset": 2,
+      "path": "maintenance/iriya-manual-batch15-offset2-ledger.json",
+      "sha256": "32dd3a9842c92f998c8512a6597cb0490c4f706c1e0beebc7217685356373f89"
+    },
+    {
+      "role": "batch15-review",
+      "offset": 2,
+      "path": "maintenance/iriya-manual-batch15-offset2-independent-cross-review-d7.json",
+      "sha256": "560ebbda508b0582e67e90b69ede80ee16e44b5b8d69cb8246c66ccea5b79963"
+    },
+    {
+      "role": "batch15-repair",
+      "offset": 2,
+      "path": "maintenance/iriya-manual-batch15-offset2-identity-association-repair-receipt.json",
+      "sha256": "8c8b9191d067724d459a29b2ca394e1a275de8dd6751bed66344e4ce169000ff"
+    },
+    {
+      "role": "batch15-recheck",
+      "offset": 2,
+      "path": "maintenance/iriya-manual-batch15-offset2-identity-association-repair-focused-recheck-d7.json",
+      "sha256": "e0d95dac93502be0ecbfa30dea662d28b95b588deb698d6999b60965fbbd315e"
     }
   ],
   "verification": {
@@ -1212,6 +1284,62 @@
         "repairReceiptSha256": "b1788fcfc379c617f30e9aad15edc81ce76261d9082caa4ac79ed70c45a1169d",
         "focusedRecheck": "maintenance/iriya-manual-batch14-offset2-repair-focused-recheck-c19-e8.json",
         "focusedRecheckSha256": "e0873bf5785888f118597cad486208362dc3a217010af84bb2ac15ad3c3c8164"
+      }
+    ]
+  },
+  "batch15Seal": {
+    "priorReceiptSha256": "49bed75c97a7089ca8e88ed9f400090bc6050bfad9a2aa6bece0756f9463b1f4",
+    "priorRegistrySha256": "70f28fedb42d82f5581b1e784280ad6e16337974a14c7f15f47891cc46f8db47",
+    "priorRegistryRows": 574,
+    "appendedRows": 30,
+    "finalRegistryRows": 604,
+    "offsets": [
+      0,
+      1,
+      2
+    ],
+    "prior574ObjectsPreservedExactly": true,
+    "canonicalQueueBindingsExact": true,
+    "exactEvidenceValidated": true,
+    "canonicalWorkProvenanceValidated": true,
+    "singleBatchedCountTraversal": true,
+    "noDefaultsOrQuarantine": true,
+    "publicationOrBuildAuthorization": false,
+    "queueAdvanced": false,
+    "lineageTouched": false,
+    "authorityChains": [
+      {
+        "offset": 0,
+        "ledger": "maintenance/iriya-manual-batch15-offset0-ledger.json",
+        "ledgerSha256": "3bf3f5e60eb1f58735aa5808bb2c8b69506a340f984219ffa7e8e0eed1889ab2",
+        "review": "maintenance/iriya-manual-batch15-offset0-independent-cross-review-d7.json",
+        "reviewSha256": "cb1411ab72830e6f511c4777345ea212a21de0a385609ff9f21b8b92815a5cdd",
+        "repair": "maintenance/iriya-manual-batch15-offset0-count-repair-receipt-c19-e8.json",
+        "repairSha256": "4cdbc66a5370a2659d4d472cb5346c30eeaa01e5cdc2d52ece496c439481c2d6",
+        "recheck": "maintenance/iriya-manual-batch15-offset0-count-repair-focused-recheck-d7.json",
+        "recheckSha256": "3012ccd21ab3710bead0d8884c3b56e44fd6f543e1eca7618ccdf0a3026a87d3"
+      },
+      {
+        "offset": 1,
+        "ledger": "maintenance/iriya-manual-batch15-offset1-ledger.json",
+        "ledgerSha256": "074c46e1717d66061a4e69a455d70fcc5266d514797b72754a984d486360863c",
+        "review": "maintenance/iriya-manual-batch15-offset1-cross-review-c19-e8.json",
+        "reviewSha256": "39c3a76a7d0fc08fe8e50daba52884d8b6023a421d88250d4e6f15db826bfe3a",
+        "repair": "maintenance/iriya-manual-batch15-offset1-repair-receipt.json",
+        "repairSha256": "01835cdc1c3b0cf99319e65f9fe89dc09d37ed2a38cefaa8ce048f242f49a661",
+        "recheck": "maintenance/iriya-manual-batch15-offset1-repair-focused-recheck-d7.json",
+        "recheckSha256": "b873742c2c05955bf77389751b3e13c9d30fd1d88637754e37ef9ff72c3c9fe6"
+      },
+      {
+        "offset": 2,
+        "ledger": "maintenance/iriya-manual-batch15-offset2-ledger.json",
+        "ledgerSha256": "32dd3a9842c92f998c8512a6597cb0490c4f706c1e0beebc7217685356373f89",
+        "review": "maintenance/iriya-manual-batch15-offset2-independent-cross-review-d7.json",
+        "reviewSha256": "560ebbda508b0582e67e90b69ede80ee16e44b5b8d69cb8246c66ccea5b79963",
+        "repair": "maintenance/iriya-manual-batch15-offset2-identity-association-repair-receipt.json",
+        "repairSha256": "8c8b9191d067724d459a29b2ca394e1a275de8dd6751bed66344e4ce169000ff",
+        "recheck": "maintenance/iriya-manual-batch15-offset2-identity-association-repair-focused-recheck-d7.json",
+        "recheckSha256": "e0d95dac93502be0ecbfa30dea662d28b95b588deb698d6999b60965fbbd315e"
       }
     ]
   }

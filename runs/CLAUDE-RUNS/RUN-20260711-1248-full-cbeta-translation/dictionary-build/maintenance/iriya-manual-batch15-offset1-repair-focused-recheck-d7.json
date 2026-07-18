@@ -1,0 +1,60 @@
+{
+  "schemaVersion": "iriya-manual-repair-focused-recheck-v1",
+  "generatedUtc": "2026-07-18T00:35:35Z",
+  "reviewedLedger": "maintenance/iriya-manual-batch15-offset1-ledger.json",
+  "reviewedLedgerSha256": "074c46e1717d66061a4e69a455d70fcc5266d514797b72754a984d486360863c",
+  "repairReceipt": "maintenance/iriya-manual-batch15-offset1-repair-receipt.json",
+  "repairReceiptSha256": "01835cdc1c3b0cf99319e65f9fe89dc09d37ed2a38cefaa8ce048f242f49a661",
+  "independentReview": "maintenance/iriya-manual-batch15-offset1-cross-review-c19-e8.json",
+  "independentReviewSha256": "39c3a76a7d0fc08fe8e50daba52884d8b6023a421d88250d4e6f15db826bfe3a",
+  "overallVerdict": "PASS",
+  "scopeReview": {
+    "verdict": "PASS",
+    "reconstructedPreRepairLedgerSha256": "432479205cebd06c3f68227306716f94f6cefa0a62e42836f79c596ba42a9f03",
+    "expectedPreRepairLedgerSha256": "432479205cebd06c3f68227306716f94f6cefa0a62e42836f79c596ba42a9f03",
+    "byteExactReconstruction": true,
+    "changedFields": [
+      "decisions[term=釣魚船上謝三郎].reason",
+      "decisions[term=堆山積嶽].reason",
+      "decisions[term=兩鏡相照].reason",
+      "repairStatus",
+      "repairReview",
+      "repairReviewSha256"
+    ],
+    "authorizedSemanticReasonChanges": 3,
+    "otherDecisionRowsPreservedExactly": 7,
+    "evidenceIdentitiesAndDispositionsPreservedExactly": true
+  },
+  "semanticRecheck": {
+    "verdict": "PASS",
+    "rows": [
+      {
+        "term": "釣魚船上謝三郎",
+        "verdict": "PASS",
+        "finding": "The repaired reason now describes the recurrent named person-and-fishing-boat image and its deployment as an answer or cap; it no longer assigns the unsupported abstract anti-official motive challenged by review."
+      },
+      {
+        "term": "堆山積嶽",
+        "verdict": "PASS",
+        "finding": "The repaired reason isolates magnitude of accumulation as the shared image and explicitly allows differing referents, without forcing a common evaluative outcome."
+      },
+      {
+        "term": "兩鏡相照",
+        "verdict": "PASS",
+        "finding": "The repaired reason retains responsive reflection while explicitly surfacing the full-case challenge that claiming no intervening image itself establishes an image."
+      }
+    ]
+  },
+  "inheritedUnchallengedReview": {
+    "identityVerdict": "PASS",
+    "mechanicalVerdict": "PASS",
+    "dispositionAndUnitVerdict": "PASS",
+    "unchallengedRows": 7
+  },
+  "protectedArtifactsMutated": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "queueAdvanced": false,
+  "lineageTouched": false,
+  "reviewedLedgerMutated": false
+}

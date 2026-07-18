@@ -1,0 +1,77 @@
+{
+  "schemaVersion": "iriya-manual-identity-association-repair-focused-recheck-v1",
+  "generatedUtc": "2026-07-18T00:38:31Z",
+  "reviewer": "d7",
+  "reviewedLedger": "maintenance/iriya-manual-batch15-offset2-ledger.json",
+  "reviewedLedgerSha256": "32dd3a9842c92f998c8512a6597cb0490c4f706c1e0beebc7217685356373f89",
+  "repairReceipt": "maintenance/iriya-manual-batch15-offset2-identity-association-repair-receipt.json",
+  "repairReceiptSha256": "8c8b9191d067724d459a29b2ca394e1a275de8dd6751bed66344e4ce169000ff",
+  "rejectingReview": "maintenance/iriya-manual-batch15-offset2-independent-cross-review-d7.json",
+  "rejectingReviewSha256": "560ebbda508b0582e67e90b69ede80ee16e44b5b8d69cb8246c66ccea5b79963",
+  "overallVerdict": "PASS",
+  "scopeReview": {
+    "verdict": "PASS",
+    "repairedRows": [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    "repairedRowsRebuiltFromAuthoritativeQueries": true,
+    "immutableRows": [10],
+    "row10PreservedExactlyAccordingToRepairReceipt": true,
+    "row10StillMatchesThePreviouslyPassingIdentityQueryReasonUnitDispositionEvidenceAndCount": true
+  },
+  "identityAssociationReview": {
+    "verdict": "PASS",
+    "authoritativeQueue": "IRIYA_SAYINGS_QUEUE.md",
+    "authoritativeQueueSha256": "162592a97f6a483b8f1c944ca6746bdafd0b99c6d4990b61db3e288ed5edc8be",
+    "allTenQueueTuplesReproduced": true,
+    "canonicalIndexEqualsQueueNumberMinusOne": true,
+    "canonicalIndexModulo3Equals2": true,
+    "exactlyTen": true,
+    "rows1To9QueriesNowMatchTheirSelectedTerms": true,
+    "copiedOffset1AssociationsRemaining": 0
+  },
+  "validatorReview": {
+    "cheap": {
+      "command": "python3 validate_iriya_author_ledger.py maintenance/iriya-manual-batch15-offset2-ledger.json",
+      "status": "PASS",
+      "reviewedRows": 10,
+      "failureCount": 0
+    },
+    "full": {
+      "command": "python3 validate_iriya_author_ledger.py maintenance/iriya-manual-batch15-offset2-ledger.json --full",
+      "status": "PASS",
+      "reviewedRows": 10,
+      "failureCount": 0,
+      "allTwentyEvidenceWindowsVerified": true,
+      "rebuiltRowsEvidenceWindowsVerified": 18,
+      "allLineBoundsTitlesAndCanonicalWorkIdsReproduced": true,
+      "allCountTriplesReproduced": true,
+      "twoCanonicalDistinctWorksPerDecision": true
+    }
+  },
+  "semanticDispositionAndUnitReview": {
+    "verdict": "PASS",
+    "freshlyReviewedRows": 9,
+    "immutablePreviouslyPassingRows": 1,
+    "rows": [
+      {"row": 1, "term": "出身猶可易、脱體道應難", "verdict": "PASS", "unit": "couplet"},
+      {"row": 2, "term": "口似磉盤", "verdict": "PASS", "unit": "component"},
+      {"row": 3, "term": "大巧若拙", "verdict": "PASS", "unit": "component"},
+      {"row": 4, "term": "野狐精魅", "verdict": "PASS", "unit": "component"},
+      {"row": 5, "term": "五戒不持", "verdict": "PASS", "unit": "component"},
+      {"row": 6, "term": "換手搥胸", "verdict": "PASS", "unit": "component"},
+      {"row": 7, "term": "描不成、畫不就", "verdict": "PASS", "unit": "couplet"},
+      {"row": 8, "term": "同道方知", "verdict": "PASS", "unit": "component"},
+      {"row": 9, "term": "形直影端", "verdict": "PASS", "unit": "component"},
+      {"row": 10, "term": "拏雲攫霧", "verdict": "PASS-IMMUTABLE", "unit": "component"}
+    ],
+    "KEEP": 10,
+    "components": 8,
+    "couplets": 2,
+    "requiredRevisions": []
+  },
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false,
+  "reviewedLedgerMutated": false
+}

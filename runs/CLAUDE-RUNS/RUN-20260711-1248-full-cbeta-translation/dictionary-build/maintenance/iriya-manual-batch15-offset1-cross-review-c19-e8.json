@@ -1,0 +1,60 @@
+{
+  "schemaVersion": "iriya-manual-cross-review-v1",
+  "reviewedLedger": "maintenance/iriya-manual-batch15-offset1-ledger.json",
+  "reviewedLedgerSha256": "432479205cebd06c3f68227306716f94f6cefa0a62e42836f79c596ba42a9f03",
+  "overallVerdict": "REVISE",
+  "identityReview": {
+    "verdict": "PASS",
+    "registryRows": 544,
+    "registrySha256": "7b8fc0af0b6b11c8e19fd61bc3ac5d6a4a9688930f81e653e0597b24b5bc3e62",
+    "allTenAbsentFromRegistry": true,
+    "allTenAbsentFromPriorOffset1AuthorLedgers": true,
+    "allQueueTuplesReproduced": true,
+    "canonicalIndexEqualsQueueNumberMinusOne": true,
+    "canonicalIndexModulo3Equals1": true,
+    "exactlyTen": true
+  },
+  "mechanicalReview": {
+    "verdict": "PASS",
+    "evidenceWindows": 20,
+    "allTwentyZcVerify": true,
+    "allLineBoundsTitlesAndWorkIdsReproduced": true,
+    "twoCanonicalDistinctWorksPerDecision": true,
+    "storedExactCountTriplesConsistentWithFrozenAuthoringRecord": true
+  },
+  "dispositionAndUnitReview": {
+    "verdict": "PASS",
+    "KEEP": 10,
+    "components": ["爛泥裏有刺", "釣魚船上謝三郎", "七事隨身", "堆山積嶽", "邯鄲學唐歩", "一場敗缺", "口似匾擔", "道不虚行", "兩鏡相照"],
+    "couplets": ["人平不語、水平不流"]
+  },
+  "requiredRevisions": [
+    {
+      "id": "t_91a53de02851",
+      "term": "釣魚船上謝三郎",
+      "scope": "semantic reason",
+      "finding": "‘Beyond official identity’ is not established by the witnesses and misses the observable bend: masters answer ‘what is the sangha/monk?’ with the named Xie Sanlang on his fishing boat, a stock person-and-setting image.",
+      "replacementGuidance": "Describe the fixed Xie-Sanlang-on-the-fishing-boat image and its recurrent deployment as an answer for 僧 or as a capping reference; do not assign an abstract anti-official motive."
+    },
+    {
+      "id": "t_f6e32ee6a4b8",
+      "term": "堆山積嶽",
+      "scope": "semantic reason",
+      "finding": "The reason forces all uses into obstruction/merit/speech/contrivance that a move exposes or sweeps aside. One stored witness simply says phenomena are everywhere piled mountain-high; another pictures heaps of corpses. The shared evidence is magnitude of accumulation, not a single evaluative object or outcome.",
+      "replacementGuidance": "Define the image descriptively as piling or massing mountain upon mountain, then state that masters apply it to radically different accumulations. Preserve one sense unless later cases show a genuinely different thing."
+    },
+    {
+      "id": "t_a0574e46021e",
+      "term": "兩鏡相照",
+      "scope": "semantic reason",
+      "finding": "The reason presents ‘without a fixed subject-object remainder’ as settled meaning, but the primary full case explicitly challenges 仰山's ‘two mirrors, no image between’ by saying he has already established an image.",
+      "replacementGuidance": "Describe reciprocal face-to-face reflection as the stock comparison and surface the corpus's own challenge: claiming no intervening image can itself set up an image. Preserve KEEP (component)."
+    }
+  ],
+  "unchallengedDecisionIds": ["t_8d9393dd490e", "t_59f3eded5780", "t_fd4f6ed2d061", "t_bbd16eb0d6f4", "t_dd93e9812360", "t_5999e5dd863c", "t_75950e201214"],
+  "protectedArtifactsMutated": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false,
+  "reviewedLedgerMutated": false
+}
