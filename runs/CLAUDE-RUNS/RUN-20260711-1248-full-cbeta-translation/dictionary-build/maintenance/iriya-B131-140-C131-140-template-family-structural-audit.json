@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "iriya-template-family-structural-audit-v1",
+  "generatedUtc": "2026-07-19T00:58:00Z",
+  "readOnly": true,
+  "scope": ["B131-B140", "C131-C140", "B121", "A101"],
+  "bindings": {
+    "B131_140Decisions": "36efa4c15f51957419d8b41857d3695ea63b1053609a28a679e0e7ef1a8d358a",
+    "C131_140Decisions": "4e7f7c8dd0efda235452055fbd8e4f33106eb10cb0c205b72b3e5b5d87bf02c9",
+    "B121_130DecisionsCurrent": "6c1bba0d650710f0d210ffc8821995fbcf1de02bdd0344c98d99448a93c8a73b",
+    "A101_110Decisions": "25ea802df2353886eff221e635be8c2017fd1a1f78d741d2f4b0d3f653602062",
+    "auditScriptCurrent": "4232334ae3e7260bd76f51425ac4ce33f73b8d8bfd0722c3d5e61d64d82de2f2",
+    "C131_140AuditReport": "255dac8daaeb5141bed2b96b3550cbb18a126495ac12c7b4c9e9619047f3e886",
+    "controlAuditReport": "96fbefe4fe3a3f8cf1a069da83634670e8b36bdebbec6924f594e231108669f0"
+  },
+  "result": {
+    "C131_140": {"hardPass": false, "affectedEntries": 10, "individualForbiddenStockFailures": 50, "crossEntrySignatureFailures": 5},
+    "B131_140": {"hardPass": true, "affectedEntries": 0},
+    "B121": {"hardPass": true, "affectedEntries": 0},
+    "A101": {"hardPass": true, "affectedEntries": 0}
+  },
+  "hollowOrdinalSubstitutions": [
+    {
+      "coordinates": "C131-C140.s1.ExplanationParts.EvidenceBody[0] and DraftEvidence.DifferentThingTest.Reason",
+      "count": 20,
+      "normalizedSignature": "The retained <lane> cases span distinct work identifiers and preserve the same lexical object across their recorded deployments.",
+      "ruling": "hollow: source plurality and lexical sameness do not report the headword's observed Chan deployment or adjudicate what different thing was tested"
+    },
+    {
+      "coordinates": "C131-C140.s1.DraftEvidence.AliasRationale",
+      "count": 10,
+      "normalizedSignature": "The <lane> alias preserves the expression's governing image and grammatical direction.",
+      "ruling": "hollow: no image, direction, alternate query, or rejected alias is named"
+    },
+    {
+      "coordinates": "C131-C140.s1.DraftEvidence.ModifierControls[0]",
+      "count": 10,
+      "normalizedSignature": "Term=the complete governed expression; Finding=<lane> excludes shortened matches that lose its decisive relation.",
+      "ruling": "hollow: neither the shortened match nor the lost relation is identified"
+    },
+    {
+      "coordinates": "C131-C140.s1.DraftEvidence.FamilyControls[0]",
+      "count": 10,
+      "normalizedSignature": "Term=nearby lexical family; Finding=<lane> keeps only exact witnesses of this headword, not merely related imagery.",
+      "ruling": "hollow: no family member or confusable image is named"
+    }
+  ],
+  "legitimateRepeatedSchemaLanguage": [
+    {
+      "coordinates": "B131-B140.s1.DraftEvidence.FamilyControls[0].Term",
+      "literalRepeat": "nearby formulas",
+      "ruling": "legitimate field label: each paired Finding is headword-specific and identifies the actual excluded class (single ink marks, unwitting mistakes, literal kinship, generic fear, gradual entry, isolated weapons, monetary loss, ordinary similes, commodity exchange, or sea imagery)"
+    },
+    {
+      "coordinates": "B121 and A101 semantic-control fields",
+      "ruling": "legitimate: controls name the concrete route/gate mismatch or 正令/祖令 neighboring family and state the distinct semantic boundary"
+    }
+  ],
+  "recommendedDetectorChanges": {
+    "normalization": [
+      "Before generic digit normalization, replace /\\b[ABC]\\d{2,4}\\b/i with <lane>; otherwise C131 becomes c<n> and word-boundary ordinal rules are fragile.",
+      "Audit author decisions/evidence drafts, not only compiled entry.v2.json, because compilation intentionally drops DraftEvidence."
+    ],
+    "singleOccurrenceForbiddenRegexes": [
+      "^the retained <lane> cases span distinct work identifiers and preserve the same lexical object across their recorded deployments\\.?$",
+      "^the <lane> alias preserves the expression.s governing image and grammatical direction\\.?$",
+      "^<lane> excludes shortened matches that lose its decisive relation\\.?$",
+      "^<lane> keeps only exact witnesses of this headword, not merely related imagery\\.?$",
+      "^.*<lane>.*$"
+    ],
+    "normalizedRepeatRule": "At repeat-floor >=5, fail identical normalized values independently by semantic coordinate. Include EvidenceBody, DifferentThingTest.Reason, AliasRationale, ModifierControls Finding, and FamilyControls Finding.",
+    "doNotFlag": "Do not fail a repeated generic control Term such as 'nearby formulas' by itself when its paired Finding is independently headword-specific. Flag the row only when both Term is generic and Finding is hollow or repeated."
+  },
+  "artifactsWritten": [
+    "maintenance/iriya-C131-140-semantic-template-audit-readonly.json",
+    "maintenance/iriya-B131-140-B121-A101-semantic-template-audit-readonly.json",
+    "maintenance/iriya-B131-140-C131-140-template-family-structural-audit.json"
+  ],
+  "entriesModified": false,
+  "rosterModified": false,
+  "installed": false,
+  "merged": false
+}
