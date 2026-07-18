@@ -1,0 +1,1263 @@
+{
+  "schemaVersion": "non-iriya-v2-semantic-adjudication.v1",
+  "batch": 10,
+  "generatedUtc": "2026-07-18T00:50:46Z",
+  "mode": "manual full-case adjudication after frozen diversified frequency navigation",
+  "selection": "maintenance/non-iriya-v2-frequency-batch10-navigation-selection.json",
+  "selectionSha256": "8b1e9b06f81346316efe6cc87577675eb7703b2d55529d17fa5686511775ff17",
+  "reviewedCount": 25,
+  "summary": {
+    "KEEP": 19,
+    "REJECT": 6,
+    "PROVISIONAL": 0
+  },
+  "decisions": [
+    {
+      "batchOrdinal": 1,
+      "reservoirRank": 89,
+      "reservoirBand": "3-8",
+      "term": "一切眾生",
+      "disposition": "REJECT",
+      "unit": null,
+      "validation": "manual full-case reading; fresh exact count and two canonical-distinct verified works; boundary/nested-family gate",
+      "reason": "Generic doctrinal collective in the supplied cases, with no bounded Chan deployment independent of covered longer formulas.",
+      "zcExactAtFreeze": {
+        "hits": 2214,
+        "files": 312,
+        "distinctWorks": 308
+      },
+      "zcExact": {
+        "hits": 2214,
+        "files": 312,
+        "distinctWorks": 308
+      },
+      "nestedFamily": {
+        "flags": [
+          "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED",
+          "family:substring-of-covered-term"
+        ],
+        "substringParents": [
+          "一切眾生皆有佛性",
+          "一切眾生皆無佛性",
+          "引導一切眾生"
+        ],
+        "coveredChildren": []
+      },
+      "evidence": [
+        {
+          "source": "T/T48/T48n2016.xml",
+          "title": "宗鏡錄",
+          "workId": "work:T48n2016",
+          "hitFromLb": "0417c02",
+          "hitToLb": "0417c20",
+          "kwic": "旨。祖祖相傳。傳此心。已上約祖佛所立宗旨。又諸賢聖所立宗體者。杜順和尚依華嚴經。立自性清淨圓明體。此即是如來藏中法性之體。從本已來。性自滿足。處染不垢。修治不淨。故云自性清淨。性體遍照。無幽不矚。故曰圓明。又隨流加染而不垢。返流除染而不淨。亦可在聖體而不增。處凡身而不減。雖有隱顯之殊。而無差別之異。煩惱覆之則隱。智慧了之則顯。非生因之所生。唯了因之所了。斯即一切眾生自心之體。靈知不昧。寂照無遺。非但華嚴之宗。亦是一切教體。佛地論。立一清淨法界體。論云。清淨法界者。一切如來真實自體。無始時來。自性清淨。具足種種過十方界極微塵數性相功德。無生無滅。猶如虛空。遍一切有情。平等共有。與一切法。不一不異。非有非無。離一切相。一切分別。一切名言。皆不能得。唯是清淨聖智所證。二空無我所顯。真如為其自性。諸聖分證。諸佛圓證。此清淨法界",
+          "verified": true
+        },
+        {
+          "source": "X/X83/X83n1578.xml",
+          "title": "指月錄",
+          "workId": "chan:zhiyue-lu",
+          "hitFromLb": "0405a08",
+          "hitToLb": "0405b01",
+          "kwic": "坐尸利沙樹下，說法一會，度人四萬。神足二：一、薩尼，二、毗樓。侍者善覺子上勝。拘那含牟尼佛▲拘那含牟尼佛偈曰：佛不見身知是佛，若實有知別無佛。智者能知罪性空，坦然不怖於生死。長阿含經云：人壽三萬歲時，此佛出世，種婆羅門，姓迦葉，父大德，母善勝。居清淨城，坐烏暫婆羅門樹下，說法一會，度人三萬。神足二：一、舒槃那，二、󳬂多樓。侍者安和子導師。迦葉佛▲迦葉佛偈曰：一切眾生性清淨，從本無生無可滅。即此身心是幻生，幻化之中無罪福。長阿含經云：人壽二萬歲時，此佛出世。種婆羅門，姓迦葉，父梵德，母財主。居波羅奈城，坐尼拘律樹下，說法一會，度人二萬。神足二：一提舍，二婆羅婆。侍者善友子集軍。幻寄曰：始予錄指月錄，七佛第書其偈，阿含、化跡皆削焉。既見世之人粗聞即心即佛者，率多撥無報化，乃悟昔人載此之妙密。葢偈闡法身之極致，阿含示化跡之大",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "batchOrdinal": 2,
+      "reservoirRank": 266,
+      "reservoirBand": "3-8",
+      "term": "十二時中",
+      "disposition": "KEEP",
+      "unit": "component",
+      "validation": "manual full-case reading; fresh exact count and two canonical-distinct verified works; boundary/nested-family gate",
+      "reason": "Stable Chan temporal formula for continuous conduct throughout the day.",
+      "zcExactAtFreeze": {
+        "hits": 1187,
+        "files": 218,
+        "distinctWorks": 214
+      },
+      "zcExact": {
+        "hits": 1187,
+        "files": 218,
+        "distinctWorks": 214
+      },
+      "nestedFamily": {
+        "flags": [
+          "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED",
+          "family:substring-of-covered-term",
+          "family:contains-covered-term"
+        ],
+        "substringParents": [
+          "十二時中須教打成一片"
+        ],
+        "coveredChildren": [
+          "十二時"
+        ]
+      },
+      "evidence": [
+        {
+          "source": "C/C077/C077n1710.xml",
+          "title": "古尊宿語錄",
+          "workId": "work:guzunsu-yulu",
+          "hitFromLb": "0635a23",
+          "hitToLb": "0635b20",
+          "kwic": "在塩官會裏大中帝為沙󳇐師於佛殿上禮佛沙󳇐云不著佛求不著法求不著眾求長老禮拜當何所求師云不着佛求不著法求不著眾求常禮如是事沙󳇐云用禮何為師便掌沙󳇐云太麄生師云者裏是什麼所在說麄說細隨後又掌沙󳇐便走。師行脚時到南泉一日齋時捧鉢向南泉位上坐南泉下來見便問長老什麼年中行道師云威音王已前南泉云猶是王老師孫在師便下去師一日在茶堂內坐南泉下來問定惠等學眀見佛性此理如何師云十二時中不依倚一物泉云莫便是長老見處麼師云不敢泉云漿水錢且置草鞋錢教什麼人還師便休後溈山舉此因緣問仰山莫是黃檗構它南泉不得麼仰山云不然須知黃檗有䧟虎之機溈山云子見處淂與麼長。一日五人新到同時相看一人不禮拜以手畫一圓相而立師云還知道好隻獵犬麼云尋羚羊氣來師云羚羊無氣汝向什麼處尋云尋羚羊蹤來師云羚羊無踪汝向什麼處尋云尋羚羊跡來師云羚羊無跡汝向什麼處尋云與麼則死羚羊也師便",
+          "verified": true
+        },
+        {
+          "source": "X/X80/X80n1565.xml",
+          "title": "五燈會元",
+          "workId": "work:X80n1565",
+          "hitFromLb": "0050c24",
+          "hitToLb": "0051a15",
+          "kwic": "曰。觀子神氣溫粹。真法寶也。師感悟。因求為弟子。素躬與落髮。乃戒之曰。汝乘流而行。逢徑即止。師遂南邁。抵臨安。見東北一山。因問樵者。樵曰。此徑山也。乃駐錫焉。僧問。如何是道。師曰。山上有鯉魚。海底有蓬塵。馬祖令人送書到。書中作一圓相。師發緘。於圓相中著一點。却封回。問。如何是祖師西來意。師曰。汝問不當。曰。如何得當。師曰。待吾滅後。即向汝說。馬祖令智藏來問。十二時中以何為境。師曰。待汝回去時有信。藏曰。如今便回去。師曰。傳語却須問取曹溪。崔趙公問。弟子今欲出家。得否。師曰。出家乃大丈夫事。非將相之所能為。公於是有省。唐大曆三年。代宗詔至闕下。親加瞻禮。一日。同忠國師在內庭坐次。見帝駕來。師起立。帝曰。師何以起。師曰。檀越何得向四威儀中見貧道。帝悅。謂國師曰。欲錫欽師一名。國師欣然奉詔。乃賜號國一焉。後辭歸本山。於貞元八",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "batchOrdinal": 3,
+      "reservoirRank": 377,
+      "reservoirBand": "3-8",
+      "term": "一大藏教",
+      "disposition": "KEEP",
+      "unit": "component",
+      "validation": "manual full-case reading; fresh exact count and two canonical-distinct verified works; boundary/nested-family gate",
+      "reason": "Conventional totalizing designation for the complete Buddhist canon.",
+      "zcExactAtFreeze": {
+        "hits": 944,
+        "files": 212,
+        "distinctWorks": 209
+      },
+      "zcExact": {
+        "hits": 944,
+        "files": 212,
+        "distinctWorks": 209
+      },
+      "nestedFamily": {
+        "flags": [
+          "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED",
+          "family:substring-of-covered-term"
+        ],
+        "substringParents": [
+          "一大藏教閑葛藤"
+        ],
+        "coveredChildren": []
+      },
+      "evidence": [
+        {
+          "source": "X/X64/X64n1260.xml",
+          "title": "列祖提綱錄",
+          "workId": "work:X64n1260",
+          "hitFromLb": "0014a02",
+          "hitToLb": "0014a18",
+          "kwic": "良久，云：一氣不言含有象，萬靈何處謝無私？中峰本禪師，延祐六年九月初六日，駙馬太尉瀋王王璋，奏奉聖旨，御香入山，謁師於幻住庵。翼日，請師就師子正宗禪寺陞座。大道無為，大功不宰，大善無跡，大位不居。一切處海印發光，千萬古金枝挺秀。訪圓通大士於潮音洞裏，買石得雲饒；修如意輪期於明慶寺中，移花兼蝶至。香風奏四天之樂，梵音轟大地之雷。二千載已現國王，五百劫常為世主。一大藏教，隨機運轉；百千善行，任意發揮。祝萬歲於九重，保三韓於上國。此是太尉瀋王海印居士尋常行履處。只如今日偕行宣政院使平章相國王子從官，高登天目，下視人寰。且佛法相應一句，如何指陳？匝天匝地祥雲起，無古無今瑞氣騰。某道行全虧，病衰滿體，隈藏巖穴，惟待殞亡。記六載前，伏承太尉瀋王書下逮，謂得旨南來，首謁補陀，次登天目。今年之夏，忽聞王車從至杭，繼臨海岸，親見十二面滿",
+          "verified": true
+        },
+        {
+          "source": "X/X82/X82n1571.xml",
+          "title": "五燈全書(第34卷-第120卷)",
+          "workId": "work:wudeng-quanshu",
+          "hitFromLb": "0003c03",
+          "hitToLb": "0003c19",
+          "kwic": "麼？曰：不會。師曰：逢人莫錯舉。韶州延祥法寧禪師韶州延祥法寧禪師僧問：牛頭未見四祖時如何？師曰：拄杖子。曰：見後如何？師便打。曰：今日親見和尚。師曰：再犯不容。韶州舜峰慧寶禪師韶州舜峰慧寶禪師僧問：步步登高時如何？師曰：險。曰：不進不退時如何？師曰：喪。曰：如何即是？師曰：蘇嚕蘇嚕。北禪賢禪師法嗣北禪賢禪師法嗣潭州興化紹銑禪師潭州興化紹銑禪師上堂，拈拄杖曰：一大藏教，是拭不淨故紙。超佛越祖之談，是誑󱓋閭閻漢。若論衲僧門下，一點也用不得。作麼生是衲僧門下事？良久曰：多虗不如少實。擊香臺，下座。洪州法昌倚遇禪師洪州法昌倚遇禪師漳州林氏子。幼棄家，依郡之崇福得度。有大志，自受具游方，名著叢席。浮山遠甞謂人曰：此後學行脚樣子也。參北禪，禪問：近離甚處？師曰：福嚴。禪曰：思大鼻孔長多少？師曰：與和尚當時見底一般。禪曰：汝道我見時",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "batchOrdinal": 4,
+      "reservoirRank": 461,
+      "reservoirBand": "3-8",
+      "term": "達磨大師",
+      "disposition": "KEEP",
+      "unit": "figure",
+      "validation": "manual full-case reading; fresh exact count and two canonical-distinct verified works; boundary/nested-family gate",
+      "reason": "Established personal designation of the first Chan patriarch Bodhidharma.",
+      "zcExactAtFreeze": {
+        "hits": 858,
+        "files": 242,
+        "distinctWorks": 238
+      },
+      "zcExact": {
+        "hits": 858,
+        "files": 242,
+        "distinctWorks": 238
+      },
+      "nestedFamily": {
+        "flags": [
+          "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED",
+          "family:substring-of-covered-term"
+        ],
+        "substringParents": [
+          "達磨大師行不到處"
+        ],
+        "coveredChildren": []
+      },
+      "evidence": [
+        {
+          "source": "X/X82/X82n1571.xml",
+          "title": "五燈全書(第34卷-第120卷)",
+          "workId": "work:wudeng-quanshu",
+          "hitFromLb": "0031b21",
+          "hitToLb": "0031c21",
+          "kwic": "無蹤跡。為甚如此？九九八十一揑跳。嶽麓海禪師法嗣嶽麓海禪師法嗣荊門軍玉泉思達磨師荊門軍玉泉思達磨師僧問：如何是一印印空？師曰：萬象收歸古鑑中。曰：如何是一印印水？師曰：秋蟾影落千江裏。曰：如何是一印印泥？師曰：細觀文彩未生時。南嶽下十六世南嶽下十六世中竺妙禪師法嗣中竺妙禪師法嗣溫州光孝己菴深禪師溫州光孝己菴深禪師本郡人。上堂：龍生龍，鳳生鳳，老鼠養兒㳂□□。達磨大師不會禪，歷魏遊梁乾打鬨。上堂：一九二九，相逢不出手。三九二十七，籬頭吹觱栗。翻憶小釋迦，雙子抱屈膝。知不知，實不實，摩訶般若波羅蜜。上堂：維摩默然，普賢廣說。歷代聖人，互呈醜拙。君不見落花三月子規啼，一聲聲是一點血。上堂：風蕭蕭，葉飄飄，雲片片，水茫茫。江干獨立向誰說，天外飛鴻三兩行。五燈全書卷第三十六五燈全書卷第三十七京都聖感禪寺住持僧編輯京都古華嚴寺住持",
+          "verified": true
+        },
+        {
+          "source": "X/X64/X64n1260.xml",
+          "title": "列祖提綱錄",
+          "workId": "work:X64n1260",
+          "hitFromLb": "0035c13",
+          "hitToLb": "0036a08",
+          "kwic": "山茗一爐香，家醜重重又外揚。祖忌，拈香。達大道兮過量，通佛心兮出度。不與凡聖同纏，超然名之曰祖。只如大光和尚具甚麼見，却道不是祖？甜瓜徹蒂甜，苦瓠連根苦。笑隱訢禪師。祖師忌拈香：八百年前向者裏落節，却贏得一著；八百年後向者裏拔本，却輸了一著。且道是那一著？一任天下衲僧貶剝。祖忌，拈香。東土西乾無授受，一華五葉自芬披，兒孫豈敢超宗祖？只要家風似舊時。顧眾，云：達磨大師來也。大眾同伸三拜。佛朗性禪師祖忌，拈香。今日示終始，活葬於熊耳，三年隻履歸，是你不是你？魏國宋雲回，葱嶺相耳語，形神妙耶？法爾如是，一花五葉，函葢天地，從來沒意智，都在吾手裏。便拈香。百丈忌拈香法語百丈忌拈香法語佛朗性禪師。百丈祖忌，拈香再參馬大師。祖視繩床角，一喝不掩耳。鷺鷥騎白鶴，清規鑑得麼？夜來巡火鐸。全室泐禪師百丈忌拈香。豎拂挂拂，神出鬼沒。併却咽",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "batchOrdinal": 5,
+      "reservoirRank": 463,
+      "reservoirBand": "3-8",
+      "term": "八萬四千",
+      "disposition": "REJECT",
+      "unit": null,
+      "validation": "manual full-case reading; fresh exact count and two canonical-distinct verified works; boundary/nested-family gate",
+      "reason": "Productive numerical hyperbole modifying unrelated things such as samadhi gates and bodily pores, not a stable Chan lexical object.",
+      "zcExactAtFreeze": {
+        "hits": 857,
+        "files": 251,
+        "distinctWorks": 247
+      },
+      "zcExact": {
+        "hits": 857,
+        "files": 251,
+        "distinctWorks": 247
+      },
+      "nestedFamily": {
+        "flags": [
+          "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED",
+          "family:substring-of-covered-term"
+        ],
+        "substringParents": [
+          "八萬四千非鳳毛"
+        ],
+        "coveredChildren": []
+      },
+      "evidence": [
+        {
+          "source": "T/T48/T48n2016.xml",
+          "title": "宗鏡錄",
+          "workId": "work:T48n2016",
+          "hitFromLb": "0464a22",
+          "hitToLb": "0464b11",
+          "kwic": "照道理。心智之光明。能發智照理。故心是光。若心癡闇。體則憔悴。心有智光。膚色充澤。故云。般若大故色大。般若淨故色淨。即是明也。天下萬物。唯人為貴。七尺形骸。不如靈智為貴。所以觀之心貴。心即是金。又知依知正名光。知一切法無一切法為明。是以若於宗鏡纔有信入。便生圓解。能發真正菩提心。更無過上。是無等等心。是最勝心。是最實心。止觀云。發此心者。能翻一一塵勞門。即是八萬四千諸三昧門。無明轉。即變為明。如融氷成水。更非遠物。不餘處來。但一念心。普皆具足。如如意珠。非有寶。非無寶。若謂無者。即妄語。若謂有者。即邪見。不可以心知。不可以言辯。眾生於此不思議不縛法中。而思想作縛。於無脫法中。而求於脫。是故起大慈悲。興四弘誓。拔兩苦。與兩樂。故名非縛非脫。真正菩提心。此發一菩提心。即一切菩提心。譬如良醫。有一祕方。總攝諸方。阿伽陀藥。功",
+          "verified": true
+        },
+        {
+          "source": "X/X64/X64n1260.xml",
+          "title": "列祖提綱錄",
+          "workId": "work:X64n1260",
+          "hitFromLb": "0062c16",
+          "hitToLb": "0063a11",
+          "kwic": "網者麼？良久曰：皇天無親。上堂。入林不動草，入水不動波，入鳥不亂行。大眾，者箇是把纜放船底手脚，且道衲僧家合作麼生？以手拍禪床，曰：掀翻海嶽求知己，撥亂乾坤見太平。上堂：忌口自然諸病減，多情未免有時勞。貧居動便成違順，落得清閒一味高。雖然如是，莫謂無心云是道，無心猶隔一重關。示眾，云：泥佛不度水，木佛不度火，金佛不度爐，真佛內裏坐。大眾！趙州老子十二劑骨頭、八萬四千毛孔，一時拋向諸人懷裏了也。圓通今日路見不平，為古人出氣。以手拍禪床，云：須知海嶽歸明主，未信乾坤陷吉人。上堂。釋迦老子有四弘誓願云：眾生無邊誓願度，煩惱無盡誓願斷，法門無量誓願學，佛道無上誓願成。法華亦有四弘誓願：饑來要喫飯，寒到即添衣，困時伸脚睡，熱處愛風吹。上堂：古人留下一言半句，未透時撞著鐵壁相似。忽然一日󳬇得透後，方知自己便是鐵壁。如今作麼生透？復",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "batchOrdinal": 6,
+      "reservoirRank": 522,
+      "reservoirBand": "3-8",
+      "term": "轉大法輪",
+      "disposition": "KEEP",
+      "unit": "action",
+      "validation": "manual full-case reading; fresh exact count and two canonical-distinct verified works; boundary/nested-family gate",
+      "reason": "Stable Buddhist-Chan action formula for turning the great Dharma wheel.",
+      "zcExactAtFreeze": {
+        "hits": 809,
+        "files": 254,
+        "distinctWorks": 250
+      },
+      "zcExact": {
+        "hits": 809,
+        "files": 254,
+        "distinctWorks": 250
+      },
+      "nestedFamily": {
+        "flags": [
+          "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED"
+        ],
+        "substringParents": [],
+        "coveredChildren": []
+      },
+      "evidence": [
+        {
+          "source": "X/X64/X64n1260.xml",
+          "title": "列祖提綱錄",
+          "workId": "work:X64n1260",
+          "hitFromLb": "0011a19",
+          "hitToLb": "0011b11",
+          "kwic": "他恁麼方便處麼？百丈說大義，辛懃事可知；龍門無道理，大眾絕狐疑。帝力乾坤重，君恩雨露垂；有人相借問，雲外略揚眉。為什麼揚眉？良久，云：萬古長春。密庵傑禪師奉聖旨就本寺開堂，上堂：靈源不昧，萬古徽猷，入此門來，莫存知解。知解既不生，如王寶劍，殺活臨時，舉一明三，目機銖兩，塵塵剎剎普現威權，物物頭頭全彰正眼，便見一塵含法界，一句截千差，於一毫端現寶王剎，坐微塵裏轉大法輪，高而無上，仰不可及，淵而無下，深不可測，自然風行草偃，水到渠成，不是神通妙用，亦非法爾如然。何故？乃是當人從無量劫來現成受用境界，契券分明，直饒千佛出現，各各放大寶光，也侵占一星兒不得。所以道：一切法不生，一切法不滅，若能如是解，佛法常現前。以此壽聖人，則天長地久；以此祝賢佐，則伊尹、周公；以此保國安民；以此康福天下。殊勝中殊勝，奇特中奇特，畢竟結角羅紋在",
+          "verified": true
+        },
+        {
+          "source": "X/X82/X82n1571.xml",
+          "title": "五燈全書(第34卷-第120卷)",
+          "workId": "work:wudeng-quanshu",
+          "hitFromLb": "0009b16",
+          "hitToLb": "0009c06",
+          "kwic": "流，如何領會？師曰：伏屍萬里。曰：早知今日事，悔不慎當初。師曰：三皇塚上草離離。問：上是天，下是地，未審中間是甚麼物？師曰：山河大地。曰：恁麼則謝師答話。師曰：大地山河。曰：和尚何得瞞人？師曰：却是老僧罪過。上元日，僧問：千燈互照，絲竹交音。正恁麼時，佛法在甚麼處？師曰：謝布施。曰：莫便是和尚為人處也無？師曰：大似不齋來。上堂：於一毫端，現寶王剎。坐微塵裏，轉大法輪。拈起拄杖曰：這箇是塵，作麼生說箇轉法輪底道理？山僧今日不惜眉毛，與汝諸人說破。拈起也，海水騰波，須彌岌峇。放下也，四海晏清，乾坤肅靜。敢問諸人，且道拈起即是，放下即是？當斷不斷，兩重公案。擊禪床，下座。上堂：看！看！爍爍瑞光，照大千界。百億微塵國土，百億大海水，百億須彌山，百億日月，百億四天下，乃至微塵剎土，皆於光中一時發現。諸仁者還見麼？若也見得，許汝親",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "batchOrdinal": 7,
+      "reservoirRank": 721,
+      "reservoirBand": "3-8",
+      "term": "三千里外",
+      "disposition": "REJECT",
+      "unit": null,
+      "validation": "manual full-case reading; fresh exact count and two canonical-distinct verified works; boundary/nested-family gate",
+      "reason": "Productive literal distance phrase; the surrounding travel or encounter supplies the semantic content.",
+      "zcExactAtFreeze": {
+        "hits": 671,
+        "files": 223,
+        "distinctWorks": 218
+      },
+      "zcExact": {
+        "hits": 671,
+        "files": 223,
+        "distinctWorks": 218
+      },
+      "nestedFamily": {
+        "flags": [
+          "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED"
+        ],
+        "substringParents": [],
+        "coveredChildren": []
+      },
+      "evidence": [
+        {
+          "source": "X/X82/X82n1571.xml",
+          "title": "五燈全書(第34卷-第120卷)",
+          "workId": "work:wudeng-quanshu",
+          "hitFromLb": "0069b13",
+          "hitToLb": "0069c05",
+          "kwic": "法嗣上封秀禪師法嗣文定公胡安國文定公胡安國字康候，道號艸菴。公久依上封，得言外之旨。崇寧中，過藥山，有禪人舉南泉斬猫話問公，公以偈答曰：手握乾坤殺活機，縱橫施設在臨時；玉堂兔馬非龍象，大用堂堂總不知。寄上封偈曰：祝融峰似杜城天，萬古江山在目前；須信死心元不死，夜來秋月又同圓。上封才禪師法嗣上封才禪師法嗣福州普賢元素禪師福州普賢元素禪師建寧人。上堂：兵隨印轉，三千里外絕烟塵。將逐符行，二六時中淨躶躶。不用鐵旗鐵鼓，自然草偃風行。何須七縱七擒，直得無思不服。所謂大丈夫秉慧劒，般若鋒兮金剛𦦨。非但能摧外道心，早曾落却天魔膽。正恁麼時，且道主將是甚麼人？喝一喝。上堂：南泉道：我十八上便解作活計，囊無繫蟻之絲，廚乏聚繩之糝。趙州道：我十八上便解破家散宅，南頭買賤，北頭賣貴。點檢將來，好與三十棒。且放過一著。何故？曾為蕩子偏憐客，",
+          "verified": true
+        },
+        {
+          "source": "X/X64/X64n1260.xml",
+          "title": "列祖提綱錄",
+          "workId": "work:X64n1260",
+          "hitFromLb": "0040b10",
+          "hitToLb": "0040c02",
+          "kwic": "以楞伽為印乎？此正明一切佛語皆以心為宗旨，不特楞伽是離文字法，如能親悟心印，則三藏十二部、一切脩多羅皆是離文字為宗旨也。達祖斥相指心，正以彼時教家執着名相、不見心宗，斥者斥其執相也，非斥彼不當開闡教義也。如能悟此心宗，又何經律論觀淨諸教非直指之玅心哉？不見我雲棲先大師最初發心即以生死大事而起疑情，剃染之後即徧參諸方尊宿，甞于京師謁笑巖和尚求指示，笑巖曰：阿你三千里外來開示我，我有甚麼開示你？時大師言下有省。因過東昌，聞譙樓鼓聲，乃悟其旨，作偈曰：二十年前事可疑，三千里外遇何奇？焚香擲戟渾如夢，魔佛空爭是與非？此後見法門師承大壞，參學無真，乃大權設教，開戒律，闡教乘，標淨土而歸于心宗。世人不知大師悟證之繇，以大師乃教中圓人，何必揑歸禪宗，以亂其統？又孰知大師乃先悟禪宗，而後開諸教海，收攝羣機，而歸正覺也？世間開戒、闡教、",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "batchOrdinal": 8,
+      "reservoirRank": 906,
+      "reservoirBand": "3-8",
+      "term": "臘月三十",
+      "disposition": "KEEP",
+      "unit": "formula",
+      "validation": "manual full-case reading; fresh exact count and two canonical-distinct verified works; boundary/nested-family gate",
+      "reason": "Established Chan deadline image for death and final reckoning.",
+      "zcExactAtFreeze": {
+        "hits": 575,
+        "files": 191,
+        "distinctWorks": 188
+      },
+      "zcExact": {
+        "hits": 575,
+        "files": 191,
+        "distinctWorks": 188
+      },
+      "nestedFamily": {
+        "flags": [
+          "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED",
+          "family:substring-of-covered-term"
+        ],
+        "substringParents": [
+          "臘月三十日"
+        ],
+        "coveredChildren": []
+      },
+      "evidence": [
+        {
+          "source": "X/X82/X82n1571.xml",
+          "title": "五燈全書(第34卷-第120卷)",
+          "workId": "work:wudeng-quanshu",
+          "hitFromLb": "0006c23",
+          "hitToLb": "0007a14",
+          "kwic": "一家。師曰：夢裏到家鄉。上堂：來不來，去不去。脚下須彌山，腦後擎天柱。大藏不能宣，佛眼不能覰。諸禪德，漸老逢春解惜春，昨夜飛花落無數。上堂，畫一圓相，以手拓起曰：諸仁者還見麼？團團離海嶠，漸漸出雲衢。諸人若也未見，莫道南明長老措大相，却於寶華王座上念中秋月詩。若也見得，此夜一輪滿，清光何處無？上堂：要去不得去，要住不得住。打破大散關，脫却孃生袴。諸仁者，若到臘月三十日，且道用箇甚麼？良久曰：柳絮隨風，自西自東。上堂：古人恁麼，南禪不恁麼。古人不恁麼，南禪却恁麼。大眾還委悉麼？王婆衫子短，李四帽簷長。聖節上堂，拈拄杖擊法座一下，曰：以此功德，祝延聖壽。便下座。上堂：時人欲識南禪路，門前有箇長松樹。脚下分明不較多，無奈行人恁麼去。莫恁去，急回顧，樓臺烟鎖鐘鳴處。因雪上堂，召大眾曰：還有過得此色者麼？良久曰：文殊笑，普賢嗔，",
+          "verified": true
+        },
+        {
+          "source": "T/T47/T47n1998A.xml",
+          "title": "大慧普覺禪師語錄",
+          "workId": "work:T47n1998A",
+          "hitFromLb": "0839b11",
+          "hitToLb": "0839b29",
+          "kwic": "。只今眾中莫有不受人謾底麼。試出來定當看。良久云。若不藍田射石虎。幾乎誤殺李將軍。卓一下。示眾。多時不說禪。口邊生白醭。大眾苦相煎。便登曲彔木。匪論五家宗。不引傳燈錄。纔開兩片皮。業因招薄福。釋迦乾屎橛。達磨老臭禿。一人曲說直。一人直說曲。彼此大丈夫。肯受爾沸𡱰。罵佛謗祖師。定入拔舌獄。佛祖生冤家。魔王真眷屬。心地黑漫漫。口裏水漉漉。似恁出家兒。定滅瞿曇族。臘月三十朝。大笑却成哭。召大眾云。還識雲門村叟麼。曾聞一飽忘百饑。今日山僧身便是喝一喝。示眾舉。僧問香嚴。如何是道。嚴云。枯木裏龍吟。僧云。如何是道中人。嚴云。髑髏裏眼睛。僧又問石霜。如何是枯木裏龍吟。霜云。猶帶喜在。如何是髑髏裏眼睛。霜云。猶帶識在。又問曹山。如何是枯木裏龍吟。山云。血脈不斷。如何是髑髏裏眼睛山云。乾不盡。遂有頌云。枯木龍吟真見道。髑髏無識眼初明。",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "batchOrdinal": 9,
+      "reservoirRank": 1032,
+      "reservoirBand": "3-8",
+      "term": "諸佛出身",
+      "disposition": "KEEP",
+      "unit": "component",
+      "validation": "manual full-case reading; fresh exact count and two canonical-distinct verified works; boundary/nested-family gate",
+      "reason": "Stable doctrinal-case component concerning the point from which Buddhas emerge.",
+      "zcExactAtFreeze": {
+        "hits": 537,
+        "files": 164,
+        "distinctWorks": 160
+      },
+      "zcExact": {
+        "hits": 537,
+        "files": 164,
+        "distinctWorks": 160
+      },
+      "nestedFamily": {
+        "flags": [
+          "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED",
+          "family:substring-of-covered-term",
+          "family:contains-covered-term"
+        ],
+        "substringParents": [
+          "如何是諸佛出身處",
+          "諸佛出身處"
+        ],
+        "coveredChildren": [
+          "出身"
+        ]
+      },
+      "evidence": [
+        {
+          "source": "X/X82/X82n1571.xml",
+          "title": "五燈全書(第34卷-第120卷)",
+          "workId": "work:wudeng-quanshu",
+          "hitFromLb": "0089b17",
+          "hitToLb": "0089c08",
+          "kwic": "師曰：喫粥喫飯，莫教放在腦後。曰：終日喫時未嘗喫。師曰：負心衲子，不識好惡。問：劫火洞然，大千俱壞。未審這個壞也無？師曰：阿誰教你恁麼問？僧進前鞠躬曰：不審。師曰：是壞不壞？僧無語。問：如何是山裏禪？師曰：庭前嫰竹先生筍，㵎下枯松長老枝。曰：如何是市裏禪？師曰：六街鐘鼓韻鼕鼕，即處鋪金世界中。曰：如何是村裏禪？師曰：賊盜消亡蠶麥熟，謳歌鼓舞樂昇平。問：如何是諸佛出身處？師曰：問得甚當。曰：便恁麼去時如何？師曰：答得更奇。問：因山見水，見水忘山。山水俱忘，理歸何所？師曰：山僧坐却舌頭，天地黯黑。有一老宿垂語曰：十字街頭起一間茅廁，祇是不許人屙。僧舉以扣師。師曰：是你先屙了，更教甚麼人屙？宿聞，焚香遙望大隨，再拜謝之。高宗紹興乙卯秋七月，大雨雪，山中有異象。師曰：吾期至矣。十七日，別郡守以次。越三日，示少恙於天彭。二十四夜",
+          "verified": true
+        },
+        {
+          "source": "M/M59/M59n1540.xml",
+          "title": "大慧普覺禪師普說",
+          "workId": "chan:dahui-pushuo",
+          "hitFromLb": "0791a01",
+          "hitToLb": "0791a18",
+          "kwic": "又云治生產業皆與實相不相違背佛又何曾教人壞世間相而求出世間法耶佛法元來只在眾生日用中光明烜赫不曾間隔一絲毫諸佛菩薩不妄語唯證乃知難可測妙喜舊日參禪大法未明時也道諸佛菩薩說大脫空瞞人及乎悟了始知諸佛諸祖果不欺人平生自疑生不知來處死不知去處常懷恐怖之心從十九歲出家便尋知識請益看話頭恰恰十七年到三十六歲匹似閑在京師天寧見佛果老和尚赴張康國夫人請陞座舉僧問雲門如何是諸佛出身處門云東山水上行我舊時在雲門下曾過這話來也曾作玄妙提撕領略老和尚云若是天寧則不然或有人問只對他道薰風自南來殿閣生微凉只念這兩句詩此是唐柳公權與文宗聯句自家忽然在這一聯詩上打破漆桶當時如貧得寶如暗得燈如病得醫如子得母平生千疑萬慮如一把亂絲將利刀一截截斷從前許多無明煩惱一時斷了當下寂滅如斬一綟絲一斬一切斬證法時亦然一證一切證一了一切了一悟一切悟更無前後中邊是非得",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "batchOrdinal": 10,
+      "reservoirRank": 1082,
+      "reservoirBand": "3-8",
+      "term": "世出世間",
+      "disposition": "KEEP",
+      "unit": "couplet",
+      "validation": "manual full-case reading; fresh exact count and two canonical-distinct verified works; boundary/nested-family gate",
+      "reason": "Established pair spanning worldly and world-transcending domains.",
+      "zcExactAtFreeze": {
+        "hits": 525,
+        "files": 173,
+        "distinctWorks": 170
+      },
+      "zcExact": {
+        "hits": 525,
+        "files": 173,
+        "distinctWorks": 170
+      },
+      "nestedFamily": {
+        "flags": [
+          "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED",
+          "family:contains-covered-term"
+        ],
+        "substringParents": [],
+        "coveredChildren": [
+          "出世"
+        ]
+      },
+      "evidence": [
+        {
+          "source": "J/J28/J28nB219.xml",
+          "title": "紫竹林顓愚衡和尚語錄",
+          "workId": "work:J28nB219",
+          "hitFromLb": "0663c11",
+          "hitToLb": "0663c26",
+          "kwic": "出家，依師住十六年，辭師行腳。初至南嶽遍參隱者，尋過邵陵五臺庵，歸堂讀誦《楞嚴》，期三年辭去，至廬陵大覺庵從麗中法師習聽《法華》、《楞嚴》諸品教法，後至匡山從接愚法師習淨三載，於向上一事猶未了然，甲子冬復造邵陵求病僧印證。探其胸中所見，皆尋常知見之習，全不曾在自己腳跟下照管。病僧策之曰：「佛法固是要學，若不會用則與不學等也。教中學般若，宗門中用般若，所以能照世出世間一切凡聖境界，當體全空，一法不立，故能左右逢源縱橫自在，不被生死涅槃之所惑動，便能拈弄佛祖，不被佛祖之所拈弄。古人如是解脫自在，總只是學而會用。子今徒記取玄言玅語，說得頑石點頭，於自己分上全沒交涉。如是知見，如紙糊燈籠不敢觸著，無一些力量，豈能衝風抵浪、呵佛罵祖哉？子若肯究竟，此事不難，如草必有根，見草尋根何難之有？人為萬物最靈，豈無根本？將自己身心排放面前",
+          "verified": true
+        },
+        {
+          "source": "T/T48/T48n2016.xml",
+          "title": "宗鏡錄",
+          "workId": "work:T48n2016",
+          "hitFromLb": "0463b20",
+          "hitToLb": "0463c08",
+          "kwic": "功。獲頓成之力。雖在生死。常入涅槃。恒處塵勞。長居淨剎。現具肉眼。而開慧眼之光明。匪易凡心。便同佛心之知見。如太子具王儀之相。迦陵超眾鳥之音。將師子筋為琴絃。餘音斷絕。以善見藥而治病。眾患潛消。若那羅箭之功。勢穿鐵鼓。似金剛鎚之力。擬碎金山。則煩惱塵勞。不待斷而自滅。菩提妙果。弗假修而自圓。乃至等冤親。和諍論。齊凡聖。泯自他。一去來。印同異。融延促。混中邊。世出世間不可稱。不可量。不可說不可說之力。莫能過者。亦名佛力。亦名般若力。亦名大乘力。亦名法力。亦名無住力。所以先德釋云。無住力持者。則大劫不離一念。又云。色平等是佛力。色既平等。則唯心義成。故知觀心之門。理無過者。最尊最貴。絕妙絕倫。有剎那成佛之功。頓截苦輪之力。大涅槃經云。譬如藥樹。名曰樹王。於諸藥中。最為殊勝。能滅諸病。樹不作念。若取枝葉及皮身等。雖不作念。能",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "batchOrdinal": 11,
+      "reservoirRank": 1257,
+      "reservoirBand": "3-8",
+      "term": "三千大千",
+      "disposition": "REJECT",
+      "unit": null,
+      "validation": "manual full-case reading; fresh exact count and two canonical-distinct verified works; boundary/nested-family gate",
+      "reason": "Boundary fragment of 三千大千世界 rather than an independently deployed lexical unit.",
+      "zcExactAtFreeze": {
+        "hits": 487,
+        "files": 180,
+        "distinctWorks": 177
+      },
+      "zcExact": {
+        "hits": 487,
+        "files": 180,
+        "distinctWorks": 177
+      },
+      "nestedFamily": {
+        "flags": [
+          "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED"
+        ],
+        "substringParents": [],
+        "coveredChildren": []
+      },
+      "evidence": [
+        {
+          "source": "T/T48/T48n2016.xml",
+          "title": "宗鏡錄",
+          "workId": "work:T48n2016",
+          "hitFromLb": "0422c12",
+          "hitToLb": "0423a01",
+          "kwic": "。聞此摩訶衍之甚深極妙廣大法門已。即其心中。亦不疑畏。亦不怯弱。亦不輕賤。亦不誹謗。發決定心。發堅固心。發尊重心。發愛信心。當知是人。真實佛子。不斷法種。不斷僧種。不斷佛種。常恒相續。轉轉增長。盡於未來。亦為諸佛親所授記。亦為一切無量菩薩之所護念。故如論云。若人聞是法已。不生怯弱。當知是人。定紹佛種。必為諸佛之所授記。第二比類對治示勝門者。謂若有人。能善攝化三千大千世界中遍滿眾生。皆悉無餘。令行十善。或有眾生於一食頃。於此甚深法觀察思量。若校量此二人功德。彼第一人。所得功德甚極微少。譬如芥子碎作百分之量。此第二人。所得功德甚極廣大。譬如碎十方世界微塵數量。故如論云。假使有人。能化三千大千世界滿中眾生。令行十善。不如有人於一食頃正思此法。過前功德。不可為喻。第三舉受持功讚揚門者。謂若有人。受持此論。觀察義理。若一日。若一",
+          "verified": true
+        },
+        {
+          "source": "X/X71/X71n1420.xml",
+          "title": "楚石梵琦禪師語錄",
+          "workId": "work:X71n1420",
+          "hitFromLb": "0555a23",
+          "hitToLb": "0555b15",
+          "kwic": "夫不知時如何？師云：純鋼打就。進云：具足聖人法，為什麼聖人不會？師云：生鐵鑄成。進云：聖人若會即是凡夫，且道會個什麼？師云：寸釘入木。進云：凡夫若知即是聖人，未審知個什麼？師云：一筆勾下。進云：只如今日施主入山，請和尚說法，為說凡夫法？為說聖人法？師云：吹毛寶劍逼人寒。進云：與麼則大眾獲聞於未聞也。師云：有什麼了期？乃云：十方剎土一毫端，總是諸人眼自瞞，一一三千大千界，拋來擲去又何難？豎拂子，云：三世諸佛盡向這拂子頭上成等正覺、轉大法輪，歷代祖師盡向這拂子頭上興慈運悲、解粘去縛，山僧即今與你諸人向這拂子頭上一剎那間入華藏世界海、入毗盧樓閣，入淨、入穢，入凡、入聖，入修羅、地獄、畜生、餓鬼，現種種形、作種種神通變化，承事諸佛、教化眾生，還信得及麼？你信也好？不信也好？擲拂子，云：拋來擲去有什麼過？度僧，上堂。未出家時，父",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "batchOrdinal": 12,
+      "reservoirRank": 1406,
+      "reservoirBand": "3-8",
+      "term": "覿面相呈",
+      "disposition": "KEEP",
+      "unit": "component",
+      "validation": "manual full-case reading; fresh exact count and two canonical-distinct verified works; boundary/nested-family gate",
+      "reason": "Stable encounter idiom for presenting something directly face to face.",
+      "zcExactAtFreeze": {
+        "hits": 465,
+        "files": 184,
+        "distinctWorks": 180
+      },
+      "zcExact": {
+        "hits": 465,
+        "files": 184,
+        "distinctWorks": 180
+      },
+      "nestedFamily": {
+        "flags": [
+          "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED",
+          "family:contains-covered-term"
+        ],
+        "substringParents": [],
+        "coveredChildren": [
+          "覿面"
+        ]
+      },
+      "evidence": [
+        {
+          "source": "X/X82/X82n1571.xml",
+          "title": "五燈全書(第34卷-第120卷)",
+          "workId": "work:wudeng-quanshu",
+          "hitFromLb": "0002c20",
+          "hitToLb": "0003a12",
+          "kwic": "利日生。有於真前至誠求者，隨念示應。汝寧乾明則禪師汝寧乾明則禪師僧問：如何是海印三昧？師曰：但向己求。曰：學人不會。師曰：莫從他覓。問：如何是祖師西來意？師曰：清風生碧落。曰：意旨如何？師曰：明月映長江。常德乾明知應禪師常德乾明知應禪師上堂，僧問：蓮花未出水時如何？師曰：撐天拄地。曰：出水後如何？師曰：塞壑填溝。乃曰：馬祖陞堂，百丈捲席。火動烟生，雲擎雨色。覿面相呈，一何輕擲。重賞三千，輕酬八百。衡州南嶽雲峰元益禪師衡州南嶽雲峰元益禪師李林宗問：意欲出塵今未出，請師今日決疑情。師曰：作麼生是出塵底事？李惘然。師曰：還會麼？李忽有省，呈偈曰：心鏡從來瑩，洪河本是深。祇因師問後，沙石化為金。師曰：正趣地獄。李曰：人我無相，何為地獄？師曰：汝今何在？李曰：覿面不識。師曰：祇此是黃金。修撰曾會居士修撰曾會居士幼與明覺同舍，及冠",
+          "verified": true
+        },
+        {
+          "source": "X/X78/X78n1556.xml",
+          "title": "建中靖國續燈錄",
+          "workId": "work:X78n1556",
+          "hitFromLb": "0647b20",
+          "hitToLb": "0647c10",
+          "kwic": "問：如何是無縫塔？師云：合掌當胸。僧曰：如何是塔中人？師云：露也。問：大道真源，如何得到？師云：問者是誰？僧曰：作何道業，即得與道相應？師云：無儞用心處。問：三乘十二分教即不問，如何是宗門中事？師云：檀特、羅浮。僧曰：學人未省，乞師垂示。師云：幸不去遠。問：大肯底人更有疑也無？師云：冥冥獨語。問：大了底人如何決擇？師云：驀過多少？問：如何是祖師西來意？師云：覿面相呈，更無餘事。僧曰：十二時中如何履踐？師云：不用氣力。問：如何是三身佛？師云：狐非師子類。僧曰：如何是三身中人？師云：燈非日月明。問：佛法兩字為什麼轉說轉新？師云：與天下人作牓樣。僧曰：直得句下無私時如何？師云：進道有門。問：滅音王已前，是什麼人先悟？師云：名流天地。問：如何是西來的的意？師云：坐久成勞。僧曰：便回轉時如何？師云：墮落深坑。問：如何是地獄中人？",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "batchOrdinal": 13,
+      "reservoirRank": 1599,
+      "reservoirBand": "3-8",
+      "term": "第一義諦",
+      "disposition": "KEEP",
+      "unit": "component",
+      "validation": "manual full-case reading; fresh exact count and two canonical-distinct verified works; boundary/nested-family gate",
+      "reason": "Established doctrinal designation for ultimate truth.",
+      "zcExactAtFreeze": {
+        "hits": 429,
+        "files": 184,
+        "distinctWorks": 182
+      },
+      "zcExact": {
+        "hits": 429,
+        "files": 184,
+        "distinctWorks": 182
+      },
+      "nestedFamily": {
+        "flags": [
+          "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED"
+        ],
+        "substringParents": [],
+        "coveredChildren": []
+      },
+      "evidence": [
+        {
+          "source": "T/T48/T48n2016.xml",
+          "title": "宗鏡錄",
+          "workId": "work:T48n2016",
+          "hitFromLb": "0444a28",
+          "hitToLb": "0444b17",
+          "kwic": "法相宗。第一義心。但是所迷。非是能作。有三能變。謂第八等。唯識論云。又復有義。大乘經中說三界唯心。唯是心者。但有內心。無色香等外諸境界。此云何知。如十地經說。三界虛妄。但是一心作。故心意與識及了別等。如是四法。義一名異。此依相應心說。非不相應心說。心有二種。一相應心。所謂一切煩惱結使。受想行等。皆心相應。以是故言。心意與識及了別。義一名異故。二不相應心。所謂第一義諦。常住不變。自性清淨心。故言三界虛妄。但一心作。是相應心。今依法性。故云第一義心。以為能作。言轉者。起作義。亦轉變義。問。如上所說。真妄二心。但是文理會歸。何方便門得親見性。答。妄息心空。真知自現。若作計校。轉益妄心。但妙悟之時。諸緣自絕。如古佛悟道頌云。因星見悟。悟罷非星。不逐於物。不是無情。又寶藏論云。非有非空。萬物之宗。非空非有。萬物之母。出之無方。入",
+          "verified": true
+        },
+        {
+          "source": "X/X82/X82n1571.xml",
+          "title": "五燈全書(第34卷-第120卷)",
+          "workId": "work:wudeng-quanshu",
+          "hitFromLb": "0011b24",
+          "hitToLb": "0011c15",
+          "kwic": "是甚麼物，得恁頑頑嚚嚚，𥈅𥈅睍睍？拊掌呵呵大笑曰：今朝巴鼻，直是黃面瞿曇。通身是口，也分疎不下。久立。越州淨眾梵言首座越州淨眾梵言首座示眾：南陽國師道：說法有所得，斯則野干鳴；說法無所得，是名師子吼。師曰：國師恁麼道，大似掩耳偷鈴。何故？說有說無，盡是野干鳴。諸人要識師子吼麼？咄！舒州山谷三祖冲會圓智禪師舒州山谷三祖冲會圓智禪師臨安人。初開堂日，僧問：如何是第一義諦？師曰：百雜碎。曰：恁麼則褒禪一會，不異靈山。師曰：將糞箕掃帚來。問：師登寶座，壁立千仞。正令當行，十方坐斷。未審將何為人？師曰：千鈞之弩。曰：大眾承恩。師曰：量才補職。問：理雖頓悟，事假漸除。除即不問，如何是頓悟底道理？師曰：言中有響。曰：便恁麼又且如何？師曰：金毛師子。問：生也猶如著衫，死也還同脫袴。未審意旨如何？師曰：譬如閒。曰：為甚麼如此？師曰：因行",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "batchOrdinal": 14,
+      "reservoirRank": 1658,
+      "reservoirBand": "3-8",
+      "term": "三日耳聾",
+      "disposition": "KEEP",
+      "unit": "formula",
+      "validation": "manual full-case reading; fresh exact count and two canonical-distinct verified works; boundary/nested-family gate",
+      "reason": "Recognizable outcome of the Baizhang wild-fox case, used as a named allusion.",
+      "zcExactAtFreeze": {
+        "hits": 422,
+        "files": 156,
+        "distinctWorks": 153
+      },
+      "zcExact": {
+        "hits": 422,
+        "files": 156,
+        "distinctWorks": 153
+      },
+      "nestedFamily": {
+        "flags": [
+          "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED"
+        ],
+        "substringParents": [],
+        "coveredChildren": []
+      },
+      "evidence": [
+        {
+          "source": "X/X82/X82n1571.xml",
+          "title": "五燈全書(第34卷-第120卷)",
+          "workId": "work:wudeng-quanshu",
+          "hitFromLb": "0083a10",
+          "hitToLb": "0083b01",
+          "kwic": "，也免得拈花微笑，空破面顏。立雪齊腰，翻成轍迹。自此將錯就錯，相樓打簍。遂有五葉芬芳，千燈續𦦨。向曲彔木上唱二作三，於楖栗杖頭指南為北。直得進前退後，有問法問心之徒。倚門傍墻，有覓佛覓祖底漢。庭前指柏，便喚作祖意西來。日裏看山，更錯認學人自己。殊不知此一大事，本自靈明。盡未來際，未甞間斷。不假修證，豈在思惟。雖鶖子有所不知，非滿慈之所能辯。不見馬祖一喝，百丈三日耳聾。寶壽令行，鎮州一城眼瞎。大機大用，如迅雷不可停。一唱一提，似斷崖不可履。正當恁麼時，三世諸佛祇可傍觀，六代祖師證明有分。大眾且道，今日還有證明底麼？良久曰：劄。上堂：拾得搬柴，寒山燒火。唯有豐干，巖中冷坐。且道豐干有恁麼長處？良久曰：家無小使，不成君子。贛州西堂顯首座贛州西堂顯首座賦性高逸，機辯自將。保寧示以神劒頌曰：提得神鋒勝太阿，萬年妖孽盡消磨。直饒埋",
+          "verified": true
+        },
+        {
+          "source": "X/X66/X66n1296.xml",
+          "title": "宗門拈古彙集",
+          "workId": "work:X66n1296",
+          "hitFromLb": "0049a01",
+          "hitToLb": "0049a19",
+          "kwic": "釣架由基箭，也不過要見箇頭角，又誰知林靜水寒，杳無消息。何似龍泉這裏廣大門庭，一任他饑來喫飯，倦來打眠。何故？白玉本無瑕，雕文恐喪德。百丈再參馬祖，祖竪起拂子。丈曰：即此用，離此用。祖掛拂子舊處。侍立少頃，祖曰：你已後開兩片皮，將何為人？丈却取拂子竪起。祖曰：即此用，離此用。丈亦掛拂子舊處。祖震威一喝。丈異日舉謂黃檗曰：佛法不是小事，我當時被馬大師一喝，直得三日耳聾。檗聞舉，不覺吐舌。汾陽昭云：悟去便了，說什麼三日耳聾？石門聰云：若不是三日耳聾，爭承當得這一喝？雪竇顯云：奇怪諸禪德！如今列其派者多，究其源者少。總道百丈於喝下大悟，還端的也無？然刁刀相似，魚魯參差，若是明眼漢，瞞他一點不得。只如馬師道：汝已後開兩片皮，將何為人？百丈竪拂，為復如蟲禦木？為復啐󲣅同時？諸人要會三日耳聾麼？大冶精金，應無變色。東林總云：當言不",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "batchOrdinal": 15,
+      "reservoirRank": 1733,
+      "reservoirBand": "3-8",
+      "term": "樹倒藤枯",
+      "disposition": "KEEP",
+      "unit": "formula",
+      "validation": "manual full-case reading; fresh exact count and two canonical-distinct verified works; boundary/nested-family gate",
+      "reason": "Stable case formula for the tree fallen and vine withered.",
+      "zcExactAtFreeze": {
+        "hits": 412,
+        "files": 146,
+        "distinctWorks": 143
+      },
+      "zcExact": {
+        "hits": 412,
+        "files": 146,
+        "distinctWorks": 143
+      },
+      "nestedFamily": {
+        "flags": [
+          "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED"
+        ],
+        "substringParents": [],
+        "coveredChildren": []
+      },
+      "evidence": [
+        {
+          "source": "X/X82/X82n1571.xml",
+          "title": "五燈全書(第34卷-第120卷)",
+          "workId": "work:wudeng-quanshu",
+          "hitFromLb": "0033b20",
+          "hitToLb": "0033c11",
+          "kwic": "，觸目遇緣無障礙。遂舉拂子曰：看拂子，走過西天，却來新羅國裏。知我者謂我拖泥帶水，不知我者贏得一場怪誕。上堂，擊禪牀曰：一塵纔舉，大地全收。諸人耳在一聲中，一聲徧在諸人耳。若是摩霄俊鶻，便合乘時。止濼困魚，徒勞激浪。上堂：不與萬法為侶，即是無諍三昧。便恁麼去，爭奈絃急則聲促。若能向紫羅帳裏撤真珠，未必善因而招惡果。上堂：有句無句，如藤倚樹，且任諸人點頭。及乎樹倒藤枯，上無衝天之計，下無入地之謀。靈利漢這裏著得一隻眼，便見七縱八橫。舉拂子曰：看！太陽溢目，萬里不挂片雲。若是覆盆之下，又爭怪得老僧？上堂：若也單明自己，不悟目前，此人有眼無足。若悟目前，不明自己，此人有足無眼。據此二人，十二時中常有一物蘊在胸中。物既在胸，不安之相常在目前。既在目前，觸途成滯。作麼生得平穩去？祖不言乎，執之失度，必入邪路。放之自然，體無去住。",
+          "verified": true
+        },
+        {
+          "source": "X/X66/X66n1297.xml",
+          "title": "宗鑑法林",
+          "workId": "chan:zongjian-falin",
+          "hitFromLb": "0382b16",
+          "hitToLb": "0382c15",
+          "kwic": "物。復召寂子，山應諾。師曰：是什麼？山無對。師曰：去！高峰妙云：潦倒安和，用心不臧。仰山命蹇，為魅所著。山僧恁麼道，也是逆風秉炬。宗鑑法林卷十五宗鑑法林卷十六集雲堂編大鑒下四世福州長慶大安禪師福州長慶大安禪師住溈山，時號懶安。室中每問僧：有句無句，如藤倚樹。意旨如何？疎山仁聞，特入嶺請益。值師泥壁次，便問：有句無句，如藤倚樹。豈不是和尚語？師曰：是。曰：忽遇樹倒藤枯，句歸何處？師放下泥盤，呵呵大笑，歸方丈。山隨後曰：某甲三千里賣却布單，特為此事而來。和尚何得相弄？師喚侍者：取錢二百與者上座去。且囑曰：向後有獨眼龍為汝點破在。山後到明招處，舉前話。招曰：溈山可謂頭正尾正，祇是不遇知音。山亦不契，猶問：樹倒藤枯，句歸何處？招曰：却使溈山笑轉新。山大悟，乃曰：溈山元來笑裏有刀。遙禮悔過。瑯琊覺云：有句無句，如藤倚樹，樹倒藤枯",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "batchOrdinal": 16,
+      "reservoirRank": 1795,
+      "reservoirBand": "3-8",
+      "term": "天地懸隔",
+      "disposition": "KEEP",
+      "unit": "component",
+      "validation": "manual full-case reading; fresh exact count and two canonical-distinct verified works; boundary/nested-family gate",
+      "reason": "Established evaluative idiom for categorical separation as great as heaven and earth.",
+      "zcExactAtFreeze": {
+        "hits": 405,
+        "files": 141,
+        "distinctWorks": 136
+      },
+      "zcExact": {
+        "hits": 405,
+        "files": 141,
+        "distinctWorks": 136
+      },
+      "nestedFamily": {
+        "flags": [
+          "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED"
+        ],
+        "substringParents": [],
+        "coveredChildren": []
+      },
+      "evidence": [
+        {
+          "source": "X/X82/X82n1571.xml",
+          "title": "五燈全書(第34卷-第120卷)",
+          "workId": "work:wudeng-quanshu",
+          "hitFromLb": "0009c15",
+          "hitToLb": "0010a05",
+          "kwic": "欲從魯遊方，魯老之。既去，緒語曰：他日當尋我竹鋪坡前，鐵場嶺下。魯後聞其所，俄見兒生，即往觀焉，兒為一笑。三歲，願隨魯歸，遂從魯姓。十九，試經圓具，勵志講肆。習圓覺、華嚴，妙入精義。因聞無為軍鐵佛懷法席之盛，徑往參謁。懷問曰：座主講甚麼經？師曰：華嚴。曰：華嚴以何為宗？師曰：法界為宗。曰：法界以何為宗？師曰：以心為宗。曰：心以何為宗？師無對。懷曰：毫𨤲有差，天地懸隔。汝當自看，必有發明。後聞僧舉白兆參報慈：情未生時如何？慈曰：隔。師忽大悟，直詣方丈，陳其所證。懷曰：汝真法器，吾宗異日在汝行矣。初住龍舒四面，後詔居長蘆，法雲為鼻祖。宋神宗上仙，宣就神御前說法，賜圓通號。僧問：不離生死而得涅槃，不出魔界而入佛界，此理如何？師曰：赤土塗牛嬭。曰：謝師答話。師曰：你話頭道甚麼？僧擬議，師便喝。問：陽春二三月，萬物盡生芽。未審道",
+          "verified": true
+        },
+        {
+          "source": "X/X71/X71n1420.xml",
+          "title": "楚石梵琦禪師語錄",
+          "workId": "work:X71n1420",
+          "hitFromLb": "0583c24",
+          "hitToLb": "0584a16",
+          "kwic": "見鼻孔。又云：小魚吞大魚。又云：這掠虗漢。上堂。不用朝參暮請，也只是箇仲冬嚴寒，添一毫不得，減一毫不得。代云：用盡自己心。又云：腦後少一椎在。又云：寐語作麼？或云：離却四大五蘊，阿那箇是你主人公？代云：全火祇候。又云：入石三分。又云：兩箇。有時云：一毛頭師子，百億毛頭一時現。現即不無，作麼生收？代云：藏頭露尾。又云：不消一揑。又云：善來文殊。上堂。毫釐有差，天地懸隔；毫釐不差，天地懸隔。直饒明得，也是蝦蟇窟裏出頭。代云：腦後見腮。又云：一得一失。又云：少賣弄。有時云：保福有願不撒沙，因什麼却撒？代云：口甜心苦。又云：看看落在眼上。又云：自屎不覺臭。或云：盡大地是般若光，光未發時向什麼處摸索？代云：天上星，地上木。又云：這漆桶。又云：冰消瓦解。上堂。即今休去便休去，欲覔了時無了時。你諸人了得也未？代云：遇飯喫飯，遇茶喫茶",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "batchOrdinal": 17,
+      "reservoirRank": 1829,
+      "reservoirBand": "3-8",
+      "term": "迦葉微笑",
+      "disposition": "KEEP",
+      "unit": "formula",
+      "validation": "manual full-case reading; fresh exact count and two canonical-distinct verified works; boundary/nested-family gate",
+      "reason": "Recognizable flower-sermon event formula naming Mahākāśyapa’s smile.",
+      "zcExactAtFreeze": {
+        "hits": 401,
+        "files": 185,
+        "distinctWorks": 183
+      },
+      "zcExact": {
+        "hits": 401,
+        "files": 185,
+        "distinctWorks": 183
+      },
+      "nestedFamily": {
+        "flags": [
+          "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED",
+          "family:contains-covered-term"
+        ],
+        "substringParents": [],
+        "coveredChildren": [
+          "微笑",
+          "迦葉"
+        ]
+      },
+      "evidence": [
+        {
+          "source": "X/X82/X82n1571.xml",
+          "title": "五燈全書(第34卷-第120卷)",
+          "workId": "work:wudeng-quanshu",
+          "hitFromLb": "0029b06",
+          "hitToLb": "0029b22",
+          "kwic": "頂五雲遮。衛州王大夫衛州王大夫遺其名，以喪偶厭世相，遂參元豐，於言下知歸。豐一日謂曰：子乃今之陸亘也。公便掩耳。既而回壇山之陽，縛茅自處者三載。偶歌曰：壇山裏，日何長。青松嶺，白雲鄉。吟鳥啼猿作道場。散髮采薇歌又笑，從教人道野夫狂。育王振禪師法嗣育王振禪師法嗣明州岳林真禪師明州岳林真禪師上堂。古人道，初秋夏末，合有責情三十棒。岳林則不然，靈山會上，世尊拈華，迦葉微笑。正當恁麼時，好與三十棒。何故如此？太平時節，強起干戈，教人吹大法螺，擊大法鼓。舉步則金蓮𨇾蹀，端居則寶座巍峩。梵王引之於前，香花繚繞。帝釋隨之於後，龍象駢羅。致令後代兒孫，𮞏相倣斆。三三兩兩，皆言出格風標。劫劫波波，未肯歸家穩坐。鼓唇搖舌，宛如鐘磬笙竽。奮臂點胸，何啻稻麻竹葦。更逞遊山玩水，撥草瞻風，人前說得石點頭，天上飛來花撲地，也好與三十棒。且道坐夏賞",
+          "verified": true
+        },
+        {
+          "source": "J/J26/J26nB178.xml",
+          "title": "費隱禪師語錄",
+          "workId": "work:J26nB178",
+          "hitFromLb": "0111b18",
+          "hitToLb": "0111c04",
+          "kwic": "子，佳作仁，可知禮也。誠能如是，不妨示現全身力，同轉繇來正法輪。」下座。上堂，僧問：「如何是賓中主？」師云：「闍黎問得自然親。」「如何是主中賓？」師云：「山僧答處出常情。」「如何是賓中賓？」師云：「到處逢人拾涕唾。」「如何是主中主？」師便打云：「還會麼？」乃云：「本來個事自尋常，日用堂堂絕覆藏，更欲別求消息子，一條白棒一條痕。」拍香几，下座。上堂，「世尊拈花迦葉微笑，雖則覿面提持，未知向上一竅。欲知向上一竅，須是衲僧自透。且作麼生透？一莖草上解安身，百億須彌翻筋斗。」便下座。上堂，「今日陽和忽地升，石頭土塊盡翻身，生機一路繇來別，纔動些兒海嶽驚。總差別於群芳野水，破眾疑於寒灰冷焰，都教出頭露面，終不晦跡韜光。且應時及節一句作麼生道？欲知天地無私力，看取梅花破雪開。」下座。上堂，僧問：「臨濟家風則且置，曹洞宗旨是如何？」",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "batchOrdinal": 18,
+      "reservoirRank": 1885,
+      "reservoirBand": "3-8",
+      "term": "宗風嗣阿誰",
+      "disposition": "KEEP",
+      "unit": "question",
+      "validation": "manual full-case reading; fresh exact count and two canonical-distinct verified works; boundary/nested-family gate",
+      "reason": "Complete lineage-testing question asking whose song and whose tradition a master inherits.",
+      "zcExactAtFreeze": {
+        "hits": 397,
+        "files": 86,
+        "distinctWorks": 83
+      },
+      "zcExact": {
+        "hits": 397,
+        "files": 86,
+        "distinctWorks": 83
+      },
+      "nestedFamily": {
+        "flags": [
+          "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED",
+          "family:contains-covered-term"
+        ],
+        "substringParents": [],
+        "coveredChildren": [
+          "宗風",
+          "阿誰"
+        ]
+      },
+      "evidence": [
+        {
+          "source": "X/X78/X78n1556.xml",
+          "title": "建中靖國續燈錄",
+          "workId": "work:X78n1556",
+          "hitFromLb": "0654a14",
+          "hitToLb": "0654b06",
+          "kwic": "何是祖師西來意？師云：青山淥水。僧曰：未來時還有意也無？師云：高者高，低者低。上堂，舉拄杖云：拈起也，峯巒失色；放下也，祖佛迷蹤。作者當頭，光臨背上，猶是買帽相頭，看風使帆。若向衲僧門下，千山萬水。邵武軍靈泉曉禪師邵武軍靈泉曉禪師問：如何是西來意？師云：第一到屯門。僧曰：學人不會。師云：末後藏熊耳。洪州百丈山智映寶月禪師洪州百丈山智映寶月禪師問：師唱誰家曲，宗風嗣阿誰？師云：窣堵那叱掌上擎。僧曰：恁麼則北塔嫡子，韶石兒孫。師云：斫額望新羅。問：如何是佛？師云：梵王前引，帝釋後隨。僧曰：謝師答話。師云：龍蛇易辨，衲子難謾。福州慈雲山紹詵禪師福州慈雲山紹詵禪師問：如何是佛？師云：額頭上汗出。問：如何是慈雲山？師云：徒勞仰面看。僧曰：如何是慈雲水？師云：急。復州青山好禪師復州青山好禪師問：師唱誰家曲，宗風嗣阿誰？師云：昔日靈山",
+          "verified": true
+        },
+        {
+          "source": "X/X78/X78n1553.xml",
+          "title": "天聖廣燈錄",
+          "workId": "work:X78n1553",
+          "hitFromLb": "0467a19",
+          "hitToLb": "0467b12",
+          "kwic": "箇什麼？師云：總教伊成佛作祖去。侍云：金屑雖貴，落眼成翳，又作麼生？師云：將為儞是箇俗漢。常侍又與諸官請師昇座，師昇座云：山僧今日事不獲已，曲順人情，方登此座。若約祖宗門下稱揚大事，直是開口不得，無儞措足處。山僧此日以常侍堅請，那隱綱宗？還有作家戰將，直下展陣開旗，對眾證據看持。有僧問：如何是佛法大意？師便喝，僧禮拜。師云：者箇師僧却堪持論。問：師唱誰家曲？宗風嗣阿誰？師云：我在黃檗處，三度發問，三度被打。僧擬議，師便喝，隨後打云：不可向虗空裡釘橛去也。有座主問：三乘十二分教豈不是明佛性？師云：荒草不曾鋤。主云：佛豈賺人？師云：佛在什麼處？主無語。師云：對常侍前擬謾老僧。速退！速退！妨他別人請問。復云：此日法筵為一大事故，更有問話者麼？速致問來，儞纔開口，早勿交涉也。何以如此？不見釋尊云：法離文字，不屬因，不在緣。故為儞",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "batchOrdinal": 19,
+      "reservoirRank": 1913,
+      "reservoirBand": "3-8",
+      "term": "世尊初生",
+      "disposition": "KEEP",
+      "unit": "named-case",
+      "validation": "manual full-case reading; fresh exact count and two canonical-distinct verified works; boundary/nested-family gate",
+      "reason": "Recognizable opening event of the Buddha-birth case.",
+      "zcExactAtFreeze": {
+        "hits": 394,
+        "files": 184,
+        "distinctWorks": 184
+      },
+      "zcExact": {
+        "hits": 394,
+        "files": 184,
+        "distinctWorks": 184
+      },
+      "nestedFamily": {
+        "flags": [
+          "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED",
+          "family:contains-covered-term"
+        ],
+        "substringParents": [],
+        "coveredChildren": [
+          "世尊"
+        ]
+      },
+      "evidence": [
+        {
+          "source": "X/X82/X82n1571.xml",
+          "title": "五燈全書(第34卷-第120卷)",
+          "workId": "work:wudeng-quanshu",
+          "hitFromLb": "0119c23",
+          "hitToLb": "0120a15",
+          "kwic": "交請開法。示眾：若究此事，如失却鎖匙相似。祇管尋常尋來尋去，忽然撞著，噁在這裏。開箇鎖了，便見自家庫藏，一切受用，無不俱足。不假他求，別有甚麼事？示眾：諸方為人抽釘󳫠楔，解黏去縛。我這裏為人添釘著楔，加繩加縛了，送向深潭裏，待他自去理會。示眾：主法之人，氣吞宇宙，為大法王。若是釋迦老子、達磨大師出來，也教伊叉手向我背後立地，直得寒毛卓豎，亦未為分外。一日，舉世尊初生天上，天下唯我獨尊話。師曰：見怪不怪，其怪自壞。垂語曰：這一些子，恰如撞著殺人漢相似。你若不殺了他，他殺了你。近禮侍者近禮侍者三山人。久侍大慧，嘗默究竹篦話，無所入。一日入室罷，求指示。慧曰：你是福州人，我說箇喻向你，如將名品茘枝和皮殻一時剝了，以手送在你口裏，祇是你不解吞。師不覺失笑曰：和尚吞却即禍事。慧後問師曰：前日吞了底茘枝，祇是你不知滋味。師曰：若知",
+          "verified": true
+        },
+        {
+          "source": "J/J26/J26nB185.xml",
+          "title": "浮石禪師語錄",
+          "workId": "work:J26nB185",
+          "hitFromLb": "0582b05",
+          "hitToLb": "0582b22",
+          "kwic": "，喚甚麼作現前殘質？果到恁麼田地，如來禪許汝少分相應，祖師禪猶未夢見在。且道如何是祖師禪？還會麼？動容揚古路，不墮悄然機。」解制，上堂。「擦褲摩裙又一番，可曾於此透重關？頂門有眼如還合，解制虛消信施難。何也？不見道：『施主一粒米，大如須彌山，若人不了道，披毛戴角還。』了則且置，將何為道？」左右顧視，云：「還委悉麼？春天不問路，雨過便行程。」佛誕，上堂。舉：「世尊初生時，一手指天，一手指地，周行七步，目顧四方，云：『天上天下，惟我獨尊。』雲門云：『我當時若見，一棒打殺與狗子喫，貴圖天下太平。』」師云：「世尊創業垂統，道化萬方，那慮後人之顛覆？雲門鳳曆新頒，肅清宇宙，輒翻上祖之遺規，雖則光先裕後，有祖有孫，簡點將來不無自累。畢竟如何得恰好去？」遂頌曰：「天然習氣最難忘，纔出頭時燄熾張，將謂無人能抗拒，誰知後代有韶陽？」上堂",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "batchOrdinal": 20,
+      "reservoirRank": 1573,
+      "reservoirBand": "3-8",
+      "term": "法筵龍象",
+      "disposition": "KEEP",
+      "unit": "institutional-object",
+      "validation": "manual full-case reading; fresh exact count and two canonical-distinct verified works; boundary/nested-family gate",
+      "reason": "Conventional institutional metaphor for the eminent assembly at a Dharma seat.",
+      "zcExactAtFreeze": {
+        "hits": 432,
+        "files": 202,
+        "distinctWorks": 200
+      },
+      "zcExact": {
+        "hits": 432,
+        "files": 202,
+        "distinctWorks": 200
+      },
+      "nestedFamily": {
+        "flags": [
+          "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED"
+        ],
+        "substringParents": [],
+        "coveredChildren": []
+      },
+      "evidence": [
+        {
+          "source": "X/X78/X78n1553.xml",
+          "title": "天聖廣燈錄",
+          "workId": "work:X78n1553",
+          "hitFromLb": "0503b06",
+          "hitToLb": "0503b23",
+          "kwic": "，私通車馬，放一線道，有箇葛藤處。師遂打禪牀一下，云：三世諸佛盡皆頭痛，且道大眾還有免得在麼？若一人免得，無有是處；若免不得，海印發光。師乃竪起拂子，云：者箇是印，那箇是光？者箇是光，那箇是印？掣電之機，徒佇勞思。會麼？老僧說夢，且道夢見箇什麼？南柯十更若不會，聽取一頌：北斗挂須彌，杖頭挑日月。材泉好商賣，夏末秋風切。珍重！師纔升座，僧王宣疏畢，維那白槌云：法筵龍象眾，當觀第一義。時有僧問：大用現前，不存軌則，請師揮劒。師云：點眼知人意，著取今行時。進云：腦後穿。師云：齋後鐘。問：如何是佛法大意？師云：推天磕地。問：心法無形，如何雕琢？師云：一丁兩丁。進云：未曉者如何領會？師云：透七透八。問：如何是大愚境？師云：四面峯巒秀，㳂江一帶清。進云：如何是境中人？師云：滿城公子貴，林下道人棲。問：拈槌竪拂即不問，當機一句事如何",
+          "verified": true
+        },
+        {
+          "source": "C/C077/C077n1710.xml",
+          "title": "古尊宿語錄",
+          "workId": "work:guzunsu-yulu",
+          "hitFromLb": "0765b22",
+          "hitToLb": "0765c24",
+          "kwic": "煖𪫬𪫬圓即菩提師性千古存是有無邊身譬之虛空相普現於一切寧假有漏形方號於真實實際本真空永離於言說我持不壞筆太虛以為紙銘此無縫塔了不見一字若以兩耳觀始造不二義紹隆藏主火紹隆藏主火紹隆聖種斷生死根烈𦦨堆中轉法輪。高僧梵琦𮚏師頂相云高僧梵琦𮚏師頂相云祖梅洲父蒲室大床座妙槌拂發揮震旦二三騰煥竺乹四七依萬乘之清光近九天之紅日携鏟子斷魔外之根株握金鎚碎衲僧之窠窟公卿羅拜於法筵龍象相忘於道術是所謂冠天下禪林現寰中之古佛者也。古尊宿語錄卷第二十一新藏經板初賜天禧凢禪宗古尊宿語頌古雪竇明教圓悟大慧等語多有󰡷失永樂二年敬捐衣資命工刊補今奉欽依取僧就靈谷寺校正以永樂十一年春二月為始至冬十一月乃畢供需之費皆本寺備給計校出差訛字樣十五萬餘刊修改補今已聿完庶淂不遺佛意不誤後人所冀永遠流通祝延聖壽萬安者。永樂十二年嵗在甲午仲冬僧錄司右闡教兼鍾山靈谷禪",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "batchOrdinal": 21,
+      "reservoirRank": 1491,
+      "reservoirBand": "3-8",
+      "term": "智慧德相",
+      "disposition": "KEEP",
+      "unit": "component",
+      "validation": "manual full-case reading; fresh exact count and two canonical-distinct verified works; boundary/nested-family gate",
+      "reason": "Established doctrinal expression for the Tathāgata’s wisdom and virtuous marks.",
+      "zcExactAtFreeze": {
+        "hits": 445,
+        "files": 178,
+        "distinctWorks": 178
+      },
+      "zcExact": {
+        "hits": 445,
+        "files": 178,
+        "distinctWorks": 178
+      },
+      "nestedFamily": {
+        "flags": [
+          "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED"
+        ],
+        "substringParents": [],
+        "coveredChildren": []
+      },
+      "evidence": [
+        {
+          "source": "J/J38/J38nB408.xml",
+          "title": "海幢阿字無禪師語錄",
+          "workId": "work:J38nB408",
+          "hitFromLb": "0259b04",
+          "hitToLb": "0259b19",
+          "kwic": "良賈，出價便多。我說龍牙與李長者一條氣出兩箇鼻孔，一箇細細說到者裏，一箇一提提到者裏，宗教相須，道火何曾燒口？若仔細檢點起來，猶是一場笑具。于今儱侗底驢年夢見，所以知之者轉見難得。大眾！莫有易底麼？若有，不妨因齋慶讚；若無，葛藤堆久立。珍重。」臘八日，三水縣尊王默菴設供，請普說。師豎拄杖，云：「釋迦老子於拄杖頭上放大威光，說道：『當年今日於正覺山前拾還家寶，智慧德相居然具足，作天中天。』諸兄弟！還見麼？」卓一下，云：「於此見得，豈獨釋迦老子具此智慧德相？即今天之所覆、地之所載，若男、若女，若尊、若卑，若貴、若賤，若僧、若俗，一齊具此智慧德相，現前諸兄弟亦具此智慧德相，阿上座亦具此智慧德相。」復卓一下，云：「若只恁麼見去，卻又是你妄想執著，為客塵煩惱所障閉。此事須得頓根鐵漢如擇乳鵝王，於擊石火閃電光中沒頭沒面，一擔擔上纔",
+          "verified": true
+        },
+        {
+          "source": "J/J27/J27nB193.xml",
+          "title": "隱元禪師語錄",
+          "workId": "work:J27nB193",
+          "hitFromLb": "0227b15",
+          "hitToLb": "0227c01",
+          "kwic": "也。黃檗橫吹玉笛，東林野老謳歌，一段高山流水，路上行人奈何。呵呵呵，會也無？座中若有江南客，不向樽前唱鷓鴣。」下座。臘八上堂。問：「佛佛授受，祖祖相承。且道無形相人來，又作麼生傳授？」師云：「喚他向前來。」進云：「某甲去也。」師云：「什麼處去？」進云：「他家自有通霄路。」師云：「腳跟下好與三十棒。」乃云：「釋迦老子午夜睹星悟，云：『奇哉奇哉。一切眾生俱有如來智慧德相，皆因妄想執著不能證得。』也是憐兒不覺醜，未免話作兩截。黃檗午夜豎剎竿，大家在裏許，無有智慧德相可證，亦無有妄想執著可得。且道與釋迦老子相去多少？有具擇法眼者，出來判斷看。」眾下語不契。復云：「昔日世尊昇忉利天為母說法。說甚麼法？」驀豎拂云：「也只是這箇。今日山僧不動本際，為諸父老談禪。談甚麼禪？也只是這箇。這箇又是箇什麼？上士一決一切了，中下多聞多不信。若",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "batchOrdinal": 22,
+      "reservoirRank": 1778,
+      "reservoirBand": "3-8",
+      "term": "觀法王法",
+      "disposition": "REJECT",
+      "unit": null,
+      "validation": "manual full-case reading; fresh exact count and two canonical-distinct verified works; boundary/nested-family gate",
+      "reason": "Boundary fragment of the fixed white-hammer formula 諦觀法王法，法王法如是; varying preceding verbs expose the cut.",
+      "zcExactAtFreeze": {
+        "hits": 406,
+        "files": 212,
+        "distinctWorks": 209
+      },
+      "zcExact": {
+        "hits": 406,
+        "files": 212,
+        "distinctWorks": 209
+      },
+      "nestedFamily": {
+        "flags": [
+          "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED",
+          "family:substring-of-covered-term"
+        ],
+        "substringParents": [
+          "諦觀法王法"
+        ],
+        "coveredChildren": []
+      },
+      "evidence": [
+        {
+          "source": "J/J26/J26nB178.xml",
+          "title": "費隱禪師語錄",
+          "workId": "work:J26nB178",
+          "hitFromLb": "0104b17",
+          "hitToLb": "0104c02",
+          "kwic": "道？」拈拄杖按膝，云：「橫按莫邪全正令，太平寰宇斬癡頑。」復舉：世尊初生，一手指天，一手指地，目顧四方，周行七步，云：「天上天下唯我獨尊。」後來雲門文偃禪師云：「我當時若見，一棒打殺與狗子喫，卻貴圖天下太平。」師云：「世尊衍鐵牛機，雲門明格外句，雖則各露風規，要且未合本據。且道如何是本據底意？天上有星皆拱北，人間無水不朝東。」以拄杖卓一卓。上首復白槌云：「諦觀法王法，法王法如是。」下座。開爐結制，上堂云：「紅爐猛燄，當前不可湊泊，鉗鎚運動，貴乎直下翻身，透出威音那畔，嘗在鬧市門前，間著劈頭便棒，徹底更無廉纖，因甚致得金烹大冶，玉出藍田。」復云：「九十日中間，結住布袋口，日用卓卓然，從新自抖擻，拶透頂門關，能為獅子吼，大地悉平沉，百獸都奔走，堪入臨濟門，白棒劈脊摟。如何是獅子吼？」乃喝一喝云：「薦取攙先一著子，發機不落諸",
+          "verified": true
+        },
+        {
+          "source": "X/X64/X64n1260.xml",
+          "title": "列祖提綱錄",
+          "workId": "work:X64n1260",
+          "hitFromLb": "0012c01",
+          "hitToLb": "0012c23",
+          "kwic": "欽承有自，無違咫尺天顏。諸仁者，宣德門前且無曲徑，含元殿上覓甚長安？然則，把定乾坤，奚煩顧佇？流通正眼，端在茲辰。何故？欣逢聖主隆吾道，千載難忘此一時。復云：制結皇家，禪安大內。地爐掘深深之炕，獸炭燒𦦨𦦨之煤。欽差內院三員、正副監司兩位，禁城把斷，密不通風；閶闔牢關，水無滲渫。如此嚴切，為汝諸人。諸人合作麼生即得？若作皮骨通身換，難報我皇護念恩。白椎，云：諦觀法王法，法王法如是。卓拄杖，下座。列祖提綱錄卷第一列祖提綱錄卷第二武林十八㵎理安禪寺住持婁東行悅集降香到提綱降香到提綱圓悟勤禪師。秦魯國大長公主降香，請陞座。天高無極，無極有尊；地厚無垠，無垠有主。鏡萬象方寸，懷六合胷中，發大機，顯大用。是故，乃祖乃佛，或拈華，或面壁，或行棒，或行喝，或詞辨縱橫，或寂寥無說，周旋往返，只明此箇無為宗旨。所以，人人分上，各各壁立萬仞",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "batchOrdinal": 23,
+      "reservoirRank": 890,
+      "reservoirBand": "3-8",
+      "term": "時節因緣",
+      "disposition": "KEEP",
+      "unit": "component",
+      "validation": "manual full-case reading; fresh exact count and two canonical-distinct verified works; boundary/nested-family gate",
+      "reason": "Established doctrinal phrase for the timely conditions under which truth manifests.",
+      "zcExactAtFreeze": {
+        "hits": 579,
+        "files": 202,
+        "distinctWorks": 198
+      },
+      "zcExact": {
+        "hits": 579,
+        "files": 202,
+        "distinctWorks": 198
+      },
+      "nestedFamily": {
+        "flags": [
+          "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED",
+          "family:substring-of-covered-term",
+          "family:contains-covered-term"
+        ],
+        "substringParents": [
+          "當觀時節因緣"
+        ],
+        "coveredChildren": [
+          "因緣"
+        ]
+      },
+      "evidence": [
+        {
+          "source": "X/X82/X82n1571.xml",
+          "title": "五燈全書(第34卷-第120卷)",
+          "workId": "work:wudeng-quanshu",
+          "hitFromLb": "0038a18",
+          "hitToLb": "0038b10",
+          "kwic": "口如驢觜。百年終須自壞，一任天下卜度。歸方丈，安坐而化。壽九十一，臘六十六。福州玄沙合文明慧禪師福州玄沙合文明慧禪師僧問：如何是道？師曰：私通車馬。僧進一步，師曰：官不容鍼。楊州建隆院昭慶禪師楊州建隆院昭慶禪師泉州晉江林氏子。出家開元，參黃龍。龍示以三關語，久之盡得其道。出住高郵之乾明、烏江之慧濟，後住建隆。上堂：始見新歲倐忽，早是二月初一，天氣和融。擬舉個時節因緣與諸人商量，却被帝釋梵王在門外柳眼中努出頭來，先說偈言：褭褭颺輕絮，且逐風來去。相次走綿毬，休言道我絮。當時撞著阿修羅，把住曰：任你絮，忽逢西風吹渭水，落葉滿長安一句作麼生道？於是帝釋縮頭入柳眼中，良久曰：參。師於宋哲宗元祐己巳八月十六說偈而化，塔於建隆。安吉州報本慧元禪師安吉州報本慧元禪師潮州倪氏子。十九為大僧，徧歷叢席，於黃龍三關語下悟入。住後，僧問：諸",
+          "verified": true
+        },
+        {
+          "source": "X/X64/X64n1260.xml",
+          "title": "列祖提綱錄",
+          "workId": "work:X64n1260",
+          "hitFromLb": "0015c20",
+          "hitToLb": "0016a12",
+          "kwic": "麼時，如何放開一線道，觸處現神通？復舉：昔日有一王者往見西天祖師，既相見已，遂命祖師說法，祖師云：大王！來時好道，去如來時。師拈云：佛法即是世法，世法即是佛法，以直道而行，風行草偃。山僧有箇小頌，至簡至易，最尊最貴，往還千聖頂𩕳頭，世出世間不思議，彈指圓成八萬門，一超直入如來地。大慧杲禪師。今上皇帝在建邸，遣內知客入山供養，羅漢祝聖，請陞座。欲識佛性義，當觀時節因緣。時節若至，其理自彰。敢問大眾：作麼生是自彰底理？舉起拂子，云：還見麼？又擊禪床，云：還聞麼？聞見分明，是箇什麼？若向者裏提得去，皇恩、佛恩一時報足；其或未然，徑山打葛藤去也。復舉起拂子，云：看！看！無量壽世尊在徑山拂子頭上放大光明，照不可說、不可說、又不可說佛剎微塵數世界，於諸世界中轉大法輪，作無量無邊廣大佛事。其中若凡、若聖，若正、若邪，若草、若木，有情",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "batchOrdinal": 24,
+      "reservoirRank": 1480,
+      "reservoirBand": "3-8",
+      "term": "用酬法乳",
+      "disposition": "KEEP",
+      "unit": "institutional-formula",
+      "validation": "manual full-case reading; fresh exact count and two canonical-distinct verified works; boundary/nested-family gate",
+      "reason": "Stable incense-offering formula for repaying the nourishment received from one’s Dharma teacher.",
+      "zcExactAtFreeze": {
+        "hits": 446,
+        "files": 201,
+        "distinctWorks": 201
+      },
+      "zcExact": {
+        "hits": 446,
+        "files": 201,
+        "distinctWorks": 201
+      },
+      "nestedFamily": {
+        "flags": [
+          "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED",
+          "family:contains-covered-term"
+        ],
+        "substringParents": [],
+        "coveredChildren": [
+          "法乳"
+        ]
+      },
+      "evidence": [
+        {
+          "source": "X/X64/X64n1260.xml",
+          "title": "列祖提綱錄",
+          "workId": "work:X64n1260",
+          "hitFromLb": "0191a05",
+          "hitToLb": "0191a22",
+          "kwic": "師開堂，拈香云：此一瓣香大有人疑著，三十年出一叢林、入一保社，遇賤則貴、遇貴則賤，末後撞著箇無面目老子，向命脉上一劄，不覺從空放下。如今不免對眾拈出，奉為現住潤州金山佛果圓悟禪師大和尚，用報法乳之恩。大慧杲禪師，徑山開堂，拈香云：此一瓣香，󳬇著則眼睛枯，齅著則腦門裂，遇貴則價重娑婆，遇賤則分文不直。今日對人天眾前爇向爐中，奉為成都府昭覺禪寺先圓悟禪師大和尚，用酬法乳之恩。再住徑山，拈香云：此一瓣香，在兜率天則曰仙陀婆，在善變化天則曰奪意，在阿那婆達多池邊則曰蓮華藏。且道在徑山手喚作甚麼？良久，云：非但圓悟老人看即有分，便是三世諸佛出來，也不敢正眼󳬇著。便燒。應庵華禪師開堂，拈香云：此一瓣香，奉為先住宣州彰教，後住平江虎丘山雲巖禪院隆和尚爇向爐中，用酬法乳之恩，一任天下衲僧敲甎打密庵傑禪師開堂，拈香云：此一瓣香收來久矣，",
+          "verified": true
+        },
+        {
+          "source": "J/J26/J26nB178.xml",
+          "title": "費隱禪師語錄",
+          "workId": "work:J26nB178",
+          "hitFromLb": "0104a24",
+          "hitToLb": "0104b08",
+          "kwic": "萬歲！萬歲！萬萬歲！恭願皇圖綿鞏固之休、峻命衍綦隆之運。者一瓣香，包羅今古，統御人寰，爇向爐中，奉為滿朝文武、天下官僚，并及福清縣主、諸位高官，恭願福祿同滄海，壽筭等喬松。者一瓣香，最初到處尋覓不得到手，一旦到手，便乃當陽披露，不可指目末後，遇著個沒眼睛老和尚伸手一捏，直得脫白無光。爇向爐中，專為現住浙江寧波府鄞縣天童禪寺傳曹溪正脈三十四世本師密雲悟老和尚，用酬法乳之恩。」遂斂衣就坐。僧問：「昔從黃檗去，今向黃檗來，作麼生道個無來去底事。」師便喝。進云：「砂盆雖破，家風猶在。」師云：「與闍黎無干。」問：「未離馬峰，遍界風光騰瑞彩，纔跨猊座，眉間劍氣爍鋒鋩。黃檗門庭即不問，祝聖報恩事若何？」師云：「天長地久。」進云：「恁麼則一句了然超百億。」便禮拜，師噓一噓。問：「一線陽春曲，繇來和者稀，如何是陽春曲？」師云：「眉毛八尺",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "batchOrdinal": 25,
+      "reservoirRank": 1423,
+      "reservoirBand": "3-8",
+      "term": "今上皇帝",
+      "disposition": "REJECT",
+      "unit": null,
+      "validation": "manual full-case reading; fresh exact count and two canonical-distinct verified works; boundary/nested-family gate",
+      "reason": "Historically shifting court designation, not a distinct Chan lexical unit; its referent is supplied by documentary context.",
+      "zcExactAtFreeze": {
+        "hits": 462,
+        "files": 208,
+        "distinctWorks": 207
+      },
+      "zcExact": {
+        "hits": 462,
+        "files": 208,
+        "distinctWorks": 207
+      },
+      "nestedFamily": {
+        "flags": [
+          "DISCOVERY-ONLY; FULL-CASE-SEMANTIC-REVIEW-REQUIRED"
+        ],
+        "substringParents": [],
+        "coveredChildren": []
+      },
+      "evidence": [
+        {
+          "source": "X/X64/X64n1260.xml",
+          "title": "列祖提綱錄",
+          "workId": "work:X64n1260",
+          "hitFromLb": "0006b05",
+          "hitToLb": "0006b22",
+          "kwic": "聲中，一聲徧在諸人耳，不是寂聽生欣悅。恁麼恁麼，卷舒立方外乾坤；不恁麼不恁麼，橫縱挂域中日月。恁麼中有不恁麼，不恁麼中却恁麼。下座。詣大佛殿，啟延天壽聖節。上堂。前佛性命，後佛紀綱。竪拂子，云：總在拂子頭上。拈起也，風生百谷；放下也，水肅千江。今朝啟建聖節，合作麼生舉唱？擊拂子，云：臥龍纔奮迅，丹鳳便翱翔。正節提綱正節提綱五祖演禪師聖節，上堂：十二月初八日，今上皇帝降誕之辰，不得說別事。乃高聲云：皇帝萬歲！皇帝萬歲！真淨文禪師聖節，上堂。率土之土，皆屬王土；率土之民，莫非王民。今朝臘月八日，當釋迦如來成道之辰，是今上皇帝降誕之日。所謂前聖、後聖，聖德共明；人王、法王，王道同久。應千年之慶運，統萬國之歡心。伏惟皇帝陛下萬歲，萬萬歲。復召眾，云：大殿上念佛，祝延聖壽。下座。佛眼遠禪師聖節，上堂。皇帝以天下為家，兆民為子，父",
+          "verified": true
+        },
+        {
+          "source": "T/T47/T47n1997.xml",
+          "title": "圓悟佛果禪師語錄",
+          "workId": "work:T47n1997",
+          "hitFromLb": "0713c19",
+          "hitToLb": "0714a09",
+          "kwic": "其數。有其聲而無宮角。木聲與人聲。犁然有當於人之心。乃曰。今之歌者其誰乎。是亦此音。而世未之知也。圓悟老師其知之矣。予蚤事佛鑑。晚見老師。叩此一音。更無別調。學徒若平亦唱師家曲者。集師語要將以刊行。求為序篇。以冠卷首。若知此音。則圓悟老師功不浪施。若不知．此音。而以語言文字求會解者。是人行邪道。不能見老師云。紹興三年十二月二十日序。張浚序圓悟禪師克勤。甞被遇今上皇帝。對揚正法眼藏。其道盛行。僧若平。鳩工聚材欲以師法語。傳諸天下。以待後學。託嚴州天寧老元弼。丐予為敘。吁此果師之本旨哉。予聞師常偃處一室。坐斷語言。轉無上法輪。不容擬議。揚眉開口。立便喪身。纔涉廉纖。老拳隨起。每舉到不與萬法為侶公案。已是拕泥帶水。落第二義。今乃欲褒集其平昔咳唾之音。鋪陳而揄揚之。師其聞而有不釋然者乎。雖然師之不得已而有言。我知之矣。譬彼時雨",
+          "verified": true
+        }
+      ]
+    }
+  ],
+  "manualAuthorAssertions": {
+    "readEverySuppliedFullCase": true,
+    "frequencyUsedForNavigationOnly": true,
+    "completeCasesAndGenuineFiguresObjectsRetained": true,
+    "boundaryAndProductiveFramesRejected": true,
+    "noGlossOrEntryConstruction": true,
+    "selfReviewPerformed": false
+  },
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "buildRun": false,
+  "registryMutationPerformed": false,
+  "lineageTouched": false
+}

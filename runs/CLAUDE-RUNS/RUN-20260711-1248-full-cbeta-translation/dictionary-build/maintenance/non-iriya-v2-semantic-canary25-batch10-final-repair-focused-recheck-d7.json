@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "non-iriya-frequency-semantic-final-repair-focused-recheck.v1",
+  "generatedUtc": "2026-07-18T01:08:55Z",
+  "reviewer": "d7",
+  "reviewQualification": "Final coordinate-bound focused recheck after the prior independent REVISE and failed-intermediate focused REVISE.",
+  "reviewedLedger": "maintenance/non-iriya-v2-semantic-canary25-batch10-ledger.json",
+  "reviewedLedgerSha256": "ccffab7de85109127cd1931a6562a64ef466f369129b915304b2d5dd719e510f",
+  "repairReceipt": "maintenance/non-iriya-v2-semantic-canary25-batch10-repair-receipt-root.json",
+  "repairReceiptSha256": "8c38f92b11ec0d707a99f6a6293a9c5d3bbc40f948026f0f5b83defb44c0d8fe",
+  "independentReview": "maintenance/non-iriya-v2-semantic-canary25-batch10-independent-cross-review-d7.json",
+  "independentReviewSha256": "a47697d67ba477de38abbc4ceefc63822fc28113765e33ae0739921e15b779c4",
+  "priorFocusedRecheck": "maintenance/non-iriya-v2-semantic-canary25-batch10-repair-focused-recheck-d7.json",
+  "priorFocusedRecheckSha256": "1d5f0e17620ea404a94c2837627c8d1da7e2fa91641eca8b63524bcf4d5b053e",
+  "overallVerdict": "PASS",
+  "coordinateReview": {
+    "verdict": "PASS",
+    "rows": [
+      {
+        "batchOrdinal": 1,
+        "term": "一切眾生",
+        "disposition": "REJECT",
+        "unit": null,
+        "semanticClosure": "PASS"
+      },
+      {
+        "batchOrdinal": 2,
+        "term": "十二時中",
+        "disposition": "KEEP",
+        "unit": "component",
+        "semanticClosure": "PASS-RESTORED"
+      },
+      {
+        "batchOrdinal": 5,
+        "term": "八萬四千",
+        "disposition": "REJECT",
+        "unit": null,
+        "semanticClosure": "PASS"
+      }
+    ],
+    "coordinateBindingUsesTermAndBatchOrdinal": true,
+    "failedAdjacentRowMutationAbsent": true
+  },
+  "byteExactScopeReview": {
+    "verdict": "PASS",
+    "reconstructedOriginalLedgerSha256": "71a465e63f241e4a1641695cd2be14db5f382260673e004acb0cd836456c2d31",
+    "expectedOriginalLedgerSha256": "71a465e63f241e4a1641695cd2be14db5f382260673e004acb0cd836456c2d31",
+    "originalReconstructionExact": true,
+    "reconstructedFailedIntermediateSha256": "99badc04195fb24924107e348ee64c176032ca4dafa63c7e24070fe841ccf368",
+    "expectedFailedIntermediateSha256": "99badc04195fb24924107e348ee64c176032ca4dafa63c7e24070fe841ccf368",
+    "failedIntermediateReconstructionExact": true,
+    "authorizedFinalSemanticDecisionObjectsChanged": [
+      "batchOrdinal=1 term=一切眾生",
+      "batchOrdinal=5 term=八萬四千"
+    ],
+    "otherTwentyThreeDecisionObjectsPreservedExactlyFromOriginal": true,
+    "allEvidenceCountsNestedFamiliesAndIdentitiesPreserved": true
+  },
+  "summaryReview": {
+    "verdict": "PASS",
+    "KEEP": 19,
+    "REJECT": 6,
+    "PROVISIONAL": 0,
+    "arithmeticMatchesFinalCoordinates": true,
+    "semanticTargetClosed": true
+  },
+  "requiredRevisions": [],
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false,
+  "reviewedLedgerMutated": false
+}

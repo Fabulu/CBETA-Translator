@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "non-iriya-frequency-semantic-repair-receipt.v1",
+  "batch": 10,
+  "repairAuthor": "root",
+  "rejectingReview": "maintenance/non-iriya-v2-semantic-canary25-batch10-independent-cross-review-d7.json",
+  "rejectingReviewSha256": "a47697d67ba477de38abbc4ceefc63822fc28113765e33ae0739921e15b779c4",
+  "ledger": "maintenance/non-iriya-v2-semantic-canary25-batch10-ledger.json",
+  "ledgerBeforeSha256": "71a465e63f241e4a1641695cd2be14db5f382260673e004acb0cd836456c2d31",
+  "failedIntermediateLedgerSha256": "99badc04195fb24924107e348ee64c176032ca4dafa63c7e24070fe841ccf368",
+  "failedIntermediateFinding": "The first textual patch changed adjacent row 十二時中 instead of target row 八萬四千; focused review caught the identity mismatch despite coincidentally correct aggregate totals.",
+  "ledgerAfterSha256": "ccffab7de85109127cd1931a6562a64ef466f369129b915304b2d5dd719e510f",
+  "authorizedRepairs": [
+    {
+      "term": "一切眾生",
+      "beforeDisposition": "KEEP",
+      "afterDisposition": "REJECT",
+      "beforeUnit": "component",
+      "afterUnit": null,
+      "closure": "The supplied full cases contain a generic doctrinal collective and do not establish a bounded Chan deployment independent of covered longer formulas."
+    },
+    {
+      "term": "八萬四千",
+      "beforeDisposition": "KEEP",
+      "afterDisposition": "REJECT",
+      "beforeUnit": "component",
+      "afterUnit": null,
+      "closure": "The number productively magnifies unrelated referents, including samadhi gates and bodily pores; it is not one stable lexical object."
+    }
+  ],
+  "summaryBefore": {"KEEP": 21, "REJECT": 4, "PROVISIONAL": 0},
+  "summaryAfter": {"KEEP": 19, "REJECT": 6, "PROVISIONAL": 0},
+  "coordinateBinding": "Every repaired disposition/unit is bound by exact term plus batchOrdinal; aggregate summary arithmetic is not repair proof.",
+  "otherTwentyThreeDecisionObjectsPreserved": true,
+  "evidenceCountsAndIdentitiesChanged": false,
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "buildRun": false,
+  "registryMutationPerformed": false,
+  "lineageTouched": false,
+  "status": "READY_FOR_FOCUSED_RECHECK"
+}

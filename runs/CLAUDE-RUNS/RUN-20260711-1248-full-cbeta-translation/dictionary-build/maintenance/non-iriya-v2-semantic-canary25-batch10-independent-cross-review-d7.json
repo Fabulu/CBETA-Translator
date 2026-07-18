@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "non-iriya-v2-semantic-independent-cross-review.v1",
+  "generatedUtc": "2026-07-18T00:55:50Z",
+  "reviewer": "d7",
+  "reviewQualification": "Independent strict full-case review requiring observable Chan deployment or a distinct stable lexical object; generic doctrinal containment and raw frequency were not accepted as semantic evidence.",
+  "reviewedLedger": "maintenance/non-iriya-v2-semantic-canary25-batch10-ledger.json",
+  "reviewedLedgerSha256": "71a465e63f241e4a1641695cd2be14db5f382260673e004acb0cd836456c2d31",
+  "frozenSelection": "maintenance/non-iriya-v2-frequency-batch10-navigation-selection.json",
+  "frozenSelectionSha256": "8b1e9b06f81346316efe6cc87577675eb7703b2d55529d17fa5686511775ff17",
+  "overallVerdict": "REVISE",
+  "selectionAndMechanicalReview": {
+    "verdict": "PASS",
+    "selectionOrderAndTermsMatchLedger": true,
+    "exactCountTriplesReproduced": 25,
+    "evidenceWindowsVerified": 50,
+    "allLineBoundsTitlesAndCanonicalWorkIdsReproduced": true,
+    "canonicalDistinctWorkPairs": 25,
+    "associationFailures": 0
+  },
+  "semanticDispositionAndUnitReview": {
+    "verdict": "REVISE",
+    "rowsPassedWithoutRevision": 23,
+    "requiredRevisions": 2,
+    "unchallengedKEEP": [
+      "十二時中", "一大藏教", "達磨大師", "轉大法輪", "臘月三十", "諸佛出身", "世出世間", "覿面相呈", "第一義諦", "三日耳聾", "樹倒藤枯", "天地懸隔", "迦葉微笑", "宗風嗣阿誰", "世尊初生", "法筵龍象", "智慧德相", "時節因緣", "用酬法乳"
+    ],
+    "unchallengedREJECT": ["三千里外", "三千大千", "觀法王法", "今上皇帝"]
+  },
+  "requiredRevisions": [
+    {
+      "row": 1,
+      "term": "一切眾生",
+      "currentDisposition": "KEEP",
+      "requiredDisposition": "REJECT",
+      "finding": "Both supplied cases use the phrase as the ordinary doctrinal quantifier ‘all sentient beings’: one describes the universally shared mind-body and the other quotes a Buddha verse. Neither gives the selected substring an observable Chan-specific deployment or an independently bounded sense. It is also a substring of three already covered longer formulas.",
+      "requiredReason": "Treat it as a productive generic doctrinal collective whose semantic work is supplied by the following predicate, not as a distinct Chan lexical unit."
+    },
+    {
+      "row": 5,
+      "term": "八萬四千",
+      "currentDisposition": "KEEP",
+      "requiredDisposition": "REJECT",
+      "finding": "The witnesses attach the number to unrelated nouns—samadhi gates and Zhaozhou’s pores. They demonstrate productive Buddhist numerical hyperbole, not a self-standing unit with a stable Chan deployment; the current reason merely restates conventional doctrinal number symbolism.",
+      "requiredReason": "Reject the bare productive number while leaving genuinely bounded longer formulas to their own family adjudication."
+    }
+  ],
+  "strictBoundaryFindings": {
+    "一大藏教": "KEEP remains supported: the complete canon is observably handled as one evaluative object in Chan sermons, including explicit dismissal as unusable scripture; this is more than accidental containment.",
+    "達磨大師": "KEEP remains supported as a stable personal designation of a central Chan figure, independently used in sermons and patriarchal ritual.",
+    "第一義諦": "KEEP remains supported as an established bounded doctrinal designation recurrently invoked by the Chan white-hammer formula and encounter discourse.",
+    "智慧德相": "KEEP remains supported as the bounded scriptural expression repeatedly quoted and directly interrogated in Chan awakening sermons.",
+    "nestedFamilyVerdict": "PASS except for the two required revisions: complete cases, figures, institutional formulas, and stable doctrinal designations are separated from productive quantifiers, boundary fragments, and documentary scaffolds."
+  },
+  "frequencyUsedAsSemanticEvidence": false,
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false,
+  "reviewedLedgerMutated": false
+}
