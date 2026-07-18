@@ -1,0 +1,59 @@
+{
+  "schemaVersion": "iriya-independent-full-review.v1",
+  "lane": "A",
+  "positions": [101, 110],
+  "reviewer": "Codex independent full-case reviewer",
+  "reviewedUtc": "2026-07-18T18:15:00Z",
+  "sourceClosure": {
+    "path": "maintenance/iriya-author-A101-110-closure-receipt.json",
+    "sha256": "0ee2c4a448cb9ce3eb24bfb30f2b0dbea6867c49ea9dff25ed21c106a3197b41"
+  },
+  "packet": {
+    "path": "maintenance/iriya-author-packet-A061-160-v1.json",
+    "sha256": "10e519a4dbf0d5315c1df4763e6e88ddf7836ad6904c6446c0140ec9ae7c0c19"
+  },
+  "decisions": {
+    "path": "maintenance/iriya-decisions-A101-110.json",
+    "sha256": "25ea802df2353886eff221e635be8c2017fd1a1f78d741d2f4b0d3f653602062"
+  },
+  "scope": {
+    "entriesRead": 10,
+    "occurrencesRead": 60,
+    "semanticFieldsRead": ["preferredTarget", "alternateTargets", "searchAliases", "note", "corpusEarnedOpening", "evidenceBody", "ZenBend", "DifferentThingTest", "modifierControls", "familyControls"],
+    "fullCaseExactTurnReviewed": 60,
+    "sourceEntriesModified": false
+  },
+  "namedChecks": {
+    "sixPromotionsReviewed": true,
+    "caoHanLongshouContextActorReviewed": true,
+    "a107RecutReviewed": true
+  },
+  "artifactHashes": {
+    "t_0a46e5168808": ["a7f940f944c57254a253b2d4ac38b4d0b8a58dfeef3a3684f9e6d8045340c242", "6d38cf4fabcecf20fd613b092456dfb40a8c3cb906d0aa8096274d13aa8edf78", "73d23cdc5c90e3684c277e321a6f40c1881b21874bbb831d07871991518c84a1"],
+    "t_3a5385fcf1eb": ["02bc09b1bf3676ffde55a5247f1f83ac03f9ecb4c3b9040cd3534aa35be49bb2", "a184aadebb3596c2dd2e3262350df658066ccbb6be74c4c8c7ca156c707ac4e3", "cfa59055228d793daa8d75c100be4dcef2d0591c2f722132c93ee69f40beabf6"],
+    "t_61f3e9258d3e": ["a633727beda728b8b5a4c04d457414fec1298bce88778c0135a7c1e56fd2d6b2", "40cb7017f4afdeb368c6963f02c9e3cc0dacb8969cfd332c579bd754a7eeae1e", "448a600c7d7366253e6568365d2b2d88e303a354a322fcc2136978f24cd1f5a3"],
+    "t_66355fb62c29": ["de7669635bb1e2c53279ad53d45a50b06a546d9fa5627b842db9164034dff337", "e92fe7df56f1b57e7750a9bae91e31643e3267260a9543f9b002d2d0a4bbd6f7", "4ff752016dad68e9fa55809a2adc4079cb0db12c7af82dbda86d9d33327f5718"],
+    "t_5b0b816ee306": ["8b84fbc4f3400469d366ed8c645e965c53ac01d1adcb451baf30c0239b11d4e8", "e55b1aa58cdf75c52a83cfa6d33a3cd2fbf3c170b87a3410c6c40876d4712a18", "515a1a9d9869fd6b7e2c2598b5a194b5b2b90e6c8e01dca304c3912d5e88b683"],
+    "t_aad133038248": ["819c97194d0dd468cec1e8c91ca57724f77f2855d8965e815661b1954920e24f", "d11abc0608e45141e65b55027f8fcda1d298c65447d4836080d6cc83244d895c", "0f2767acc6dd3813c30e87e00305e5810d39bc9117775a6273c6280351acdc83"],
+    "t_5683300fdb8b": ["609158750a104e92eb4f792634d7e6e52807ba829534c69cd807d42ead7a7a78", "141de1d5c005c0e5c38b512da19f7b6ee5c98dd77a0f00e3b22651200984da01", "f1f884340c23e7c3ef65398c8fc60eb8f13b69122217a35f027177982a4988d2"],
+    "t_4a94f93601be": ["c9c823a78bd26d54c8d9361ca7066c2995d493d6f4060a748861c9526086005d", "0539fbccbc9c51e25d2ec2b89b89115a811b90861a74d76a891132b3218db622", "ce9e51fa5bc6710f59e74fb354784dd4c02ee75e28f8e3ff8f377a07b8932ea2"],
+    "t_0220a83c7f9c": ["fa2f386723c1faf4405ffa0fdf8099bec11744f0b9a9d9505a597dc9d3cdbb23", "0fca1229a1da55ab2c996e147a245a4ea05252b1255cdd0bf43ac2904d59e32c", "31090321cac2cd4294b25d74297d3b34215c085203f5e58f65c6849e00a665ce"],
+    "t_4236ac78ec14": ["1a66fb23b8b4f1577758ee9c226f4e043f4d529f0c17119d6ca5421dbfc6baea", "bbfb82ba8c4595ea5a2b4da99a8e6692be359e50fbacb8684149517a917e8b24", "d11902d0f054a2ac84fc963c9ce636be9e86d6743985ca68ec625b4cc8a68845"]
+  },
+  "artifactHashOrder": ["entry.v2.json", "evidence.draft.json", "WORK.md"],
+  "gates": {
+    "strictAttributionHardFailures": 0,
+    "workSourceHardFailures": 0,
+    "templateHardFailures": 0,
+    "depthHardFailures": 0,
+    "depthReviewFlagsHumanClosed": 10,
+    "exactZcFailures": 0,
+    "compileParityFailures": 0
+  },
+  "deltas": [],
+  "disposition": "hard-pass-no-deltas",
+  "hardPass": true,
+  "installed": false,
+  "merged": false,
+  "rosterModified": false
+}
