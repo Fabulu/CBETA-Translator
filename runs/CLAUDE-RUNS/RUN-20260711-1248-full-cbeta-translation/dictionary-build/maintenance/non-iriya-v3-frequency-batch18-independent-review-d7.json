@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "non-iriya-v3-frequency-independent-review.v1",
+  "generatedUtc": "2026-07-18T06:18:00Z",
+  "reviewer": "d7",
+  "decision": "PASS",
+  "reviewedSelection": "maintenance/non-iriya-v3-frequency-batch18-navigation-selection.json",
+  "reviewedSelectionSha256": "c9ab03359b2e416c5e59e19260ccacfcd999cc93808636fbacab63e9b1732576",
+  "reviewedLedger": "maintenance/non-iriya-v3-frequency-batch18-semantic-ledger-b6.json",
+  "reviewedLedgerSha256": "b2b2211cb86ba4d5614449d98045bdd73779ee1ad51ae8a0d748c2040854fd47",
+  "mechanicalReview": {
+    "verdict": "PASS",
+    "selectionBinding": "PASS; all 25 frozen identities and ordinals reproduce and the ledger binds the exact selection hash",
+    "priorExclusions": "PASS; every declared prior-selection hash reproduces and all 25 terms are fresh through batch17",
+    "packetCollision": "PASS; no selected term is a substring of another selected term",
+    "counts": "PASS; 25/25 exact hit/file/distinct-work triples reproduce",
+    "evidence": "PASS; 50/50 windows verify at stored bounds, titles and canonical work IDs reproduce, and every pair is canonical-distinct",
+    "summary": "PASS; 6 KEEP, 19 REJECT, 0 PROVISIONAL matches the decision objects"
+  },
+  "semanticReview": {
+    "verdict": "PASS 25/25",
+    "fullCaseReading": true,
+    "confirmedKeeps": [
+      {"term": "僧禮拜", "unit": "action", "finding": "A recurrent marked encounter-record action; the surrounding response controls whether the bow receives, withdraws, or fails, but the recorded action itself is stable."},
+      {"term": "一句作麼生", "unit": "formula", "finding": "A stable elicitation frame for how the decisive phrase is to be presented; one witness supplies 道 and the other leaves the same verb implicit after 作麼生."},
+      {"term": "甚處來", "unit": "formula", "finding": "A recurrent complete visitor-testing question, where have you come from."},
+      {"term": "恁麼道", "unit": "formula", "finding": "A stable discourse operation for saying, quoting, or challenging something stated thus."},
+      {"term": "所以道", "unit": "formula", "finding": "A stable citation-introducing formula that launches an authoritative saying."},
+      {"term": "是同是別", "unit": "formula", "finding": "A complete binary same-or-different question repeatedly testing the relation between teachings or principles."}
+    ],
+    "confirmedRejectGroups": {
+      "clippedOrBoundaryArtifacts": ["麼處去", "錄卷第", "諸人還", "僧今日", "師指示", "語錄卷", "如何是祖", "河大地是", "何是祖師西", "切眾生皆", "如何是和", "何是和尚家", "字街頭石", "師便歸方", "天下老和"],
+      "productiveGenericOrHeadingMaterial": ["在甚麼處", "向甚麼處", "二十年", "禪師上堂"]
+    },
+    "deferredExpansionAudit": {
+      "verdict": "PASS; every proposed expansion was individually read and no disposition was inherited from lane membership",
+      "KEEP": ["是同是別"],
+      "REJECT": ["如何是祖", "河大地是", "何是祖師西", "切眾生皆", "如何是和", "何是和尚家", "字街頭石", "師便歸方", "天下老和"],
+      "finding": "Nine expansions still cut inside a larger established phrase or compound. The tenth, 是同是別, reaches a complete recurring question and was correctly retained. This split demonstrates semantic research rather than automatic expansion rejection."
+    },
+    "semanticRevisionsRequired": []
+  },
+  "diminishingReturnsReview": {
+    "verdict": "PASS",
+    "finding": "The 24% yield follows from the strict next-ranked packet's concentration of productive questions, headings, bibliographic seams, and one-graph expansions that remain incomplete. The six supported formulas/actions, including one deferred expansion, were preserved."
+  },
+  "summary": {"PASS": 25, "REVISE": 0, "confirmedKeep": 6, "confirmedReject": 19, "falseNegativeRepairsRequired": 0},
+  "authorLedgerMutated": false,
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "dictionaryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false,
+  "reviewedArtifactsMutated": false
+}
