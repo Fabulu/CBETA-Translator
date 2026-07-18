@@ -1,0 +1,84 @@
+{
+  "schemaVersion": "iriya-manual-independent-review.v1",
+  "generatedUtc": "2026-07-18T04:38:00Z",
+  "reviewer": "d7",
+  "decision": "PASS",
+  "reviewedSelection": "maintenance/iriya-manual-batch21-offset1-selection.json",
+  "reviewedSelectionSha256": "54142e5623d00bcf20035d9126e0c785e37d4ab118e8154d5ca8784f52c85619",
+  "reviewedLedger": "maintenance/iriya-manual-batch21-offset1-ledger.json",
+  "reviewedLedgerSha256": "7acb4a8e2e7ec450a34713f897687c868cd1fddf07d91e07bf0fbc44b623f5b1",
+  "identityAndExclusionReview": {
+    "verdict": "PASS",
+    "authoritativeQueueSha256Reproduced": true,
+    "authoritativeQueueTuplesExact": true,
+    "selectionMatchesLedgerExactly": true,
+    "selectionHashBindingReproduced": true,
+    "canonicalIndexEqualsQueueNumberMinusOne": true,
+    "canonicalIndexModulo3Equals1": true,
+    "exactlyNextTenAgainstBoundLive724RegistryRowsAndPriorLedgers": true,
+    "boundRegistryRows": 724,
+    "boundRegistrySha256Recorded": "de9f13f5fa221e60fa4ebcfe3e08f0393a21389ede2af900232b671c148f4a5a",
+    "historicalRegistryNote": "The append-only live registry has advanced to 754 rows. The selected ids are absent from both its first 724 bound rows and its current 754 rows; next-ten reconstruction uses the bound first 724 rows plus the twelve declared prior offset-1 author ledgers.",
+    "absentBoundLive724RegistryRows": true,
+    "absentCurrentLive754Registry": true,
+    "absentAllTwelvePriorOffset1AuthorLedgersThroughBatch20": true,
+    "allTwelveRecordedPriorLedgerHashesReproduced": true
+  },
+  "semanticDispositionAndUnitReview": {
+    "verdict": "PASS",
+    "fullCasesRead": 20,
+    "KEEP": 10,
+    "REJECT": 0,
+    "components": [
+      "光陰可惜",
+      "打風打雨",
+      "買鐵得金",
+      "不是無身"
+    ],
+    "couplets": [
+      "若不同床睡、焉知被底穿",
+      "先以定動、後以智拔",
+      "天是天、地是地",
+      "仁者見之謂之仁、智者見之謂之智",
+      "只許老胡知、不許老胡會",
+      "不因樵子徑、爭到葛洪家"
+    ],
+    "rowFindings": [
+      {"canonicalIndex": 772, "verdict": "PASS", "finding": "The complete proverb and its shared-circumstance/knowing deployment are supported by the standalone verse and dialogue response."},
+      {"canonicalIndex": 775, "verdict": "PASS", "finding": "The paired concentration-then-wisdom account is preserved as Sanping's explanation and also appears as a direct answer."},
+      {"canonicalIndex": 778, "verdict": "PASS", "finding": "Both admonitory cases directly support the statement that time is precious."},
+      {"canonicalIndex": 781, "verdict": "PASS", "finding": "Both cases deploy the phrase for vigorous, timely exertion; the reason remains corpus-first."},
+      {"canonicalIndex": 784, "verdict": "PASS", "finding": "Both cases support the fixed image of seeking iron and obtaining the richer gold."},
+      {"canonicalIndex": 787, "verdict": "PASS", "finding": "The paired heaven/earth declaration and ordinary differentiation are explicit in both cases."},
+      {"canonicalIndex": 790, "verdict": "PASS", "finding": "The complete classical pair and its differing-apprehension deployment are explicit."},
+      {"canonicalIndex": 793, "verdict": "PASS", "finding": "Both cases preserve the complete paradoxical know/not-understand formula without flattening it into a conceptual gloss."},
+      {"canonicalIndex": 796, "verdict": "PASS", "finding": "Both cases support the complete path-to-Ge-Hong enabling-occasion allusion."},
+      {"canonicalIndex": 799, "verdict": "PASS", "finding": "The portrait and later commentary support the stable assertion and its connection with full bodily disclosure."}
+    ],
+    "semanticRevisionsRequired": []
+  },
+  "variantReview": {
+    "verdict": "PASS",
+    "everyRowHasExplicitFormResolution": true,
+    "sixPrintedEnumerationSeparatorsNormalizedToCorpusCommas": true,
+    "otherFourQueriesExactGraphForm": true,
+    "directionalChangesRecorded": true
+  },
+  "mechanicalReview": {
+    "cheapValidator": {"status": "PASS", "failureCount": 0},
+    "fullValidator": {"status": "PASS", "failureCount": 0},
+    "exactCountTriplesReproduced": 10,
+    "evidenceWindowsVerified": 20,
+    "allLineBoundsTitlesAndCanonicalWorkIdsReproduced": true,
+    "twoCanonicalDistinctWorksPerDecision": true,
+    "summaryReproduced": {"KEEP_component": 4, "KEEP_couplet": 6, "REJECT": 0, "PROVISIONAL": 0}
+  },
+  "requiredRevisions": [],
+  "authorLedgerMutated": false,
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false,
+  "reviewedArtifactsMutated": false
+}

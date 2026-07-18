@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "iriya-manual-independent-review.v1",
+  "reviewer": "b6",
+  "decision": "PASS",
+  "reviewedSelection": "maintenance/iriya-manual-batch21-offset2-selection.json",
+  "reviewedSelectionSha256": "0f3ca4f20b7f2bed120719f3b10e4761ccc7f7a39fa337de503c6cb05209a05b",
+  "reviewedLedger": "maintenance/iriya-manual-batch21-offset2-ledger.json",
+  "reviewedLedgerSha256": "e75919f69f5952057786c38bc2c91ef8ae4194f9149cbcf54aba6b328ff65608",
+  "identityReview": {
+    "verdict": "PASS",
+    "finding": "All ten frozen queue identities reproduce in order; canonical indexes are 2 modulo 3 and declared live-registry and prior-offset2 exclusions are preserved."
+  },
+  "mechanicalReview": {
+    "verdict": "PASS",
+    "cheapValidator": "PASS 10/10; 0 failures",
+    "fullValidator": "PASS 10/10; 0 failures",
+    "counts": "PASS; all exact hit/file/distinct-work triples reproduce",
+    "evidence": "PASS; twenty windows verify at stored bounds with matching titles and canonical work IDs, and every pair is canonical-distinct",
+    "forms": "PASS; printed punctuation and graph variants are explicitly resolved"
+  },
+  "semanticReview": {
+    "verdict": "PASS 10/10",
+    "finding": "Full-case reading supports five component and five couplet boundaries. The decisions remain corpus-first: direct encounter motions, fixed verdicts and proverbs, complete paired warnings or verses, and recurrent capping images; no reason depends on frequency alone.",
+    "passingCanonicalIndexes": [779, 782, 785, 788, 791, 794, 797, 800, 803, 806]
+  },
+  "summary": {"PASS": 10, "REVISE": 0, "semanticRejectionsRequired": 0, "evidenceOrCountRepairsRequired": 0},
+  "authorLedgerMutated": false,
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false
+}

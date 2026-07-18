@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "iriya-manual-reason-repair-receipt.v1",
+  "generatedUtc": "2026-07-18T02:07:38Z",
+  "repairAuthor": "b6",
+  "review": "maintenance/iriya-manual-batch21-offset0-independent-review-c19-e8.json",
+  "reviewSha256": "fb2bc744c628f6dca69bded94cc308c97b9ccfbc72f8cae012ef0bf13f0cd546",
+  "ledger": "maintenance/iriya-manual-batch21-offset0-ledger.json",
+  "ledgerBeforeSha256": "2f2d9b4051d4e0c0a8801288758010105babe30636986181178999e3a9cacb76",
+  "ledgerAfterSha256": "b449163a7fc5b30dffa9d9f0acfd4c271ced89dbb16f46a47452750ac2f8bed4",
+  "repair": {
+    "canonicalIndex": 672,
+    "id": "t_8762fd4efbd2",
+    "term": "把手上高山",
+    "field": "reason",
+    "closure": "Removes the blanket master label and the unsupported evenly-matched claim; identifies the closely engaged partners separately as Damei with Layman Pang and Linji with Deshan, while preserving the second witness's bystander observation."
+  },
+  "cheapValidator": "PASS 10/10; 0 failures",
+  "fullValidator": "PASS 10/10; 0 failures",
+  "allIdentitiesPreserved": true,
+  "allDispositionsAndUnitsPreserved": true,
+  "allCountsPreserved": true,
+  "allEvidencePreserved": true,
+  "allFormResolutionsPreserved": true,
+  "otherNineReasonsPreserved": true,
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false,
+  "status": "READY_FOR_FOCUSED_RECHECK"
+}

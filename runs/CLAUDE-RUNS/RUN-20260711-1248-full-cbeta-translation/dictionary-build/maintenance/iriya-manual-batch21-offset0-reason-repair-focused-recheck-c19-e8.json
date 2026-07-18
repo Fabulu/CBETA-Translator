@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "iriya-manual-review-repair-focused-recheck.v1",
+  "reviewer": "c19-e8",
+  "reviewArtifact": "maintenance/iriya-manual-batch21-offset0-independent-review-c19-e8.json",
+  "reviewArtifactSha256": "fb2bc744c628f6dca69bded94cc308c97b9ccfbc72f8cae012ef0bf13f0cd546",
+  "repairReceipt": "maintenance/iriya-manual-batch21-offset0-reason-repair-receipt-b6.json",
+  "repairReceiptSha256": "4d7bf323670d7a6219aaf12ae47d05e29550496ae6c39efd80cb250e3c06d239",
+  "repairedLedger": "maintenance/iriya-manual-batch21-offset0-ledger.json",
+  "repairedLedgerSha256": "b449163a7fc5b30dffa9d9f0acfd4c271ced89dbb16f46a47452750ac2f8bed4",
+  "decision": "PASS",
+  "focusedRow": {
+    "canonicalIndex": 672,
+    "term": "把手上高山",
+    "verdict": "PASS",
+    "finding": "The reason now identifies the encounter partners separately as Damei with Layman Pang and Linji with Deshan, removes the blanket master label and unsupported evenly-matched claim, and preserves the second witness's bystander observation."
+  },
+  "deltaReview": {
+    "verdict": "PASS",
+    "finding": "The repair receipt pins the before and after ledger hashes and records reason as the sole changed field. Identities, dispositions, units, counts, evidence, form resolutions, and the other nine reasons are preserved."
+  },
+  "mechanicalRecheck": {"cheapValidator": "PASS 10/10", "fullValidator": "PASS 10/10"},
+  "authorLedgerMutatedByReviewer": false,
+  "authorityMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false
+}

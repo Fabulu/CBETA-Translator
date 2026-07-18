@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "iriya-reviewed-batch-seal-config.v1",
+  "batch": 21,
+  "priorRegistryRows": 754,
+  "expectedFinalCounts": {"KEEP": 746, "REJECT": 38, "PROVISIONAL": 0},
+  "lanes": [
+    {"offset": 0, "artifacts": {
+      "ledger": "maintenance/iriya-manual-batch21-offset0-ledger.json",
+      "review": "maintenance/iriya-manual-batch21-offset0-independent-review-c19-e8.json",
+      "repair": "maintenance/iriya-manual-batch21-offset0-reason-repair-receipt-b6.json",
+      "focusedRecheck": "maintenance/iriya-manual-batch21-offset0-reason-repair-focused-recheck-c19-e8.json"
+    }},
+    {"offset": 1, "artifacts": {
+      "ledger": "maintenance/iriya-manual-batch21-offset1-ledger.json",
+      "review": "maintenance/iriya-manual-batch21-offset1-independent-review-d7.json"
+    }},
+    {"offset": 2, "artifacts": {
+      "ledger": "maintenance/iriya-manual-batch21-offset2-ledger.json",
+      "review": "maintenance/iriya-manual-batch21-offset2-independent-review-b6.json"
+    }}
+  ]
+}

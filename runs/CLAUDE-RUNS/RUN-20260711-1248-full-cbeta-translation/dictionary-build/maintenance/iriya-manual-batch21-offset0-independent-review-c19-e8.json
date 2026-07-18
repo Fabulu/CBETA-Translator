@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "iriya-manual-independent-review.v1",
+  "reviewer": "c19-e8",
+  "decision": "REVISE",
+  "reviewedSelection": "maintenance/iriya-manual-batch21-offset0-selection.json",
+  "reviewedSelectionSha256": "58b995172ed9b9bc488f3696259616c50b7e09ff93f149f82c0c14e1059f1278",
+  "reviewedLedger": "maintenance/iriya-manual-batch21-offset0-ledger.json",
+  "reviewedLedgerSha256": "2f2d9b4051d4e0c0a8801288758010105babe30636986181178999e3a9cacb76",
+  "identityReview": {
+    "verdict": "PASS",
+    "finding": "All ten queue/selection/ledger tuples reproduce, all canonical indexes are 0 modulo 3, all twelve prior-ledger hashes reproduce, and every selected id is absent from both those ledgers and the frozen registry."
+  },
+  "mechanicalReview": {
+    "cheapValidator": "PASS 10/10",
+    "fullValidator": "PASS 10/10",
+    "counts": "PASS; all ten exact hit/file/distinct-work triples reproduce",
+    "evidence": "PASS; 20/20 windows verify at stored line bounds, titles and work IDs reproduce, and every pair is canonical-work-distinct",
+    "variantsAndUnits": "PASS mechanically; one reason has a participant-label error"
+  },
+  "semanticReview": {
+    "verdict": "REVISE 1 reason; PASS 9 rows",
+    "rows": [
+      {
+        "canonicalIndex": 672,
+        "term": "把手上高山",
+        "verdict": "REVISE reason only",
+        "finding": "The literal image, KEEP/component ruling, and encounter deployment are supported, but the reason says commentators apply it to 'evenly matched masters.' The first stored case applies it to Damei and Layman Pang; Pang is a lay Zen figure, not a lineage master. The second applies it to Linji and Deshan. Calling all four masters is a factual participant conflation, and 'evenly matched' is stronger than the first commentator's concise comparison.",
+        "requiredRepair": "Say that commentators apply the image to closely engaged encounter partners: Damei with Layman Pang in one case, and Linji with Deshan in the other. Preserve the second witness's explicit note that a bystander may laugh, but do not promote Pang to master or impose 'evenly matched' on both cases. Preserve disposition, component unit, count, and evidence."
+      }
+    ],
+    "passingCanonicalIndexes": [675, 678, 681, 684, 687, 690, 693, 696, 699]
+  },
+  "summary": {"PASS": 9, "REVISE": 1, "reasonOnlyRepairsRequired": 1, "evidenceOrCountRepairsRequired": 0},
+  "authorLedgerMutated": false,
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "lineageTouched": false
+}
