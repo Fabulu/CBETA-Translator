@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "iriya-manual-repair-focused-recheck.v1",
+  "reviewAuthority": "maintenance/iriya-manual-batch14-offset1-cross-review.json",
+  "reviewAuthoritySha256": "e13a5802b8d5d4f445ad51cee92db285491145894b137d06d4189d4b794dffb5",
+  "repairReceipt": "maintenance/iriya-manual-batch14-offset1-repair-receipt.json",
+  "repairReceiptSha256": "52e885eb481b94879928608a77a044875b8b5aa8e7d5c9af797375ca8707742f",
+  "repairedLedger": "maintenance/iriya-manual-batch14-offset1-ledger.json",
+  "repairedLedgerSha256": "b2fe5d135fe937a606ae32f0f5ce88a25fb0b8c80232d47cdad69c567c505731",
+  "verdict": "PASS",
+  "authorizedFixes": {
+    "registryMetadata": "PASS: the recorded SHA is correctly identified as the 484-row authoring snapshot, and a separate zero-overlap check against live544 is explicit.",
+    "variants": {
+      "verdict": "PASS",
+      "reproduced": {
+        "不消一捏": {"hits":43,"files":25},
+        "失卻鼻孔": {"hits":13,"files":11},
+        "撐天拄地": {"hits":136,"files":75},
+        "撐天柱地": {"hits":3,"files":3}
+      },
+      "nonAdditiveLookupWarningPresent": true,
+      "dominant撐FormPreserved": true
+    },
+    "swordMedicineForm": "PASS: explicit one-way 爲→為 and 、→， changes are recorded with no transitive-normalization claim.",
+    "swordMedicineProse": "PASS: ‘responsive compassionate action’ was replaced by the evidence-bounded ‘responsive corrective action’."
+  },
+  "preservationReview": {
+    "verdict": "PASS",
+    "identities": 10,
+    "dispositionsAndUnitsUnchanged": true,
+    "exactCountsReproduced": 10,
+    "evidenceObjects": 20,
+    "allEvidenceReverified": true,
+    "summaryUnchanged": {"KEEP (component)":7,"KEEP (couplet)":3,"PROVISIONAL":0,"REJECT":0},
+    "note": "Receipt's pre-repair hash matches the independently reviewed authority's target hash; repaired structure retains the reviewed ten decisions and twenty evidence objects, with changes confined to the authority's listed fields."
+  },
+  "requiredFurtherRepairs": [],
+  "protectedArtifactsMutated": false,
+  "reviewedLedgerMutatedByRechecker": false
+}

@@ -1,0 +1,78 @@
+{
+  "schemaVersion": "non-iriya-v2-semantic-independent-cross-review.v1",
+  "batch": 8,
+  "selection": {"path":"maintenance/non-iriya-v2-semantic-canary25-batch8-selection.json","sha256":"d0ad33f40fd9d96d1e76954bec98f462d9482816849df6bafe7fbaa469a051d7"},
+  "ledger": {"path":"maintenance/non-iriya-v2-semantic-canary25-batch8-ledger.json","sha256":"9939c79c3e774c4d0f2a9c200cf1a2f4c1992d90d6d76a509478aad88eaa245e"},
+  "diversifiedPacket": {"path":"maintenance/non-iriya-v2-diversified-navigation-packet.json","sha256":"b2ac41588bed62d4379dd7b63888cae5c36516986f2ca0a8bee2596c82517ce9"},
+  "overallVerdict": "REVISE",
+  "selectionAndMechanicalReview": {
+    "verdict": "PASS",
+    "identities": 25,
+    "allPacketOrdinalsTermsRanksCountsAndFamilyMetadataMatch": true,
+    "allLiveExactCountsReproduced": true,
+    "verifiedEvidenceWindows": 50,
+    "allTitlesLineBoundsAndWorkIdsReproduced": true,
+    "twoCanonicalDistinctWorksPerDecision": true
+  },
+  "dispositionPass": [
+    "大千世界", "天上人間", "情與無情", "靈山會上", "毘盧頂", "香水海", "大庾嶺", "沒絃琴", "三世佛", "無為法", "高著眼", "擬開口",
+    "西過東", "從西過", "對他道", "告眾曰", "視大眾", "一手指", "用心處", "大鑑下"
+  ],
+  "requiredDispositionRevisions": [
+    {
+      "term": "婆羅門",
+      "from": "KEEP (component)",
+      "to": "REJECT",
+      "reason": "Both stored witnesses merely contain the generic caste/lineage designation in copied patriarchal biography. No master deploys the word as an answer, verdict, test, case handle, or other observable Chan job. Distinct files do not turn contained-only biography into deployment."
+    },
+    {
+      "term": "大通智勝",
+      "from": "REJECT",
+      "to": "KEEP (component)",
+      "reason": "The claim that the corpus retains 佛 and has no independent shorter referent is false. Masters independently say 大通智勝遷座而成正覺, ask 喚作大通智勝得麼, and command 參大通智勝去; other witnesses use 大通智勝如來. The name is productively deployed without 佛."
+    },
+    {
+      "term": "心是佛",
+      "from": "REJECT",
+      "to": "KEEP (component)",
+      "reason": "This is a complete proposition, not merely a damaged tail. Independent deployed forms include 智者知心是佛, 心心心是佛, 是心是佛, 自心是佛, and 心即是佛. The shorter headword is the stable searchable core across operators, precisely where synonym/form coverage is needed."
+    },
+    {
+      "term": "摩訶迦",
+      "from": "REJECT",
+      "to": "PROVISIONAL pending referent split",
+      "reason": "The string is not uniformly a truncation of 摩訶迦葉. 指月錄 explicitly names 拘那含佛弟子摩訶迦尊者 and attributes three vows to him; other passages use 摩訶迦 as a prefix of 迦葉, 迦羅, or mantra strings. Count complete-name witnesses separately, identify the invoked figure, and keep or reject that sense on its own evidence."
+    },
+    {
+      "term": "急走過",
+      "from": "REJECT",
+      "to": "REVISE after independent-form adjudication",
+      "reason": "The stored cases show the 無佛處 formula, but the corpus also deploys 急走過 independently as a capping imperative, including 急走過，莫放過 in a case verse. Review those independent uses before deciding; the current blanket suffix ruling is not supported."
+    }
+  ],
+  "requiredEvidenceAndProseRepairs": [
+    {
+      "term": "三世佛",
+      "finding": "The two stored witnesses are duplicate transmissions of the same 三世佛冤 case and do not anchor the claim ‘productive beyond the longer saying.’",
+      "repair": "Anchor genuinely independent deployment, e.g. 宏智禪師廣錄's 三世諸佛/三世佛 fire-flame exchange and 雪巖祖欽禪師語錄's 三世佛望風斂影, then restate the collective designation from those cases."
+    },
+    {
+      "term": "大庾嶺",
+      "finding": "The reason says ‘Huineng–Huineng pursuit,’ which conflates the pursued master with the pursuer.",
+      "repair": "Name the Huineng–Huiming pursuit encounter."
+    },
+    {
+      "terms": ["大千世界", "無為法"],
+      "finding": "Their reasons use the project-forbidden identifier ‘Buddhist.’",
+      "repair": "Use descriptive corpus language: ‘cosmological world-system’ and ‘inherited unconditioned-dharma category.’ Do not let the forbidden identifier propagate into entries."
+    }
+  ],
+  "diversificationYieldReview": {
+    "verdict": "PASS despite semantic repairs",
+    "authoredYield": "13/25 KEEP = 52%",
+    "finding": "Diversification materially recovered from batch6's 4/25 local yield and produced genuine geography, cosmology, case-locus, epithet, implement, and interview-action candidates instead of mostly narrator tails.",
+    "qualification": "The final yield must be recomputed after the five disposition repairs. At minimum, the two clear false rejects and one clear false keep move the settled KEEP count from 13 to 14; 摩訶迦 and 急走過 require bounded re-adjudication. The diversification conclusion remains positive."
+  },
+  "authorityMutationPerformed": false,
+  "reviewedArtifactsMutated": false
+}

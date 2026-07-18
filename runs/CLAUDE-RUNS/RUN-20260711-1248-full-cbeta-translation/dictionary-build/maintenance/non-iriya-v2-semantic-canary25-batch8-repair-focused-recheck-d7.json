@@ -1,0 +1,40 @@
+{
+  "schemaVersion":"non-iriya-v2-semantic-batch8-repair-focused-recheck.v1",
+  "reviewer":"d7 independent focused reviewer",
+  "decision":"PASS",
+  "repairedLedger":"maintenance/non-iriya-v2-semantic-canary25-batch8-ledger.json",
+  "repairedLedgerSha256":"f38afc3a02c74dfc11c06b24235789721cef83d0dd45ba23b7eef4e44bcb8b10",
+  "repairReceipt":"maintenance/non-iriya-v2-semantic-canary25-batch8-repair-receipt.json",
+  "repairReceiptSha256":"9d61fac4fef67c24cea602f65f6929f2d7fa89f44cef62fc800ededce84005b0",
+  "reviewAuthority":"maintenance/non-iriya-v2-semantic-canary25-batch8-independent-cross-review-c19-e8.json",
+  "reviewAuthoritySha256":"da1429f30f7da5e6a4e4fb5e58c0c11059ad8d1761ae6249272aa44f9341c09a",
+  "scopeProof": {
+    "result":"PASS",
+    "method":"Restore the receipt-recorded before disposition/unit/reason for all nine repaired rows; remove only the three repair-added resolution fields; restore the pre-repair summary and remove the three repair-status fields; serialize with the ledger's canonical JSON layout.",
+    "reconstructedPreRepairSha256":"9939c79c3e774c4d0f2a9c200cf1a2f4c1992d90d6d76a509478aad88eaa245e",
+    "expectedPreRepairSha256":"9939c79c3e774c4d0f2a9c200cf1a2f4c1992d90d6d76a509478aad88eaa245e",
+    "untouchedRows":"PASS: the exact pre-repair ledger hash reconstruction proves all 16 non-repair row objects byte-equivalent and excludes undocumented edits."
+  },
+  "mechanicalChecks": {
+    "exactCounts":"PASS: all nine current term hit/file/distinct-work triples reproduce with live zc.count.",
+    "storedEvidence":"PASS: all 18 current evidence windows pass exact zc.verify at their recorded allowlisted sources.",
+    "canonicalWorkIds":"PASS: all 18 work IDs reproduce from the current work manifest.",
+    "workIndependence":"PASS: every repaired row retains two canonical-distinct stored work IDs.",
+    "selectionAndFamilyMetadata":"PASS unchanged.",
+    "forbiddenEnglish":"PASS: project-forbidden identifier removed from 大千世界 and 無為法; no occurrence remains in current decision prose."
+  },
+  "rows": [
+    {"term":"婆羅門","verdict":"PASS","confirmedDisposition":"REJECT","finding":"Both exact witnesses are containment-only patriarchal biography; generic caste/lineage designation has no observable Chan deployment."},
+    {"term":"大通智勝","verdict":"PASS","confirmedDisposition":"KEEP","finding":"Fresh full cases independently deploy the shorter name in assertions, naming questions, and imperatives; it is not uniformly a damaged prefix of 大通智勝佛."},
+    {"term":"心是佛","verdict":"PASS","confirmedDisposition":"KEEP","finding":"Complete proposition and stable core across independently deployed operator variants such as 是心是佛, 自心是佛, and 心即是佛."},
+    {"term":"摩訶迦","verdict":"PASS","confirmedDisposition":"PROVISIONAL","finding":"Referent split is real: 摩訶迦尊者 is a complete name in 指月錄, while most other hits are prefixes/mantra material. Sense-specific recurrence remains insufficient for final KEEP."},
+    {"term":"急走過","verdict":"PASS","confirmedDisposition":"KEEP","finding":"Independent imperative deployment, including 急走過，莫放過, establishes a bounded job outside covered 無佛處急走過."},
+    {"term":"三世佛","verdict":"PASS","confirmedDisposition":"KEEP","finding":"Fresh corpus verification confirms independent deployment in the fire-flame exchange and 三世佛望風斂影, beyond duplicate transmissions of 三世佛冤."},
+    {"term":"大庾嶺","verdict":"PASS","confirmedDisposition":"KEEP","finding":"Reason now correctly identifies the Huineng–Huiming pursuit encounter; exact evidence and place-name deployment remain valid."},
+    {"term":"大千世界","verdict":"PASS","confirmedDisposition":"KEEP","finding":"Descriptive cosmological world-system wording is corpus-supported and forbidden-English cleanup is complete."},
+    {"term":"無為法","verdict":"PASS","confirmedDisposition":"KEEP","finding":"Descriptive inherited unconditioned-dharma category is supported and forbidden-English cleanup is complete."}
+  ],
+  "summary":{"KEEP":15,"REJECT":9,"PROVISIONAL":1,"repairedRowsPASS":9,"repairedRowsREVISE":0,"untouchedRowsByteEquivalent":16},
+  "requiredFurtherRepair":false,
+  "authoringPerformed":false,"authorityMutationPerformed":false,"queueMutationPerformed":false,"buildRun":false,"registryMutationPerformed":false,"lineageTouched":false
+}

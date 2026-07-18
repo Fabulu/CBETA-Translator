@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "iriya-manual-selection-v1",
+  "authoritativeQueue": "IRIYA_SAYINGS_QUEUE.md",
+  "authoritativeQueueSha256": "162592a97f6a483b8f1c944ca6746bdafd0b99c6d4990b61db3e288ed5edc8be",
+  "trustedRegistry": "maintenance/iriya-trusted-registry.json",
+  "trustedRegistryRowsObserved": 484,
+  "trustedRegistrySha256": "834e3e6e1f40ea6ec7b8dca120fd46ef54c93fce27046bdbcfe180d5f778e089",
+  "selectionBasisNote": "The assignment described the registry as sealed454, but the live authoritative registry contains 484 rows. Selection conservatively excludes every live registry ID plus the authored offset0 batch11-13 IDs.",
+  "excludedPriorAuthorLedgers": [
+    {
+      "path": "maintenance/iriya-manual-batch11-offset0-ledger.json",
+      "sha256": "c882d14df8ba37f0858d5f8c27308b054a228f07f48d71e8d4f0248d5467d388"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch12-offset0-ledger.json",
+      "sha256": "a4600236734e255b55f7510ca49116eec19556558a3dc2f702cb9381741e977c"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch13-offset0-ledger.json",
+      "sha256": "a411638ff73895d2e7477f429bdc6c4a1ead7441d9f8e20f149f3fc35e7403ce"
+    }
+  ],
+  "offset": 0,
+  "batch": 14,
+  "identityPreflight": {
+    "status": "PASS",
+    "assertions": {
+      "copiedDirectlyFromAuthoritativeQueue": true,
+      "canonicalIndexEqualsQueueNumberMinusOne": true,
+      "canonicalIndexModulo3Equals0": true,
+      "absentFromLiveRegistry": true,
+      "absentFromAuthoredBatch11To13Offset0Ledgers": true,
+      "exactlyTen": true
+    }
+  },
+  "rows": [
+    {"queueNumber": 463, "canonicalIndex": 462, "id": "t_fcc0b3be0e00", "term": "向上關捩子", "query": "向上關捩子"},
+    {"queueNumber": 466, "canonicalIndex": 465, "id": "t_daf69587c73d", "term": "殺人須見血", "query": "殺人須見血"},
+    {"queueNumber": 469, "canonicalIndex": 468, "id": "t_c81130bb4f7a", "term": "知過必改", "query": "知過必改"},
+    {"queueNumber": 472, "canonicalIndex": 471, "id": "t_e9122f212169", "term": "如龍得水、似虎靠山", "query": "如龍得水，似虎靠山"},
+    {"queueNumber": 475, "canonicalIndex": 474, "id": "t_0b2f465d814a", "term": "開口見膽", "query": "開口見膽"},
+    {"queueNumber": 478, "canonicalIndex": 477, "id": "t_91b9a1186763", "term": "空手把鋤頭、歩行騎水牛", "query": "空手把鋤頭，步行騎水牛"},
+    {"queueNumber": 481, "canonicalIndex": 480, "id": "t_8f8795005534", "term": "上是天、下是地", "query": "上是天，下是地"},
+    {"queueNumber": 484, "canonicalIndex": 483, "id": "t_1c97c81ec2d8", "term": "日出東方夜落西", "query": "日出東方夜落西"},
+    {"queueNumber": 487, "canonicalIndex": 486, "id": "t_aa32be8fe4d8", "term": "上無攀仰、下絶己躬", "query": "上無攀仰，下絕己躬"},
+    {"queueNumber": 490, "canonicalIndex": 489, "id": "t_0be47e2b0905", "term": "用盡自己心、笑破他人口", "query": "用盡自己心，笑破他人口"}
+  ]
+}

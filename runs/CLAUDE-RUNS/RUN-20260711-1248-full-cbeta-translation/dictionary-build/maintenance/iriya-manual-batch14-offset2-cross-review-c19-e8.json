@@ -1,0 +1,71 @@
+{
+  "schemaVersion": "iriya-manual-cross-review-v1",
+  "reviewedLedger": "maintenance/iriya-manual-batch14-offset2-ledger.json",
+  "reviewedLedgerSha256": "98d7c921f775724e4afee14906a3241d939f5c14da18b90d71f041ec483d57bf",
+  "overallVerdict": "REVISE",
+  "identityReview": {
+    "verdict": "PASS",
+    "authoringRegistryRows": 544,
+    "authoringRegistrySha256": "7b8fc0af0b6b11c8e19fd61bc3ac5d6a4a9688930f81e653e0597b24b5bc3e62",
+    "allTenAbsentFromRegistry": true,
+    "allTenAbsentFromBatch11To13Offset2Ledgers": true,
+    "allPriorLedgerHashesReproduced": true,
+    "allQueueTuplesReproduced": true,
+    "canonicalIndexEqualsQueueNumberMinusOne": true,
+    "canonicalIndexModulo3Equals2": true
+  },
+  "mechanicalReview": {
+    "verdict": "PASS",
+    "reproducedExactCounts": 10,
+    "verifiedEvidenceWindows": 20,
+    "allLineBoundsTitlesAndWorkIdsReproduced": true,
+    "twoCanonicalDistinctWorksPerDecision": true
+  },
+  "dispositionAndUnitReview": {
+    "verdict": "PASS",
+    "KEEP": 10,
+    "components": ["明珠在掌", "蹉過也不知", "丁一卓二", "對面千里", "箭過新羅"],
+    "couplets": ["攪長河爲酥酪、變大地作黄金", "人無遠慮、必有近憂", "有權有實、有照有用", "千年田、八百主", "天不能蓋、地不能載"]
+  },
+  "requiredRevisions": [
+    {
+      "id": "t_1d3cdbd18214",
+      "scope": "semantic reason",
+      "finding": "The witnesses do not simply praise an ultimate ‘total transformative function.’ One calls the ability skillful but contrasts it with the speaker's own demand; the other grants it and immediately says ‘not yet.’",
+      "replacementGuidance": "Describe prodigious transformative ability that masters invoke and then cap or relativize. Preserve KEEP (couplet)."
+    },
+    {
+      "id": "t_23e2cf8a2388",
+      "scope": "semantic reason",
+      "finding": "The stored cases deploy the proverb as a capping warning and as an answer for ‘guest within guest’; they do not establish the narrower claim that it means failing to settle the fundamental matter.",
+      "replacementGuidance": "Say that masters turn the ordinary foresight proverb into a warning or positional verdict about consequences already near. Preserve KEEP (couplet)."
+    },
+    {
+      "id": "t_cccc25e4103f",
+      "scope": "semantic reason",
+      "finding": "‘Realization or the essential treasure’ overcommits. One case uses the pearl-in-palm for unobstructed responsive clarity; another uses it as a reward image in a verse.",
+      "replacementGuidance": "Define the shared observable job as a precious thing held openly and ready to hand, deployed for clear command, responsiveness, or earned recognition. Preserve KEEP (component)."
+    },
+    {
+      "id": "t_7467f6d443bd",
+      "scope": "semantic reason",
+      "finding": "The field outlasting eight hundred owners directly supports instability and succession of possession, but not the added abstraction ‘identity.’",
+      "replacementGuidance": "Remove ‘identity’; describe repeated turnover of owners against the enduring field and its use as a Chan verdict. Preserve KEEP (couplet)."
+    },
+    {
+      "id": "t_1166136a61ff",
+      "scope": "variant coverage",
+      "finding": "The bounded expansion 箭過新羅國 is materially attested at 11 hits in 11 files and was not recorded.",
+      "replacementGuidance": "Record 箭過新羅國 as a curated lookup variant/expansion without adding counts to the exact headword total."
+    },
+    {
+      "id": "t_d72040a200a0",
+      "scope": "variant coverage",
+      "finding": "Material exact graph variants are absent from formResolution: 天不能葢，地不能載 = 32 hits/16 files; 天不能盖，地不能載 = 8/8; 天不能覆，地不能載 = 6/6.",
+      "replacementGuidance": "Record these as curated one-way lookup forms without summing overlapping attestations. Preserve the 蓋 query as the exact-count basis."
+    }
+  ],
+  "unchallengedDecisionIds": ["t_d14ec8023207", "t_0d17781c0adc", "t_551359d5f94d", "t_5452569f1034"],
+  "protectedArtifactsMutated": false,
+  "reviewedLedgerMutated": false
+}

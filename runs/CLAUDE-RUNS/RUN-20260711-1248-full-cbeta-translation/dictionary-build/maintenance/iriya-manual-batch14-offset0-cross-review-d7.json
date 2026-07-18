@@ -1,0 +1,43 @@
+{
+  "schemaVersion":"iriya-manual-cross-review.v1",
+  "decision":"PASS",
+  "reviewedSelection":"maintenance/iriya-manual-batch14-offset0-selection.json",
+  "reviewedSelectionSha256":"784531185c4c9e179d74d3856dbf848dd3dc1c6a689f694f6c51c9d0f88ef920",
+  "reviewedLedger":"maintenance/iriya-manual-batch14-offset0-ledger.json",
+  "reviewedLedgerSha256":"e221432f0d5035af6bfa3520d08b5f4ed3ba2228564b588b6c8412fd0c0beaea",
+  "liveRegistryCheck": {
+    "path":"maintenance/iriya-trusted-registry.json",
+    "sha256":"7b8fc0af0b6b11c8e19fd61bc3ac5d6a4a9688930f81e653e0597b24b5bc3e62",
+    "rows":544,
+    "assessment":"PASS: registry advanced after selection from 484 to 544 rows, but all ten selected IDs and canonical indexes remain absent. The additional batch12/13 seal introduces no overlap."
+  },
+  "selectionChecks": {
+    "queueTuples":"PASS 10/10 exact queueNumber/canonicalIndex/id/term/query tuples",
+    "moduloLane":"PASS all canonical indexes modulo 3 equal 0",
+    "live544Overlap":"PASS zero ID and canonical-index overlap",
+    "priorAuthoredExclusions":"PASS zero overlap with batch11, batch12, and batch13 offset0 ledgers",
+    "frozenSize":"PASS exactly 10 unique identities"
+  },
+  "mechanicalChecks": {
+    "liveExactCounts":"PASS 10/10 hit/file/canonical-work triples",
+    "evidence":"PASS 20/20 exact zc.verify at recorded LB spans",
+    "canonicalDistinctWorks":"PASS two distinct allowlisted work IDs per row",
+    "variants":"PASS: separator and curated 歩→步 / 絶→絕 resolutions lead to the attested queries without changing queue identity",
+    "units":"PASS 5 component + 5 couplet",
+    "defaultsOrAutomation":"PASS none"
+  },
+  "rows":[
+    {"row":1,"term":"向上關捩子","verdict":"PASS","assessment":"Stable named upward pivotal mechanism posed and answered in public interviews."},
+    {"row":2,"term":"殺人須見血","verdict":"PASS","assessment":"Stable severe criterion that an intervention visibly finish its work."},
+    {"row":3,"term":"知過必改","verdict":"PASS","assessment":"Ordinary moral formula independently deployed as interview self-correction and direct Chan-student instruction."},
+    {"row":4,"term":"如龍得水、似虎靠山","verdict":"PASS","assessment":"Fixed balanced pair for fully supported, unhindered function; both similes are required."},
+    {"row":5,"term":"開口見膽","verdict":"PASS","assessment":"Stable verdict that speech immediately exposes the speaker's whole position."},
+    {"row":6,"term":"空手把鋤頭、歩行騎水牛","verdict":"PASS","assessment":"Fu Dashi's fixed paradox pair; curated 歩→步 query resolution is correct."},
+    {"row":7,"term":"上是天、下是地","verdict":"PASS","assessment":"Deliberately paired obvious distinctions used to press first principle, not incidental scenery."},
+    {"row":8,"term":"日出東方夜落西","verdict":"PASS","assessment":"Stable plain observable answer undercutting contrived accounts of change or teaching."},
+    {"row":9,"term":"上無攀仰、下絶己躬","verdict":"PASS","assessment":"Fixed no-superior/no-self pair; curated 絶→絕 query resolution is correct."},
+    {"row":10,"term":"用盡自己心、笑破他人口","verdict":"PASS","assessment":"Fixed mocking couplet exposing elaborate effort as needless and self-defeating."}
+  ],
+  "summary":{"PASS":10,"REVISE":0,"confirmedDispositionCounts":{"KEEP (component)":5,"KEEP (couplet)":5,"PROVISIONAL":0,"REJECT":0}},
+  "authoringPerformed":false,"registryMutationPerformed":false,"buildRun":false,"queueAdvanced":false,"lineageTouched":false
+}

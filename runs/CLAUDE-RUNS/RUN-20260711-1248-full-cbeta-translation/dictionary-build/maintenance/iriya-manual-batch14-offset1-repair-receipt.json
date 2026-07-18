@@ -1,0 +1,17 @@
+{
+  "schemaVersion":"iriya-manual-repair-receipt.v1",
+  "reviewAuthority":"maintenance/iriya-manual-batch14-offset1-cross-review.json",
+  "reviewAuthoritySha256":"e13a5802b8d5d4f445ad51cee92db285491145894b137d06d4189d4b794dffb5",
+  "preRepairLedgerSha256":"1fcf4308aad705ce46fff3f24eb661279180655fda82d6d09b08c2b4fa53f43a",
+  "repairedLedger":"maintenance/iriya-manual-batch14-offset1-ledger.json",
+  "repairedLedgerSha256":"b2fe5d135fe937a606ae32f0f5ce88a25fb0b8c80232d47cdad69c567c505731",
+  "changes":[
+    "Corrected registry metadata: the frozen recorded SHA is identified as the 484-row authoring snapshot; added an explicit zero-overlap check against the live 544-row registry.",
+    "Recorded curated variants 不消一捏 43 hits/25 files, 失卻鼻孔 13/11, 撐天拄地 136/75, and 撐天柱地 3/3 without summing overlapping attestations.",
+    "Declared the sword/medicine couplet's two one-way changes 爲→為 and 、→，.",
+    "Replaced the unsupported motive phrase 'responsive compassionate action' with descriptive 'responsive corrective action'."
+  ],
+  "preserved":"All ten identities, dispositions, units, exact query counts, and twenty evidence objects are unchanged.",
+  "summary":{"KEEP (component)":7,"KEEP (couplet)":3,"PROVISIONAL":0,"REJECT":0},
+  "registryMutationPerformed":false,"buildRun":false,"queueAdvanced":false,"lineageTouched":false
+}

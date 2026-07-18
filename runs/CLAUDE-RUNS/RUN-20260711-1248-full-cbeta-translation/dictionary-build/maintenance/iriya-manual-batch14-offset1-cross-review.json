@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "iriya-manual-cross-review-v1",
+  "reviewedLedger": "maintenance/iriya-manual-batch14-offset1-ledger.json",
+  "reviewedLedgerSha256": "1fcf4308aad705ce46fff3f24eb661279180655fda82d6d09b08c2b4fa53f43a",
+  "reviewerIndependence": "Independent full-case and mechanical review; no author mutation and no protected mutation.",
+  "overallVerdict": "REVISE",
+  "decisionDispositionReview": "PASS",
+  "identityReview": {
+    "verdict": "PASS with metadata correction required",
+    "liveRegistryRows": 544,
+    "liveRegistrySha256": "7b8fc0af0b6b11c8e19fd61bc3ac5d6a4a9688930f81e653e0597b24b5bc3e62",
+    "allTenAbsentFromLiveRegistry": true,
+    "allTenAbsentFromPriorOffset1AuthorLedgers": true,
+    "allTenMatchAuthoritativeQueueTuples": true,
+    "canonicalIndexEqualsQueueNumberMinusOne": true,
+    "canonicalIndexModulo3Equals1": true,
+    "requiredRevision": "trustedRegistryRowsUsedForSelection says 454, but its recorded registry SHA 834e3e6e... is the 484-row registry snapshot. Correct the row-count metadata and describe the current live-544 exclusion check; do not alter the selected identities."
+  },
+  "mechanicalReview": {
+    "verdict": "PASS",
+    "decisions": 10,
+    "verifiedEvidenceWindows": 20,
+    "allStoredCountsReproduced": true,
+    "allTitlesReproduced": true,
+    "allWorkIdsReproduced": true,
+    "twoCanonicalDistinctWorksPerDecision": true,
+    "allLineBoundsReproduced": true
+  },
+  "semanticPass": [
+    {"id":"t_e81e9cc0dfbd","term":"不消一揑","disposition":"KEEP (component)"},
+    {"id":"t_26fc8ce68e13","term":"失却鼻孔","disposition":"KEEP (component)"},
+    {"id":"t_4689c6ddf14a","term":"撑天拄地","disposition":"KEEP (component)"},
+    {"id":"t_640e9496ceaf","term":"海枯終見底、人死不知心","disposition":"KEEP (couplet)"},
+    {"id":"t_e2664588fbd9","term":"展開兩手","disposition":"KEEP (component)"},
+    {"id":"t_39dfa62b7792","term":"路不拾遺","disposition":"KEEP (component)"},
+    {"id":"t_2dfbebb85fb6","term":"間不容髮","disposition":"KEEP (component)"},
+    {"id":"t_adcbf7ffdf40","term":"劍爲不平離寶匣、藥因救病出金瓶","disposition":"KEEP (couplet)"},
+    {"id":"t_0df9f6988a69","term":"一有多種、二無兩般","disposition":"KEEP (couplet)"},
+    {"id":"t_6be19f5c1f84","term":"大方無外","disposition":"KEEP (component)"}
+  ],
+  "requiredRevisions": [
+    {
+      "scope": "variant resolution",
+      "ids": ["t_e81e9cc0dfbd", "t_26fc8ce68e13", "t_4689c6ddf14a"],
+      "reason": "The ledger claims exact-form and variant resolution but does not record the material attested graph variants.",
+      "evidence": {
+        "不消一捏": {"hits":43,"files":25},
+        "失卻鼻孔": {"hits":13,"files":11},
+        "撐天拄地": {"hits":136,"files":75},
+        "撐天柱地": {"hits":3,"files":3}
+      },
+      "instruction": "Record these as curated directional variants without summing overlapping attestations or changing the queue identities. In particular, 撐天拄地 is more frequent than the queue spelling 撑天拄地 and must not disappear from the eventual entry's lookup forms."
+    },
+    {
+      "scope": "variant declaration",
+      "ids": ["t_adcbf7ffdf40"],
+      "reason": "The formResolution shows the printed form has zero exact hits but does not explicitly name 爲→為 plus 、→， as the directional resolution used for the 46-hit query.",
+      "instruction": "State the two exact one-way changes; do not treat them as transitive normalization."
+    },
+    {
+      "scope": "prose hygiene",
+      "ids": ["t_adcbf7ffdf40"],
+      "reason": "‘Responsive compassionate action’ adds a motive not required by the cited words. The corpus directly supports corrective response: a sword leaves for injustice and medicine leaves to cure illness.",
+      "instruction": "Replace ‘responsive compassionate action’ with ‘responsive corrective action’ or equally descriptive wording. The KEEP/couplet ruling stands."
+    }
+  ],
+  "unitReview": {
+    "verdict": "PASS",
+    "couplets": ["海枯終見底、人死不知心", "劍爲不平離寶匣、藥因救病出金瓶", "一有多種、二無兩般"],
+    "components": ["不消一揑", "失却鼻孔", "撑天拄地", "展開兩手", "路不拾遺", "間不容髮", "大方無外"]
+  },
+  "protectedArtifactsMutated": false,
+  "reviewedLedgerMutated": false
+}

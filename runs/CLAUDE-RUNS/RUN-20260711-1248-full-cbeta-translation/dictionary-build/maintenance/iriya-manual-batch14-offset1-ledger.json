@@ -1,0 +1,507 @@
+{
+  "schemaVersion": "iriya-manual-semantic-adjudication-v2",
+  "mode": "manual full-case reading only; no automation/default",
+  "selection": "next ten offset1 after sealed454 and authored batch11-13 offset1 exclusions",
+  "authoritativeQueue": "IRIYA_SAYINGS_QUEUE.md",
+  "authoritativeQueueSha256AtSelection": "162592a97f6a483b8f1c944ca6746bdafd0b99c6d4990b61db3e288ed5edc8be",
+  "trustedRegistry": "maintenance/iriya-trusted-registry.json",
+  "trustedRegistryRowsObservedAtSelection": 484,
+  "trustedRegistrySha256AtSelection": "834e3e6e1f40ea6ec7b8dca120fd46ef54c93fce27046bdbcfe180d5f778e089",
+  "selectionRegistryNote": "The recorded SHA is the 484-row live snapshot present at authoring; selection additionally used the sealed first454 rows plus authored exclusions.",
+  "liveRegistryCheck": {
+    "rows": 544,
+    "sha256": "7b8fc0af0b6b11c8e19fd61bc3ac5d6a4a9688930f81e653e0597b24b5bc3e62",
+    "allSelectedIdsAbsent": true,
+    "allSelectedCanonicalIndexesAbsent": true
+  },
+  "excludedPriorAuthorLedgers": [
+    {
+      "path": "maintenance/iriya-manual-batch11-offset1-ledger.json",
+      "sha256": "68a6034242d6831da719aec1b4d69f90005391e61854622badbf9ff6f97be840"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch12-offset1-ledger.json",
+      "sha256": "28d11d4fd4b4ead00e2f386632405d8cc7f9a4d11ea5622f1c82c304cb97f6ce"
+    },
+    {
+      "path": "maintenance/iriya-manual-batch13-offset1-ledger.json",
+      "sha256": "2afcf18a931e544e857b001e5b00b016f89e6717bc84bff80b6724127b739f1e"
+    }
+  ],
+  "identityPreflight": {
+    "status": "PASS",
+    "source": "direct authoritative queue tuple assertions before semantic research",
+    "canonicalIndexes": [
+      562,
+      565,
+      568,
+      571,
+      574,
+      577,
+      580,
+      583,
+      586,
+      589
+    ],
+    "assertions": {
+      "copiedDirectly": true,
+      "canonicalIndexEqualsQueueNumberMinusOne": true,
+      "canonicalIndexModulo3Equals1": true,
+      "absentFromSealed454AndAuthoredBatch11To13Offset1Ledgers": true,
+      "absentFromLive544Registry": true,
+      "exactlyTen": true
+    }
+  },
+  "offset": 1,
+  "batch": 14,
+  "reviewedCount": 10,
+  "decisions": [
+    {
+      "batchOrdinal": 1,
+      "queueNumber": 563,
+      "canonicalIndex": 562,
+      "id": "t_e81e9cc0dfbd",
+      "term": "不消一揑",
+      "query": "不消一揑",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "manual full-case reading; two canonical-distinct works; exact-form and variant resolution",
+      "reason": "The phrase “not worth a single pinch” repeatedly dismisses a position or opponent as requiring no effort to crush or expose; the pinch is a stable Chan verdict image.",
+      "zcExact": {
+        "hits": 58,
+        "files": 28,
+        "distinctWorks": 26
+      },
+      "evidence": [
+        {
+          "source": "T/T48/T48n2003.xml",
+          "title": "佛果圜悟禪師碧巖錄",
+          "workId": "work:T48n2003",
+          "hitFromLb": "0156c02",
+          "hitToLb": "0156c19",
+          "kwic": "。諸人作麼生。免得他道草裏漢。所以雪竇愛他道草裏漢。便頌出。古佛有家風對揚遭貶剝子母不相知是誰同啐啄啄覺猶在殼重遭撲天下衲僧徒名邈古佛有家風。雪竇一句頌了也。凡是出頭來。直是近傍不得。若近傍著。則萬里崖州。纔出頭來。便是落草。直饒七縱八橫。不消一揑。雪竇道。古佛有家風。不是如今恁麼也。釋迦老子。初生下來。一手指天。一手指地。目顧四方云。天上天下。唯我獨尊。雲門道。我當時若見。一棒打殺。與狗子喫却。貴要天下太平。如此方酬得恰好。所以啐啄之機。皆是古佛家風。若達此道者。便可一拳拳倒黃鶴樓",
+          "verified": true
+        },
+        {
+          "source": "X/X83/X83n1578.xml",
+          "title": "指月錄",
+          "workId": "chan:zhiyue-lu",
+          "hitFromLb": "0511b01",
+          "hitToLb": "0511b11",
+          "kwic": "。曰：與麼則死𦏰羊也。師便休去。明日陞堂曰：昨日尋𦏰羊僧出來。僧便出。師曰：昨日公案未了，老僧休去，你作麼生？僧無語。師曰：將謂是本色衲僧，元來祇是義學沙門。便打趁出。師一日揑拳曰：天下老和尚總在這裏。我若放一線道，從汝七縱八橫。若不放過，不消一揑。僧問：放一線道時如何？師曰：七縱八橫。曰：不放過不消一揑時如何？師曰：普。師上堂，大眾纔集，師拈拄杖一時打散。復召大眾，眾回首。師曰：月似彎弓，少雨多風。問：如何是西來意？師便打。一日上堂，大眾雲集。乃曰：汝等諸人欲何所求？以拄杖趁之，大",
+          "verified": true
+        }
+      ],
+      "formResolution": {
+        "curatedDirectionalVariants": [
+          {
+            "form": "不消一捏",
+            "hits": 43,
+            "files": 25
+          }
+        ],
+        "note": "Lookup variant only; do not sum potentially overlapping attestations."
+      }
+    },
+    {
+      "batchOrdinal": 2,
+      "queueNumber": 566,
+      "canonicalIndex": 565,
+      "id": "t_26fc8ce68e13",
+      "term": "失却鼻孔",
+      "query": "失却鼻孔",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "manual full-case reading; two canonical-distinct works; exact-form and variant resolution",
+      "reason": "Losing one’s nostrils repeatedly marks forfeiting one’s own agency, identity, or vital handle through a mistaken response or dependence on another.",
+      "zcExact": {
+        "hits": 50,
+        "files": 29,
+        "distinctWorks": 28
+      },
+      "evidence": [
+        {
+          "source": "X/X82/X82n1571.xml",
+          "title": "五燈全書(第34卷-第120卷)",
+          "workId": "work:wudeng-quanshu",
+          "hitFromLb": "0024a24",
+          "hitToLb": "0024b10",
+          "kwic": "汝等諸人向甚麼處下口？良久曰：吞不進，吐不出。上堂：瘦竹長松滴翠香，流風疏月度炎涼。不知誰住原西寺，每日鐘聲送夕陽。上堂：聲色堆頭睡眠，虎狼羣裏安禪。荊棘林內翻身，雪刃叢中遊戲。竹影掃堦塵不動，月穿潭底水無痕。上堂：不是風動，不是幡動，衲僧失却鼻孔。是風動，是幡動，分明是個漆桶。兩段不同，眼暗耳聾。㵎水如藍碧，山花似火紅。上堂，僧問：如何是西來意？師曰：築著額頭磕著鼻。曰：意旨如何？師曰：驢駞馬載。曰：向上還有事也無？師曰：朝到西天，暮歸唐土。曰：謝師答話。師曰：大乘砑郎當。僧退，師",
+          "verified": true
+        },
+        {
+          "source": "X/X68/X68n1318.xml",
+          "title": "續古尊宿語要",
+          "workId": "work:X68n1318",
+          "hitFromLb": "0393a20",
+          "hitToLb": "0393b08",
+          "kwic": "杖召大眾云：還見麼？遂扣香臺，復乃噓噓：釋迦老子棒打不殺，文殊普賢喚不回頭。休休，虗費力，且隨流。待伊時節至，一葉落，天下秋。洞山門下，要行便行，要坐便坐。鉢盂裏屙屎，淨瓶中吐唾。執法修行，如牛拽磨。洞山門下，要道便道，要用便用，救得眉毛，失却鼻孔。乃喝云：久雨不晴。參！出縣回云：三日不相見，不得故眼看。是何言歟？洞山數日不相見，相見只是舊時人。乃合掌云：不審過去諸佛？現在諸佛？未來諸佛？參退喫茶。洞山門下，有時和泥合水，有時壁立千仞。你諸人擬向和泥合水處見洞山，洞山且不在和泥合水處",
+          "verified": true
+        }
+      ],
+      "formResolution": {
+        "curatedDirectionalVariants": [
+          {
+            "form": "失卻鼻孔",
+            "hits": 13,
+            "files": 11
+          }
+        ],
+        "note": "Lookup variant only; do not sum potentially overlapping attestations."
+      }
+    },
+    {
+      "batchOrdinal": 3,
+      "queueNumber": 569,
+      "canonicalIndex": 568,
+      "id": "t_4689c6ddf14a",
+      "term": "撑天拄地",
+      "query": "撑天拄地",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "manual full-case reading; two canonical-distinct works; exact-form and variant resolution",
+      "reason": "Supporting heaven and propping up earth repeatedly praises all-encompassing, independent adept function rather than literal architecture.",
+      "zcExact": {
+        "hits": 49,
+        "files": 33,
+        "distinctWorks": 31
+      },
+      "evidence": [
+        {
+          "source": "X/X71/X71n1420.xml",
+          "title": "楚石梵琦禪師語錄",
+          "workId": "work:X71n1420",
+          "hitFromLb": "0628a10",
+          "hitToLb": "0628a23",
+          "kwic": "牀去。送了禪人送了禪人甚麼物恁麼來？蝦蟇吞却月，鐵鋸舞三臺。拄杖頭邊草鞋底，一聲雷震清猋起。相逢不用口忉忉，踏著無非自家底。譬如鴈過長空，影沈寒水。機先透徹祖師關，坐見千花生碓觜。送雲禪人回仰山送雲禪人回仰山小釋迦，大禪佛，四藤條下甘埋沒。撑天拄地好男兒，肯學狐狸戀窠窟。誰不頂門眼正，人皆肘後符靈。因甚淈淈𣸩𣸩，更待丁丁寧寧。直下是，直下是，早涉流沙十萬里。撞著知音舉似伊，何須待問廬陵米。送喜禪人送喜禪人藕絲竅中世界濶，大鵬挨落天邊月，山僧半夜驚覺來，此意茫茫向誰說？十箇五雙行脚伴，",
+          "verified": true
+        },
+        {
+          "source": "X/X78/X78n1556.xml",
+          "title": "建中靖國續燈錄",
+          "workId": "work:X78n1556",
+          "hitFromLb": "0668b23",
+          "hitToLb": "0668c09",
+          "kwic": "應機如電，點著不來新羅國裏。珍重！上堂，云：衲僧門下，不在多端；達士相逢，非存目擊。始知拈槌舉拂，眼裏塵沙；瞬目揚眉，猶是鈍漢。直下明得，無孔鐵鎚；擬欲尋思，千里萬里。卓拄杖一下。鼎州乾明知應禪師鼎州乾明知應禪師問：蓮華未出水時如何？師云：撑天拄地。僧曰：出水後如何？師云：填溝塞壑。上堂，云：馬祖陞堂，百丈捲席，火動煙生，雲擎雨色。覿面相呈，一何輕擲？重賞三千，輕酬八百。參！天台寶相蘊歡禪師天台寶相蘊歡禪師問：如何是學人自己？師云：曾問幾人來？問：如何是佛？師云：堂堂八尺餘。蘇州萬壽",
+          "verified": true
+        }
+      ],
+      "formResolution": {
+        "curatedDirectionalVariants": [
+          {
+            "form": "撐天拄地",
+            "hits": 136,
+            "files": 75
+          },
+          {
+            "form": "撐天柱地",
+            "hits": 3,
+            "files": 3
+          }
+        ],
+        "note": "One-way curated lookup forms; 撐天拄地 must remain available. Do not sum overlapping attestations."
+      }
+    },
+    {
+      "batchOrdinal": 4,
+      "queueNumber": 572,
+      "canonicalIndex": 571,
+      "id": "t_640e9496ceaf",
+      "term": "海枯終見底、人死不知心",
+      "query": "海枯終見底，人死不知心",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "validation": "manual full-case reading; two canonical-distinct works; exact-form and variant resolution",
+      "reason": "The fixed contrast says the sea may dry and reveal its bottom, but even at death a person’s heart remains unknowable; both clauses form the transmitted warning.",
+      "zcExact": {
+        "hits": 55,
+        "files": 40,
+        "distinctWorks": 40
+      },
+      "evidence": [
+        {
+          "source": "X/X66/X66n1297.xml",
+          "title": "宗鑑法林",
+          "workId": "chan:zongjian-falin",
+          "hitFromLb": "0375c02",
+          "hitToLb": "0375c20",
+          "kwic": "：傷心江上客，不是故鄉人。風吹日炙露屍骸，泣問仙人覓地埋，忍俊不禁多口老，陰陽無處可安排。吸盡西江向汝道，馬師家風不艸艸，截流一棹破烟寒，天水同秋清渺渺。一口吸盡西江水，洛陽牡丹新吐蕊，簸土揚塵無處尋，擡眸撞著自家底。大海波濤闊，小人方寸深海枯終見底，人死不知心。一口吸盡西江水，鷓鴣啼在深花裏，自有知音笑點頭，由來不入聾人耳。一口吸盡西江水，龐老不曾明自己，爛醉如泥膽似天，鞏縣茶瓶三隻𭪿。密怛哩呱，密呾哩智，開口動舌，是甚滋味？㘞！你莫癡。秤錘搦出油，閒言長語休，腰纏十萬貫，騎鶴上揚州。淨躶躶，赤",
+          "verified": true
+        },
+        {
+          "source": "X/X70/X70n1394.xml",
+          "title": "斷橋妙倫禪師語錄",
+          "workId": "work:X70n1394",
+          "hitFromLb": "0556b18",
+          "hitToLb": "0556c04",
+          "kwic": "師，禍福通腸直示伊。獲得黃金家富貴，幾多空自起狐疑。冬至，上堂。僧問：記得僧問趙州：狗子還有佛性也無？州云：無。此意如何？答云：殺人刀，活人劍。進云：蠢動含靈皆有佛性，因什麼狗子無？答云：賣寶撞著瞎波斯。進云：趙州道：為伊有業識在聻？答云：海枯終見底，人死不知心。進云：僧又問：狗子還有佛性也無？州云：有。答云：活人劍，殺人刀。進云：既有，因什麼入者皮袋？答云：韓獹逐塊，獅子咬人。進云：趙州云：知而故犯聻？答云：盡信直中直，誰防仁不仁？進云：鴛鴦繡出從君看，不把金針度與人。師乃云：昔魯僖公登觀臺，書",
+          "verified": true
+        }
+      ],
+      "formResolution": {
+        "printedQuery": "海枯終見底、人死不知心",
+        "exact": {
+          "hits": 0,
+          "files": 0,
+          "distinctWorks": 0
+        }
+      }
+    },
+    {
+      "batchOrdinal": 5,
+      "queueNumber": 575,
+      "canonicalIndex": 574,
+      "id": "t_e2664588fbd9",
+      "term": "展開兩手",
+      "query": "展開兩手",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "manual full-case reading; two canonical-distinct works; exact-form and variant resolution",
+      "reason": "Opening and displaying both hands is a recurrent complete nonverbal response that embodies having nothing concealed or no discursive answer to offer.",
+      "zcExact": {
+        "hits": 53,
+        "files": 38,
+        "distinctWorks": 38
+      },
+      "evidence": [
+        {
+          "source": "X/X66/X66n1297.xml",
+          "title": "宗鑑法林",
+          "workId": "chan:zongjian-falin",
+          "hitFromLb": "0347a08",
+          "hitToLb": "0347a19",
+          "kwic": "共行，遂拈拂子云：若道得即奪取去。眾無語，乃云：啼得血流無用處，不如緘口過殘春。中峰本云：南泉劍為不平離寶匣，趙州藥因救病出金瓶。雖然慶快一時，爭奈古佛家風掃土矣。報恩秀云：正當恁麼時，盡十方世界情與無情一齊向王老師手中乞命。當時有個漢出來展開兩手，不然攔胸抱住云：却勞和尚神用。縱南泉別行正令，敢保救得貓兒。博山來云：生擒活捉王老師，全提起死回生諗。古佛手段救得救不得，總不干他事。且道節文在什麼處？愚菴盂云：還識南泉麼？他是生鐵鑄就、渾鋼打成，要向驪龍頷下摘珠、阿修羅手中奪印。趙州雖",
+          "verified": true
+        },
+        {
+          "source": "X/X72/X72n1428.xml",
+          "title": "淨慈慧暉禪師語錄",
+          "workId": "work:X72n1428",
+          "hitFromLb": "0129b23",
+          "hitToLb": "0129c10",
+          "kwic": "因甚山僧上虗堂？畢竟而老倒不少。諸人到涅槃堂裡如何提撕？記得新豐和尚臨末後問僧曰：離此殻漏子，何處與吾相見？僧無對。空座乃新豐和尚示偈曰：學者恒沙無一悟，過在佗討舌頭路。欲得忘形泯蹤跡，努力慇懃空裡步。如此語如何行李？良久曰：叱！唯佛與佛。展開兩手曰：乃能究盡。霜曰：靈山一會，何人得見？南山雲幕幕，淨慈雲眾，誰人得知？北㵎水淺淺，山河大地，甚處得來？自得老衲至末後，不免一場快笑，爭奈對眾揚家醜。良久曰：展手是什麼心行？莫原愁意，新愁殺人。三月旦，上堂。曰：花月今朝朔旭前，桂輪普轉滿天",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "batchOrdinal": 6,
+      "queueNumber": 578,
+      "canonicalIndex": 577,
+      "id": "t_39dfa62b7792",
+      "term": "路不拾遺",
+      "query": "路不拾遺",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "manual full-case reading; two canonical-distinct works; exact-form and variant resolution",
+      "reason": "The peace proverb “lost items are not picked up on the road” is repeatedly deployed as a compact Chan image for order after conflict or the absence of acquisitive grasping.",
+      "zcExact": {
+        "hits": 47,
+        "files": 36,
+        "distinctWorks": 34
+      },
+      "evidence": [
+        {
+          "source": "J/J37/J37nB389.xml",
+          "title": "洪山俞昭允汾禪師語錄",
+          "workId": "work:J37nB389",
+          "hitFromLb": "0511c09",
+          "hitToLb": "0511c18",
+          "kwic": "之火，運起沒量之錘，直饒煆了精金，到此更須鎔過。」遂拈拄杖卓一下云：「大器還他真本色，誰云躍冶是祥金？」靠拄杖便起。維那復白槌云：「諦觀法王法，法王法如是。」下座。天目寧知藏請上堂。僧問：「伐鼓聲鐘，龍象齊集，大座當軒，如何驗取？」師云：「路不拾遺。」僧一喝，師云：「吾這裏沒甚掉下來底。」又僧問：「撥草瞻風，耑為此事，四眾臨筵，請師明示。」師便打，僧云：「根不立，塵不染，功用何施？」師又打。又僧問：「臨濟道：『有一人常在途中，不離家舍；有一人常在家舍，不離途中。那箇合受人天供養？』和",
+          "verified": true
+        },
+        {
+          "source": "D/D48/D48n8939.xml",
+          "title": "古尊宿語錄",
+          "workId": "work:guzunsu-yulu",
+          "hitFromLb": "0648a07",
+          "hitToLb": "0648b08",
+          "kwic": "日驀劄地踏󷓞正脉省前所行履處方始󷓞見本命元辰下座。上堂時有僧問師登文殊座請師唱道情師云天晴開水路無事設曹司云謝師𢫾示師云賣鞋老婆󷓞隻履問隘路不通風如何通得信師云󷘤󷓞襴衫戴席𢛡問如何是道師云󲣅云如何是道中人師云失󲣅問平常心是道如何是平常心師云路不拾遺問和尚百年後向什麼處去師云從上孔丘甲乙己云此意如何師云不會即問人問如何是和尚撲不破底句師云親問刼火洞然大千俱壞未審這个壞不壞師云天降蒲薄帋方圎一尺餘問蓮花未出水時如何師云漢水正東流云出水後如何師云楚山頭倒卓問大通徹底人作何語話即得不傷物義師",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "batchOrdinal": 7,
+      "queueNumber": 581,
+      "canonicalIndex": 580,
+      "id": "t_2dfbebb85fb6",
+      "term": "間不容髮",
+      "query": "間不容髮",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "manual full-case reading; two canonical-distinct works; exact-form and variant resolution",
+      "reason": "Allowing not even a hair’s breadth repeatedly names immediacy or exact accord without any conceptual interval.",
+      "zcExact": {
+        "hits": 57,
+        "files": 37,
+        "distinctWorks": 37
+      },
+      "evidence": [
+        {
+          "source": "B/B25/B25n0145.xml",
+          "title": "天目中峰廣錄",
+          "workId": "work:B25n0145",
+          "hitFromLb": "0709b15",
+          "hitToLb": "0710a07",
+          "kwic": "二具了生死心。第三具不退轉心。信得及則始終不惑。生死切則用心必至。不退轉則决定成就。三心既具則十二時中無虛棄底工夫。既不虛棄則念念爾心心爾塵塵爾剎剎爾。忽然向用心不及處著力不得時。和箇信得及底了生死底不退轉底。一時打失。當體洞明如十日並照。間不容髮。說甚麼崑崙騎象舞三臺。縱饒一千七百則葛藤。不直一笑而氷釋矣。即此便是真叅實悟底時節。恁時不妨於山河大地四大五蘊中。如香象王擺脫鐵鎻。獨步大方遊行自在。豈不韙歟。是則是矣。更須知有祖師門下衲僧面前換轉眼睛突出牙爪一著子猶隔天涯在。結夏示眾。",
+          "verified": true
+        },
+        {
+          "source": "M/M59/M59n1540.xml",
+          "title": "大慧普覺禪師普說",
+          "workId": "chan:dahui-pushuo",
+          "hitFromLb": "0798b05",
+          "hitToLb": "0798b16",
+          "kwic": "忽然火爐頭拾得一粒炒豆喫也只是舊蒙活計喚作竹篦即觸不喚作竹篦即背後來晦堂和尚不能用得竹篦只舉拳頭問學者喚作拳頭即觸不喚作拳頭即背禪和家有者道放下拳頭有者拗折竹篦昔日省和尚參念和尚會了拗折竹篦後來人也要學他那裏如此這箇道理添一星不得減一星不得間不容髮須是退步虗却心一念不生前後際斷喚作竹篦即觸不喚作竹篦即背自然現前兄弟家既到這裏與你說些家裏話教你做工夫近日紫巖居士特遣人來下書裏面問諸剎坐夏者幾人真實有得如說而行者復幾人異時願以法諱見示若說處是佛境界行處是眾生境界恐見未徹也觀他用心更切似自",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "batchOrdinal": 8,
+      "queueNumber": 584,
+      "canonicalIndex": 583,
+      "id": "t_adcbf7ffdf40",
+      "term": "劍爲不平離寶匣、藥因救病出金瓶",
+      "query": "劍為不平離寶匣，藥因救病出金瓶",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "validation": "manual full-case reading; two canonical-distinct works; exact-form and variant resolution",
+      "reason": "The fixed balanced line joins the sword leaving its case to redress injustice with medicine leaving its golden bottle to cure illness; both halves define responsive corrective action.",
+      "zcExact": {
+        "hits": 46,
+        "files": 41,
+        "distinctWorks": 41
+      },
+      "evidence": [
+        {
+          "source": "J/J37/J37nB386.xml",
+          "title": "遠菴僼禪師語錄",
+          "workId": "work:J37nB386",
+          "hitFromLb": "0354c12",
+          "hitToLb": "0354c22",
+          "kwic": "子？下士聞道，大笑之，卻有衲僧氣概。』」師云：「無文老子具逸群之辨，提格外之機，不妨是箇俊俏衲僧。檢點將來，只知其一，不知其二。天童即不然，上士聞道，勤而行之，好與三十棒；中士聞道，如存若亡，好與三十棒；下士聞道，大笑之，好與三十棒。何故？劍為不平離寶匣，藥因救病出金瓶。」上堂。問：「古人道：『一棒作漫天網，打鳳張麟；一棒作布絲網，撈蝦摝蜆。』和尚一棒作什麼網？」師云：「亦作漫天網，亦作布絲網。」進云：「因甚亦作漫天網，亦作布絲網？」師云：「麟鳳也要，蝦蜆也要。」進云：「恁麼則被和尚一網打盡也。」師云：「",
+          "verified": true
+        },
+        {
+          "source": "J/J40/J40nB493.xml",
+          "title": "磬山牧亭樸夫拙禪師語錄",
+          "workId": "work:J40nB493",
+          "hitFromLb": "0502a24",
+          "hitToLb": "0502b04",
+          "kwic": "，頓時火發，燒至三十三天，化作一堆灰。試問諸人：喚什麼作自己？喚什麼作釋迦老子？喚什麼作三世諸佛、歷代祖師、天下諸大善知識？喚什麼作天地名象？說什麼西天四七、唐土二三？到者裏，直饒諸方分得門、辨得戶，無論甘與不甘，悉要喫山僧手中痛棒。何故？劍為不平離寶匣，藥因救病出金瓶。」復舉：「法昌以一力撾鼓陞座，曰：『法昌今日開爐，行腳僧無一個，惟有十八高人緘口圍爐打坐。不是規矩嚴，難免見諸人話墮，直饒口似秤錘，未免燈籠勘破，不知道絕功勳，安用修因證果？』喝一喝，云：『但能一念回心，即脫二乘羈鎖。』」師云：「大小法昌",
+          "verified": true
+        }
+      ],
+      "formResolution": {
+        "printedQuery": "劍爲不平離寶匣、藥因救病出金瓶",
+        "exact": {
+          "hits": 0,
+          "files": 0,
+          "distinctWorks": 0
+        },
+        "directionalChanges": [
+          "爲→為",
+          "、→，"
+        ],
+        "note": "Two explicit one-way changes only; no transitive normalization."
+      }
+    },
+    {
+      "batchOrdinal": 9,
+      "queueNumber": 587,
+      "canonicalIndex": 586,
+      "id": "t_0df9f6988a69",
+      "term": "一有多種、二無兩般",
+      "query": "一有多種，二無兩般",
+      "disposition": "KEEP (couplet)",
+      "unit": "couplet",
+      "validation": "manual full-case reading; two canonical-distinct works; exact-form and variant resolution",
+      "reason": "Xuedou’s fixed two-clause line contrasts the many forms of “one” with the non-duality of “two”; its balanced paradox is the transmitted unit.",
+      "zcExact": {
+        "hits": 48,
+        "files": 38,
+        "distinctWorks": 38
+      },
+      "evidence": [
+        {
+          "source": "J/J26/J26nB177.xml",
+          "title": "破山禪師語錄",
+          "workId": "work:J26nB177",
+          "hitFromLb": "0016a01",
+          "hitToLb": "0016a11",
+          "kwic": "二月。且道如何是第一月？留待夜來江上落，照人無復冷秋秋。」解制，上堂，一僧出以手掩師口，師打一拂，僧遂走，云：「怪了。」師拽杖打出，乃云：「本明徹闍黎前為老僧送別偈云：『吾師拄杖欲翻雲。』老僧道：『拗折了也。』『鳥道騰騰盡伴行。』老僧道：『一有多種，二無兩般。』『閨閣縱然無一物。』老僧道：『轉秘轉多。』『阿誰擔荷破沙盆？』老僧道：『且喜有箇徹闍黎。』老僧拈也拈了、斷也斷了，不惟我師從互相唱和，且是聖制告圓，亦有兩句壓韻而已。栖鳳今朝散水雲，縱橫逆順任教行，破沙盆是正法眼，莫逐腥羶污卻盆。」震威",
+          "verified": true
+        },
+        {
+          "source": "X/X82/X82n1571.xml",
+          "title": "五燈全書(第34卷-第120卷)",
+          "workId": "work:wudeng-quanshu",
+          "hitFromLb": "0192c01",
+          "hitToLb": "0192c11",
+          "kwic": "止泓鑒禪師明州天童止泓鑒禪師初住信州真如，移天童。上堂：諸佛不真實，說法度羣生。菩薩有智慧，見性不分明。白雲無心意，灑為世間雨。大地不含情，能長諸草木。古德與麼提唱，於四諦法中開鑿人天，不妨善巧。若據衲僧分上，何啻白雲萬里。上堂，拈拄杖曰：一有多種，二無兩般。枯桑知天風，海水知天寒。拄杖子聞與麼道，不覺忻忻笑曰：出身猶可易，脫體道應難。擲下拄杖，下座。上堂，舉大陽玄問梁山：如何是無相道場？山指大士幀子曰：者是吳處士畫底。玄擬進語，山急索曰：者是有相底，那箇是無相底？玄遂有省，便作禮。山曰：何不",
+          "verified": true
+        }
+      ],
+      "formResolution": {
+        "printedQuery": "一有多種、二無兩般",
+        "exact": {
+          "hits": 0,
+          "files": 0,
+          "distinctWorks": 0
+        }
+      }
+    },
+    {
+      "batchOrdinal": 10,
+      "queueNumber": 590,
+      "canonicalIndex": 589,
+      "id": "t_6be19f5c1f84",
+      "term": "大方無外",
+      "query": "大方無外",
+      "disposition": "KEEP (component)",
+      "unit": "component",
+      "validation": "manual full-case reading; two canonical-distinct works; exact-form and variant resolution",
+      "reason": "The great direction having no outside repeatedly names an all-inclusive field beyond boundary or opposition, used as a compact realization formula.",
+      "zcExact": {
+        "hits": 52,
+        "files": 41,
+        "distinctWorks": 41
+      },
+      "evidence": [
+        {
+          "source": "T/T47/T47n1996.xml",
+          "title": "明覺禪師語錄",
+          "workId": "work:T47n1996",
+          "hitFromLb": "0699b09",
+          "hitToLb": "0699b22",
+          "kwic": "今之實也同浮瞖。子州善卷之流也。堯驅舜馳讓無暇。歸去來兮歸不歸。到頭未出冥冥者。吾徒孰謂標奇絕。動靜憑君試甄別。葉零零兮秋暮半凋。華片片兮春暖齊發。暹禪老。暹禪老。意曾高曠排沽待忽致譏褒。天人列請兮屢輕笑。祖佛位卑兮還擬逃。我恐逃之逃不得。大方無外皆充塞。茫茫擾擾知何極。八面香風惹衣裓。送僧送僧吳山碧。楚江碧。吳楚悠悠興何極。一尋寒木自為隣。三事秋雲更誰識。乾坤不是無知己。玉石休云辯真偽。待時沽譽漫淪生。晦跡韜光亦何意。春風急。春風急。八駿奔馳追不及。南北東西把定時。為君直上孤峯立。",
+          "verified": true
+        },
+        {
+          "source": "X/X66/X66n1297.xml",
+          "title": "宗鑑法林",
+          "workId": "chan:zongjian-falin",
+          "hitFromLb": "0288b21",
+          "hitToLb": "0288c11",
+          "kwic": "早識郎君本是儔，燈前月下且風流。好風流，看取朱衣暗點頭。黃梅時節家家雨，春草池塘處處蛙白鷺下田千點雪，黃鸝上樹一枝花。圓覺以大圓覺為我伽藍。佛鎧堅云：淨躶躶，曲不藏直；赤灑灑，坐斷威音。更有一句，不可道破。毫髮不留，縱橫自由，閫外乾坤廓落，大方無外優游。明明祖師意，明明百草頭，褫破狐疑網，截斷愛河流。縱有回天力，爭如直下休？四衢道中淨躶躶，放出溈山水牯牛。圓覺恒作是念：我今此身四大和合，髮毛爪齒等皆歸地，涕唾膿血等皆歸水，煖氣歸火，動轉歸風，四大各離，今者妄身當在何處？今者妄身當在何",
+          "verified": true
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "KEEP (component)": 7,
+    "KEEP (couplet)": 3,
+    "PROVISIONAL": 0,
+    "REJECT": 0
+  },
+  "entryConstructionPerformed": false,
+  "registryMutationPerformed": false,
+  "buildRun": false,
+  "queueAdvanced": false,
+  "lineageTouched": false,
+  "stopAfterExactlyTen": true,
+  "crossReviewPerformedByAuthor": false
+}

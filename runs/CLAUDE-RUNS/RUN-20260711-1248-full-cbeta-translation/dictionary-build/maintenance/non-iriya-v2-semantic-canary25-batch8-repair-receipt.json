@@ -1,0 +1,145 @@
+{
+  "schemaVersion": "non-iriya-v2-semantic-repair-receipt.v1",
+  "generatedUtc": "2026-07-18T00:15:03Z",
+  "batch": 8,
+  "ledger": "maintenance/non-iriya-v2-semantic-canary25-batch8-ledger.json",
+  "ledgerBeforeSha256": "9939c79c3e774c4d0f2a9c200cf1a2f4c1992d90d6d76a509478aad88eaa245e",
+  "ledgerAfterSha256": "f38afc3a02c74dfc11c06b24235789721cef83d0dd45ba23b7eef4e44bcb8b10",
+  "independentReview": "maintenance/non-iriya-v2-semantic-canary25-batch8-independent-cross-review-c19-e8.json",
+  "independentReviewSha256": "da1429f30f7da5e6a4e4fb5e58c0c11059ad8d1761ae6249272aa44f9341c09a",
+  "correctedRows": 9,
+  "correctedTerms": [
+    "婆羅門",
+    "大通智勝",
+    "心是佛",
+    "摩訶迦",
+    "急走過",
+    "三世佛",
+    "大庾嶺",
+    "大千世界",
+    "無為法"
+  ],
+  "rowChanges": {
+    "婆羅門": {
+      "before": {
+        "disposition": "KEEP",
+        "unit": "component",
+        "reason": "Established Buddhist social-religious designation for a Brahmin, including lineage/caste identification in patriarchal biography."
+      },
+      "after": {
+        "disposition": "REJECT",
+        "unit": null,
+        "reason": "The stored witnesses contain the generic caste/lineage designation in copied patriarchal biography; neither deploys it as an answer, verdict, test, case handle, or other observable Chan job."
+      }
+    },
+    "大通智勝": {
+      "before": {
+        "disposition": "REJECT",
+        "unit": null,
+        "reason": "One-graph-short prefix of the proper Buddha name 大通智勝佛; the evidence retains 佛 and supplies no independent shorter referent."
+      },
+      "after": {
+        "disposition": "KEEP",
+        "unit": "component",
+        "reason": "A stable independently deployed name: masters say 大通智勝遷座而成正覺, ask 喚作大通智勝得麼, command 參大通智勝去, and also use the expanded 大通智勝如來/佛 forms."
+      }
+    },
+    "心是佛": {
+      "before": {
+        "disposition": "REJECT",
+        "unit": null,
+        "reason": "Internal tail of covered 即心是佛/自心是佛 formulas; initial operators determine the proposition."
+      },
+      "after": {
+        "disposition": "KEEP",
+        "unit": "component",
+        "reason": "Complete proposition and stable searchable core across deployed forms including 智者知心是佛, 心心心是佛, 是心是佛, 自心是佛, and 心即是佛."
+      }
+    },
+    "摩訶迦": {
+      "before": {
+        "disposition": "REJECT",
+        "unit": null,
+        "reason": "Truncation of 摩訶迦葉, ending inside the proper name and already flagged as a substring of covered parents."
+      },
+      "after": {
+        "disposition": "PROVISIONAL",
+        "unit": null,
+        "reason": "Referent split resolved for containment: 指月錄 has a complete personal name 摩訶迦尊者, a disciple of Krakucchanda associated with three vows, while other hits are prefixes of 摩訶迦葉, 摩訶迦羅, or mantra strings. The complete-name sense remains provisional pending sense-specific recurrence evidence; prefix/mantra hits are excluded from that sense."
+      }
+    },
+    "急走過": {
+      "before": {
+        "disposition": "REJECT",
+        "unit": null,
+        "reason": "Unbounded suffix of the fixed warning 無佛處急走過; the omitted condition is essential to the saying."
+      },
+      "after": {
+        "disposition": "KEEP",
+        "unit": "component",
+        "reason": "Independent capping imperative “hurry past” occurs outside the longer 無佛處 formula, including the opposed command 急走過，莫放過; it therefore has a bounded deployed job beyond suffix containment."
+      }
+    },
+    "三世佛": {
+      "before": {
+        "disposition": "KEEP",
+        "unit": "component",
+        "reason": "Stable collective designation for Buddhas of the three times, productive beyond the longer saying 三世佛冤."
+      },
+      "after": {
+        "disposition": "KEEP",
+        "unit": "component",
+        "reason": "Stable collective designation for Buddhas of the three times, anchored independently by the fire-flame exchange in 宏智禪師廣錄 and the verdict 三世佛望風斂影 in 雪巖祖欽禪師語錄, not only by the 三世佛冤 case."
+      }
+    },
+    "大庾嶺": {
+      "before": {
+        "disposition": "KEEP",
+        "unit": "component",
+        "reason": "Stable named locus of the Huineng–Huineng pursuit encounter; references invoke the Great Yu Ridge as case geography, not a variable ridge."
+      },
+      "after": {
+        "disposition": "KEEP",
+        "unit": "component",
+        "reason": "Stable named locus of the Huineng–Huiming pursuit encounter; references invoke the Great Yu Ridge as case geography rather than a variable ridge."
+      }
+    },
+    "大千世界": {
+      "before": {
+        "disposition": "KEEP",
+        "unit": "component",
+        "reason": "Established Buddhist cosmological domain, repeatedly serving as the total world-system under comparison, transformation, or emptiness."
+      },
+      "after": {
+        "disposition": "KEEP",
+        "unit": "component",
+        "reason": "Established cosmological world-system, repeatedly serving as the total domain under comparison, transformation, or emptiness."
+      }
+    },
+    "無為法": {
+      "before": {
+        "disposition": "KEEP",
+        "unit": "component",
+        "reason": "Established Buddhist category “unconditioned dharma,” with a doctrinal job distinct from the adjective/noun 無為 alone."
+      },
+      "after": {
+        "disposition": "KEEP",
+        "unit": "component",
+        "reason": "Established inherited unconditioned-dharma category with a doctrinal job distinct from the adjective/noun 無為 alone."
+      }
+    }
+  },
+  "preservedPassingRowsExactly": 16,
+  "selectionPreservedExactly": true,
+  "finalSummary": {
+    "KEEP": 15,
+    "REJECT": 9,
+    "PROVISIONAL": 1
+  },
+  "focusedRecheckRequired": true,
+  "authorityMutationPerformed": false,
+  "queueMutationPerformed": false,
+  "buildRun": false,
+  "registryMutationPerformed": false,
+  "lineageTouched": false
+}
