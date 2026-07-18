@@ -505,6 +505,12 @@ specification. Do not throw that evidence away merely to obtain uniform prose.
        improvise a new title. Every construction decile must pass
        `maintenance/audit_authoritative_source_titles.py` over all changed
        entries before independent review or installation.
+       Distinct files and even distinct works do not prove distinct deployment:
+       anthologies and recensions often repeat one utterance. Run
+       `maintenance/audit_deployment_duplication.py` at every construction
+       decile. Each flag is a mandatory human deployment-class ruling. A useful
+       textual witness may remain, but repeated versions of one utterance count
+       once for depth and must never be harvested to meet an occurrence floor.
        `Kwic` is the concise quotation shown to that reader, not the entire
        retrieval window. Preserve enough of the complete turn or case to make
        the actor and lexical job unambiguous, but re-cut any KWIC over 800
@@ -820,6 +826,15 @@ specification. Do not throw that evidence away merely to obtain uniform prose.
       The opening may appear **once only**: copying it verbatim into `EvidenceBody` is also a hard compile
       failure. Evidence paragraphs must add anchored facts, contrasts, limits, or deployments rather than
       repeating the interpretation or narrating that database rows exist.
+      **Descriptor-substitution is still a template.** Sentences such as “the `<unique-label>` cases
+      support the literal target X,” “six work-distinct witnesses preserve the `<unique-label>`
+      construction,” “the `<unique-label>` evidence fixes the entry at its corpus wording,” or
+      “nearby sayings are excluded unless they reproduce the `<unique-label>` unit” are hard failures
+      even when every entry inserts a different label. The same applies to generic split, alias,
+      modifier, family, and `ZenBend` controls. Each field must name an observable fact from this
+      headword's actual cases—who asks, answers, quotes, raises, appraises, contrasts, or limits it.
+      `audit_batch_semantic_templates.py` normalizes these structural frames and must pass author-side;
+      a unique adjective or compound noun cannot disguise empty reader prose.
       The discovered filler “X is the corpus expression for the action, image, or judgment described by
       the stored cases; the witnesses place it in direct answers, challenges, verses, appraisals, and
       narrative controls” is explicitly forbidden. Capitalizing a preferred target and inserting it into
@@ -876,6 +891,12 @@ specification. Do not throw that evidence away merely to obtain uniform prose.
       utterer, context roles, sense, and prose. A missing label or ambiguous/multiple headword span remains
       a human repair, never a template fill. Authors and reviewers reuse the same hash-bound transport so
       corpus extraction is paid once while their judgments remain independent.
+      **Candidate-first heading resolution:** bulk discovery may defer the expensive section-header lookup for
+      candidate witnesses that are never retained.  After the author selects the depth families and before any
+      actor decision, resolve the heading and full attribution ladder for every retained witness.  The final
+      entry and review packet are unchanged: every stored occurrence still requires the exact heading/turn
+      evidence.  This scheduling rule forbids inferring an actor from a title-only discovery packet; it merely
+      avoids reading a multi-megabyte XML header for evidence that will immediately be discarded.
       Span refresh happens before compilation because it invalidates worksheet/output receipts. During
       drafting use fast compiler, exact-span, public-feedback, depth, and actor-distribution checks; reserve
       the complete cohort gate for the decile boundary. This changes transport and scheduling only, never
@@ -1138,11 +1159,13 @@ the repair-author ledger, and the final formal gate.  It is a hard gate:
     In mixed repair cohorts this strict check is scoped to exactly the `REVISE`
     IDs while accepted control hashes remain immutable; readiness enforces that
     equality. A genuinely source-proven figure absent from the current roster
-    may use an English canonical key only after being registered in
-    `fresh-build/pending-roster.json` with Chinese aliases and exact source
-    evidence. This is explicit integration debt, not roster completion: the
-    final project audit requires the pending ledger to be empty after those
-    candidates are incorporated into `master-dates.json` and the website roster.
+    must remain non-linking (`MasterName: null`, no `ContextMasters` link) under
+    the identified-unlinked-master rule below. Register the identity separately
+    in `fresh-build/pending-roster.json` with Chinese aliases and exact source
+    evidence, but pending registration never authorizes a broken public link.
+    This is explicit integration debt, not roster completion: the final project
+    audit requires the pending ledger to be empty after those candidates are
+    incorporated into `master-dates.json` and the website roster.
 11. **Resolve evidence identity before writing reader prose.** The authoring
     order is fixed: exact concordance row → complete-case reading → utterer and
     contextual-role decision → canonical roster resolution (or evidence-bound
@@ -1316,6 +1339,45 @@ the repair-author ledger, and the final formal gate.  It is a hard gate:
     site that may be deployed while work remains. Reports must say “local
     publication artifacts generated” rather than “published” unless the live
     production deployment was actually authorized and verified.
+19. **⏱ SPEED IS A HARD QUALITY GATE — BENCHMARK EVERY PROCESS CHANGE.** A
+    workflow that eventually produces good entries but makes the documented
+    queue practically unfinishable is defective. No new helper, validator,
+    review pass, evidence format, checkpoint, or scheduling rule may enter the
+    production path until a representative ten-entry canary records wall time
+    by stage: evidence retrieval, complete-case semantic/actor reading, public
+    prose, serialization, verification, focused attribution/work-source/
+    template/batch-depth preflight, failures, repair,
+    and settled re-run. Report **settled throughput**, including rework; raw
+    first-draft speed is not the metric. The default production budget for a
+    500-entry cohort with three collision-free author lanes is **four hours to
+    settled checkpoint output**. A canary projecting above that budget is a
+    speed-gate failure: remain in speed mode, identify the dominant stage, and
+    redesign or batch it before mass production. Do not merely publish a
+    longer ETA.
+
+    The unchanged quality contract is the floor, not a reason to duplicate
+    work. Transport/search/heading/count work is paid once and SHA-bound;
+    semantic decisions remain explicit and complete-case grounded. Ten entries
+    are the minimum normal reasoning/tool packet, fifty the normal complete
+    cohort-gate boundary, and shared indexes/dictionaries replace per-entry
+    subprocess loops. Machine-only authoring overhead should remain below five
+    seconds per entry on the reference WSL workspace; any regression over 10%
+    requires a written reason and a faster alternative test. Recursive repo or
+    `/mnt/c` scans, serial `zc.count`/heading lookups, per-entry full-tree gates,
+    repeated source discovery, reopening hash-identical evidence by ceremony,
+    tiny worker assignments, and validators that repeat another gate's work are
+    hard failures.
+
+    Every accepted process change writes a durable speed receipt naming the
+    before/after commands, sample IDs, machine/workspace, timings, failure and
+    repair counts, output hashes or equivalence checks, and projected cohort
+    completion time. It must also state which prior work it replaces so old and
+    new paths cannot both run. If a speedup causes actor, sense, depth, quote,
+    title, work-identity, or prose-template failures, quarantine its products,
+    repair the shared cause, and rerun the canary; those failed drafts do not
+    count toward throughput. See `IRIYA_CONSTRUCTION_SPEED_MODE.md` for the
+    current measured implementation and `PROCESS_SPEED_ARCHITECTURE.md` for the
+    end-to-end stage contract.
 
 ## 9. Working durably at scale (don't lose work)
 Follow **`LEDGER_SYSTEM.md`**: orchestrator persists on every worker return; small slices (≈1 term);
@@ -1330,3 +1392,15 @@ BUFFALO_ENTRY.v2.json · LEDGER_SYSTEM · SPA_DICTIONARY_PLAN · TASK_LOG (chron
 ### Identified master without a canonical roster link
 
 When full-case reading names the uttering master but no exact canonical roster label exists, keep `MasterName` null and use `ActorAttribution.Status = identified-unlinked-master`. This is not an anonymous-master escape hatch. It requires the explicit Chinese/English identity in `ActorLabel`, all six attribution rungs in order, exact-turn grammatical proof repeating that identity, and an `AttributionNote` that names the speaker. Never edit the lineage roster to make a dictionary occurrence pass.
+Before assigning that status, resolve the source identity against **every existing roster alias**, not only
+`names[0]`. If an exact alias matches, store its canonical `names[0]` in `MasterName`; the attribution gate
+hard-fails a roster alias hidden as “unlinked.” This cheap preflight prevents a later reviewer from having
+to rediscover canonical links case by case.
+
+For a **contextual** person who is explicitly identified in the case but has no canonical roster label,
+do not put a broken link in `ContextMasters`, do not erase the identity into prose, and do not edit the
+lineage roster. Use `ContextActors` on the occurrence with `Status = identified-unlinked-master` (or
+`identified-non-master` where applicable), the explicit `ActorLabel`, closed non-utterer `Roles`, and
+case-specific `GrammarEvidence`; the same public label must appear in `AttributionNote`. `ContextMasters`
+remains link-only and contains exact roster `names[0]` values. A later roster reconciliation may promote
+the structured unlinked identity without re-reading the case.

@@ -37,6 +37,24 @@ FORBIDDEN_STOCK = (
     "related compounds and overlapping phrases were checked; none changes the one-thing ruling for <term>",
 )
 
+# Headword-specific filler can evade exact cross-entry matching by inserting a
+# unique noun ("deluded-encounter cases", "incidental-gesture cases") into the
+# same empty sentence frame.  These shapes do not tell a reader what any
+# attested master does with the term, so they fail even once.
+FORBIDDEN_STRUCTURAL_STOCK = tuple(re.compile(pattern) for pattern in (
+    r"^the .+ cases support the literal target <term>\.?$",
+    r"^(?:<n>|six) work-distinct witnesses preserve the .+ construction across its attested turns and copies\.?$",
+    r"^the .+ evidence fixes the entry at its corpus wording\.?$",
+    r"^changes of speaker and frame do not divide the .+ lexical unit\.?$",
+    r"^the alias exposes the .+ wording without adding an interpretive substitute\.?$",
+    r"^every meaning-bearing element of the .+ construction remains governed\.?$",
+    r"^nearby sayings are excluded unless they reproduce the .+ unit\.?$",
+))
+
+
+def structural_stock(value: str) -> bool:
+    return any(pattern.fullmatch(value) for pattern in FORBIDDEN_STRUCTURAL_STOCK)
+
 def entry_path(value: str) -> Path:
     path = Path(value)
     if path.is_dir():
@@ -73,6 +91,9 @@ def semantic_strings(entry: dict):
         if note and not MECHANICAL_COUNT_NOTE.fullmatch(note):
             yield "note", sense_index, normalize(note, entry, sense)
         draft = sense.get("DraftEvidence") or {}
+        bend = draft.get("ZenBend")
+        if bend:
+            yield "zen-bend", sense_index, normalize(bend, entry, sense)
         counter = draft.get("CounterexampleOrLimit")
         if counter:
             yield "counterexample", sense_index, normalize(counter, entry, sense)
@@ -84,10 +105,10 @@ def semantic_strings(entry: dict):
             yield "alias-rationale", sense_index, normalize(alias, entry, sense)
         for key in ("ModifierControls", "FamilyControls"):
             for row in draft.get(key) or []:
-                reason = (
+                reason = row if isinstance(row, str) else (
                     row.get("reason") or row.get("Reason")
                     or row.get("finding") or row.get("Finding")
-                )
+                ) if isinstance(row, dict) else None
                 if reason:
                     yield key, sense_index, normalize(reason, entry, sense)
 
@@ -145,7 +166,7 @@ def main() -> int:
                                          "occurrence": occurrence_index, "path": str(path)})
         for field, sense_index, value in semantic_strings(entry):
             if value:
-                if any(stock in value for stock in FORBIDDEN_STOCK):
+                if any(stock in value for stock in FORBIDDEN_STOCK) or structural_stock(value):
                     failures.append(
                         {
                             "kind": "forbidden-semantic-stock",

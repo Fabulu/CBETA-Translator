@@ -258,6 +258,18 @@ def roster_names() -> set[str]:
     return {m["names"][0] for m in masters}
 
 
+def roster_aliases() -> dict[str, str]:
+    """Map every exact roster alias to names[0] without mutating the roster."""
+    data = json.loads(ROSTER_PATH.read_text(encoding="utf-8"))
+    masters = data if isinstance(data, list) else data["masters"]
+    aliases = {}
+    for master in masters:
+        canonical = master["names"][0]
+        for name in master.get("names") or []:
+            aliases[str(name).strip().casefold()] = canonical
+    return aliases
+
+
 def pending_roster_names(path: Path = PENDING_ROSTER_PATH) -> set[str]:
     try:
         data = json.loads(path.read_text(encoding="utf-8-sig"))
@@ -395,6 +407,7 @@ def main() -> int:
         excluded = set(ns.exclude_id)
         files = [p for p in files if p.parent.name not in excluded]
     roster = roster_names()
+    roster_alias_map = roster_aliases()
     roster_name_pattern = re.compile(
         "|".join(re.escape(name) for name in sorted(roster, key=len, reverse=True))
     ) if roster else None
@@ -516,6 +529,12 @@ def main() -> int:
                         )
                     if status == "identified-unlinked-master":
                         label = str(actor.get("ActorLabel") or "").strip()
+                        alias_key = label.casefold()
+                        public_key = public_actor_label(label).casefold()
+                        canonical_alias = roster_alias_map.get(alias_key) or roster_alias_map.get(public_key)
+                        if canonical_alias:
+                            fail("roster_alias_used_as_unlinked", entry,
+                                 f"{term} s{si} o{oi}: {label!r} resolves to roster names[0] {canonical_alias!r}; use the canonical MasterName")
                         if re.match(r"^(?:the|an?|one|some|unnamed)\b", label, re.IGNORECASE):
                             fail("identified_unlinked_master_not_named", entry,
                                  f"{term} s{si} o{oi}: explicit Chinese/English source identity required: {label!r}")
@@ -690,6 +709,35 @@ def main() -> int:
                             fail("noncanonical_context_master_name", entry, f"{term} s{si} o{oi} c{ci}: {context['MasterName']!r} is not roster names[0]")
                         elif context["MasterName"] in pending_roster:
                             counts["pending_roster_context_master"] += 1
+                context_actors = occ.get("ContextActors") or []
+                if not isinstance(context_actors, list):
+                    fail("invalid_context_actors", entry, f"{term} s{si} o{oi}: not a list")
+                    context_actors = []
+                for ci, context in enumerate(context_actors, 1):
+                    if not isinstance(context, dict):
+                        fail("invalid_context_actor", entry, f"{term} s{si} o{oi} a{ci}: object required")
+                        continue
+                    label = str(context.get("ActorLabel") or "").strip()
+                    status = context.get("Status")
+                    roles = context.get("Roles") or []
+                    proof = str(context.get("GrammarEvidence") or "").strip()
+                    counts["context_actor_identities"] += 1
+                    if status not in {"identified-unlinked-master", "identified-non-master"} or not label:
+                        fail("invalid_context_actor", entry, f"{term} s{si} o{oi} a{ci}: closed status and explicit label required")
+                    if status == "identified-unlinked-master" and label in roster:
+                        fail("linked_identity_in_context_actors", entry, f"{term} s{si} o{oi} a{ci}: {label!r} belongs in ContextMasters")
+                    canonical_alias = roster_alias_map.get(label.casefold()) or roster_alias_map.get(public_actor_label(label).casefold())
+                    if status == "identified-unlinked-master" and canonical_alias:
+                        fail("roster_alias_used_in_context_actors", entry,
+                             f"{term} s{si} o{oi} a{ci}: {label!r} resolves to roster names[0] {canonical_alias!r}; use ContextMasters")
+                    invalid_roles = sorted(set(roles) - CLOSED_ROLES)
+                    if not roles or invalid_roles or "utterer" in roles:
+                        fail("invalid_context_actor_roles", entry, f"{term} s{si} o{oi} a{ci}: {roles!r}")
+                    if len(proof) < 24:
+                        fail("context_actor_proof_missing", entry, f"{term} s{si} o{oi} a{ci}: case-specific proof required")
+                    public_label = re.sub(r"[\u3400-\u9fff\uf900-\ufaff]+", "", label).strip(" ,;:-") or label
+                    if public_label.casefold() not in note.casefold():
+                        fail("context_actor_missing_from_note", entry, f"{term} s{si} o{oi} a{ci}: {public_label!r} must appear in AttributionNote")
                 if raised_old_saying and not has_evidence_bound_later_quoter(actor) and not any(
                     "later-raiser" in (context.get("Roles") or [])
                     for context in context_masters if isinstance(context, dict)

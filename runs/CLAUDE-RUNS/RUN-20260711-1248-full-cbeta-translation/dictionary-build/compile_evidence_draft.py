@@ -43,7 +43,7 @@ GENERIC = re.compile(
 )
 CALQUE_FIRST = re.compile(r"^\s*(?:literally|word[- ]for[- ]word|the graphs? (?:mean|say|name))\b", re.I)
 FORBIDDEN = re.compile(r"\b(?:Buddhism|meditation|Bodhiteaching)\b", re.I)
-ALLOWED_ACTOR_STATUSES = {"reviewed-unnamed", "identified-non-master", "narrated", "impersonal"}
+ALLOWED_ACTOR_STATUSES = {"reviewed-unnamed", "identified-non-master", "identified-unlinked-master", "narrated", "impersonal"}
 FORBIDDEN_ANONYMOUS_KINDS = {"master", "zen master", "teacher", "禪師", "和尚"}
 NON_NAME_MASTER_LABEL = re.compile(
     r"^(?:師(?:乃|斥|以|云|曰|問|答|指|舉|拈|喝|打|示|語)|謂(?:弟子|僧|眾)|"
@@ -126,6 +126,12 @@ def compile_occurrence(value: dict, coordinate: str, errors: list[str]) -> dict:
         grammar = required_text(actor.get("GrammarEvidence"), f"{coordinate}.ActorAttribution.GrammarEvidence", errors)
         if grammar and len(grammar) < 24:
             errors.append(f"{coordinate}.ActorAttribution.GrammarEvidence: too short to record grammatical proof")
+        if status == "identified-unlinked-master":
+            if actor.get("RungsChecked") != ["line", "expanded-context", "section-header", "book-title", "tei-header", "parallel-passage"]:
+                errors.append(f"{coordinate}.ActorAttribution.RungsChecked: identified-unlinked-master requires all six ordered rungs")
+            label = str(actor.get("ActorLabel") or "").strip()
+            if not label or re.match(r"^(?:the|an?|one|some|unnamed)\b", label, re.I):
+                errors.append(f"{coordinate}.ActorAttribution.ActorLabel: identified-unlinked-master requires an explicit source identity")
         # A machine may flag authored-voice risk but may not decide the actor. Generic
         # "compiler narration" is forbidden when the stored cut contains strong
         # first-person, direct-address, answer, or quotation cues unless the worksheet
@@ -151,6 +157,19 @@ def compile_occurrence(value: dict, coordinate: str, errors: list[str]) -> dict:
             errors.append(f"{coordinate}.ContextMasters[{ci}]: use only closed, nonempty roles")
         if not occurrence.get("MasterName") and "utterer" in roles:
             errors.append(f"{coordinate}.ContextMasters[{ci}]: utterer role contradicts null MasterName")
+    for ci, context in enumerate(occurrence.get("ContextActors") or [], 1):
+        if not isinstance(context, dict):
+            errors.append(f"{coordinate}.ContextActors[{ci}]: object required")
+            continue
+        if context.get("Status") not in {"identified-unlinked-master", "identified-non-master"}:
+            errors.append(f"{coordinate}.ContextActors[{ci}].Status: closed unlinked identity type required")
+        required_text(context.get("ActorLabel"), f"{coordinate}.ContextActors[{ci}].ActorLabel", errors)
+        roles = context.get("Roles") or []
+        if not roles or any(role not in ALLOWED_CONTEXT_ROLES for role in roles) or "utterer" in roles:
+            errors.append(f"{coordinate}.ContextActors[{ci}].Roles: closed non-utterer roles required")
+        proof = required_text(context.get("GrammarEvidence"), f"{coordinate}.ContextActors[{ci}].GrammarEvidence", errors)
+        if proof and len(proof) < 24:
+            errors.append(f"{coordinate}.ContextActors[{ci}].GrammarEvidence: case-specific proof required")
     occurrence["Curated"] = True
     return occurrence
 
@@ -159,6 +178,8 @@ def compile_sense(value: dict, index: int, errors: list[str]) -> dict:
     sense = dict(value)
     parts = sense.pop("ExplanationParts", None) or {}
     draft = sense.pop("DraftEvidence", None) or {}
+    accepted_derived = sense.pop("DraftAcceptedDerivedFields", None) or {}
+    omit_empty_anchors = bool(sense.pop("DraftOmitEmptyClaimAnchors", False))
     opening = required_text(parts.get("CorpusEarnedOpening"), f"sense {index}.opening", errors)
     if CALQUE_FIRST.search(opening):
         errors.append(f"sense {index}.opening: must begin with corpus-earned interpretation, not a calque")
@@ -205,7 +226,10 @@ def compile_sense(value: dict, index: int, errors: list[str]) -> dict:
     if unknown:
         errors.append(f"sense {index}.OpeningClaimEvidenceKeys: unknown keys {sorted(unknown)}")
     sense["Occurrences"] = occurrences
-    sense["ClaimAnchors"] = anchors
+    if anchors or not omit_empty_anchors:
+        sense["ClaimAnchors"] = anchors
+    else:
+        sense.pop("ClaimAnchors", None)
     # Link inventories are derived from structured evidence, not hand-maintained
     # parallel lists. Preserve explicitly related canonical people, then append
     # every utterer and contextual master exactly once in evidence order.
@@ -236,6 +260,12 @@ def compile_sense(value: dict, index: int, errors: list[str]) -> dict:
     sense["SourceTexts"] = list(dict.fromkeys(
         row.get("RelPath") for row in [*occurrences, *anchors] if row.get("RelPath")
     ))
+    # Independently accepted legacy entries can contain reviewed link inventories
+    # that predate derivation from evidence order. A repair worksheet may preserve
+    # those exact accepted bytes explicitly; this is opt-in and research-only.
+    for field in ("SourceTexts", "RelatedMasters"):
+        if field in accepted_derived:
+            sense[field] = accepted_derived[field]
     return sense
 
 
