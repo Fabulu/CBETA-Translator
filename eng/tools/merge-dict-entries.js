@@ -179,7 +179,27 @@ const index = all.map(e => {
   const s = senses.find(x => field(x, 'SenseKey', 'senseKey') == null) || senses[0] || {};
   return [field(e, 'SourceTerm', 'sourceTerm'), field(s, 'PreferredTarget', 'preferredTarget') || ''];
 });
-const indexFile = { SchemaVersion: 2, Terms: index };
+// Search aliases must remain resolvable even when a duplicate headword entry is
+// retired in favour of a canonical entry.  Keep the existing Terms contract and
+// add an alias -> canonical headword map; ambiguous aliases are omitted rather
+// than silently choosing one entry.
+const canonicalTerms = new Set(index.map(([term]) => term));
+const aliasOwners = new Map();
+for (const e of all) {
+  const sourceTerm = field(e, 'SourceTerm', 'sourceTerm');
+  for (const sense of field(e, 'Senses', 'senses') || []) {
+    for (const raw of field(sense, 'SearchAliases', 'searchAliases') || []) {
+      const alias = String(raw).trim();
+      if (!alias || alias === sourceTerm || canonicalTerms.has(alias)) continue;
+      if (!aliasOwners.has(alias)) aliasOwners.set(alias, sourceTerm);
+      else if (aliasOwners.get(alias) !== sourceTerm) aliasOwners.set(alias, null);
+    }
+  }
+}
+const aliases = Object.fromEntries([...aliasOwners]
+  .filter(([, owner]) => owner)
+  .sort(([a], [b]) => a.localeCompare(b, 'zh-Hant')));
+const indexFile = { SchemaVersion: 2, Terms: index, Aliases: aliases };
 
 const shards = new Map();
 for (const e of all) {
