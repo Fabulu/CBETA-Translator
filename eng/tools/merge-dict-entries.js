@@ -42,6 +42,7 @@ const FORBIDDEN_ENGLISH = /\b(?:Buddhism|meditation|Bodhiteaching)\b/i;
 // older artifact was published, preserve-by-ID must not retain the obsolete duplicate.
 const ID_REPLACEMENTS = new Map([
   ['t_d69c18a98053', 't_bc9b4740f883'], // 吃茶去-derived ID -> canonical 喫茶去 ID
+  ['t_d3c00df255f8', 't_d0b8619bf019'], // full-width-comma 雲從龍，風從虎 -> canonical ideographic-comma headword
 ]);
 
 function readJsonSafe(p) { try { return JSON.parse(fs.readFileSync(p, 'utf8')); } catch { return null; } }
@@ -97,6 +98,8 @@ if (!REQUIRE_BASELINE && Array.isArray(existingLegacy)) {
     const term = String(field(le, 'SourceTerm', 'sourceTerm') || '').trim();
     if (!term || haveTerms.has(term)) continue;
     const id = computeId(term);
+    const replacement = ID_REPLACEMENTS.get(id);
+    if (replacement && byId.has(replacement)) continue;
     if (byId.has(id)) continue;
     byId.set(id, {
       Id: id, SourceTerm: term, CreatedBy: field(le, 'CreatedBy', 'createdBy') || null, WrittenUtc: field(le, 'WrittenUtc', 'writtenUtc') || NOW,

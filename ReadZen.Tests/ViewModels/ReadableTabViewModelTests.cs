@@ -72,7 +72,10 @@ public class ReadableTabViewModelTests
 
         vm.SetZenContext("test/file.xml", isZen: true);
 
-        Assert.True(vm.IsZenEnabled);
+        // The Zen toggle is now always disabled: classification is prescriptive
+        // (Assets/Data/zen-corpus.json), so users can no longer change what counts as Zen.
+        // SetZenContext still displays the Zen flag and records the rel path.
+        Assert.False(vm.IsZenEnabled);
         Assert.True(vm.IsZenText);
         Assert.Equal("test/file.xml", vm.CurrentRelPathForZen);
     }

@@ -69,6 +69,30 @@ public static class CjkMatchNormalizer
 
     public static string Normalize(string? raw) => NormalizeWithMap(raw).Normalized;
 
+    /// <summary>
+    /// Allocation-light variant of <see cref="Normalize"/>: applies the SAME strip
+    /// policy (<see cref="IsStrippedForMatch"/>) but builds ONLY the normalized string,
+    /// skipping the raw→normalized index map that <see cref="NormalizeWithMap"/> allocates.
+    /// Output is byte-for-byte identical to <c>Normalize(raw)</c> for every input:
+    /// <see cref="NormalizeWithMap"/> begins with <c>raw.Replace('　', ' ')</c>, but
+    /// U+3000 is whitespace and is stripped either way, so the two agree without that line.
+    /// Null/empty input yields the empty string.
+    /// </summary>
+    public static string NormalizeStringOnly(string? raw)
+    {
+        if (string.IsNullOrEmpty(raw))
+            return "";
+
+        var sb = new StringBuilder(raw.Length);
+        foreach (char c in raw)
+        {
+            if (IsStrippedForMatch(c))
+                continue;
+            sb.Append(c);
+        }
+        return sb.ToString();
+    }
+
     public static NormalizedText NormalizeWithMap(string? raw)
     {
         raw ??= "";

@@ -216,13 +216,30 @@ public sealed class MasterCorpusSearchService
         if (!Directory.Exists(originalDir))
             return index;
 
+        // An alias held by more than one distinct master is ambiguous: a bare epithet like 弘覺禪師 or
+        // a common dharma name like 智通 is shared by several masters. Matching on it would misattribute
+        // mentions (or double-count them across masters), so exclude ambiguous aliases and match each
+        // master only on the names unique to it. A master whose specific names remain still resolves;
+        // one left with nothing but shared aliases correctly gets no (unattributable) appearances.
+        var aliasOwners = new Dictionary<string, HashSet<string>>(StringComparer.Ordinal);
+        foreach (var (canonicalName, chineseNames) in masters)
+            foreach (var cn in chineseNames)
+                if (cn.Length >= MinNameLength)
+                {
+                    if (!aliasOwners.TryGetValue(cn, out var owners))
+                        aliasOwners[cn] = owners = new HashSet<string>(StringComparer.Ordinal);
+                    owners.Add(canonicalName);
+                }
+        bool IsUnambiguous(string alias) =>
+            aliasOwners.TryGetValue(alias, out var owners) && owners.Count == 1;
+
         // Build search patterns: canonical name -> list of Chinese names (sorted longest first)
         var searchPatterns = new List<(string CanonicalName, string ChineseName)>();
         foreach (var (canonicalName, chineseNames) in masters)
         {
             foreach (var cn in chineseNames.OrderByDescending(n => n.Length))
             {
-                if (cn.Length >= MinNameLength)
+                if (cn.Length >= MinNameLength && IsUnambiguous(cn))
                     searchPatterns.Add((canonicalName, cn));
             }
         }
@@ -233,7 +250,7 @@ public sealed class MasterCorpusSearchService
         {
             if (!namesByCanonical.ContainsKey(canonicalName))
                 namesByCanonical[canonicalName] = chineseNames
-                    .Where(n => n.Length >= MinNameLength)
+                    .Where(n => n.Length >= MinNameLength && IsUnambiguous(n))
                     .Distinct()
                     .ToList();
         }
@@ -280,6 +297,14 @@ public sealed class MasterCorpusSearchService
                         }
                     }
 
+                    // Count occurrences and snippet over a DISPLAY-SCOPED copy that strips exactly
+                    // what the reader's TEI parser (SPA lib/tei.js, desktop preview) suppresses:
+                    // <teiHeader>, <note> (incl. place="inline"), <cb:mulu> (a nav duplicate of <head>),
+                    // and <rdg> variant readings. Without this the baked mention count exceeds the
+                    // passages the reader can actually surface (e.g. a mulu+head pair counts 2, shows 1).
+                    // The raw `content`/`header` below are still used for author-field/primary detection.
+                    var displayContent = BuildDisplayContent(content);
+
                     // Search for each master's Chinese names
                     var foundMasters = new Dictionary<string, (string MatchedName, int Count, string? Snippet, bool IsPrimary)>();
 
@@ -287,7 +312,7 @@ public sealed class MasterCorpusSearchService
                     {
                         if (foundMasters.ContainsKey(canonicalName)) continue; // already found by a longer name
 
-                        int count = CountOccurrences(content, chineseName);
+                        int count = CountOccurrences(displayContent, chineseName);
                         if (count == 0) continue;
 
                         // Concept-name disambiguation: if the matched name is also a common
@@ -336,8 +361,8 @@ public sealed class MasterCorpusSearchService
                         if (!isPrimary && isManualOverride)
                             isPrimary = true;
 
-                        // Extract a snippet around the first body occurrence
-                        string? snippet = ExtractSnippet(content, chineseName, headerEnd > 0 ? headerEnd : 0);
+                        // Extract a snippet around the first body occurrence (display-scoped, header already stripped)
+                        string? snippet = ExtractSnippet(displayContent, chineseName, 0);
 
                         foundMasters[canonicalName] = (chineseName, count, snippet, isPrimary);
                     }
@@ -533,6 +558,8 @@ public sealed class MasterCorpusSearchService
 
             var slug = Slugify(masterName);
             var shardPath = Path.Combine(mastersDir, slug + ".json");
+            var shardParent = Path.GetDirectoryName(shardPath);
+            if (!string.IsNullOrEmpty(shardParent)) Directory.CreateDirectory(shardParent); // defensive
             var json = JsonSerializer.Serialize(shard, JsonOpts);
             await File.WriteAllTextAsync(shardPath, json, new UTF8Encoding(false), ct);
 
@@ -565,6 +592,8 @@ public sealed class MasterCorpusSearchService
         => name.ToLowerInvariant()
                .Replace("\u2019", "")  // right single quote
                .Replace("'", "")
+               .Replace("/", "")       // strip path separators: a name like "A / B" must not
+               .Replace("\\", "")      // slug into a nested shard path (DirectoryNotFound on export)
                .Replace(' ', '_');
 
     private static Dictionary<string, object?> SerializeAppearance(MasterTextAppearance a)
@@ -680,7 +709,18 @@ public sealed class MasterCorpusSearchService
             .ToList();
     }
 
-    private static int CountOccurrences(string text, string pattern)
+    // Elements the reader's TEI parser suppresses, so counting/snippeting over what remains matches
+    // the passages the SPA and desktop reader actually display. Non-greedy, DOTALL; approximates the
+    // DOM parse closely enough for name-occurrence counting (names never straddle these boundaries).
+    private static readonly System.Text.RegularExpressions.Regex NonDisplayRegex =
+        new System.Text.RegularExpressions.Regex(
+            @"<teiHeader\b[^>]*>.*?</teiHeader>|<note\b[^>]*>.*?</note>|<(?:cb:)?mulu\b[^>]*>.*?</(?:cb:)?mulu>|<rdg\b[^>]*>.*?</rdg>",
+            System.Text.RegularExpressions.RegexOptions.Singleline | System.Text.RegularExpressions.RegexOptions.Compiled);
+
+    /// <summary>Strip teiHeader/note/cb:mulu/rdg so baked counts and snippets match what the reader can display.</summary>
+    internal static string BuildDisplayContent(string content) => NonDisplayRegex.Replace(content, "");
+
+    internal static int CountOccurrences(string text, string pattern)
     {
         int count = 0;
         int idx = 0;

@@ -1,0 +1,112 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:ReadZen.App.ViewModels"
+        x:Class="ReadZen.App.Views.CanonInspectorWindow"
+        x:DataType="vm:CanonInspectorWindowViewModel"
+        x:Name="Root"
+        Width="760"
+        Height="720"
+        Title="Zen Canon Inspector"
+        WindowStartupLocation="CenterOwner">
+
+	<Grid RowDefinitions="Auto,*" Margin="12">
+
+		<!-- Header: version + count + provenance note -->
+		<Border Grid.Row="0"
+				Background="{DynamicResource BarBg}"
+				BorderBrush="{DynamicResource BorderBrush}"
+				BorderThickness="1"
+				CornerRadius="6"
+				Padding="12"
+				Margin="0,0,0,10">
+			<StackPanel Spacing="6">
+				<StackPanel Orientation="Horizontal" Spacing="10">
+					<TextBlock Text="Zen Canon" FontWeight="Bold" FontSize="16" VerticalAlignment="Center"/>
+					<Border Background="{DynamicResource ControlBg}"
+							BorderBrush="{DynamicResource BorderBrush}"
+							BorderThickness="1"
+							CornerRadius="10"
+							Padding="8,1"
+							VerticalAlignment="Center"
+							IsVisible="{Binding HasVersion}">
+						<TextBlock Text="{Binding HeaderVersion}" FontSize="12" Opacity="0.85"/>
+					</Border>
+					<TextBlock Text="{Binding HeaderCount}" FontSize="13" Opacity="0.75" VerticalAlignment="Center"/>
+				</StackPanel>
+				<TextBlock Text="{Binding GeneratedNote}"
+						   IsVisible="{Binding HasGeneratedNote}"
+						   Opacity="0.7"
+						   FontSize="12"
+						   TextWrapping="Wrap"/>
+				<TextBlock Text="Read-only. Click a text to open it in the reader."
+						   Opacity="0.5"
+						   FontSize="11"/>
+			</StackPanel>
+		</Border>
+
+		<!-- Grouped, scrollable canon list -->
+		<Border Grid.Row="1"
+				Background="{DynamicResource ControlBg}"
+				BorderBrush="{DynamicResource BorderBrush}"
+				BorderThickness="1"
+				CornerRadius="6"
+				Padding="4">
+			<ScrollViewer>
+				<ItemsControl ItemsSource="{Binding Sections}">
+					<ItemsControl.ItemTemplate>
+						<DataTemplate x:DataType="vm:CanonSectionGroup">
+							<StackPanel Margin="4,4,4,10">
+
+								<!-- Section header -->
+								<Border Background="{DynamicResource BarBg}"
+										CornerRadius="4"
+										Padding="8,4"
+										Margin="0,0,0,4">
+									<TextBlock Text="{Binding Header}" FontWeight="SemiBold" FontSize="13"/>
+								</Border>
+
+								<!-- Rows -->
+								<ItemsControl ItemsSource="{Binding Rows}">
+									<ItemsControl.ItemTemplate>
+										<DataTemplate x:DataType="vm:CanonTextRow">
+											<Button HorizontalAlignment="Stretch"
+													HorizontalContentAlignment="Stretch"
+													Background="Transparent"
+													BorderThickness="0"
+													Padding="8,5"
+													Margin="0,1"
+													ToolTip.Tip="{Binding RelPath}"
+													Command="{Binding #Root.((vm:CanonInspectorWindowViewModel)DataContext).OpenTextCommand}"
+													CommandParameter="{Binding}">
+												<Grid ColumnDefinitions="*,Auto">
+													<StackPanel Grid.Column="0" Spacing="2">
+														<StackPanel Orientation="Horizontal" Spacing="8">
+															<TextBlock Text="{Binding PrimaryTitle}"
+																	   FontWeight="SemiBold"
+																	   TextWrapping="Wrap"/>
+														</StackPanel>
+														<TextBlock Text="{Binding ChineseTitle}"
+																   IsVisible="{Binding HasChineseTitle}"
+																   Opacity="0.75"
+																   TextWrapping="Wrap"/>
+													</StackPanel>
+													<TextBlock Grid.Column="1"
+															   Text="{Binding CbetaId}"
+															   Opacity="0.55"
+															   FontSize="12"
+															   VerticalAlignment="Center"
+															   Margin="10,0,0,0"/>
+												</Grid>
+											</Button>
+										</DataTemplate>
+									</ItemsControl.ItemTemplate>
+								</ItemsControl>
+							</StackPanel>
+						</DataTemplate>
+					</ItemsControl.ItemTemplate>
+				</ItemsControl>
+			</ScrollViewer>
+		</Border>
+
+	</Grid>
+</Window>

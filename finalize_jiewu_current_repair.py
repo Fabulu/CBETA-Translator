@@ -1,0 +1,7 @@
+#!/usr/bin/env python3
+import hashlib,json
+from datetime import datetime,timezone
+from pathlib import Path
+H=Path('/mnt/c/programmieren/mergeworkcbeta/cbeta-translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build');d=H/'fresh-build/entries/t_227099445b8c';g=json.load(open(H/'maintenance/current-byte-jiewu-focused-gate.json'))
+out={'schemaVersion':'current-byte-jiewu-independent-repair.v1','generatedUtc':datetime.now(timezone.utc).isoformat(),'id':'t_227099445b8c','term':'解悟','entrySha256':hashlib.sha256((d/'entry.v2.json').read_bytes()).hexdigest(),'evidenceDraftSha256':hashlib.sha256((d/'evidence.draft.json').read_bytes()).hexdigest(),'workSha256':hashlib.sha256((d/'WORK.md').read_bytes()).hexdigest(),'decisions':['Excluded Juelang’s opaque verbal 汝被我解悟 occurrence from equivalent nominal evidence.','Added Wuyi Yuanlai’s exact one-span word-understanding versus personal-penetration contrast.','Bound the Zongjing lu authored clause to Yongming Yanshou.','Bound the Chanyuan preface authored clause to Guifeng Zongmi.'],'validation':{'report':'maintenance/current-byte-jiewu-focused-gate.json','hardPass':g['hardPass'],'exactFailures':g['exactKwic']['failureCount'],'attributionExitCode':g['attribution']['exitCode'],'publicFeedbackFlagged':g['publicFeedback']['payload']['flagged'],'depthSenseExitCode':g['depthSense']['exitCode']},'lineageEdited':False}
+(H/'maintenance/current-byte-jiewu-repair-ledger.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n',encoding='utf8')

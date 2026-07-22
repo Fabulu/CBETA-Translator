@@ -221,7 +221,16 @@ public sealed class ZenMasterManagerService
         if (names.Count == 0)
             return;
 
-        var record = records.FirstOrDefault(r => SharesAnyName(r.Aliases, names));
+        // A base entry comes from the authoritative roster, where every master is a distinct person
+        // even when two share an epithet (e.g. 弘覺禪師, held by several masters). Merge a base entry
+        // into an existing record only when they share the PRIMARY name (a genuine duplicate) — never
+        // on an incidental shared alias, which would collapse two different masters into one and lose
+        // the loser's canonical name. Community variants still merge into their base record by any
+        // shared alias (they are edits of the same person).
+        var record = isBase
+            ? records.FirstOrDefault(r => r.Variants.Any(v =>
+                  v.Names.Count > 0 && string.Equals(v.Names[0], names[0], StringComparison.OrdinalIgnoreCase)))
+            : records.FirstOrDefault(r => SharesAnyName(r.Aliases, names));
         if (record == null)
         {
             record = new ZenMasterRecord();

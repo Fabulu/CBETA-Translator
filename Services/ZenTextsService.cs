@@ -25,6 +25,9 @@ public sealed class ZenTextsService : IZenTextsService
     private readonly string _assetPath;
     private readonly SemaphoreSlim _gate = new(1, 1);
     private HashSet<string> _zen = new(StringComparer.OrdinalIgnoreCase);
+    private IReadOnlyList<string> _texts = System.Array.Empty<string>();
+    private string? _listVersion;
+    private string? _generatedNote;
     private bool _loaded;
 
     public ZenTextsService(string? assetPathOverride = null)
@@ -44,6 +47,9 @@ public sealed class ZenTextsService : IZenTextsService
         try
         {
             var set = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            var ordered = new List<string>();
+            string? listVersion = null;
+            string? generatedNote = null;
 
             if (File.Exists(_assetPath))
             {
@@ -52,14 +58,25 @@ public sealed class ZenTextsService : IZenTextsService
                 {
                     var data = JsonSerializer.Deserialize<ZenCorpusFile>(
                         json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-                    if (data?.Texts != null)
-                        foreach (var rel in data.Texts)
-                            if (!string.IsNullOrWhiteSpace(rel))
-                                set.Add(Norm(rel));
+                    if (data != null)
+                    {
+                        listVersion = data.ListVersion;
+                        generatedNote = data.GeneratedNote;
+                        if (data.Texts != null)
+                            foreach (var rel in data.Texts)
+                                if (!string.IsNullOrWhiteSpace(rel))
+                                {
+                                    var n = Norm(rel);
+                                    if (set.Add(n)) ordered.Add(n); // dedupe, preserve asset order
+                                }
+                    }
                 }
             }
 
             _zen = set;
+            _texts = ordered;
+            _listVersion = listVersion;
+            _generatedNote = generatedNote;
             _loaded = true;
         }
         finally
@@ -70,6 +87,15 @@ public sealed class ZenTextsService : IZenTextsService
 
     public bool IsZen(string relPath)
         => _loaded && _zen.Contains(Norm(relPath));
+
+    /// <inheritdoc/>
+    public IReadOnlyList<string> Texts => _texts;
+
+    /// <inheritdoc/>
+    public string? ListVersion => _listVersion;
+
+    /// <inheritdoc/>
+    public string? GeneratedNote => _generatedNote;
 
     /// <summary>
     /// No-op. Zen classification is prescriptive (Assets/Data/zen-corpus.json) and cannot be
@@ -83,6 +109,8 @@ public sealed class ZenTextsService : IZenTextsService
     private sealed class ZenCorpusFile
     {
         public int Version { get; set; } = 1;
+        // Human-readable version label surfaced by the Canon Inspector (optional in the asset).
+        public string? ListVersion { get; set; }
         public string? Source { get; set; }
         public string? GeneratedNote { get; set; }
         public List<string> Texts { get; set; } = new();

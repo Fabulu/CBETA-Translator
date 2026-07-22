@@ -217,6 +217,9 @@ public class StubZenTextsService : IZenTextsService
     public Task LoadAsync(string root) => Task.CompletedTask;
     public bool IsZen(string relPath) => false;
     public Task SetZenAsync(string root, string relPath, bool isZen) => Task.CompletedTask;
+    public IReadOnlyList<string> Texts => System.Array.Empty<string>();
+    public string? ListVersion => null;
+    public string? GeneratedNote => null;
 }
 
 // ---- IIndexedTranslationService ----
