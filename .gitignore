@@ -33,6 +33,15 @@ publish/
 *.log
 *.tmp
 *.cache
+*.stackdump
+
+##################################################
+# Tooling caches / runtime junk (keep out of the app repo)
+##################################################
+
+.wrangler/
+__pycache__/
+*.pyc
 
 ##################################################
 # NuGet

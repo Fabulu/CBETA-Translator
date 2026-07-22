@@ -27,6 +27,11 @@ public partial class ResearchGraphWindow : Window
     public Func<IReadOnlyList<FileNavItem>>? FileItems { get; set; }
     public Func<string, TextLicenseInfo?>? TextMetadataLookup { get; set; }
     public Func<string, (string? En, string? EnShort, string? Zh)>? TitleLookup { get; set; }
+
+    /// <summary>Overlay-aware dictionary root (same one the store uses); set by the host before showing.
+    /// When set, the Zen dictionary index is loaded lazily in the background so term-node clicks can
+    /// resolve full entries read-only. Null leaves term nodes on their snapshot fallback.</summary>
+    public string? DictionaryRoot { get; set; }
     private GraphStatisticsPanel? _statsPanel;
     private GraphLegendPanel? _legendPanel;
     private List<TermDisplayItem>? _termData;
@@ -87,6 +92,17 @@ public partial class ResearchGraphWindow : Window
         Deactivated += (_, _) =>
         {
             foreach (var h in _hoverDicts) h.ForceHide();
+        };
+
+        // Warm the Zen dictionary index in the background so term-node clicks resolve full entries
+        // read-only. Failure is non-fatal (inspector falls back to the ref snapshot).
+        Opened += (_, _) =>
+        {
+            var root = DictionaryRoot;
+            if (string.IsNullOrWhiteSpace(root)) return;
+            var lookup = App.Services.GetService<IZenDictionaryLookup>();
+            if (lookup == null) return;
+            AsyncGuard.Run(() => lookup.EnsureLoadedAsync(root!), "ResearchGraphWindow.LoadDictionary");
         };
     }
 
@@ -984,7 +1000,6 @@ public partial class ResearchGraphWindow : Window
         if (_vm == null) return;
 
         string? termName = null;
-        string? termLabel = null;
 
         if (_termData != null && _termData.Count > 0)
         {
@@ -992,7 +1007,6 @@ public partial class ResearchGraphWindow : Window
             var result = await dialog.ShowDialog<TermDisplayItem?>(this);
             if (result == null) return;
             termName = result.SourceTerm;
-            termLabel = result.Display;
         }
         else
         {
@@ -1019,7 +1033,6 @@ public partial class ResearchGraphWindow : Window
                 if (e.Key == Key.Escape) renameWindow.Close();
             };
             await renameWindow.ShowDialog(this);
-            termLabel = termName;
         }
 
         TermDisplayItem? termItem = _termData?.FirstOrDefault(t => t.SourceTerm == termName);
@@ -1028,17 +1041,36 @@ public partial class ResearchGraphWindow : Window
         {
             var nodeId = $"term:{termName}";
             if (_vm.Nodes.Any(n => n.NodeId == nodeId)) return;
+
+            // Persist a dictionary-entry ref in the same gesture (S1/S5). HARD RULE: ref only — no
+            // dictionary body. The node label is the raw CJK headword so a term-node click can resolve
+            // the full entry by exact lookup (S2/S6). Fall back to ComputeId if the picker lacked an Id.
+            var preferred = termItem?.PreferredTarget ?? "";
+            var entryRef = new DictionaryEntryRef
+            {
+                Id = !string.IsNullOrEmpty(termItem?.Id) ? termItem!.Id : DictionaryStore.ComputeId(termName),
+                SourceTerm = termName,
+                PreferredTarget = preferred
+            };
+
             var node = new ResearchGraphNode
             {
                 NodeId = nodeId, NodeType = ScholarNodeType.TermbaseEntry,
-                Label = termLabel ?? termName, ColorHex = "#81C784",
-                SecondaryLabel = termItem?.PreferredTarget ?? "",
-                SourceData = termItem,
+                Label = termName, ColorHex = "#81C784",
+                SecondaryLabel = preferred,
+                SourceData = entryRef,
                 X = _vm.Nodes.Count > 0 ? _vm.Nodes.Average(n => n.X) + 30 : 400,
                 Y = _vm.Nodes.Count > 0 ? _vm.Nodes.Average(n => n.Y) + 30 : 300
             };
             _vm.Nodes.Add(node);
             _vm.RestoreNodeToMap(node);
+
+            var coll = _vm.GetCollection();
+            coll.DictionaryEntries ??= new List<DictionaryEntryRef>();
+            if (!coll.DictionaryEntries.Any(e => e.SourceTerm == termName))
+                coll.DictionaryEntries.Add(entryRef);
+            // Re-adding a previously-removed term should stick across reload.
+            coll.SuppressedAutoNodeIds.Remove(nodeId);
             _canvas?.InvalidateVisual();
             UpdateStatusBar(); UpdateLeftPanels();
         }
@@ -1176,6 +1208,13 @@ public partial class ResearchGraphWindow : Window
         {
             var linkId = nodeId["link:".Length..];
             _vm.GetCollection()?.LinkNodes?.RemoveAll(l => l.Id == linkId);
+        }
+        // Remove the dictionary-entry ref if it was a term node (S5 symmetry). Any typed edge whose
+        // term endpoint no longer exists then drops silently on rebuild, matching link/master removal.
+        if (nodeId.StartsWith("term:"))
+        {
+            var sourceTerm = nodeId["term:".Length..];
+            _vm.GetCollection()?.DictionaryEntries?.RemoveAll(e => e.SourceTerm == sourceTerm);
         }
         _vm.ExecuteCommand(new RemoveNodeCommand(_vm, nodeId));
         _vm.SelectedNode = null;
@@ -1600,27 +1639,67 @@ public partial class ResearchGraphWindow : Window
         }
         else if (node.NodeType == ScholarNodeType.TermbaseEntry)
         {
-            content.Children.Add(new SelectableTextBlock
+            // S6: resolve the full entry lazily + read-only from the local dictionary artifact by the
+            // raw CJK head term (node.Label). On a hit, render the shared DictionaryEntryCard; on a
+            // miss (unloaded index or unknown term) keep the flat snapshot fallback. Never eager-loads.
+            var lookup = App.Services.GetService<IZenDictionaryLookup>();
+            DictionaryEntry? entry = null;
+            var hit = lookup != null && lookup.TryLookupExact(node.Label, out entry);
+
+            if (hit && entry != null)
             {
-                Text = $"Term: {node.Label}",
-                FontSize = 12, Opacity = 0.9,
-                Margin = new Avalonia.Thickness(0, 8, 0, 0)
-            });
-            if (!string.IsNullOrEmpty(node.SecondaryLabel))
+                var card = new DictionaryEntryCard
+                {
+                    BrushResolver = key => this.TryFindResource(key, out var res) && res is Avalonia.Media.IBrush b ? b : null,
+                    Entry = entry
+                };
+                card.OpenOccurrenceRequested += (_, e) =>
+                    NavigationRequested?.Invoke(this, new NavigationRequest
+                    {
+                        RelPath = e.RelPath,
+                        FromLb = e.FromLb,
+                        ToLb = e.ToLb
+                    });
+                card.NavigateRequested += (_, e) =>
+                {
+                    if (e.Kind == DictionaryNavigateKind.Master)
+                        OpenMasterRequested?.Invoke(this, e.Target);
+                    else
+                        DictionaryRequested?.Invoke(this, e.Target);
+                };
+                content.Children.Add(card);
+            }
+            else
+            {
                 content.Children.Add(new SelectableTextBlock
                 {
-                    Text = $"Preferred: {node.SecondaryLabel}",
-                    FontSize = 11, Opacity = 0.8, TextWrapping = Avalonia.Media.TextWrapping.Wrap,
-                    Margin = new Avalonia.Thickness(0, 4, 0, 0)
+                    Text = $"Term: {node.Label}",
+                    FontSize = 12, Opacity = 0.9,
+                    Margin = new Avalonia.Thickness(0, 8, 0, 0)
                 });
-            // Show alternate targets if SourceData is TermDisplayItem
-            if (node.SourceData is TermDisplayItem termItem && termItem.AlternateTargets.Count > 0)
-            {
+                if (!string.IsNullOrEmpty(node.SecondaryLabel))
+                    content.Children.Add(new SelectableTextBlock
+                    {
+                        Text = $"Preferred: {node.SecondaryLabel}",
+                        FontSize = 11, Opacity = 0.8, TextWrapping = Avalonia.Media.TextWrapping.Wrap,
+                        Margin = new Avalonia.Thickness(0, 4, 0, 0)
+                    });
+                // Show alternate targets if SourceData carries them (legacy TermDisplayItem nodes).
+                if (node.SourceData is TermDisplayItem termItem && termItem.AlternateTargets.Count > 0)
+                {
+                    content.Children.Add(new SelectableTextBlock
+                    {
+                        Text = "Alternates: " + string.Join(", ", termItem.AlternateTargets),
+                        FontSize = 10, Opacity = 0.6, TextWrapping = Avalonia.Media.TextWrapping.Wrap,
+                        Margin = new Avalonia.Thickness(0, 2, 0, 0)
+                    });
+                }
                 content.Children.Add(new SelectableTextBlock
                 {
-                    Text = "Alternates: " + string.Join(", ", termItem.AlternateTargets),
-                    FontSize = 10, Opacity = 0.6, TextWrapping = Avalonia.Media.TextWrapping.Wrap,
-                    Margin = new Avalonia.Thickness(0, 2, 0, 0)
+                    Text = "No dictionary entry found for this term.",
+                    FontSize = 10, Opacity = 0.5, FontStyle = Avalonia.Media.FontStyle.Italic,
+                    TextWrapping = Avalonia.Media.TextWrapping.Wrap,
+                    Margin = new Avalonia.Thickness(0, 6, 0, 0)
                 });
             }
         }

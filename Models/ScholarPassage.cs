@@ -161,6 +161,36 @@ public sealed class ScholarCollection
 
     /// <summary>Web link nodes added to the graph.</summary>
     public List<LinkNode> LinkNodes { get; set; } = new();
+
+    /// <summary>
+    /// Manually-added dictionary term references, materialized as term nodes in the research graph.
+    /// Additive/optional (no schema bump; reading is never version-gated) — old files default to empty.
+    /// </summary>
+    public List<DictionaryEntryRef> DictionaryEntries { get; set; } = new();
+}
+
+/// <summary>
+/// A reference to a rich Zen-dictionary entry, materialized as a term node in the research graph.
+/// HARD RULE (dictionary-not-shareable): this stores ONLY the reference fields below — never the
+/// dictionary body (senses/explanations/occurrences). The full entry is resolved read-only at
+/// display time from the local dictionary artifact; nothing here is a share/write/merge path.
+/// </summary>
+public sealed class DictionaryEntryRef
+{
+    /// <summary>Deterministic dictionary entry id (DictionaryStore.ComputeId of SourceTerm).</summary>
+    public string Id { get; set; } = "";
+
+    /// <summary>Raw CJK headword — never slugified. The graph node id is "term:" + this value.</summary>
+    public string SourceTerm { get; set; } = "";
+
+    /// <summary>English gloss snapshot, shown when the live entry cannot be resolved.</summary>
+    public string PreferredTarget { get; set; } = "";
+
+    /// <summary>Optional sense key selecting a specific sense of the entry.</summary>
+    public string? SenseKey { get; set; }
+
+    /// <summary>Optional master name for a master-specific sense.</summary>
+    public string? MasterName { get; set; }
 }
 
 public sealed class ScholarGraphLayout

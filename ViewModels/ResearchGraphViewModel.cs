@@ -297,6 +297,30 @@ public class ResearchGraphViewModel
             }
         }
 
+        // Add term (dictionary entry) nodes — manual refs materialized here so they, and any
+        // typed edges anchored on "term:"+SourceTerm, survive reload (mirrors the link-node loop).
+        if (_collection.DictionaryEntries != null)
+        {
+            foreach (var r in _collection.DictionaryEntries)
+            {
+                if (string.IsNullOrEmpty(r.SourceTerm)) continue;
+                var nodeId = $"term:{r.SourceTerm}";
+                if (_nodeMap.ContainsKey(nodeId)) continue;
+                if (_collection.SuppressedAutoNodeIds.Contains(nodeId)) continue;
+                var node = new ResearchGraphNode
+                {
+                    NodeId = nodeId,
+                    NodeType = ScholarNodeType.TermbaseEntry,
+                    Label = r.SourceTerm,
+                    SecondaryLabel = r.PreferredTarget,
+                    ColorHex = "#81C784",
+                    SourceData = r
+                };
+                Nodes.Add(node);
+                _nodeMap[nodeId] = node;
+            }
+        }
+
         // Add sub-collection nodes (children of this collection)
         foreach (var child in _allCollections.Where(c => c.ParentCollectionId == _collection.Id))
         {

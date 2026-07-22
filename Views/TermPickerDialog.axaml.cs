@@ -8,6 +8,8 @@ namespace ReadZen.App.Views;
 
 public sealed class TermDisplayItem
 {
+    /// <summary>Deterministic dictionary entry id (DictionaryStore.ComputeId of SourceTerm); may be empty.</summary>
+    public string Id { get; set; } = "";
     public string SourceTerm { get; set; } = "";
     public string PreferredTarget { get; set; } = "";
     public List<string> AlternateTargets { get; set; } = new();

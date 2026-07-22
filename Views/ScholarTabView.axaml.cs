@@ -372,6 +372,7 @@ public partial class ScholarTabView : UserControl
                         var hits = await termService.GetAllTermsAsync(root);
                         termData = hits.Select(h => new TermDisplayItem
                         {
+                            Id = DictionaryStore.ComputeId(h.SourceTerm),
                             SourceTerm = h.SourceTerm,
                             PreferredTarget = h.PreferredTarget,
                             AlternateTargets = h.AlternateTargets ?? new()
@@ -382,6 +383,7 @@ public partial class ScholarTabView : UserControl
 
                 var graphWindow = new ResearchGraphWindow(
                     _vm.SelectedCollection, _vm.Collections.ToList(), termData);
+                graphWindow.DictionaryRoot = _vm.GetRoot();
                 graphWindow.FileItems = FileItems;
                 graphWindow.TextMetadataLookup = TextMetadataLookup;
                 graphWindow.TitleLookup = TitleLookup;
@@ -1043,6 +1045,7 @@ public partial class ScholarTabView : UserControl
                 var hits = await termService.GetAllTermsAsync(root);
                 termData = hits.Select(h => new TermDisplayItem
                 {
+                    Id = DictionaryStore.ComputeId(h.SourceTerm),
                     SourceTerm = h.SourceTerm,
                     PreferredTarget = h.PreferredTarget,
                     AlternateTargets = h.AlternateTargets ?? new()
@@ -1053,6 +1056,7 @@ public partial class ScholarTabView : UserControl
 
         var graphWindow = new ResearchGraphWindow(
             _vm.SelectedCollection, _vm.Collections.ToList(), termData);
+        graphWindow.DictionaryRoot = _vm.GetRoot();
         graphWindow.FileItems = FileItems;
         graphWindow.TextMetadataLookup = TextMetadataLookup;
         graphWindow.NavigationRequested += (_, req) => NavigationRequested?.Invoke(this, req);
