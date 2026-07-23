@@ -19,8 +19,242 @@ env:
   PORTABLE_GIT_URL: https://github.com/git-for-windows/git/releases/download/v2.49.0.windows.1/PortableGit-2.49.0-64-bit.7z.exe
 
 jobs:
+  # ════════════════════════════════════════════════════════════════
+  # PR-S3: single upstream job that builds the bundled search index
+  # ONCE (was per-matrix-leg ×4 — see git history for the old inline
+  # step), trims it to the query family, PROVES the trim + guid, and
+  # hands the artifact to every build leg. It also hosts the
+  # release-blocking `guid-bundle-guard`: a tag that bumps a search
+  # BuildGuid without shipping a matching-guid bundle fails here, so
+  # the whole install base can never cold-rebuild with zero signal
+  # (SPEC §6.2 / §6.3).
+  #
+  # This job ALWAYS runs (never job-level `if:`-skipped), so downstream
+  # `needs:` resolves cleanly and the guard runs on every tag even in
+  # the vars-unset transition period — during which the guard is the
+  # ONLY protection against a silent guid bump.
+  # ════════════════════════════════════════════════════════════════
+  prebuild-index:
+    name: Prebuild bundled search index (once) + guid guard
+    runs-on: ubuntu-latest
+    outputs:
+      # Current release binary's search family BuildGuid (always computed).
+      build_guid: ${{ steps.guid.outputs.build_guid }}
+      # 'true' only when a trimmed, guid-verified bundle was staged + uploaded.
+      bundle_built: ${{ steps.build.outputs.bundle_built }}
+      # '1' when a MISSING bundle is sanctioned for this run (vars unset =
+      # transition, explicit SKIP_BUNDLE, or a prerelease tag vX.Y.Z-...).
+      bundleless_ok: ${{ steps.mode.outputs.bundleless_ok }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+
+      # Decide, once, whether this run should build a bundle and whether a
+      # bundle-less outcome is sanctioned. Gating on the corpus-repo vars is a
+      # transition-only affordance: unset ⇒ no bundle ⇒ releases behave exactly
+      # as before S7 (first run cold-builds) — but the guid-guard below still runs.
+      - name: Determine bundle mode
+        id: mode
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          HAVE_VARS=0
+          if [ -n "${{ vars.PREBUILT_INDEX_TEXTS_REPO }}" ] && [ -n "${{ vars.PREBUILT_INDEX_TRANS_REPO }}" ]; then
+            HAVE_VARS=1
+          fi
+
+          SKIP_BUNDLE=0
+          if [ "${{ vars.SKIP_BUNDLE }}" = "true" ]; then SKIP_BUNDLE=1; fi
+
+          # A hyphenated tag (vX.Y.Z-dev1, -rc1, -pre …) is a prerelease: opt-in,
+          # not pushed to the whole install base, so a bundle-less prerelease is fine.
+          PRERELEASE=0
+          case "$GITHUB_REF_NAME" in *-*) PRERELEASE=1 ;; esac
+
+          SHOULD_BUILD=0
+          if [ "$HAVE_VARS" = "1" ] && [ "$SKIP_BUNDLE" = "0" ]; then SHOULD_BUILD=1; fi
+
+          BUNDLELESS_OK=0
+          if [ "$HAVE_VARS" = "0" ] || [ "$SKIP_BUNDLE" = "1" ] || [ "$PRERELEASE" = "1" ]; then
+            BUNDLELESS_OK=1
+          fi
+
+          echo "should_build=$SHOULD_BUILD"   >> "$GITHUB_OUTPUT"
+          echo "bundleless_ok=$BUNDLELESS_OK" >> "$GITHUB_OUTPUT"
+
+          echo "mode: have_vars=$HAVE_VARS should_build=$SHOULD_BUILD skip_bundle=$SKIP_BUNDLE prerelease=$PRERELEASE bundleless_ok=$BUNDLELESS_OK (tag=$GITHUB_REF_NAME)"
+
+      # Always compute the release binary's own search family guid. This is the
+      # authority the validation + guard compare against. `--print-build-guid`
+      # returns before Avalonia init, so it is safe on a display-less runner.
+      # (Build/restore noise on stdout is harmless — we sed out our own line.)
+      - name: Print current search BuildGuid
+        id: guid
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT="$(dotnet run -c Release --project "${{ env.PROJECT_FILE }}" -v quiet -- --print-build-guid)"
+          echo "$OUT"
+          GUID="$(printf '%s\n' "$OUT" | sed -n 's/^SearchBuildGuid=//p' | tr -d '[:space:]')"
+          if [ -z "$GUID" ]; then
+            echo "::error::--print-build-guid produced no SearchBuildGuid line"; exit 1
+          fi
+          echo "build_guid=$GUID" >> "$GITHUB_OUTPUT"
+          echo "CUR_GUID=$GUID"   >> "$GITHUB_ENV"
+          echo "Current search family BuildGuid: $GUID"
+
+      # Build the bundle ONCE, trim to the query family, and PROVE both the trim
+      # (allow/deny by explicit filename) and the guid EQUALITY (bundle manifest
+      # BuildGuid == the binary's own guid — guards against a stale artifact /
+      # build cache serving a prior binary). Only runs when the vars gate says so.
+      - name: Build + trim + validate bundled index
+        id: build
+        if: steps.mode.outputs.should_build == '1'
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          CORPUS_DIR="$RUNNER_TEMP/prebuilt-corpus"
+          rm -rf "$CORPUS_DIR"
+          mkdir -p "$CORPUS_DIR"
+
+          echo "Cloning corpus repos (shallow) ..."
+          git clone --depth 1 "${{ vars.PREBUILT_INDEX_TEXTS_REPO }}" "$CORPUS_DIR/texts"
+          git clone --depth 1 "${{ vars.PREBUILT_INDEX_TRANS_REPO }}" "$CORPUS_DIR/trans"
+
+          # Resolve the CBETA layout inside each clone (xml-p5 / xml-p5t).
+          SRC="$CORPUS_DIR/texts/xml-p5"
+          TRN="$CORPUS_DIR/trans/xml-p5t"
+          if [ ! -d "$SRC" ]; then echo "::error::source dir $SRC not found in texts repo"; exit 1; fi
+          if [ ! -d "$TRN" ]; then echo "::error::trans dir $TRN not found in trans repo"; exit 1; fi
+
+          OUT="Assets/PrebuiltIndex"
+          mkdir -p "$OUT"
+
+          echo "Building bundled search index into $OUT ..."
+          dotnet run -c Release --project "${{ env.PROJECT_FILE }}" -- \
+            --build-search-index \
+            --source-dir "$SRC" \
+            --trans-dir  "$TRN" \
+            --out-dir    "$OUT"
+
+          if [ ! -f "$OUT/search.index.bin" ]; then
+            echo "::error::--build-search-index did not produce search.index.bin"; exit 1
+          fi
+
+          # ── Trim (PR-S2, SPEC §5.1): ship only the QUERY family (bloom + inverted
+          #    + corpusfreq + their manifests). Drop the 779 MB text sidecar (snippets
+          #    fall back to XML parse when absent; the manifest MUST go with its bin)
+          #    and the 235 MB build-only gramsets cache.
+          echo "Trimming build-only / lazily-regenerated artifacts from the bundle ..."
+          rm -f "$OUT/search.text.bin" \
+                "$OUT/search.text.manifest.json" \
+                "$OUT"/search.gramsets.*
+
+          # ── Validate DENY list: prove the trim actually ran.
+          for gone in search.text.bin search.text.manifest.json; do
+            if [ -e "$OUT/$gone" ]; then echo "::error::trim failed: $gone still present"; exit 1; fi
+          done
+          if ls "$OUT"/search.gramsets.* >/dev/null 2>&1; then
+            echo "::error::trim failed: search.gramsets.* still present"; exit 1
+          fi
+
+          # ── Validate ALLOW list: the whole query family must remain (a partial
+          #    family shares one IndexStamp and would be rejected by loaders).
+          for keep in search.index.bin search.index.manifest.json \
+                      search.inverted.bin search.corpusfreq.bin search.corpusfreq.manifest.json; do
+            if [ ! -e "$OUT/$keep" ]; then echo "::error::bundle missing required query artifact: $keep"; exit 1; fi
+          done
+
+          # ── Validate guid EQUALITY: the bundle's own manifest guid must equal the
+          #    binary that will ship this release. Not-equal ⇒ a stale artifact or a
+          #    format drift snuck in; fail loudly rather than seed a mismatched bundle.
+          MANIFEST_GUID="$(sed -n 's/.*"BuildGuid"[: ]*"\([^"]*\)".*/\1/p' "$OUT/search.index.manifest.json" | head -n1)"
+          if [ -z "$MANIFEST_GUID" ]; then
+            echo "::error::could not read BuildGuid from $OUT/search.index.manifest.json"; exit 1
+          fi
+          if [ "$MANIFEST_GUID" != "$CUR_GUID" ]; then
+            echo "::error::bundle BuildGuid ($MANIFEST_GUID) != release binary BuildGuid ($CUR_GUID) — stale artifact or format drift"; exit 1
+          fi
+          echo "Bundle guid matches release binary guid: $CUR_GUID"
+
+          echo "Staged bundled index (trimmed):"
+          ls -la "$OUT"
+
+          echo "bundle_built=true" >> "$GITHUB_OUTPUT"
+
+      # The single bundle every matrix leg downloads. Only uploaded when a bundle
+      # was actually built + validated above.
+      - name: Upload prebuilt index artifact
+        if: steps.build.outputs.bundle_built == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: prebuilt-search-index
+          path: Assets/PrebuiltIndex
+          if-no-files-found: error
+          retention-days: 7
+
+      # ── Release-blocking guid-bundle-guard (SPEC §6.2 / §6.3 THE operability hole).
+      #    If a matching-guid bundle ships this release, PASS. Otherwise recover the
+      #    PREVIOUS release's shipped guid (its LAST_RELEASED_GUID asset — the release
+      #    job below writes one every time). If the guid CHANGED and no bundle ships,
+      #    every install would cold-rebuild with zero signal ⇒ FAIL the tag build.
+      #    Bundle-less is allowed only when the guid is unchanged or the run is
+      #    sanctioned; either way it is logged as a visible warning annotation.
+      - name: guid-bundle-guard (release-blocking)
+        id: guard
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+
+          CUR="$CUR_GUID"
+          BUILT="${{ steps.build.outputs.bundle_built }}"
+          BUNDLELESS_OK="${{ steps.mode.outputs.bundleless_ok }}"
+
+          # A matching-guid bundle ships? The build step's validation already proved
+          # (bundle manifest guid == CUR) before setting bundle_built=true.
+          if [ "$BUILT" = "true" ]; then
+            echo "guid-bundle-guard: PASS — a matching-guid bundle ($CUR) ships in this release."
+            exit 0
+          fi
+
+          # No bundle this release. Recover the previous release's shipped guid.
+          PREV=""
+          PREV_TAG="$(gh release list --limit 1 --json tagName -q '.[0].tagName' 2>/dev/null || true)"
+          if [ -n "$PREV_TAG" ] && [ "$PREV_TAG" != "$GITHUB_REF_NAME" ]; then
+            if gh release download "$PREV_TAG" -p LAST_RELEASED_GUID -D _prevguid 2>/dev/null; then
+              PREV="$(tr -d '[:space:]' < _prevguid/LAST_RELEASED_GUID || true)"
+            fi
+          fi
+
+          if [ -z "$PREV" ]; then
+            echo "::warning::guid-bundle-guard: no previous LAST_RELEASED_GUID asset found (bootstrap / first guarded release). Cannot compare; allowing bundle-less release with guid $CUR."
+            exit 0
+          fi
+
+          if [ "$PREV" != "$CUR" ]; then
+            echo "::error::guid-bundle-guard: search BuildGuid changed ($PREV -> $CUR) but this release ships NO matching bundle. Every install would cold-rebuild silently. Set PREBUILT_INDEX_* repo vars (and clear SKIP_BUNDLE) so prebuild-index cuts a matching bundle, or revert the guid bump."
+            exit 1
+          fi
+
+          # guid unchanged ⇒ a bundle-less release does not churn the install base.
+          if [ "$BUNDLELESS_OK" = "1" ]; then
+            echo "::warning::guid-bundle-guard: shipping bundle-less (guid unchanged: $CUR; sanctioned — vars unset / SKIP_BUNDLE / prerelease)."
+          else
+            echo "guid-bundle-guard: PASS — guid unchanged ($CUR); no new bundle required."
+          fi
+
   build:
     name: Build (${{ matrix.rid }})
+    needs: prebuild-index
     strategy:
       fail-fast: false
       matrix:
@@ -57,56 +291,38 @@ jobs:
         run: echo "RELEASE_VERSION=${GITHUB_REF_NAME#v}" >> "$GITHUB_ENV"
 
       # ───────────────────────────────────────────────────────────────
-      # S7: stage the bundled prebuilt search index BEFORE publish, so the
-      # csproj `<Content Include="Assets\PrebuiltIndex\**\*">` copies it into
-      # the publish output. The app seeds it into a virgin user index root on
-      # first run (SearchIndexService.TrySeedFromBundle).
-      #
-      # UNVALIDATED: this has never been exercised by a real CI run. It is gated
-      # on two repo variables holding the corpus repo URLs; when they are unset
-      # the step is skipped and releases behave exactly as before (no bundle →
-      # first run does a cold full build). Runs the headless `--build-search-index`
-      # mode, which exits before Avalonia/Velopack init and is therefore safe on a
-      # display-less runner (every OS in the matrix). NOTE: this clones + indexes on
-      # every matrix leg (4x per release); if that proves too slow, hoist it into a
-      # single upstream job that uploads Assets/PrebuiltIndex as an artifact the
-      # build jobs download.
+      # S7 / PR-S3: stage the bundled prebuilt search index BEFORE publish, so the
+      # csproj `<Content Include="Assets\PrebuiltIndex\**\*">` copies it into the
+      # publish output. The bundle is built ONCE upstream (prebuild-index) and every
+      # leg downloads the identical artifact — no per-leg clone+index (was 4×).
       # ───────────────────────────────────────────────────────────────
-      - name: Generate bundled search index (Assets/PrebuiltIndex)
-        if: ${{ vars.PREBUILT_INDEX_TEXTS_REPO != '' && vars.PREBUILT_INDEX_TRANS_REPO != '' }}
+      - name: Download prebuilt index artifact (Assets/PrebuiltIndex)
+        if: needs.prebuild-index.outputs.bundle_built == 'true'
+        uses: actions/download-artifact@v4
+        with:
+          name: prebuilt-search-index
+          path: Assets/PrebuiltIndex
+
+      # Explicit needs/if contract (SPEC §6.2 point 3): a skipped/bundle-less upstream
+      # is NOT a GitHub Actions failure, so a leg must not silently ship without the
+      # bundle it was supposed to carry. Absent bundle ⇒ FAIL, unless the run is a
+      # sanctioned bundle-less pattern (vars unset / SKIP_BUNDLE / prerelease), in
+      # which case the leg logs a warning and ships bundle-less (exactly today's
+      # behavior — first run cold-builds).
+      - name: Verify bundled index presence
         shell: bash
         run: |
           set -euo pipefail
-
-          CORPUS_DIR="$RUNNER_TEMP/prebuilt-corpus"
-          rm -rf "$CORPUS_DIR"
-          mkdir -p "$CORPUS_DIR"
-
-          echo "Cloning corpus repos (shallow) ..."
-          git clone --depth 1 "${{ vars.PREBUILT_INDEX_TEXTS_REPO }}" "$CORPUS_DIR/texts"
-          git clone --depth 1 "${{ vars.PREBUILT_INDEX_TRANS_REPO }}" "$CORPUS_DIR/trans"
-
-          # Resolve the CBETA layout inside each clone (xml-p5 / xml-p5t).
-          SRC="$CORPUS_DIR/texts/xml-p5"
-          TRN="$CORPUS_DIR/trans/xml-p5t"
-          if [ ! -d "$SRC" ]; then echo "::error::source dir $SRC not found in texts repo"; exit 1; fi
-          if [ ! -d "$TRN" ]; then echo "::error::trans dir $TRN not found in trans repo"; exit 1; fi
-
           OUT="Assets/PrebuiltIndex"
-          mkdir -p "$OUT"
-
-          echo "Building bundled search index into $OUT ..."
-          dotnet run -c Release --project "${{ env.PROJECT_FILE }}" -- \
-            --build-search-index \
-            --source-dir "$SRC" \
-            --trans-dir  "$TRN" \
-            --out-dir    "$OUT"
-
-          if [ ! -f "$OUT/search.index.bin" ]; then
-            echo "::error::--build-search-index did not produce search.index.bin"; exit 1
+          if [ -f "$OUT/search.index.bin" ]; then
+            echo "Bundled prebuilt index present — will ship in this build:"
+            ls -la "$OUT"
+          elif [ "${{ needs.prebuild-index.outputs.bundleless_ok }}" = "1" ]; then
+            echo "::warning::No prebuilt search index in this release — shipping bundle-less (sanctioned: vars unset / SKIP_BUNDLE / prerelease). First run does a cold build."
+          else
+            echo "::error::Prebuilt search index expected but absent for a non-sanctioned release (prebuild-index shipped no bundle). Refusing to ship a silently-degraded build."
+            exit 1
           fi
-          echo "Staged bundled index:"
-          ls -la "$OUT"
 
       # One publish configuration for all platforms (bash is available on the
       # Windows runners too; the pwsh/bash twins had to be kept in sync by hand).
@@ -374,7 +590,7 @@ jobs:
 
   release:
     name: Create GitHub Release (single)
-    needs: build
+    needs: [prebuild-index, build]
     runs-on: ubuntu-latest
 
     steps:
@@ -384,6 +600,18 @@ jobs:
           pattern: dist-*
           path: dist
           merge-multiple: true
+
+      # Record the search family guid this release ships as a small standalone
+      # release asset. The NEXT release's guid-bundle-guard reads it to detect a
+      # guid bump (see prebuild-index). Written every release — bundle or not — so
+      # the guard has a baseline even during the vars-unset transition period.
+      - name: Record released search guid asset
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p dist
+          printf '%s\n' "${{ needs.prebuild-index.outputs.build_guid }}" > dist/LAST_RELEASED_GUID
+          echo "Released search BuildGuid: $(cat dist/LAST_RELEASED_GUID)"
 
       - name: Show dist contents
         run: |

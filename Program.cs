@@ -35,6 +35,17 @@ class Program
             return;
         }
 
+        // Headless tool mode: print the current search index family BuildGuids and exit
+        // (S7 bundled prebuilt index, PR-S3). CI's release workflow calls this on the release
+        // binary itself to (a) assert the staged bundle manifest guid == the binary's guid and
+        // (b) drive the guid-bundle-guard (a guid bump with no matching bundle fails the tag).
+        // Must run before Velopack/single-instance/Avalonia: no UI, no side effects.
+        if (args.Length > 0 && args[0] == "--print-build-guid")
+        {
+            Environment.Exit(SearchIndexService.RunPrintBuildGuid(Console.Out));
+            return;
+        }
+
         // Global exception handlers — catch crashes that happen during rendering
         // or on background threads, so Linux users see the real error, not just
         // "Dispatcher shut down".

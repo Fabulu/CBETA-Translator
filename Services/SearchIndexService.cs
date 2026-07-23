@@ -1284,6 +1284,24 @@ public sealed class SearchIndexService : ISearchIndexService
         }
     }
 
+    /// <summary>
+    /// Headless CLI entry (Program.Main, <c>--print-build-guid</c>): prints the current
+    /// search index family GUIDs to <paramref name="log"/> in a machine-parseable
+    /// <c>KEY=VALUE</c> form, one per line, then returns 0. CI's release workflow uses this
+    /// to assert that the freshly staged bundle's <c>search.index.manifest.json</c> BuildGuid
+    /// equals the guid the release binary itself would write (guarding against a stale
+    /// artifact-restore serving a prior binary), and to power the release-blocking
+    /// guid-bundle-guard (a guid bump that ships without a matching-guid bundle fails the tag).
+    /// Emits the family guid as <c>SearchBuildGuid=</c> and the corpusfreq sibling as
+    /// <c>CorpusFreqBuildGuid=</c>. No side effects; safe on a display-less runner.
+    /// </summary>
+    public static int RunPrintBuildGuid(TextWriter log)
+    {
+        log.WriteLine($"SearchBuildGuid={BuildGuid}");
+        log.WriteLine($"CorpusFreqBuildGuid={CorpusFreqBuildGuid}");
+        return 0;
+    }
+
     public async Task<bool> IsStaleAsync(
         string root,
         string originalDir,
