@@ -986,16 +986,34 @@ public partial class MainWindowViewModel : ViewModelBase
                     {
                         var corpusSvc = new MasterCorpusSearchService();
                         var cacheDir = MasterCorpusSearchService.GetCacheDir(_root);
-                        // Freshness check makes a corpus change (or a legacy unstamped
-                        // cache) come back null → the auto-build below refreshes it.
-                        var cached = await corpusSvc.TryLoadAsync(cacheDir, ct, parentRootForFreshness: _root);
-                        MasterCorpusIndex? index = cached;
 
+                        // Load the MERGED catalog first — its roster identity is half of the
+                        // composite freshness stamp, so a community/roster edit invalidates
+                        // the cache (SPEC §1.2).
                         var masterMgr = App.Services.GetRequiredService<ZenMasterManagerService>();
                         var catalog = await masterMgr.LoadAsync(_root);
                         MasterCatalog = catalog;
                         if (catalog.Records.Count > 0)
                             Dispatcher.UIThread.Post(() => SetSearchMasterCatalog?.Invoke(catalog));
+
+                        // Freshness check makes a corpus/titles/roster change (or a legacy
+                        // v1/unstamped cache) come back null → the auto-build below refreshes it.
+                        var rosterIdentity = MasterCorpusSearchService.ComputeRosterIdentity(catalog);
+
+                        // PR-M2 (SPEC §2.3): before probing/building, adopt the shipped
+                        // exe-adjacent bundle when it IS the live index and the local cache is
+                        // absent/stale — a cheap stamp-only read + atomic copy that lets the
+                        // TryLoadAsync below serve it with zero rebuild. A stamp mismatch
+                        // (diverged corpus/roster/titles) or an absent/corrupt bundle is a no-op,
+                        // leaving the TryLoadAsync → build → save fallback untouched.
+                        var liveCompositeStamp = MasterCorpusSearchService.ComputeCompositeStamp(_root, catalog);
+                        var masterBundlePath = Path.Combine(
+                            AppContext.BaseDirectory, "Assets", "Data", "master-corpus-index.json");
+                        await corpusSvc.TryAdoptBundleAsync(cacheDir, masterBundlePath, liveCompositeStamp, ct);
+
+                        var cached = await corpusSvc.TryLoadAsync(
+                            cacheDir, ct, parentRootForFreshness: _root, rosterIdentity: rosterIdentity);
+                        MasterCorpusIndex? index = cached;
 
                         if (index == null && catalog.Records.Count > 0)
                         {

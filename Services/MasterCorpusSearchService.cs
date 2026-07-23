@@ -742,6 +742,119 @@ public sealed class MasterCorpusSearchService
         catch { return null; }
     }
 
+    /// <summary>
+    /// Adopts the shipped exe-adjacent master-corpus bundle into the on-disk cache when it
+    /// IS the live index and the local cache is absent or stale, so the immediately
+    /// following <see cref="TryLoadAsync"/> serves it with ZERO rebuild (SPEC §2.3).
+    ///
+    /// Decision (adopt ⇔ ALL hold): a non-empty <paramref name="liveCompositeStamp"/> is
+    /// supplied; the bundle exists and its <c>corpus_stamp</c> == live; AND the local cache
+    /// is absent OR its stamp ≠ live. A stamp read is done CHEAPLY via a bounded-prefix
+    /// <see cref="Utf8JsonReader"/> scan — never a full ~57 MB deserialize. When the bundle
+    /// stamp differs from live (diverged corpus/roster/titles), or the bundle is absent or
+    /// corrupt, this is a no-op returning false and the caller's build-and-save fallback
+    /// (rows 3/6) runs unchanged. The copy is atomic (tmp in the cache dir + rename), and no
+    /// re-homing is needed because the cache embeds no absolute root path (contrast search).
+    /// Returns true only when a copy was actually performed.
+    /// </summary>
+    public async Task<bool> TryAdoptBundleAsync(
+        string cacheDir, string bundlePath, string? liveCompositeStamp,
+        CancellationToken ct = default)
+    {
+        // No live stamp (e.g. no corpus dirs ⇒ ComputeCorpusStamp null) ⇒ nothing meaningful
+        // to match the bundle against; never adopt (mirrors TryLoadAsync's "freshness not
+        // enforced" branch, and a real bundle's v2 stamp could never equal null anyway).
+        if (string.IsNullOrEmpty(liveCompositeStamp)) return false;
+        if (string.IsNullOrEmpty(bundlePath) || !File.Exists(bundlePath)) return false;
+
+        // Adopt only when the bundle IS the live index. Cheap stamp-only read.
+        var bundleStamp = ReadCorpusStampCheap(bundlePath);
+        if (bundleStamp != liveCompositeStamp) return false;
+
+        // Local cache already fresh (== live) ⇒ keep it, no copy (decision-table row 1).
+        var cachePath = Path.Combine(cacheDir, CacheFileName);
+        var localStamp = ReadCorpusStampCheap(cachePath); // null when absent/corrupt/unstamped
+        if (localStamp == liveCompositeStamp) return false;
+
+        // Local absent or stale AND bundle == live ⇒ adopt via atomic tmp+rename copy.
+        var tmp = Path.Combine(cacheDir, CacheFileName + ".tmp-" + Guid.NewGuid().ToString("N"));
+        try
+        {
+            Directory.CreateDirectory(cacheDir);
+            using (var src = new FileStream(bundlePath, FileMode.Open, FileAccess.Read, FileShare.Read))
+            using (var dst = new FileStream(tmp, FileMode.CreateNew, FileAccess.Write, FileShare.None))
+            {
+                await src.CopyToAsync(dst, ct);
+            }
+            // Same-volume move (both paths under cacheDir) ⇒ atomic replace; no partial cache.
+            File.Move(tmp, cachePath, overwrite: true);
+            return true;
+        }
+        catch
+        {
+            // Copy/rename failure (or cancellation) leaves the cache untouched; best-effort
+            // remove the partial tmp so the fallback rebuild starts clean.
+            try { if (File.Exists(tmp)) File.Delete(tmp); } catch { }
+            return false;
+        }
+    }
+
+    /// <summary>
+    /// Reads ONLY the top-level <c>corpus_stamp</c> string from a MasterCorpusIndex JSON
+    /// file without deserializing the (up to ~57 MB) <c>appearances</c> array. The stamp is
+    /// the 3rd property, so a bounded-prefix read + <see cref="Utf8JsonReader"/> scan finds
+    /// it well before the array begins. Returns null when the file is absent, unreadable,
+    /// unstamped, or the stamp is not a string.
+    /// </summary>
+    private static string? ReadCorpusStampCheap(string path)
+    {
+        try
+        {
+            if (!File.Exists(path)) return null;
+
+            const int PrefixBytes = 256 * 1024;
+            var buffer = new byte[PrefixBytes];
+            int total = 0;
+            using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
+            {
+                int n;
+                while (total < buffer.Length && (n = fs.Read(buffer, total, buffer.Length - total)) > 0)
+                    total += n;
+            }
+
+            // isFinalBlock only when we consumed the whole (small) file; otherwise a truncated
+            // trailing token at the prefix edge is tolerated (Read() returns false, we stop).
+            bool isFinal = total < buffer.Length;
+            var reader = new Utf8JsonReader(
+                new ReadOnlySpan<byte>(buffer, 0, total), isFinalBlock: isFinal, state: default);
+
+            int depth = 0;
+            while (reader.Read())
+            {
+                switch (reader.TokenType)
+                {
+                    case JsonTokenType.StartObject:
+                    case JsonTokenType.StartArray:
+                        depth++;
+                        break;
+                    case JsonTokenType.EndObject:
+                    case JsonTokenType.EndArray:
+                        depth--;
+                        break;
+                    case JsonTokenType.PropertyName:
+                        if (depth == 1 && reader.ValueTextEquals("corpus_stamp"))
+                        {
+                            if (!reader.Read()) return null;
+                            return reader.TokenType == JsonTokenType.String ? reader.GetString() : null;
+                        }
+                        break;
+                }
+            }
+            return null;
+        }
+        catch { return null; }
+    }
+
     /// <summary>Gets the default cache directory for master corpus data.</summary>
     public static string GetCacheDir(string parentRoot)
     {
