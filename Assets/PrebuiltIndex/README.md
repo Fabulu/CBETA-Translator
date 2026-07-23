@@ -2,7 +2,7 @@
 
 This directory ships **next to the exe** so that a fresh install can adopt a prebuilt
 full-text search index on first run instead of paying for a cold, corpus-wide index
-build. See `Services/SearchIndexService.cs` (`TrySeedFromBundle` / `EvaluateBundleSeed`).
+build. See `Services/SearchIndexService.cs` (`CopyBundleFamilyIntoRoot` / `EvaluateBundleAdoption`).
 
 ## What lives here
 
@@ -32,8 +32,13 @@ csproj `<Content Include="Assets\PrebuiltIndex\**\*">` directory mechanism to wo
 
 ## First-run behaviour
 
-On startup, when the user index root has **no** `search.index.bin` but this bundle ships
-a family stamped with the **current** `BuildGuid`, the app copies the family into the
-index root once and re-homes the manifests' `RootPath`. The normal `IsStaleAsync` +
-incremental catch-up then reindexes only the files that drifted since the bundle was cut.
-A bundle stamped for an older `BuildGuid` is ignored and a full build runs as before.
+On startup `IsStaleAsync` runs the adopt-best-bundle decision table (§2.1 of the run
+SPEC). When there is **no** usable local index and this bundle ships a family stamped
+with the **current family guid** (bloom `BuildGuid` AND `CorpusFreqBuildGuid`), the app
+copies the family into the index root once (before any corpus hashing, so search is
+instant), re-homes the manifests' `RootPath`, and deletes any leftover local `search.*`
+files the bundle does not carry. When a stale-but-loadable local index exists and the
+bundle provably matches the live corpus, the bundle is adopted **over** it (zero build);
+otherwise the local index stays authoritative and an incremental catch-up computes only
+the delta. A bundle stamped for an older family guid is ignored and a full build runs as
+before. Zero-build verdicts are gated on the single-corpus (ScopeComplete) case.

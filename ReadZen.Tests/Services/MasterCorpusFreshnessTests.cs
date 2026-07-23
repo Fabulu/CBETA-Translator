@@ -47,12 +47,20 @@ public class MasterCorpusFreshnessTests : IDisposable
     [Fact]
     public async Task FreshCache_Loads()
     {
-        var stamp = MasterCorpusSearchService.ComputeCorpusStamp(_root);
+        // v2 contract: a real cache stores the COMPOSITE stamp (corpus half + roster half),
+        // and the freshness compare reconstructs it from the live corpus + the caller-supplied
+        // rosterIdentity. A cache written with the composite and loaded with the matching
+        // roster identity must read fresh.
+        var catalog = new ZenMasterCatalog();
+        var stamp = MasterCorpusSearchService.ComputeCompositeStamp(_root, catalog);
         Assert.NotNull(stamp); // sanity: the fake corpus layout was discovered
         await WriteCacheAsync(stamp);
 
         var svc = new MasterCorpusSearchService();
-        var loaded = await svc.TryLoadAsync(_cacheDir, default, parentRootForFreshness: _root);
+        var loaded = await svc.TryLoadAsync(
+            _cacheDir, default,
+            parentRootForFreshness: _root,
+            rosterIdentity: MasterCorpusSearchService.ComputeRosterIdentity(catalog));
 
         Assert.NotNull(loaded);
     }

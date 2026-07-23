@@ -46,7 +46,7 @@ public class SearchTabStreamingTests
         public void InvalidateIndexCaches() { }
         public Task<SearchIndexManifest?> TryLoadAsync(string root) => Task.FromResult<SearchIndexManifest?>(new SearchIndexManifest());
         public Task<SearchTextManifest?> TryLoadTextManifestAsync(string root) => Task.FromResult<SearchTextManifest?>(null);
-        public Task<bool> IsStaleAsync(string root, string originalDir, IReadOnlyList<string> translatedDirs) => Task.FromResult(false);
+        public Task<bool> IsStaleAsync(string root, string originalDir, IReadOnlyList<string> translatedDirs, IReadOnlyList<string>? additionalOriginalDirs = null, IReadOnlyList<string>? additionalTranslatedDirs = null) => Task.FromResult(false);
         public Task BuildAsync(string root, string originalDir, IReadOnlyList<string> translatedDirs, IProgress<(int done, int total, string phase)>? progress = null, CancellationToken ct = default) => Task.CompletedTask;
         public Task BuildOrUpdateAsync(string root, string originalDir, IReadOnlyList<string> translatedDirs, bool forceRebuild, IReadOnlyList<string>? additionalOriginalDirs = null, IReadOnlyList<string>? additionalTranslatedDirs = null, IProgress<(int done, int total, string phase)>? progress = null, CancellationToken ct = default) => Task.CompletedTask;
 
@@ -109,7 +109,7 @@ public class SearchTabStreamingTests
         public void InvalidateIndexCaches() { }
         public Task<SearchIndexManifest?> TryLoadAsync(string root) => Task.FromResult<SearchIndexManifest?>(new SearchIndexManifest());
         public Task<SearchTextManifest?> TryLoadTextManifestAsync(string root) => Task.FromResult<SearchTextManifest?>(null);
-        public Task<bool> IsStaleAsync(string root, string originalDir, IReadOnlyList<string> translatedDirs) => Task.FromResult(false);
+        public Task<bool> IsStaleAsync(string root, string originalDir, IReadOnlyList<string> translatedDirs, IReadOnlyList<string>? additionalOriginalDirs = null, IReadOnlyList<string>? additionalTranslatedDirs = null) => Task.FromResult(false);
         public Task BuildAsync(string root, string originalDir, IReadOnlyList<string> translatedDirs, IProgress<(int done, int total, string phase)>? progress = null, CancellationToken ct = default) => Task.CompletedTask;
         public Task BuildOrUpdateAsync(string root, string originalDir, IReadOnlyList<string> translatedDirs, bool forceRebuild, IReadOnlyList<string>? additionalOriginalDirs = null, IReadOnlyList<string>? additionalTranslatedDirs = null, IProgress<(int done, int total, string phase)>? progress = null, CancellationToken ct = default) => Task.CompletedTask;
 

@@ -143,7 +143,7 @@ public class StubSearchIndexService : ISearchIndexService
     public Task<SearchIndexManifest?> TryLoadAsync(string root) => Task.FromResult<SearchIndexManifest?>(null);
     public Task<SearchTextManifest?> TryLoadTextManifestAsync(string root) => Task.FromResult<SearchTextManifest?>(null);
 
-    public Task<bool> IsStaleAsync(string root, string originalDir, IReadOnlyList<string> translatedDirs) => Task.FromResult(false);
+    public Task<bool> IsStaleAsync(string root, string originalDir, IReadOnlyList<string> translatedDirs, IReadOnlyList<string>? additionalOriginalDirs = null, IReadOnlyList<string>? additionalTranslatedDirs = null) => Task.FromResult(false);
 
     public Task BuildAsync(string root, string originalDir, IReadOnlyList<string> translatedDirs, IProgress<(int done, int total, string phase)>? progress = null, CancellationToken ct = default)
         => Task.CompletedTask;
@@ -194,10 +194,11 @@ public class StubAppConfigService : IAppConfigService
 public class StubIndexCacheService : IIndexCacheService
 {
     public string GetCachePath(string root) => "cache.json";
-    public Task<IndexCache?> TryLoadAsync(string root, string? originalsRepoRoot = null) => Task.FromResult<IndexCache?>(null);
-    public Task SaveAsync(string root, IndexCache cache, string? originalsRepoRoot = null) => Task.CompletedTask;
+    public Task<IndexCache?> TryLoadAsync(string root) => Task.FromResult<IndexCache?>(null);
+    public Task SaveAsync(string root, IndexCache cache) => Task.CompletedTask;
     public TranslationStatus ComputeStatusForPairLive(string origAbs, string tranAbs, string rootForLogs, string relKeyForLogs, bool verboseLog = true) => TranslationStatus.Red;
     public Task<IndexCache> BuildAsync(string originalDir, string translatedDir, string root, IProgress<(int done, int total)>? progress = null, CancellationToken ct = default) => Task.FromResult(new IndexCache());
+    public Task<IndexCache> RefreshAsync(IndexCache oldCache, string originalDir, string translatedDir, string root, IProgress<(int done, int total)>? progress = null, CancellationToken ct = default) => Task.FromResult(oldCache);
 }
 
 // ---- IRenderedDocumentCacheService ----

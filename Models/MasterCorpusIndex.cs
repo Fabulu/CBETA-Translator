@@ -18,10 +18,13 @@ public sealed class MasterCorpusIndex
     public string? Corpus { get; set; }
 
     /// <summary>
-    /// Stat-stamp of the corpus at build time ("files=N;maxTicks=T" across all
-    /// discovered corpus dirs). TryLoadAsync compares it against the live corpus to
-    /// refuse stale caches (audit P4.6). Null in caches from older builds — treated
-    /// as stale when a freshness check is requested.
+    /// Composite v2 freshness stamp at build time:
+    /// <c>v2;corpus=files={N};bytes={SUM};pathsig={P16};titles={T16};roster=count={M};hash={R16}</c>.
+    /// Derived entirely from content/structure (no mtime), so it is identical across
+    /// machines/clones for identical content. TryLoadAsync recomputes it live and refuses
+    /// the cache when it differs — catching corpus, titles, AND roster changes. Null in
+    /// caches from older builds and legacy v1 stamps ("files=N;maxTicks=T") never equal a
+    /// live v2 stamp, so both are treated as stale. See SPEC §1.2.
     /// </summary>
     [JsonPropertyName("corpus_stamp")]
     public string? CorpusStamp { get; set; }

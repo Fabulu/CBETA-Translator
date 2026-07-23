@@ -444,12 +444,15 @@ public class IndexStalenessTests : IDisposable
         Assert.True(stale);
     }
 
-    // ===== IndexCacheService.TryGetGitHead + GitHead invalidation =====
+    // ===== IndexCacheService.TryGetGitHead (retained low-level helper) =====
     //
-    // Regression coverage for the "user synced new files but the desktop
-    // app's nav cache is stale and hides them" bug. The fix is to snapshot
-    // the corpus translations repo's HEAD SHA into IndexCache.GitHead at
-    // build time and gate TryLoadAsync on it.
+    // The git-HEAD *invalidation gate* was REMOVED in the v4/v5 nav content
+    // gate (SPEC §4): a commit anywhere no longer discards the whole nav cache.
+    // Freshness is now decided by RefreshAsync's content gate (TitlesHash +
+    // per-entry file stats — see NavIncrementalTests), and SaveAsync no longer
+    // stamps GitHead. TryGetGitHead itself is retained as a helper, so its
+    // parsing is still covered below; the two TryLoadAsync tests now pin the
+    // NEW behavior — a HEAD move does NOT gate the cache.
 
     private static void WriteFakeGit(string repoRoot, string headSha)
     {
@@ -525,11 +528,12 @@ public class IndexStalenessTests : IDisposable
     }
 
     [Fact]
-    public async Task TryLoadAsync_RebuildsWhenGitHeadHasMoved()
+    public async Task TryLoadAsync_DoesNotRebuild_WhenGitHeadHasMoved()
     {
-        // Setup: a real corpus layout under _tempRoot with a fake .git/HEAD,
-        // build the cache once at HEAD-A, then rewrite .git/HEAD to HEAD-B
-        // and confirm the loader returns null instead of the stale cache.
+        // The git-HEAD invalidation gate was REMOVED (SPEC §4): a HEAD move
+        // (e.g. a sync that pulled new commits) must NOT discard the nav cache.
+        // Freshness is now the content gate's job (RefreshAsync recomputes only
+        // the genuinely-changed entries), never a wholesale HEAD-triggered rescan.
         var repoRoot = Path.Combine(_tempRoot, "repo-head-moved");
         Directory.CreateDirectory(Path.Combine(repoRoot, "xml-p5", "T01"));
         Directory.CreateDirectory(Path.Combine(repoRoot, "xml-p5t"));
@@ -546,19 +550,21 @@ public class IndexStalenessTests : IDisposable
             repoRoot);
         await svc.SaveAsync(repoRoot, built);
 
-        // First load — HEAD unchanged — should hit the cache.
+        // First load — HEAD unchanged — hits the cache. GitHead is retired:
+        // SaveAsync no longer stamps it, so it is null (kept only for JSON tolerance).
         var fresh = await svc.TryLoadAsync(repoRoot);
         Assert.NotNull(fresh);
-        Assert.Equal("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", fresh!.GitHead);
+        Assert.Null(fresh!.GitHead);
 
         // Move HEAD (simulate sync that pulled new commits).
         File.WriteAllText(
             Path.Combine(repoRoot, ".git", "refs", "heads", "main"),
             "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\n");
 
-        var stale = await svc.TryLoadAsync(repoRoot);
-
-        Assert.Null(stale);
+        // The cache SURVIVES the HEAD move — no discard, no forced rebuild.
+        var afterMove = await svc.TryLoadAsync(repoRoot);
+        Assert.NotNull(afterMove);
+        Assert.Single(afterMove!.Entries);
     }
 
     [Fact]
@@ -591,12 +597,13 @@ public class IndexStalenessTests : IDisposable
     }
 
     [Fact]
-    public async Task TryLoadAsync_DoesNotGate_WhenCachedHeadIsNullFromOlderBuild()
+    public async Task TryLoadAsync_DoesNotGate_WhenCachedHeadIsNull()
     {
-        // A cache built before the GitHead field existed will deserialize
-        // with GitHead == null. Loading it inside a real git repo with a
-        // valid HEAD must NOT throw it away — the field is for forward
-        // compatibility, not a forced re-bake on first launch after upgrade.
+        // GitHead is retired (SPEC §4): SaveAsync no longer stamps it, so every
+        // freshly-saved cache — like a legacy pre-field cache — deserializes with
+        // GitHead == null. Loading it inside a real git repo with a valid HEAD
+        // must NOT throw it away; the structural gates (BuildGuid + Version +
+        // RootPath) are authoritative and the HEAD field is never compared.
         var repoRoot = Path.Combine(_tempRoot, "repo-legacy-cache");
         Directory.CreateDirectory(Path.Combine(repoRoot, "xml-p5", "T01"));
         Directory.CreateDirectory(Path.Combine(repoRoot, "xml-p5t"));
@@ -608,17 +615,8 @@ public class IndexStalenessTests : IDisposable
             Path.Combine(repoRoot, "xml-p5"),
             Path.Combine(repoRoot, "xml-p5t"),
             repoRoot);
-        // Force the GitHead back to null on the saved file to simulate a
-        // legacy cache from an older app version.
-        built.GitHead = null;
+        // No manual overwrite needed: SaveAsync leaves GitHead null on disk.
         await svc.SaveAsync(repoRoot, built);
-        // SaveAsync re-stamps GitHead from the live repo, so we have to
-        // overwrite the on-disk file directly.
-        var cachePath = svc.GetCachePath(repoRoot);
-        var json = File.ReadAllText(cachePath);
-        json = System.Text.RegularExpressions.Regex.Replace(
-            json, "\"GitHead\":\\s*\"[^\"]*\"", "\"GitHead\": null");
-        File.WriteAllText(cachePath, json);
 
         var loaded = await svc.TryLoadAsync(repoRoot);
 
