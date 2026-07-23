@@ -814,8 +814,6 @@ private async Task LoadConfigAndAutoloadAsync()
         _vm.SetCurrentReviewState = (status, reviewer, date, agg) => _translationView?.SetCurrentReviewState(status, reviewer, date, agg);
         _vm.SetProgressStats = (a, n, t) => _translationView?.SetProgressStats(a, n, t);
         _vm.FillEnForCurrentBlock = (en, block) => _translationView?.FillEnForCurrentBlock(en, block);
-        _vm.JumpToNextBlock = () => _translationView?.JumpToNextBlock();
-        _vm.JumpToPreviousBlock = () => _translationView?.JumpToPreviousBlock();
         _vm.JumpToNextUnapproved = approved => _translationView?.JumpToNextUnapproved(approved);
         _vm.IsTranslationEditorFocused = () => _translationView?.IsEditorFocused() ?? false;
         _vm.GetAllBlockNumbers = () => _translationView?.GetAllBlockNumbers() ?? Array.Empty<int>();
@@ -880,7 +878,6 @@ private async Task LoadConfigAndAutoloadAsync()
         _vm.SetWindowTitle = title => Title = title;
         _vm.ApplyTheme = dark => ApplyTheme(dark);
         _vm.SetSaveButtonEnabled = enabled => { if (_btnSave != null) _btnSave.IsEnabled = enabled; };
-        _vm.GetSelectedTabIndex = () => _tabs?.SelectedIndex ?? -1;
         _vm.ForceTabIndex = idx => ForceTab(idx);
         _vm.NavigateInReadable = async req =>
         {
@@ -921,10 +918,6 @@ private async Task LoadConfigAndAutoloadAsync()
                 Dispatcher.UIThread.Post(() => _navSearch.Focus(), DispatcherPriority.Background);
         };
         _vm.IsNavSearchFocused = () => _navSearch != null && _navSearch.IsFocused;
-        _vm.GetNavSearchText = () => _navSearch?.Text ?? "";
-        _vm.GetShowFilenames = () => _chkShowFilenames != null && _chkShowFilenames.IsChecked == true;
-        _vm.GetZenOnly = () => _chkZenOnly != null && _chkZenOnly.IsChecked == true;
-        _vm.GetStatusFilterIndex = () => _cmbStatusFilter?.SelectedIndex ?? 0;
 
         // Config loaded callback
         _vm.OnConfigLoaded = config =>

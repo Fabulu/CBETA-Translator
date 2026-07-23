@@ -132,7 +132,7 @@
                                 Content="&#x25B2;"
                                 ToolTip.Tip="Collapse command bar"/>
 
-                        <TabStrip Name="MainTabs" Grid.Column="2" SelectedIndex="0" Height="22" PointerWheelChanged="MainTabs_OnPointerWheelChanged">
+                        <TabStrip Name="MainTabs" Grid.Column="2" SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}" Height="22" PointerWheelChanged="MainTabs_OnPointerWheelChanged">
                             <TabStrip.Styles>
                                 <Style Selector="TabStrip#MainTabs">
                                     <Setter Property="Margin" Value="0"/>
@@ -236,7 +236,7 @@
 
                         <ComboBox Name="CmbStatusFilter"
                                   Grid.Column="1"
-                                  SelectedIndex="0"
+                                  SelectedIndex="{Binding StatusFilterIndex, Mode=TwoWay}"
                                   MinWidth="132"
                                   FontSize="11"
                                   ToolTip.Tip="Filter files by translation status">
@@ -250,6 +250,7 @@
                     <TextBox Name="NavSearch"
                              Grid.Row="1"
                              FontSize="11"
+                             Text="{Binding NavSearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                              Watermark="Search (filename or title)..."
                              ToolTip.Tip="Filter by filename or title"/>
 
@@ -259,10 +260,12 @@
                         <CheckBox Name="ChkShowFilenames"
                                   FontSize="11"
                                   Content="Show filenames"
+                                  IsChecked="{Binding ShowFilenames, Mode=TwoWay}"
                                   ToolTip.Tip="Show technical filenames instead of titles"/>
                         <CheckBox Name="ChkZenOnly"
                                   FontSize="11"
                                   Content="Zen texts"
+                                  IsChecked="{Binding ZenOnly, Mode=TwoWay}"
                                   ToolTip.Tip="Show only texts flagged as Zen/Chan"/>
                     </StackPanel>
 

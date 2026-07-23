@@ -290,12 +290,10 @@ public class ReadableTabViewInteractionTests
     [Fact]
     public void RenderStrategyFor_SyncedPanes_DiffersFromMergedFlow()
     {
-        var method = typeof(ReadableTabView).GetMethod("RenderStrategyFor", BindingFlags.Static | BindingFlags.NonPublic)
-            ?? throw new InvalidOperationException("Missing RenderStrategyFor");
-
-        var syncedStrategy = method.Invoke(null, new object?[] { ReadingLayoutMode.SyncedPanes })!;
-        var mergedStrategy = method.Invoke(null, new object?[] { ReadingLayoutMode.MergedFlow })!;
-        var pageStrategy = method.Invoke(null, new object?[] { ReadingLayoutMode.Page })!;
+        // P8: the mapping moved to the pure static ReaderLayoutStrategy.For helper.
+        var syncedStrategy = ReaderLayoutStrategy.For(ReadingLayoutMode.SyncedPanes);
+        var mergedStrategy = ReaderLayoutStrategy.For(ReadingLayoutMode.MergedFlow);
+        var pageStrategy = ReaderLayoutStrategy.For(ReadingLayoutMode.Page);
 
         // SyncedPanes must render distinctly from MergedFlow (the alias bug) ...
         Assert.NotEqual(mergedStrategy, syncedStrategy);

@@ -169,6 +169,26 @@ public partial class MainWindowViewModel : ViewModelBase
     [ObservableProperty]
     private string _windowTitle = AppTitleBase;
 
+    // ---- UI-state properties (bound TwoWay to MainWindow nav/tab controls) ----
+    // These replaced the former Get* bridge delegates (GetZenOnly, GetShowFilenames,
+    // GetNavSearchText, GetStatusFilterIndex, GetSelectedTabIndex). The controls bind
+    // TwoWay in MainWindow.axaml so the VM reads the current value directly.
+
+    [ObservableProperty]
+    private bool _zenOnly;
+
+    [ObservableProperty]
+    private bool _showFilenames;
+
+    [ObservableProperty]
+    private string _navSearchText = "";
+
+    [ObservableProperty]
+    private int _statusFilterIndex;
+
+    [ObservableProperty]
+    private int _selectedTabIndex;
+
     private CorpusKind _activeCorpus = CorpusKind.Cbeta;
     public CorpusKind ActiveCorpus
     {
@@ -397,8 +417,6 @@ public partial class MainWindowViewModel : ViewModelBase
     public Action<string?, string?, DateTime?, SegmentReviewAggregation?>? SetCurrentReviewState { get; set; }
     public Action<int, int, int>? SetProgressStats { get; set; }
     public Action<string, int>? FillEnForCurrentBlock { get; set; }
-    public Action? JumpToNextBlock { get; set; }
-    public Action? JumpToPreviousBlock { get; set; }
     public Action<IReadOnlySet<int>>? JumpToNextUnapproved { get; set; }
     public Func<bool>? IsTranslationEditorFocused { get; set; }
     public Func<IReadOnlyList<int>>? GetAllBlockNumbers { get; set; }
@@ -435,7 +453,6 @@ public partial class MainWindowViewModel : ViewModelBase
 
     // Dialog bridges (code-behind provides UI dialogs)
     public Func<Task<string?>>? ShowFolderPickerAsync { get; set; }
-    public Func<string, Task<bool>>? ConfirmNavigateIfDirtyDialogAsync { get; set; }
     public Func<AppConfig, Task<AppConfig?>>? ShowSettingsDialogAsync { get; set; }
     public Func<Task<string?>>? ShowUsernamePromptAsync { get; set; }
     public Func<string?, Task>? ShowLicensesAsync { get; set; }
@@ -445,7 +462,6 @@ public partial class MainWindowViewModel : ViewModelBase
     public Action<string>? SetWindowTitle { get; set; }
     public Action<bool>? ApplyTheme { get; set; }
     public Action<bool>? SetSaveButtonEnabled { get; set; }
-    public Func<int>? GetSelectedTabIndex { get; set; }
     public Action<int>? ForceTabIndex { get; set; }
     public Func<NavigationRequest, Task>? NavigateInReadable { get; set; }
 
@@ -844,7 +860,7 @@ public partial class MainWindowViewModel : ViewModelBase
         if (saveToConfig)
         {
             _config.TextRootPath = _root;
-            _config.ZenOnly = GetZenOnly?.Invoke() ?? false;
+            _config.ZenOnly = ZenOnly;
             _config.Version = Math.Max(_config.Version, 3);
             await SafeSaveConfigAsync();
         }
@@ -1048,26 +1064,6 @@ public partial class MainWindowViewModel : ViewModelBase
     public Action? OnAutoIndexCompleted { get; set; }
 
     /// <summary>
-    /// Bridge to get the ZenOnly checkbox state from code-behind.
-    /// </summary>
-    public Func<bool>? GetZenOnly { get; set; }
-
-    /// <summary>
-    /// Bridge to get the nav search text from code-behind.
-    /// </summary>
-    public Func<string>? GetNavSearchText { get; set; }
-
-    /// <summary>
-    /// Bridge to get the ShowFilenames checkbox state from code-behind.
-    /// </summary>
-    public Func<bool>? GetShowFilenames { get; set; }
-
-    /// <summary>
-    /// Bridge to get the status filter index from code-behind.
-    /// </summary>
-    public Func<int>? GetStatusFilterIndex { get; set; }
-
-    /// <summary>
     /// Bridge to check if nav search is focused from code-behind.
     /// </summary>
     public Func<bool>? IsNavSearchFocused { get; set; }
@@ -1085,7 +1081,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
         _config.TextRootPath = _root;
         _config.LastSelectedRelPath = _currentRelPath;
-        _config.ZenOnly = GetZenOnly?.Invoke() ?? false;
+        _config.ZenOnly = ZenOnly;
         _config.Version = Math.Max(_config.Version, 3);
         await SafeSaveConfigAsync();
     }
@@ -1377,12 +1373,12 @@ public partial class MainWindowViewModel : ViewModelBase
 
             bool restoreFocus = IsNavSearchFocused?.Invoke() ?? false;
 
-            string q = (GetNavSearchText?.Invoke() ?? "").Trim();
+            string q = (NavSearchText ?? "").Trim();
             string qLower = q.ToLowerInvariant();
 
-            bool showFilenames = GetShowFilenames?.Invoke() ?? false;
-            bool zenOnly = GetZenOnly?.Invoke() ?? false;
-            int statusIdx = GetStatusFilterIndex?.Invoke() ?? 0;
+            bool showFilenames = ShowFilenames;
+            bool zenOnly = ZenOnly;
+            int statusIdx = StatusFilterIndex;
 
             string? selectedRel = (GetNavSelectedItem?.Invoke())?.RelPath ?? _currentRelPath;
 
@@ -3024,7 +3020,7 @@ public partial class MainWindowViewModel : ViewModelBase
     public void UpdateSaveButtonState()
     {
         bool hasFile = _currentRelPath != null;
-        bool translationTabSelected = (GetSelectedTabIndex?.Invoke() ?? -1) == 1;
+        bool translationTabSelected = SelectedTabIndex == 1;
         SetSaveButtonEnabled?.Invoke(hasFile && translationTabSelected);
     }
 
@@ -3120,7 +3116,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
     public async Task OnTabSelectionChangedAsync()
     {
-        int newIdx = GetSelectedTabIndex?.Invoke() ?? 0;
+        int newIdx = SelectedTabIndex;
         int oldIdx = _lastTabIndex;
         _lastTabIndex = newIdx;
 

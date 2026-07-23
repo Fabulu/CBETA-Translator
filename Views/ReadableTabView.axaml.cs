@@ -904,7 +904,7 @@ public partial class ReadableTabView : UserControl
         if (string.IsNullOrWhiteSpace(otherText) && !string.IsNullOrWhiteSpace(fromLb))
         {
             var extractDoc = isTranslated ? _vm.RenderOrig : _vm.RenderTran;
-            var lbText = ExtractTextBetweenLbs(extractDoc, fromLb, toLb);
+            var lbText = ReaderLbGeometry.ExtractTextBetweenLbs(extractDoc, fromLb, toLb);
             if (!string.IsNullOrWhiteSpace(lbText))
                 otherText = lbText;
         }
@@ -983,7 +983,7 @@ public partial class ReadableTabView : UserControl
             // remembers which translation the reader was viewing, regardless
             // of which pane was right-clicked. Community source returns null.
             TranslationUser = GetTranslationUser?.Invoke(),
-            Apparatus = ExtractApparatusForLbRange(_vm.RenderOrig, fromLb, toLb)
+            Apparatus = ReaderLbGeometry.ExtractApparatusForLbRange(_vm.RenderOrig, fromLb, toLb)
         };
         if (string.IsNullOrWhiteSpace(passage.Summary))
             passage.Summary = passage.GenerateAutoSummary();
@@ -1710,7 +1710,7 @@ public partial class ReadableTabView : UserControl
         // --- lb-based navigation (preferred for deep links with from/to params) ---
         if (!string.IsNullOrEmpty(request.FromLb))
         {
-            var (lbStart, lbLength) = ResolveLbRange(doc, request.FromLb, request.ToLb);
+            var (lbStart, lbLength) = ReaderLbGeometry.ResolveLbRange(doc, request.FromLb, request.ToLb);
             if (lbStart >= 0 && lbLength > 0)
             {
                 int lbDocLen = editor.Document.TextLength;
@@ -1725,12 +1725,12 @@ public partial class ReadableTabView : UserControl
                     lbSafeEnd--;
                 }
 
-                var visibleStart = FindFirstNonWhitespace(lbDocText, lbSafeStart, lbSafeEnd);
+                var visibleStart = ReaderLbGeometry.FindFirstNonWhitespace(lbDocText, lbSafeStart, lbSafeEnd);
                 if (visibleStart >= 0)
                     lbSafeStart = visibleStart;
 
                 bool hasMeaningfulText = lbSafeEnd > lbSafeStart &&
-                                         FindFirstNonWhitespace(lbDocText, lbSafeStart, lbSafeEnd) >= 0;
+                                         ReaderLbGeometry.FindFirstNonWhitespace(lbDocText, lbSafeStart, lbSafeEnd) >= 0;
                 if (hasMeaningfulText)
                 {
                     ApplyNavHighlight(editor, lbSafeStart, lbSafeEnd);
@@ -1819,241 +1819,6 @@ public partial class ReadableTabView : UserControl
     /// Finds the best-scoring match range in the rendered text.
     /// Strategy:
     /// 1) Try exact raw substring matching first (preserves existing behavior).
-    /// <summary>
-    /// Resolves an lb-based range to rendered text offsets.
-    /// Looks up segments by key "lb|{fromLb}" and optionally "lb|{toLb}".
-    /// Returns (start, length) in rendered text coordinates, or (-1, 0) if not found.
-    /// </summary>
-    /// <summary>
-    /// Resolves the line-break n-value (and its rendered start offset) for the segment
-    /// at or before <paramref name="offset"/>. Returns (null, 0) when no lb segment
-    /// covers the offset. Used to re-anchor bookmarks so they survive re-rendering.
-    /// </summary>
-    private static (string? lb, int segStart) ResolveLbAtOffset(RenderedDocument? doc, int offset)
-    {
-        if (doc?.Segments == null || doc.Segments.Count == 0)
-            return (null, 0);
-
-        string? bestLb = null;
-        int bestStart = 0;
-        foreach (var seg in doc.Segments)
-        {
-            if (seg.Start > offset) break; // segments are in ascending Start order
-            var lb = LbHelper.ExtractLbNValue(seg.Key);
-            if (lb != null)
-            {
-                bestLb = lb;
-                bestStart = seg.Start;
-            }
-        }
-        return (bestLb, bestStart);
-    }
-
-    private static (int start, int length) ResolveLbRange(
-        RenderedDocument doc, string fromLb, string? toLb)
-    {
-        if (!TryFindSegmentByLb(doc, fromLb, out var startSeg))
-            return (-1, 0);
-
-        int rangeStart;
-        int rangeEnd;
-
-        if (!string.IsNullOrEmpty(toLb) && toLb != fromLb)
-        {
-            rangeStart = startSeg.Start;
-            rangeEnd = startSeg.EndExclusive;
-            if (TryFindSegmentByLb(doc, toLb, out var endSeg))
-                rangeEnd = endSeg.EndExclusive;
-        }
-        else
-        {
-            (rangeStart, rangeEnd) = ResolveSingleLbMeaningfulSpan(doc, startSeg);
-        }
-
-        if (rangeEnd <= rangeStart)
-            return (-1, 0);
-
-        return (rangeStart, rangeEnd - rangeStart);
-    }
-
-    private static int FindSingleLbRangeEnd(RenderedDocument doc, RenderSegment startSeg, int rangeStart)
-    {
-        int segIndex = doc.Segments.IndexOf(startSeg);
-        if (segIndex < 0)
-            return Math.Max(rangeStart, doc.Text?.Length ?? rangeStart);
-
-        for (int i = segIndex + 1; i < doc.Segments.Count; i++)
-        {
-            var seg = doc.Segments[i];
-            var lb = LbHelper.ExtractLbNValue(seg.Key);
-            if (!string.IsNullOrWhiteSpace(lb) && seg.Start > rangeStart)
-                return seg.Start;
-        }
-
-        for (int i = segIndex + 1; i < doc.Segments.Count; i++)
-        {
-            var seg = doc.Segments[i];
-            if (seg.EndExclusive > rangeStart)
-                return seg.EndExclusive;
-        }
-
-        return Math.Max(rangeStart, doc.Text?.Length ?? rangeStart);
-    }
-
-    private static (int start, int end) ResolveSingleLbMeaningfulSpan(RenderedDocument doc, RenderSegment startSeg)
-    {
-        var text = doc.Text ?? string.Empty;
-        int segIndex = doc.Segments.IndexOf(startSeg);
-        if (segIndex < 0)
-            return (-1, 0);
-
-        // Start from the segment's own Start so its rendered text is included.
-        // (Anchor exclusion made lb segments span their full text range;
-        //  starting at EndExclusive would skip the segment's own content.)
-        int cursor = Math.Clamp(startSeg.Start, 0, text.Length);
-
-        for (int i = segIndex + 1; i < doc.Segments.Count; i++)
-        {
-            var seg = doc.Segments[i];
-            var lb = LbHelper.ExtractLbNValue(seg.Key);
-            if (string.IsNullOrWhiteSpace(lb) || seg.Start <= cursor)
-                continue;
-
-            int start = FindFirstNonWhitespace(text, cursor, seg.Start);
-            if (start >= 0 && start < seg.Start)
-                return (start, seg.Start);
-
-            cursor = Math.Clamp(Math.Max(cursor, seg.EndExclusive), 0, text.Length);
-        }
-
-        int finalStart = FindFirstNonWhitespace(text, cursor, text.Length);
-        if (finalStart >= 0 && finalStart < text.Length)
-            return (finalStart, text.Length);
-
-        int fallbackStart = Math.Clamp(startSeg.Start, 0, text.Length);
-        int fallbackEnd = FindSingleLbRangeEnd(doc, startSeg, fallbackStart);
-        return fallbackEnd > fallbackStart ? (fallbackStart, fallbackEnd) : (-1, 0);
-    }
-
-    private static int FindFirstNonWhitespace(string text, int start, int endExclusive)
-    {
-        int safeStart = Math.Clamp(start, 0, text.Length);
-        int safeEnd = Math.Clamp(endExclusive, 0, text.Length);
-        for (int i = safeStart; i < safeEnd; i++)
-        {
-            if (!char.IsWhiteSpace(text[i]))
-                return i;
-        }
-
-        return -1;
-    }
-
-    /// <summary>
-    /// Attempts to find a segment by lb n-value, trying both bare key "lb|{nValue}"
-    /// and common edition suffixes like "lb|{nValue}|CB".
-    /// </summary>
-    private static bool TryFindSegmentByLb(
-        RenderedDocument doc, string nValue, out RenderSegment seg)
-    {
-        // Try bare key first
-        if (doc.TryGetSegmentByKey("lb|" + nValue, out seg))
-            return true;
-
-        // Try with common edition suffixes
-        foreach (var suffix in new[] { "CB", "CBETA", "T", "X", "J" })
-        {
-            if (doc.TryGetSegmentByKey("lb|" + nValue + "|" + suffix, out seg))
-                return true;
-        }
-
-        // Brute-force: scan segments for any key containing this n-value
-        foreach (var s in doc.Segments)
-        {
-            if (s.Key.StartsWith("lb|", StringComparison.Ordinal))
-            {
-                var parts = s.Key.Split('|');
-                if (parts.Length >= 2 && parts[1] == nValue)
-                {
-                    seg = s;
-                    return true;
-                }
-            }
-        }
-
-        seg = default;
-        return false;
-    }
-
-    /// <summary>
-    /// Extracts rendered text spanning from <paramref name="fromLb"/> to <paramref name="toLb"/> (inclusive).
-    /// Returns empty string if the document is empty or the segments cannot be found.
-    /// </summary>
-    private static string ExtractTextBetweenLbs(RenderedDocument doc, string fromLb, string? toLb)
-    {
-        if (doc == null || doc.IsEmpty || string.IsNullOrEmpty(fromLb)) return "";
-
-        if (!TryFindSegmentByLb(doc, fromLb, out var startSeg)) return "";
-        int start;
-        int end;
-
-        if (!string.IsNullOrEmpty(toLb) && toLb != fromLb)
-        {
-            start = startSeg.Start;
-            end = startSeg.EndExclusive;
-            if (TryFindSegmentByLb(doc, toLb, out var endSeg))
-                end = endSeg.EndExclusive;
-        }
-        else
-        {
-            (start, end) = ResolveSingleLbMeaningfulSpan(doc, startSeg);
-        }
-
-        var text = doc.Text ?? "";
-        start = Math.Clamp(start, 0, text.Length);
-        end = Math.Clamp(end, 0, text.Length);
-        return end > start ? text.Substring(start, end - start) : "";
-    }
-
-    /// <summary>
-    /// Extracts apparatus entries from annotations in the rendered document
-    /// that fall within the lb range. Returns null if none found.
-    /// Annotation text format: "Lem: X\nRdg: Y [wit]"
-    /// </summary>
-    private static List<ApparatusEntry>? ExtractApparatusForLbRange(
-        RenderedDocument doc, string? fromLb, string? toLb)
-    {
-        if (doc == null || doc.IsEmpty || string.IsNullOrEmpty(fromLb))
-            return null;
-        if (doc.Annotations == null || doc.Annotations.Count == 0)
-            return null;
-
-        var (rangeStart, rangeLen) = ResolveLbRange(doc, fromLb, toLb);
-        if (rangeStart < 0 || rangeLen <= 0)
-            return null;
-
-        int rangeEnd = rangeStart + rangeLen;
-        List<ApparatusEntry>? result = null;
-
-        foreach (var ann in doc.Annotations)
-        {
-            if (!string.Equals(ann.Kind, "apparatus", StringComparison.OrdinalIgnoreCase))
-                continue;
-            // Annotation Start is the anchor position in rendered text;
-            // include if it falls within or at the edges of the passage range.
-            if (ann.Start < rangeStart || ann.Start > rangeEnd)
-                continue;
-
-            var entry = ApparatusAnnotationParser.Parse(ann.Text);
-            if (entry != null)
-            {
-                result ??= new List<ApparatusEntry>();
-                result.Add(entry);
-            }
-        }
-
-        return result;
-    }
-
     /// <summary>
     /// Populates the footnotes panel below the Chinese text pane with apparatus entries
     /// from the current rendered document, or from apparatus.json if no inline annotations exist.
@@ -3737,7 +3502,7 @@ public partial class ReadableTabView : UserControl
         var firstVisual = view.VisualLines.FirstOrDefault();
         if (firstVisual == null) return null;
         int offset = firstVisual.FirstDocumentLine.Offset;
-        var (lb, _) = ResolveLbAtOffset(doc, offset);
+        var (lb, _) = ReaderLbGeometry.ResolveLbAtOffset(doc, offset);
         return lb;
     }
 
@@ -3857,7 +3622,7 @@ public partial class ReadableTabView : UserControl
     {
         if (ed?.Document == null || doc.IsEmpty) return;
 
-        var (start, _) = ResolveLbRange(doc, lb, null);
+        var (start, _) = ReaderLbGeometry.ResolveLbRange(doc, lb, null);
         if (start < 0) return;
 
         var sv = ed.GetVisualDescendants().OfType<ScrollViewer>().FirstOrDefault();
@@ -4799,7 +4564,7 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
             Side = SearchSide.Original,
             FromLb = match.FromLb,
             ToLb = toLb,
-            MatchText = ExtractTextBetweenLbs(_vm.RenderOrig, match.FromLb, toLb)
+            MatchText = ReaderLbGeometry.ExtractTextBetweenLbs(_vm.RenderOrig, match.FromLb, toLb)
         });
 
         return true;
@@ -5332,12 +5097,12 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
         foreach (var tag in _appliedTags)
         {
             if (string.IsNullOrEmpty(tag.FromLb)) continue;
-            if (!TryFindSegmentByLb(doc, tag.FromLb, out var tagStart)) continue;
+            if (!ReaderLbGeometry.TryFindSegmentByLb(doc, tag.FromLb, out var tagStart)) continue;
 
             int tagEnd = tagStart.EndExclusive;
             if (!string.IsNullOrEmpty(tag.ToLb) && tag.ToLb != tag.FromLb)
             {
-                if (TryFindSegmentByLb(doc, tag.ToLb, out var tagEndSeg))
+                if (ReaderLbGeometry.TryFindSegmentByLb(doc, tag.ToLb, out var tagEndSeg))
                     tagEnd = tagEndSeg.EndExclusive;
             }
 
@@ -5356,8 +5121,8 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
         }
 
         // Extract text from both panes using the tag's lb range
-        string zhText = ExtractTextBetweenLbs(_vm.RenderOrig, overlappingTag.FromLb, overlappingTag.ToLb);
-        string enText = ExtractTextBetweenLbs(_vm.RenderTran, overlappingTag.FromLb, overlappingTag.ToLb);
+        string zhText = ReaderLbGeometry.ExtractTextBetweenLbs(_vm.RenderOrig, overlappingTag.FromLb, overlappingTag.ToLb);
+        string enText = ReaderLbGeometry.ExtractTextBetweenLbs(_vm.RenderTran, overlappingTag.FromLb, overlappingTag.ToLb);
 
         // Resolve tag display name
         string tagName = "";
@@ -5421,12 +5186,12 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
         foreach (var tag in forFile)
         {
             if (string.IsNullOrEmpty(tag.FromLb)) continue;
-            if (!TryFindSegmentByLb(doc, tag.FromLb, out var tagStart)) continue;
+            if (!ReaderLbGeometry.TryFindSegmentByLb(doc, tag.FromLb, out var tagStart)) continue;
 
             int tagEnd = tagStart.EndExclusive;
             if (!string.IsNullOrEmpty(tag.ToLb) && tag.ToLb != tag.FromLb)
             {
-                if (TryFindSegmentByLb(doc, tag.ToLb, out var tagEndSeg))
+                if (ReaderLbGeometry.TryFindSegmentByLb(doc, tag.ToLb, out var tagEndSeg))
                     tagEnd = tagEndSeg.EndExclusive;
             }
 
@@ -5566,8 +5331,8 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
         if (_appliedTags.Count == 0) return (fromLb, toLb);
 
         // Build segment-index lookup for the selection
-        if (!TryFindSegmentByLb(doc, fromLb, out var selStartSeg)) return (fromLb, toLb);
-        if (!TryFindSegmentByLb(doc, toLb, out var selEndSeg)) return (fromLb, toLb);
+        if (!ReaderLbGeometry.TryFindSegmentByLb(doc, fromLb, out var selStartSeg)) return (fromLb, toLb);
+        if (!ReaderLbGeometry.TryFindSegmentByLb(doc, toLb, out var selEndSeg)) return (fromLb, toLb);
 
         int selStartIdx = doc.Segments.IndexOf(selStartSeg);
         int selEndIdx = doc.Segments.IndexOf(selEndSeg);
@@ -5580,13 +5345,13 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
             foreach (var tag in _appliedTags)
             {
                 if (string.IsNullOrEmpty(tag.FromLb)) continue;
-                if (!TryFindSegmentByLb(doc, tag.FromLb, out var tagStartSeg)) continue;
+                if (!ReaderLbGeometry.TryFindSegmentByLb(doc, tag.FromLb, out var tagStartSeg)) continue;
                 int tagStartIdx = doc.Segments.IndexOf(tagStartSeg);
                 if (tagStartIdx < 0) continue;
 
                 string tagToLb = !string.IsNullOrEmpty(tag.ToLb) ? tag.ToLb : tag.FromLb;
                 int tagEndIdx = tagStartIdx;
-                if (TryFindSegmentByLb(doc, tagToLb, out var tagEndSeg))
+                if (ReaderLbGeometry.TryFindSegmentByLb(doc, tagToLb, out var tagEndSeg))
                 {
                     int ei = doc.Segments.IndexOf(tagEndSeg);
                     if (ei >= 0) tagEndIdx = ei;
@@ -5697,14 +5462,14 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
             if (string.IsNullOrEmpty(t.FromLb)) continue;
 
             // Find start and end segment indices for this tag range
-            if (!TryFindSegmentByLb(doc, t.FromLb, out var startSeg)) continue;
+            if (!ReaderLbGeometry.TryFindSegmentByLb(doc, t.FromLb, out var startSeg)) continue;
             int startIdx = doc.Segments.IndexOf(startSeg);
             if (startIdx < 0) continue;
 
             int endIdx = startIdx;
             if (!string.IsNullOrEmpty(t.ToLb) && t.ToLb != t.FromLb)
             {
-                if (TryFindSegmentByLb(doc, t.ToLb, out var endSeg))
+                if (ReaderLbGeometry.TryFindSegmentByLb(doc, t.ToLb, out var endSeg))
                 {
                     int ei = doc.Segments.IndexOf(endSeg);
                     if (ei >= 0) endIdx = ei;
@@ -5907,13 +5672,13 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
         var ranges = new List<(int Start, int Length, Color TagColor)>();
         foreach (var (fromLb, toLb, color) in tagColorMap)
         {
-            if (!TryFindSegmentByLb(doc, fromLb, out var startSeg)) continue;
+            if (!ReaderLbGeometry.TryFindSegmentByLb(doc, fromLb, out var startSeg)) continue;
             int rangeStart = startSeg.Start;
             int rangeEnd = startSeg.EndExclusive;
 
             if (!string.IsNullOrEmpty(toLb) && toLb != fromLb)
             {
-                if (TryFindSegmentByLb(doc, toLb, out var endSeg))
+                if (ReaderLbGeometry.TryFindSegmentByLb(doc, toLb, out var endSeg))
                     rangeEnd = endSeg.EndExclusive;
             }
 
@@ -6271,7 +6036,7 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
         // paragraphs (suppressed non-leading lbs); PageTwoPane AND SyncedTwoPane both render
         // the UNSUPPRESSED per-line surface into the two editors — SyncedPanes differs from
         // Page only in that scroll-sync is its defining, always-on behavior (via ScrollSync).
-        var strategy = RenderStrategyFor(mode);
+        var strategy = ReaderLayoutStrategy.For(mode);
         bool needsSuppression = strategy == RenderStrategy.MergedTwoPane;
         int seq = ++_readingLayoutRenderSeq;
         var xmlPath = _provenanceXmlAbsPath!;
@@ -6624,7 +6389,7 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
     /// <summary>
     /// Flags each row whose lb contains an apparatus annotation, so the surface can paint the
     /// id-column apparatus dot. Maps every apparatus annotation's rendered offset to its lb via
-    /// <see cref="ResolveLbAtOffset"/>, then sets <see cref="RowVm.HasApparatus"/> on the matching
+    /// <see cref="ReaderLbGeometry.ResolveLbAtOffset"/>, then sets <see cref="RowVm.HasApparatus"/> on the matching
     /// rows. All rows are reset first so a rebuild never leaves a stale flag.
     /// </summary>
     private static void StampApparatusFlags(RenderedDocument? orig, System.Collections.Generic.IReadOnlyList<RowVm> rows)
@@ -6636,7 +6401,7 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
         foreach (var ann in orig.Annotations)
         {
             if (!string.Equals(ann.Kind, "apparatus", StringComparison.OrdinalIgnoreCase)) continue;
-            var (lb, _) = ResolveLbAtOffset(orig, ann.Start);
+            var (lb, _) = ReaderLbGeometry.ResolveLbAtOffset(orig, ann.Start);
             if (!string.IsNullOrEmpty(lb)) lbsWithApparatus.Add(lb!);
         }
         if (lbsWithApparatus.Count == 0) return;
@@ -6931,10 +6696,10 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
         if (string.IsNullOrEmpty(text) || zhOffset < 0 || zhOffset >= text.Length) return;
 
         char ch = text[zhOffset];
-        if (!IsCjkChar(ch))
+        if (!ReaderLbGeometry.IsCjkChar(ch))
         {
             // Caret may land just after the glyph — try one position back before giving up.
-            if (zhOffset > 0 && IsCjkChar(text[zhOffset - 1])) zhOffset--;
+            if (zhOffset > 0 && ReaderLbGeometry.IsCjkChar(text[zhOffset - 1])) zhOffset--;
             else return;
         }
 
@@ -7046,7 +6811,7 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
             ToLb = row.Lb,
             PreferredSide = isTranslated ? SearchSide.Translated : SearchSide.Original,
             TranslationUser = GetTranslationUser?.Invoke(),
-            Apparatus = ExtractApparatusForLbRange(_vm.RenderOrig, row.Lb, row.Lb)
+            Apparatus = ReaderLbGeometry.ExtractApparatusForLbRange(_vm.RenderOrig, row.Lb, row.Lb)
         };
         if (string.IsNullOrWhiteSpace(passage.Summary))
             passage.Summary = passage.GenerateAutoSummary();
@@ -7056,49 +6821,6 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
         else
             AddToScholarRequested?.Invoke(this, passage);
     }
-
-    /// <summary>The render surfaces the reader can produce.</summary>
-    private enum RenderStrategy
-    {
-        /// <summary>Per-lb page layout (unsuppressed line breaks).</summary>
-        PageTwoPane,
-        /// <summary>Merged two-pane surface (suppressed non-leading line breaks).</summary>
-        MergedTwoPane,
-        /// <summary>
-        /// Per-line two-pane surface with always-on viewport scroll-sync by shared line id
-        /// (the SPA "flow" mode). Same UNSUPPRESSED per-line density as <see cref="PageTwoPane"/>
-        /// — NOT paragraph-healed like <see cref="MergedTwoPane"/>, NOT row-height-locked like
-        /// the AlignedLines row grid — but the sync is the mode's defining feature (engaged via
-        /// <see cref="BilingualScrollSyncViewModel.ModeForcesSync"/>, independent of the config toggle).
-        /// </summary>
-        SyncedTwoPane,
-        /// <summary>Row-grid reading surface (virtualized ListBox of RowVm rows). Wave C.</summary>
-        RowGrid
-    }
-
-    /// <summary>
-    /// Maps a requested <see cref="ReadingLayoutMode"/> to its render strategy. Page → page;
-    /// MergedFlow → paragraph-healed merged two-pane; SyncedPanes → per-line synced two-pane
-    /// (its own strategy — NOT aliased to MergedFlow); AlignedLines/AlignedBlocks/Interleaved/
-    /// MergedStacked → row grid.
-    /// </summary>
-    private static RenderStrategy RenderStrategyFor(ReadingLayoutMode mode) => mode switch
-    {
-        ReadingLayoutMode.Page => RenderStrategy.PageTwoPane,
-        ReadingLayoutMode.AlignedLines => RenderStrategy.RowGrid,       // Wave C1 → row grid
-        ReadingLayoutMode.AlignedBlocks => RenderStrategy.RowGrid,      // Wave C → two-column block-aligned row grid
-        ReadingLayoutMode.MergedFlow => RenderStrategy.MergedTwoPane,
-        ReadingLayoutMode.SyncedPanes => RenderStrategy.SyncedTwoPane,  // per-line, viewport scroll-synced by shared line id
-        ReadingLayoutMode.Interleaved => RenderStrategy.RowGrid,        // Wave C → single-column row grid
-        ReadingLayoutMode.MergedStacked => RenderStrategy.RowGrid,      // Wave C → single-column merged-stacked grid
-        _ => RenderStrategy.PageTwoPane
-    };
-
-    /// <summary>True for the TWO-COLUMN grid modes whose ZH|EN row surface honors the ZH/Both/EN
-    /// view filter by collapsing a column. Single-column grid modes (Interleaved/MergedStacked)
-    /// suppress the toggle (SPA passage.js:499) and are deliberately excluded.</summary>
-    private static bool IsTwoColumnGridMode(ReadingLayoutMode mode)
-        => mode is ReadingLayoutMode.AlignedLines or ReadingLayoutMode.AlignedBlocks;
 
     /// <summary>
     /// Applies the ZH/Both/EN view mode. On the two-editor surface this collapses/expands the
@@ -7114,7 +6836,7 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
         // apply for the current two-column grid mode (it re-reads the new view and rebuilds).
         if (_activeSurface == ActiveSurface.RowGrid)
         {
-            if (IsTwoColumnGridMode(_currentLayoutMode))
+            if (ReaderLayoutStrategy.IsTwoColumnGridMode(_currentLayoutMode))
                 _ = ApplyReadingLayoutAsync(_currentLayoutMode, userInitiated: false);
             return;
         }
@@ -7258,7 +6980,7 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
     /// </summary>
     private bool TryReapplyPersistedGridSync(ReadingLayoutMode mode, ISegmentMapService? segMapService, string xmlPath)
     {
-        if (RenderStrategyFor(mode) != RenderStrategy.RowGrid) return false;
+        if (ReaderLayoutStrategy.For(mode) != RenderStrategy.RowGrid) return false;
 
         // Need the real docs SetRendered populated for THIS navigation; an empty original means
         // there is nothing to pair, so let the async path re-read/re-render and fall back.
@@ -7513,10 +7235,10 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
 
         // Check if character at caret is CJK
         char ch = docText[caret];
-        if (!IsCjkChar(ch))
+        if (!ReaderLbGeometry.IsCjkChar(ch))
         {
             // Try one position back (caret might be after the character)
-            if (caret > 0 && IsCjkChar(docText[caret - 1]))
+            if (caret > 0 && ReaderLbGeometry.IsCjkChar(docText[caret - 1]))
                 caret--;
             else
                 return;
@@ -7559,8 +7281,6 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
             }
         }
     }
-
-    private static bool IsCjkChar(char c) => ReadZen.App.Infrastructure.CjkText.IsIdeograph(c);
 
     private IBrush? GetResourceBrush(string key)
     {
@@ -8690,7 +8410,7 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
         // Re-anchor to the underlying lb so the bookmark survives re-rendering and
         // page↔merged-flow layout changes. DisplayOffset stays as a legacy fallback.
         var anchorDoc = onTran ? _vm.RenderTran : _vm.RenderOrig;
-        var (lbAnchor, lbStart) = ResolveLbAtOffset(anchorDoc, offset);
+        var (lbAnchor, lbStart) = ReaderLbGeometry.ResolveLbAtOffset(anchorDoc, offset);
 
         var bookmark = new Bookmark
         {
@@ -8813,12 +8533,12 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
         int docLen = editor.Document?.TextLength ?? 0;
 
         // Preferred path: re-anchor via the lb so the position survives re-rendering /
-        // layout changes. ResolveLbRange maps the lb to a rendered span in the CURRENT
+        // layout changes. ReaderLbGeometry.ResolveLbRange maps the lb to a rendered span in the CURRENT
         // document; add the captured intra-line offset back on top.
         if (!string.IsNullOrEmpty(bm.LbAnchor))
         {
             var doc = editor == _aeOrig ? _vm.RenderOrig : _vm.RenderTran;
-            var (lbStart, lbLen) = ResolveLbRange(doc, bm.LbAnchor!, null);
+            var (lbStart, lbLen) = ReaderLbGeometry.ResolveLbRange(doc, bm.LbAnchor!, null);
             if (lbStart >= 0)
             {
                 int intra = bm.IntraLineOffset ?? 0;
