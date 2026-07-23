@@ -5,7 +5,7 @@ namespace ReadZen.App.Models;
 
 public sealed class IndexCache
 {
-    public int Version { get; set; } = 3;
+    public int Version { get; set; } = 4;
 
     public string RootPath { get; set; } = "";
     public DateTime BuiltUtc { get; set; } = DateTime.UtcNow;
@@ -16,21 +16,23 @@ public sealed class IndexCache
     public string? BuildGuid { get; set; }
 
     /// <summary>
-    /// SHA of the corpus translations repo's HEAD commit at the time the
-    /// cache was built. Compared against the live HEAD on every load — when
-    /// they differ, the cache is treated as stale and rebuilt from disk.
-    /// This is the load-bearing invalidation signal for the "user synced
-    /// the corpus and new files appeared" case. Null when the corpus root
-    /// is not a git repo (manual file dump, dev sandbox, etc.) — in that
-    /// situation we don't gate on it.
+    /// SHA256 (hex) of the shipped <c>titles.jsonl</c> bytes at build time.
+    /// Display fields (DisplayShort/Tooltip) are derived from this file, so a
+    /// change to it forces a wholesale rebuild — the only content input, beyond
+    /// the per-entry (orig, tran) file stats, that the nav cache depends on.
+    /// </summary>
+    public string? TitlesHash { get; set; }
+
+    /// <summary>
+    /// RETIRED (v4): the git-HEAD freshness gate was replaced by the content
+    /// gate (TitlesHash + per-entry file stats). Kept only for JSON
+    /// deserialization tolerance of pre-v4 caches; never written or compared.
     /// </summary>
     public string? GitHead { get; set; }
 
     /// <summary>
-    /// SHA of the originals repo's HEAD commit at build time. The file list
-    /// is enumerated from the originals dir, so when THIS repo changes
-    /// (new texts added, files removed) the cache must be rebuilt even if
-    /// the translations repo HEAD hasn't moved.
+    /// RETIRED (v4): see <see cref="GitHead"/>. Kept only for JSON
+    /// deserialization tolerance; never written or compared.
     /// </summary>
     public string? OriginalsGitHead { get; set; }
 }
