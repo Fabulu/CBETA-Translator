@@ -88,6 +88,18 @@
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
 		</Content>
+		<!--
+		PR-M3 (SPEC §6.1): prebuilt master-corpus index shipped next to the exe. Cache format
+		(built_utc/corpus/corpus_stamp/file_count/master_count/appearances) carrying the v2
+		composite stamp baked from the shipped CBETA corpus + the 944-record roster above. On
+		launch MasterCorpusSearchService.TryAdoptBundleAsync adopts it into the user cache with
+		ZERO rebuild when its stamp IS the live stamp. Committed directly to git (~57 MB); the
+		MasterBundleLockstepTests CI guard fails the build if the roster is edited without a rebake.
+		-->
+		<Content Include="Assets\Data\master-corpus-index.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</Content>
 		<Content Include="Assets\Data\lineage-masters.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
