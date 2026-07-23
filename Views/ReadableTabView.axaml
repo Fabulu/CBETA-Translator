@@ -313,7 +313,22 @@
 								CornerRadius="6">
 							<Grid RowDefinitions="Auto,*,Auto">
 								<Border Background="{DynamicResource XmlViewerBg}" Padding="8">
-									<TextBlock Text="Original (read-only)" Classes="muted"/>
+									<DockPanel LastChildFill="False">
+										<TextBlock DockPanel.Dock="Left" Text="Original (read-only)"
+										           Classes="muted" VerticalAlignment="Center"/>
+										<!-- Visible always-linked-scroll affordance for SyncedPanes: the mode
+										     forces cross-pane scroll sync on regardless of the config toggle, so
+										     surface a chip the user can see (bound to the mode-derived observable). -->
+										<Border DockPanel.Dock="Right"
+										        IsVisible="{Binding Reading.ScrollSync.IsSyncForcedByMode}"
+										        Background="{DynamicResource TabAccent}"
+										        CornerRadius="9" Padding="7,1" VerticalAlignment="Center"
+										        ToolTip.Tip="Synced Panes: the two panes always scroll together. This overrides the global scroll-sync setting.">
+											<TextBlock Text="&#x2194; Linked scroll"
+											           FontSize="11" FontWeight="SemiBold"
+											           Foreground="White"/>
+										</Border>
+									</DockPanel>
 								</Border>
 
 								<local:AnnotatedTextEditor Name="EditorOriginal"

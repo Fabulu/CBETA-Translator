@@ -240,10 +240,36 @@ public partial class ReadableTabView : UserControl
     private RowGridSurface? _rowGridSurface;
     private System.Collections.Generic.IReadOnlyDictionary<string, int>? _rowGridLbToRow;
 
+    // Wave C / PR-3 (R1): lb-addressed reader features on the grid surface. Rows are held so
+    // features can index by row from the LbToRow map; the "current row" is the one the user
+    // last pressed (study-context / save-to-collection anchor); the nav pulse clears an 8s
+    // deep-link/nav highlight; the capture-suppress window keeps programmatic ScrollIntoView
+    // (resume restore, deep-link, bookmark jump) from overwriting the resume anchor.
+    private System.Collections.Generic.IReadOnlyList<RowVm>? _rowGridRows;
+    private bool _gridEventsHooked;
+    private RowVm? _gridCurrentRow;
+    private DispatcherTimer? _gridResumeCaptureDebounce;
+    private string? _gridResumeCaptureKey;
+    private DateTime _suppressGridResumeCaptureUntilUtc = DateTime.MinValue;
+    private DispatcherTimer? _gridNavPulseTimer;
+    private RowVm? _gridNavPulseRow;
+    private const int GridNavPulseMs = 8000; // deep-link / nav highlight lifetime (parity with SPA pulse)
+    // C2 selection-mirror (PR-5): the row currently paired-highlighted by the last grid cell click.
+    // Reuses RowVm.IsNavHighlighted (same visual wash); tracked separately so a fresh click can
+    // clear the prior mirror without disturbing an active deep-link nav pulse.
+    private RowVm? _gridSelMirrorRow;
+
     /// <summary>True while the RowGrid surface is the visible reading surface. Feature entry
     /// points guard on this to avoid operating on the hidden two-editor panes. NOT folded
     /// into <see cref="IsReadingLayoutGated"/> — that gate BLOCKS reading-layout renders, and
-    /// the grid IS a reading-layout render.</summary>
+    /// the grid IS a reading-layout render.
+    /// <para>
+    /// OBSOLETE-on-grid (not a TODO): this predicate also permanently disables pane
+    /// scroll-sync on the grid modes — <see cref="OnPaneScrolled"/> feeds it into
+    /// <see cref="BilingualScrollSyncViewModel.ShouldSync"/>. Grid scroll-sync is RETIRED,
+    /// not deferred: the combined row surface co-locates ZH/EN per row, so there is nothing
+    /// to keep in step. Do not treat this as a re-enable point.
+    /// </para></summary>
     private bool IsGridSurfaceActive() => _activeSurface == ActiveSurface.RowGrid;
     private ManifestInfo? _provenanceManifest; // cached manifest for commentary panel / future right-column sidecars
     // Pre-built lookup: locus → latest correction at that locus. Avoids O(n*m)
@@ -260,6 +286,14 @@ public partial class ReadableTabView : UserControl
     private FindHighlightTransformer? _findHighlightTran;
     private List<(bool IsTranslated, int Start, int Length)> _findMatches = new();
     private int _findCurrentIndex = -1;
+
+    // C2 (PR-4): find-in-page on the RowGrid surface. Matches are row-INDEX addressed (into
+    // _rowGridRows) with the side that carries the visible text; highlights are written onto the
+    // rows' observable Zh/EnHighlights so realized cells rerender with no rebuild. _gridFindTouched
+    // remembers which rows currently carry find spans so a re-query can clear only those.
+    private readonly List<(int RowIndex, RowSide Side, int Start, int Length)> _gridFindMatches = new();
+    private int _gridFindCurrentIndex = -1;
+    private readonly List<int> _gridFindTouchedRows = new();
 
     // Font size control
     private double _editorFontSize = 14.0;
@@ -814,11 +848,12 @@ public partial class ReadableTabView : UserControl
 
     private async Task OnAddToScholarCollectionAsync(bool isTranslated, bool useCurrentCollection = false)
     {
-        // On the grid surface the editors hold the PREVIOUS surface's text+selection; saving
-        // would persist the wrong quotation/lb-range (review M-5). Grid selection capture is C3.
+        // On the grid surface there is no editor selection — resolve the passage from the current
+        // row's lb instead (cross-row selection is the deferred C6 spike).
         if (IsGridSurfaceActive())
         {
-            Say("Switch to a two-pane layout to save a passage to your collection.");
+            AddGridRowToScholarCollection(isTranslated, useCurrentCollection);
+            await Task.CompletedTask;
             return;
         }
 
@@ -1641,7 +1676,17 @@ public partial class ReadableTabView : UserControl
     /// </summary>
     public async Task NavigateToAsync(NavigationRequest request)
     {
-        if (IsGridSurfaceActive()) return; // C2/C3: implement nav-highlight on grid (LbToRow → ScrollIntoView)
+        // Grid surface: address by lb (LbToRow → ScrollIntoView) and pulse the row's
+        // IsNavHighlighted; text-fallback matching is a two-editor-only path.
+        if (IsGridSurfaceActive())
+        {
+            // Let the freshly-swapped surface realize its containers before scrolling.
+            await Dispatcher.UIThread.InvokeAsync(() => { }, DispatcherPriority.Loaded);
+            if (!IsGridSurfaceActive()) return; // navigated away / surface swapped during the await
+            if (!string.IsNullOrEmpty(request.FromLb))
+                NavHighlightGridLb(request.FromLb!);
+            return;
+        }
 
         // Give the layout engine time to measure and render the text.
         // Secondary windows need extra time for the visual tree to settle.
@@ -3043,8 +3088,9 @@ public partial class ReadableTabView : UserControl
             return;
         }
 
-        if (IsGridSurfaceActive()) return; // C2/C3: selection-mirror is moot on the single-grid surface
-
+        // PR-5: the two-editor selection-mirror poll no longer needs a grid guard — the grid uses
+        // its own paired-row highlight (ApplyGridSelectionMirror on cell click). On the grid the
+        // hidden panes are never focused, so the anyFocused check below already no-ops this path.
         if (DateTime.UtcNow <= _suppressPollingUntilUtc) return;
         if (_syncingSelection) return;
         if (DateTime.UtcNow <= _ignoreProgrammaticUntilUtc) return;
@@ -3121,7 +3167,8 @@ public partial class ReadableTabView : UserControl
 
     private void RequestMirrorFromUserAction(bool sourceIsTranslated)
     {
-        if (IsGridSurfaceActive()) return; // C2/C3: selection-mirror is moot on the single-grid surface
+        // PR-5: no grid guard — grid cell clicks route through ApplyGridSelectionMirror instead;
+        // this two-editor mirror path only ever fires from focused-pane input, which the grid lacks.
         if (_vm.PendingRefresh) return;
         if (DateTime.UtcNow <= _suppressMirrorUntilUtc) return;
         if (DateTime.UtcNow <= _suppressMirrorForMarkerClickUntilUtc) return;
@@ -3215,7 +3262,11 @@ public partial class ReadableTabView : UserControl
     // =========================
     private void SetupHoverDictionary()
     {
-        if (IsGridSurfaceActive()) return; // C2: implement HoverDictionaryBehaviorRow on grid cells
+        // The grid has its own dictionary: an ON-CLICK lookup into the docked study panel, wired at
+        // the surface level in OnGridPointerPressed → ShowGridDictionaryForRow and gated by the same
+        // HoverDictionaryEnabled toggle. The two-editor hover behavior below must not attach to the
+        // hidden _aeOrig while the grid shows, so this path stays two-editor-only.
+        if (IsGridSurfaceActive()) return;
 
         _hoverDictOrig?.Dispose();
         _hoverDictOrig = null;
@@ -3469,6 +3520,14 @@ public partial class ReadableTabView : UserControl
         // ping-pong suppress guard, and the user-intent window are all decided by the VM.
         // Programmatic scrolls (find bar, search navigation, selection sync, bookmarks,
         // progress restore) never stamp intent, so they never pass this gate.
+        //
+        // OBSOLETE-on-grid (not a TODO): pane scroll-sync is PERMANENTLY RETIRED for the
+        // RowGrid modes (AlignedLines/AlignedBlocks/Interleaved/MergedStacked). Passing
+        // IsGridSurfaceActive() into ShouldSync short-circuits sync whenever the grid is up
+        // because the combined row surface co-locates ZH and EN on the same row — there are
+        // no two viewports to keep in step (the SPA's syncRowHeights/syncSegmentBlocks are
+        // expressed structurally in the builders). This gate only ever fires for the two
+        // AvaloniaEdit-pane surfaces (Page and SyncedPanes). Do not re-add grid scroll-sync.
         if (!ScrollSync.ShouldSync(sourceIsOrig, IsGridSurfaceActive(), DateTime.UtcNow)) return;
 
         ScrollSync.SourceIsOrig = sourceIsOrig;
@@ -3617,7 +3676,9 @@ public partial class ReadableTabView : UserControl
 
     private void ScheduleResumeCapture(bool sourceIsOrig)
     {
-        if (IsGridSurfaceActive()) return; // C3: capture the grid's top-visible row via LbToRow
+        // Two-editor path only. The grid captures its resume anchor from the top-visible ROW via
+        // OnGridScrollChanged → CaptureGridResumeAnchor (the hidden editors never scroll here).
+        if (IsGridSurfaceActive()) return;
 
         // Only capture on real user scrolling (same intent gate as scroll-sync);
         // programmatic scrolls (restore, find bar, selection sync, bookmarks) never
@@ -3723,15 +3784,8 @@ public partial class ReadableTabView : UserControl
 
     private void ResumeRestoreTick()
     {
-        // C3: implement resume-restore on the grid (LbToRow → ScrollIntoView). For C1 the grid
-        // owns its own scroll; stop the pending restore cleanly so navigation never stalls.
-        if (IsGridSurfaceActive())
-        {
-            _resumeRestoreTimer?.Stop();
-            _resumeRestoreAbsKey = null;
-            return;
-        }
-
+        // Both surfaces flow through here: the wait guard below settles the panes/layout, then
+        // RestoreResumeToLb branches to the grid (LbToRow → ScrollIntoView) or the two editors.
         var absKey = _resumeRestoreAbsKey;
         // Superseded by a newer navigation, or nothing pending → stop.
         if (string.IsNullOrEmpty(absKey) ||
@@ -3770,8 +3824,14 @@ public partial class ReadableTabView : UserControl
 
     private void RestoreResumeToLb(string lb, string? side)
     {
-        if (IsGridSurfaceActive()) return; // C3: restore the grid's scroll via LbToRow[lb]
         if (IsReadingLayoutGated()) return;
+
+        // Grid surface: address by lb and scroll the row into view (no caret/selection concept).
+        if (IsGridSurfaceActive())
+        {
+            ScrollGridToLb(lb);
+            return;
+        }
 
         // Restore BOTH panes to the shared source lb so the bilingual view stays
         // aligned. Programmatic (no intent stamp) + inside the suppress windows so
@@ -6070,10 +6130,14 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
             UpdateTermbaseHighlights(_vm.LastStudySnapshot.Terms, _vm.LastStudySnapshot.Segment?.ZhText, preferredOccurrenceHint: preferredOccurrenceHint, anchorTextSignal: _vm.LastStudySnapshot.Segment?.ZhContextText);
             UpdateTmSharedHighlights(_vm.LastStudySnapshot.ApprovedMatches, _vm.LastStudySnapshot.ReferenceMatches, _vm.LastStudySnapshot.Segment?.ZhText, preferredOccurrenceHint: preferredOccurrenceHint, anchorTextSignal: _vm.LastStudySnapshot.Segment?.ZhContextText);
         }
-        else if (!_vm.RenderOrig.IsEmpty && !IsGridSurfaceActive())
+        else if (IsGridSurfaceActive())
         {
-            // DeriveReaderSegmentContext reads the editor caret, which is stale on the grid
-            // surface (review m-5). Grid-driven study context is C2/C3.
+            // The grid has no editor caret — anchor the study context on the current row's lb
+            // (updated on each row press via OnGridPointerPressed).
+            DeriveGridSegmentContext();
+        }
+        else if (!_vm.RenderOrig.IsEmpty)
+        {
             DeriveReaderSegmentContext();
         }
 
@@ -6405,6 +6469,12 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
                     // user's choice (the recursive call persists the fallback; re-persist mode).
                     await ApplyReadingLayoutAsync(fallback, userInitiated: false);
                     PersistLayoutMode(mode);
+                    // Passive one-line notice (not a dialog): with only a handful of segmented
+                    // texts in the corpus, this downgrade is the COMMON case, so a silent fallback
+                    // reads as a bug. Say it so the user knows why blocks/merged look like lines.
+                    Say(isBlocks
+                        ? "This text has no segment map — showing aligned lines instead of aligned blocks."
+                        : "This text has no segment map — showing interleaved instead of merged-stacked.");
                 }
                 return;
             }
@@ -6470,6 +6540,10 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
         _vm.RenderTran = tran ?? RenderedDocument.Empty;
         _vm.IsEmptyState = false;
 
+        // C3: stamp the apparatus flag onto each row (id-column dot) by mapping every apparatus
+        // annotation's rendered offset to its lb, then flagging the rows for those lbs. O(ann+rows).
+        StampApparatusFlags(_vm.RenderOrig, model.Rows);
+
         surface.ReaderFontSize = _editorFontSize;
         surface.ItemsSource = model.Rows;
         surface.IsVisible = true;
@@ -6481,8 +6555,24 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
         CancelMoveModeAndHideNotes();
         if (_findBar != null) _findBar.IsVisible = false;
 
+        _rowGridRows = model.Rows;
         _rowGridLbToRow = model.LbToRow;
+        _gridCurrentRow = null;
+        ClearGridNavPulse();
+        ClearGridSelMirror();
+        ClearGridFindHighlights(); // stale find state from a prior grid render would index the wrong rows
         _activeSurface = ActiveSurface.RowGrid;
+
+        // One-time surface event wiring (resume capture on scroll; current-row tracking on press;
+        // C4 per-line copy-link via the bubbling Button.Click).
+        if (!_gridEventsHooked)
+        {
+            surface.AddHandler(ScrollViewer.ScrollChangedEvent, OnGridScrollChanged);
+            surface.AddHandler(InputElement.PointerPressedEvent, OnGridPointerPressed,
+                RoutingStrategies.Tunnel, handledEventsToo: true);
+            surface.AddHandler(Button.ClickEvent, OnGridCopyLinkClicked);
+            _gridEventsHooked = true;
+        }
 
         // Apparatus count parity with SetRendered (the provenance panel reads it).
         var appCount = _vm.RenderOrig?.Annotations?.Count(a => a.Kind == "apparatus") ?? 0;
@@ -6507,7 +6597,12 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
         }
         var twoPane = this.FindControl<Grid>("TwoPaneGrid");
         if (twoPane != null) twoPane.IsVisible = true;
+        ClearGridFindHighlights(); // drop grid find state before the rows go away
+        _rowGridRows = null;
         _rowGridLbToRow = null;
+        _gridCurrentRow = null;
+        ClearGridNavPulse();
+        ClearGridSelMirror();
         _activeSurface = ActiveSurface.TwoEditor;
 
         // A two-editor render (navigation, same-file re-render, time-travel, version history)
@@ -6520,6 +6615,446 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
             _currentLayoutMode = ReadingLayoutMode.Page;
             SetReadingLayoutSelector(ReadingLayoutMode.Page);
         }
+    }
+
+    // =========================
+    // Grid surface: lb-addressed feature support (PR-3 / Wave R1)
+    // =========================
+
+    /// <summary>
+    /// Flags each row whose lb contains an apparatus annotation, so the surface can paint the
+    /// id-column apparatus dot. Maps every apparatus annotation's rendered offset to its lb via
+    /// <see cref="ResolveLbAtOffset"/>, then sets <see cref="RowVm.HasApparatus"/> on the matching
+    /// rows. All rows are reset first so a rebuild never leaves a stale flag.
+    /// </summary>
+    private static void StampApparatusFlags(RenderedDocument? orig, System.Collections.Generic.IReadOnlyList<RowVm> rows)
+    {
+        foreach (var r in rows) r.HasApparatus = false;
+        if (orig?.Annotations == null || orig.Annotations.Count == 0) return;
+
+        var lbsWithApparatus = new System.Collections.Generic.HashSet<string>(StringComparer.Ordinal);
+        foreach (var ann in orig.Annotations)
+        {
+            if (!string.Equals(ann.Kind, "apparatus", StringComparison.OrdinalIgnoreCase)) continue;
+            var (lb, _) = ResolveLbAtOffset(orig, ann.Start);
+            if (!string.IsNullOrEmpty(lb)) lbsWithApparatus.Add(lb!);
+        }
+        if (lbsWithApparatus.Count == 0) return;
+
+        foreach (var r in rows)
+            if (!string.IsNullOrEmpty(r.Lb) && lbsWithApparatus.Contains(r.Lb))
+                r.HasApparatus = true;
+    }
+
+    /// <summary>The row the user last pressed on the grid (study-context / save-to-collection
+    /// anchor); falls back to the top-visible row so a feature invoked without a click still has
+    /// a sensible target.</summary>
+    private RowVm? CurrentGridRow() => _gridCurrentRow ?? TopVisibleGridRow();
+
+    /// <summary>The topmost row whose realized container is (at least partly) below the surface's
+    /// top edge — the grid analog of "top visible line". Null when nothing is realized yet.</summary>
+    private RowVm? TopVisibleGridRow()
+    {
+        var surface = _rowGridSurface;
+        if (surface == null) return null;
+
+        RowVm? best = null;
+        double bestTop = double.MaxValue;
+        foreach (var ctl in surface.GetRealizedContainers())
+        {
+            if (ctl == null) continue;
+            var bottom = ctl.TranslatePoint(new Point(0, ctl.Bounds.Height), surface)?.Y;
+            if (bottom is null || bottom.Value <= 0) continue; // fully above the viewport top
+            var top = ctl.TranslatePoint(new Point(0, 0), surface)?.Y ?? 0;
+            if (top < bestTop) { bestTop = top; best = ctl.DataContext as RowVm; }
+        }
+        return best;
+    }
+
+    /// <summary>Walks up from a pressed visual to the RowVm it belongs to (the cell's inherited
+    /// DataContext), or null when the press was outside any row.</summary>
+    private static RowVm? ResolveRowFromVisual(object? source)
+    {
+        var v = source as Visual;
+        while (v != null)
+        {
+            if (v is Control { DataContext: RowVm rv }) return rv;
+            v = v.GetVisualParent();
+        }
+        return null;
+    }
+
+    /// <summary>Scrolls the grid so the row for <paramref name="lb"/> is in view (O(1) via the
+    /// LbToRow map). Suppresses resume capture over the programmatic scroll, and re-issues the
+    /// scroll once deferred so it lands even when the target row is still being virtualized in.</summary>
+    private RowVm? ScrollGridToLb(string lb)
+    {
+        var surface = _rowGridSurface;
+        var map = _rowGridLbToRow;
+        if (surface == null || map == null) return null;
+        if (!map.TryGetValue(lb, out var index)) return null;
+
+        _suppressGridResumeCaptureUntilUtc = DateTime.UtcNow.AddMilliseconds(SuppressMirrorMs);
+        try { surface.ScrollIntoView(index); } catch { }
+        Dispatcher.UIThread.Post(() =>
+        {
+            if (!IsGridSurfaceActive()) return;
+            _suppressGridResumeCaptureUntilUtc = DateTime.UtcNow.AddMilliseconds(SuppressMirrorMs);
+            try { surface.ScrollIntoView(index); } catch { }
+        }, DispatcherPriority.Background);
+
+        var rows = _rowGridRows;
+        return rows != null && (uint)index < (uint)rows.Count ? rows[index] : null;
+    }
+
+    /// <summary>Deep-link / nav-highlight on the grid: scroll the lb into view and pulse the row's
+    /// <see cref="RowVm.IsNavHighlighted"/> for <see cref="GridNavPulseMs"/> ms.</summary>
+    private void NavHighlightGridLb(string lb)
+    {
+        var row = ScrollGridToLb(lb);
+        if (row == null) return;
+        ClearGridNavPulse();
+        row.IsNavHighlighted = true;
+        _gridNavPulseRow = row;
+        _gridNavPulseTimer ??= new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(GridNavPulseMs) };
+        _gridNavPulseTimer.Tick -= GridNavPulse_Tick;
+        _gridNavPulseTimer.Tick += GridNavPulse_Tick;
+        _gridNavPulseTimer.Stop();
+        _gridNavPulseTimer.Start();
+    }
+
+    private void GridNavPulse_Tick(object? sender, EventArgs e) => ClearGridNavPulse();
+
+    /// <summary>Ends any active nav pulse (timer + row flag). Safe to call when none is armed.</summary>
+    private void ClearGridNavPulse()
+    {
+        _gridNavPulseTimer?.Stop();
+        if (_gridNavPulseRow != null)
+        {
+            _gridNavPulseRow.IsNavHighlighted = false;
+            _gridNavPulseRow = null;
+        }
+    }
+
+    /// <summary>C2 selection-mirror (PR-5, RESOLVED DECISION — paired-row HIGHLIGHT, no caret
+    /// mirroring). On a grid cell click, resolves the clicked row's paired row and applies the
+    /// IsNavHighlighted wash to it: the SAME row in the two-column modes (AlignedLines/AlignedBlocks
+    /// already co-locate ZH and EN), or the ADJACENT partner row in the single-column modes
+    /// (Interleaved/MergedStacked — a ZH row mirrors to its EN row and vice versa). Reuses the same
+    /// observable field the deep-link nav pulse paints, so a fresh click supersedes any live pulse.
+    /// The highlight persists until the next click (no timer — it tracks the reading focus).</summary>
+    private void ApplyGridSelectionMirror(RowVm clickedRow)
+    {
+        // A click supersedes any deep-link nav pulse; both share RowVm.IsNavHighlighted.
+        ClearGridNavPulse();
+
+        var paired = ResolvePairedRow(clickedRow);
+
+        // Clear the prior mirror (unless it is exactly the row we are about to re-highlight).
+        if (_gridSelMirrorRow != null && !ReferenceEquals(_gridSelMirrorRow, paired))
+            _gridSelMirrorRow.IsNavHighlighted = false;
+        _gridSelMirrorRow = null;
+
+        if (paired == null) return; // e.g. an untranslated single-column line has no partner
+        paired.IsNavHighlighted = true;
+        _gridSelMirrorRow = paired;
+    }
+
+    /// <summary>Resolves the row to paint for a selection-mirror click. Two-column rows are their
+    /// own pair (ZH and EN sit in one row). Single-column rows pair with their adjacent partner:
+    /// the builders emit each ZH row immediately followed by its EN row under the SAME lb, so a ZH
+    /// click looks one row forward for an EN partner, and an EN click resolves back to the lb's ZH
+    /// row (LbToRow's first-row-per-lb). Returns null when there is no partner (e.g. an untranslated
+    /// ZH line or a standalone heading row).</summary>
+    private RowVm? ResolvePairedRow(RowVm row)
+    {
+        if (row.Shape == RowShape.TwoColumn)
+            return row;
+
+        var rows = _rowGridRows;
+        if (rows == null) return null;
+
+        if (row.Side == RowSide.Zh)
+        {
+            int j = row.Index + 1;
+            if (j < rows.Count
+                && rows[j].Side == RowSide.En
+                && string.Equals(rows[j].Lb, row.Lb, StringComparison.Ordinal))
+                return rows[j];
+            return null; // untranslated line / standalone heading — no EN partner
+        }
+
+        // EN row → mirror back to its lb's ZH row (first row for the lb).
+        var map = _rowGridLbToRow;
+        if (map != null && map.TryGetValue(row.Lb, out var zhIdx)
+            && (uint)zhIdx < (uint)rows.Count
+            && rows[zhIdx].Side == RowSide.Zh)
+            return rows[zhIdx];
+
+        int p = row.Index - 1;
+        if (p >= 0
+            && rows[p].Side == RowSide.Zh
+            && string.Equals(rows[p].Lb, row.Lb, StringComparison.Ordinal))
+            return rows[p];
+        return null;
+    }
+
+    /// <summary>Drops the tracked selection-mirror row (called when the grid model is rebuilt or the
+    /// two-editor surface is restored, so we never hold a stale RowVm). The row objects are
+    /// discarded with the model, so only the tracking reference needs clearing.</summary>
+    private void ClearGridSelMirror() => _gridSelMirrorRow = null;
+
+    /// <summary>Surface press handler: records the current row and, when the study panel is open,
+    /// refreshes its context from the pressed row's lb.</summary>
+    private void OnGridPointerPressed(object? sender, PointerPressedEventArgs e)
+    {
+        if (!IsGridSurfaceActive()) return;
+
+        // A press on the id-column copy-link button is a utility action, not a reading gesture:
+        // let its Button.Click fire (see OnGridCopyLinkClicked) but skip selection-mirror,
+        // dictionary and current-row tracking so clicking "#" never moves the reading focus.
+        if (FindCopyLinkButtonUnderPointer(e.Source) != null) return;
+
+        var row = ResolveRowFromVisual(e.Source);
+        if (row == null) return;
+        _gridCurrentRow = row;
+
+        // C2 selection-mirror (PR-5): highlight the clicked row's paired row (its own row in the
+        // two-column modes; the adjacent EN/ZH partner in the single-column modes). No caret
+        // mirroring — there is no second pane on the grid surface.
+        ApplyGridSelectionMirror(row);
+
+        if (_chkStudyPanel?.IsChecked == true)
+            DeriveGridSegmentContext();
+
+        // C2: on-click dictionary (NOT hover) — resolve the ZH term under the pointer and show it
+        // in the docked study side panel. Gated by the same HoverDictionaryEnabled toggle.
+        if (_vm.HoverDictionaryEnabled)
+            TryShowGridDictionaryAtPointer(e, row);
+    }
+
+    /// <summary>On-click grid dictionary: hit-tests the ZH primary cell under the pointer to a char
+    /// offset (public TextLayout.HitTestPoint — no per-cell attach, so recycling never leaks) and
+    /// resolves the term there. EN cells and translation-showing primary cells are ignored.</summary>
+    private void TryShowGridDictionaryAtPointer(PointerPressedEventArgs e, RowVm row)
+    {
+        if (!row.PrimaryIsZh) return; // ZH cells only (EN lookup is out of scope for this wave)
+        var cell = FindPrimaryCellUnderPointer(e.Source);
+        if (cell == null) return;
+        int offset = HitTestCellOffset(cell, e);
+        if (offset < 0) return;
+        ShowGridDictionaryForRow(row, offset);
+    }
+
+    /// <summary>Walks up from the pressed visual to the ZH/primary content cell (tagged by
+    /// RowGridSurface), or null when the press was on the id/EN cell or outside any cell.</summary>
+    private static SelectableTextBlock? FindPrimaryCellUnderPointer(object? source)
+    {
+        var v = source as Visual;
+        while (v != null)
+        {
+            if (v is SelectableTextBlock stb && (stb.Tag as string) == RowGridSurface.PrimaryCellTag)
+                return stb;
+            v = v.GetVisualParent();
+        }
+        return null;
+    }
+
+    /// <summary>Walks up from a clicked/pressed visual to the id-column copy-link button (tagged by
+    /// RowGridSurface), or null when the source is not that button (Button.Click's Source is the
+    /// button, but the guard walks up to be robust against inner content presenters).</summary>
+    private static Button? FindCopyLinkButtonUnderPointer(object? source)
+    {
+        var v = source as Visual;
+        while (v != null)
+        {
+            if (v is Button b && (b.Tag as string) == RowGridSurface.CopyLinkButtonTag)
+                return b;
+            v = v.GetVisualParent();
+        }
+        return null;
+    }
+
+    /// <summary>C4: the id-column copy-link button was clicked. Resolves the button's row and copies
+    /// a deep link to that row's lb. Routed through AsyncGuard because the clipboard write is async.</summary>
+    private void OnGridCopyLinkClicked(object? sender, RoutedEventArgs e)
+    {
+        if (!IsGridSurfaceActive()) return;
+        if (FindCopyLinkButtonUnderPointer(e.Source) == null) return; // not our button
+        var row = ResolveRowFromVisual(e.Source);
+        if (row == null) return;
+        e.Handled = true;
+        AsyncGuard.Run(() => CopyGridRowLinkToClipboardAsync(row),
+            "ReadableTabView.gridCopyLink.Click");
+    }
+
+    /// <summary>Builds a zen:// deep link to a single grid row's lb (range from==to) and copies it to
+    /// the clipboard — the grid analog of the two-editor "Copy Link" context item. Uses the active
+    /// translation user so the recipient lands on the same translation. Original side by default
+    /// (the row co-locates ZH and EN, so the link opens at the line rather than a highlight).</summary>
+    private async Task CopyGridRowLinkToClipboardAsync(RowVm row)
+    {
+        var relPath = _vm.CurrentRelPathForZen;
+        if (string.IsNullOrWhiteSpace(relPath)) return;
+        if (!row.CanCopyLink) return; // spacer / empty-lb row — no shareable address
+
+        var user = GetTranslationUser?.Invoke();
+        string text = ZenUriParser.BuildUri(relPath, row.Lb, row.Lb, null, SearchSide.Original, user: user);
+
+        var top = TopLevel.GetTopLevel(this);
+        if (top?.Clipboard != null)
+            await top.Clipboard.SetTextAsync(text);
+        Say("Link copied to clipboard.");
+    }
+
+    /// <summary>Maps a pointer position inside a cell to a character offset in its text via the
+    /// cell's public TextLayout (same mechanism as HoverDictionaryBehaviorTextBox). -1 on failure.</summary>
+    private static int HitTestCellOffset(SelectableTextBlock cell, PointerEventArgs e)
+    {
+        try
+        {
+            var layout = cell.TextLayout;
+            if (layout == null) return -1;
+            var p = e.GetPosition(cell);
+            return layout.HitTestPoint(p).TextPosition;
+        }
+        catch { return -1; }
+    }
+
+    /// <summary>Resolves the CEDICT term at <paramref name="zhOffset"/> in the row's ZH text and
+    /// renders it into the docked study-panel Dictionary section, opening the panel if needed. If
+    /// the dictionary is still loading, kicks off the load and re-attempts once (via AsyncGuard).</summary>
+    private void ShowGridDictionaryForRow(RowVm row, int zhOffset)
+    {
+        if (_txtStudyDictHeadword == null) return;
+        string text = row.ZhText;
+        if (string.IsNullOrEmpty(text) || zhOffset < 0 || zhOffset >= text.Length) return;
+
+        char ch = text[zhOffset];
+        if (!IsCjkChar(ch))
+        {
+            // Caret may land just after the glyph — try one position back before giving up.
+            if (zhOffset > 0 && IsCjkChar(text[zhOffset - 1])) zhOffset--;
+            else return;
+        }
+
+        if (!_cedict.IsLoaded)
+        {
+            // Load off-thread, then re-run the lookup once the dictionary is ready.
+            string lb = row.Lb;
+            AsyncGuard.Run(async () =>
+            {
+                await _cedict.EnsureLoadedAsync();
+                if (!IsGridSurfaceActive()) return;
+                var again = _rowGridRows;
+                var target = again != null && _rowGridLbToRow != null && _rowGridLbToRow.TryGetValue(lb, out var ri)
+                    && (uint)ri < (uint)again.Count ? again[ri] : row;
+                ShowGridDictionaryForRow(target, zhOffset);
+            }, "ReadableTabView.GridDictionary.EnsureLoaded");
+            return;
+        }
+
+        if (!_cedict.TryLookupLongest(text, zhOffset, out var match)) return;
+
+        // Ensure the docked side panel is visible so the lookup is actually seen.
+        if (!_vm.StudyPanelVisible) SetStudyPanelVisible(true);
+
+        string key = match.Headword + "|grid|" + row.Lb + "|" + zhOffset;
+        if (key == _lastStudyDictKey) return;
+        _lastStudyDictKey = key;
+        RenderStudyDictMatch(match);
+    }
+
+    /// <summary>Surface scroll handler: schedules a resume-anchor capture from the new top-visible
+    /// row (user scrolls only; programmatic ScrollIntoView is suppressed).</summary>
+    private void OnGridScrollChanged(object? sender, ScrollChangedEventArgs e)
+    {
+        if (!IsGridSurfaceActive()) return;
+        if (e.OffsetDelta.Y == 0 && e.OffsetDelta.X == 0) return; // extent/viewport-only change
+        if (DateTime.UtcNow < _suppressGridResumeCaptureUntilUtc) return; // our own programmatic scroll
+        if (IsReadingLayoutGated()) return;
+
+        _gridResumeCaptureKey = ReaderStateKey();
+        _gridResumeCaptureDebounce ??= CreateGridResumeCaptureTimer();
+        _gridResumeCaptureDebounce.Stop();
+        _gridResumeCaptureDebounce.Start();
+    }
+
+    private DispatcherTimer CreateGridResumeCaptureTimer()
+    {
+        var t = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(ResumeCaptureDebounceMs) };
+        t.Tick += (_, _) =>
+        {
+            t.Stop();
+            try { CaptureGridResumeAnchor(); }
+            catch { /* resume capture is best-effort convenience; never break the reader */ }
+        };
+        return t;
+    }
+
+    private void CaptureGridResumeAnchor()
+    {
+        if (!IsGridSurfaceActive() || IsReadingLayoutGated()) return;
+        var key = ReaderStateKey();
+        if (string.IsNullOrEmpty(key)) return;
+        // A navigation happened between scroll and tick — don't overwrite the new file's anchor.
+        if (!ResumeCaptureKeyStillValid(_gridResumeCaptureKey, key)) return;
+
+        var row = TopVisibleGridRow();
+        if (row == null || string.IsNullOrEmpty(row.Lb)) return;
+        try { _readerStateService.SetResumeAnchor(key, row.Lb, "orig"); } catch { }
+    }
+
+    /// <summary>Grid study-context: anchors the study panel on the current row's own text/lb
+    /// (the grid has no editor caret to read). Debounced through the shared queue.</summary>
+    private void DeriveGridSegmentContext()
+    {
+        if (!IsGridSurfaceActive()) return;
+        var row = CurrentGridRow();
+        if (row == null || string.IsNullOrEmpty(row.Lb)) return;
+
+        string key = $"gridrow|{row.Lb}";
+        if (key == _lastStudySegmentKey) return;
+        _lastStudySegmentKey = key;
+
+        QueueStudyPanelContext(new CurrentSegmentContext
+        {
+            RelPath = _vm.CurrentRelPathForZen ?? "",
+            ZhText = row.ZhText,
+            EnText = row.EnText,
+            ZhContextText = row.ZhText
+        });
+    }
+
+    /// <summary>Saves the current grid row to a Scholar collection, resolving the passage from the
+    /// row's lb (there is no cross-row selection on the grid yet — that is the deferred C6 spike).</summary>
+    private void AddGridRowToScholarCollection(bool isTranslated, bool useCurrentCollection)
+    {
+        var row = CurrentGridRow();
+        if (row == null || string.IsNullOrEmpty(row.Lb))
+        {
+            Say("Click a line first, then add it to your collection.");
+            return;
+        }
+
+        var passage = new ScholarPassage
+        {
+            ZhText = row.ZhText,
+            EnText = row.EnText,
+            SourceRelPath = _vm.CurrentRelPathForZen ?? "",
+            FromLb = row.Lb,
+            ToLb = row.Lb,
+            PreferredSide = isTranslated ? SearchSide.Translated : SearchSide.Original,
+            TranslationUser = GetTranslationUser?.Invoke(),
+            Apparatus = ExtractApparatusForLbRange(_vm.RenderOrig, row.Lb, row.Lb)
+        };
+        if (string.IsNullOrWhiteSpace(passage.Summary))
+            passage.Summary = passage.GenerateAutoSummary();
+
+        if (useCurrentCollection)
+            AddToCurrentCollectionRequested?.Invoke(this, passage);
+        else
+            AddToScholarRequested?.Invoke(this, passage);
     }
 
     /// <summary>The render surfaces the reader can produce.</summary>
@@ -6665,6 +7200,11 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
         if (_currentLayoutMode == persisted) { _stickyReapplyResolved = true; return; }     // already achieved the stored mode
 
         int seqAtSchedule = _readingLayoutRenderSeq;
+        // PR-7 (first-paint debt): post at Render priority (not Background) so the resolved
+        // layout paints within the render tick instead of after an idle cycle, killing the
+        // visible "Page then reflow" step on open. The post still runs AFTER SetProvenance's
+        // synchronous bookkeeping returns (a Post is queued, not executed inline), so the
+        // _readableRenderGen ordering the resume restore relies on is unchanged.
         Dispatcher.UIThread.Post(() =>
         {
             // Superseded by a newer navigation/toggle — that newer nav reset the resolve
@@ -6674,6 +7214,20 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
             // Gate came up between schedule and post: nothing will re-render, so the page
             // surface is final — release the resume waiter.
             if (IsReadingLayoutGated()) { _stickyReapplyResolved = true; return; }
+
+            // First-paint fast path: paint the resolved GRID layout DIRECTLY from the docs
+            // SetRendered just put in the VM (they are the UNSUPPRESSED per-lb render the grid
+            // pairs by), reusing them instead of the off-thread disk re-read. Being synchronous
+            // (no await), the grid surface swaps in before the compositor can present a Page
+            // frame — no flicker. Falls through to the async path for anything it can't serve
+            // (MergedFlow suppression re-render, SyncedPanes, missing map, zero rows).
+            var segMapService = App.Services?.GetService<ISegmentMapService>();
+            if (TryReapplyPersistedGridSync(persisted, segMapService, absKey))
+            {
+                _stickyReapplyResolved = true;
+                return;
+            }
+
             // Not user-initiated: a transient failure must not overwrite the stored mode.
             // Mark resolved once the render settles (achieved OR degraded to page) so the
             // resume restore lands on the final surface for every mode, not just Merged.
@@ -6682,7 +7236,67 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
                 try { await ApplyReadingLayoutAsync(persisted, userInitiated: false); }
                 finally { _stickyReapplyResolved = true; }
             }, "ReadableTabView.MaybeReapplyPersistedLayout");
-        }, DispatcherPriority.Background);
+        }, DispatcherPriority.Render);
+    }
+
+    /// <summary>
+    /// First-paint fast path (PR-7): re-applies a persisted GRID reading mode SYNCHRONOUSLY by
+    /// reusing the already-rendered in-memory documents (<see cref="ReadableTabViewModel.RenderOrig"/>/
+    /// <c>RenderTran</c> hold the unsuppressed per-lb render the grid pairs by), skipping the
+    /// off-thread XML re-read that <see cref="ApplyRowGridLayoutAsync"/> performs. Because there is
+    /// no await, the grid surface commits before the compositor presents a Page frame, so the
+    /// resolved layout is what the user sees on open (no Page-then-reflow flicker).
+    /// <para>
+    /// Returns <c>false</c> — leaving the surface untouched so the caller falls back to the full
+    /// async path — for anything the fast path cannot correctly serve: a non-grid mode, absent
+    /// in-memory docs, a missing/empty segment map for a map-grouped mode (the async path owns the
+    /// downgrade + re-persist semantics), zero built rows (async owns the Page fallback), or a
+    /// build exception. On success it mirrors the async commit tail exactly: claim the render seq
+    /// (dropping any stale in-flight completion), advance the mode-of-record, echo the selector,
+    /// swap in the grid surface, and persist the achieved mode.
+    /// </para>
+    /// </summary>
+    private bool TryReapplyPersistedGridSync(ReadingLayoutMode mode, ISegmentMapService? segMapService, string xmlPath)
+    {
+        if (RenderStrategyFor(mode) != RenderStrategy.RowGrid) return false;
+
+        // Need the real docs SetRendered populated for THIS navigation; an empty original means
+        // there is nothing to pair, so let the async path re-read/re-render and fall back.
+        var orig = _vm?.RenderOrig;
+        var tran = _vm?.RenderTran;
+        if (orig is null || tran is null || orig.IsEmpty) return false;
+
+        // Only the map-grouped modes need the segment map; AlignedLines/Interleaved pair by lb.
+        bool needsMap = mode is ReadingLayoutMode.MergedStacked or ReadingLayoutMode.AlignedBlocks;
+        SegmentMap? segMap = null;
+        if (needsMap)
+        {
+            // Small sidecar (~12 segmented texts, mtime+sha cached); a synchronous read here is
+            // cheaper than an off-thread hop plus the Page frame that hop would let composite.
+            // Absent/empty → defer to the async path, which owns the downgrade + re-persist.
+            segMap = segMapService?.TryLoad(xmlPath);
+            if (segMap?.Segments == null || segMap.Segments.Count == 0) return false;
+        }
+
+        bool showLineIds = _vm!.Reading.ShowLineIds;
+        var view = (ReaderViewMode)_vm.Reading.ViewModeIndex;
+        RowGridModel model;
+        try { model = RowGridBuilder.Build(orig, tran, segMap, mode, view, showLineIds); }
+        catch { return false; } // async path re-renders and falls back to Page on exception
+
+        // Zero rows (no lb n-value keys) would blank the reader — let the async path own the
+        // documented Page fallback rather than binding an empty grid here.
+        if (model.Rows.Count == 0) return false;
+
+        // Claim the render seq so any in-flight async re-render drops its stale completion, then
+        // commit synchronously. There is no await, so nothing to re-check after this point; the
+        // gate was already checked by the caller immediately before invoking this method.
+        _readingLayoutRenderSeq++;
+        _currentLayoutMode = mode;
+        SetReadingLayoutSelector(mode);
+        SetRenderedRowGrid(orig, tran, model);
+        PersistLayoutMode(mode);
+        return true;
     }
 
     /// <summary>
@@ -6913,27 +7527,35 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
             string key = match.Headword + "|" + caret;
             if (key == _lastStudyDictKey) return;
             _lastStudyDictKey = key;
+            RenderStudyDictMatch(match);
+        }
+    }
 
-            _txtStudyDictHeadword.Text = match.Headword;
+    /// <summary>Populates the docked study-panel Dictionary section (headword / pinyin / senses)
+    /// from a CEDICT match. Shared by the two-editor caret path and the grid on-click path.</summary>
+    private void RenderStudyDictMatch(CedictMatch match)
+    {
+        if (_txtStudyDictHeadword == null || _txtStudyDictPinyin == null || _studyDictSenses == null) return;
 
-            // Build pinyin from all entries
-            var pinyinSet = match.Entries.Select(e => e.Pinyin).Distinct().ToList();
-            _txtStudyDictPinyin!.Text = string.Join(" / ", pinyinSet);
+        _txtStudyDictHeadword.Text = match.Headword;
 
-            // Build senses list
-            _studyDictSenses!.Children.Clear();
-            foreach (var entry in match.Entries.Take(8))
+        // Build pinyin from all entries
+        var pinyinSet = match.Entries.Select(e => e.Pinyin).Distinct().ToList();
+        _txtStudyDictPinyin.Text = string.Join(" / ", pinyinSet);
+
+        // Build senses list
+        _studyDictSenses.Children.Clear();
+        foreach (var entry in match.Entries.Take(8))
+        {
+            foreach (var sense in entry.Senses.Take(4))
             {
-                foreach (var sense in entry.Senses.Take(4))
+                _studyDictSenses.Children.Add(new TextBlock
                 {
-                    _studyDictSenses.Children.Add(new TextBlock
-                    {
-                        Text = "\u00b7 " + sense,
-                        FontSize = 11,
-                        TextWrapping = Avalonia.Media.TextWrapping.Wrap,
-                        Opacity = 0.85
-                    });
-                }
+                    Text = "\u00b7 " + sense,
+                    FontSize = 11,
+                    TextWrapping = Avalonia.Media.TextWrapping.Wrap,
+                    Opacity = 0.85
+                });
             }
         }
     }
@@ -7725,11 +8347,8 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
 
     private void OpenFindBar()
     {
-        if (IsGridSurfaceActive())
-        {
-            Say("Find isn't available in this layout yet — switch to a two-pane layout.");
-            return; // C2: implement find on grid (search RowVm text → Hspan)
-        }
+        // Find now works on both surfaces: the two-editor path highlights via the AvaloniaEdit
+        // transformers; the grid path (IsGridSurfaceActive) searches RowVm text and writes Hspans.
         if (_findBar == null || _txtFindInput == null) return;
         _findBar.IsVisible = true;
         _txtFindInput.Focus();
@@ -7746,7 +8365,7 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
 
     private void OnFindTextChanged()
     {
-        if (IsGridSurfaceActive()) return; // C2: implement find on grid (search RowVm text → Hspan)
+        if (IsGridSurfaceActive()) { GridFindTextChanged(); return; }
         var query = _txtFindInput?.Text;
         if (string.IsNullOrEmpty(query))
         {
@@ -7827,7 +8446,7 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
 
     private void FindNext()
     {
-        if (IsGridSurfaceActive()) return; // C2: implement find on grid
+        if (IsGridSurfaceActive()) { GridFindNavigate(+1); return; }
         if (_findMatches.Count == 0) return;
         _findCurrentIndex = (_findCurrentIndex + 1) % _findMatches.Count;
         UpdateFindHighlightRanges();
@@ -7837,7 +8456,7 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
 
     private void FindPrev()
     {
-        if (IsGridSurfaceActive()) return; // C2: implement find on grid
+        if (IsGridSurfaceActive()) { GridFindNavigate(-1); return; }
         if (_findMatches.Count == 0) return;
         _findCurrentIndex = (_findCurrentIndex - 1 + _findMatches.Count) % _findMatches.Count;
         UpdateFindHighlightRanges();
@@ -7879,7 +8498,152 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
         _findHighlightTran?.SetRanges(new List<(int, int, bool)>());
         _aeOrig?.TextArea.TextView.Redraw();
         _aeTran?.TextArea.TextView.Redraw();
+        ClearGridFindHighlights();
         if (_txtFindCount != null) _txtFindCount.Text = "";
+    }
+
+    // =========================
+    // Find-in-page on the RowGrid surface (PR-4 / Wave R2, C2)
+    // =========================
+
+    /// <summary>Recomputes grid find matches for the current query, writes highlight spans onto the
+    /// affected rows (observable → cells rerender with no rebuild) and scrolls the first hit into
+    /// view. Searches only the VISIBLE text per row (respecting the ZH/Both/EN view collapse) so
+    /// the match count and the painted highlights always agree.</summary>
+    private void GridFindTextChanged()
+    {
+        ClearGridFindHighlights();
+        var rows = _rowGridRows;
+        var query = _txtFindInput?.Text;
+        if (rows == null || string.IsNullOrEmpty(query)) { UpdateGridFindCountText(); return; }
+
+        // Case-insensitive for Latin, exact for CJK — same rule as the two-editor path.
+        var comparison = ContainsCjkFind(query) ? StringComparison.Ordinal : StringComparison.OrdinalIgnoreCase;
+
+        for (int i = 0; i < rows.Count; i++)
+        {
+            var row = rows[i];
+            // The primary cell shows ZH normally, or EN when collapsed to EN-only / a single-column
+            // EN row; the EN column is additionally visible only in the two-column Both view.
+            if (row.PrimaryIsZh)
+                CollectGridMatches(row.ZhText, query, comparison, i, RowSide.Zh);
+            else
+                CollectGridMatches(row.EnText, query, comparison, i, RowSide.En);
+            if (row.ShowEnColumn)
+                CollectGridMatches(row.EnText, query, comparison, i, RowSide.En);
+        }
+
+        _gridFindCurrentIndex = _gridFindMatches.Count > 0 ? 0 : -1;
+        ApplyGridFindHighlights();
+        if (_gridFindCurrentIndex >= 0) ScrollGridFindToCurrent();
+        UpdateGridFindCountText();
+    }
+
+    private void CollectGridMatches(string? text, string query, StringComparison comparison, int rowIndex, RowSide side)
+    {
+        if (string.IsNullOrEmpty(text) || text.Length < query.Length) return;
+        int pos = 0;
+        while (pos <= text.Length - query.Length)
+        {
+            int idx = text.IndexOf(query, pos, comparison);
+            if (idx < 0) break;
+            _gridFindMatches.Add((rowIndex, side, idx, query.Length));
+            pos = idx + 1; // allow overlapping matches
+        }
+    }
+
+    /// <summary>Writes the current match set onto the rows' observable Zh/EnHighlights (marking the
+    /// current match), clearing any row that previously carried spans but no longer does. Reused by
+    /// both the query-changed path and next/prev navigation (which only flips IsCurrent).</summary>
+    private void ApplyGridFindHighlights()
+    {
+        var rows = _rowGridRows;
+        if (rows == null) return;
+
+        var zhByRow = new Dictionary<int, List<Hspan>>();
+        var enByRow = new Dictionary<int, List<Hspan>>();
+        for (int i = 0; i < _gridFindMatches.Count; i++)
+        {
+            var m = _gridFindMatches[i];
+            bool current = i == _gridFindCurrentIndex;
+            var dict = m.Side == RowSide.Zh ? zhByRow : enByRow;
+            if (!dict.TryGetValue(m.RowIndex, out var list)) { list = new List<Hspan>(); dict[m.RowIndex] = list; }
+            list.Add(new Hspan(m.Start, m.Length, current));
+        }
+
+        // Clear rows that used to carry spans but are no longer in the (side-specific) set.
+        foreach (var idx in _gridFindTouchedRows)
+        {
+            if ((uint)idx >= (uint)rows.Count) continue;
+            if (!zhByRow.ContainsKey(idx)) rows[idx].ZhHighlights = Array.Empty<Hspan>();
+            if (!enByRow.ContainsKey(idx)) rows[idx].EnHighlights = Array.Empty<Hspan>();
+        }
+        _gridFindTouchedRows.Clear();
+
+        foreach (var kv in zhByRow)
+        {
+            if ((uint)kv.Key >= (uint)rows.Count) continue;
+            rows[kv.Key].ZhHighlights = kv.Value;
+            _gridFindTouchedRows.Add(kv.Key);
+        }
+        foreach (var kv in enByRow)
+        {
+            if ((uint)kv.Key >= (uint)rows.Count) continue;
+            rows[kv.Key].EnHighlights = kv.Value;
+            if (!_gridFindTouchedRows.Contains(kv.Key)) _gridFindTouchedRows.Add(kv.Key);
+        }
+    }
+
+    private void GridFindNavigate(int direction)
+    {
+        if (_gridFindMatches.Count == 0) return;
+        _gridFindCurrentIndex = (_gridFindCurrentIndex + direction + _gridFindMatches.Count) % _gridFindMatches.Count;
+        ApplyGridFindHighlights();
+        ScrollGridFindToCurrent();
+        UpdateGridFindCountText();
+    }
+
+    private void ScrollGridFindToCurrent()
+    {
+        if (_gridFindCurrentIndex < 0 || _gridFindCurrentIndex >= _gridFindMatches.Count) return;
+        var surface = _rowGridSurface;
+        if (surface == null) return;
+        int rowIndex = _gridFindMatches[_gridFindCurrentIndex].RowIndex;
+        _suppressGridResumeCaptureUntilUtc = DateTime.UtcNow.AddMilliseconds(SuppressMirrorMs);
+        try { surface.ScrollIntoView(rowIndex); } catch { }
+    }
+
+    private void UpdateGridFindCountText()
+    {
+        if (_txtFindCount == null) return;
+        if (_gridFindMatches.Count == 0)
+        {
+            var hasQuery = !string.IsNullOrEmpty(_txtFindInput?.Text);
+            _txtFindCount.Text = hasQuery ? "No matches" : "";
+        }
+        else
+        {
+            _txtFindCount.Text = $"{_gridFindCurrentIndex + 1} of {_gridFindMatches.Count}";
+        }
+    }
+
+    /// <summary>Clears grid find state and resets any highlight spans currently written to rows.
+    /// Null-safe on <see cref="_rowGridRows"/> so it is safe to call while tearing down the grid.</summary>
+    private void ClearGridFindHighlights()
+    {
+        var rows = _rowGridRows;
+        if (rows != null)
+        {
+            foreach (var idx in _gridFindTouchedRows)
+            {
+                if ((uint)idx >= (uint)rows.Count) continue;
+                rows[idx].ZhHighlights = Array.Empty<Hspan>();
+                rows[idx].EnHighlights = Array.Empty<Hspan>();
+            }
+        }
+        _gridFindTouchedRows.Clear();
+        _gridFindMatches.Clear();
+        _gridFindCurrentIndex = -1;
     }
 
     // =========================
@@ -7897,8 +8661,8 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
     {
         if (IsGridSurfaceActive())
         {
-            Say("Bookmarking isn't available in this layout yet — switch to a two-pane layout.");
-            return; // C3: capture bookmark from the grid's current row (row.Lb)
+            AddBookmarkFromGridRow();
+            return;
         }
         var relPath = _vm.CurrentRelPathForZen;
         if (string.IsNullOrWhiteSpace(relPath)) return;
@@ -7940,6 +8704,39 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
         };
 
         _bookmarkService.Add(bookmark);
+        RefreshBookmarkList();
+        Say("Bookmark added.");
+    }
+
+    /// <summary>Grid-surface bookmark capture: anchors on the current row's lb (the grid has no
+    /// caret) and labels it from the row's own text.</summary>
+    private void AddBookmarkFromGridRow()
+    {
+        var relPath = _vm.CurrentRelPathForZen;
+        if (string.IsNullOrWhiteSpace(relPath)) return;
+
+        var row = CurrentGridRow();
+        if (row == null || string.IsNullOrEmpty(row.Lb))
+        {
+            Say("Click a line first, then bookmark it.");
+            return;
+        }
+
+        string label = row.ZhText;
+        if (string.IsNullOrWhiteSpace(label)) label = row.EnText;
+        label = (label ?? "").Replace('\n', ' ').Replace('\r', ' ').Trim();
+        if (label.Length > 50) label = label.Substring(0, 47) + "...";
+
+        _bookmarkService.Add(new Bookmark
+        {
+            RelPath = relPath,
+            DisplayOffset = 0,
+            Label = label,
+            CreatedUtc = DateTime.UtcNow,
+            LbAnchor = row.Lb,
+            Side = "orig",
+            IntraLineOffset = 0
+        });
         RefreshBookmarkList();
         Say("Bookmark added.");
     }
@@ -8001,8 +8798,12 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
     {
         if (IsGridSurfaceActive())
         {
-            Say("Switch to a two-pane layout to jump to a bookmark.");
-            return; // C3: jump to bookmark on grid via LbToRow[bm.Lb]
+            // Jump by lb (LbToRow → ScrollIntoView) and pulse the row so the target is obvious.
+            if (!string.IsNullOrEmpty(bm.LbAnchor))
+                NavHighlightGridLb(bm.LbAnchor!);
+            else
+                Say("This bookmark has no line anchor to jump to in this layout.");
+            return;
         }
 
         // Prefer the pane the bookmark was captured from; fall back to whichever exists.

@@ -306,6 +306,122 @@ public class ReadableTabViewInteractionTests
         Assert.NotEqual(pageStrategy, syncedStrategy);
     }
 
+    // ---- SyncedPanes forced sync overrides the global scroll-sync config toggle ----
+
+    [Fact]
+    public void SyncedPanes_ForcedSync_OverridesConfigOff_ThroughTheViewsConfigEntryPoint()
+    {
+        // The view pushes AppConfig.EnableBilingualScrollSync into the sync VM via
+        // SetScrollSyncEnabled; SyncedPanes must still force sync on even when that config is off,
+        // and expose the visible "linked scroll" affordance (IsSyncForcedByMode).
+        var view = CreateViewShell(out var vm);
+
+        view.SetScrollSyncEnabled(false);                       // user disabled scroll-sync globally
+        vm.Reading.LayoutMode = ReadingLayoutMode.SyncedPanes;  // ... but picks SyncedPanes
+
+        var sync = vm.Reading.ScrollSync;
+        Assert.False(sync.ConfigEnabled);       // config really is off
+        Assert.True(sync.ModeForcesSync);       // the mode forces it
+        Assert.True(sync.IsSyncActive);         // ... so sync is active regardless
+        Assert.True(sync.IsSyncForcedByMode);   // and the affordance chip shows
+    }
+
+    [Fact]
+    public void OrdinaryMode_WithConfigOff_LeavesSyncInactive_ThroughTheView()
+    {
+        // Control: only SyncedPanes forces sync — other modes honor the (off) config.
+        var view = CreateViewShell(out var vm);
+
+        view.SetScrollSyncEnabled(false);
+        vm.Reading.LayoutMode = ReadingLayoutMode.AlignedLines;
+
+        var sync = vm.Reading.ScrollSync;
+        Assert.False(sync.ModeForcesSync);
+        Assert.False(sync.IsSyncActive);
+        Assert.False(sync.IsSyncForcedByMode);
+    }
+
+    // ---- Mode-of-record is committed only AFTER a render that produced rows ----
+    // TryReapplyPersistedGridSync is the synchronous first-paint commit path; it mirrors the
+    // async ApplyRowGridLayoutAsync tail and advances _currentLayoutMode ONLY on the success
+    // branch (after the model is built with >0 rows). Every early-out must leave the mode of
+    // record and the render seq untouched so a failed/deferred render never lies about the mode.
+
+    private static RenderedDocument LbDoc(string text, params (string key, int start, int end)[] segs)
+    {
+        var list = new List<RenderSegment>();
+        foreach (var (key, start, end) in segs)
+            list.Add(new RenderSegment(key, start, end));
+        return new RenderedDocument(text, list, new List<DocAnnotation>(),
+            new List<AnnotationMarkerInserter.MarkerSpan>());
+    }
+
+    private static bool InvokeTryReapply(ReadableTabView view, ReadingLayoutMode mode, ISegmentMapService? svc, string path)
+    {
+        var m = typeof(ReadableTabView).GetMethod("TryReapplyPersistedGridSync", BindingFlags.Instance | BindingFlags.NonPublic)
+            ?? throw new InvalidOperationException("Missing TryReapplyPersistedGridSync");
+        return (bool)m.Invoke(view, new object?[] { mode, svc, path })!;
+    }
+
+    [Fact]
+    public void TryReapplyPersistedGridSync_NonGridMode_DoesNotCommitMode()
+    {
+        var view = CreateViewShell(out _);
+        Assert.Equal(ReadingLayoutMode.Page, GetField<ReadingLayoutMode>(view, "_currentLayoutMode"));
+
+        var committed = InvokeTryReapply(view, ReadingLayoutMode.MergedFlow, null, "x.xml");
+
+        Assert.False(committed);
+        Assert.Equal(ReadingLayoutMode.Page, GetField<ReadingLayoutMode>(view, "_currentLayoutMode"));
+        Assert.Equal(0, GetField<int>(view, "_readingLayoutRenderSeq")); // seq not claimed
+    }
+
+    [Fact]
+    public void TryReapplyPersistedGridSync_EmptyDocs_DoesNotCommitMode()
+    {
+        var view = CreateViewShell(out var vm);
+        vm.RenderOrig = RenderedDocument.Empty;
+        vm.RenderTran = RenderedDocument.Empty;
+
+        var committed = InvokeTryReapply(view, ReadingLayoutMode.AlignedLines, null, "x.xml");
+
+        Assert.False(committed);
+        Assert.Equal(ReadingLayoutMode.Page, GetField<ReadingLayoutMode>(view, "_currentLayoutMode"));
+        Assert.Equal(0, GetField<int>(view, "_readingLayoutRenderSeq"));
+    }
+
+    [Fact]
+    public void TryReapplyPersistedGridSync_MapGroupedMode_NoMap_DoesNotCommitMode()
+    {
+        // AlignedBlocks needs a segment map; with the service returning null the sync path defers
+        // to the async downgrade path WITHOUT committing AlignedBlocks as the mode of record.
+        var view = CreateViewShell(out var vm);
+        vm.RenderOrig = LbDoc("初句\n二句", ("lb|0001a01", 0, 2), ("lb|0001a02", 3, 5));
+        vm.RenderTran = LbDoc("first\nsecond", ("lb|0001a01", 0, 5), ("lb|0001a02", 6, 12));
+
+        var committed = InvokeTryReapply(view, ReadingLayoutMode.AlignedBlocks, new NullSegmentMapService(), "x.xml");
+
+        Assert.False(committed);
+        Assert.Equal(ReadingLayoutMode.Page, GetField<ReadingLayoutMode>(view, "_currentLayoutMode"));
+        Assert.Equal(0, GetField<int>(view, "_readingLayoutRenderSeq"));
+    }
+
+    [Fact]
+    public void TryReapplyPersistedGridSync_ZeroRows_DoesNotCommitMode()
+    {
+        // A doc with no lb n-value keys builds zero rows; the sync path must NOT commit the mode
+        // (the async path owns the documented Page fallback for a blank grid).
+        var view = CreateViewShell(out var vm);
+        vm.RenderOrig = LbDoc("abc", ("seg", 0, 3));   // non-empty text but no lb segments
+        vm.RenderTran = LbDoc("xyz", ("seg", 0, 3));
+
+        var committed = InvokeTryReapply(view, ReadingLayoutMode.AlignedLines, null, "x.xml");
+
+        Assert.False(committed);
+        Assert.Equal(ReadingLayoutMode.Page, GetField<ReadingLayoutMode>(view, "_currentLayoutMode"));
+        Assert.Equal(0, GetField<int>(view, "_readingLayoutRenderSeq"));
+    }
+
     [Fact]
     public void PersistLayoutMode_KeysOnRelativePath_NotAbsolute()
     {
@@ -335,6 +451,13 @@ public class ReadableTabViewInteractionTests
             try { File.Delete(tmp); } catch { }
         }
     }
+}
+
+/// <summary>A segment-map service that never resolves a map — the map-missing case that drives
+/// the AlignedBlocks->AlignedLines / MergedStacked->Interleaved downgrade ladder.</summary>
+internal sealed class NullSegmentMapService : ISegmentMapService
+{
+    public SegmentMap? TryLoad(string xmlAbsPath) => null;
 }
 
 

@@ -12,9 +12,18 @@ namespace ReadZen.App.Models;
 /// <para>
 /// WIRE-FROZEN: <see cref="Page"/> = 0 and <see cref="MergedFlow"/> = 1 are persisted
 /// as raw integers in reader-state.json. Their numeric values MUST NOT change. New
-/// modes are appended (2..6); see the SPA-parity blueprint (Wave A) for the roadmap.
-/// SyncedPanes/AlignedLines/AlignedBlocks/Interleaved/MergedStacked are scaffolded here
-/// and render via a fallback ladder until Waves B/C implement them.
+/// modes are appended (2..6); the 7-item selector is frozen.
+/// <para>
+/// All seven modes are SHIPPED and render their own layout (no scaffolds). Modes 2-6:
+/// <see cref="SyncedPanes"/> renders the per-lb two-editor surface with always-on forced
+/// viewport scroll-sync; <see cref="AlignedLines"/>, <see cref="AlignedBlocks"/>,
+/// <see cref="Interleaved"/>, and <see cref="MergedStacked"/> render on the combined
+/// RowGrid surface (RowGridBuilder). The two segment-map-dependent modes downgrade before
+/// render when no .segments.jsonl map is available (<see cref="AlignedBlocks"/> →
+/// <see cref="AlignedLines"/>, <see cref="MergedStacked"/> → <see cref="Interleaved"/>);
+/// a user-initiated pick persists the downgraded mode, while a sticky reapply renders the
+/// downgrade but re-persists the stored preference. Zero-row or exception cases fall back
+/// to <see cref="Page"/>.
 /// </para>
 /// </summary>
 public enum ReadingLayoutMode
@@ -23,15 +32,15 @@ public enum ReadingLayoutMode
     Page = 0,
     /// <summary>Text flows within &lt;p&gt;/&lt;lg&gt; boundaries (SPA default). Wire value 1 — FROZEN.</summary>
     MergedFlow = 1,
-    /// <summary>Two-pane, scroll-synced by shared lb anchors (Wave B styling).</summary>
+    /// <summary>Per-lb two-editor surface with always-on forced viewport scroll-sync by shared line id.</summary>
     SyncedPanes = 2,
-    /// <summary>Two-pane with per-line alignment (Wave C).</summary>
+    /// <summary>RowGrid surface: per-lb row alignment of ZH/EN in one combined grid (no segment map needed).</summary>
     AlignedLines = 3,
-    /// <summary>Two-pane with per-block alignment (Wave C).</summary>
+    /// <summary>RowGrid surface: per-unit block alignment (needs a segment map; downgrades to AlignedLines without one).</summary>
     AlignedBlocks = 4,
-    /// <summary>Single-column, ZH line then EN line, interleaved (Wave C).</summary>
+    /// <summary>RowGrid surface, single column: ZH row then EN row, interleaved per lb.</summary>
     Interleaved = 5,
-    /// <summary>Single-column, merged ZH paragraph then EN paragraph (Wave C).</summary>
+    /// <summary>RowGrid surface, single column: merged ZH paragraph then merged EN paragraph per unit (needs a segment map; downgrades to Interleaved without one).</summary>
     MergedStacked = 6
 }
 

@@ -28,6 +28,7 @@ public partial class BilingualScrollSyncViewModel : ObservableObject
     /// Defaults to true, mirroring the pre-extraction field default.
     /// </summary>
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(IsSyncActive))]
     private bool _configEnabled = true;
 
     /// <summary>
@@ -37,6 +38,9 @@ public partial class BilingualScrollSyncViewModel : ObservableObject
     /// <see cref="ReadableReadingViewModel"/>.
     /// </summary>
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(ModeForcesSync))]
+    [NotifyPropertyChangedFor(nameof(IsSyncForcedByMode))]
+    [NotifyPropertyChangedFor(nameof(IsSyncActive))]
     private ReadingLayoutMode _layoutMode = ReadingLayoutMode.MergedFlow;
 
     /// <summary>
@@ -66,6 +70,17 @@ public partial class BilingualScrollSyncViewModel : ObservableObject
 
     /// <summary>True when the active mode makes scroll-sync its defining, always-on behavior.</summary>
     public bool ModeForcesSync => LayoutMode == ReadingLayoutMode.SyncedPanes;
+
+    /// <summary>
+    /// UI-facing signal for the reader's visible "linked scroll" affordance (a lock glyph /
+    /// chip near the pane header). True exactly when the active mode makes always-on viewport
+    /// scroll-sync its defining behavior (<see cref="ReadingLayoutMode.SyncedPanes"/>), so the
+    /// user can SEE the mode is engaged — independent of, and overriding, the global
+    /// <see cref="ConfigEnabled"/> toggle. Derived from <see cref="ModeForcesSync"/>; kept as a
+    /// distinct name so the binding reads as intent ("sync forced by mode") rather than the
+    /// internal gate. Change-notified via the <see cref="LayoutMode"/> observable.
+    /// </summary>
+    public bool IsSyncForcedByMode => ModeForcesSync;
 
     /// <summary>
     /// Whether scroll sync should run at all right now: the mode forces it, or the config

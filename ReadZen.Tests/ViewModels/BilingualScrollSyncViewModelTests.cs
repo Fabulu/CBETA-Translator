@@ -59,6 +59,35 @@ public class BilingualScrollSyncViewModelTests
         Assert.Equal(forces, vm.ModeForcesSync);
     }
 
+    // ---- Visible "linked scroll" affordance (IsSyncForcedByMode) ----
+
+    [Fact]
+    public void IsSyncForcedByMode_TracksMode_AndOverridesConfigOff()
+    {
+        // The chip's visibility signal: true iff the mode forces sync, independent of config.
+        var vm = new BilingualScrollSyncViewModel { ConfigEnabled = false, LayoutMode = ReadingLayoutMode.SyncedPanes };
+        Assert.True(vm.IsSyncForcedByMode);
+
+        vm.LayoutMode = ReadingLayoutMode.Page;
+        Assert.False(vm.IsSyncForcedByMode);
+    }
+
+    [Fact]
+    public void IsSyncForcedByMode_RaisesPropertyChanged_WhenLayoutModeChanges()
+    {
+        var vm = new BilingualScrollSyncViewModel { LayoutMode = ReadingLayoutMode.Page };
+        var raised = false;
+        vm.PropertyChanged += (_, e) =>
+        {
+            if (e.PropertyName == nameof(BilingualScrollSyncViewModel.IsSyncForcedByMode)) raised = true;
+        };
+
+        vm.LayoutMode = ReadingLayoutMode.SyncedPanes;
+
+        Assert.True(raised);
+        Assert.True(vm.IsSyncForcedByMode);
+    }
+
     // ---- User-intent window ----
 
     [Fact]

@@ -728,4 +728,196 @@ public class RowGridBuilderTests
             Assert.Equal(baseline.Rows[i].PrimaryColumnSpan, model.Rows[i].PrimaryColumnSpan);
         }
     }
+
+    // ---- C5 semantic block-styling stamps (SegType / Align / IndentEm / LeftBar / IsHeader) ----
+    // The builder stamps SPA-parity .line-row--* / .merged-seg--* cues onto each row: verse is
+    // centered with a left bar, dialogue is bar-indented, commentary carries a bar, headings
+    // break out as their own header rows, and unstyled prose stays plain. These are init-only
+    // fields the surface (PR-1) reads directly, so the builder is the sole place they are set.
+
+    private static SegmentMap TypedTwoUnitMap(string u1Type, string u2Type)
+        => Map(("u1", u1Type, new[] { "0001a01", "0001a02" }),
+               ("u2", u2Type, new[] { "0001a03", "0001a04" }));
+
+    [Fact]
+    public void MergedStacked_VerseUnit_CentersZhWithLeftBar_ButNeverCentersEn()
+    {
+        // u1 is verse. The healed ZH paragraph centers with a left accent bar; the EN paragraph
+        // shares the unit's bar (so the block reads as one) but is NEVER centered — verse
+        // centering is ZH-only (SPA .merged-text--zh).
+        var model = RowGridBuilder.Build(
+            OrigTwoUnits(), TranTwoUnits(), TypedTwoUnitMap("verse", ""),
+            ReadingLayoutMode.MergedStacked, ReaderViewMode.Both, false);
+
+        var zh = model.Rows[0];
+        Assert.Equal("verse", zh.SegType);
+        Assert.Equal(RowAlign.Center, zh.Align);
+        Assert.True(zh.LeftBar);
+        Assert.Equal(0.0, zh.IndentEm);
+        Assert.False(zh.IsHeader);
+        Assert.True(zh.PrimaryIsZh);
+
+        var en = model.Rows[1];
+        Assert.Equal(RowSide.En, en.Side);
+        Assert.Equal("verse", en.SegType);
+        Assert.Equal(RowAlign.Left, en.Align);   // EN prose is never verse-centered
+        Assert.True(en.LeftBar);                  // but still shares the unit's bar
+
+        // The u2 (plain) rows carry no styling — the cue is per-unit, not global.
+        Assert.Equal("", model.Rows[2].SegType);
+        Assert.Equal(RowAlign.Left, model.Rows[2].Align);
+        Assert.False(model.Rows[2].LeftBar);
+    }
+
+    [Fact]
+    public void MergedStacked_DialogueUnit_IndentsWithLeftBar_OnBothZhAndEnRows()
+    {
+        var model = RowGridBuilder.Build(
+            OrigTwoUnits(), TranTwoUnits(), TypedTwoUnitMap("dialogue", ""),
+            ReadingLayoutMode.MergedStacked, ReaderViewMode.Both, false);
+
+        var zh = model.Rows[0];
+        Assert.Equal("dialogue", zh.SegType);
+        Assert.Equal(RowAlign.Left, zh.Align);
+        Assert.Equal(2.0, zh.IndentEm);
+        Assert.True(zh.LeftBar);
+
+        var en = model.Rows[1];
+        Assert.Equal(2.0, en.IndentEm);   // EN shares the unit's indent
+        Assert.True(en.LeftBar);
+    }
+
+    [Fact]
+    public void MergedStacked_CommentaryUnit_CarriesLeftBar_NoIndent_NoCenter()
+    {
+        var model = RowGridBuilder.Build(
+            OrigTwoUnits(), TranTwoUnits(), TypedTwoUnitMap("commentary", ""),
+            ReadingLayoutMode.MergedStacked, ReaderViewMode.Both, false);
+
+        var zh = model.Rows[0];
+        Assert.Equal("commentary", zh.SegType);
+        Assert.True(zh.LeftBar);
+        Assert.Equal(RowAlign.Left, zh.Align);
+        Assert.Equal(0.0, zh.IndentEm);
+        Assert.False(zh.IsHeader);
+    }
+
+    [Fact]
+    public void MergedStacked_PlainProseUnit_HasNoBlockStyling()
+    {
+        var model = RowGridBuilder.Build(
+            OrigTwoUnits(), TranTwoUnits(), TypedTwoUnitMap("", ""),
+            ReadingLayoutMode.MergedStacked, ReaderViewMode.Both, false);
+
+        Assert.All(model.Rows, r =>
+        {
+            Assert.Equal("", r.SegType);
+            Assert.Equal(RowAlign.Left, r.Align);
+            Assert.Equal(0.0, r.IndentEm);
+            Assert.False(r.LeftBar);
+            Assert.False(r.IsHeader);
+            Assert.False(r.IsUnitStart); // IsUnitStart is an AlignedBlocks-only cue
+        });
+    }
+
+    [Fact]
+    public void AlignedBlocks_StampsUnitStart_OnFirstRowOfEachUnitOnly()
+    {
+        // The IsUnitStart cue (a subtle top separator in PR-1) marks the FIRST row of every
+        // segment unit so grouped blocks read distinctly from the ungrouped AlignedLines grid.
+        var model = RowGridBuilder.Build(
+            OrigTwoUnits(), TranTwoUnits(), TwoUnitMap(),
+            ReadingLayoutMode.AlignedBlocks, ReaderViewMode.Both, false);
+
+        Assert.Equal(4, model.Rows.Count);
+        Assert.True(model.Rows[0].IsUnitStart);  // u1 first line
+        Assert.False(model.Rows[1].IsUnitStart); // u1 second line
+        Assert.True(model.Rows[2].IsUnitStart);  // u2 first line (columns reset here)
+        Assert.False(model.Rows[3].IsUnitStart); // u2 second line
+    }
+
+    [Fact]
+    public void AlignedBlocks_StampsVerseStyling_OnEveryRowOfTheUnit()
+    {
+        // AlignedBlocks two-column rows are all ZH-primary, so verse centering applies to each
+        // row of a verse unit (not just its first), with the SegType stamped for the surface.
+        var model = RowGridBuilder.Build(
+            OrigTwoUnits(), TranTwoUnits(), TypedTwoUnitMap("verse", "commentary"),
+            ReadingLayoutMode.AlignedBlocks, ReaderViewMode.Both, false);
+
+        // u1 = verse
+        Assert.Equal("verse", model.Rows[0].SegType);
+        Assert.Equal(RowAlign.Center, model.Rows[0].Align);
+        Assert.True(model.Rows[0].LeftBar);
+        Assert.Equal("verse", model.Rows[1].SegType);
+        Assert.Equal(RowAlign.Center, model.Rows[1].Align);
+
+        // u2 = commentary (bar, no centering)
+        Assert.Equal("commentary", model.Rows[2].SegType);
+        Assert.Equal(RowAlign.Left, model.Rows[2].Align);
+        Assert.True(model.Rows[2].LeftBar);
+    }
+
+    [Fact]
+    public void AlignedBlocks_HeadingUnit_StampsIsHeaderAndSegType()
+    {
+        var model = RowGridBuilder.Build(
+            OrigTwoUnits(), TranTwoUnits(), TypedTwoUnitMap("heading", ""),
+            ReadingLayoutMode.AlignedBlocks, ReaderViewMode.Both, false);
+
+        Assert.True(model.Rows[0].IsHeader);
+        Assert.Equal("heading", model.Rows[0].SegType);
+        Assert.True(model.Rows[0].IsUnitStart);
+        Assert.False(model.Rows[2].IsHeader); // the plain u2 rows are not headers
+    }
+
+    [Fact]
+    public void MergedStacked_BylineUnit_IsTreatedAsHeader_BreakingOutWithNoEnCompanion()
+    {
+        // "byline" is a heading-type unit (renderMergedHtml headingIds/bylineIds): it breaks out
+        // as its own standalone header row with no EN companion, same as "heading".
+        var model = RowGridBuilder.Build(
+            OrigTwoUnits(), TranTwoUnits(), TypedTwoUnitMap("byline", ""),
+            ReadingLayoutMode.MergedStacked, ReaderViewMode.Both, false);
+
+        Assert.True(model.Rows[0].IsHeader);
+        Assert.Equal("byline", model.Rows[0].SegType);
+        Assert.Equal(RowSide.Zh, model.Rows[0].Side);
+        // No EN companion after the header — the next row is u2's ZH paragraph.
+        Assert.Equal(RowSide.Zh, model.Rows[1].Side);
+        Assert.Equal("乙一乙二", model.Rows[1].ZhText);
+    }
+
+    // ---- Downgrade-ladder precondition: a map-grouped mode with no map yields an empty model,
+    //      which is the signal the view converts into a downgrade (AlignedBlocks->AlignedLines,
+    //      MergedStacked->Interleaved). The persist SEMANTICS of that downgrade live in the view
+    //      (see ReadableTabViewInteractionTests); the builder's role is only the empty-model
+    //      handshake, verified here for BOTH map-grouped modes and their map-free analogs. ----
+
+    [Theory]
+    [InlineData(ReadingLayoutMode.AlignedBlocks)]
+    [InlineData(ReadingLayoutMode.MergedStacked)]
+    public void MapGroupedMode_NullMap_YieldsEmptyModel_TriggeringTheViewDowngrade(ReadingLayoutMode mode)
+    {
+        var model = RowGridBuilder.Build(
+            OrigTwoUnits(), TranTwoUnits(), segMap: null,
+            mode, ReaderViewMode.Both, false);
+
+        Assert.Empty(model.Rows);
+        Assert.Empty(model.LbToRow);
+    }
+
+    [Theory]
+    [InlineData(ReadingLayoutMode.AlignedLines)]   // AlignedBlocks' map-free analog
+    [InlineData(ReadingLayoutMode.Interleaved)]    // MergedStacked's map-free analog
+    public void DowngradeAnalog_RendersWithoutAMap_SoTheLadderNeverLoops(ReadingLayoutMode analog)
+    {
+        // The analogs the view falls back to pair purely by lb and MUST render a non-empty model
+        // from the same docs, so the downgrade lands on a real surface instead of re-blanking.
+        var model = RowGridBuilder.Build(
+            OrigTwoUnits(), TranTwoUnits(), segMap: null,
+            analog, ReaderViewMode.Both, false);
+
+        Assert.NotEmpty(model.Rows);
+    }
 }

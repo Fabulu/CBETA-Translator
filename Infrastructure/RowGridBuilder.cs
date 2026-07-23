@@ -117,12 +117,39 @@ public sealed class RowVm : CommunityToolkit.Mvvm.ComponentModel.ObservableObjec
     /// covers single-column rows AND view-collapsed two-column rows uniformly.</summary>
     public int PrimaryColumnSpan => ShowEnColumn ? 1 : 2;
 
+    /// <summary>True when the visible primary cell shows this row's CHINESE text, so the
+    /// source-only C5 cues — foreground tint, italic, verse centering — may apply. False when the
+    /// primary cell carries English (an <see cref="RowSide.En"/> single-column row, or a
+    /// two-column row collapsed to EN-only under <see cref="ReaderViewMode.En"/>) so those cues
+    /// never tint or re-align a translation. The block-level cues (left bar, background tint,
+    /// unit separator, heading weight) are side-agnostic and ignore this.</summary>
+    public bool PrimaryIsZh => Side != RowSide.En
+        && !(Shape == RowShape.TwoColumn && View == ReaderViewMode.En);
+
+    /// <summary>True when this row should offer a per-line "copy link": it carries a real lb
+    /// n-value (not empty, not a <c>__…</c> layout-only spacer anchor with no shareable address)
+    /// AND it is a ZH-side row. In the single-column modes each lb emits a ZH row followed by an EN
+    /// continuation row (which suppresses the id echo); the copy affordance lives only on the ZH
+    /// row so the lb is not offered twice and an id-less EN row never shows a bare "#". Two-column
+    /// rows are all <see cref="RowSide.Zh"/>, so every lb keeps its link. The id-column copy-link
+    /// button binds its visibility to this. A plain init-only getter — recycling re-reads it when
+    /// the cell's DataContext is swapped to a new row.</summary>
+    public bool CanCopyLink => Side != RowSide.En
+        && !string.IsNullOrEmpty(Lb)
+        && !Lb.StartsWith("__", StringComparison.Ordinal);
+
     // ---- block styling (init-only; expresses the layout gaps, populated by C5) ----
     public string SegType { get; init; } = "";
     public bool IsHeader { get; init; }
     public RowAlign Align { get; init; }
     public double IndentEm { get; init; }
     public bool LeftBar { get; init; }
+
+    /// <summary>True for the FIRST row of each segment unit in AlignedBlocks — the surface paints
+    /// a subtle top separator on these rows so grouped blocks read distinctly from the ungrouped
+    /// AlignedLines grid (guards the "flattening" risk, FINDINGS-spa-textmodes). Always false in
+    /// the other modes.</summary>
+    public bool IsUnitStart { get; init; }
 
     // ---- live view state (mutable + observable; set by features, not the builder) ----
     private double _fontSize = 14.0;
@@ -333,6 +360,29 @@ public static class RowGridBuilder
         => string.Equals(type, "heading", StringComparison.OrdinalIgnoreCase)
         || string.Equals(type, "byline", StringComparison.OrdinalIgnoreCase);
 
+    /// <summary>
+    /// C5 block-layout cues for a segment <paramref name="type"/>, mirroring the SPA
+    /// <c>.line-row--*</c> / <c>.merged-seg--*</c> rules (style.css §"Semantic segment type
+    /// styling"): VERSE is centered with a left accent bar, DIALOGUE is indented with a bar,
+    /// COMMENTARY carries a bar, and every other type (heading, dharani, prose, …) stays plain.
+    /// The remaining cues are surface-side and keyed on <see cref="RowVm.SegType"/>/
+    /// <see cref="RowVm.IsHeader"/> directly: foreground tint + italic (verse/dharani/byline),
+    /// commentary wash, and heading weight. Matched case-insensitively; segment types are
+    /// lowercase ASCII, so <see cref="StringComparison.OrdinalIgnoreCase"/> is locale-safe
+    /// (InvariantGlobalization). The alignment cue applies only where the primary cell shows ZH
+    /// (<see cref="RowVm.PrimaryIsZh"/>), which the surface enforces.
+    /// </summary>
+    private static (RowAlign Align, double IndentEm, bool LeftBar) SegStyle(string? type)
+    {
+        if (SameType(type, "verse")) return (RowAlign.Center, 0.0, true);
+        if (SameType(type, "dialogue")) return (RowAlign.Left, 2.0, true);
+        if (SameType(type, "commentary")) return (RowAlign.Left, 0.0, true);
+        return (RowAlign.Left, 0.0, false);
+    }
+
+    private static bool SameType(string? a, string b)
+        => string.Equals(a, b, StringComparison.OrdinalIgnoreCase);
+
     /// <summary>A run of consecutive source lines sharing one segment unit (or an unmapped
     /// solo run). Mirrors the group accumulator in renderMergedHtml (format.js:253-279).</summary>
     private sealed class MergedGroup
@@ -421,6 +471,7 @@ public static class RowGridBuilder
 
             string firstLb = g.Lines[0].Lb;
             bool isHeader = IsHeadingType(g.Type);
+            var (align, indentEm, leftBar) = SegStyle(g.Type);
 
             // Heal the ZH paragraph: join the unit's (already-trimmed) line texts with no
             // separator, closing the ~17-char woodblock cuts (SPA zhSpans.join('')).
@@ -437,6 +488,9 @@ public static class RowGridBuilder
                 ZhText = zhPara,
                 SegType = g.Type,
                 IsHeader = isHeader,
+                Align = align,
+                IndentEm = indentEm,
+                LeftBar = leftBar,
             });
 
             // Every lb in the unit scrolls to the unit's ZH paragraph row (first row wins).
@@ -464,6 +518,12 @@ public static class RowGridBuilder
                 Side = RowSide.En,
                 EnText = string.IsNullOrEmpty(enPara) ? "(untranslated)" : enPara,
                 SegType = g.Type,
+                // The EN paragraph shares the unit's bar/tint/indent so the ZH+EN pair reads as
+                // one block (SPA wraps both in a single .merged-seg), but EN prose is never
+                // centered (verse centering is ZH-only, SPA .merged-text--zh) — Align stays Left.
+                Align = RowAlign.Left,
+                IndentEm = indentEm,
+                LeftBar = leftBar,
             });
         }
 
@@ -552,6 +612,7 @@ public static class RowGridBuilder
                 continue;
 
             bool isHeader = IsHeadingType(g.Type);
+            var (align, indentEm, leftBar) = SegStyle(g.Type);
 
             // ZH column = the unit's source lines, in order. EN column = the unit's paired
             // translations with empties dropped (independent length ≤ the ZH count). Zipping to
@@ -581,6 +642,10 @@ public static class RowGridBuilder
                     EnText = en,
                     SegType = g.Type,
                     IsHeader = isHeader,
+                    Align = align,
+                    IndentEm = indentEm,
+                    LeftBar = leftBar,
+                    IsUnitStart = k == 0,   // first row of the unit → subtle top separator (C5)
                 });
 
                 // First row wins for a given lb (durable primary key → scroll target).
