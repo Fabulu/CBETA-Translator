@@ -7,6 +7,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
 using System.Threading;
@@ -115,9 +116,16 @@ public sealed class MasterCorpusSearchService
     }
 
     /// <summary>
-    /// Stat-stamp over all discovered corpus dirs: xml file count + newest write time.
-    /// Cheap (stat-only) staleness signal for the cached index — same pattern as the
-    /// termbase community cache (audit P4.6). Null when no corpus dirs exist.
+    /// Composite v2 CORPUS half of the freshness stamp over all discovered corpus dirs:
+    /// <c>v2;corpus=files={N};bytes={SUM};pathsig={P16};titles={T16}</c>. Every input is
+    /// path/size/content — NO mtime — so identical content yields an identical stamp on
+    /// any machine or clone (mtime-immune; a git clone/pull that rewrites working-tree
+    /// mtimes does NOT flip it, which is what lets a shipped bundle read fresh on a new
+    /// install). Stat-only over corpus xml (Length, no content read); titles.jsonl is a
+    /// small (~1.6 MB) metadata file that IS content-hashed (T16). Null when no corpus
+    /// dirs exist. The ROSTER half is supplied separately by
+    /// <see cref="ComputeRosterIdentity"/>; the two are joined with ';' to form the
+    /// full stamp stored in <see cref="MasterCorpusIndex.CorpusStamp"/>. See SPEC §1.2.
     /// </summary>
     public static string? ComputeCorpusStamp(string parentRoot)
     {
@@ -125,21 +133,106 @@ public sealed class MasterCorpusSearchService
         if (corpusDirs.Count == 0) return null;
 
         int files = 0;
-        long maxTicks = 0;
+        long totalBytes = 0;
+        var pathLines = new List<string>();
         foreach (var (_, dir) in corpusDirs)
         {
             try
             {
                 foreach (var f in Directory.EnumerateFiles(dir, "*.xml", SearchOption.AllDirectories))
                 {
+                    long size;
+                    try { size = new FileInfo(f).Length; }
+                    catch { continue; /* vanished between enumerate and stat */ }
                     files++;
-                    var t = File.GetLastWriteTimeUtc(f).Ticks;
-                    if (t > maxTicks) maxTicks = t;
+                    totalBytes += size;
+                    var relKey = Path.GetRelativePath(dir, f).Replace('\\', '/');
+                    pathLines.Add($"{relKey}:{size}\n");
                 }
             }
             catch { /* unreadable dir → reflected by lower count; stamp still differs */ }
         }
-        return $"files={files};maxTicks={maxTicks}";
+
+        // P16: catches renames/moves and same-total redistributions that files+bytes miss.
+        pathLines.Sort(StringComparer.Ordinal);
+        var pathSig = Sha256Hex16(string.Concat(pathLines));
+
+        // T16: displayed titles come from titles.jsonl (not xml, not roster) — a title
+        // edit must invalidate the cache (same class as the 279 stale-cache bug).
+        var titlesHash = ComputeTitlesHash16(parentRoot);
+
+        return $"v2;corpus=files={files};bytes={totalBytes};pathsig={pathSig};titles={titlesHash}";
+    }
+
+    /// <summary>
+    /// ROSTER half of the composite stamp, derived from the MERGED catalog (base roster +
+    /// per-user community overlay) so a community edit cannot serve a stale index:
+    /// <c>roster=count={M};hash={R16}</c>. R16 = first 16 hex of SHA256 over sorted
+    /// per-record lines <c>"{CanonicalName}|{sorted aliases}|{primary variant dates}"</c>,
+    /// so it flips on any add/rename/alias/date change but is stable under record reorder.
+    /// See SPEC §1.2.
+    /// </summary>
+    public static string ComputeRosterIdentity(ZenMasterCatalog catalog)
+    {
+        int count = catalog.Records.Count;
+        var lines = new List<string>(count);
+        foreach (var record in catalog.Records)
+        {
+            var aliasPart = string.Join(",", record.Aliases.OrderBy(a => a, StringComparer.Ordinal));
+            var pv = record.PrimaryVariant;
+            var dates = pv != null ? $"{pv.Floruit}-{pv.Death}" : "-";
+            lines.Add($"{record.CanonicalName}|{aliasPart}|{dates}\n");
+        }
+        lines.Sort(StringComparer.Ordinal);
+        var hash = Sha256Hex16(string.Concat(lines));
+        return $"roster=count={count};hash={hash}";
+    }
+
+    /// <summary>
+    /// Full composite v2 stamp = corpus half + ';' + roster half, or null when no corpus
+    /// dirs exist (preserving the legacy "no corpus ⇒ null ⇒ freshness not enforced"
+    /// behavior). Stored in <see cref="MasterCorpusIndex.CorpusStamp"/> at build time and
+    /// recomputed live for the freshness comparison in <see cref="TryLoadAsync"/>.
+    /// </summary>
+    public static string? ComputeCompositeStamp(string parentRoot, ZenMasterCatalog catalog)
+    {
+        var corpusStamp = ComputeCorpusStamp(parentRoot);
+        if (corpusStamp == null) return null;
+        return $"{corpusStamp};{ComputeRosterIdentity(catalog)}";
+    }
+
+    /// <summary>
+    /// T16: first 16 hex chars of SHA256 over the concatenated bytes of every discovered
+    /// corpus's <c>titles.jsonl</c>, ordinal-sorted by path (an absent/unreadable file
+    /// contributes zero bytes). Deduped so a shared translations root is not double-hashed.
+    /// </summary>
+    private static string ComputeTitlesHash16(string parentRoot)
+    {
+        var titlePaths = new SortedSet<string>(StringComparer.Ordinal);
+        foreach (var layout in AppPaths.DiscoverAllCorpora(parentRoot))
+        {
+            if (!string.IsNullOrEmpty(layout.TranslationsRepoRoot))
+                titlePaths.Add(Path.Combine(layout.TranslationsRepoRoot, "titles.jsonl"));
+        }
+
+        using var ih = IncrementalHash.CreateHash(HashAlgorithmName.SHA256);
+        foreach (var p in titlePaths)
+        {
+            try
+            {
+                if (File.Exists(p))
+                    ih.AppendData(File.ReadAllBytes(p));
+            }
+            catch { /* unreadable → treated as absent (zero bytes contributed) */ }
+        }
+        var hash = ih.GetHashAndReset();
+        return Convert.ToHexString(hash).ToLowerInvariant()[..16];
+    }
+
+    private static string Sha256Hex16(string s)
+    {
+        var hash = SHA256.HashData(Encoding.UTF8.GetBytes(s));
+        return Convert.ToHexString(hash).ToLowerInvariant()[..16];
     }
 
     /// <summary>
@@ -158,7 +251,7 @@ public sealed class MasterCorpusSearchService
         {
             BuiltUtc = DateTime.UtcNow.ToString("o"),
             Corpus = string.Join("+", corpusDirs.Select(c => c.Label)),
-            CorpusStamp = ComputeCorpusStamp(parentRoot),
+            CorpusStamp = ComputeCompositeStamp(parentRoot, catalog),
         };
 
         int totalFiles = 0;
@@ -611,13 +704,17 @@ public sealed class MasterCorpusSearchService
 
     /// <summary>
     /// Loads the cached index, or null if not available. When
-    /// <paramref name="parentRootForFreshness"/> is given, the cache is also refused
-    /// as stale unless its recorded corpus stamp matches the live corpus (caches from
-    /// older builds carry no stamp and are treated as stale) — audit P4.6: the index
-    /// previously never noticed corpus changes.
+    /// <paramref name="parentRootForFreshness"/> is given, the cache is refused as stale
+    /// unless its recorded composite v2 stamp matches the live corpus+roster (SPEC §1.2):
+    /// the CORPUS half is recomputed here (files/bytes/pathsig/titles), the ROSTER half is
+    /// supplied precomputed via <paramref name="rosterIdentity"/> (the caller already holds
+    /// the merged catalog). A legacy v1 stamp, a corpus change, a titles edit, or a roster
+    /// edit therefore all come back null → caller rebuilds (fixes the "279 of 944"
+    /// stale-cache class, and now also catches title/roster edits).
     /// </summary>
     public async Task<MasterCorpusIndex?> TryLoadAsync(
-        string cacheDir, CancellationToken ct = default, string? parentRootForFreshness = null)
+        string cacheDir, CancellationToken ct = default,
+        string? parentRootForFreshness = null, string? rosterIdentity = null)
     {
         var path = Path.Combine(cacheDir, CacheFileName);
         if (!File.Exists(path)) return null;
@@ -630,9 +727,14 @@ public sealed class MasterCorpusSearchService
 
             if (parentRootForFreshness != null)
             {
-                var live = ComputeCorpusStamp(parentRootForFreshness);
-                if (live != null && index.CorpusStamp != live)
-                    return null; // stale (or unstamped legacy cache) → caller rebuilds
+                var corpusStamp = ComputeCorpusStamp(parentRootForFreshness);
+                // Null corpus stamp (no corpus dirs) ⇒ freshness not enforced, as before.
+                if (corpusStamp != null)
+                {
+                    var live = $"{corpusStamp};{rosterIdentity}";
+                    if (index.CorpusStamp != live)
+                        return null; // stale (or unstamped/v1 legacy cache) → caller rebuilds
+                }
             }
 
             return index;
