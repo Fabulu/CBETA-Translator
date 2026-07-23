@@ -64,10 +64,17 @@ jobs:
         run: |
           set -euo pipefail
 
-          HAVE_VARS=0
-          if [ -n "${{ vars.PREBUILT_INDEX_TEXTS_REPO }}" ] && [ -n "${{ vars.PREBUILT_INDEX_TRANS_REPO }}" ]; then
-            HAVE_VARS=1
-          fi
+          # Corpus repos: use the repo vars when set, else default to the canonical
+          # corpus repos so the bundle builds + ships with EVERY release out of the
+          # box (no repo-var setup required). Override via the repo vars if they move.
+          TEXTS_REPO="${{ vars.PREBUILT_INDEX_TEXTS_REPO }}"
+          TRANS_REPO="${{ vars.PREBUILT_INDEX_TRANS_REPO }}"
+          [ -z "$TEXTS_REPO" ] && TEXTS_REPO="https://github.com/Fabulu/CbetaZenTexts.git"
+          [ -z "$TRANS_REPO" ] && TRANS_REPO="https://github.com/Fabulu/CbetaZenTranslations.git"
+
+          # Repos always resolve now (vars or defaults) ⇒ a bundle is always
+          # buildable unless SKIP_BUNDLE is explicitly set.
+          HAVE_VARS=1
 
           SKIP_BUNDLE=0
           if [ "${{ vars.SKIP_BUNDLE }}" = "true" ]; then SKIP_BUNDLE=1; fi
@@ -87,6 +94,8 @@ jobs:
 
           echo "should_build=$SHOULD_BUILD"   >> "$GITHUB_OUTPUT"
           echo "bundleless_ok=$BUNDLELESS_OK" >> "$GITHUB_OUTPUT"
+          echo "texts_repo=$TEXTS_REPO"       >> "$GITHUB_OUTPUT"
+          echo "trans_repo=$TRANS_REPO"       >> "$GITHUB_OUTPUT"
 
           echo "mode: have_vars=$HAVE_VARS should_build=$SHOULD_BUILD skip_bundle=$SKIP_BUNDLE prerelease=$PRERELEASE bundleless_ok=$BUNDLELESS_OK (tag=$GITHUB_REF_NAME)"
 
@@ -125,8 +134,8 @@ jobs:
           mkdir -p "$CORPUS_DIR"
 
           echo "Cloning corpus repos (shallow) ..."
-          git clone --depth 1 "${{ vars.PREBUILT_INDEX_TEXTS_REPO }}" "$CORPUS_DIR/texts"
-          git clone --depth 1 "${{ vars.PREBUILT_INDEX_TRANS_REPO }}" "$CORPUS_DIR/trans"
+          git clone --depth 1 "${{ steps.mode.outputs.texts_repo }}" "$CORPUS_DIR/texts"
+          git clone --depth 1 "${{ steps.mode.outputs.trans_repo }}" "$CORPUS_DIR/trans"
 
           # Resolve the CBETA layout inside each clone (xml-p5 / xml-p5t).
           SRC="$CORPUS_DIR/texts/xml-p5"
