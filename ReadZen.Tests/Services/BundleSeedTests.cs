@@ -10,10 +10,11 @@ using Xunit;
 namespace ReadZen.Tests.Services;
 
 /// <summary>
-/// S7 seed-from-bundle decision + copy logic (SearchIndexService.EvaluateBundleSeed /
-/// TrySeedFromBundle). Uses real temp dirs: a prebuilt "bundle" is produced once by a real
-/// full-rebuild, then seeded into fresh index roots to prove the decision guards and the
-/// RootPath re-home that lets the seeded family load at its new location.
+/// Bundle adopt/seed decision + copy logic (SearchIndexService.EvaluateBundleAdoption /
+/// CopyBundleFamilyIntoRoot). Uses real temp dirs: a prebuilt "bundle" is produced once by a
+/// real full-rebuild, then adopted/seeded into fresh index roots to prove the decision guards
+/// and the RootPath re-home that lets the copied family load at its new location.
+/// The exhaustive PR-S1 decision-table permutations live in SearchBundleAdoptionTests.
 /// </summary>
 public class BundleSeedTests : IAsyncLifetime, IDisposable
 {
@@ -70,35 +71,37 @@ public class BundleSeedTests : IAsyncLifetime, IDisposable
     // ===== Decision guards =====
 
     [Fact]
-    public void Evaluate_BundlePresent_NoUserIndex_Seeds()
+    public void Evaluate_BundlePresent_NoLocalIndex_SeedsVirgin()
     {
         var root = NewIndexRoot();
-        Assert.Equal(SearchIndexService.BundleSeedDecision.Seed,
-            SearchIndexService.EvaluateBundleSeed(root, _bundleDir));
+        // Virgin root, pre-hash probe (null live hash) → seed the bundle unconditionally.
+        Assert.Equal(SearchIndexService.BundleAdoptionDecision.SeedVirgin,
+            SearchIndexService.EvaluateBundleAdoption(root, _bundleDir, null));
     }
 
     [Fact]
-    public void Evaluate_UserIndexPresent_DoesNotSeed()
+    public void Evaluate_LocalPresent_BundleDiffersLive_KeepsLocal()
     {
         var root = NewIndexRoot();
-        // A real user index already exists at the root — must never be clobbered.
+        // A local index bin exists and the live hash does NOT match the bundle → keep local
+        // (adopting would lose the user's local/additional-corpus entries the bundle lacks).
         File.WriteAllText(Path.Combine(root, "search.index.bin"), "existing");
-        Assert.Equal(SearchIndexService.BundleSeedDecision.SkipUserIndexPresent,
-            SearchIndexService.EvaluateBundleSeed(root, _bundleDir));
+        Assert.Equal(SearchIndexService.BundleAdoptionDecision.KeepLocal,
+            SearchIndexService.EvaluateBundleAdoption(root, _bundleDir, "live-hash-that-differs"));
     }
 
     [Fact]
-    public void Evaluate_NoBundle_DoesNotSeed()
+    public void Evaluate_NoBundle_ReturnsNoBundle()
     {
         var root = NewIndexRoot();
         var emptyBundle = Path.Combine(_tempRoot, "empty-bundle");
         Directory.CreateDirectory(emptyBundle);
-        Assert.Equal(SearchIndexService.BundleSeedDecision.SkipNoBundle,
-            SearchIndexService.EvaluateBundleSeed(root, emptyBundle));
+        Assert.Equal(SearchIndexService.BundleAdoptionDecision.NoBundle,
+            SearchIndexService.EvaluateBundleAdoption(root, emptyBundle, null));
     }
 
     [Fact]
-    public void Evaluate_StaleBuildGuidBundle_IsIgnored()
+    public void Evaluate_StaleBuildGuidBundle_ReturnsNoBundle()
     {
         var root = NewIndexRoot();
 
@@ -114,8 +117,8 @@ public class BundleSeedTests : IAsyncLifetime, IDisposable
         node["BuildGuid"] = "search-vSTALE-not-current";
         File.WriteAllText(manifestPath, node.ToJsonString());
 
-        Assert.Equal(SearchIndexService.BundleSeedDecision.SkipBundleGuidMismatch,
-            SearchIndexService.EvaluateBundleSeed(root, staleBundle));
+        Assert.Equal(SearchIndexService.BundleAdoptionDecision.NoBundle,
+            SearchIndexService.EvaluateBundleAdoption(root, staleBundle, null));
     }
 
     [Fact]
@@ -126,16 +129,15 @@ public class BundleSeedTests : IAsyncLifetime, IDisposable
         Assert.Equal(SearchIndexService.CurrentSearchBuildGuid, man.BuildGuid);
     }
 
-    // ===== Seed copy + RootPath re-home =====
+    // ===== Copy family + RootPath re-home =====
 
     [Fact]
-    public void TrySeedFromBundle_CopiesFamily_AndRehomesRootPath()
+    public void CopyBundleFamilyIntoRoot_CopiesFamily_AndRehomesRootPath()
     {
         var root = NewIndexRoot();
 
-        var seeded = SearchIndexService.TrySeedFromBundle(root, _bundleDir, out var decision);
+        var seeded = SearchIndexService.CopyBundleFamilyIntoRoot(root, _bundleDir);
         Assert.True(seeded);
-        Assert.Equal(SearchIndexService.BundleSeedDecision.Seed, decision);
 
         // Every search.* file in the bundle landed in the index root.
         var bundleFiles = Directory.EnumerateFiles(_bundleDir, "search.*")
@@ -156,7 +158,7 @@ public class BundleSeedTests : IAsyncLifetime, IDisposable
     public async Task SeededIndex_LoadsAndIsNotStaleForSameCorpus()
     {
         var root = NewIndexRoot();
-        Assert.True(SearchIndexService.TrySeedFromBundle(root, _bundleDir, out _));
+        Assert.True(SearchIndexService.CopyBundleFamilyIntoRoot(root, _bundleDir));
 
         // A fresh service must be able to load the re-homed manifest (proves RootPath fix).
         var svc = new SearchIndexService();
@@ -172,7 +174,7 @@ public class BundleSeedTests : IAsyncLifetime, IDisposable
     public async Task SeededIndex_IsStaleAfterCorpusDrift_ThenIncrementalCatchUp()
     {
         var root = NewIndexRoot();
-        Assert.True(SearchIndexService.TrySeedFromBundle(root, _bundleDir, out _));
+        Assert.True(SearchIndexService.CopyBundleFamilyIntoRoot(root, _bundleDir));
 
         // Drift the corpus past the bundle: add a new file.
         File.WriteAllText(Path.Combine(_origDir, "added.xml"), SampleXml);
@@ -229,24 +231,27 @@ public class BundleSeedTests : IAsyncLifetime, IDisposable
     }
 
     [Fact]
-    public void TrySeedFromBundle_UserIndexPresent_ReturnsFalse_NoOverwrite()
+    public void Adoption_OverLocalIndex_RefusedWhenBundleDiffersLive()
     {
+        // The "never clobber a good local index" guard now lives in the decision layer:
+        // CopyBundleFamilyIntoRoot is unconditional, so the safety comes from
+        // EvaluateBundleAdoption returning KeepLocal when the bundle does not match live.
         var root = NewIndexRoot();
         File.WriteAllText(Path.Combine(root, "search.index.bin"), "existing");
 
-        var seeded = SearchIndexService.TrySeedFromBundle(root, _bundleDir, out var decision);
-        Assert.False(seeded);
-        Assert.Equal(SearchIndexService.BundleSeedDecision.SkipUserIndexPresent, decision);
+        var decision = SearchIndexService.EvaluateBundleAdoption(root, _bundleDir, "live-hash-that-differs");
+        Assert.Equal(SearchIndexService.BundleAdoptionDecision.KeepLocal, decision);
+        // The caller only copies on AdoptOverLocal, so the local bin is untouched.
         Assert.Equal("existing", File.ReadAllText(Path.Combine(root, "search.index.bin")));
     }
 
-    // ===== S7 fix: gramsets sidecar (6th artifact) must load after seed =====
+    // ===== gramsets sidecar (6th artifact) must load after copy =====
 
     [Fact]
-    public async Task TrySeedFromBundle_RehomesGramSetsSidecar_SoItLoadsAtNewRoot()
+    public async Task CopyBundleFamilyIntoRoot_RehomesGramSetsSidecar_SoItLoadsAtNewRoot()
     {
         var root = NewIndexRoot();
-        Assert.True(SearchIndexService.TrySeedFromBundle(root, _bundleDir, out _));
+        Assert.True(SearchIndexService.CopyBundleFamilyIntoRoot(root, _bundleDir));
 
         // The bundle shipped the 6th artifact and both halves landed in the index root.
         Assert.True(File.Exists(Path.Combine(root, GramSetsStore.ManifestFileName)));
@@ -264,7 +269,7 @@ public class BundleSeedTests : IAsyncLifetime, IDisposable
     public async Task SeededManifest_StatCache_HealsToLocalTicks_AfterFirstProbe()
     {
         var root = NewIndexRoot();
-        Assert.True(SearchIndexService.TrySeedFromBundle(root, _bundleDir, out _));
+        Assert.True(SearchIndexService.CopyBundleFamilyIntoRoot(root, _bundleDir));
 
         var manifestPath = Path.Combine(root, "search.index.manifest.json");
 

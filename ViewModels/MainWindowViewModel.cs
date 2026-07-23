@@ -928,8 +928,21 @@ public partial class MainWindowViewModel : ViewModelBase
                 // Let the initial file load finish before competing for disk I/O
                 await Task.Delay(3000, ct);
 
-                // Search index
-                bool searchStale = await _searchIndex.IsStaleAsync(indexRoot, origDir, tranDirs);
+                // Search index. The additional-corpus dirs are computed BEFORE the staleness
+                // probe so it can apply the ScopeComplete gate (§2.1a): with additional corpora
+                // present, the shipped bundle covers only the active corpus, so IsStaleAsync must
+                // never return a zero-build verdict — the catch-up build below (which DOES walk
+                // the additional dirs) re-materializes their postings.
+                var addOrigDirsAuto = _availableCorpora
+                    .Where(c => c.Kind != ActiveCorpus && Directory.Exists(c.OriginalDir))
+                    .Select(c => c.OriginalDir).ToList();
+                var addTransDirsAuto = _availableCorpora
+                    .Where(c => c.Kind != ActiveCorpus && Directory.Exists(c.TranslatedDir))
+                    .Select(c => c.TranslatedDir).ToList();
+
+                bool searchStale = await _searchIndex.IsStaleAsync(indexRoot, origDir, tranDirs,
+                    additionalOriginalDirs: addOrigDirsAuto.Count > 0 ? addOrigDirsAuto : null,
+                    additionalTranslatedDirs: addTransDirsAuto.Count > 0 ? addTransDirsAuto : null);
                 if (searchStale && !ct.IsCancellationRequested)
                 {
                     Dispatcher.UIThread.Post(() => SetStatus("Auto-updating search index..."));
@@ -937,12 +950,6 @@ public partial class MainWindowViewModel : ViewModelBase
                     var progress = new Progress<(int done, int total, string phase)>(t =>
                         Dispatcher.UIThread.Post(() => SetStatus($"Indexing: {t.phase} ({t.done}/{t.total})")));
 
-                    var addOrigDirsAuto = _availableCorpora
-                        .Where(c => c.Kind != ActiveCorpus && Directory.Exists(c.OriginalDir))
-                        .Select(c => c.OriginalDir).ToList();
-                    var addTransDirsAuto = _availableCorpora
-                        .Where(c => c.Kind != ActiveCorpus && Directory.Exists(c.TranslatedDir))
-                        .Select(c => c.TranslatedDir).ToList();
                     await _searchIndex.BuildOrUpdateAsync(indexRoot, origDir, tranDirs,
                         forceRebuild: false,
                         additionalOriginalDirs: addOrigDirsAuto.Count > 0 ? addOrigDirsAuto : null,

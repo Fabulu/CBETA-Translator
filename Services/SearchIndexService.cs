@@ -168,6 +168,11 @@ public sealed class SearchIndexService : ISearchIndexService
     // If this sidecar is missing/corrupt/mismatched, search verify falls back to XML parse.
     private const string TextManifestFileName = "search.text.manifest.json";
     private const string TextBinFileName = "search.text.bin";
+    // Corpus-frequency sibling (ranking input). Its BuildGuid participates in the
+    // family-guid gate (§2.2a): a corpusfreq guid mismatch while bloom is current is
+    // treated as a family mismatch (Branch B reseed/rebuild), never fresh-with-degraded-ranking.
+    private const string CorpusFreqManifestFileName = "search.corpusfreq.manifest.json";
+    private const string CorpusFreqBinFileName = "search.corpusfreq.bin";
 
     private const int BloomBits = 16384; // was 4096
     private const int BloomBytes = BloomBits / 8;
@@ -951,47 +956,99 @@ public sealed class SearchIndexService : ISearchIndexService
     /// (and its tests) can reject a bundle cut for an older index format.</summary>
     internal static string CurrentSearchBuildGuid => BuildGuid;
 
-    /// <summary>Outcome of <see cref="EvaluateBundleSeed"/>: whether a prebuilt bundle
-    /// should be adopted into a user index root, and if not, why.</summary>
-    internal enum BundleSeedDecision
+    /// <summary>Outcome of <see cref="EvaluateBundleAdoption"/>: what a launch probe should do
+    /// with the prebuilt bundle given the local index state and (when known) the live InputHash.
+    /// Maps onto the §2.1 decision table.</summary>
+    internal enum BundleAdoptionDecision
     {
-        /// <summary>Virgin index root + a usable current-BuildGuid bundle → copy it in.</summary>
-        Seed,
-        /// <summary>A real user index already exists — never clobber it with the bundle.</summary>
-        SkipUserIndexPresent,
-        /// <summary>No bundle dir, or it lacks the core manifest/bin pair.</summary>
-        SkipNoBundle,
-        /// <summary>Bundle present but cut for a different (stale) BuildGuid — ignore it.</summary>
-        SkipBundleGuidMismatch,
+        /// <summary>A loadable local index stays authoritative — do not touch the bundle
+        /// (row 1 fresh; or row 3 when the bundle does not match live / would lose local
+        /// postings).</summary>
+        KeepLocal,
+        /// <summary>A loadable local index is stale and the bundle provably matches live →
+        /// replace the local family with the bundle (row 2, zero build).</summary>
+        AdoptOverLocal,
+        /// <summary>No usable local index (absent / corrupt / family-guid mismatch) → copy the
+        /// bundle in (rows 4/5). In the pre-hash virgin branch this is returned unconditionally
+        /// for a usable bundle; the not-stale-vs-catch-up verdict is decided post-seed.</summary>
+        SeedVirgin,
+        /// <summary>No usable bundle (absent, missing core manifest+bin, or family-guid
+        /// mismatch) → the caller runs its normal build/keep-local path (rows 3/6).</summary>
+        NoBundle,
     }
 
     /// <summary>
-    /// Pure decision (no filesystem mutation): should the prebuilt <paramref name="bundleDir"/>
-    /// be seeded into <paramref name="indexRoot"/>? Guards, in order: (1) never overwrite an
-    /// existing user index (search.index.bin present); (2) the bundle must carry the core
-    /// manifest+bin pair; (3) the bundle manifest must stamp the CURRENT BuildGuid, else its
-    /// format is stale relative to this binary and a normal full build should run instead.
+    /// Pure decision (no filesystem mutation): what should the launch probe do with
+    /// <paramref name="bundleDir"/> for <paramref name="indexRoot"/>? Guard order (§2.2):
+    /// (1) bundle presence + core bloom manifest+bin; (2) the bundle must stamp the CURRENT
+    /// FAMILY guid — bloom <c>BuildGuid</c> AND <c>CorpusFreqBuildGuid</c> (§2.2a); (3) stamp
+    /// comparison against <paramref name="liveInputHashOrNull"/>. When the caller has no live
+    /// hash yet (<c>null</c> — the pre-hash virgin/Branch-B path) the stamp comparison is
+    /// skipped and a usable bundle yields <see cref="BundleAdoptionDecision.SeedVirgin"/>
+    /// unconditionally (the ordering invariant: seed before hashing). With a live hash and an
+    /// existing local index, adoption fires only when the bundle's baked InputHash equals live.
     /// </summary>
-    internal static BundleSeedDecision EvaluateBundleSeed(string indexRoot, string bundleDir)
+    internal static BundleAdoptionDecision EvaluateBundleAdoption(
+        string indexRoot, string bundleDir, string? liveInputHashOrNull)
     {
-        // Guard 1: a real user index owns all future updates via the incremental path.
-        if (File.Exists(Path.Combine(indexRoot, BinFileName)))
-            return BundleSeedDecision.SkipUserIndexPresent;
-
-        // Guard 2: the bundle must ship at least the core bloom manifest + bin.
+        // Guard 1: the bundle must ship at least the core bloom manifest + bin.
         if (string.IsNullOrEmpty(bundleDir))
-            return BundleSeedDecision.SkipNoBundle;
+            return BundleAdoptionDecision.NoBundle;
         var bundleManifest = Path.Combine(bundleDir, ManifestFileName);
         var bundleBin = Path.Combine(bundleDir, BinFileName);
         if (!File.Exists(bundleManifest) || !File.Exists(bundleBin))
-            return BundleSeedDecision.SkipNoBundle;
+            return BundleAdoptionDecision.NoBundle;
 
-        // Guard 3: format compatibility is proven by the BuildGuid stamp, not the bytes.
-        var guid = TryReadBundleBuildGuid(bundleManifest);
-        if (!string.Equals(guid, BuildGuid, StringComparison.Ordinal))
-            return BundleSeedDecision.SkipBundleGuidMismatch;
+        // Guard 2: family-guid — bloom AND corpusfreq must both be current. Gating on the
+        // bloom guid alone (as the S7 seed did) would let a bundle whose corpusfreq loader
+        // then refuses its file serve degraded ranking silently, forever (§2.2a).
+        if (!BundleFamilyGuidCurrent(bundleDir))
+            return BundleAdoptionDecision.NoBundle;
 
-        return BundleSeedDecision.Seed;
+        // Guard 3: stamp comparison. Skipped in the virgin branch (no live hash yet) —
+        // there the bundle is seeded unconditionally and the verdict is decided after the
+        // post-seed hash pass (Branch B, §2.2). A present local bloom bin means "adopt over";
+        // its absence means "seed onto nothing".
+        bool localPresent = File.Exists(Path.Combine(indexRoot, BinFileName));
+        if (liveInputHashOrNull == null || !localPresent)
+            return BundleAdoptionDecision.SeedVirgin;
+
+        // Local present + live hash known: adopt only when the bundle proves it equals live;
+        // otherwise keep local (it may hold user entries / additional-corpus postings the
+        // bundle lacks — adopting would lose them, §2.1a safety invariant).
+        var bundleHash = TryReadBundleInputHash(bundleManifest);
+        bool bundleMatchesLive = bundleHash != null &&
+            string.Equals(bundleHash, liveInputHashOrNull, StringComparison.Ordinal);
+        return bundleMatchesLive ? BundleAdoptionDecision.AdoptOverLocal : BundleAdoptionDecision.KeepLocal;
+    }
+
+    /// <summary>True when the bundle at <paramref name="bundleDir"/> stamps the CURRENT family
+    /// guid: bloom <c>BuildGuid</c> on its main manifest AND <c>CorpusFreqBuildGuid</c> on its
+    /// corpusfreq manifest (which must be present). The optional text sidecar is NOT part of the
+    /// family gate — a mismatched/absent sidecar is ignored (safe, §5).</summary>
+    private static bool BundleFamilyGuidCurrent(string bundleDir)
+    {
+        var mainGuid = TryReadBundleBuildGuid(Path.Combine(bundleDir, ManifestFileName));
+        if (!string.Equals(mainGuid, BuildGuid, StringComparison.Ordinal))
+            return false;
+        return CorpusFreqGuidCurrentAt(bundleDir);
+    }
+
+    /// <summary>True when a <c>search.corpusfreq.manifest.json</c> is present at
+    /// <paramref name="dir"/> and stamps the current <see cref="CorpusFreqBuildGuid"/>.
+    /// Absent or mismatched ⇒ false (family-guid mismatch → Branch B reseed/rebuild).</summary>
+    private static bool CorpusFreqGuidCurrentAt(string dir)
+    {
+        var mp = Path.Combine(dir, CorpusFreqManifestFileName);
+        if (!File.Exists(mp)) return false;
+        try
+        {
+            var json = File.ReadAllText(mp, Utf8NoBom);
+            if (string.IsNullOrWhiteSpace(json)) return false;
+            var man = JsonSerializer.Deserialize<CorpusFreqManifest>(json, JsonOpts);
+            return man != null && string.Equals(man.BuildGuid, CorpusFreqBuildGuid, StringComparison.Ordinal);
+        }
+        catch { return false; }
     }
 
     private static string? TryReadBundleBuildGuid(string manifestPath)
@@ -1006,18 +1063,33 @@ public sealed class SearchIndexService : ISearchIndexService
         catch { return null; }
     }
 
-    /// <summary>
-    /// Adopts the prebuilt bundle into <paramref name="indexRoot"/> when
-    /// <see cref="EvaluateBundleSeed"/> says <see cref="BundleSeedDecision.Seed"/>. Copies the
-    /// whole <c>search.*</c> family (5 artifacts + their manifests + the gramsets sidecar) and
-    /// re-homes the absolute RootPath the three path-bound manifests embed so the loaders accept
-    /// them at the new root. Best-effort and all-or-nothing: any failure rolls back the partial
-    /// copy so a clean full build runs instead. Returns true only when files were actually seeded.
-    /// </summary>
-    internal static bool TrySeedFromBundle(string indexRoot, string bundleDir, out BundleSeedDecision decision, TextWriter? log = null)
+    private static string? TryReadBundleInputHash(string manifestPath)
     {
-        decision = EvaluateBundleSeed(indexRoot, bundleDir);
-        if (decision != BundleSeedDecision.Seed)
+        try
+        {
+            var json = File.ReadAllText(manifestPath, Utf8NoBom);
+            if (string.IsNullOrWhiteSpace(json)) return null;
+            var man = JsonSerializer.Deserialize<SearchIndexManifest>(json, JsonOpts);
+            return string.IsNullOrEmpty(man?.InputHash) ? null : man!.InputHash;
+        }
+        catch { return null; }
+    }
+
+    /// <summary>
+    /// Copies the whole shipped <c>search.*</c> family from <paramref name="bundleDir"/> into
+    /// <paramref name="indexRoot"/>, re-homes the RootPath the three path-bound manifests embed,
+    /// and DELETES every pre-existing local <c>search.*</c> file NOT present in the bundle so the
+    /// root is canonical by construction (the trimmed bundle has no <c>search.text.*</c> /
+    /// <c>search.gramsets.*</c> — a surviving stale-IndexStamp text/gramsets manifest would
+    /// otherwise be re-homed while pointing at bins that no longer exist, §2.2 leftover-delete).
+    /// UNCONDITIONAL: the caller (via <see cref="EvaluateBundleAdoption"/>) decides whether to
+    /// call this — there is no user-index guard here. All-or-nothing: any failure rolls back the
+    /// files just copied so a clean full build runs instead. Returns true only when the family
+    /// was actually copied in.
+    /// </summary>
+    internal static bool CopyBundleFamilyIntoRoot(string indexRoot, string bundleDir, TextWriter? log = null)
+    {
+        if (string.IsNullOrEmpty(bundleDir) || !Directory.Exists(bundleDir))
             return false;
 
         var copied = new List<string>();
@@ -1027,6 +1099,8 @@ public sealed class SearchIndexService : ISearchIndexService
 
             // Copy the entire search.* family. Globbing keeps this correct if the family
             // grows a future artifact; half-written CI .tmp scratch files are excluded.
+            // Track the exact set of names the bundle contributes for the leftover-delete.
+            var bundleNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             foreach (var src in Directory.EnumerateFiles(bundleDir, "search.*", SearchOption.TopDirectoryOnly))
             {
                 var name = Path.GetFileName(src);
@@ -1034,32 +1108,50 @@ public sealed class SearchIndexService : ISearchIndexService
                 var dst = Path.Combine(indexRoot, name);
                 File.Copy(src, dst, overwrite: true);
                 copied.Add(dst);
+                bundleNames.Add(name);
             }
+
+            if (copied.Count == 0)
+                return false; // nothing to adopt (empty/invalid bundle) — treat as no-op
 
             // Re-home the absolute RootPath the two path-bound manifests embed. Without
             // this, TryLoad{,Text}ManifestAsync reject a manifest whose RootPath != the
-            // load root and the freshly seeded index would be silently ignored (full rebuild
+            // load root and the freshly copied index would be silently ignored (full rebuild
             // anyway). IndexStamp — which binds the inverted/corpusfreq/gramsets siblings
             // to this build — is left untouched, so the family stays internally consistent.
             RehomeManifestRootPath(Path.Combine(indexRoot, ManifestFileName), indexRoot);
             RehomeManifestRootPath(Path.Combine(indexRoot, TextManifestFileName), indexRoot);
-            // The gramsets sidecar also embeds RootPath and GramSetsStore
-            // .TryLoadAsync rejects it unless full-path-equal to the load root; without this
-            // re-home the seeded sidecar is dead weight and every entry's gram sets are
-            // recomputed on the first incremental catch-up.
+            // The gramsets sidecar also embeds RootPath and GramSetsStore.TryLoadAsync rejects
+            // it unless full-path-equal to the load root; without this re-home the copied
+            // sidecar is dead weight and every entry's gram sets are recomputed on the first
+            // incremental catch-up.
             RehomeManifestRootPath(Path.Combine(indexRoot, GramSetsStore.ManifestFileName), indexRoot);
 
-            log?.WriteLine($"Seeded search index from bundle: {copied.Count} files -> {indexRoot}");
+            // Leftover delete (§2.2): every local search.* file the bundle did NOT bring —
+            // bins AND manifests (search.text.bin, search.text.manifest.json,
+            // search.gramsets.bin, search.gramsets.manifest.json, plus any other stragglers).
+            // A trimmed bundle ships no text/gramsets, so an old-IndexStamp text/gramsets
+            // manifest left behind (and just re-homed above) would point at stamp-mismatched
+            // or absent bins; deleting it keeps the root canonical rather than merely
+            // safe-by-loader-rejection.
+            foreach (var local in Directory.EnumerateFiles(indexRoot, "search.*", SearchOption.TopDirectoryOnly))
+            {
+                var name = Path.GetFileName(local);
+                if (name.EndsWith(".tmp", StringComparison.OrdinalIgnoreCase)) continue;
+                if (bundleNames.Contains(name)) continue; // part of the freshly copied family
+                try { File.Delete(local); } catch { /* best-effort; loader gate is the backstop */ }
+            }
+
+            log?.WriteLine($"Adopted search index from bundle: {copied.Count} files -> {indexRoot}");
             return true;
         }
         catch (Exception ex)
         {
-            log?.WriteLine($"Bundle seed failed ({ex.Message}); rolling back so a full build runs.");
+            log?.WriteLine($"Bundle adopt failed ({ex.Message}); rolling back so a full build runs.");
             foreach (var f in copied)
             {
                 try { File.Delete(f); } catch { }
             }
-            decision = BundleSeedDecision.SkipNoBundle;
             return false;
         }
     }
@@ -1085,18 +1177,49 @@ public sealed class SearchIndexService : ISearchIndexService
         File.Move(tmp, manifestPath, overwrite: true);
     }
 
-    /// <summary>Best-effort startup hook: seed from the exe-adjacent prebuilt bundle before a
-    /// staleness check. No-op when a user index exists or no valid bundle ships. Swallows all
-    /// faults — a seed hiccup must never break the staleness probe.</summary>
-    private void TrySeedBundleBestEffort(string root)
+    /// <summary>Test-only override for the exe-adjacent prebuilt bundle directory. When non-null,
+    /// <see cref="ResolveBundleDir"/> returns this instead of <c>AppPaths.GetPrebuiltIndexDir</c>,
+    /// letting tests stage a bundle and exercise the full adopt/seed flow through
+    /// <see cref="IsStaleAsync"/> (which resolves the bundle dir internally rather than by param).</summary>
+    internal string? TestOnlyBundleDirOverride;
+
+    /// <summary>Resolves the prebuilt bundle directory the launch probe adopts/seeds from:
+    /// the test override when set, else the exe-adjacent Assets/PrebuiltIndex. Never throws —
+    /// bundle resolution is an optimization, never a hard dependency of the staleness probe.</summary>
+    private string? ResolveBundleDir()
     {
+        if (TestOnlyBundleDirOverride != null) return TestOnlyBundleDirOverride;
+        try { return ReadZen.App.Infrastructure.AppPaths.GetPrebuiltIndexDir(); }
+        catch { return null; }
+    }
+
+    /// <summary>Best-effort content-hash backfill (shared by the fresh + adopted not-stale
+    /// verdicts): if any entries had null/stale ContentHash or CI-machine stat stamps and we
+    /// just computed fresh ones, patch the manifest on disk so the NEXT probe hits the fast
+    /// stat-only cache path. Single-writer guarded — a concurrent caller skips (the cache still
+    /// gets populated on a later call). Never throws — a write hiccup must not fail the probe.</summary>
+    private async Task MaybeBackfillContentHashesAsync(
+        string root,
+        SearchIndexManifest manifest,
+        IReadOnlyDictionary<string, string> writeBack,
+        IReadOnlyDictionary<string, (long Ticks, long Length)> stampWriteBack)
+    {
+        if (writeBack.Count == 0) return;
+        if (Interlocked.CompareExchange(ref _contentHashBackfillFlag, 1, 0) != 0) return;
         try
         {
-            var bundleDir = ReadZen.App.Infrastructure.AppPaths.GetPrebuiltIndexDir();
-            if (string.IsNullOrEmpty(bundleDir)) return;
-            TrySeedFromBundle(root, bundleDir, out _, null);
+            ApplyContentHashWriteBack(manifest, writeBack, stampWriteBack);
+            await SaveContentHashBackfillAsync(root, manifest, CancellationToken.None).ConfigureAwait(false);
+            Interlocked.Increment(ref _contentHashBackfillCount);
         }
-        catch { /* seeding is an optimization, never a hard dependency */ }
+        catch
+        {
+            // Best-effort: a failed backfill just means the next call will retry.
+        }
+        finally
+        {
+            Interlocked.Exchange(ref _contentHashBackfillFlag, 0);
+        }
     }
 
     /// <summary>
@@ -1161,87 +1284,144 @@ public sealed class SearchIndexService : ISearchIndexService
         }
     }
 
-    public async Task<bool> IsStaleAsync(string root, string originalDir, IReadOnlyList<string> translatedDirs)
+    public async Task<bool> IsStaleAsync(
+        string root,
+        string originalDir,
+        IReadOnlyList<string> translatedDirs,
+        IReadOnlyList<string>? additionalOriginalDirs = null,
+        IReadOnlyList<string>? additionalTranslatedDirs = null)
     {
-        // S7: one-time seed-from-bundle before evaluating staleness. On a virgin index root
-        // this adopts the exe-adjacent prebuilt index; the staleness check below then decides
-        // whether the corpus has drifted past the bundle (→ cheap incremental catch-up) or
-        // matches it (→ not stale, no build). No-op when a user index exists or no valid
-        // current-BuildGuid bundle ships next to the exe (e.g. every unit-test host).
-        TrySeedBundleBestEffort(root);
+        // ScopeComplete (§2.1a): the search InputHash covers only the ACTIVE corpus
+        // (originalDir + translatedDirs), while a build with additional dirs also indexes
+        // other corpora whose postings the stamp does not cover. Stamp equality therefore
+        // proves full coverage ONLY when no additional dirs are present. Zero-build verdicts
+        // (adopt-over-local / seeded-not-stale) are gated on this; with additional corpora
+        // present, row 2 degrades to keep-local+catch-up and row 4 degrades to seed+catch-up.
+        bool scopeComplete =
+            (additionalOriginalDirs == null || additionalOriginalDirs.Count == 0) &&
+            (additionalTranslatedDirs == null || additionalTranslatedDirs.Count == 0);
 
+        var bundleDir = ResolveBundleDir();
         var manifestPath = GetManifestPath(root);
+
+        // Determine local usability up front (before any hashing) so we can pick the branch.
+        // "Usable" = the bloom manifest loads (guid/version/root gated in TryLoadAsync) AND the
+        // corpusfreq sibling stamps the current family guid (§2.2a). A current-bloom root whose
+        // corpusfreq is absent/guid-mismatched is treated as a family mismatch → Branch B, so
+        // the reseed/rebuild re-materializes corpusfreq rather than serving degraded ranking.
+        SearchIndexManifest? localManifest;
+        try { localManifest = await TryLoadAsync(root); }
+        catch { localManifest = null; }
+        bool localFamilyCurrent = localManifest != null && CorpusFreqGuidCurrentAt(root);
+
+        if (localFamilyCurrent)
+        {
+            // ===== Branch A — loadable local index (serves queries throughout the wait) =====
+            // Legacy manifests written before InputHash keep the mtime semantics (no forced
+            // rebuild on upgrade). Adoption cannot apply without a comparable live hash.
+            if (string.IsNullOrEmpty(localManifest!.InputHash))
+                return IsStaleByMtime(manifestPath, originalDir, translatedDirs, localManifest);
+
+            try
+            {
+                // Hash-aware path: bust only on real content/structure changes, ignoring
+                // spurious mtime bumps from git pull / git checkout. The manifest's per-file
+                // entries seed a content-hash cache: (LengthBytes, LastWriteUtcTicks) hit →
+                // reuse stored ContentHash (no read); miss → fresh SHA256 + write-back.
+                var cache = BuildContentHashCache(localManifest);
+                var writeBack = new Dictionary<string, string>(StringComparer.Ordinal);
+                var stampWriteBack = new Dictionary<string, (long Ticks, long Length)>(StringComparer.Ordinal);
+
+                var currentHash = await ComputeInputHashAsync(originalDir, translatedDirs, cache, writeBack, CancellationToken.None, stampWriteBack).ConfigureAwait(false);
+
+                bool localFresh =
+                    string.Equals(localManifest.InputHash, currentHash, StringComparison.Ordinal) &&
+                    !(localManifest.Entries.Count == 0 && Directory.Exists(originalDir));
+
+                if (localFresh)
+                {
+                    // Row 1 — local matches live; bundle untouched. Heal any stale stat stamps.
+                    await MaybeBackfillContentHashesAsync(root, localManifest, writeBack, stampWriteBack).ConfigureAwait(false);
+                    return false;
+                }
+
+                // Local is stale. Adopt the bundle over it ONLY when ScopeComplete AND the
+                // bundle provably matches live (row 2); otherwise keep local authoritative and
+                // let the incremental catch-up compute the delta (row 3). Adoption over a
+                // multi-corpus local index is refused because the bundle lacks corpus B's
+                // postings (§2.1a).
+                if (scopeComplete)
+                {
+                    var decision = EvaluateBundleAdoption(root, bundleDir ?? "", currentHash);
+                    if (decision == BundleAdoptionDecision.AdoptOverLocal &&
+                        CopyBundleFamilyIntoRoot(root, bundleDir!))
+                    {
+                        // Row 2 — zero build. The seeded manifest's CI ticks heal on the next
+                        // probe via the existing stampWriteBack path.
+                        return false;
+                    }
+                    // Adoption declined or the copy rolled back → fall through to keep-local.
+                }
+                return true; // Row 3 — keep local, incremental catch-up.
+            }
+            catch (IOException)
+            {
+                // Filesystem race — fall back to mtime so a startup hiccup never crashes the probe.
+                return IsStaleByMtime(manifestPath, originalDir, translatedDirs, localManifest);
+            }
+        }
+
+        // ===== Branch B — local absent / corrupt / family-guid mismatch =====
+        // Seed the bundle FIRST, before any hashing (ordering invariant §2.2): search becomes
+        // instant from the seeded family (the query path loads it independently of this probe);
+        // the hash pass below only decides whether a catch-up is owed. CopyBundleFamilyIntoRoot
+        // is unconditional here — the decision gate is EvaluateBundleAdoption with a null live
+        // hash, which yields SeedVirgin for a usable current-family bundle (and deletes any
+        // corrupt/leftover local search.* files that the bundle does not replace).
+        bool seeded = false;
+        if (EvaluateBundleAdoption(root, bundleDir ?? "", null) == BundleAdoptionDecision.SeedVirgin)
+            seeded = CopyBundleFamilyIntoRoot(root, bundleDir!);
+
+        // Nothing on disk and nothing seeded → cold full build (row 6, today's behavior).
         if (!File.Exists(manifestPath))
             return true;
 
         SearchIndexManifest? manifest;
         try { manifest = await TryLoadAsync(root); }
         catch { return true; }
-
         if (manifest == null)
-            return true;
+            return true; // pre-existing corrupt/guid-mismatch manifest, no usable bundle → rebuild.
 
         try
         {
-            // Hybrid: hash path (preferred) vs. mtime fallback (legacy manifests).
-            // Manifests written by old binaries lack the InputHash field; deserialize as null
-            // and fall back to the existing mtime semantics so no forced rebuild on upgrade.
             if (string.IsNullOrEmpty(manifest.InputHash))
                 return IsStaleByMtime(manifestPath, originalDir, translatedDirs, manifest);
 
-            // Hash-aware path: bust the cache only on real content/structure changes,
-            // ignoring spurious mtime bumps from git pull / git checkout.
-            //
-            // PR B: pass the manifest's existing per-file entries as a content-hash cache.
-            // For each XML file, the hash worker checks (LengthBytes, LastWriteUtcTicks)
-            // against the cached entry: cache hit → reuse stored ContentHash (no file read).
-            // Cache miss (file changed, file new, or legacy entry with null ContentHash) →
-            // fresh SHA256 + deposit into the writeBack dict for opportunistic persistence.
             var cache = BuildContentHashCache(manifest);
             var writeBack = new Dictionary<string, string>(StringComparer.Ordinal);
-            // Fresh on-disk stat stamps for every cache-miss file, so a seeded manifest's
-            // CI-machine ticks get healed to local values during the backfill below.
             var stampWriteBack = new Dictionary<string, (long Ticks, long Length)>(StringComparer.Ordinal);
 
             var currentHash = await ComputeInputHashAsync(originalDir, translatedDirs, cache, writeBack, CancellationToken.None, stampWriteBack).ConfigureAwait(false);
-            if (!string.Equals(manifest.InputHash, currentHash, StringComparison.Ordinal))
-                return true;
 
-            if (manifest.Entries.Count == 0 && Directory.Exists(originalDir))
-                return true;
+            bool matchesLive =
+                string.Equals(manifest.InputHash, currentHash, StringComparison.Ordinal) &&
+                !(manifest.Entries.Count == 0 && Directory.Exists(originalDir));
 
-            // Opportunistic backfill: if any entries had null/stale ContentHash and we just
-            // computed fresh ones, patch the manifest on disk so the *next* IsStaleAsync call
-            // hits the fast cache path. Guarded behind a single-writer flag — concurrent
-            // callers skip the backfill (cache will still get populated on a later call).
-            if (writeBack.Count > 0)
+            // Row 4 — the seeded family matches live and the corpus is single-scope: zero build.
+            // A pre-existing (not-seeded) manifest can only reach here when it is bloom-current
+            // but corpusfreq-stale (Branch B via family gate); seeded is false there, so it
+            // correctly falls through to stale → rebuild, re-materializing corpusfreq (§2.2a).
+            if (seeded && matchesLive && scopeComplete)
             {
-                if (Interlocked.CompareExchange(ref _contentHashBackfillFlag, 1, 0) == 0)
-                {
-                    try
-                    {
-                        ApplyContentHashWriteBack(manifest, writeBack, stampWriteBack);
-                        await SaveContentHashBackfillAsync(root, manifest, CancellationToken.None).ConfigureAwait(false);
-                        Interlocked.Increment(ref _contentHashBackfillCount);
-                    }
-                    catch
-                    {
-                        // Best-effort: a failed backfill just means next call will retry.
-                        // We don't want to crash IsStaleAsync over a write hiccup.
-                    }
-                    finally
-                    {
-                        Interlocked.Exchange(ref _contentHashBackfillFlag, 0);
-                    }
-                }
+                await MaybeBackfillContentHashesAsync(root, manifest, writeBack, stampWriteBack).ConfigureAwait(false);
+                return false;
             }
 
-            return false;
+            // Rows 5 / 6 — catch-up build folds in the delta and/or the additional corpora.
+            return true;
         }
         catch (IOException)
         {
-            // Filesystem race (file deleted mid-enumeration, transient lock, etc.) — fall back
-            // to mtime check so a startup hiccup never crashes the staleness probe.
             return IsStaleByMtime(manifestPath, originalDir, translatedDirs, manifest);
         }
     }
