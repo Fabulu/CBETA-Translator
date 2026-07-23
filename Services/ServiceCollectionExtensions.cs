@@ -61,6 +61,7 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<AppUpdateService>();
         services.AddSingleton<BookmarkService>();
         services.AddSingleton<ReaderStateService>();
+        services.AddSingleton<IDialogService, DialogService>();
         return services;
     }
 }

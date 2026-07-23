@@ -8124,23 +8124,12 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
     {
         if (editor?.Document == null) return;
         var text = editor.Document.Text;
-        if (string.IsNullOrEmpty(text)) return;
 
-        // Case-insensitive for Latin chars; exact for CJK
-        bool hasCjk = ContainsCjkFind(query);
-        var comparison = hasCjk ? StringComparison.Ordinal : StringComparison.OrdinalIgnoreCase;
-
-        int pos = 0;
-        while (pos <= text.Length - query.Length)
-        {
-            int idx = text.IndexOf(query, pos, comparison);
-            if (idx < 0) break;
+        // Case-insensitive for Latin chars; exact for CJK (ReaderFindScan.ComparisonFor).
+        var comparison = ReaderFindScan.ComparisonFor(query);
+        foreach (var idx in ReaderFindScan.FindOccurrences(text, query, comparison))
             _findMatches.Add((isTranslated, idx, query.Length));
-            pos = idx + 1; // allow overlapping matches
-        }
     }
-
-    private static bool ContainsCjkFind(string s) => ReadZen.App.Infrastructure.CjkText.ContainsIdeograph(s);
 
     private void UpdateFindHighlightRanges()
     {
@@ -8238,7 +8227,7 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
         if (rows == null || string.IsNullOrEmpty(query)) { UpdateGridFindCountText(); return; }
 
         // Case-insensitive for Latin, exact for CJK — same rule as the two-editor path.
-        var comparison = ContainsCjkFind(query) ? StringComparison.Ordinal : StringComparison.OrdinalIgnoreCase;
+        var comparison = ReaderFindScan.ComparisonFor(query);
 
         for (int i = 0; i < rows.Count; i++)
         {
@@ -8261,15 +8250,8 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
 
     private void CollectGridMatches(string? text, string query, StringComparison comparison, int rowIndex, RowSide side)
     {
-        if (string.IsNullOrEmpty(text) || text.Length < query.Length) return;
-        int pos = 0;
-        while (pos <= text.Length - query.Length)
-        {
-            int idx = text.IndexOf(query, pos, comparison);
-            if (idx < 0) break;
+        foreach (var idx in ReaderFindScan.FindOccurrences(text, query, comparison))
             _gridFindMatches.Add((rowIndex, side, idx, query.Length));
-            pos = idx + 1; // allow overlapping matches
-        }
     }
 
     /// <summary>Writes the current match set onto the rows' observable Zh/EnHighlights (marking the

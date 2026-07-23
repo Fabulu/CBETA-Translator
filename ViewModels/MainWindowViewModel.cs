@@ -49,6 +49,7 @@ public partial class MainWindowViewModel : ViewModelBase
     private readonly ISearchIndexService _searchIndex;
     private readonly IDocumentTagService _documentTagService;
     private readonly IGitRepoService _gitService;
+    private readonly IDialogService _dialogService;
     private ITranslationStarService? _starService;
     private static readonly TranslationStatusService LiveTranslationStatusService = new();
 
@@ -444,19 +445,14 @@ public partial class MainWindowViewModel : ViewModelBase
     // ScholarTabView bridges
     public Action<string>? SetScholarRoot { get; set; }
     public Action? ClearScholar { get; set; }
-    public Action<string?>? SetScholarUsername { get; set; }
+    // SetScholarUsername folded into ScholarTabView's SettingsAppliedMessage handler (ratchet):
+    // it pushed the identical config-derived value (GitHubUsername ?? Username) the message now
+    // carries, so the bridge delegate + its LoadRootAsync re-push were a duplicate fan-out.
     public Action<string?>? SetScholarAssistantUsername { get; set; }
     public Action<string?, string?>? SetScholarTranslationDirs { get; set; }
     public Action<List<string>>? SetScholarDictionarySourceOptions { get; set; }
     public Action<int>? SetScholarDictionarySourceIndex { get; set; }
     public Func<Task>? SaveScholarStateAsync { get; set; }
-
-    // Dialog bridges (code-behind provides UI dialogs)
-    public Func<Task<string?>>? ShowFolderPickerAsync { get; set; }
-    public Func<AppConfig, Task<AppConfig?>>? ShowSettingsDialogAsync { get; set; }
-    public Func<Task<string?>>? ShowUsernamePromptAsync { get; set; }
-    public Func<string?, Task>? ShowLicensesAsync { get; set; }
-    public Func<string, string, Task<bool>>? ShowYesNoDialogAsync { get; set; }
 
     // Window bridges
     public Action<string>? SetWindowTitle { get; set; }
@@ -491,7 +487,8 @@ public partial class MainWindowViewModel : ViewModelBase
         IDocumentTagService documentTagService,
         IGitRepoService gitService,
         ILicenseMetadataService licenseMetadata,
-        IManifestService manifestService)
+        IManifestService manifestService,
+        IDialogService dialogService)
     {
         _configService = configService;
         _indexCacheService = indexCacheService;
@@ -506,6 +503,7 @@ public partial class MainWindowViewModel : ViewModelBase
         _gitService = gitService;
         _licenseMetadata = licenseMetadata;
         _manifestService = manifestService;
+        _dialogService = dialogService;
 
         // Corpus-changed trigger (git sync/clone/update/panic success): queue the
         // staleness-gated, debounced auto index build. Weak registration on the typed
@@ -618,17 +616,11 @@ public partial class MainWindowViewModel : ViewModelBase
                     }
                 }
 
-                _suppressConfigSaves = true;
-                try
-                {
-                    // Code-behind should apply _config.ZenOnly to UI checkbox here
-                    // via the OnConfigLoaded callback
-                    OnConfigLoaded?.Invoke(_config);
-                }
-                finally
-                {
-                    _suppressConfigSaves = false;
-                }
+                // Config-driven UI (zen-only checkbox, persisted search history,
+                // preferred citation style) is applied by MainWindow's
+                // SettingsAppliedMessage subscription, broadcast above via
+                // ApplySettingsToChildViews() (MVVM ratchet; replaced the
+                // OnConfigLoaded bridge delegate).
 
                 SetStatus("Auto-loading last root...");
                 await LoadRootAsync(_config.TextRootPath!, saveToConfig: false);
@@ -660,11 +652,6 @@ public partial class MainWindowViewModel : ViewModelBase
     }
 
     /// <summary>
-    /// Called by code-behind after config is loaded to apply UI-only config (e.g., zen checkbox).
-    /// </summary>
-    public Action<AppConfig>? OnConfigLoaded { get; set; }
-
-    /// <summary>
     /// Invoked after the fast phase of LoadPairAsync completes (projection editor ready).
     /// Code-behind uses this to signal the window as ready before the slow readable render.
     /// </summary>
@@ -677,7 +664,7 @@ public partial class MainWindowViewModel : ViewModelBase
         {
             if (!await ConfirmNavigateIfDirtyAsync("open a different root")) return;
 
-            var folder = await (ShowFolderPickerAsync?.Invoke() ?? Task.FromResult<string?>(null));
+            var folder = await _dialogService.PickFolderAsync("Select Read Zen texts folder");
             if (folder == null) return;
 
             await LoadRootAsync(folder, saveToConfig: true);
@@ -840,7 +827,10 @@ public partial class MainWindowViewModel : ViewModelBase
         PushSearchContext();
         SetScholarRoot?.Invoke(_translationRoot ?? _root);
         SetScholarTranslationDirs?.Invoke(_originalDir, GetActiveTranslatedDir());
-        SetScholarUsername?.Invoke(_config.GitHubUsername ?? _config.Username);
+        // Scholar username (config-derived GitHubUsername ?? Username) is applied by
+        // ScholarTabView's SettingsAppliedMessage handler, broadcast on config load /
+        // settings apply / GitHub auth; the config value does not change across root
+        // loads, so no per-load re-push is needed here (ratchet dedup).
         SetScholarAssistantUsername?.Invoke(GetActiveDictionaryUser());
 
         try
@@ -1091,7 +1081,7 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         try
         {
-            var result = await (ShowSettingsDialogAsync?.Invoke(_config) ?? Task.FromResult<AppConfig?>(null));
+            var result = await _dialogService.ShowSettingsDialogAsync(_config);
             if (result == null) return;
 
             _config = result;
@@ -1110,7 +1100,7 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         try
         {
-            await (ShowLicensesAsync?.Invoke(_root) ?? Task.CompletedTask);
+            await _dialogService.ShowLicensesAsync(_root);
         }
         catch (Exception ex)
         {
@@ -2910,10 +2900,9 @@ public partial class MainWindowViewModel : ViewModelBase
             if (_activeTranslatedDir == null && _translatedDir == null) { SetStatus("Fresh start unavailable."); return; }
             if (IsActiveTranslationReadOnly) { SetStatus("Cannot fresh start: viewing another user's translation (read-only)."); return; }
 
-            bool confirmed = await (ShowYesNoDialogAsync?.Invoke(
+            bool confirmed = await _dialogService.ShowYesNoAsync(
                 "Fresh Start Translation",
-                "This will replace the current writable translation for this file with the original untranslated XML.\n\nAll saved translation edits for this file in the active translation source will be lost.\n\nDo you want to continue?")
-                ?? Task.FromResult(false));
+                "This will replace the current writable translation for this file with the original untranslated XML.\n\nAll saved translation edits for this file in the active translation source will be lost.\n\nDo you want to continue?");
             if (!confirmed)
             {
                 SetStatus("Fresh start canceled.");
@@ -3110,8 +3099,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
         if (!_dirty) return true;
 
-        return await (ShowYesNoDialogAsync?.Invoke("Unsaved changes", "You have unsaved changes.\n\nProceed to " + action + "?")
-            ?? Task.FromResult(true));
+        return await _dialogService.ShowYesNoAsync("Unsaved changes", "You have unsaved changes.\n\nProceed to " + action + "?");
     }
 
     public async Task OnTabSelectionChangedAsync()
@@ -3135,8 +3123,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
             if (_dirty)
             {
-                bool proceed = await (ShowYesNoDialogAsync?.Invoke("Unsaved changes", "You have unsaved changes.\n\nLeave the Translation tab anyway?")
-                    ?? Task.FromResult(true));
+                bool proceed = await _dialogService.ShowYesNoAsync("Unsaved changes", "You have unsaved changes.\n\nLeave the Translation tab anyway?");
                 if (!proceed)
                 {
                     ForceTabIndex?.Invoke(1);

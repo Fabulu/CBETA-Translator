@@ -21,6 +21,7 @@ using ReadZen.App.Models;
 using ReadZen.App.Services;
 using ReadZen.App.Text;
 using ReadZen.App.ViewModels;
+using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -682,7 +683,8 @@ private async Task LoadConfigAndAutoloadAsync()
             sp.GetRequiredService<IDocumentTagService>(),
             sp.GetRequiredService<IGitRepoService>(),
             sp.GetRequiredService<ILicenseMetadataService>(),
-            sp.GetRequiredService<IManifestService>());
+            sp.GetRequiredService<IManifestService>(),
+            sp.GetRequiredService<IDialogService>());
 
         _vm.SetStarService(sp.GetRequiredService<ITranslationStarService>());
 
@@ -860,19 +862,14 @@ private async Task LoadConfigAndAutoloadAsync()
         // ScholarTabView bridges
         _vm.SetScholarRoot = root => _scholarView?.SetRoot(root);
         _vm.ClearScholar = () => _scholarView?.Clear();
-        _vm.SetScholarUsername = user => _scholarView?.SetUsername(user);
+        // SetScholarUsername folded into ScholarTabView's SettingsAppliedMessage handler
+        // (MVVM ratchet): the view self-applies GitHubUsername ?? Username from the config
+        // message, so this bridge delegate was a duplicate config fan-out.
         _vm.SetScholarAssistantUsername = user => _scholarView?.SetAssistantUsername(user);
         _vm.SetScholarTranslationDirs = (orig, tran) => _scholarView?.SetTranslationDirs(orig, tran);
         _vm.SetScholarDictionarySourceOptions = options => _scholarView?.SetDictionarySourceOptions(options);
         _vm.SetScholarDictionarySourceIndex = index => _scholarView?.SetDictionarySourceIndex(index);
         _vm.SaveScholarStateAsync = async () => { if (_scholarView != null) await _scholarView.SaveCurrentStateAsync(); };
-
-        // Dialog bridges
-        _vm.ShowFolderPickerAsync = ShowFolderPickerDialogAsync;
-        _vm.ShowSettingsDialogAsync = ShowSettingsDialogAsync;
-        _vm.ShowUsernamePromptAsync = ShowUsernamePromptDialogAsync;
-        _vm.ShowLicensesAsync = ShowLicensesDialogAsync;
-        _vm.ShowYesNoDialogAsync = ShowYesNoAsync;
 
         // Window bridges
         _vm.SetWindowTitle = title => Title = title;
@@ -919,18 +916,14 @@ private async Task LoadConfigAndAutoloadAsync()
         };
         _vm.IsNavSearchFocused = () => _navSearch != null && _navSearch.IsFocused;
 
-        // Config loaded callback
-        _vm.OnConfigLoaded = config =>
-        {
-            if (_chkZenOnly != null) _chkZenOnly.IsChecked = config.ZenOnly;
-            // 4C: restore persisted search history into the search view model
-            if (config.SearchHistory.Count > 0)
-                _searchView?.ViewModel.LoadHistory(config.SearchHistory);
-            // 2E: apply preferred citation style from config. (Previously wrote the
-            // dead CitationService.DefaultStyleIndex static; now seeds the cache the
-            // citation menus actually read, so the configured style applies eagerly.)
-            CitationMenuHelper.SetPreferredStyle(config.PreferredCitationStyle);
-        };
+        // Config-driven UI arrives via the typed messenger (ratchet-preferred
+        // channel; replaced the OnConfigLoaded bridge delegate). Weak registration —
+        // no unsubscribe needed for the window's lifetime. Broadcast by
+        // MainWindowViewModel.ApplySettingsToChildViews() on startup config load and
+        // whenever settings change.
+        WeakReferenceMessenger.Default
+            .Register<MainWindow, ReadZen.App.Messages.SettingsAppliedMessage>(
+                this, static (view, msg) => view.OnSettingsApplied(msg.Config));
 
         // Index cache save debounce
         _vm.ScheduleIndexCacheSave = ScheduleIndexCacheSave;
@@ -943,6 +936,35 @@ private async Task LoadConfigAndAutoloadAsync()
 
         // Tour: auto-index complete
         _vm.OnAutoIndexCompleted = () => _tourService?.AdvanceIfWaitingFor("index-built");
+    }
+
+    /// <summary>
+    /// Applies config-driven MainWindow UI from a
+    /// <see cref="ReadZen.App.Messages.SettingsAppliedMessage"/>. This is the
+    /// ratchet-folded replacement for the former MainWindowViewModel.OnConfigLoaded
+    /// bridge delegate: it mirrors the exact effects the old callback pushed
+    /// (zen-only filter, persisted search history, preferred citation style).
+    /// Each effect is wrapped in its own try/catch so one failing handler neither
+    /// skips the others nor aborts WeakReferenceMessenger delivery to the other
+    /// registered views.
+    /// </summary>
+    private void OnSettingsApplied(AppConfig config)
+    {
+        // Zen-only filter: the checkbox binds TwoWay to the bound VM property, so
+        // seed the source of truth rather than poking the control directly.
+        try { _vm.ZenOnly = config.ZenOnly; } catch { }
+
+        // 4C: restore persisted search history into the search view model.
+        try
+        {
+            if (config.SearchHistory.Count > 0)
+                _searchView?.ViewModel.LoadHistory(config.SearchHistory);
+        }
+        catch { }
+
+        // 2E: apply preferred citation style from config — seeds the cache the
+        // citation menus actually read, so the configured style applies eagerly.
+        try { CitationMenuHelper.SetPreferredStyle(config.PreferredCitationStyle); } catch { }
     }
 
     private void HandleVmPropertyChanged(System.ComponentModel.PropertyChangedEventArgs e)
@@ -2156,78 +2178,6 @@ private async Task LoadConfigAndAutoloadAsync()
         _suppressTabEvents = true;
         try { _tabs.SelectedIndex = idx; }
         finally { _suppressTabEvents = false; }
-    }
-
-    // ===========================================================
-    // Dialogs
-    // ===========================================================
-
-    private async Task<string?> ShowFolderPickerDialogAsync()
-    {
-        if (StorageProvider is null) { _vm.SetStatus("StorageProvider not available."); return null; }
-
-        var picked = await StorageProvider.OpenFolderPickerAsync(new FolderPickerOpenOptions
-        {
-            Title = "Select Read Zen texts folder"
-        });
-
-        var folder = picked.FirstOrDefault();
-        return folder?.Path.LocalPath;
-    }
-
-    private async Task<AppConfig?> ShowSettingsDialogAsync(AppConfig current)
-    {
-        var settingsWindow = new SettingsWindow(current);
-        return await settingsWindow.ShowDialog<AppConfig?>(this);
-    }
-
-    private async Task<string?> ShowUsernamePromptDialogAsync()
-    {
-        var prompt = new UsernamePromptWindow();
-        return await prompt.ShowDialog<string?>(this);
-    }
-
-    private async Task ShowLicensesDialogAsync(string? root)
-    {
-        await new LicensesWindow(root).ShowDialog(this);
-    }
-
-    private async Task<bool> ShowYesNoAsync(string title, string message)
-    {
-        var btnYes = new Button { Content = "Yes", MinWidth = 90 };
-        var btnNo = new Button { Content = "No", MinWidth = 90 };
-
-        var buttons = new StackPanel { Orientation = Orientation.Horizontal, HorizontalAlignment = HorizontalAlignment.Right, Spacing = 10 };
-        buttons.Children.Add(btnNo);
-        buttons.Children.Add(btnYes);
-
-        var text = new TextBox { Text = message, IsReadOnly = true, TextWrapping = TextWrapping.Wrap, AcceptsReturn = true, Height = 200 };
-        ScrollViewer.SetVerticalScrollBarVisibility(text, ScrollBarVisibility.Auto);
-
-        var panel = new StackPanel { Margin = new Thickness(16), Spacing = 10 };
-        panel.Children.Add(text);
-        panel.Children.Add(buttons);
-
-        var win = new Window
-        {
-            Title = title,
-            Width = 620,
-            Height = 360,
-            Content = panel,
-            WindowStartupLocation = WindowStartupLocation.CenterOwner,
-            Topmost = false
-        };
-        win.RequestedThemeVariant = this.ActualThemeVariant;
-
-        var tcs = new TaskCompletionSource<bool>();
-        btnYes.Click += (_, _) => { win.Close(); tcs.TrySetResult(true); };
-        btnNo.Click += (_, _) => { win.Close(); tcs.TrySetResult(false); };
-        // Safety net: if the user closes via the window's X button (or Alt+F4),
-        // treat it as "No" so tcs.Task doesn't hang forever → app freeze.
-        win.Closed += (_, _) => tcs.TrySetResult(false);
-
-        await win.ShowDialog(this);
-        return await tcs.Task;
     }
 
     // ===========================================================

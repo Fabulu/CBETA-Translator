@@ -15,7 +15,7 @@ namespace ReadZen.Tests.ViewModels;
 
 public class MainWindowViewModelTests
 {
-    private static MainWindowViewModel MakeVm(StubDocumentTagService? documentTagService = null, IIndexedTranslationService? indexedTranslationService = null)
+    private static MainWindowViewModel MakeVm(StubDocumentTagService? documentTagService = null, IIndexedTranslationService? indexedTranslationService = null, StubDialogService? dialogService = null)
     {
         return new MainWindowViewModel(
             new StubAppConfigService(),
@@ -30,7 +30,8 @@ public class MainWindowViewModelTests
             documentTagService ?? new StubDocumentTagService(),
             new StubGitRepoService(),
             new StubLicenseMetadataService(),
-            new StubManifestService());
+            new StubManifestService(),
+            dialogService ?? new StubDialogService());
     }
 
     /// <summary>
@@ -763,6 +764,10 @@ public class MainWindowViewModelTests
         {
             ConfigToReturn = new AppConfig { IsDarkTheme = true }
         };
+        var dialogService = new StubDialogService
+        {
+            OnUsernamePrompt = () => Task.FromResult<string?>("Alice")
+        };
         var vm = new MainWindowViewModel(
             configService,
             new StubIndexCacheService(),
@@ -776,18 +781,12 @@ public class MainWindowViewModelTests
             new StubDocumentTagService(),
             new StubGitRepoService(),
             new StubLicenseMetadataService(),
-            new StubManifestService());
-
-        var promptCalls = 0;
-        vm.ShowUsernamePromptAsync = () =>
-        {
-            promptCalls++;
-            return Task.FromResult<string?>("Alice");
-        };
+            new StubManifestService(),
+            dialogService);
 
         await vm.LoadConfigApplyThemeAndMaybeAutoloadAsync(isSecondaryWindow: false);
 
-        Assert.Equal(0, promptCalls);
+        Assert.Equal(0, dialogService.UsernamePromptCalls);
         Assert.Null(vm.Config.Username);
     }
 
@@ -885,7 +884,8 @@ public class MainWindowViewModelTests
             new StubDocumentTagService(),
             new StubGitRepoService(),
             new StubLicenseMetadataService(),
-            new StubManifestService());
+            new StubManifestService(),
+            new StubDialogService());
 
         var (root, _, _) = CreateTwoRepoLayout(communityUsers: new[] { "octocat", "otheruser" });
 
@@ -977,7 +977,18 @@ public class MainWindowViewModelTests
     }    [Fact]
     public async Task ResetTranslatedToUntranslatedAsync_ConfirmsAndOverwritesWritableTranslation()
     {
-        var vm = MakeVm();
+        string? promptTitle = null;
+        string? promptMessage = null;
+        var dialogService = new StubDialogService
+        {
+            OnYesNo = (title, message) =>
+            {
+                promptTitle = title;
+                promptMessage = message;
+                return Task.FromResult(true);
+            }
+        };
+        var vm = MakeVm(dialogService: dialogService);
         var (root, originals, translations) = CreateTwoRepoLayout();
         Directory.CreateDirectory(Path.Combine(originals, "xml-p5", "T01"));
         Directory.CreateDirectory(Path.Combine(translations, "xml-p5t", "T01"));
@@ -999,15 +1010,6 @@ public class MainWindowViewModelTests
                 .SetValue(vm, relPath);
 
             vm.GetTranslationProjectionText = () => string.Empty;
-
-            string? promptTitle = null;
-            string? promptMessage = null;
-            vm.ShowYesNoDialogAsync = (title, message) =>
-            {
-                promptTitle = title;
-                promptMessage = message;
-                return Task.FromResult(true);
-            };
 
             await vm.ResetTranslatedToUntranslatedAsync();
 
