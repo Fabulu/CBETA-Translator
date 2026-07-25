@@ -63,25 +63,60 @@ public sealed class SearchIndexService : ISearchIndexService
 
     // FL1 (frozen/live index split, design §2.4/§4.3): the inverted handle and the
     // corpus-frequency partial no longer live in standalone service fields — they live
-    // in the sole <see cref="SearchFamily"/> held by <see cref="_families"/>. These public
-    // accessors delegate to that single family, so their observable value is byte-identical
-    // to the pre-FL1 fields. FL2 replaces the corpusfreq getters with an additive fold
-    // across families; FL4 turns the inverted getter's consumers into a disjoint-union merge.
+    // in the <see cref="SearchFamily"/> instances held by <see cref="_families"/>.
+    //
+    // FL2 (design §2.3 consumer #5, "additive decomposition"): the corpus-global char/bigram
+    // frequencies and total-char count are ADDITIVE across families —
+    //   Freq_global[x] = Σ_family Freq_family[x],  TotalChars_global = Σ_family TotalChars_family
+    // — so these getters no longer read a single family's partial; they expose an in-memory
+    // additive fold over EVERY family's partial, computed once per (re)load and cached
+    // (see <see cref="EnsureMergedCorpusFreqs"/>). With the sole combined family present
+    // today the fold collapses to that family's partial by the SAME reference (the one-loaded
+    // fast path in <see cref="MergeCorpusFreqPartials"/>), so ComputeCooccurrences and every
+    // consumer at :373-527 observe byte-identical values to the pre-FL2 code. FL4 turns the
+    // inverted getter's consumers into a disjoint-union merge.
 
     /// <summary>Inverted bigram index built alongside bloom filters. Null until first build/load.</summary>
     public InvertedSearchIndex? InvertedIndex => Combined.Inverted;
 
-    /// <summary>Corpus-wide CJK character frequencies (key = single char as string). Null until loaded/built.</summary>
-    public IReadOnlyDictionary<string, int>? CorpusCharFreqs => Combined.CharFreqs;
+    /// <summary>
+    /// Corpus-wide CJK character frequencies (key = single char as string), summed across
+    /// all index families (FL2 additive fold). Null until at least one family is loaded/built.
+    /// </summary>
+    public IReadOnlyDictionary<string, int>? CorpusCharFreqs
+    {
+        get { EnsureMergedCorpusFreqs(); return _mergedCharFreqs; }
+    }
 
-    /// <summary>Corpus-wide CJK bigram frequencies (key = 2-char string). Null until loaded/built.</summary>
-    public IReadOnlyDictionary<string, int>? CorpusBigramFreqs => Combined.BigramFreqs;
+    /// <summary>
+    /// Corpus-wide CJK bigram frequencies (key = 2-char string), summed across all index
+    /// families (FL2 additive fold). Null until at least one family is loaded/built.
+    /// </summary>
+    public IReadOnlyDictionary<string, int>? CorpusBigramFreqs
+    {
+        get { EnsureMergedCorpusFreqs(); return _mergedBigramFreqs; }
+    }
 
-    /// <summary>Total CJK characters counted across the entire corpus.</summary>
-    public long CorpusTotalChars => Combined.TotalChars;
+    /// <summary>Total CJK characters counted across the entire corpus (FL2 additive fold over all families).</summary>
+    public long CorpusTotalChars
+    {
+        get { EnsureMergedCorpusFreqs(); return _mergedTotalChars; }
+    }
 
     /// <summary>True when corpus frequency data has been loaded or built.</summary>
     public bool HasCorpusFrequencies => CorpusCharFreqs != null;
+
+    // FL2: cached additive fold of every family's corpusfreq partial. Rebuilt lazily on the
+    // first getter access after any family's partial changes; invalidated by
+    // InvalidateMergedCorpusFreqs() at each family-partial assignment site and by
+    // InvalidateIndexCaches(). Guarded by its own lock (no nesting with _indexCacheLock, so
+    // no lock-ordering hazard). Recompute cost is a single dictionary sum over ~32K chars +
+    // ~65K bigrams (single-digit ms), paid once per (re)load.
+    private readonly object _corpusFreqMergeLock = new();
+    private IReadOnlyDictionary<string, int>? _mergedCharFreqs;
+    private IReadOnlyDictionary<string, int>? _mergedBigramFreqs;
+    private long _mergedTotalChars;
+    private bool _mergedCorpusFreqsValid;
 
     // Gate only for index file I/O (manifest/bin) so we can release before expensive verification.
     private static readonly SemaphoreSlim _indexIoGate = new(1, 1);
@@ -880,7 +915,114 @@ public sealed class SearchIndexService : ISearchIndexService
                 fam.InvalidateCaches();
         }
 
+        // FL2: the cached corpusfreq fold is derived from family partials; invalidate it
+        // alongside the family caches. Family partials themselves are NOT cleared here
+        // (InvalidateCaches never touched them), so the re-fold on next access recomputes
+        // the same value — behaviour is unchanged with today's single family.
+        InvalidateMergedCorpusFreqs();
+
         ClearVerifyTextCache();
+    }
+
+    // ── FL2: corpusfreq additive fold (design §2.3 consumer #5) ──
+
+    /// <summary>
+    /// Pure additive fold of per-family corpusfreq partials into a corpus-global view.
+    /// Char counts, bigram counts, and totalChars are all sums over per-document texts, so
+    /// the global value is the family-wise sum (<c>Freq_global[x] = Σ_family Freq_family[x]</c>,
+    /// <c>N_global = Σ_family N_family</c>). Integer addition is associative/commutative and
+    /// the family partition is a partition of the same text blocks, so the fold equals a
+    /// direct global recount EXACTLY.
+    /// <para/>
+    /// A family with a null char/bigram partial (never loaded/built) does not participate.
+    /// When no family has a loaded partial the result is <c>(null, null, 0)</c> — preserving
+    /// the pre-FL2 null semantics of <see cref="CorpusCharFreqs"/> et al. When exactly one
+    /// family has a loaded partial the SAME references are returned (no copy), so the
+    /// single-family case is byte/reference-identical to reading that family directly.
+    /// Extracted as a static pure helper so FL4's two-family merge reuses it unchanged.
+    /// </summary>
+    internal static (IReadOnlyDictionary<string, int>? charFreqs,
+                     IReadOnlyDictionary<string, int>? bigramFreqs,
+                     long totalChars)
+        MergeCorpusFreqPartials(
+            IEnumerable<(IReadOnlyDictionary<string, int>? charFreqs,
+                         IReadOnlyDictionary<string, int>? bigramFreqs,
+                         long totalChars)> partials)
+    {
+        var loaded = partials
+            .Where(p => p.charFreqs != null && p.bigramFreqs != null)
+            .ToList();
+
+        if (loaded.Count == 0)
+            return (null, null, 0);
+
+        // One loaded partial → return it verbatim (same references, no allocation). This is
+        // the standing case with today's sole family and keeps the fold reference-identical
+        // to the pre-FL2 getters.
+        if (loaded.Count == 1)
+            return (loaded[0].charFreqs, loaded[0].bigramFreqs, loaded[0].totalChars);
+
+        var mergedChars = new Dictionary<string, int>(loaded[0].charFreqs!.Count);
+        var mergedBigrams = new Dictionary<string, int>(loaded[0].bigramFreqs!.Count);
+        long mergedTotal = 0;
+
+        foreach (var p in loaded)
+        {
+            foreach (var kv in p.charFreqs!)
+            {
+                mergedChars.TryGetValue(kv.Key, out var existing);
+                mergedChars[kv.Key] = existing + kv.Value;
+            }
+            foreach (var kv in p.bigramFreqs!)
+            {
+                mergedBigrams.TryGetValue(kv.Key, out var existing);
+                mergedBigrams[kv.Key] = existing + kv.Value;
+            }
+            mergedTotal += p.totalChars;
+        }
+
+        return (mergedChars, mergedBigrams, mergedTotal);
+    }
+
+    /// <summary>
+    /// FL2: build (once, lazily) and cache the additive fold over every family's corpusfreq
+    /// partial, exposed through <see cref="CorpusCharFreqs"/>/<see cref="CorpusBigramFreqs"/>/
+    /// <see cref="CorpusTotalChars"/>. Cheap (single dictionary sum) and re-run only after an
+    /// invalidation, so hot query-path reads pay nothing after the first.
+    /// </summary>
+    private void EnsureMergedCorpusFreqs()
+    {
+        lock (_corpusFreqMergeLock)
+        {
+            if (_mergedCorpusFreqsValid)
+                return;
+
+            var (chars, bigrams, total) = MergeCorpusFreqPartials(
+                _families.Select(f => ((IReadOnlyDictionary<string, int>?)f.CharFreqs,
+                                       (IReadOnlyDictionary<string, int>?)f.BigramFreqs,
+                                       f.TotalChars)));
+
+            _mergedCharFreqs = chars;
+            _mergedBigramFreqs = bigrams;
+            _mergedTotalChars = total;
+            _mergedCorpusFreqsValid = true;
+        }
+    }
+
+    /// <summary>
+    /// FL2: mark the cached corpusfreq fold stale. Called whenever a family's corpusfreq
+    /// partial changes (load/build) and from <see cref="InvalidateIndexCaches"/>. The next
+    /// getter access re-folds.
+    /// </summary>
+    private void InvalidateMergedCorpusFreqs()
+    {
+        lock (_corpusFreqMergeLock)
+        {
+            _mergedCorpusFreqsValid = false;
+            _mergedCharFreqs = null;
+            _mergedBigramFreqs = null;
+            _mergedTotalChars = 0;
+        }
     }
 
     // FL1: bloom/text mmap caches are per-family slots. Callers pass the owning family
@@ -2322,6 +2464,7 @@ public sealed class SearchIndexService : ISearchIndexService
             Combined.CharFreqs = charFreqs;
             Combined.BigramFreqs = bigramFreqs;
             Combined.TotalChars = totalChars;
+            InvalidateMergedCorpusFreqs(); // FL2: a family partial changed → re-fold on next getter access
 
             Dbg($"Corpus freq index loaded: {charCount} chars, {bigramCount} bigrams, {totalChars} total");
             return true;
@@ -3791,6 +3934,7 @@ public sealed class SearchIndexService : ISearchIndexService
                     Combined.CharFreqs = corpusCharFreqs;
                     Combined.BigramFreqs = corpusBigramFreqs;
                     Combined.TotalChars = corpusTotalChars;
+                    InvalidateMergedCorpusFreqs(); // FL2: a family partial changed → re-fold on next getter access
 
                     Dbg($"Corpus freq index saved: {new FileInfo(freqBinFinal).Length} bytes");
                 }
