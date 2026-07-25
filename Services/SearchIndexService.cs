@@ -299,6 +299,33 @@ public sealed class SearchIndexService : ISearchIndexService
     // carry it as identity (FL1); load/build sites read it from Combined.InvertedBinFileName.
     private const string InvertedBinFileName = "search.inverted.bin";
 
+    // ── FL3 (frozen/live split, design §1.3/§1.4): split-family file names + v9 guids ──
+    // The build core is parametrized by a LayerSpec carrying the file-name set for the
+    // layer being written. The COMBINED spec reuses the legacy names above (byte-identical
+    // output); the ORIGIN/OVERLAY specs use these. On-disk BINARY formats are unchanged —
+    // only file names + manifest fields differ. Nothing in the app loads these yet (FL4/FL5);
+    // FL3 only makes origin/overlay builds directly (test/CI) invokable.
+    private const string OriginManifestFileName = "search.origin.manifest.json";
+    private const string OriginBinFileName = "search.origin.bin";
+    private const string OriginTextManifestFileName = "search.origin.text.manifest.json";
+    private const string OriginTextBinFileName = "search.origin.text.bin";
+    private const string OriginCorpusFreqManifestFileName = "search.origin.corpusfreq.manifest.json";
+    private const string OriginCorpusFreqBinFileName = "search.origin.corpusfreq.bin";
+    private const string OriginInvertedBinFileName = "search.origin.inverted.bin";
+    // Origin family format guid. A bump here (v9→v10) invalidates only the origin family
+    // (design §5.1); FL3 introduces it but the serving path still gates on the combined
+    // BuildGuid (search-v8-full-df) — origin/overlay are not yet loaded.
+    private const string OriginBuildGuid = "search-v9-origin";
+
+    private const string OverlayManifestFileName = "search.overlay.manifest.json";
+    private const string OverlayBinFileName = "search.overlay.bin";
+    private const string OverlayTextManifestFileName = "search.overlay.text.manifest.json";
+    private const string OverlayTextBinFileName = "search.overlay.text.bin";
+    private const string OverlayCorpusFreqManifestFileName = "search.overlay.corpusfreq.manifest.json";
+    private const string OverlayCorpusFreqBinFileName = "search.overlay.corpusfreq.bin";
+    private const string OverlayInvertedBinFileName = "search.overlay.inverted.bin";
+    private const string OverlayBuildGuid = "search-v9-overlay";
+
     private const int BloomBits = 16384; // was 4096
     private const int BloomBytes = BloomBits / 8;
     private const int BloomUlongs = BloomBits / 64;
@@ -1459,15 +1486,28 @@ public sealed class SearchIndexService : ISearchIndexService
         var sourceDir = Arg("source-dir");
         var transDir = Arg("trans-dir");
         var outDir = Arg("out-dir");
+        // FL3 (design §3.1/§6.3): which family/families to build.
+        //   combined (default) — legacy search.index.* family, byte-identical to before
+        //                        (the release pipeline + BundleSeedTests still rely on this).
+        //   origin             — frozen search.origin.* family (originalDir only).
+        //   overlay            — live search.overlay.* family (translations; needs an origin
+        //                        family present in outDir first for §1.2/§3.2).
+        //   both               — origin then overlay.
+        var layer = (Arg("layer") ?? "combined").Trim().ToLowerInvariant();
 
         if (sourceDir == null || transDir == null || outDir == null)
         {
-            log.WriteLine("usage: --build-search-index --source-dir <xml-p5 dir> --trans-dir <xml-p5t dir> --out-dir <index dir>");
+            log.WriteLine("usage: --build-search-index --source-dir <xml-p5 dir> --trans-dir <xml-p5t dir> --out-dir <index dir> [--layer combined|origin|overlay|both]");
             return 1;
         }
         if (!Directory.Exists(sourceDir) || !Directory.Exists(transDir))
         {
             log.WriteLine("error: --source-dir or --trans-dir does not exist");
+            return 1;
+        }
+        if (layer != "combined" && layer != "origin" && layer != "overlay" && layer != "both")
+        {
+            log.WriteLine($"error: unknown --layer '{layer}' (expected combined|origin|overlay|both)");
             return 1;
         }
 
@@ -1478,23 +1518,43 @@ public sealed class SearchIndexService : ISearchIndexService
             var progress = new Progress<(int done, int total, string phase)>(t =>
                 log.WriteLine($"  {t.phase}: {t.done}/{t.total}"));
 
-            log.WriteLine("Building bundled search index (forceRebuild) ...");
+            log.WriteLine($"Building bundled search index (layer={layer}, forceRebuild) ...");
             log.WriteLine($"  Source: {sourceDir}");
             log.WriteLine($"  Trans:  {transDir}");
             log.WriteLine($"  Out:    {outDir}");
 
-            svc.BuildOrUpdateAsync(outDir, sourceDir, new[] { transDir },
-                    forceRebuild: true, progress: progress)
-               .GetAwaiter().GetResult();
-
-            var bin = Path.Combine(outDir, BinFileName);
-            if (!File.Exists(bin))
+            string expectedBin;
+            switch (layer)
             {
-                log.WriteLine("error: build completed but search.index.bin was not produced");
+                case "origin":
+                    svc.BuildOriginLayerAsync(outDir, sourceDir, progress).GetAwaiter().GetResult();
+                    expectedBin = OriginBinFileName;
+                    break;
+                case "overlay":
+                    svc.BuildOverlayLayerAsync(outDir, new[] { transDir }, progress: progress).GetAwaiter().GetResult();
+                    expectedBin = OverlayBinFileName;
+                    break;
+                case "both":
+                    svc.BuildOriginLayerAsync(outDir, sourceDir, progress).GetAwaiter().GetResult();
+                    svc.BuildOverlayLayerAsync(outDir, new[] { transDir }, progress: progress).GetAwaiter().GetResult();
+                    expectedBin = OverlayBinFileName; // origin bin is verified implicitly below
+                    break;
+                default: // "combined"
+                    svc.BuildOrUpdateAsync(outDir, sourceDir, new[] { transDir },
+                            forceRebuild: true, progress: progress)
+                       .GetAwaiter().GetResult();
+                    expectedBin = BinFileName;
+                    break;
+            }
+
+            if (!File.Exists(Path.Combine(outDir, expectedBin)) ||
+                (layer == "both" && !File.Exists(Path.Combine(outDir, OriginBinFileName))))
+            {
+                log.WriteLine($"error: build completed but {expectedBin} was not produced");
                 return 3;
             }
 
-            log.WriteLine($"OK: bundled search index written to {outDir}");
+            log.WriteLine($"OK: bundled search index (layer={layer}) written to {outDir}");
             return 0;
         }
         catch (Exception ex)
@@ -2541,51 +2601,85 @@ public sealed class SearchIndexService : ISearchIndexService
         string originalDir,
         IReadOnlyList<string> translatedDirs,
         IReadOnlyDictionary<string, SearchIndexEntry>? contentHashCache,
-        CancellationToken ct)
+        CancellationToken ct,
+        LayerSpec? spec = null)
     {
+        // FL3: a null spec (or the combined spec) preserves the pre-FL3 behaviour EXACTLY —
+        // BuildGuid, InputHash via the cache-aware compute, GetManifestPath, Combined cache.
+        // A layer spec redirects to the layer file name + guid + stamp field, computes the
+        // stamp with the plain (cache-less) recipe over the caller-supplied basis dirs, and
+        // never mutates the served family's cache.
+        bool isLayer = spec != null && spec.Role != LayerRole.Combined;
+
         manifest.RootPath = root;
         manifest.BuiltUtc = DateTime.UtcNow;
         manifest.Version = 1;
         manifest.BloomBits = BloomBits;
         manifest.BloomHashCount = BloomHashCount;
-        manifest.BuildGuid = BuildGuid;
+        manifest.BuildGuid = spec?.BuildGuid ?? BuildGuid;
 
-        // Snapshot the input-file metadata hash so future IsStaleAsync calls take the
-        // fast hash path instead of the legacy mtime check. Also collect every per-file
-        // hash via the writeBack channel and propagate onto the corresponding entry's
-        // ContentHash field — so the very first IsStaleAsync call after this manifest
-        // is written hits the cache-fast path (no re-hashing of unchanged files).
-        try
+        if (isLayer)
         {
-            var freshHashes = new Dictionary<string, string>(StringComparer.Ordinal);
-            // INC-2A (D3 item 1): the build path no longer re-reads the whole corpus here.
-            // Phase 1 already SHA256'd the raw bytes of every file it read (all files on a
-            // full rebuild; only changed/added files on an incremental update, with
-            // unchanged files' hashes carried forward from the old manifest), and the
-            // caller passes those hashes in as `contentHashCache` keyed by the exact
-            // AppendDirRows walk-key scheme. The walk below therefore stat-hits everywhere
-            // and the resulting root hash is value-identical to a cache:null computation
-            // (per-file digests are the same SHA256 of the same raw bytes). Walk-time
-            // cache misses (file changed since the scan, legacy null hash, shadowed
-            // multi-dir files) fall back to a fresh read+hash; the writeBack channel plus
-            // ApplyContentHashWriteBack remain the safety net that patches those entries.
-            manifest.InputHash = await ComputeInputHashAsync(originalDir, translatedDirs, cache: contentHashCache, writeBack: freshHashes, ct).ConfigureAwait(false);
-
-            // Stamp ContentHash onto manifest entries. Uses the same namespacing scheme
-            // (orig/, tran0/) as BuildContentHashCache so the next IsStaleAsync call
-            // finds the cache via BuildContentHashCache(manifest).
-            if (freshHashes.Count > 0)
+            manifest.LayerRole = spec!.Role == LayerRole.Origin ? "origin" : "overlay";
+            try
             {
-                ApplyContentHashWriteBack(manifest, freshHashes);
+                // Plain content hash (same recipe as InputHash) over the caller-supplied
+                // basis dirs — no per-file cache/write-back on the layer path (FL3 does not
+                // need per-entry stamp propagation on layer manifests; the entries already
+                // carry fresh ContentHash from the build's Phase 1).
+                var h = await ComputeInputHashAsync(originalDir, translatedDirs, ct).ConfigureAwait(false);
+                if (spec.StampField == StampField.OriginHash) manifest.OriginHash = h;
+                else manifest.OverlayHash = h;
+            }
+            catch (IOException)
+            {
+                // Filesystem race — leave the stamp null (FL5 wiring treats absent as stale).
+            }
+
+            // §1.5 cross-layer binding: an overlay records the origin manifest's IndexStamp
+            // it was built against.
+            if (spec.Role == LayerRole.Overlay)
+                manifest.BasedOnOriginStamp = await ReadOriginIndexStampAsync(root, ct).ConfigureAwait(false);
+        }
+        else
+        {
+            // Snapshot the input-file metadata hash so future IsStaleAsync calls take the
+            // fast hash path instead of the legacy mtime check. Also collect every per-file
+            // hash via the writeBack channel and propagate onto the corresponding entry's
+            // ContentHash field — so the very first IsStaleAsync call after this manifest
+            // is written hits the cache-fast path (no re-hashing of unchanged files).
+            try
+            {
+                var freshHashes = new Dictionary<string, string>(StringComparer.Ordinal);
+                // INC-2A (D3 item 1): the build path no longer re-reads the whole corpus here.
+                // Phase 1 already SHA256'd the raw bytes of every file it read (all files on a
+                // full rebuild; only changed/added files on an incremental update, with
+                // unchanged files' hashes carried forward from the old manifest), and the
+                // caller passes those hashes in as `contentHashCache` keyed by the exact
+                // AppendDirRows walk-key scheme. The walk below therefore stat-hits everywhere
+                // and the resulting root hash is value-identical to a cache:null computation
+                // (per-file digests are the same SHA256 of the same raw bytes). Walk-time
+                // cache misses (file changed since the scan, legacy null hash, shadowed
+                // multi-dir files) fall back to a fresh read+hash; the writeBack channel plus
+                // ApplyContentHashWriteBack remain the safety net that patches those entries.
+                manifest.InputHash = await ComputeInputHashAsync(originalDir, translatedDirs, cache: contentHashCache, writeBack: freshHashes, ct).ConfigureAwait(false);
+
+                // Stamp ContentHash onto manifest entries. Uses the same namespacing scheme
+                // (orig/, tran0/) as BuildContentHashCache so the next IsStaleAsync call
+                // finds the cache via BuildContentHashCache(manifest).
+                if (freshHashes.Count > 0)
+                {
+                    ApplyContentHashWriteBack(manifest, freshHashes);
+                }
+            }
+            catch (IOException)
+            {
+                // Filesystem race during build — leave InputHash null; legacy mtime path will run.
+                manifest.InputHash = null;
             }
         }
-        catch (IOException)
-        {
-            // Filesystem race during build — leave InputHash null; legacy mtime path will run.
-            manifest.InputHash = null;
-        }
 
-        var final = GetManifestPath(root);
+        var final = isLayer ? Path.Combine(root, spec!.ManifestFileName) : GetManifestPath(root);
         var tmp = final + ".tmp";
 
         var json = JsonSerializer.Serialize(manifest, JsonOpts);
@@ -2593,32 +2687,52 @@ public sealed class SearchIndexService : ISearchIndexService
 
         ReplaceFileAtomicWithRetry(tmp, final);
 
-        // Refresh manifest cache immediately so next search avoids JSON reload
-        try
+        // Refresh manifest cache immediately so next search avoids JSON reload. FL3: only the
+        // served (combined) family caches its manifest — a layer build has no served family.
+        if (spec == null || spec.TargetFamily != null)
         {
-            var full = Path.GetFullPath(final);
-            var writeUtc = File.GetLastWriteTimeUtc(full);
-            lock (_indexCacheLock)
+            try
             {
-                Combined.CachedManifest = manifest;
-                Combined.CachedManifestPath = full;
-                Combined.CachedManifestWriteUtc = writeUtc;
+                var full = Path.GetFullPath(final);
+                var writeUtc = File.GetLastWriteTimeUtc(full);
+                lock (_indexCacheLock)
+                {
+                    Combined.CachedManifest = manifest;
+                    Combined.CachedManifestPath = full;
+                    Combined.CachedManifestWriteUtc = writeUtc;
+                }
             }
-        }
-        catch
-        {
-            // harmless
+            catch
+            {
+                // harmless
+            }
         }
     }
 
-    private async Task SaveTextManifestAtomicAsync(string root, SearchTextManifest manifest, CancellationToken ct)
+    /// <summary>FL3 (§1.5): reads the on-disk origin manifest's IndexStamp for the overlay's
+    /// BasedOnOriginStamp binding. Null when the origin manifest is absent/unreadable.</summary>
+    private async Task<string?> ReadOriginIndexStampAsync(string root, CancellationToken ct)
+    {
+        var mp = Path.Combine(root, OriginManifestFileName);
+        if (!File.Exists(mp)) return null;
+        try
+        {
+            var json = await File.ReadAllTextAsync(mp, Utf8NoBom, ct).ConfigureAwait(false);
+            if (string.IsNullOrWhiteSpace(json)) return null;
+            var man = JsonSerializer.Deserialize<SearchIndexManifest>(json, JsonOpts);
+            return man?.IndexStamp;
+        }
+        catch { return null; }
+    }
+
+    private async Task SaveTextManifestAtomicAsync(string root, SearchTextManifest manifest, CancellationToken ct, LayerSpec? spec = null)
     {
         manifest.RootPath = root;
         manifest.BuiltUtc = DateTime.UtcNow;
         manifest.Version = TextManifestVersion;
         manifest.BuildGuid = TextBuildGuid;
 
-        var final = GetTextManifestPath(root);
+        var final = spec != null ? Path.Combine(root, spec.TextManifestFileName) : GetTextManifestPath(root);
         var tmp = final + ".tmp";
 
         var json = JsonSerializer.Serialize(manifest, JsonOpts);
@@ -2626,20 +2740,24 @@ public sealed class SearchIndexService : ISearchIndexService
 
         ReplaceFileAtomicWithRetry(tmp, final);
 
-        try
+        // FL3: only the served (combined) family caches its text manifest.
+        if (spec == null || spec.TargetFamily != null)
         {
-            var full = Path.GetFullPath(final);
-            var writeUtc = File.GetLastWriteTimeUtc(full);
-            lock (_indexCacheLock)
+            try
             {
-                Combined.CachedTextManifest = manifest;
-                Combined.CachedTextManifestPath = full;
-                Combined.CachedTextManifestWriteUtc = writeUtc;
+                var full = Path.GetFullPath(final);
+                var writeUtc = File.GetLastWriteTimeUtc(full);
+                lock (_indexCacheLock)
+                {
+                    Combined.CachedTextManifest = manifest;
+                    Combined.CachedTextManifestPath = full;
+                    Combined.CachedTextManifestWriteUtc = writeUtc;
+                }
             }
-        }
-        catch
-        {
-            // harmless
+            catch
+            {
+                // harmless
+            }
         }
     }
 
@@ -3108,7 +3226,187 @@ public sealed class SearchIndexService : ISearchIndexService
         return true;
     }
 
-    private async Task BuildOrUpdateCoreAsync(
+    // ── FL3 (frozen/live split, design §3.1): layer-scoped build core ──
+    // BuildOrUpdateCoreAsync's pipeline (scan → delta guard → Phase-1 parallel compute
+    // skip-read → Phase-2 sequential write → commit) is parametrized by a LayerSpec that
+    // carries the layer role, artifact file-name set, which dirs to scan, the stamp field,
+    // the inverted-exclusion rel-set, and the serving target family. The COMBINED spec
+    // routes through exactly today's file names / guid / serving state, so combined output
+    // is byte-identical to pre-FL3. ORIGIN/OVERLAY specs write the split families and are
+    // directly invokable (tests + `--layer`) but NOT yet loaded by the serving path.
+
+    private enum LayerRole { Combined, Origin, Overlay }
+
+    /// <summary>Which manifest field carries this layer's content hash (design §1.4).</summary>
+    private enum StampField { InputHash, OriginHash, OverlayHash }
+
+    private sealed class LayerSpec
+    {
+        public LayerRole Role;
+        // Artifact file-name set (design §1.3). Combined == legacy names.
+        public string ManifestFileName = "";
+        public string BinFileName = "";
+        public string TextManifestFileName = "";
+        public string TextBinFileName = "";
+        public string CorpusFreqManifestFileName = "";
+        public string CorpusFreqBinFileName = "";
+        public string InvertedBinFileName = "";
+        public string BuildGuid = "";
+        public StampField StampField;
+        // Dir-scan scope (design §1.2). Combined scans everything.
+        public bool ScanPrimaryOriginal;   // originalDir → origFiles (namespaced "orig/")
+        public bool ScanTranslated;        // translatedDirs → tranFiles (Translated side)
+        public bool ScanAdditional;        // additionalOriginalDirs / additionalTranslatedDirs
+        // Overlay only: the origin manifest's rel-set. Used to (a) shadow any additional-orig
+        // rel that collides with an active-origin rel out of the overlay entirely (§1.2 keep-
+        // first), and (b) omit those rels from the overlay INVERTED feed only (§3.2 — bloom +
+        // text + manifest entries are kept). Null for combined/origin (no exclusion).
+        public HashSet<string>? OriginRelSet;
+        // Gramsets sidecar is combined-only in FL3 (it is a build-time accelerator with a
+        // single legacy file name; §5.4 makes it overlay-only in a later PR). Skipping it on
+        // layer builds avoids writing a combined-named sidecar during an origin/overlay build.
+        public bool SaveGramSets;
+        // Serving state target. Combined → the sole family (mmap warm, cached manifest,
+        // inverted + corpusfreq handles). Layers → null: a layer build writes on-disk
+        // artifacts only and never mutates serving state (not loaded until FL4).
+        public SearchFamily? TargetFamily;
+    }
+
+    private LayerSpec CombinedSpec() => new()
+    {
+        Role = LayerRole.Combined,
+        ManifestFileName = ManifestFileName,
+        BinFileName = BinFileName,
+        TextManifestFileName = TextManifestFileName,
+        TextBinFileName = TextBinFileName,
+        CorpusFreqManifestFileName = CorpusFreqManifestFileName,
+        CorpusFreqBinFileName = CorpusFreqBinFileName,
+        InvertedBinFileName = InvertedBinFileName,
+        BuildGuid = BuildGuid,
+        StampField = StampField.InputHash,
+        ScanPrimaryOriginal = true,
+        ScanTranslated = true,
+        ScanAdditional = true,
+        OriginRelSet = null,
+        SaveGramSets = true,
+        TargetFamily = Combined,
+    };
+
+    private LayerSpec OriginSpec() => new()
+    {
+        Role = LayerRole.Origin,
+        ManifestFileName = OriginManifestFileName,
+        BinFileName = OriginBinFileName,
+        TextManifestFileName = OriginTextManifestFileName,
+        TextBinFileName = OriginTextBinFileName,
+        CorpusFreqManifestFileName = OriginCorpusFreqManifestFileName,
+        CorpusFreqBinFileName = OriginCorpusFreqBinFileName,
+        InvertedBinFileName = OriginInvertedBinFileName,
+        BuildGuid = OriginBuildGuid,
+        StampField = StampField.OriginHash,
+        ScanPrimaryOriginal = true,
+        ScanTranslated = false,
+        ScanAdditional = false,
+        OriginRelSet = null,
+        SaveGramSets = false,
+        TargetFamily = null,
+    };
+
+    private LayerSpec OverlaySpec(HashSet<string> originRelSet) => new()
+    {
+        Role = LayerRole.Overlay,
+        ManifestFileName = OverlayManifestFileName,
+        BinFileName = OverlayBinFileName,
+        TextManifestFileName = OverlayTextManifestFileName,
+        TextBinFileName = OverlayTextBinFileName,
+        CorpusFreqManifestFileName = OverlayCorpusFreqManifestFileName,
+        CorpusFreqBinFileName = OverlayCorpusFreqBinFileName,
+        InvertedBinFileName = OverlayInvertedBinFileName,
+        BuildGuid = OverlayBuildGuid,
+        StampField = StampField.OverlayHash,
+        ScanPrimaryOriginal = false,
+        ScanTranslated = true,
+        ScanAdditional = true,
+        OriginRelSet = originRelSet,
+        SaveGramSets = false,
+        TargetFamily = null,
+    };
+
+    /// <summary>
+    /// FL3: reads the on-disk origin manifest's Original-side rel-set (== the origin corpus
+    /// rel-set). The overlay build consults it read-only for dedup shadowing (§1.2) and
+    /// inverted exclusion (§3.2). Returns an empty set when the origin manifest is absent.
+    /// </summary>
+    private async Task<HashSet<string>> LoadOriginRelSetAsync(string root, CancellationToken ct)
+    {
+        var set = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        var mp = Path.Combine(root, OriginManifestFileName);
+        if (!File.Exists(mp)) return set;
+        try
+        {
+            var json = await File.ReadAllTextAsync(mp, Utf8NoBom, ct).ConfigureAwait(false);
+            if (string.IsNullOrWhiteSpace(json)) return set;
+            var man = JsonSerializer.Deserialize<SearchIndexManifest>(json, JsonOpts);
+            if (man?.Entries != null)
+                foreach (var e in man.Entries)
+                    if (e.Side == SearchSide.Original && !string.IsNullOrEmpty(e.RelPath))
+                        set.Add(e.RelPath);
+        }
+        catch { /* absent/unreadable origin manifest → empty set (no shadowing/exclusion) */ }
+        return set;
+    }
+
+    /// <summary>
+    /// FL3 (test/CI-invokable): build the frozen ORIGIN family (search.origin.*) over
+    /// <paramref name="originalDir"/> only. Full build (no incremental); does not touch
+    /// serving state. NOT yet used by the serving path.
+    /// </summary>
+    internal Task BuildOriginLayerAsync(
+        string root,
+        string originalDir,
+        IProgress<(int done, int total, string phase)>? progress = null,
+        CancellationToken ct = default)
+        => BuildLayerCoreAsync(OriginSpec(), root, originalDir, Array.Empty<string>(),
+            allowIncremental: false, additionalOriginalDirs: null, additionalTranslatedDirs: null,
+            progress, ct);
+
+    /// <summary>
+    /// FL3 (test/CI-invokable): build the live OVERLAY family (search.overlay.*) over the
+    /// translated + additional dirs. Loads the origin manifest's rel-set first for §1.2
+    /// shadowing + §3.2 inverted exclusion (so build the origin layer BEFORE this). Full
+    /// build; does not touch serving state. NOT yet used by the serving path.
+    /// </summary>
+    internal async Task BuildOverlayLayerAsync(
+        string root,
+        IReadOnlyList<string> translatedDirs,
+        IReadOnlyList<string>? additionalOriginalDirs = null,
+        IReadOnlyList<string>? additionalTranslatedDirs = null,
+        IProgress<(int done, int total, string phase)>? progress = null,
+        CancellationToken ct = default)
+    {
+        var originRels = await LoadOriginRelSetAsync(root, ct).ConfigureAwait(false);
+        await BuildLayerCoreAsync(OverlaySpec(originRels), root, originalDir: "", translatedDirs,
+            allowIncremental: false, additionalOriginalDirs, additionalTranslatedDirs,
+            progress, ct).ConfigureAwait(false);
+    }
+
+    /// <summary>FL3: the combined build routes through the shared layer core with the
+    /// COMBINED spec — byte-identical to the pre-FL3 pipeline. Kept as its own method so the
+    /// public retry wrapper (BuildOrUpdateAsync) is unchanged.</summary>
+    private Task BuildOrUpdateCoreAsync(
+        string root,
+        string originalDir,
+        IReadOnlyList<string> translatedDirs,
+        bool allowIncremental,
+        IReadOnlyList<string>? additionalOriginalDirs,
+        IReadOnlyList<string>? additionalTranslatedDirs,
+        IProgress<(int done, int total, string phase)>? progress,
+        CancellationToken ct)
+        => BuildLayerCoreAsync(CombinedSpec(), root, originalDir, translatedDirs,
+            allowIncremental, additionalOriginalDirs, additionalTranslatedDirs, progress, ct);
+
+    private async Task BuildLayerCoreAsync(
+        LayerSpec spec,
         string root,
         string originalDir,
         IReadOnlyList<string> translatedDirs,
@@ -3118,6 +3416,11 @@ public sealed class SearchIndexService : ISearchIndexService
         IProgress<(int done, int total, string phase)>? progress,
         CancellationToken ct)
     {
+        // FL3: incremental sourcing (old-artifact skip-read, delta guard, corpusfreq/gramsets
+        // reuse) is wired only for the COMBINED layer in FL3. Origin/overlay always run a full
+        // build here (their incremental staleness/adoption wiring is FL5). For the combined
+        // spec this equals the caller's allowIncremental, so combined behaviour is unchanged.
+        bool coreIncremental = allowIncremental && spec.Role == LayerRole.Combined;
             // NOTE: body indentation is preserved from the pre-INC-2A BuildOrUpdateAsync
             // pipeline (this method is that pipeline, extracted so the public wrapper can
             // retry it once with allowIncremental:false). Keeps the refactor diff reviewable.
@@ -3126,15 +3429,18 @@ public sealed class SearchIndexService : ISearchIndexService
                 Interlocked.Exchange(ref _lastBuildFreqDeltaApplied, 0);
                 Interlocked.Exchange(ref _lastBuildGramComputeCount, 0);
 
-                // Make sure stale mmap/manifest caches don't point at files being replaced
-                InvalidateIndexCaches();
+                // Make sure stale mmap/manifest caches don't point at files being replaced.
+                // FL3: serving-state invalidation is combined-only — a layer build (null
+                // TargetFamily) never mutates the served family's caches.
+                if (spec.TargetFamily != null)
+                    InvalidateIndexCaches();
 
                 SearchIndexManifest? oldMan = null;
                 SearchTextManifest? oldTextMan = null;
-                string oldBinPath = GetBinPath(root);
-                string oldTextBinPath = GetTextBinPath(root);
+                string oldBinPath = Path.Combine(root, spec.BinFileName);
+                string oldTextBinPath = Path.Combine(root, spec.TextBinFileName);
 
-                if (allowIncremental)
+                if (coreIncremental)
                 {
                     oldMan = await TryLoadAsync(root);
                     oldTextMan = await TryLoadTextManifestAsync(root);
@@ -3145,7 +3451,7 @@ public sealed class SearchIndexService : ISearchIndexService
                 }
 
                 FileStream? oldFs = null;
-                if (allowIncremental && oldMan != null && File.Exists(oldBinPath))
+                if (coreIncremental && oldMan != null && File.Exists(oldBinPath))
                 {
                     try { oldFs = new FileStream(oldBinPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite); }
                     catch { oldFs = null; }
@@ -3154,20 +3460,20 @@ public sealed class SearchIndexService : ISearchIndexService
                 // Phase 1 reads blocks from it CONCURRENTLY: RandomAccess.Read takes an
                 // explicit per-call offset, so no shared seek position exists to race on.
                 Microsoft.Win32.SafeHandles.SafeFileHandle? oldTextHandle = null;
-                if (allowIncremental && oldTextMan != null && File.Exists(oldTextBinPath))
+                if (coreIncremental && oldTextMan != null && File.Exists(oldTextBinPath))
                 {
                     try { oldTextHandle = File.OpenHandle(oldTextBinPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite); }
                     catch { oldTextHandle = null; }
                 }
 
                 var oldMap = new Dictionary<(string rel, SearchSide side), SearchIndexEntry>(new RelSideComparer());
-                if (allowIncremental && oldMan != null)
+                if (coreIncremental && oldMan != null)
                 {
                     foreach (var e in oldMan.Entries)
                         oldMap[(e.RelPath, e.Side)] = e;
                 }
                 var oldTextMap = new Dictionary<(string rel, SearchSide side), SearchTextEntry>(new RelSideComparer());
-                if (allowIncremental && oldTextMan != null)
+                if (coreIncremental && oldTextMan != null)
                 {
                     foreach (var e in oldTextMan.Entries)
                         oldTextMap[(e.RelPath, e.Side)] = e;
@@ -3185,7 +3491,7 @@ public sealed class SearchIndexService : ISearchIndexService
                 Dictionary<string, int>? freqDeltaBigrams = null;
                 long freqDeltaTotal = 0;
                 bool freqDeltaActive = false;
-                if (allowIncremental && oldMan != null && oldTextMan != null &&
+                if (coreIncremental && oldMan != null && oldTextMan != null &&
                     oldFs != null && oldTextHandle != null)
                 {
                     oldFreq = await TryLoadOldCorpusFreqForDeltaAsync(root, oldMan.IndexStamp, ct);
@@ -3203,13 +3509,29 @@ public sealed class SearchIndexService : ISearchIndexService
                 // when the file is physically under originalDir / translatedDirs[i]; files from
                 // additional dirs get null (they are indexed but excluded from InputHash — the
                 // walk never visits them, preserving the existing InputHash scope).
-                var origFiles = Directory.EnumerateFiles(originalDir, "*.xml", SearchOption.AllDirectories)
-                    .Select(f => (rel: NormalizeRelKey(Path.GetRelativePath(originalDir, f)), abs: f, fi: new FileInfo(f),
-                                  walkKey: (string?)("orig/" + Path.GetRelativePath(originalDir, f).Replace('\\', '/'))))
-                    .ToDictionary(x => x.rel, x => x, StringComparer.OrdinalIgnoreCase);
+                //
+                // FL3 (§1.2): the dir set is scoped by the LayerSpec. Combined scans all dirs
+                // (byte-identical to before). Origin scans originalDir only. Overlay skips
+                // originalDir and consults spec.OriginRelSet to shadow any additional-orig rel
+                // that collides with an active-origin rel (reproducing the combined keep-first
+                // dedup, since originalDir is not scanned by the overlay).
+                var origFiles = new Dictionary<string, (string rel, string abs, FileInfo fi, string? walkKey)>(StringComparer.OrdinalIgnoreCase);
+                if (spec.ScanPrimaryOriginal)
+                {
+                    foreach (var f in Directory.EnumerateFiles(originalDir, "*.xml", SearchOption.AllDirectories))
+                    {
+                        var rel = NormalizeRelKey(Path.GetRelativePath(originalDir, f));
+                        // originalDir is the first source; rels are unique within it, so this
+                        // keep-first matches the pre-FL3 ToDictionary (which would have thrown
+                        // on a duplicate — none exist here).
+                        if (!origFiles.ContainsKey(rel))
+                            origFiles[rel] = (rel, f, new FileInfo(f),
+                                "orig/" + Path.GetRelativePath(originalDir, f).Replace('\\', '/'));
+                    }
+                }
 
                 // Scan additional original dirs (e.g., OpenZen alongside CBETA)
-                if (additionalOriginalDirs != null)
+                if (spec.ScanAdditional && additionalOriginalDirs != null)
                 {
                     foreach (var addDir in additionalOriginalDirs)
                     {
@@ -3217,27 +3539,34 @@ public sealed class SearchIndexService : ISearchIndexService
                         foreach (var f in Directory.EnumerateFiles(addDir, "*.xml", SearchOption.AllDirectories))
                         {
                             var rel = NormalizeRelKey(Path.GetRelativePath(addDir, f));
-                            if (!origFiles.ContainsKey(rel))
+                            // Combined: shadow by already-scanned origFiles (== originalDir rels).
+                            // Overlay: origFiles has no originalDir rels, so also shadow by
+                            // spec.OriginRelSet (the origin corpus rel-set) — same net exclusion.
+                            if (!origFiles.ContainsKey(rel) &&
+                                (spec.OriginRelSet == null || !spec.OriginRelSet.Contains(rel)))
                                 origFiles[rel] = (rel, f, new FileInfo(f), null);
                         }
                     }
                 }
 
                 var tranFiles = new Dictionary<string, (string rel, string abs, FileInfo fi, string? walkKey)>(StringComparer.OrdinalIgnoreCase);
-                for (int tIdx = 0; tIdx < translatedDirs.Count; tIdx++)
+                if (spec.ScanTranslated)
                 {
-                    var tDir = translatedDirs[tIdx];
-                    if (!Directory.Exists(tDir)) continue;
-                    foreach (var f in Directory.EnumerateFiles(tDir, "*.xml", SearchOption.AllDirectories))
+                    for (int tIdx = 0; tIdx < translatedDirs.Count; tIdx++)
                     {
-                        var rel = NormalizeRelKey(Path.GetRelativePath(tDir, f));
-                        if (!tranFiles.ContainsKey(rel))
-                            tranFiles[rel] = (rel, f, new FileInfo(f),
-                                "tran" + tIdx + "/" + Path.GetRelativePath(tDir, f).Replace('\\', '/'));
+                        var tDir = translatedDirs[tIdx];
+                        if (!Directory.Exists(tDir)) continue;
+                        foreach (var f in Directory.EnumerateFiles(tDir, "*.xml", SearchOption.AllDirectories))
+                        {
+                            var rel = NormalizeRelKey(Path.GetRelativePath(tDir, f));
+                            if (!tranFiles.ContainsKey(rel))
+                                tranFiles[rel] = (rel, f, new FileInfo(f),
+                                    "tran" + tIdx + "/" + Path.GetRelativePath(tDir, f).Replace('\\', '/'));
+                        }
                     }
                 }
                 // Scan additional translated dirs (e.g., OpenZen translations)
-                if (additionalTranslatedDirs != null)
+                if (spec.ScanAdditional && additionalTranslatedDirs != null)
                 {
                     foreach (var tDir in additionalTranslatedDirs)
                     {
@@ -3271,7 +3600,7 @@ public sealed class SearchIndexService : ISearchIndexService
                 // the threshold, bail HERE — before the gramsets sidecar is loaded, before
                 // any tmp file is written — and let the public wrapper run a clean full
                 // rebuild. Never wrong, only ever a speed choice.
-                if (allowIncremental && oldMan != null)
+                if (coreIncremental && oldMan != null)
                 {
                     bool StatUnchanged(string rel, SearchSide side, FileInfo fi)
                     {
@@ -3313,7 +3642,7 @@ public sealed class SearchIndexService : ISearchIndexService
                 {
                     RootPath = root,
                     BuiltUtc = DateTime.UtcNow,
-                    BuildGuid = BuildGuid,
+                    BuildGuid = spec.BuildGuid,
                     BloomBits = BloomBits,
                     BloomHashCount = BloomHashCount,
                     Version = 1,
@@ -3330,9 +3659,9 @@ public sealed class SearchIndexService : ISearchIndexService
                     Version = TextManifestVersion,
                 };
 
-                var finalBin = GetBinPath(root);
+                var finalBin = Path.Combine(root, spec.BinFileName);
                 var tmpBin = finalBin + ".tmp";
-                var finalTextBin = GetTextBinPath(root);
+                var finalTextBin = Path.Combine(root, spec.TextBinFileName);
                 var tmpTextBin = finalTextBin + ".tmp";
 
                 try { if (File.Exists(tmpBin)) File.Delete(tmpBin); } catch { }
@@ -3348,7 +3677,7 @@ public sealed class SearchIndexService : ISearchIndexService
                 // (missing/corrupt/mismatched sidecar) just means every entry's gram sets
                 // are computed fresh — never a full rebuild, never a failure. On the full
                 // path (forceRebuild / fallback) the sidecar is IGNORED entirely.
-                LoadedGramSets? gramSets = allowIncremental
+                LoadedGramSets? gramSets = coreIncremental
                     ? await GramSetsStore.TryLoadAsync(root, ct)
                     : null;
 
@@ -3373,7 +3702,7 @@ public sealed class SearchIndexService : ISearchIndexService
                 // scan-time (LengthBytes, LastWriteUtcTicks) — so the walk stat-hits
                 // everywhere instead of re-reading the whole corpus a second time.
                 var inputHashCache = new Dictionary<string, SearchIndexEntry>(StringComparer.Ordinal);
-                if (allowIncremental && oldMan != null)
+                if (coreIncremental && oldMan != null)
                 {
                     foreach (var kv in BuildContentHashCache(oldMan))
                         inputHashCache[kv.Key] = kv.Value;
@@ -3414,7 +3743,7 @@ public sealed class SearchIndexService : ISearchIndexService
 
                         // ── Phase 1: Parallel compute (CPU+IO bound) ──
                         var buildSw = System.Diagnostics.Stopwatch.StartNew();
-                        progress?.Report((0, total, allowIncremental ? "Updating index..." : "Rebuilding index..."));
+                        progress?.Report((0, total, coreIncremental ? "Updating index..." : "Rebuilding index..."));
 
                         var computed = new ComputedEntry[workItems.Count];
                         bool htmlDecode = Options.HtmlDecodeIfAmpersandPresent;
@@ -3446,7 +3775,7 @@ public sealed class SearchIndexService : ISearchIndexService
                             byte[]? oldTextBytes = null;
                             string? carriedHash = null;
 
-                            if (allowIncremental && oldFs != null && oldTextHandle != null &&
+                            if (coreIncremental && oldFs != null && oldTextHandle != null &&
                                 oldMap.TryGetValue((relKey, side), out var old) &&
                                 old.LastWriteUtcTicks == ticks &&
                                 old.LengthBytes == lenBytes &&
@@ -3687,7 +4016,16 @@ public sealed class SearchIndexService : ISearchIndexService
                             // aligned tf counts; keep-first dedup + winner flips are replayed
                             // inside Build (grams and counts are added together, so the kept
                             // entry's set and its tf stay paired).
-                            invertedDocs.Add((entry.RelKey, invGramsByEntry[i], invGramCountsByEntry[i] ?? Array.Empty<int>()));
+                            //
+                            // FL3 (§3.2): the OVERLAY inverted feed omits any rel present in the
+                            // origin rel-set — those docs live in the origin inverted index, so
+                            // including them here would duplicate. Bloom + text + manifest entries
+                            // for the same rel are STILL written above (needed for the bloom
+                            // fallback + verify), exactly as today's keep-first drops the
+                            // translated doc from the inverted index but keeps its other artifacts.
+                            // Combined: OriginRelSet is null → no exclusion (byte-identical).
+                            if (spec.OriginRelSet == null || !spec.OriginRelSet.Contains(entry.RelKey))
+                                invertedDocs.Add((entry.RelKey, invGramsByEntry[i], invGramCountsByEntry[i] ?? Array.Empty<int>()));
 
                             // INC-3A: corpusfreq ADD pass — added/changed entries contribute
                             // their NEW searchable text. Unchanged entries (CopiedBloom)
@@ -3740,7 +4078,7 @@ public sealed class SearchIndexService : ISearchIndexService
                             done++;
 
                             if (done % 200 == 0 || done == total)
-                                progress?.Report((done, total, allowIncremental ? "Updating index..." : "Rebuilding index..."));
+                                progress?.Report((done, total, coreIncremental ? "Updating index..." : "Rebuilding index..."));
 
                             // Release large buffers eagerly to reduce peak memory.
                             // Must clear array slot (struct copy), not local variable.
@@ -3768,8 +4106,23 @@ public sealed class SearchIndexService : ISearchIndexService
 
                 ReplaceFileAtomicWithRetry(tmpBin, finalBin);
                 ReplaceFileAtomicWithRetry(tmpTextBin, finalTextBin);
-                await SaveManifestAtomicAsync(root, manifest, originalDir, translatedDirs, inputHashCache, ct);
-                await SaveTextManifestAtomicAsync(root, textManifest, ct);
+
+                // FL3: the manifest stamp basis is the layer's dir set. Combined/origin hash
+                // (originalDir, translatedDirs) as-is (combined byte-identical; origin's
+                // translatedDirs is empty). Overlay hashes the translated + additional dirs
+                // with an empty origin slot (design §1.4 overlay basis).
+                string stampOriginalDir = originalDir;
+                IReadOnlyList<string> stampTranslatedDirs = translatedDirs;
+                if (spec.Role == LayerRole.Overlay)
+                {
+                    stampOriginalDir = "";
+                    var basis = new List<string>(translatedDirs);
+                    if (additionalOriginalDirs != null) basis.AddRange(additionalOriginalDirs);
+                    if (additionalTranslatedDirs != null) basis.AddRange(additionalTranslatedDirs);
+                    stampTranslatedDirs = basis;
+                }
+                await SaveManifestAtomicAsync(root, manifest, stampOriginalDir, stampTranslatedDirs, inputHashCache, ct, spec);
+                await SaveTextManifestAtomicAsync(root, textManifest, ct, spec);
 
                 // Build and save inverted index alongside bloom
                 try
@@ -3783,9 +4136,11 @@ public sealed class SearchIndexService : ISearchIndexService
                     invertedIndex.Build(sortedDocs);
                     sortedDocs = null; // free gram-set references immediately
                     invertedDocs.Clear();
-                    var invertedPath = Path.Combine(root, Combined.InvertedBinFileName);
+                    var invertedPath = Path.Combine(root, spec.InvertedBinFileName);
                     await invertedIndex.SaveAsync(invertedPath, manifest.IndexStamp!, ct);
-                    Combined.Inverted = invertedIndex;
+                    // FL3: only the served (combined) family holds an in-memory inverted handle.
+                    if (spec.TargetFamily != null)
+                        spec.TargetFamily.Inverted = invertedIndex;
                     // PERF (F): softened from GC.Collect(2, Aggressive, blocking:true, compacting:true).
                     // The aggressive blocking+compacting Gen2/LOH collect fired at builder heap peak
                     // and suspended the UI thread mid-build (D1 perf#3 / D2 jank#1, ranked #1).
@@ -3802,10 +4157,11 @@ public sealed class SearchIndexService : ISearchIndexService
                     // so an inverted file from an earlier build would never load again —
                     // delete it (and any in-memory copy) rather than leave a dead file
                     // around. Search stays correct via bloom + verify.
-                    Combined.Inverted = null;
+                    if (spec.TargetFamily != null)
+                        spec.TargetFamily.Inverted = null;
                     try
                     {
-                        var staleInv = Path.Combine(root, "search.inverted.bin");
+                        var staleInv = Path.Combine(root, spec.InvertedBinFileName);
                         if (File.Exists(staleInv)) File.Delete(staleInv);
                         if (File.Exists(staleInv + ".paths")) File.Delete(staleInv + ".paths");
                     }
@@ -3815,15 +4171,19 @@ public sealed class SearchIndexService : ISearchIndexService
                 // CJK2 postings artifact was retired (superseded by the tf-carrying
                 // inverted index; the bloom fallback runs a full sweep without cjk2
                 // narrowing). Best-effort delete any stale search.cjk2.* left by an
-                // older build so it does not linger next to the live family.
-                try
+                // older build so it does not linger next to the live family. FL3: this is a
+                // combined-family legacy artifact; skip on layer builds.
+                if (spec.Role == LayerRole.Combined)
                 {
-                    var staleCjk2Manifest = Path.Combine(root, "search.cjk2.manifest.json");
-                    if (File.Exists(staleCjk2Manifest)) File.Delete(staleCjk2Manifest);
-                    var staleCjk2Bin = Path.Combine(root, "search.cjk2.bin");
-                    if (File.Exists(staleCjk2Bin)) File.Delete(staleCjk2Bin);
+                    try
+                    {
+                        var staleCjk2Manifest = Path.Combine(root, "search.cjk2.manifest.json");
+                        if (File.Exists(staleCjk2Manifest)) File.Delete(staleCjk2Manifest);
+                        var staleCjk2Bin = Path.Combine(root, "search.cjk2.bin");
+                        if (File.Exists(staleCjk2Bin)) File.Delete(staleCjk2Bin);
+                    }
+                    catch { }
                 }
-                catch { }
 
                 // Build corpus frequency index from text.bin (sequential pass, no parallel alloc)
                 try
@@ -3863,7 +4223,7 @@ public sealed class SearchIndexService : ISearchIndexService
                         corpusBigramFreqs = new Dictionary<string, int>(65536);
                         corpusTotalChars = 0;
 
-                        var textBinPath = Path.Combine(root, "search.text.bin");
+                        var textBinPath = Path.Combine(root, spec.TextBinFileName);
                         if (File.Exists(textBinPath) && textManifest.Entries.Count > 0)
                         {
                             using var textFs = new FileStream(textBinPath, FileMode.Open, FileAccess.Read, FileShare.Read, 65536);
@@ -3901,13 +4261,13 @@ public sealed class SearchIndexService : ISearchIndexService
                         IndexStamp = manifest.IndexStamp
                     };
 
-                    var freqManifestFinal = Path.Combine(root, "search.corpusfreq.manifest.json");
+                    var freqManifestFinal = Path.Combine(root, spec.CorpusFreqManifestFileName);
                     var freqManifestTmp = freqManifestFinal + ".tmp";
                     var freqManifestJson = JsonSerializer.Serialize(freqManifest, JsonOpts);
                     await File.WriteAllTextAsync(freqManifestTmp, freqManifestJson, Utf8NoBom, ct);
                     ReplaceFileAtomicWithRetry(freqManifestTmp, freqManifestFinal);
 
-                    var freqBinFinal = Path.Combine(root, "search.corpusfreq.bin");
+                    var freqBinFinal = Path.Combine(root, spec.CorpusFreqBinFileName);
                     var freqBinTmp = freqBinFinal + ".tmp";
                     using (var fs = new FileStream(freqBinTmp, FileMode.Create, FileAccess.Write, FileShare.None, 65536))
                     using (var bw = new BinaryWriter(fs, Utf8NoBom, leaveOpen: false))
@@ -3931,10 +4291,16 @@ public sealed class SearchIndexService : ISearchIndexService
                     }
                     ReplaceFileAtomicWithRetry(freqBinTmp, freqBinFinal);
 
-                    Combined.CharFreqs = corpusCharFreqs;
-                    Combined.BigramFreqs = corpusBigramFreqs;
-                    Combined.TotalChars = corpusTotalChars;
-                    InvalidateMergedCorpusFreqs(); // FL2: a family partial changed → re-fold on next getter access
+                    // FL3: only the served (combined) family exposes corpusfreq to the query
+                    // path. A layer build writes its partial to disk but never mutates the
+                    // in-memory merged view (not loaded until FL4).
+                    if (spec.TargetFamily != null)
+                    {
+                        spec.TargetFamily.CharFreqs = corpusCharFreqs;
+                        spec.TargetFamily.BigramFreqs = corpusBigramFreqs;
+                        spec.TargetFamily.TotalChars = corpusTotalChars;
+                        InvalidateMergedCorpusFreqs(); // FL2: a family partial changed → re-fold on next getter access
+                    }
 
                     Dbg($"Corpus freq index saved: {new FileInfo(freqBinFinal).Length} bytes");
                 }
@@ -3943,42 +4309,55 @@ public sealed class SearchIndexService : ISearchIndexService
                     Dbg($"Corpus frequency build FAILED: {ex.Message}");
                 }
 
-                // Warm mmap cache after rebuild so next search click is faster
-                try { _ = GetOrCreateMappedAccessor(finalBin, Combined); } catch { }
+                // Warm mmap cache after rebuild so next search click is faster (combined only —
+                // a layer build has no served family to warm).
+                if (spec.TargetFamily != null)
+                {
+                    try { _ = GetOrCreateMappedAccessor(finalBin, spec.TargetFamily); } catch { }
+                }
 
                 // ── INC-4A: persist the gramsets sidecar — strictly AFTER the entire
                 // family commit sequence (including the mmap warm). Saved on FULL builds
                 // too (that is what warms the cache for the next delta). Best-effort: a
                 // failure here is logged and swallowed, because the build already
                 // succeeded and losing the sidecar only costs speed, never correctness.
-                try
+                //
+                // FL3: the gramsets sidecar has a single legacy file name (search.gramsets.*)
+                // and is an incremental accelerator only. It is written on the COMBINED build
+                // (spec.SaveGramSets) — a layer build (which never sources from it in FL3, and
+                // whose own file names it does not carry) skips it to avoid writing a
+                // combined-named sidecar. §5.4 makes it overlay-only in a later PR.
+                if (spec.SaveGramSets)
                 {
-                    var sidecarRows = new List<(GramSetsEntry meta, uint[] invGrams)>(manifest.Entries.Count);
-                    for (int i = 0; i < manifest.Entries.Count; i++)
+                    try
                     {
-                        var me = manifest.Entries[i];
-                        sidecarRows.Add((new GramSetsEntry
+                        var sidecarRows = new List<(GramSetsEntry meta, uint[] invGrams)>(manifest.Entries.Count);
+                        for (int i = 0; i < manifest.Entries.Count; i++)
                         {
-                            RelPath = me.RelPath,
-                            Side = me.Side,
-                            // May be null (additional-dir entries or legacy carry-forward);
-                            // the per-entry HIT rule then falls back to (ticks, len).
-                            ContentHash = me.ContentHash,
-                            LastWriteUtcTicks = me.LastWriteUtcTicks,
-                            LengthBytes = me.LengthBytes,
-                        }, invGramsByEntry[i] ?? Array.Empty<uint>()));
+                            var me = manifest.Entries[i];
+                            sidecarRows.Add((new GramSetsEntry
+                            {
+                                RelPath = me.RelPath,
+                                Side = me.Side,
+                                // May be null (additional-dir entries or legacy carry-forward);
+                                // the per-entry HIT rule then falls back to (ticks, len).
+                                ContentHash = me.ContentHash,
+                                LastWriteUtcTicks = me.LastWriteUtcTicks,
+                                LengthBytes = me.LengthBytes,
+                            }, invGramsByEntry[i] ?? Array.Empty<uint>()));
+                        }
+                        await GramSetsStore.SaveAsync(root, manifest.IndexStamp, sidecarRows, ct);
+                        Dbg($"Gramsets sidecar saved: {sidecarRows.Count} entries ({LastBuildGramComputeCount} computed this run)");
                     }
-                    await GramSetsStore.SaveAsync(root, manifest.IndexStamp, sidecarRows, ct);
-                    Dbg($"Gramsets sidecar saved: {sidecarRows.Count} entries ({LastBuildGramComputeCount} computed this run)");
-                }
-                catch (OperationCanceledException)
-                {
-                    throw;
-                }
-                catch (Exception ex)
-                {
-                    Dbg($"Gramsets sidecar save FAILED (accelerator only, build unaffected): {ex.Message}");
-                    System.Diagnostics.Debug.WriteLine($"[SearchIndexService] Gramsets sidecar save failed: {ex.Message}");
+                    catch (OperationCanceledException)
+                    {
+                        throw;
+                    }
+                    catch (Exception ex)
+                    {
+                        Dbg($"Gramsets sidecar save FAILED (accelerator only, build unaffected): {ex.Message}");
+                        System.Diagnostics.Debug.WriteLine($"[SearchIndexService] Gramsets sidecar save failed: {ex.Message}");
+                    }
                 }
 
                 progress?.Report((total, total, "Done"));

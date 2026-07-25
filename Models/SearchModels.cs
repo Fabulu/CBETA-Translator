@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Text.Json.Serialization;
 
 namespace ReadZen.App.Models;
 
@@ -343,6 +344,41 @@ public sealed class SearchIndexManifest
     /// </summary>
     public string? IndexStamp { get; set; } = null;
 
+    /// <summary>
+    /// FL3 (frozen/live index split, design §1.4): layer identity — <c>"origin"</c> or
+    /// <c>"overlay"</c> for a split-family manifest; <c>null</c> for the legacy combined
+    /// manifest. JSON-tolerant and OMITTED when null (<see cref="JsonIgnoreCondition.WhenWritingNull"/>),
+    /// so the combined manifest is byte-identical to pre-FL3 output. The v9 BuildGuid is the
+    /// actual load gate; this field is diagnostics/routing only. No manifest Version bump.
+    /// </summary>
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public string? LayerRole { get; set; } = null;
+
+    /// <summary>
+    /// FL3 (§1.4): content hash of the ORIGIN corpus (<c>originalDir</c> only) — the same
+    /// value recipe as <see cref="InputHash"/> over a narrower dir basis. Populated on
+    /// origin-layer manifests; null (and omitted) on overlay/combined.
+    /// </summary>
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public string? OriginHash { get; set; } = null;
+
+    /// <summary>
+    /// FL3 (§1.4): content hash of the OVERLAY dir set (translated + additional dirs) — the
+    /// same recipe as <see cref="InputHash"/> over the overlay basis. Populated on
+    /// overlay-layer manifests; null (and omitted) on origin/combined.
+    /// </summary>
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public string? OverlayHash { get; set; } = null;
+
+    /// <summary>
+    /// FL3 (§1.5): on an overlay manifest, the origin manifest's <see cref="IndexStamp"/>
+    /// this overlay was built against — the cross-layer binding (the overlay is stale when
+    /// this differs from the current origin stamp; FL5 wires that check). Null (and omitted)
+    /// on origin/combined.
+    /// </summary>
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public string? BasedOnOriginStamp { get; set; } = null;
+
     public List<SearchIndexEntry> Entries { get; set; } = new();
 }
 
@@ -365,6 +401,16 @@ public sealed class SearchIndexEntry
     /// byte-identical regardless of cache hits vs. misses for unchanged content.
     /// </summary>
     public string? ContentHash { get; set; }
+
+    /// <summary>
+    /// FL3 (§1.4): the configured dir token this entry came from (<c>"orig"</c>,
+    /// <c>"tran0"</c>, <c>"addorig0"</c>, …). Nullable, JSON-tolerant, OMITTED when null
+    /// (<see cref="JsonIgnoreCondition.WhenWritingNull"/>) so combined manifests — which do
+    /// not populate it — stay byte-identical. Added for FL4/FL5 (exact per-file content-hash
+    /// cache + probe-free abs-path resolution); FL3 builds do not populate it.
+    /// </summary>
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public string? DirToken { get; set; } = null;
 
     public long BloomOffset { get; set; }       // offset in index.bin
 }
