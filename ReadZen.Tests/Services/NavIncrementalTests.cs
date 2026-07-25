@@ -89,7 +89,10 @@ public class NavIncrementalTests : IDisposable
             string origAbs, string tranAbs, string rootForLogs, string relKeyForLogs, bool verboseLog = true)
         {
             Interlocked.Increment(ref _callCount);
-            lock (ComputedRelKeys) ComputedRelKeys.Add(relKeyForLogs);
+            // v5: the NavStatusEvaluator threads relKeyForLogs as string.Empty (it is
+            // log-only), so record the recomputed rel from the ALWAYS-correct origAbs
+            // (flat corpus ⇒ file name == rel) to keep the "exactly these rels" assertions.
+            lock (ComputedRelKeys) ComputedRelKeys.Add(Path.GetFileName(origAbs));
             return _inner.ComputeStatusForPairLive(origAbs, tranAbs, rootForLogs, relKeyForLogs, verboseLog);
         }
 
@@ -267,32 +270,35 @@ public class NavIncrementalTests : IDisposable
         Assert.Equal(2, reloaded!.Entries.Count);
     }
 
-    // ============================================================ structural gate → full rebuild
+    // ============================================================ titles gate → display-only (v5)
 
-    /// <summary>A titles.jsonl edit changes display fields for every entry, so the
-    /// whole cache is discarded and fully rebuilt (all entries recomputed).</summary>
+    /// <summary>v5 (NAV_CACHE_REDESIGN §3.4): a titles.jsonl edit re-derives DISPLAY fields
+    /// only, keeping statuses — it is NO LONGER a full rebuild. Zero status recomputes.</summary>
     [Fact]
-    public async Task TitlesJsonlEdit_TriggersFullRebuild()
+    public async Task TitlesJsonlEdit_RefreshesDisplayFields_KeepsStatuses_NoRecomputes()
     {
         WriteFile(Path.Combine(_root, "titles.jsonl"),
             "{\"path\":\"t0000.xml\",\"en\":\"One\",\"zh\":\"一\",\"enShort\":\"One\"}\n", BaseAnchor);
         MakeGreenCorpus(3);
         var (svc, spy, loaded) = await BuildAndLoadAsync();
+        Assert.Equal("One", Entry(loaded, Rel(0)).DisplayShort);
 
-        // Edit titles → TitlesHash flips → structural gate fails.
+        // Edit titles → TitlesHash flips → display fields re-derived, statuses untouched.
         WriteFile(Path.Combine(_root, "titles.jsonl"),
-            "{\"path\":\"t0000.xml\",\"en\":\"One EDITED\",\"zh\":\"一\",\"enShort\":\"One\"}\n", FutureAnchor);
+            "{\"path\":\"t0000.xml\",\"en\":\"One EDITED\",\"zh\":\"一\",\"enShort\":\"One NEW\"}\n", FutureAnchor);
 
         var refreshed = await svc.RefreshAsync(loaded, _origDir, _tranDir, _root);
 
-        Assert.Equal(3, spy.CallCount);                          // full rebuild = every entry
+        Assert.Equal(0, spy.CallCount);                          // NO status recomputes
         Assert.Equal(3, refreshed.Entries.Count);
+        Assert.Equal("One NEW", Entry(refreshed, Rel(0)).DisplayShort);   // display re-derived
+        Assert.Equal(TranslationStatus.Green, Entry(refreshed, Rel(0)).Status); // status kept
     }
 
-    /// <summary>titles.jsonl appearing (was absent at build, "no-titles" sentinel)
-    /// also flips the hash and forces a full rebuild.</summary>
+    /// <summary>titles.jsonl appearing (was absent at build, "no-titles" sentinel) flips the
+    /// hash and re-derives display fields — again with zero status recomputes (v5).</summary>
     [Fact]
-    public async Task TitlesJsonlAppears_TriggersFullRebuild()
+    public async Task TitlesJsonlAppears_RefreshesDisplayFields_NoRecomputes()
     {
         MakeGreenCorpus(2);                                       // no titles.jsonl yet
         var (svc, spy, loaded) = await BuildAndLoadAsync();
@@ -303,8 +309,9 @@ public class NavIncrementalTests : IDisposable
 
         var refreshed = await svc.RefreshAsync(loaded, _origDir, _tranDir, _root);
 
-        Assert.Equal(2, spy.CallCount);
+        Assert.Equal(0, spy.CallCount);
         Assert.NotEqual("no-titles", refreshed.TitlesHash);
+        Assert.Equal("One", Entry(refreshed, Rel(0)).DisplayShort);
     }
 
     /// <summary>An old-nav-guid cache (pre-v5 content gate) is not stat-comparable, so
@@ -316,12 +323,12 @@ public class NavIncrementalTests : IDisposable
         var (svc, spy, loaded) = await BuildAndLoadAsync();
 
         // Simulate a cache from a prior nav build guid: everything else valid.
-        loaded.BuildGuid = "phase4-nav-v4-legacy";
+        loaded.BuildGuid = "phase4-nav-v5-content-gate";
 
         var refreshed = await svc.RefreshAsync(loaded, _origDir, _tranDir, _root);
 
         Assert.Equal(3, spy.CallCount);                          // full rebuild
-        Assert.Equal("phase4-nav-v5-content-gate", refreshed.BuildGuid); // rebuilt at current guid
+        Assert.Equal("nav-v6-bundleable", refreshed.BuildGuid);  // rebuilt at current guid
     }
 
     [Fact]
@@ -330,12 +337,12 @@ public class NavIncrementalTests : IDisposable
         MakeGreenCorpus(3);
         var (svc, spy, loaded) = await BuildAndLoadAsync();
 
-        loaded.Version = 3; // pre-v4: lacks the per-entry stat fields
+        loaded.Version = 3; // pre-v5: lacks the source-manifest fields
 
         var refreshed = await svc.RefreshAsync(loaded, _origDir, _tranDir, _root);
 
         Assert.Equal(3, spy.CallCount);
-        Assert.Equal(4, refreshed.Version);
+        Assert.Equal(5, refreshed.Version);
     }
 
     /// <summary>An empty old cache cannot be refreshed incrementally — full rebuild.</summary>
@@ -396,8 +403,11 @@ public class NavIncrementalTests : IDisposable
         Assert.Null(await svc.TryLoadAsync(_root));
     }
 
+    /// <summary>v5 (NAV_CACHE_REDESIGN §2.1): RootPath is DEMOTED to informational and NO
+    /// LONGER compared on load. A cache whose baked RootPath points elsewhere still loads —
+    /// the machine-independence guarantee that lets a CI-baked bundle adopt on any machine.</summary>
     [Fact]
-    public async Task TryLoad_RejectsRootPathMismatch()
+    public async Task TryLoad_ToleratesForeignRootPath()
     {
         MakeGreenCorpus(2);
         var svc = new IndexCacheService(new CountingStatusService());
@@ -409,19 +419,22 @@ public class NavIncrementalTests : IDisposable
         node["RootPath"] = Path.Combine(_root, "somewhere-else");
         File.WriteAllText(path, node.ToJsonString());
 
-        Assert.Null(await svc.TryLoadAsync(_root));
+        var loaded = await svc.TryLoadAsync(_root);
+        Assert.NotNull(loaded);
+        Assert.Equal(2, loaded!.Entries.Count);
     }
 
     // ============================================================ clone / mtime-only
 
     /// <summary>
-    /// Clone simulation (SPEC §8: MtimeOnlyRewrite): git rewrites every working-tree
-    /// mtime with content unchanged. The first refresh recomputes all entries (ticks
-    /// differ) but STATUSES are unchanged and the cache is re-saved with local ticks;
-    /// the SECOND refresh then recomputes zero — steady state restored.
+    /// The re-clone cert (v5, NAV_CACHE_REDESIGN §3.4): git rewrites every working-tree
+    /// mtime with content unchanged. Because OriginalsSig is stat-only (mtime-immune) and
+    /// SourceSig is content-based (the mtime-missed translations re-hash to the SAME sig),
+    /// the FAST PATH is hit ⇒ ZERO status recomputes, statuses untouched. The healed mtime
+    /// hints are persisted once, so a SECOND refresh does no work AND no save.
     /// </summary>
     [Fact]
-    public async Task MtimeOnlyRewrite_RecomputesButKeepsStatuses_ThenSecondRefreshIsZero()
+    public async Task MtimeOnlyRewrite_ZeroRecomputes_KeepsStatuses_HealsHints()
     {
         MakeGreenCorpus(4);
         var (svc, spy, loaded) = await BuildAndLoadAsync();
@@ -438,16 +451,19 @@ public class NavIncrementalTests : IDisposable
 
         var refreshed = await svc.RefreshAsync(loaded, _origDir, _tranDir, _root);
 
-        Assert.Equal(4, spy.CallCount);                          // all recompute (ticks moved)
-        foreach (var e in refreshed.Entries)                     // …but statuses unchanged
+        Assert.Equal(0, spy.CallCount);                          // fast path: no recomputes
+        foreach (var e in refreshed.Entries)                     // …statuses unchanged
             Assert.Equal(before[e.RelPath.Replace('\\', '/')], e.Status);
 
-        // Second launch: cache now carries local ticks → stat-only hits → zero work.
+        // Second launch: hints healed+persisted → still zero recomputes, and now no save.
         spy.Reset();
+        var cachePath = svc.GetCachePath(_root);
+        var bytesBefore = File.ReadAllBytes(cachePath);
         var reloaded = await svc.TryLoadAsync(_root);
         var again = await svc.RefreshAsync(reloaded!, _origDir, _tranDir, _root);
         Assert.Equal(0, spy.CallCount);
         Assert.Equal(4, again.Entries.Count);
+        Assert.Equal(bytesBefore, File.ReadAllBytes(cachePath));  // steady state ⇒ no resave
     }
 
     // ============================================================ false-fresh guards
@@ -490,10 +506,13 @@ public class NavIncrementalTests : IDisposable
     }
 
     /// <summary>
-    /// The ACCEPTED blind spot (SPEC §1.3, §9): a content change that keeps BOTH size
-    /// and mtime identical is invisible to the nav content gate — it reuses the stored
-    /// entry. This is documented as not-a-real-scenario (git changes mtime on any real
-    /// edit). Pinned so the trade-off is explicit, not an accident.
+    /// The ACCEPTED blind spot (NAV_CACHE_REDESIGN §2.2, §9): a content change that keeps
+    /// BOTH size and mtime identical is invisible to the gate. On the ORIGINAL side the
+    /// stat-only OriginalsSig/OrigSizeBytes miss it; on the TRANSLATION side the per-candidate
+    /// (size, mtime) hint HITS and reuses the stored ContentSig without re-hashing — so a
+    /// same-size, mtime-reset translation edit is likewise reused. Documented as
+    /// not-a-real-scenario (git changes mtime on any real edit); the search content hash is
+    /// the corpus-integrity backstop. Pinned so the trade-off is explicit, not an accident.
     /// </summary>
     [Fact]
     public async Task SameSizeSameMtimeDifferentBytes_NotRecomputed_AcceptedBlindSpot()
@@ -503,7 +522,8 @@ public class NavIncrementalTests : IDisposable
         WriteFile(TranPath(Rel(0)), "<t>AAAAAAAA</t>", BaseAnchor);
         var (svc, spy, loaded) = await BuildAndLoadAsync();
 
-        // Same length, different bytes, mtime forced back to the exact stored tick.
+        // Same length, different bytes, mtime forced back to the exact stored tick ⇒ the
+        // (size, mtime) hint hits and the stale ContentSig is trusted.
         File.WriteAllText(TranPath(Rel(0)), "<t>BBBBBBBB</t>");
         File.SetLastWriteTimeUtc(TranPath(Rel(0)), BaseAnchor);
         Assert.Equal(new FileInfo(TranPath(Rel(0))).Length, Entry(loaded, Rel(0)).TranSizeBytes);
@@ -515,16 +535,19 @@ public class NavIncrementalTests : IDisposable
 
     // ============================================================ community fallback (SPEC §3.2, §4)
 
-    /// <summary>A community translation appearing (canonical still absent) flips the
-    /// resolved path and forces a recompute.</summary>
+    private static IReadOnlyList<string> SourceTokens(FileNavItem e)
+        => e.Sources.Select(s => s.Token).ToArray();
+
+    /// <summary>A community translation appearing (canonical still absent) adds a
+    /// <c>user:*</c> source candidate and forces a recompute (v5, §3.1).</summary>
     [Fact]
     public async Task CommunityTranslationAppears_Recomputes()
     {
-        // Original with NO canonical translation ⇒ resolved = canonical (absent), Red.
+        // Original with NO canonical translation ⇒ no candidates ⇒ Red.
         WriteFile(OrigPath(Rel(0)), OrigXml, BaseAnchor);
         var (svc, spy, loaded) = await BuildAndLoadAsync();
         Assert.Equal(TranslationStatus.Red, Entry(loaded, Rel(0)).Status);
-        Assert.Equal(TranPath(Rel(0)), Entry(loaded, Rel(0)).TranResolvedPath);
+        Assert.Empty(Entry(loaded, Rel(0)).Sources);
 
         // A community contributor's translation shows up.
         WriteFile(CommunityPath("alice", Rel(0)), GreenXml, FutureAnchor);
@@ -534,47 +557,119 @@ public class NavIncrementalTests : IDisposable
         Assert.Equal(1, spy.CallCount);
         var e = Entry(refreshed, Rel(0));
         Assert.Equal(TranslationStatus.Green, e.Status);
-        Assert.Equal(CommunityPath("alice", Rel(0)), e.TranResolvedPath);
+        Assert.Equal(new[] { "user:alice" }, SourceTokens(e));
     }
 
-    /// <summary>A community translation disappearing flips the resolved path back to the
-    /// (absent) canonical path and recomputes (status → Red).</summary>
+    /// <summary>A community translation disappearing removes its candidate and recomputes
+    /// to Red — a trivial no-candidate verdict, so ZERO evaluator calls (v5).</summary>
     [Fact]
-    public async Task CommunityTranslationDisappears_Recomputes()
+    public async Task CommunityTranslationDisappears_RecomputesToRed()
     {
         WriteFile(OrigPath(Rel(0)), OrigXml, BaseAnchor);
         WriteFile(CommunityPath("bob", Rel(0)), GreenXml, BaseAnchor);
         var (svc, spy, loaded) = await BuildAndLoadAsync();
         Assert.Equal(TranslationStatus.Green, Entry(loaded, Rel(0)).Status);
-        Assert.Equal(CommunityPath("bob", Rel(0)), Entry(loaded, Rel(0)).TranResolvedPath);
+        Assert.Equal(new[] { "user:bob" }, SourceTokens(Entry(loaded, Rel(0))));
 
         File.Delete(CommunityPath("bob", Rel(0)));
 
         var refreshed = await svc.RefreshAsync(loaded, _origDir, _tranDir, _root);
 
-        Assert.Equal(1, spy.CallCount);
+        Assert.Equal(0, spy.CallCount);                          // Red-by-absence: no evaluator call
         var e = Entry(refreshed, Rel(0));
         Assert.Equal(TranslationStatus.Red, e.Status);
-        Assert.Equal(TranPath(Rel(0)), e.TranResolvedPath);
+        Assert.Empty(e.Sources);
     }
 
-    /// <summary>When a canonical translation appears over an existing community one, the
-    /// resolved path flips from community → canonical (canonical wins) and recomputes.</summary>
+    /// <summary>When a canonical translation appears over an existing community one, a
+    /// <c>canonical</c> candidate joins the set (only that new candidate is evaluated — the
+    /// community one's persisted verdict is reused), and canonical wins the max.</summary>
     [Fact]
-    public async Task CanonicalTranslationTakesPrecedenceOverCommunity_Recomputes()
+    public async Task CanonicalTranslationJoinsCommunity_RecomputesOnlyNewCandidate()
     {
         WriteFile(OrigPath(Rel(0)), OrigXml, BaseAnchor);
         WriteFile(CommunityPath("carol", Rel(0)), GreenXml, BaseAnchor);
         var (svc, spy, loaded) = await BuildAndLoadAsync();
-        Assert.Equal(CommunityPath("carol", Rel(0)), Entry(loaded, Rel(0)).TranResolvedPath);
+        Assert.Equal(new[] { "user:carol" }, SourceTokens(Entry(loaded, Rel(0))));
 
-        // Canonical xml-p5t translation now exists → it wins the resolution.
+        // Canonical xml-p5t translation now exists → adds the "canonical" candidate.
         WriteFile(TranPath(Rel(0)), GreenXml, FutureAnchor);
 
         var refreshed = await svc.RefreshAsync(loaded, _origDir, _tranDir, _root);
 
-        Assert.Equal(1, spy.CallCount);
-        Assert.Equal(TranPath(Rel(0)), Entry(refreshed, Rel(0)).TranResolvedPath);
+        Assert.Equal(1, spy.CallCount);                          // only the NEW canonical candidate
+        var e = Entry(refreshed, Rel(0));
+        Assert.Equal(new[] { "canonical", "user:carol" }, SourceTokens(e));
+        Assert.Equal(TranslationStatus.Green, e.Status);
+    }
+
+    // ============================================================ single-entry save door (§3.5.1)
+
+    /// <summary>
+    /// PR-NV4 (§3.5.1 / Disease B <c>:3027-3030</c> regression): a local translation save
+    /// recomputes EXACTLY the one edited entry via <see cref="IIndexCacheService.RefreshEntryAsync"/>,
+    /// updating Status AND Sources COHERENTLY (the new ContentSig persists). Because the entry's
+    /// Sources then match the live file, the NEXT launch's gated <c>RefreshAsync</c> recomputes
+    /// ZERO — the old partial update (Status only, Sources left stale) would have re-evaluated
+    /// this entry every launch (the status oscillation this PR kills).
+    /// </summary>
+    [Fact]
+    public async Task RefreshEntry_AfterSave_CoherentUpdate_NextLaunchZeroRecomputes()
+    {
+        MakeGreenCorpus(3);
+        var (svc, spy, loaded) = await BuildAndLoadAsync();
+
+        var stored = Entry(loaded, Rel(1));
+        var oldSig = stored.Sources.Single(s => s.Token == "canonical").ContentSig;
+
+        // User edits + saves translation Rel(1): new bytes, new mtime (as an editor would).
+        WriteFile(TranPath(Rel(1)), GreenXml + "<!-- user edit -->\n", FutureAnchor);
+
+        // The single-entry save path (what MainWindowViewModel.RefreshFileStatusAsync calls).
+        var updated = await svc.RefreshEntryAsync(stored, Rel(1), _origDir, _tranDir, _root);
+
+        // Coherent: still Green, single canonical candidate, and a FRESH ContentSig.
+        Assert.Equal(TranslationStatus.Green, updated.Status);
+        Assert.Equal(new[] { "canonical" }, SourceTokens(updated));
+        var newSig = updated.Sources.Single(s => s.Token == "canonical").ContentSig;
+        Assert.NotEqual(oldSig, newSig);
+
+        // Mimic the in-place coherent update MWVM applies to the bound nav item.
+        stored.Status = updated.Status;
+        stored.Sources = updated.Sources;
+        stored.TranLocalHints = updated.TranLocalHints;
+        stored.TranSizeBytes = updated.TranSizeBytes;
+        stored.TranslatedMtimeTicks = updated.TranslatedMtimeTicks;
+
+        // Next launch: the gated refresh over the coherently-updated cache recomputes NOTHING
+        // (the entry's Sources already match the live file) — the anti-oscillation cert.
+        spy.Reset();
+        var refreshed = await svc.RefreshAsync(loaded, _origDir, _tranDir, _root);
+
+        Assert.Equal(0, spy.CallCount);
+        Assert.Equal(TranslationStatus.Green, Entry(refreshed, Rel(1)).Status);
+    }
+
+    /// <summary>
+    /// PR-NV4 (§3.5.1): a fresh community translation appearing for an untranslated rel is
+    /// picked up by the single-entry save path — Status flips Red→Green and the new
+    /// <c>user:*</c> candidate lands in Sources coherently.
+    /// </summary>
+    [Fact]
+    public async Task RefreshEntry_PicksUpNewCommunityCandidate()
+    {
+        WriteFile(OrigPath(Rel(0)), OrigXml, BaseAnchor); // original only ⇒ Red at build
+        var (svc, spy, loaded) = await BuildAndLoadAsync();
+        var stored = Entry(loaded, Rel(0));
+        Assert.Equal(TranslationStatus.Red, stored.Status);
+        Assert.Empty(stored.Sources);
+
+        // A community contributor's translation shows up, then the entry is refreshed.
+        WriteFile(CommunityPath("erin", Rel(0)), GreenXml, FutureAnchor);
+        var updated = await svc.RefreshEntryAsync(stored, Rel(0), _origDir, _tranDir, _root);
+
+        Assert.Equal(TranslationStatus.Green, updated.Status);
+        Assert.Equal(new[] { "user:erin" }, SourceTokens(updated));
     }
 
     // ============================================================ BLOCKING audit pin (SPEC §1.3)

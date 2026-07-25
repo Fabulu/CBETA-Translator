@@ -14,6 +14,7 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IGitHubAuthService, GitHubAuthService>();
         services.AddSingleton<ISelectionSyncService, SelectionSyncService>();
         services.AddSingleton<ITranslationStatusService, TranslationStatusService>();
+        services.AddSingleton<INavStatusEvaluator, NavStatusEvaluator>();
         services.AddSingleton<IIndexCacheService, IndexCacheService>();
         services.AddSingleton<ILicenseMetadataService, LicenseMetadataService>();
         services.AddSingleton<IManifestService, ManifestService>();

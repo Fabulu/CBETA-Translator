@@ -35,6 +35,18 @@ class Program
             return;
         }
 
+        // Headless tool mode: bake the machine-independent bundled nav-status cache (v5)
+        // for the CBETA corpus under a parent root, then exit (NAV_CACHE_REDESIGN §4.1,
+        // PR-NV5). CI runs this in prebuild-index to stage Assets/Data/nav-cache.cbeta.json
+        // (committed as an asset in PR-NV6); the app then adopts it on launch for a
+        // zero-rebuild fresh install. Must run before Velopack/single-instance/Avalonia:
+        // no UI, no side effects beyond the output file.
+        if (args.Length > 0 && args[0] == "--build-nav-cache")
+        {
+            Environment.Exit(IndexCacheService.RunHeadlessBuild(args, Console.Out));
+            return;
+        }
+
         // Headless tool mode: print the current search index family BuildGuids and exit
         // (S7 bundled prebuilt index, PR-S3). CI's release workflow calls this on the release
         // binary itself to (a) assert the staged bundle manifest guid == the binary's guid and

@@ -109,6 +109,17 @@
 			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
 		</Content>
 		<!--
+		PR-NV5/NV6 (NAV_CACHE_REDESIGN §4.1): prebuilt machine-independent nav-status cache
+		for the shipped CBETA corpus, adopted on launch (IndexCacheService.TryAdoptBundle) for
+		a zero-rebuild fresh install. Baked by the headless build-nav-cache mode; committed
+		as a ~2.7 MB asset in PR-NV6. The Exists() condition keeps a raw source build (where
+		the file is not yet committed) warning-free — adoption is simply a no-op there.
+		-->
+		<Content Include="Assets\Data\nav-cache.cbeta.json" Condition="Exists('Assets\Data\nav-cache.cbeta.json')">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</Content>
+		<!--
 		S7 bundled prebuilt search index. Ships the Assets/PrebuiltIndex DIRECTORY next to
 		the exe (mirrors the cedict pattern above). In a source build this carries only the
 		placeholder README; CI populates the real search.* artifacts here before publish

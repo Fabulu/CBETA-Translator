@@ -198,6 +198,52 @@ jobs:
 
           echo "bundle_built=true" >> "$GITHUB_OUTPUT"
 
+      # ── Nav-cache freshness guard (NAV_CACHE_REDESIGN §4.1, PR-NV6). Bake a fresh
+      #    machine-independent nav cache over the SAME cloned corpus and compare its
+      #    identity sigs (OriginalsSig / SourceSig / TitlesHash) to the COMMITTED
+      #    Assets/Data/nav-cache.cbeta.json. A drift means the committed asset predates the
+      #    corpus, so a fresh install would "adopt + K-entry catch-up" instead of a true
+      #    zero-rebuild. This is NON-BLOCKING by design: nav degrades gracefully (no cold-
+      #    rebuild cliff, unlike the search guid), so we only nag the maintainer to rebake +
+      #    commit — never fail the tag. `--build-nav-cache` returns before Avalonia init, so
+      #    it is safe on a display-less runner (same as --build-search-index above).
+      - name: Nav-cache freshness guard (non-blocking)
+        if: steps.mode.outputs.should_build == '1'
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          CORPUS_DIR="$RUNNER_TEMP/prebuilt-corpus"   # cloned in the build step above
+          COMMITTED="Assets/Data/nav-cache.cbeta.json"
+
+          if [ ! -f "$COMMITTED" ]; then
+            echo "::warning::nav-cache guard: no committed $COMMITTED yet — bake it with the headless --build-nav-cache mode and commit it (NAV_CACHE_REDESIGN §4.1) so fresh installs adopt a zero-rebuild nav cache."
+            exit 0
+          fi
+
+          FRESH="$RUNNER_TEMP/nav-cache.fresh.json"
+          echo "Baking a fresh nav cache over the cloned corpus for the freshness check ..."
+          dotnet run -c Release --project "${{ env.PROJECT_FILE }}" -v quiet -- \
+            --build-nav-cache "$CORPUS_DIR" "$FRESH"
+
+          if [ ! -f "$FRESH" ]; then
+            echo "::warning::nav-cache guard: --build-nav-cache produced no output; skipping the freshness comparison."
+            exit 0
+          fi
+
+          # Pull the three cache-level identity fields (top-of-file, one each) from a JSON.
+          field() { sed -n "s/.*\"$1\": *\"\([^\"]*\)\".*/\1/p" "$2" | head -n1; }
+
+          for sig in OriginalsSig SourceSig TitlesHash; do
+            C="$(field "$sig" "$COMMITTED")"
+            F="$(field "$sig" "$FRESH")"
+            if [ "$C" != "$F" ]; then
+              echo "::warning::nav-cache guard: committed $COMMITTED $sig ($C) != freshly-baked ($F). The bundled nav cache is stale — rebake with --build-nav-cache and commit $COMMITTED so fresh installs get a true zero-rebuild (they currently adopt + catch up the drifted entries)."
+            else
+              echo "nav-cache guard: $sig matches ($C)."
+            fi
+          done
+
       # The single bundle every matrix leg downloads. Only uploaded when a bundle
       # was actually built + validated above.
       - name: Upload prebuilt index artifact

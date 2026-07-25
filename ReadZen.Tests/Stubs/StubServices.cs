@@ -181,6 +181,7 @@ public class StubAppConfigService : IAppConfigService
 {
     public string ConfigPath => "test-config.json";
     public int NavStatusFilterIndex { get; set; }
+    public bool ShowApparatusNotes { get; set; }
     public AppConfig? ConfigToReturn { get; set; }
     public string CorruptBackupPath => "test-config.json.corrupt";
     public string? LoadWarning { get; set; }
@@ -195,10 +196,14 @@ public class StubIndexCacheService : IIndexCacheService
 {
     public string GetCachePath(string root) => "cache.json";
     public Task<IndexCache?> TryLoadAsync(string root) => Task.FromResult<IndexCache?>(null);
+    public Task<NavCacheLoadResult> LoadAsync(string root) => Task.FromResult(NavCacheLoadResult.Unusable);
     public Task SaveAsync(string root, IndexCache cache) => Task.CompletedTask;
     public TranslationStatus ComputeStatusForPairLive(string origAbs, string tranAbs, string rootForLogs, string relKeyForLogs, bool verboseLog = true) => TranslationStatus.Red;
     public Task<IndexCache> BuildAsync(string originalDir, string translatedDir, string root, IProgress<(int done, int total)>? progress = null, CancellationToken ct = default) => Task.FromResult(new IndexCache());
     public Task<IndexCache> RefreshAsync(IndexCache oldCache, string originalDir, string translatedDir, string root, IProgress<(int done, int total)>? progress = null, CancellationToken ct = default) => Task.FromResult(oldCache);
+    public Task<IndexCache> MigrateV4(IndexCache oldCache, string originalDir, string translatedDir, string root, IProgress<(int done, int total)>? progress = null, CancellationToken ct = default) => Task.FromResult(oldCache);
+    public Task<FileNavItem> RefreshEntryAsync(FileNavItem? storedEntry, string relPath, string originalDir, string translatedDir, string root, CancellationToken ct = default) => Task.FromResult(storedEntry ?? new FileNavItem { RelPath = relPath });
+    public Task<IndexCache?> TryAdoptBundle(string root, CorpusKind activeKind, CancellationToken ct = default) => Task.FromResult<IndexCache?>(null);
 }
 
 // ---- IRenderedDocumentCacheService ----

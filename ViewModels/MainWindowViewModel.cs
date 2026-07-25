@@ -53,6 +53,12 @@ public partial class MainWindowViewModel : ViewModelBase
     private ITranslationStarService? _starService;
     private static readonly TranslationStatusService LiveTranslationStatusService = new();
 
+    // PR-NV1 (NAV_CACHE_REDESIGN §3.2-3.3): the single source of truth for nav status /
+    // meaningfulness. Constructed from this VM's existing dependencies so the memo stays
+    // per-window (identical lifetime to the former _meaningfulTranslationCache); the DI
+    // singleton registration is for the cache-build / save-path consumers landing in NV2+.
+    private readonly INavStatusEvaluator _navStatusEvaluator;
+
     // Coding mode state
     private TagVocabulary? _tagVocabulary;
     private List<DocumentTag> _appliedTags = new();
@@ -81,7 +87,6 @@ public partial class MainWindowViewModel : ViewModelBase
     }
     private string? _userTranslatedDir;   // community/translations/{username}/
     private string? _activeTranslatedDir; // currently selected dir (user, community, or other user)
-    private readonly Dictionary<string, MeaningfulTranslationCacheEntry> _meaningfulTranslationCache = new(StringComparer.OrdinalIgnoreCase);
     public string? Root => _root;
     public string? TranslationRoot => _translationRoot;
     public string? Username => _config.Username;
@@ -106,6 +111,14 @@ public partial class MainWindowViewModel : ViewModelBase
     private CancellationTokenSource? _readerStudyCts;
     private CancellationTokenSource? _autoIndexCts;
     private bool _isAutoIndexing;
+    private CancellationTokenSource? _navRefreshCts;
+
+    // The loaded/refreshed NavCache instance (NAV_CACHE_REDESIGN §5.5). Held so every save
+    // site persists THIS object — carrying its cache-level v5 stamps (OriginalsSig,
+    // SourceSig, CorpusKind, TitlesHash) — instead of a bare `new IndexCache { Entries }`
+    // that dropped them. Its Entries reference IS _allItems; save sites re-point it before
+    // writing in case _allItems was reassigned.
+    private Models.IndexCache? _navCache;
 
     // Nav filter performance / race control
     private int _navFilterVersion;
@@ -137,12 +150,6 @@ public partial class MainWindowViewModel : ViewModelBase
     public void SuppressConfigSavesForSecondaryWindow() => _suppressConfigSaves = true;
     private bool _suppressNavSelection;
     private bool _userHasManuallySelectedSource;
-
-    private sealed record MeaningfulTranslationCacheEntry(
-        DateTime OriginalWriteUtc,
-        DateTime CandidateWriteUtc,
-        long CandidateLength,
-        bool IsMeaningful);
 
     private sealed record TranslationSourceEvaluation(
         int Index,
@@ -296,7 +303,7 @@ public partial class MainWindowViewModel : ViewModelBase
         _activeTranslatedDir = _userTranslatedDir;
 
         _renderCache.Clear();
-        _meaningfulTranslationCache.Clear();
+        _navStatusEvaluator.ClearCache();
         _licenseMetadata.Clear();
 
         _searchIndex.InvalidateIndexCaches();
@@ -494,6 +501,7 @@ public partial class MainWindowViewModel : ViewModelBase
         _renderCache = renderCache;
         _zenTexts = zenTexts;
         _indexedTranslation = indexedTranslation;
+        _navStatusEvaluator = new NavStatusEvaluator(LiveTranslationStatusService, indexedTranslation);
         _translationAssistant = translationAssistant;
         _translationAssistantBuilder = translationAssistantBuilder;
         _translationReview = translationReview;
@@ -505,16 +513,18 @@ public partial class MainWindowViewModel : ViewModelBase
         _dialogService = dialogService;
 
         // Corpus-changed trigger (git sync/clone/update/panic success): queue the
-        // staleness-gated, debounced auto index build. Weak registration on the typed
-        // messenger per the ratchet - no new MWVM bridge delegate. Intentionally NOT
-        // guarded by _isAutoIndexing: a git success means the corpus changed, so any
-        // in-flight auto build is stale by definition; QueueAutoIndexBuild's own CTS
-        // cancel, 3s delay, and IsStaleAsync gate provide supersession, debounce, and
-        // no-op cheapness. Known non-blocking gap: a SearchTab manual build's own CTS
-        // is not cancelled by this trigger; the two serialize under the index IO gate
-        // and the second pass is a cheap incremental no-op.
+        // staleness-gated, debounced auto index build AND the gated nav-status refresh
+        // (NAV_CACHE_REDESIGN §3.5.2, the git pull/sync door). Weak registration on the typed
+        // messenger per the ratchet - no new MWVM bridge delegate. CorpusFilesChangedMessage
+        // already fires from every git-completion site, so the nav door reuses it rather than
+        // duplicating those Send calls. Intentionally NOT guarded by _isAutoIndexing: a git
+        // success means the corpus changed, so any in-flight auto build is stale by definition;
+        // QueueAutoIndexBuild's own CTS cancel, 3s delay, and IsStaleAsync gate provide
+        // supersession, debounce, and no-op cheapness. Known non-blocking gap: a SearchTab
+        // manual build's own CTS is not cancelled by this trigger; the two serialize under the
+        // index IO gate and the second pass is a cheap incremental no-op.
         WeakReferenceMessenger.Default.Register<MainWindowViewModel, Messages.CorpusFilesChangedMessage>(
-            this, static (vm, _) => vm.QueueAutoIndexBuild());
+            this, static (vm, _) => { vm.QueueAutoIndexBuild(); vm.QueueNavStatusRefresh(); });
     }
 
     /// <summary>Inject the star service after construction (optional dependency).</summary>
@@ -676,8 +686,8 @@ public partial class MainWindowViewModel : ViewModelBase
 
     public async Task LoadRootAsync(string rootPath, bool saveToConfig)
     {
-        // Skip redundant loads of the same root — this avoids the heavy
-        // RefreshAllCachedStatusesAsync running multiple times when a deep
+        // Skip redundant loads of the same root — this avoids re-running the gated
+        // index refresh (LoadFileListFromCacheOrBuildAsync) multiple times when a deep
         // link comes in right after the initial config-driven auto-load.
         // EXCEPT: always re-run multi-corpus discovery here, because sync
         // can clone the OpenZen repo pair into the same root mid-
@@ -774,7 +784,7 @@ public partial class MainWindowViewModel : ViewModelBase
         }
 
         _renderCache.Clear();
-        _meaningfulTranslationCache.Clear();
+        _navStatusEvaluator.ClearCache();
         // The license metadata cache is a DI singleton shared across windows.
         // Only the primary window (saveToConfig=true) is allowed to wipe it;
         // a secondary window doing so would nuke the primary's cached entries
@@ -854,15 +864,13 @@ public partial class MainWindowViewModel : ViewModelBase
         RefreshTranslationSources();
         await LoadFileListFromCacheOrBuildAsync();
 
-        // Fire status refresh in background — the cache provides usable
-        // statuses immediately, and the nav icons update progressively as
-        // EvaluateBestTranslationSource catches up. This lets deep links
-        // open the requested text without waiting for the full 0→4990 sweep.
-        _ = Task.Run(async () =>
-        {
-            try { await RefreshAllCachedStatusesAsync(); }
-            catch (Exception ex) { System.Diagnostics.Debug.WriteLine($"[MainWindowViewModel] Background nav status refresh failed: {ex.Message}"); }
-        });
+        // NAV_CACHE_REDESIGN §5.1/§5.2: the unconditional full-corpus status sweep is GONE.
+        // The gated RefreshAsync inside LoadFileListFromCacheOrBuildAsync already produced
+        // correct multi-source statuses (with progressive nav-icon updates via its progress
+        // + ApplyFilterSafeAsync wiring), so no launch path iterates all _allItems for status.
+        // In-session status changes flow through the three cheap doors instead (§3.5): a
+        // per-file save (RefreshFileStatusAsync), a git pull/sync (QueueNavStatusRefresh via
+        // CorpusFilesChangedMessage), and the next-launch gate.
 
         QueueAutoIndexBuild();
     }
@@ -873,6 +881,64 @@ public partial class MainWindowViewModel : ViewModelBase
     /// directories can still observe CorpusFilesChangedMessage receipt.
     /// </summary>
     internal int AutoIndexQueuedCount;
+
+    /// <summary>
+    /// Test seam (via InternalsVisibleTo): counts QueueNavStatusRefresh invocations.
+    /// Incremented BEFORE the early return, mirroring <see cref="AutoIndexQueuedCount"/>.
+    /// </summary>
+    internal int NavStatusRefreshQueuedCount;
+
+    /// <summary>
+    /// NAV_CACHE_REDESIGN §3.5.2 (git pull/sync door): fire ONE gated
+    /// <see cref="IIndexCacheService.RefreshAsync"/> over the currently-held nav cache — cost
+    /// ≈ the true change set (a pull touching K translations recomputes K entries; an unrelated
+    /// commit recomputes 0). NOT a sweep. Debounced by its own CTS so a burst of
+    /// CorpusFilesChangedMessages (e.g. sync = update + final) coalesces into one refresh.
+    /// A no-op until a cache has been loaded (_navCache set) — the launch gate covers the rest.
+    /// </summary>
+    private void QueueNavStatusRefresh()
+    {
+        NavStatusRefreshQueuedCount++;
+
+        if (_translationRoot == null || _originalDir == null || _translatedDir == null || _navCache == null)
+            return;
+
+        _navRefreshCts?.Cancel();
+        try { _navRefreshCts?.Dispose(); } catch { }
+        _navRefreshCts = new CancellationTokenSource();
+        var ct = _navRefreshCts.Token;
+
+        var root = _translationRoot;
+        var origDir = _originalDir;
+        var tranDir = _translatedDir;
+        var baseCache = _navCache;
+
+        _ = Task.Run(async () =>
+        {
+            try
+            {
+                // Let the git operation settle / debounce rapid successive events before the
+                // stat pass (mirrors QueueAutoIndexBuild's delay; also yields disk to it).
+                await Task.Delay(1500, ct);
+
+                baseCache.Entries = _allItems; // reflect the current bound list into the gate
+                var refreshed = await _indexCacheService.RefreshAsync(
+                    baseCache, origDir, tranDir, root, progress: null, ct);
+                if (ct.IsCancellationRequested) return;
+
+                await Dispatcher.UIThread.InvokeAsync(() =>
+                {
+                    if (ct.IsCancellationRequested) return;
+                    _navCache = refreshed;
+                    _allItems = refreshed.Entries ?? new List<FileNavItem>();
+                    RebuildLookup();
+                    _ = ApplyFilterSafeAsync();
+                });
+            }
+            catch (OperationCanceledException) { }
+            catch (Exception ex) { System.Diagnostics.Debug.WriteLine($"[MainWindowViewModel] Nav status refresh (git) failed: {ex.Message}"); }
+        });
+    }
 
     private void QueueAutoIndexBuild()
     {
@@ -1205,22 +1271,35 @@ public partial class MainWindowViewModel : ViewModelBase
 
         try
         {
-            var cache = await _indexCacheService.TryLoadAsync(_translationRoot);
+            // Root-tolerant classified load (NAV_CACHE_REDESIGN §4.2 ladder). A forced rebuild
+            // skips the cache entirely.
+            var loadResult = _forceRebuildIndex
+                ? NavCacheLoadResult.Unusable
+                : await _indexCacheService.LoadAsync(_translationRoot);
+            var localCache = loadResult.Cache;
 
-            if (cache?.Entries is { Count: > 0 } && !_forceRebuildIndex)
+            // Ladder rows 1-2: a usable v5 cache is gated-refreshed; a v4 cache is migrated in
+            // place — v4 holds the user's OWN local statuses, so migration BEATS any future
+            // bundle — and re-saved as v5. Both recompute only the true change set (or nothing);
+            // progress fires over the recompute set only.
+            if (localCache?.Entries is { Count: > 0 }
+                && loadResult.Status is NavCacheLoadStatus.V5 or NavCacheLoadStatus.V4NeedsMigration)
             {
-                // Content gate + incremental refresh: reuse unchanged entries,
-                // recompute status only for changed pairs, add/prune as needed.
-                // Progress fires only over the recompute set (or not at all).
-                SetStatus("Refreshing nav statuses...");
+                bool migrating = loadResult.Status == NavCacheLoadStatus.V4NeedsMigration;
+                var verb = migrating ? "Upgrading index cache" : "Refreshing nav statuses";
+                SetStatus(verb + "...");
                 var refreshProgress = new Progress<(int done, int total)>(p =>
                 {
-                    SetStatus("Refreshing nav statuses... " + p.done.ToString("n0") + "/" + p.total.ToString("n0"));
+                    SetStatus(verb + "... " + p.done.ToString("n0") + "/" + p.total.ToString("n0"));
                 });
 
-                var refreshed = await _indexCacheService.RefreshAsync(
-                    cache, _originalDir, _translatedDir, _translationRoot, refreshProgress);
+                var refreshed = migrating
+                    ? await _indexCacheService.MigrateV4(
+                        localCache, _originalDir, _translatedDir, _translationRoot, refreshProgress)
+                    : await _indexCacheService.RefreshAsync(
+                        localCache, _originalDir, _translatedDir, _translationRoot, refreshProgress);
 
+                _navCache = refreshed;
                 _allItems = refreshed.Entries ?? new List<FileNavItem>();
                 RebuildLookup();
 
@@ -1232,6 +1311,42 @@ public partial class MainWindowViewModel : ViewModelBase
                 return;
             }
 
+            // Ladder row 3 (NAV_CACHE_REDESIGN §4.2 row 3): no usable local cache, but a
+            // bundled prebuilt nav cache ships with the app and its CorpusKind matches the
+            // active corpus ⇒ ADOPT it (atomic copy into index.cache.json), then run the
+            // gated RefreshAsync as catch-up. On a fresh install of the shipped corpus the
+            // sigs match ⇒ fast path ⇒ ZERO recomputes. Local truth always wins over the
+            // bundle (rows 1-2 above already returned when a v5/v4 cache existed); a corrupt,
+            // absent, or kind-mismatched bundle returns null and falls through to the cold
+            // build below. Skipped on a forced rebuild (which must cold-build from scratch).
+            if (!_forceRebuildIndex)
+            {
+                var adopted = await _indexCacheService.TryAdoptBundle(_translationRoot, ActiveCorpus);
+                if (adopted?.Entries is { Count: > 0 })
+                {
+                    SetStatus("Adopting bundled index cache...");
+                    var adoptProgress = new Progress<(int done, int total)>(p =>
+                    {
+                        SetStatus("Refreshing nav statuses... " + p.done.ToString("n0") + "/" + p.total.ToString("n0"));
+                    });
+
+                    var caughtUp = await _indexCacheService.RefreshAsync(
+                        adopted, _originalDir, _translatedDir, _translationRoot, adoptProgress);
+
+                    _navCache = caughtUp;
+                    _allItems = caughtUp.Entries ?? new List<FileNavItem>();
+                    RebuildLookup();
+
+                    await ApplyFilterSafeAsync();
+                    WireSearchTab();
+                    SetSearchFileIndex?.Invoke(BuildSearchFileIndex());
+
+                    SetStatus("Loaded bundled index cache: " + _allItems.Count.ToString("n0") + " files.");
+                    return;
+                }
+            }
+
+            // Ladder row 4: nothing usable ⇒ cold build (last resort).
             SetStatus("Building index cache...");
 
             var progress = new Progress<(int done, int total)>(p =>
@@ -1242,6 +1357,7 @@ public partial class MainWindowViewModel : ViewModelBase
             IndexCache built = await _indexCacheService.BuildAsync(_originalDir, _translatedDir, _translationRoot, progress);
             await _indexCacheService.SaveAsync(_translationRoot, built);
 
+            _navCache = built;
             _allItems = built.Entries ?? new List<FileNavItem>();
             RebuildLookup();
 
@@ -1259,84 +1375,13 @@ public partial class MainWindowViewModel : ViewModelBase
         }
     }
 
-    public async Task RefreshAllCachedStatusesAsync()
-    {
-        if (_root == null || _originalDir == null || _translatedDir == null) return;
-        bool changed = false;
-        int total = _allItems.Count;
-        var progress = new Progress<int>(done =>
-        {
-            // Only show every 500 to avoid flooding status bar over indexing messages
-            if (done % 500 == 0 && done < total)
-                Avalonia.Threading.Dispatcher.UIThread.Post(() =>
-                    SetStatus($"Refreshing nav statuses... {done:n0}/{total:n0}"));
-        });
-        var refilter = new Progress<int>(_ =>
-        {
-            // Re-apply the filter so the nav list reflects updated statuses progressively.
-            // Marshal to UI thread because Progress<T> may fire on the threadpool when
-            // RefreshAllCachedStatusesAsync was started from a background context.
-            Avalonia.Threading.Dispatcher.UIThread.Post(() =>
-            {
-                var fireAndForget = ApplyFilterSafeAsync();
-            });
-        });
-        var statusUpdates = new System.Collections.Concurrent.ConcurrentBag<(FileNavItem item, TranslationStatus newStatus, long newMtime)>();
-        await Task.Run(() =>
-        {
-            int done = 0;
-            int sinceRefilter = 0;
-            foreach (var it in _allItems)
-            {
-                if (string.IsNullOrWhiteSpace(it.RelPath)) continue;
-                var best = EvaluateBestTranslationSource(it.RelPath);
-                var newStatus = best.Status;
-                if (!Equals(it.Status, newStatus) || it.TranslatedMtimeTicks != best.TranslatedMtimeTicks)
-                {
-                    statusUpdates.Add((it, newStatus, best.TranslatedMtimeTicks));
-                    changed = true;
-                }
-                done++;
-                sinceRefilter++;
-                if (done % 50 == 0)
-                    ((IProgress<int>)progress).Report(done);
-                // Periodically refresh the visible nav list so icons update live
-                if (sinceRefilter >= 500)
-                {
-                    sinceRefilter = 0;
-                    ((IProgress<int>)refilter).Report(done);
-                }
-            }
-            ((IProgress<int>)progress).Report(done);
-        });
-        // Final refilter to catch any pending status changes — marshal to UI thread.
-        // Use Post (fire-and-forget) instead of InvokeAsync to avoid deadlocking under
-        // headless test hosts where no Avalonia dispatcher is pumping. The filter only
-        // affects the visible nav list, not the cache save below which reads _allItems
-        // directly, so awaiting it is not required for correctness.
-        Avalonia.Threading.Dispatcher.UIThread.Post(() =>
-        {
-            var fireAndForget = ApplyFilterSafeAsync();
-        });
+    // NAV_CACHE_REDESIGN §5.2: RefreshAllCachedStatusesAsync (the full-corpus status sweep,
+    // Disease B) is DELETED. Its correct multi-source verdicts now come from the single gated
+    // pipeline (IndexCacheService.RefreshAsync + INavStatusEvaluator); its progressive nav-icon
+    // updates are preserved by that refresh's progress + ApplyFilterSafeAsync wiring in
+    // LoadFileListFromCacheOrBuildAsync. In-session changes flow through RefreshFileStatusAsync
+    // (per-file save) and QueueNavStatusRefresh (git pull/sync) — never a sweep.
 
-        // Apply collected status updates on UI thread
-        if (statusUpdates.Count > 0)
-        {
-            await Avalonia.Threading.Dispatcher.UIThread.InvokeAsync(() =>
-            {
-                foreach (var (item, newStatus, newMtime) in statusUpdates)
-                {
-                    item.Status = newStatus;
-                    item.TranslatedMtimeTicks = newMtime;
-                }
-            });
-        }
-
-        if (changed)
-        {
-            await _indexCacheService.SaveAsync(_translationRoot!, new IndexCache { Entries = _allItems });
-        }
-    }
     private void RebuildLookup()
     {
         lock (_navItemsLock)
@@ -3009,30 +3054,59 @@ public partial class MainWindowViewModel : ViewModelBase
         }
     }
 
+    // NAV_CACHE_REDESIGN §3.5.1: after a local translation save, recompute EXACTLY this one
+    // entry through the single gated pipeline and update it COHERENTLY — Status AND
+    // Sources/TranLocalHints together, not the old partial write (Status + mtime only, Sources
+    // left stale) that guaranteed a stat-mismatch recompute on the next launch (Disease B
+    // :3027-3030). No sweep, no per-original probing of every source dir.
     private async Task RefreshFileStatusAsync(string relPath)
     {
-        if (_originalDir == null || _translatedDir == null || _root == null) return;
+        if (_originalDir == null || _translatedDir == null || _translationRoot == null) return;
 
         try
         {
             var relKey = NormalizeRel(relPath);
-            var best = EvaluateBestTranslationSource(relPath);
-            var newStatus = best.Status;
-            long mtimeTicks = best.TranslatedMtimeTicks;
+            if (!_allItemsByRel.TryGetValue(relKey, out var existing))
+                return;
 
-            if (_allItemsByRel.TryGetValue(relKey, out var existing))
-            {
-                if (!Equals(existing.Status, newStatus))
-                {
-                    existing.Status = newStatus;
-                    MarkIndexCacheDirty();
-                }
-                existing.TranslatedMtimeTicks = mtimeTicks;
+            // Rescan sources for THIS rel only + re-evaluate (reusing unchanged per-candidate
+            // verdicts), off the UI thread. RefreshEntryAsync wraps the work in Task.Run.
+            var updated = await _indexCacheService.RefreshEntryAsync(
+                existing, existing.RelPath, _originalDir, _translatedDir, _translationRoot);
 
-                await ApplyFilterSafeAsync();
-            }
+            bool statusOrSourcesChanged =
+                !Equals(existing.Status, updated.Status)
+                || !SourceRecordsEqual(existing.Sources, updated.Sources);
+
+            // Coherent in-place update so the bound nav item and the persisted entry agree.
+            existing.Status = updated.Status;
+            existing.Sources = updated.Sources;
+            existing.TranLocalHints = updated.TranLocalHints;
+            existing.TranSizeBytes = updated.TranSizeBytes;
+            existing.TranslatedMtimeTicks = updated.TranslatedMtimeTicks;
+
+            if (statusOrSourcesChanged)
+                MarkIndexCacheDirty();
+
+            await ApplyFilterSafeAsync();
         }
         catch { }
+    }
+
+    /// <summary>Order-independent equality of two per-candidate source-record sets by
+    /// (Token, ContentSig, Status) — the drift check for the coherent save (§3.5.1).</summary>
+    private static bool SourceRecordsEqual(
+        List<Models.NavSourceRecord>? a, List<Models.NavSourceRecord>? b)
+    {
+        int ca = a?.Count ?? 0, cb = b?.Count ?? 0;
+        if (ca != cb) return false;
+        if (ca == 0) return true;
+
+        static IEnumerable<string> Keys(List<Models.NavSourceRecord> s) => s
+            .Select(r => r.Token + "" + r.ContentSig + "" + (int)r.Status)
+            .OrderBy(x => x, StringComparer.Ordinal);
+
+        return Keys(a!).SequenceEqual(Keys(b!), StringComparer.Ordinal);
     }
 
     // ===========================================================
@@ -3625,67 +3699,16 @@ public Action<string, string, string, string?, string?, string?>? OpenTermbaseEd
     };
 
     private int ResolveBestTranslationSourceIndex(string relPath) => EvaluateBestTranslationSource(relPath).Index;
+    // PR-NV1: thin delegate to NavStatusEvaluator (the extracted meaningfulness core,
+    // NAV_CACHE_REDESIGN §3.3). Still used by the source-dropdown population and source
+    // switching; the evaluator preserves the memo + XML-DeepEquals/BuildIndex semantics.
     private bool IsMeaningfullyTranslatedPath(string relPath, string candidatePath)
     {
-        try
-        {
-            if (_originalDir == null || string.IsNullOrWhiteSpace(relPath) || string.IsNullOrWhiteSpace(candidatePath))
-                return false;
-
-            var originalPath = Path.Combine(_originalDir, relPath);
-            if (!File.Exists(originalPath) || !File.Exists(candidatePath))
-                return false;
-
-            var originalWriteUtc = File.GetLastWriteTimeUtc(originalPath);
-            var candidateInfo = new FileInfo(candidatePath);
-            var candidateWriteUtc = candidateInfo.LastWriteTimeUtc;
-            var candidateLength = candidateInfo.Length;
-
-            if (_meaningfulTranslationCache.TryGetValue(candidatePath, out var cached)
-                && cached.OriginalWriteUtc == originalWriteUtc
-                && cached.CandidateWriteUtc == candidateWriteUtc
-                && cached.CandidateLength == candidateLength)
-            {
-                return cached.IsMeaningful;
-            }
-
-            var originalXml = File.ReadAllText(originalPath, Encoding.UTF8);
-            var candidateXml = File.ReadAllText(candidatePath, Encoding.UTF8);
-
-            bool isMeaningful;
-            if (TryParseXml(originalXml, out _)
-                && TryParseXml(candidateXml, out _)
-                && XNode.DeepEquals(XDocument.Parse(originalXml, LoadOptions.PreserveWhitespace), XDocument.Parse(candidateXml, LoadOptions.PreserveWhitespace)))
-            {
-                isMeaningful = false;
-            }
-            else
-            {
-                try
-                {
-                    var doc = _indexedTranslation.BuildIndex(originalXml, candidateXml);
-                    isMeaningful = doc.Units.Any(u => !string.IsNullOrWhiteSpace(u.En));
-                }
-                catch
-                {
-                    isMeaningful = true;
-                }
-            }
-
-            if (_meaningfulTranslationCache.Count > 5000)
-                _meaningfulTranslationCache.Clear();
-            _meaningfulTranslationCache[candidatePath] = new MeaningfulTranslationCacheEntry(
-                originalWriteUtc,
-                candidateWriteUtc,
-                candidateLength,
-                isMeaningful);
-
-            return isMeaningful;
-        }
-        catch
-        {
+        if (_originalDir == null || string.IsNullOrWhiteSpace(relPath) || string.IsNullOrWhiteSpace(candidatePath))
             return false;
-        }
+
+        var originalPath = Path.Combine(_originalDir, relPath);
+        return _navStatusEvaluator.IsMeaningfullyTranslated(originalPath, candidatePath);
     }
 
     /// <summary>
@@ -4463,7 +4486,19 @@ public Action<string, string, string, string?, string?, string?>? OpenTermbaseEd
 
         try
         {
-            await _indexCacheService.SaveAsync(_translationRoot, new IndexCache { Entries = _allItems });
+            // NAV_CACHE_REDESIGN §5.5: persist the HELD IndexCache instance so its cache-level
+            // v5 stamps (OriginalsSig, SourceSig, CorpusKind, TitlesHash) survive — a bare
+            // `new IndexCache { Entries = _allItems }` dropped them, forcing the next launch off
+            // the fast path. Its Entries reference IS _allItems; re-point it defensively in case
+            // _allItems was reassigned since load. Fallback to a bare cache only if none is held
+            // (e.g. a save scheduled before any successful load).
+            var toSave = _navCache;
+            if (toSave != null)
+                toSave.Entries = _allItems;
+            else
+                toSave = new IndexCache { Entries = _allItems };
+
+            await _indexCacheService.SaveAsync(_translationRoot, toSave);
         }
         catch (Exception ex) { System.Diagnostics.Debug.WriteLine($"[MainWindowViewModel] Index cache save failed: {ex.Message}"); }
     }

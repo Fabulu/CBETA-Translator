@@ -393,6 +393,28 @@ public partial class AppPaths
     }
 
     /// <summary>
+    /// Resolves the exe-adjacent prebuilt nav-status cache bundle for a corpus
+    /// (<c>Assets/Data/nav-cache.cbeta.json</c> / <c>nav-cache.open.json</c>), or null when
+    /// it does not ship in this build (NAV_CACHE_REDESIGN §4.1, PR-NV5/NV6). The CBETA
+    /// bundle is committed as an asset in PR-NV6; a raw source build ships neither, so
+    /// adoption is simply a no-op there. Tries both casings for case-sensitive filesystems,
+    /// matching <see cref="GetPrebuiltIndexDir"/>. Only the Cbeta bundle ships today; the
+    /// Open filename is future-additive and returns null until an asset exists.
+    /// </summary>
+    public static string? GetBundledNavCachePath(CorpusKind kind)
+    {
+        var fileName = kind == CorpusKind.Open ? "nav-cache.open.json" : "nav-cache.cbeta.json";
+
+        var upper = System.IO.Path.Combine(System.AppContext.BaseDirectory, "Assets", "Data", fileName);
+        if (File.Exists(upper)) return upper;
+
+        var lower = System.IO.Path.Combine(System.AppContext.BaseDirectory, "assets", "data", fileName);
+        if (File.Exists(lower)) return lower;
+
+        return null;
+    }
+
+    /// <summary>
     /// App-owned search-index directory for a corpus, next to the exe (portable layout,
     /// user decision D8). The full-text index is a large DERIVED artifact and must NEVER
     /// live inside a corpus/translations git repo: the index files run to hundreds of MB /

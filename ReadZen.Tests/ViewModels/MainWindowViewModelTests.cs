@@ -15,11 +15,11 @@ namespace ReadZen.Tests.ViewModels;
 
 public class MainWindowViewModelTests
 {
-    private static MainWindowViewModel MakeVm(StubDocumentTagService? documentTagService = null, IIndexedTranslationService? indexedTranslationService = null, StubDialogService? dialogService = null)
+    private static MainWindowViewModel MakeVm(StubDocumentTagService? documentTagService = null, IIndexedTranslationService? indexedTranslationService = null, StubDialogService? dialogService = null, IIndexCacheService? indexCacheService = null)
     {
         return new MainWindowViewModel(
             new StubAppConfigService(),
-            new StubIndexCacheService(),
+            indexCacheService ?? new StubIndexCacheService(),
             new StubRenderedDocumentCacheService(),
             new StubZenTextsService(),
             indexedTranslationService ?? new StubIndexedTranslationService(),
@@ -118,6 +118,21 @@ public class MainWindowViewModelTests
         WeakReferenceMessenger.Default.Send(new CorpusFilesChangedMessage(@"C:\nowhere\b"));
 
         Assert.Equal(2, vm.AutoIndexQueuedCount);
+    }
+
+    [Fact]
+    public void CorpusFilesChangedMessage_AlsoQueuesNavStatusRefresh()
+    {
+        // NAV_CACHE_REDESIGN §3.5.2 (git pull/sync door): the SAME git-completion signal that
+        // triggers the search reindex also fires the gated nav-status refresh. Counter
+        // increments BEFORE the early return, so receipt is observable without a loaded cache,
+        // and QueueNavStatusRefresh must be a safe no-op (no throw, no work) with roots null.
+        var vm = MakeVm();
+        Assert.Equal(0, vm.NavStatusRefreshQueuedCount);
+
+        WeakReferenceMessenger.Default.Send(new CorpusFilesChangedMessage(@"C:\nowhere\test-root"));
+
+        Assert.Equal(1, vm.NavStatusRefreshQueuedCount);
     }
 
     private sealed class SettingsMessageRecorder
@@ -266,9 +281,18 @@ public class MainWindowViewModelTests
     }
 
     [Fact]
-    public async Task RefreshAllCachedStatusesAsync_UsesBestAvailableTranslationStatusAcrossSources()
+    public async Task RefreshFileStatus_UsesBestAvailableTranslationStatusAcrossSources_AndUpdatesSourcesCoherently()
     {
-        var vm = MakeVm(indexedTranslationService: new IndexedTranslationService());
+        // Ported from the retired RefreshAllCachedStatusesAsync sweep (NAV_CACHE_REDESIGN
+        // §5.2). INTENT preserved: the status pipeline takes the MAX status across every
+        // translation source (canonical partial=Yellow + community-user full=Green ⇒ Green).
+        // NEW coherence pin (§3.5.1 / Disease B :3027-3030): the single-entry save path now
+        // updates Sources COHERENTLY, not just Status — both candidates land in item.Sources.
+        // Real IndexCacheService so RefreshFileStatusAsync's single-entry recompute exercises
+        // the genuine gated pipeline (the stub is a no-op).
+        var vm = MakeVm(
+            indexedTranslationService: new IndexedTranslationService(),
+            indexCacheService: new IndexCacheService(new TranslationStatusService()));
         var (root, originals, translations) = CreateTwoRepoLayout(communityUsers: new[] { "otheruser" });
         var relPath = "T01/test.xml";
         var originalDir = Path.Combine(originals, "xml-p5", "T01");
@@ -297,14 +321,30 @@ public class MainWindowViewModelTests
                 .SetValue(vm, new List<FileNavItem> { item });
             vm.AllItemsByRel[MainWindowViewModel.NormalizeRel(relPath)] = item;
 
-            await vm.RefreshAllCachedStatusesAsync();
+            await InvokeRefreshFileStatusAsync(vm, relPath);
 
+            // Max across sources ⇒ Green.
             Assert.Equal(TranslationStatus.Green, item.Status);
+            // Coherent Sources: BOTH candidates recorded (not left stale/empty).
+            Assert.Equal(2, item.Sources.Count);
+            Assert.Contains(item.Sources, s => s.Token == "canonical");
+            Assert.Contains(item.Sources, s => s.Token == "user:otheruser");
+            // Green comes from the community-user candidate specifically.
+            Assert.Equal(TranslationStatus.Green,
+                item.Sources.Single(s => s.Token == "user:otheruser").Status);
         }
         finally
         {
             CleanupTwoRepoLayout(root);
         }
+    }
+
+    private static async Task InvokeRefreshFileStatusAsync(MainWindowViewModel vm, string relPath)
+    {
+        var task = (Task)typeof(MainWindowViewModel)
+            .GetMethod("RefreshFileStatusAsync", BindingFlags.Instance | BindingFlags.NonPublic)!
+            .Invoke(vm, new object[] { relPath })!;
+        await task;
     }
     private static string? InvokeFindTranslatedPath(MainWindowViewModel vm, string relPath)
     {
