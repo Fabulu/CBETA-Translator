@@ -119,3 +119,6 @@ TestResults/
 
 # Claude agent run directories (local only; ARCHIVE.md is the tracked exception)
 runs/
+
+# zc.py ground-truth search cache (regenerable, large — do not commit)
+eng/tools/zc.cache.jsonl
