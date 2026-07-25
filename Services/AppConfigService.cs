@@ -19,6 +19,14 @@ public sealed class AppConfigService : IAppConfigService
 
     public int NavStatusFilterIndex { get; set; } = 0; // 0=All,1=Green,2=Yellow,3=Red
 
+    /// <summary>
+    /// Applied value of <see cref="AppConfig.ShowApparatusNotes"/>, mirrored here so
+    /// views can read the current setting via the singleton. Synced from the loaded
+    /// config in <see cref="TryLoadAsync"/> and refreshed on settings apply. Default
+    /// false (reader apparatus-notes panel OFF).
+    /// </summary>
+    public bool ShowApparatusNotes { get; set; }
+
     /// <summary>Path of the backup written when a corrupt config.json is detected.</summary>
     public string CorruptBackupPath => ConfigPath + ".corrupt";
 
@@ -85,6 +93,10 @@ public sealed class AppConfigService : IAppConfigService
             BackupCorruptConfig("config.json deserialized to null");
             return null;
         }
+
+        // Mirror the applied apparatus-notes setting into the singleton so views can
+        // read it without holding the whole config (see ShowApparatusNotes docs).
+        ShowApparatusNotes = cfg.ShowApparatusNotes;
 
         try
         {
@@ -163,8 +175,19 @@ public sealed class AppConfigService : IAppConfigService
         }
 
         var json = JsonSerializer.Serialize(toWrite, JsonOpts);
-        var tmpPath = ConfigPath + ".tmp";
-        await File.WriteAllTextAsync(tmpPath, json);
-        File.Move(tmpPath, ConfigPath, overwrite: true);
+        // Unique temp per call: a fixed "config.json.tmp" makes concurrent saves race —
+        // the first Move consumes the temp, the second throws FileNotFound. A per-call
+        // temp name isolates writers; the final Move (overwrite) is last-writer-wins.
+        var tmpPath = ConfigPath + "." + Guid.NewGuid().ToString("N") + ".tmp";
+        try
+        {
+            await File.WriteAllTextAsync(tmpPath, json);
+            File.Move(tmpPath, ConfigPath, overwrite: true);
+        }
+        catch
+        {
+            try { if (File.Exists(tmpPath)) File.Delete(tmpPath); } catch { }
+            throw;
+        }
     }
 }

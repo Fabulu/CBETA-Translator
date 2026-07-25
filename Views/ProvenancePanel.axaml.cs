@@ -12,6 +12,7 @@ using Avalonia.Input;
 using Avalonia.Layout;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
+using ReadZen.App.Infrastructure;
 using ReadZen.App.Models;
 
 namespace ReadZen.App.Views;
@@ -376,6 +377,16 @@ public partial class ProvenancePanel : UserControl
             if (!string.IsNullOrWhiteSpace(_license.SourceEdition)) sb.Append($". {_license.SourceEdition}");
             if (!string.IsNullOrWhiteSpace(_license.ShortLabel)) sb.Append($". {_license.ShortLabel}");
             sb.Append('.');
+        }
+
+        // This copies a citation of the digital edition. When we know the
+        // source URL, cite it as a web resource — which requires an access
+        // date (web content is mutable; a print reference would not get one).
+        var sourceUrl = _license?.StableRevisionUrl ?? _license?.SourceUrl;
+        if (sb.Length > 0 && !string.IsNullOrWhiteSpace(sourceUrl))
+        {
+            sb.Append(" Source: ").Append(sourceUrl)
+              .Append(". Accessed ").Append(CitationDates.DayMonthYear(CitationDates.Today)).Append('.');
         }
 
         return sb.ToString();

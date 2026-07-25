@@ -8,6 +8,15 @@ public interface IAppConfigService
     string ConfigPath { get; }
     int NavStatusFilterIndex { get; set; }
 
+    /// <summary>
+    /// Applied value of <see cref="Models.AppConfig.ShowApparatusNotes"/>, mirrored
+    /// into the singleton service so views (e.g. the reader's apparatus-notes gate)
+    /// can read the current setting without holding the whole config. Synced from
+    /// the loaded config in <see cref="TryLoadAsync"/> and refreshed when settings
+    /// are applied at runtime. Default false (panel OFF).
+    /// </summary>
+    bool ShowApparatusNotes { get; set; }
+
     /// <summary>Path of the backup written when a corrupt config.json is detected.</summary>
     string CorruptBackupPath { get; }
 

@@ -164,6 +164,34 @@
                                     <Setter Property="FontWeight" Value="SemiBold"/>
                                     <Setter Property="BorderBrush" Value="{DynamicResource TabAccent}"/>
                                 </Style>
+                                <!-- Pop-out affordance: a small "open in new window" glyph appended to
+                                     a tab's content. Unobtrusive (hidden) until the tab is hovered or
+                                     selected, then fully lit on its own hover. Only the tabs that own a
+                                     standalone window host carry it (Read / Lineage / Dictionary). -->
+                                <Style Selector="TabStrip#MainTabs > TabStripItem Button.tab-popout">
+                                    <Setter Property="Opacity" Value="0"/>
+                                    <Setter Property="Padding" Value="0"/>
+                                    <Setter Property="Margin" Value="2,0,0,0"/>
+                                    <Setter Property="Width" Value="16"/>
+                                    <Setter Property="Height" Value="16"/>
+                                    <Setter Property="MinWidth" Value="16"/>
+                                    <Setter Property="MinHeight" Value="16"/>
+                                    <Setter Property="FontSize" Value="11"/>
+                                    <Setter Property="Background" Value="Transparent"/>
+                                    <Setter Property="BorderThickness" Value="0"/>
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                    <Setter Property="Cursor" Value="Hand"/>
+                                    <Setter Property="Foreground" Value="{Binding $parent[TabStripItem].Foreground}"/>
+                                </Style>
+                                <Style Selector="TabStrip#MainTabs > TabStripItem:pointerover Button.tab-popout">
+                                    <Setter Property="Opacity" Value="0.75"/>
+                                </Style>
+                                <Style Selector="TabStrip#MainTabs > TabStripItem:selected Button.tab-popout">
+                                    <Setter Property="Opacity" Value="0.9"/>
+                                </Style>
+                                <Style Selector="TabStrip#MainTabs > TabStripItem Button.tab-popout:pointerover">
+                                    <Setter Property="Opacity" Value="1"/>
+                                </Style>
                             </TabStrip.Styles>
                             <TabStripItem ToolTip.Tip="Side-by-side Chinese/English reader">
                                     <StackPanel Orientation="Horizontal" Spacing="4">
@@ -171,6 +199,9 @@
                                                   Data="M21 5V18.5C19.9 18.15 18.7 18 17.5 18C15.8 18 13.35 18.65 12 19.5V6C10.55 4.9 8.45 4.5 6.5 4.5C4.55 4.5 2.45 4.9 1 6V20.65C1 20.9 1.25 21.15 1.5 21.15C1.6 21.15 1.65 21.1 1.75 21.1C3.1 20.45 5.05 19.5 6.5 19.5C8.45 19.5 10.55 20.4 12 21.5C13.35 20.65 15.8 19.5 17.5 19.5C19.15 19.5 20.85 20.3 21.75 21.1C21.85 21.1 21.9 21.15 22 21.15C22.25 21.15 22.5 20.9 22.5 20.65V6C22.35 5.65 21.7 5.3 21 5Z"
                                                   Foreground="{Binding $parent[TabStripItem].Foreground}"/>
                                         <TextBlock Text="Read" VerticalAlignment="Center"/>
+                                        <Button Name="BtnPopoutRead" Classes="tab-popout"
+                                                Content="&#x29C9;"
+                                                ToolTip.Tip="Open the reader in a new window at the current position"/>
                                     </StackPanel>
                             </TabStripItem>
                             <TabStripItem ToolTip.Tip="Markdown translation editor">
@@ -211,6 +242,20 @@
                                                   Data="M12 5.5A3.5 3.5 0 0 1 15.5 9A3.5 3.5 0 0 1 12 12.5A3.5 3.5 0 0 1 8.5 9A3.5 3.5 0 0 1 12 5.5M5 8C5.56 8 6.08 8.15 6.53 8.42C6.38 9.85 6.8 11.27 7.66 12.38C7.16 13.34 6.16 14 5 14A3 3 0 0 1 2 11A3 3 0 0 1 5 8M19 8A3 3 0 0 1 22 11A3 3 0 0 1 19 14C17.84 14 16.84 13.34 16.34 12.38C17.2 11.27 17.62 9.85 17.47 8.42C17.92 8.15 18.44 8 19 8M5.5 18.25C5.5 16.18 8.41 14.5 12 14.5S18.5 16.18 18.5 18.25V20H5.5V18.25Z"
                                                   Foreground="{Binding $parent[TabStripItem].Foreground}"/>
                                         <TextBlock Text="Lineage" VerticalAlignment="Center"/>
+                                        <Button Name="BtnPopoutLineage" Classes="tab-popout"
+                                                Content="&#x29C9;"
+                                                ToolTip.Tip="Open the Zen master explorer in a new window"/>
+                                    </StackPanel>
+                            </TabStripItem>
+                            <TabStripItem Name="TabDictionaryItem" ToolTip.Tip="Zen Dictionary: manage terminology and see corpus usage">
+                                    <StackPanel Orientation="Horizontal" Spacing="4">
+                                        <PathIcon Width="12" Height="12"
+                                                  Data="M18 22A2 2 0 0 0 20 20V4A2 2 0 0 0 18 2H6A2 2 0 0 0 4 4V20A2 2 0 0 0 6 22H18M9 4H11V9L9.5 7.75L8 9V4H9Z"
+                                                  Foreground="{Binding $parent[TabStripItem].Foreground}"/>
+                                        <TextBlock Text="Dictionary" VerticalAlignment="Center"/>
+                                        <Button Name="BtnPopoutDictionary" Classes="tab-popout"
+                                                Content="&#x29C9;"
+                                                ToolTip.Tip="Open the Zen dictionary in a new window at the current term"/>
                                     </StackPanel>
                             </TabStripItem>
                         </TabStrip>
@@ -328,22 +373,13 @@
                         <views:GitTabView Name="GitView"/>
                         <views:ScholarTabView Name="ScholarView"/>
 
-                        <!-- Masters tab: lightweight launcher for ZenMasterManagerWindow -->
-                        <Border Name="MastersTabPanel" Padding="16">
-                          <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="12" MaxWidth="500">
-                            <TextBlock Text="Zen Masters" FontSize="22" FontWeight="Bold" HorizontalAlignment="Center"/>
-                            <TextBlock Name="TxtMastersStatus" Text="Loading masters..."
-                                       HorizontalAlignment="Center" FontSize="13" Opacity="0.7"/>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="12" Margin="0,8,0,0">
-                              <Button Name="BtnOpenMasters" Content="Explore Zen Masters" MinWidth="200" Padding="12,8"
-                                      HorizontalContentAlignment="Center"/>
-                              <Button Name="BtnBuildMasterIndex" Content="Scan Texts for Masters" MinWidth="200" Padding="12,8"
-                                      HorizontalContentAlignment="Center"/>
-                            </StackPanel>
-                            <TextBlock Name="TxtMastersCorpusInfo" Text="" HorizontalAlignment="Center"
-                                       FontSize="11" Opacity="0.6" TextWrapping="Wrap" TextAlignment="Center"/>
-                          </StackPanel>
-                        </Border>
+                        <!-- Lineage tab: hosts the reusable ZenMasterManagerView (Browse /
+                             Corpus / Lineage-Web). The control is built lazily in code the
+                             first time this tab is shown (see EnsureMastersViewActivatedAsync). -->
+                        <Border Name="MastersTabHost" Padding="0"/>
+
+                        <!-- Dictionary tab: hosts the reusable Zen Dictionary editor surface -->
+                        <views:DictionaryEditorView Name="DictionaryView"/>
                     </Carousel>
 
                     <Border Name="EmptyStateOverlay" IsVisible="True"
@@ -385,6 +421,7 @@
         </Grid>
 
         <Border Grid.Row="3"
+                Name="StatusBar"
                 Background="{DynamicResource BarBg}"
                 Padding="8">
             <DockPanel LastChildFill="True">

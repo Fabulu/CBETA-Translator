@@ -75,6 +75,14 @@ public sealed class DictionaryEntryCard : UserControl
     /// <summary>Resolves a theme resource key to a brush (e.g. "TextFg"). Set by the host for theme parity.</summary>
     public Func<string, IBrush?>? BrushResolver { get; set; }
 
+    /// <summary>
+    /// Optional: resolves a related head term to its English gloss (first sense's
+    /// PreferredTarget) so the "Related" row shows English beside the Chinese (SPA
+    /// related-entries parity). Null / blank result → the bare Chinese term. Set it BEFORE
+    /// assigning <see cref="Entry"/>/calling <see cref="Render"/> — the row is built then.
+    /// </summary>
+    public Func<string, string?>? RelatedGlossResolver { get; set; }
+
     /// <summary>The hero interaction: open the cited source in the reader at the exact line (design §8).</summary>
     public event EventHandler<OpenOccurrenceRequestedEventArgs>? OpenOccurrenceRequested;
 
@@ -571,7 +579,18 @@ public sealed class DictionaryEntryCard : UserControl
         {
             if (i > 0) AddDot(wrap);
             bool cjk = kind == DictionaryNavigateKind.Term;
-            wrap.Children.Add(MakeLink(items[i], kind, items[i], sizeOverride: 12, cjk: cjk));
+
+            // Related entries default to their ENGLISH label (Chinese secondary) when the
+            // host supplied a resolver; the navigate TARGET stays the raw head term either way.
+            string text = items[i];
+            if (kind == DictionaryNavigateKind.Term)
+            {
+                var gloss = RelatedGlossResolver?.Invoke(items[i]);
+                if (!string.IsNullOrWhiteSpace(gloss))
+                    text = gloss + " · " + items[i];
+            }
+
+            wrap.Children.Add(MakeLink(text, kind, items[i], sizeOverride: 12, cjk: cjk));
         }
         return wrap;
     }

@@ -66,6 +66,8 @@ public partial class MainWindow : Window
     private SearchTabView? _searchView;
     private GitTabView? _gitView;
     private ScholarTabView? _scholarView;
+    private DictionaryEditorView? _dictionaryView;
+    private string? _dictionaryLoadedRoot;
 
     // ViewModel
     private MainWindowViewModel _vm = null!;
@@ -141,8 +143,14 @@ public partial class MainWindow : Window
     // Tag editor (non-modal -- at most one instance per main window)
     private TagEditorWindow? _tagEditorWindow;
 
-    // Zen Master manager (non-modal -- at most one instance per main window)
+    // Zen Master manager (non-modal -- at most one instance per main window).
+    // Kept for deep-links / a future pop-out; the DEFAULT path is now the embedded
+    // Lineage tab hosting _mastersView.
     private ZenMasterManagerWindow? _zenMasterManagerWindow;
+
+    // Embedded Lineage-tab explorer (the reusable ZenMasterManagerView). Built lazily
+    // the first time the Lineage tab (index 5) is shown; see EnsureMastersView*.
+    private ZenMasterManagerView? _mastersView;
 
     // Tour overlay controls
     private Canvas? _tourOverlayCanvas;
@@ -415,7 +423,7 @@ private async Task HandleMasterDeepLinkAsync(string? name, string? user)
         return;
     }
 
-    await OpenZenMasterManagerWindowAsync(name, user);
+    await ShowMasterInLineageTabAsync(name, user);
 }
 
 private async Task HandleScholarDeepLinkAsync(string? collectionId, string? passageId, string? user)
@@ -656,6 +664,7 @@ private async Task LoadConfigAndAutoloadAsync()
         _searchView = Find<SearchTabView>("SearchView");
         _gitView = Find<GitTabView>("GitView");
         _scholarView = Find<ScholarTabView>("ScholarView");
+        _dictionaryView = Find<DictionaryEditorView>("DictionaryView");
 
         _tourOverlayCanvas = Find<Canvas>("TourOverlayCanvas");
         _tourSpotlight = Find<TourSpotlightOverlay>("TourSpotlight");
@@ -696,13 +705,25 @@ private async Task LoadConfigAndAutoloadAsync()
             Avalonia.Threading.Dispatcher.UIThread.Post(() =>
                 _vm.SetStatus($"Action failed ({context}): {ex.Message}"));
 
-        _tourService = sp.GetRequiredService<OnboardingTourService>();
+        // Secondary (pop-out) windows must NEVER participate in the onboarding tour.
+        // OnboardingTourService is a DI singleton shared across every window, so a
+        // secondary that resolved it would (a) subscribe to StepChanged in WireEvents
+        // and (b) re-render the tour overlay on its own ClientSize layout event
+        // (PropertyChanged handler) whenever the PRIMARY window's tour is active —
+        // this is the reported "popping out the reader launches the onboarding tour"
+        // bug. The pre-existing IsSecondaryWindow guard only blocked STARTING the tour
+        // (MaybeStartTour), not subscribing to / rendering the shared singleton's tour.
+        // Leaving _tourService null for secondary windows is the authoritative fix:
+        // every _tourService usage is null-guarded, so the tour subscriptions are
+        // skipped and all tour calls become no-ops. The primary window is unaffected,
+        // so the first-run tour still works there.
+        _tourService = IsSecondaryWindow ? null : sp.GetRequiredService<OnboardingTourService>();
     }
 
     private void WireBridges()
     {
         // StatusText -> TxtStatus (via property changed, or direct bridge)
-        // Marshal to UI thread — background tasks (e.g. RefreshAllCachedStatusesAsync)
+        // Marshal to UI thread — background tasks (e.g. the gated nav-status refresh)
         // can fire property changes from worker threads.
         _vm.PropertyChanged += (_, e) =>
         {
@@ -925,6 +946,20 @@ private async Task LoadConfigAndAutoloadAsync()
             .Register<MainWindow, ReadZen.App.Messages.SettingsAppliedMessage>(
                 this, static (view, msg) => view.OnSettingsApplied(msg.Config));
 
+        // Dictionary surfaces (Dictionary tab, termbase pop-out, reader study panel)
+        // ask to open a Zen master via the typed messenger — one registration covers
+        // every host window, mirroring the SPA's #/master/{name} links.
+        WeakReferenceMessenger.Default
+            .Register<MainWindow, ReadZen.App.Messages.OpenMasterRequestedMessage>(
+                this, static (view, msg) => _ = view.ShowMasterInLineageTabAsync(msg.MasterName));
+
+        // Embedded lineage chart fullscreen (SPA parity): the ZenMasterManagerView broadcasts
+        // this so the shell hides/restores its app chrome around the FullScreen window state,
+        // leaving only the chart visible. One registration covers the window's lifetime.
+        WeakReferenceMessenger.Default
+            .Register<MainWindow, ReadZen.App.Messages.LineageFullscreenRequestedMessage>(
+                this, static (view, msg) => view.SetChromeHiddenForLineageFullscreen(msg.On));
+
         // Index cache save debounce
         _vm.ScheduleIndexCacheSave = ScheduleIndexCacheSave;
 
@@ -1014,6 +1049,8 @@ private async Task LoadConfigAndAutoloadAsync()
             // pointing at CBETA and personal translations silently fail to
             // ship (the "no auto-mergeable changes" failure mode).
             _gitView?.SetActiveCorpus(_vm.ActiveCorpus);
+            // If the Dictionary tab is showing, refresh it for the new corpus.
+            EnsureDictionaryTabLoaded();
         }
         else if (e.PropertyName == nameof(MainWindowViewModel.CurrentFileText))
         {
@@ -1023,6 +1060,35 @@ private async Task LoadConfigAndAutoloadAsync()
         {
             Title = _vm.WindowTitle;
         }
+        else if (e.PropertyName == nameof(MainWindowViewModel.SelectedTabIndex))
+        {
+            EnsureDictionaryTabLoaded();
+        }
+    }
+
+    private const int DictionaryTabIndex = 6;
+
+    /// <summary>
+    /// Lazily (re)loads the Dictionary tab's editor for the active corpus. Called when the
+    /// Dictionary tab is selected or when the active corpus changes while it is showing.
+    /// No-op unless the Dictionary tab is the current tab and the corpus root has changed.
+    /// </summary>
+    private void EnsureDictionaryTabLoaded()
+    {
+        if (_dictionaryView == null || _vm.SelectedTabIndex != DictionaryTabIndex)
+            return;
+
+        var root = _vm.TranslationRoot ?? _vm.Root;
+        if (string.IsNullOrWhiteSpace(root))
+            return;
+        if (string.Equals(root, _dictionaryLoadedRoot, StringComparison.Ordinal))
+            return;
+
+        var origDir = _vm.OriginalDir ?? "";
+        var transDir = _vm.GetActiveTranslatedDir() ?? "";
+        var username = _vm.Config.GitHubUsername ?? _vm.Config.Username;
+        _dictionaryView.Load(root, origDir, transDir, username);
+        _dictionaryLoadedRoot = root;
     }
 
     // ===========================================================
@@ -1044,6 +1110,8 @@ private async Task LoadConfigAndAutoloadAsync()
             _btnToggleTopBar.Click += (_, _) => ToggleTopBarCommands();
             UpdateTopBarToggleState();
         }
+
+        WireTabPopoutAffordances();
 
         if (_btnOpenRoot != null) _btnOpenRoot.Click += async (_, _) =>
         {
@@ -1210,6 +1278,14 @@ private async Task LoadConfigAndAutoloadAsync()
                         _navAutoHiddenByTab = false;
                     }
                 }
+
+                // The Lineage tab (index 5) hosts the embedded Zen Master explorer.
+                // Build + activate it lazily the first time the tab is shown (the
+                // catalog load + graph build only happen here, not at startup). While
+                // the tour is active we skip the auto-activate so its masters steps can
+                // drive the tab switch themselves.
+                if (_tabs.SelectedIndex == 5 && _tourService?.IsActive != true)
+                    await EnsureMastersViewActivatedAsync();
             };
             _vm.SetLastTabIndex(_tabs.SelectedIndex);
         }
@@ -1350,6 +1426,8 @@ private async Task LoadConfigAndAutoloadAsync()
         if (_readableView != null)
         {
             _readableView.GetTranslationUser = () => _vm.GetActiveTranslationUser();
+            // Corpus root for the reader's Zen-dictionary underline/click lookup.
+            _readableView.GetDictionaryRoot = () => _vm.TranslationRoot ?? _vm.Root;
             _readableView.Status += (_, msg) => _vm.SetStatus(msg);
 
             _readableView.ZenFlagChanged += async (_, ev) =>
@@ -1436,7 +1514,7 @@ private async Task LoadConfigAndAutoloadAsync()
 
             _readableView.OpenMasterRequested += async (_, masterName) =>
             {
-                await OpenZenMasterManagerWindowAsync(masterName);
+                await ShowMasterInLineageTabAsync(masterName);
             };
 
             _readableView.StudyPanelContextChanged += async (_, ctx) =>
@@ -1606,7 +1684,7 @@ private async Task LoadConfigAndAutoloadAsync()
             };
             _searchView.OpenMasterRequested += async (_, masterName) =>
             {
-                await OpenZenMasterManagerWindowAsync(masterName);
+                await ShowMasterInLineageTabAsync(masterName);
             };
             _searchAddToScholarHandler = async (_, passage) =>
             {
@@ -1778,7 +1856,7 @@ private async Task LoadConfigAndAutoloadAsync()
             };
             _scholarView.OpenMasterRequested += async (_, name) =>
             {
-                await OpenZenMasterManagerWindowAsync(name);
+                await ShowMasterInLineageTabAsync(name);
             };
             _scholarView.DictionarySourceChanged += async (_, idx) =>
             {
@@ -1787,7 +1865,7 @@ private async Task LoadConfigAndAutoloadAsync()
 
             _scholarView.ZenMastersRequested += async (_, _) =>
             {
-                await OpenZenMasterManagerWindowAsync();
+                await ShowMasterInLineageTabAsync();
             };
 
             // Reload scholar data when ANY window (including secondary) adds a passage
@@ -1801,6 +1879,17 @@ private async Task LoadConfigAndAutoloadAsync()
                 };
                 ScholarTabView.ScholarDataChanged += _scholarDataChangedHandler;
             }
+        }
+
+        if (_dictionaryView != null)
+        {
+            // The tab has no window to close; repurpose the editor's Close button
+            // to return to the Read tab, and hide it to avoid a dead control.
+            _dictionaryView.SetCloseButtonVisible(false);
+            _dictionaryView.CloseRequested = () => ForceTab(0);
+
+            _dictionaryView.CorpusNavigationRequested += (_, req) => _vm.HandleNavigationRequested(req);
+            _dictionaryView.EditRequested += (_, _) => _ = OpenDictionaryEditorWindowAsync();
         }
 
         if (_readableView != null)
@@ -1825,84 +1914,7 @@ private async Task LoadConfigAndAutoloadAsync()
             _translationView.AddToScholarRequested += _translationAddToScholarHandler;
         }
 
-        // Masters tab buttons
-        var btnOpenMasters = Find<Button>("BtnOpenMasters");
-        if (btnOpenMasters != null)
-            btnOpenMasters.Click += (_, _) => AsyncGuard.Run(async () => await OpenZenMasterManagerWindowAsync(), "MainWindow.btnOpenMasters.Click");
-
-        var btnBuildMasterIndex = Find<Button>("BtnBuildMasterIndex");
-        if (btnBuildMasterIndex != null)
-            btnBuildMasterIndex.Click += async (_, _) =>
-            {
-                if (string.IsNullOrEmpty(_vm.Root)) return;
-                btnBuildMasterIndex.IsEnabled = false;
-                var txtInfo = Find<TextBlock>("TxtMastersCorpusInfo");
-                try
-                {
-                    var svc = new MasterCorpusSearchService();
-                    var masterMgr = App.Services.GetRequiredService<ZenMasterManagerService>();
-                    var catalog = await masterMgr.LoadAsync(_vm.Root);
-
-                    if (txtInfo != null) txtInfo.Text = "Scanning corpus...";
-
-                    var progress = new Progress<(int done, int total, string status)>(p =>
-                    {
-                        if (txtInfo != null) txtInfo.Text = p.status;
-                    });
-
-                    var index = await svc.BuildFullIndexAsync(_vm.Root, catalog, progress);
-                    var cacheDir = MasterCorpusSearchService.GetCacheDir(_vm.Root);
-                    await svc.SaveAsync(cacheDir, index);
-
-                    if (txtInfo != null)
-                        txtInfo.Text = $"Index ready: {index.MasterCount} of {catalog.Records.Count} masters found in texts, {index.Appearances.Count} appearances across {index.FileCount} files";
-                    _vm.SetStatus($"Master corpus index rebuilt ({index.MasterCount} of {catalog.Records.Count} masters appear in texts).");
-                }
-                catch (Exception ex)
-                {
-                    if (txtInfo != null) txtInfo.Text = $"Failed: {ex.Message}";
-                }
-                finally { btnBuildMasterIndex.IsEnabled = true; }
-            };
-
-        // Update Masters tab status on load
-        UpdateMastersTabInfo();
-
         AddHandler(InputElement.KeyDownEvent, OnWindowKeyDown, RoutingStrategies.Tunnel);
-    }
-
-    private void UpdateMastersTabInfo()
-    {
-        var txtStatus = Find<TextBlock>("TxtMastersStatus");
-        var txtCorpus = Find<TextBlock>("TxtMastersCorpusInfo");
-        if (txtStatus == null || txtCorpus == null || string.IsNullOrEmpty(_vm.Root)) return;
-
-        _ = Task.Run(async () =>
-        {
-            try
-            {
-                // Load master count
-                var masterMgr = App.Services.GetRequiredService<ZenMasterManagerService>();
-                var catalog = await masterMgr.LoadAsync(_vm.Root);
-                Dispatcher.UIThread.Post(() =>
-                {
-                    txtStatus.Text = $"{catalog.Records.Count} masters catalogued";
-                });
-
-                var svc = new MasterCorpusSearchService();
-                var cacheDir = MasterCorpusSearchService.GetCacheDir(_vm.Root!);
-                var cached = await svc.TryLoadAsync(cacheDir);
-
-                Dispatcher.UIThread.Post(() =>
-                {
-                    if (cached != null)
-                        txtCorpus.Text = $"Corpus index: {cached.MasterCount} masters found in {cached.FileCount} files ({cached.Appearances.Count} total appearances)";
-                    else
-                        txtCorpus.Text = "Text scanning hasn't run yet. Click 'Scan Texts for Masters' or it will happen automatically next time you open the app.";
-                });
-            }
-            catch { }
-        });
     }
 
     private void EnsureScholarContextReady()
@@ -2050,11 +2062,11 @@ private async Task LoadConfigAndAutoloadAsync()
             return;
         }
 
-        // Ctrl+D  -  open dictionary from any tab
+        // Ctrl+D  -  jump to the top-level Dictionary tab (the dictionary is a tab now)
         if (e.KeyModifiers == KeyModifiers.Control && e.Key == Key.D)
         {
             e.Handled = true;
-            _ = _vm.OpenTermbaseEditorAsync();
+            ForceTab(6);
             return;
         }
 
@@ -2204,7 +2216,7 @@ private async Task LoadConfigAndAutoloadAsync()
             ("Search: Open search",          () => ForceTab(2)),
             ("Sync: Open git sync",          () => ForceTab(3)),
             ("Collect: Open collections",    () => ForceTab(4)),
-            ("Lineage: Open masters",        () => ForceTab(5)),
+            ("Lineage: Open masters",        () => { ForceTab(5); AsyncGuard.Run(EnsureMastersViewActivatedAsync, "MainWindow.cmd.masters"); }),
             ("Settings: Open preferences",   () => _ = _vm.OpenSettingsAsync()),
             ("Termbase: Open editor",        () => _ = _vm.OpenTermbaseEditorAsync()),
             ("Zen Dictionary (Rich): Open editor", () => _ = OpenDictionaryEditorWindowAsync()),
@@ -2367,6 +2379,70 @@ private async Task LoadConfigAndAutoloadAsync()
     // Termbase editor window
     // ===========================================================
 
+    // ===========================================================
+    // Tab pop-out affordances (PR1: reuse-based tabs only)
+    //
+    // Read / Lineage / Dictionary each already have a standalone window host, so their
+    // pop-out is "open a second instance in a window carrying current state" — the main tab
+    // stays fully live (no reparenting, no placeholder). Wired here by direct instance calls
+    // into the existing window openers (no new MainWindowViewModel bridge delegates). Sync,
+    // Translate, Search and Collect are intentionally NOT given a pop-out in PR1.
+    // ===========================================================
+    private void WireTabPopoutAffordances()
+    {
+        var btnPopoutRead = Find<Button>("BtnPopoutRead");
+        if (btnPopoutRead != null)
+            btnPopoutRead.Click += (_, _) =>
+            {
+                if (BlockIfTourActive()) return;
+                var root = _vm.TranslationRoot ?? _vm.Root;
+                if (string.IsNullOrEmpty(root))
+                {
+                    _vm.SetStatus("Open a corpus before popping out the reader.", StatusSeverity.Warning);
+                    return;
+                }
+
+                var locus = _readableView?.GetCurrentLocus();
+                if (locus == null || string.IsNullOrWhiteSpace(locus.RelPath))
+                {
+                    _vm.SetStatus("Open a text before popping out the reader.", StatusSeverity.Warning);
+                    return;
+                }
+
+                // Opens an independent secondary reader window at the current file + top-visible
+                // line; the Read tab keeps its own live state (see POPOUT_TABS_DESIGN §3).
+                WindowNavigationService.OpenAndNavigate(root!, locus);
+            };
+
+        var btnPopoutLineage = Find<Button>("BtnPopoutLineage");
+        if (btnPopoutLineage != null)
+            btnPopoutLineage.Click += (_, _) =>
+            {
+                // Carry the currently-selected master (if the embedded explorer was ever opened);
+                // OpenZenMasterManagerWindowAsync lands on it and re-activates a live singleton.
+                var landingName = _mastersView?.ViewModel.SelectedMaster?.CanonicalName;
+                _ = OpenZenMasterManagerWindowAsync(landingName, null);
+            };
+
+        var btnPopoutDictionary = Find<Button>("BtnPopoutDictionary");
+        if (btnPopoutDictionary != null)
+            btnPopoutDictionary.Click += (_, _) =>
+            {
+                var root = _vm.TranslationRoot ?? _vm.Root;
+                if (string.IsNullOrEmpty(root))
+                {
+                    _vm.SetStatus("Open a corpus before popping out the dictionary.", StatusSeverity.Warning);
+                    return;
+                }
+
+                var origDir = _vm.OriginalDir ?? "";
+                var transDir = _vm.GetActiveTranslatedDir() ?? "";
+                // Carry the currently-selected term so the pop-out lands where the tab is.
+                var landingTerm = _dictionaryView?.GetCurrentTerm();
+                _ = OpenTermbaseEditorWindowAsync(root!, origDir, transDir, _vm.Username, landingTerm, null);
+            };
+    }
+
     private async Task OpenTermbaseEditorWindowAsync(string root, string origDir, string transDir, string? username = null, string? landingTerm = null, string? landingCommunityUser = null)
     {
         if (BlockIfTourActive()) return;
@@ -2379,46 +2455,13 @@ private async Task LoadConfigAndAutoloadAsync()
                 return;
             }
 
-            var path = Path.Combine(root, "termbase.json");
-
-            if (!File.Exists(path))
-            {
-                var starterJson =
-@"[
-  {
-    ""sourceTerm"": ""\u548c\u5c1a"",
-    ""preferredTarget"": ""the master"",
-    ""alternateTargets"": [""Venerable""],
-    ""status"": ""preferred"",
-    ""note"": ""do not leave as Chinese in EN""
-  }
-]";
-                await File.WriteAllTextAsync(path, starterJson, new UTF8Encoding(false));
-            }
-
             var win = new TermbaseEditorWindow(root, origDir, transDir, username, landingTerm, landingCommunityUser)
             {
                 RequestedThemeVariant = this.ActualThemeVariant
             };
 
-            win.TermsSaved += (_, _) =>
-            {
-                _vm.HandleTermsSaved();
-                _scholarView?.InvalidateTermbaseCache();
-            };
             win.CorpusNavigationRequested += (_, req) => _vm.HandleNavigationRequested(req);
-            win.AddToScholarRequested += (_, hit) =>
-            {
-                var passage = new ScholarPassage
-                {
-                    ZhText = hit.ZhSnippet,
-                    SourceRelPath = hit.SourceRelPath,
-                };
-                if (string.IsNullOrWhiteSpace(passage.Summary))
-                    passage.Summary = passage.GenerateAutoSummary();
-                _scholarView?.AddPassage(passage);
-                _vm.SetStatus("Corpus hit added to Scholar collection.");
-            };
+            win.EditRequested += (_, _) => _ = OpenDictionaryEditorWindowAsync();
             win.Closed += (_, _) => _termbaseEditorWindow = null;
 
             _termbaseEditorWindow = win;
@@ -2468,6 +2511,11 @@ private async Task LoadConfigAndAutoloadAsync()
             {
                 _vm.HandleTermsSaved();
                 _scholarView?.InvalidateTermbaseCache();
+                // The reader's underline index and the browse surfaces cache the dictionary:
+                // drop them so the saved entries show up without an app restart.
+                try { App.Services.GetRequiredService<IZenDictionaryLookup>().Invalidate(); } catch { }
+                _dictionaryView?.Reload();
+                _termbaseEditorWindow?.Reload();
             };
             win.CorpusNavigationRequested += (_, req) => _vm.HandleNavigationRequested(req);
             win.Closed += (_, _) => _dictionaryEditorWindow = null;
@@ -2484,7 +2532,93 @@ private async Task LoadConfigAndAutoloadAsync()
     }
 
     // ===========================================================
-    // Zen Master manager window
+    // Zen Master explorer — embedded Lineage tab (default) + window (pop-out)
+    // ===========================================================
+
+    // Lineage-chart fullscreen chrome state. When the embedded chart enters fullscreen we
+    // collapse the top bar (which contains the command bar AND the MainTabs TabStrip) plus the
+    // status bar / update banner, saving each prior IsVisible so exit restores exactly what was
+    // showing. The nav pane is already auto-hidden on the Lineage tab, so it is left alone.
+    private bool _lineageFsChromeHidden;
+    private bool _savedTopBarVisible;
+    private bool _savedStatusBarVisible;
+    private bool _savedUpdateBarVisible;
+
+    /// <summary>Hide (or restore) the shell's app chrome around the embedded lineage chart's
+    /// fullscreen, so only the chart's tab content fills the FullScreen window (SPA parity).
+    /// Driven by <see cref="ReadZen.App.Messages.LineageFullscreenRequestedMessage"/>. Idempotent
+    /// via a state flag; every exit path (Esc + toggle button) routes back through the view's
+    /// SetLineageFullscreen(false), which sends On=false, so the chrome can never get stuck hidden.
+    /// Hiding TopBar collapses the header AND the nested TabStrip; the Carousel's ElementName
+    /// binding to MainTabs survives because IsVisible=false keeps the name scope intact.</summary>
+    private void SetChromeHiddenForLineageFullscreen(bool hidden)
+    {
+        if (hidden == _lineageFsChromeHidden) return;
+        var statusBar = Find<Border>("StatusBar");
+        var updateBar = Find<Border>("UpdateBar");
+
+        if (hidden)
+        {
+            if (_topBar != null) { _savedTopBarVisible = _topBar.IsVisible; _topBar.IsVisible = false; }
+            if (statusBar != null) { _savedStatusBarVisible = statusBar.IsVisible; statusBar.IsVisible = false; }
+            if (updateBar != null) { _savedUpdateBarVisible = updateBar.IsVisible; updateBar.IsVisible = false; }
+            _lineageFsChromeHidden = true;
+        }
+        else
+        {
+            if (_topBar != null) _topBar.IsVisible = _savedTopBarVisible;
+            if (statusBar != null) statusBar.IsVisible = _savedStatusBarVisible;
+            if (updateBar != null) updateBar.IsVisible = _savedUpdateBarVisible;
+            _lineageFsChromeHidden = false;
+        }
+    }
+
+    /// <summary>Build the embedded ZenMasterManagerView on first use and drop it into the
+    /// Lineage tab's host container. Cheap and idempotent — the costly catalog load + graph
+    /// build happen in EnsureActivatedAsync, not here.</summary>
+    private ZenMasterManagerView EnsureMastersViewCreated()
+    {
+        if (_mastersView == null)
+        {
+            _mastersView = new ZenMasterManagerView(_vm.TranslationRoot ?? _vm.Root, _vm.Root);
+            _mastersView.CorpusNavigationRequested += (_, req) => _vm.HandleNavigationRequested(req);
+            var host = Find<Border>("MastersTabHost");
+            if (host != null) host.Child = _mastersView;
+        }
+        return _mastersView;
+    }
+
+    /// <summary>Ensure the embedded explorer is built and its catalog/graph loaded. Called when
+    /// the Lineage tab is first shown (and from the command palette).</summary>
+    private async Task EnsureMastersViewActivatedAsync()
+    {
+        var view = EnsureMastersViewCreated();
+        await view.EnsureActivatedAsync();
+    }
+
+    /// <summary>Open the Zen Master explorer in the embedded Lineage tab (index 5), optionally
+    /// landing on a specific master (deep-links, dict "open master", reader/search/scholar
+    /// "View Master"). Replaces the old pop-out window as the default path. The landing is set
+    /// BEFORE the tab switch so activation opens on the master's Browse profile, not the graph.</summary>
+    private async Task ShowMasterInLineageTabAsync(string? landingName = null, string? landingUser = null)
+    {
+        if (BlockIfTourActive()) return;
+
+        var view = EnsureMastersViewCreated();
+        if (!string.IsNullOrWhiteSpace(landingName))
+            view.ApplyLanding(landingName, landingUser);
+
+        if (_tabs != null && _tabs.SelectedIndex != 5)
+            _tabs.SelectedIndex = 5;   // fires SelectionChanged → EnsureMastersViewActivatedAsync
+
+        await view.EnsureActivatedAsync();
+
+        if (!string.IsNullOrWhiteSpace(landingName))
+            _vm.SetStatus($"Opened Zen Master explorer for \"{landingName}\".", StatusSeverity.Info);
+    }
+
+    // ===========================================================
+    // Zen Master manager window (pop-out — kept for a future pop-out button)
     // ===========================================================
 
     private Task OpenZenMasterManagerWindowAsync(string? landingName = null, string? landingUser = null)

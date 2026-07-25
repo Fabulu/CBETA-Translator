@@ -24,7 +24,7 @@ public class TranslationTabViewModelTests
         Assert.Equal("", vm.QuickInfoText);
         Assert.Equal("Unreviewed", vm.ReviewStateText);
         Assert.Equal("", vm.ProgressText);
-        Assert.True(vm.HoverDictionaryEnabled);
+        Assert.False(vm.HoverDictionaryEnabled); // CC-CEDICT hover is opt-in
         Assert.Equal("", vm.CurrentProjection);
     }
 

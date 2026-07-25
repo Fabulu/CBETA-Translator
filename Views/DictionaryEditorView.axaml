@@ -1,0 +1,266 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:models="clr-namespace:ReadZen.App.Models"
+             xmlns:vm="using:ReadZen.App.ViewModels"
+             xmlns:views="clr-namespace:ReadZen.App.Views"
+             x:Class="ReadZen.App.Views.DictionaryEditorView"
+             x:Name="RootDict"
+             x:DataType="vm:ZenDictionaryBrowseViewModel">
+
+	<Grid RowDefinitions="*,Auto" ColumnDefinitions="300,12,*" Margin="12">
+
+		<!-- Left: search + browse list -->
+		<Border Grid.Row="0"
+				Grid.Column="0"
+				Background="{DynamicResource ControlBg}"
+				BorderBrush="{DynamicResource BorderBrush}"
+				BorderThickness="1"
+				CornerRadius="6"
+				Padding="8">
+			<Grid RowDefinitions="Auto,Auto,*" RowSpacing="8">
+				<TextBlock Text="Zen Dictionary" FontWeight="Bold"/>
+
+				<TextBox Grid.Row="1"
+						 Name="TxtDictSearch"
+						 Text="{Binding SearchQuery}"
+						 Watermark="Search Chinese or English..."/>
+
+				<ListBox Grid.Row="2"
+						 ItemsSource="{Binding FilteredEntries}"
+						 SelectedItem="{Binding SelectedEntry}">
+					<ListBox.ItemTemplate>
+						<DataTemplate x:DataType="models:DictionaryEntry">
+							<Border Padding="6" Margin="0,0,0,2">
+								<StackPanel Spacing="2">
+									<StackPanel Orientation="Horizontal" Spacing="8">
+										<TextBlock Text="{Binding SourceTerm}" FontWeight="Bold" FontSize="15"/>
+										<TextBlock Text="{Binding Senses, Converter={x:Static views:ZenDictConverters.SenseCountLabel}}"
+												   FontSize="10" Opacity="0.55" VerticalAlignment="Center"
+												   IsVisible="{Binding Senses, Converter={x:Static views:ZenDictConverters.HasMultipleSenses}}"/>
+									</StackPanel>
+									<TextBlock Text="{Binding FirstSenseTarget}"
+											   Opacity="0.8" FontSize="12"
+											   TextWrapping="Wrap"/>
+								</StackPanel>
+							</Border>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
+			</Grid>
+		</Border>
+
+		<GridSplitter Grid.Row="0"
+					  Grid.Column="1"
+					  Width="12"
+					  ResizeDirection="Columns"
+					  Background="Transparent"/>
+
+		<!-- Right: SPA-style entry card -->
+		<Border Grid.Row="0"
+				Grid.Column="2"
+				Background="{DynamicResource ControlBg}"
+				BorderBrush="{DynamicResource BorderBrush}"
+				BorderThickness="1"
+				CornerRadius="6"
+				Padding="4">
+			<ScrollViewer HorizontalScrollBarVisibility="Disabled"
+						  VerticalScrollBarVisibility="Auto">
+				<StackPanel Margin="14,10" Spacing="10"
+							IsVisible="{Binding SelectedEntry, Converter={x:Static ObjectConverters.IsNotNull}}">
+
+					<!-- Card header: headword + primary gloss -->
+					<StackPanel Spacing="2">
+						<TextBlock Text="{Binding SelectedEntry.SourceTerm, FallbackValue=''}"
+								   FontSize="30" FontWeight="SemiBold"/>
+						<TextBlock Text="{Binding SelectedEntry.FirstSenseTarget, FallbackValue=''}"
+								   FontSize="15" Opacity="0.8"
+								   TextWrapping="Wrap"/>
+					</StackPanel>
+
+					<Border Height="1" Background="{DynamicResource BorderBrush}" Opacity="0.6"/>
+
+					<!-- Senses -->
+					<ItemsControl ItemsSource="{Binding SelectedEntry.Senses, FallbackValue={x:Null}}">
+						<ItemsControl.ItemTemplate>
+							<DataTemplate x:DataType="models:DictionarySense">
+								<Border Margin="0,0,0,10" Padding="10"
+										Background="{DynamicResource BarBg}"
+										BorderBrush="{DynamicResource BorderBrush}"
+										BorderThickness="1" CornerRadius="6">
+									<StackPanel Spacing="6">
+
+										<!-- Sense heading + badges -->
+										<StackPanel Orientation="Horizontal" Spacing="8">
+											<TextBlock Text="{Binding MasterName, Converter={x:Static views:ZenDictConverters.SenseLabel}}"
+													   FontSize="11" FontWeight="Bold" Opacity="0.65"
+													   VerticalAlignment="Center"/>
+											<Border CornerRadius="3" Padding="5,1"
+													BorderThickness="1"
+													BorderBrush="{DynamicResource BorderBrush}"
+													IsVisible="{Binding Status, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+												<TextBlock Text="{Binding Status}" FontSize="10" Opacity="0.75"/>
+											</Border>
+											<Border CornerRadius="3" Padding="5,1"
+													BorderThickness="1"
+													BorderBrush="{DynamicResource AccentLinkFg}"
+													IsVisible="{Binding Validation, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+												<TextBlock Text="{Binding Validation}" FontSize="10"
+														   Foreground="{DynamicResource AccentLinkFg}"/>
+											</Border>
+										</StackPanel>
+
+										<!-- Preferred translation -->
+										<TextBlock Text="{Binding PreferredTarget}"
+												   FontSize="16" FontWeight="SemiBold"
+												   TextWrapping="Wrap"
+												   IsVisible="{Binding PreferredTarget, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+
+										<!-- Explanation -->
+										<TextBlock Text="{Binding Explanation}"
+												   FontSize="13" TextWrapping="Wrap" Opacity="0.95"
+												   IsVisible="{Binding Explanation, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+
+										<!-- Alternates -->
+										<TextBlock FontSize="12" Opacity="0.75" TextWrapping="Wrap"
+												   IsVisible="{Binding AlternateTargets, Converter={x:Static views:ZenDictConverters.HasAnyString}}">
+											<Run Text="Also:" FontWeight="SemiBold"/>
+											<Run Text="{Binding AlternateTargets, Converter={x:Static views:ZenDictConverters.JoinComma}}"/>
+										</TextBlock>
+
+										<!-- Note -->
+										<TextBlock Text="{Binding Note}"
+												   FontSize="12" TextWrapping="Wrap" Opacity="0.8"
+												   FontStyle="Italic"
+												   IsVisible="{Binding Note, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+
+										<!-- Evidence occurrences -->
+										<ItemsControl ItemsSource="{Binding Occurrences}"
+													  IsVisible="{Binding Occurrences, Converter={x:Static views:ZenDictConverters.HasAnyOccurrence}}">
+											<ItemsControl.ItemTemplate>
+												<DataTemplate x:DataType="models:DictOccurrence">
+													<Border Margin="0,4,0,0" Padding="8"
+															Background="{DynamicResource ControlBg}"
+															BorderBrush="{DynamicResource BorderBrush}"
+															BorderThickness="1" CornerRadius="4">
+														<StackPanel Spacing="3">
+															<TextBlock Text="{Binding Kwic}"
+																	   TextWrapping="Wrap" FontSize="13"
+																	   IsVisible="{Binding Kwic, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+															<StackPanel Orientation="Horizontal" Spacing="10">
+																<Button Content="{Binding MasterName}"
+																		FontSize="11" Padding="0"
+																		Background="Transparent" BorderThickness="0"
+																		Cursor="Hand"
+																		Foreground="{DynamicResource AccentLinkFg}"
+																		Command="{Binding #RootDict.((vm:ZenDictionaryBrowseViewModel)DataContext).OpenMasterCommand}"
+																		CommandParameter="{Binding MasterName}"
+																		ToolTip.Tip="Open this master in the Zen Master Manager"
+																		IsVisible="{Binding MasterName, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+																<Button Content="{Binding Converter={x:Static views:ZenDictConverters.OccurrenceSourceLabel}}"
+																		FontSize="11" Padding="6,1"
+																		Command="{Binding #RootDict.((vm:ZenDictionaryBrowseViewModel)DataContext).OpenOccurrenceCommand}"
+																		CommandParameter="{Binding}"
+																		ToolTip.Tip="Open this passage in the reader"/>
+															</StackPanel>
+															<TextBlock Text="{Binding AttributionNote}"
+																	   FontSize="11" Opacity="0.7" TextWrapping="Wrap"
+																	   IsVisible="{Binding AttributionNote, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+														</StackPanel>
+													</Border>
+												</DataTemplate>
+											</ItemsControl.ItemTemplate>
+										</ItemsControl>
+
+										<!-- Related masters (click to open in the Zen Master Manager) -->
+										<Grid ColumnDefinitions="Auto,*"
+											  IsVisible="{Binding RelatedMasters, Converter={x:Static views:ZenDictConverters.HasAnyString}}">
+											<TextBlock Text="Masters:" FontWeight="SemiBold" FontSize="12"
+													   Opacity="0.8" Margin="0,4,8,0"/>
+											<ItemsControl Grid.Column="1" ItemsSource="{Binding RelatedMasters}">
+												<ItemsControl.ItemsPanel>
+													<ItemsPanelTemplate>
+														<WrapPanel/>
+													</ItemsPanelTemplate>
+												</ItemsControl.ItemsPanel>
+												<ItemsControl.ItemTemplate>
+													<DataTemplate x:DataType="x:String">
+														<Button Content="{Binding}"
+																FontSize="12" Padding="6,2" Margin="0,0,6,4"
+																Foreground="{DynamicResource AccentLinkFg}"
+																Background="Transparent"
+																BorderThickness="1"
+																BorderBrush="{DynamicResource BorderBrush}"
+																Command="{Binding #RootDict.((vm:ZenDictionaryBrowseViewModel)DataContext).OpenMasterCommand}"
+																CommandParameter="{Binding}"
+																ToolTip.Tip="Open this master in the Zen Master Manager"/>
+													</DataTemplate>
+												</ItemsControl.ItemTemplate>
+											</ItemsControl>
+										</Grid>
+
+										<!-- Related entries (click to jump; label defaults to English, Chinese secondary) -->
+										<Grid ColumnDefinitions="Auto,*"
+											  IsVisible="{Binding RelatedTerms, Converter={x:Static views:ZenDictConverters.HasAnyString}}">
+											<TextBlock Text="Related:" FontWeight="SemiBold" FontSize="12"
+													   Opacity="0.8" Margin="0,4,8,0"/>
+											<ItemsControl Grid.Column="1" ItemsSource="{Binding RelatedTerms}">
+												<ItemsControl.ItemsPanel>
+													<ItemsPanelTemplate>
+														<WrapPanel/>
+													</ItemsPanelTemplate>
+												</ItemsControl.ItemsPanel>
+												<ItemsControl.ItemTemplate>
+													<DataTemplate x:DataType="x:String">
+														<Button Content="{Binding Converter={x:Static views:ZenDictConverters.RelatedTermLabel}}"
+																FontSize="12" Padding="6,2" Margin="0,0,6,4"
+																Foreground="{DynamicResource AccentLinkFg}"
+																Background="Transparent"
+																BorderThickness="1"
+																BorderBrush="{DynamicResource BorderBrush}"
+																Command="{Binding #RootDict.((vm:ZenDictionaryBrowseViewModel)DataContext).SelectRelatedTermCommand}"
+																CommandParameter="{Binding}"
+																ToolTip.Tip="Open this related entry"/>
+													</DataTemplate>
+												</ItemsControl.ItemTemplate>
+											</ItemsControl>
+										</Grid>
+
+									</StackPanel>
+								</Border>
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+					</ItemsControl>
+
+					<TextBlock Text="Zen dictionary"
+							   FontSize="10" Opacity="0.45"
+							   HorizontalAlignment="Right"/>
+				</StackPanel>
+			</ScrollViewer>
+		</Border>
+
+		<!-- Bottom bar -->
+		<Border Grid.Row="1"
+				Grid.ColumnSpan="3"
+				Margin="0,12,0,0"
+				Background="{DynamicResource BarBg}"
+				BorderBrush="{DynamicResource BorderBrush}"
+				BorderThickness="1"
+				CornerRadius="6"
+				Padding="10">
+			<Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="8">
+				<TextBlock Text="{Binding StatusMessage}"
+						   Opacity="0.8" VerticalAlignment="Center"/>
+				<Button Grid.Column="1"
+						Content="Open Editor"
+						Command="{Binding OpenEditorCommand}"
+						ToolTip.Tip="Edit the Zen dictionary in the rich editor"/>
+				<Button Grid.Column="2"
+						Name="BtnCloseEditor"
+						Content="Close"
+						MinWidth="100"
+						Command="{Binding CloseWindowCommand}"/>
+			</Grid>
+		</Border>
+
+	</Grid>
+</UserControl>

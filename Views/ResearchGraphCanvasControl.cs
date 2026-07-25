@@ -356,7 +356,15 @@ public class ResearchGraphCanvasControl : Control
         {
             var labelSize = Math.Max(9, 11 * Math.Min(_zoom, 1.5));
             if (isStartingNode) labelSize += 1; // slightly larger label for starting node
-            var labelText = node.Label.Length > 25 ? node.Label[..24] + "\u2026" : node.Label;
+            // Dictionary-entry nodes display their ENGLISH gloss (SecondaryLabel = the
+            // preferred translation target), falling back to the CJK head term when no
+            // English exists. Label itself stays the raw CJK headword \u2014 it is the exact
+            // dictionary-lookup key (see ResearchGraphWindow term-node HARD RULE).
+            var rawLabel = node.NodeType == ScholarNodeType.TermbaseEntry
+                && !string.IsNullOrWhiteSpace(node.SecondaryLabel)
+                    ? node.SecondaryLabel!
+                    : node.Label;
+            var labelText = rawLabel.Length > 25 ? rawLabel[..24] + "\u2026" : rawLabel;
             var labelY = node.Y + r + 3;
             var typeface = isStartingNode
                 ? new Typeface("Segoe UI", FontStyle.Normal, FontWeight.Bold)

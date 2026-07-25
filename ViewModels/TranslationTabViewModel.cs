@@ -34,7 +34,7 @@ public partial class TranslationTabViewModel : ViewModelBase
     private string _progressText = "";
 
     [ObservableProperty]
-    private bool _hoverDictionaryEnabled = true;
+    private bool _hoverDictionaryEnabled; // CC-CEDICT hover is opt-in (config default false)
 
     [ObservableProperty]
     private bool _isModeBodyEnabled;

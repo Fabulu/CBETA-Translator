@@ -26,8 +26,8 @@ public sealed class OnboardingTourService
 
     /// <summary>
     /// Returns the step index relative to the CURRENT PHASE so the tooltip
-    /// shows "Step 1 of 4" during setup and "Step 1 of 52" during the tour,
-    /// never "Step 1 of 56".
+    /// shows "Step 1 of 4" during setup and "Step 1 of 61" during the tour,
+    /// never "Step 1 of 65".
     /// </summary>
     public int PhaseRelativeIndex => IsInSetupPhase
         ? CurrentIndex
@@ -198,8 +198,8 @@ public sealed class OnboardingTourService
         Steps.Add(new TourStep
         {
             Id = "building-index",
-            Title = "Building Search Index...",
-            Body = "Building a search index across the entire corpus. This runs automatically and takes a moment.",
+            Title = "Preparing the Search Index...",
+            Body = "Read Zen ships with a prebuilt search index. When it matches your downloaded texts it is adopted instantly — no long first-run build. Otherwise only the files that changed since the bundle was cut are re-indexed.\n\nEither way this runs automatically in the background; you can start reading as soon as it finishes.",
             Type = TourStepType.Wait,
             Placement = TourPlacement.Center,
             WaitForEvent = "index-built",
@@ -251,10 +251,10 @@ public sealed class OnboardingTourService
         {
             Id = "provenance-panel",
             Title = "Source Documentation",
-            Body = "Check the \u2018Provenance\u2019 checkbox to see where each text comes from: source witnesses, SHA-256 verification hashes, editorial notes, and the full documentation chain.\n\nFor OpenZen files like the 1632 Wumenguan, you can expand the witness verification ledger, case completeness audit, and reading edition notes right in the panel.",
+            Body = "Open the \u2018\u2699 View\u2019 menu in the Reader toolbar and check \u2018Provenance\u2019 to see where each text comes from: source witnesses, SHA-256 verification hashes, editorial notes, and the full documentation chain.\n\nFor OpenZen files like the 1632 Wumenguan, you can expand the witness verification ledger, case completeness audit, and reading edition notes right in the panel.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
-            TargetControlName = "ChkProvenance"
+            TargetControlName = "BtnViewOptions"
         });
 
         // ===== Phase 2: Reading =====
@@ -283,6 +283,17 @@ public sealed class OnboardingTourService
 
         Steps.Add(new TourStep
         {
+            Id = "reader-layout-modes",
+            Title = "Reading Layouts",
+            Body = "These two dropdowns control how the text is laid out:\n\n• Pane picker — Chinese only, both panes, or English only\n• Layout picker — side-by-side two-pane modes, or single-column modes that stack the translation under each Chinese line (Merged flow needs a segment map for the current text)\n\nPick whatever reads best for the text you have open — the choice is remembered.",
+            Type = TourStepType.Passive,
+            Placement = TourPlacement.Bottom,
+            TargetControlName = "CmbReadingLayout",
+            SwitchToTabIndex = 0
+        });
+
+        Steps.Add(new TourStep
+        {
             Id = "hover-dictionary",
             Title = "Built-in Dictionary",
             Body = "Hover over any Chinese character to see its CC-CEDICT dictionary definition.\nLiterary Chinese particles (\u4e4b, \u4e4e, \u8005, \u4e5f) also show grammar notes explaining their function.",
@@ -293,12 +304,23 @@ public sealed class OnboardingTourService
 
         Steps.Add(new TourStep
         {
+            Id = "zen-term-underlines",
+            Title = "Zen Terms Are Underlined",
+            Body = "Words with a gold dashed underline have an entry in the Zen Dictionary. Click one and the Study panel opens with the full entry: attributed senses, evidence quotes, and related terms.\n\nHover stays CC-CEDICT for quick glosses; the click lookup is Zen Dictionary only.",
+            Type = TourStepType.Passive,
+            Placement = TourPlacement.Bottom,
+            TargetControlName = "EditorOriginal",
+            SwitchToTabIndex = 0
+        });
+
+        Steps.Add(new TourStep
+        {
             Id = "study-panel",
             Title = "Study Panel",
-            Body = "Check the \'Study\' checkbox in the Reader toolbar to open the Study Panel.\nAs you move through the text, it shows dictionary definitions, relevant terms from your dictionary, and similar translations from other texts.",
+            Body = "Open the \'⚙ View\' menu in the Reader toolbar and check \'Study\' to open the Study Panel.\nAs you move through the text, it shows dictionary definitions, relevant terms from your dictionary, and similar translations from other texts.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Right,
-            TargetControlName = "ChkStudyPanel",
+            TargetControlName = "BtnViewOptions",
             SwitchToTabIndex = 0
         });
 
@@ -306,30 +328,33 @@ public sealed class OnboardingTourService
         {
             Id = "reader-dictionary-button",
             Title = "Open the Zen Dictionary",
-            Body = "The Dict button opens the full Zen Dictionary window, where you can manage terminology and see how terms are used across all the texts \u2014 right while you're reading.",
+            Body = "The Dictionary tab opens the full Zen Dictionary, where you can manage terminology and see how terms are used across all the texts. You can also press Ctrl+D from any tab.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
-            TargetControlName = "BtnDictionary",
-            SwitchToTabIndex = 0
+            TargetControlName = "TabDictionaryItem",
+            SwitchToTabIndex = 6
         });
 
         Steps.Add(new TourStep
         {
             Id = "community-notes",
             Title = "Community Notes",
-            Body = "Blue Community markers in the text are shared notes from other readers — click one to read it. Use this button to add your own note to the current passage.",
+            Body = "Blue Community markers in the text are shared notes from other readers — click one to read it. Use the “⋯” More actions menu in the Reader toolbar to add your own note to the current passage.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
-            TargetControlName = "BtnAddCommunityNote"
+            TargetControlName = "BtnOverflow",
+            SwitchToTabIndex = 0
         });
 
         Steps.Add(new TourStep
         {
             Id = "footnote-colors",
             Title = "Footnote Color Coding",
-            Body = "Orange = original text footnotes from the source.\nGrey = CBETA editorial notes.\nBlue = community notes added by users like you.",
+            Body = "Amber = master notes from the source text.\nGrey = CBETA editorial and apparatus notes.\nBlue = community notes added by users like you.\n\nThe “⋯” More actions menu in the Reader toolbar keeps this Marker legend at hand.",
             Type = TourStepType.Passive,
-            Placement = TourPlacement.Center
+            Placement = TourPlacement.Bottom,
+            TargetControlName = "BtnOverflow",
+            SwitchToTabIndex = 0
         });
 
         Steps.Add(new TourStep
@@ -612,7 +637,7 @@ public sealed class OnboardingTourService
         Steps.Add(new TourStep
         {
             Id = "scholar-tools",
-            Title = "Compare, Graph, and Exports",
+            Title = "Compare and Export",
             Body = "Use Compare to select 2-4 passages and view them side by side. Scholar can export your collections in readable formats or academic ones (CSV, BibTeX, CSL-JSON) for use in papers.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Center,
@@ -621,30 +646,53 @@ public sealed class OnboardingTourService
 
         Steps.Add(new TourStep
         {
-            Id = "zen-dictionary",
-            Title = "Zen Dictionary",
-            Body = "The Zen Dictionary (Ctrl+D) manages translation terminology.\nSelect any term to see everywhere it appears across the corpus, sorted by historical date.",
+            Id = "research-graph",
+            Title = "Research Graph",
+            Body = "The Graph button opens the Research Graph — your collection as a network of passages, texts, masters, and terms.\n\nRight-click the canvas to add nodes, including a **Dictionary entry (term)** node; right-click a term node to open it in the Zen Dictionary. Drag nodes to arrange your map of the material.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
-            TargetControlName = "BtnDictionary"
+            TargetControlName = "BtnShowGraph",
+            SwitchToTabIndex = 4
+        });
+
+        Steps.Add(new TourStep
+        {
+            Id = "zen-dictionary",
+            Title = "Zen Dictionary",
+            Body = "The Zen Dictionary tab (also Ctrl+D) manages translation terminology.\nSelect any term to see everywhere it appears across the corpus, sorted by historical date.",
+            Type = TourStepType.Passive,
+            Placement = TourPlacement.Bottom,
+            TargetControlName = "TabDictionaryItem",
+            SwitchToTabIndex = 6
+        });
+
+        Steps.Add(new TourStep
+        {
+            Id = "dictionary-tab-browse",
+            Title = "Browse the Dictionary",
+            Body = "Search Chinese or English on the left; the entry card on the right shows every sense with its preferred translation, explanation, attributed evidence quotes (click a source to open the passage in the Reader), related masters, and related terms you can jump to.\n\nYour dictionary edits stay local to your machine — the shared dictionary itself is read-only.",
+            Type = TourStepType.Passive,
+            Placement = TourPlacement.Right,
+            TargetControlName = "TxtDictSearch",
+            SwitchToTabIndex = 6
         });
 
         Steps.Add(new TourStep
         {
             Id = "masters-tab",
-            Title = "Zen Masters Tab",
-            Body = "The Masters tab is its own first-class workspace. Read Zen ships with **301 Chan/Zen masters** from Bodhidharma through the late Ming, with dates, schools, lineage connections, biographies, and 400+ reference links.\n\nIt has three sub-views: List, Corpus, and Lineage Web.",
+            Title = "Zen Masters",
+            Body = "This is the Lineage tab. It opens directly into the interactive Zen-master lineage **graph** — embedded right here in the tab, with no separate window and no launcher to click. Read Zen ships with **301 Chan/Zen masters** from Bodhidharma through the late Ming, with dates, schools, lineage connections, biographies, and 400+ reference links.\n\nThe explorer offers three views — Browse, Corpus, and Lineage Web — switchable along the top of the tab.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Bottom,
             SwitchToTabIndex = 5,
-            TargetControlName = "BtnOpenMasters"
+            TargetControlName = "MastersTabHost"
         });
 
         Steps.Add(new TourStep
         {
             Id = "masters-list",
             Title = "Browse Masters",
-            Body = "The List view lets you filter through all 298 masters, see their bio, school affiliation, and lineage connections. Teacher and student names are clickable \u2014 jump between profiles to trace any lineage.\n\nRight-click a master for **Copy Link** / **Copy Reddit Link** to share their web profile, or **Edit Dates** to fix metadata in place.",
+            Body = "The Browse view lets you filter through all 301 masters, see their bio, school affiliation, and lineage connections. Teacher and student names are clickable \u2014 jump between profiles to trace any lineage.\n\nRight-click a master for **Copy Link** / **Copy Reddit Link** to share their web profile, or **Edit Dates** to fix metadata in place.",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Center,
             SwitchToTabIndex = 5
@@ -664,7 +712,7 @@ public sealed class OnboardingTourService
         {
             Id = "masters-lineage",
             Title = "Lineage Web",
-            Body = "The Lineage Web is an interactive graph of master\u2013student relationships. Pan with the mouse, zoom with the wheel or the **zoom slider**, search for a master, and click **Center** to recenter.\n\nThe Y-axis is temporal \u2014 death year drives vertical position \u2014 so chronological flow is visible at a glance. School colors follow modern scholarship (Hongzhou, Caodong, Yunmen, Linji, Heze, Early Chan).",
+            Body = "The Lineage Web is an interactive graph of master\u2013student relationships. Pan with the mouse, zoom with the wheel or the **zoom slider**, search for a master and **Go to** flies the view to them; arrow keys walk teacher, student, and sibling links.\n\nThe Y-axis is temporal \u2014 death year drives vertical position, with a century rail along the edge \u2014 and clicking a node opens a detail panel with the master\u2019s profile. School colors follow modern scholarship (Hongzhou, Caodong, Yunmen, Linji, Heze, Early Chan).",
             Type = TourStepType.Passive,
             Placement = TourPlacement.Center,
             SwitchToTabIndex = 5

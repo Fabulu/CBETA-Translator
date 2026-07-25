@@ -42,4 +42,13 @@ public sealed record CitationMetadata
     public string? ShareableUrl { get; init; }
     public string? ReadZenUrl { get; init; }
     public string? SourceUrl { get; init; }
+
+    // --- Access date ---
+    /// <summary>
+    /// Date the online resource was accessed. Only emitted by formatters when
+    /// the citation carries a URL (web citations need an access date; print
+    /// CBETA/Taisho references do not). When null, formatters fall back to
+    /// the system clock (<c>DateTime.Today</c>) at generation time.
+    /// </summary>
+    public System.DateTime? AccessedDate { get; init; }
 }

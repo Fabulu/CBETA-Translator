@@ -1128,7 +1128,11 @@ hr { border: none; border-top: 1px solid #444; margin: 20px 0; }
         }
 
         AppendBibTexField(sb, "howpublished", BuildZenLink(passage));
-        AppendBibTexField(sb, "url", BuildShareUrl(passage));
+        var shareUrl = BuildShareUrl(passage);
+        AppendBibTexField(sb, "url", shareUrl);
+        // Web citation (readzen.pages.dev URL) → biblatex access date.
+        if (!string.IsNullOrWhiteSpace(shareUrl))
+            AppendBibTexField(sb, "urldate", CitationDates.Iso(CitationDates.Today));
         AppendBibTexField(sb, "keywords", BuildBibTexKeywords(collection, passage));
         AppendBibTexField(sb, "note", BuildBibTexNote(collection, passage));
         AppendBibTexField(sb, "abstract", BuildBibTexAbstract(passage));
@@ -1270,7 +1274,11 @@ hr { border: none; border-top: 1px solid #444; margin: 20px 0; }
 
         var shareUrl = BuildShareUrl(passage);
         if (!string.IsNullOrWhiteSpace(shareUrl))
+        {
             sb.Append("UR  - ").Append(shareUrl).Append("\r\n");
+            // Y2 = RIS access date, emitted only alongside a URL (web citation).
+            sb.Append("Y2  - ").Append(CitationDates.RisY2(CitationDates.Today)).Append("\r\n");
+        }
 
         sb.Append("DB  - CBETA\r\n");
 
@@ -1340,6 +1348,16 @@ hr { border: none; border-top: 1px solid #444; margin: 20px 0; }
                 item["issued"] = new Dictionary<string, object?>
                 {
                     ["raw"] = FormatIsoTimestamp(passage.AddedUtc)
+                };
+            }
+
+            // CSL "accessed" date — only when the entry cites the website URL.
+            if (!string.IsNullOrWhiteSpace(BuildShareUrl(passage)))
+            {
+                var accessed = CitationDates.Today;
+                item["accessed"] = new Dictionary<string, object?>
+                {
+                    ["date-parts"] = new[] { new[] { accessed.Year, accessed.Month, accessed.Day } }
                 };
             }
 
@@ -1453,10 +1471,11 @@ hr { border: none; border-top: 1px solid #444; margin: 20px 0; }
         {
             sb.AppendLine("# Primary Sources");
             sb.AppendLine();
+            var accessedOn = CitationDates.DayMonthYear(CitationDates.Today);
             foreach (var src in primarySources)
             {
                 var parsed = ParseFileIdComponents(src.FileId);
-                sb.AppendLine($"- *{src.FileId}*. {parsed.Canon} no. {parsed.Number}, {parsed.Volume}. CBETA. https://readzen.pages.dev/{src.FileId}");
+                sb.AppendLine($"- *{src.FileId}*. {parsed.Canon} no. {parsed.Number}, {parsed.Volume}. CBETA. https://readzen.pages.dev/{src.FileId}. Accessed {accessedOn}.");
             }
             sb.AppendLine();
         }
@@ -1521,7 +1540,8 @@ hr { border: none; border-top: 1px solid #444; margin: 20px 0; }
         var lbSuffix = !string.IsNullOrEmpty(formattedLb) ? $": {formattedLb}" : "";
         var urlAnchor = !string.IsNullOrEmpty(fromLb) ? $"/{fromLb}" : "";
 
-        return $"{fileId}, {parsed.Canon} no. {parsed.Number}, {parsed.Volume}{lbSuffix}. CBETA. https://readzen.pages.dev/{fileId}{urlAnchor}";
+        // The footnote cites the website URL → carries an access date.
+        return $"{fileId}, {parsed.Canon} no. {parsed.Number}, {parsed.Volume}{lbSuffix}. CBETA. https://readzen.pages.dev/{fileId}{urlAnchor}. Accessed {CitationDates.DayMonthYear(CitationDates.Today)}.";
     }
 
     /// <summary>
@@ -1723,9 +1743,11 @@ hr { border: none; border-top: 1px solid #444; margin: 20px 0; }
         if (cbetaRef == null) return null;
 
         var shareUrl = BuildShareUrl(passage);
+        // Only the URL-bearing form is a web citation and carries an access
+        // date; the URL-less form is a pure print (CBETA/Taisho) reference.
         return string.IsNullOrWhiteSpace(shareUrl)
             ? $"{cbetaRef}. CBETA."
-            : $"{cbetaRef}. CBETA. {shareUrl}";
+            : $"{cbetaRef}. CBETA. {shareUrl}. Accessed {CitationDates.DayMonthYear(CitationDates.Today)}.";
     }
 
     /// <summary>

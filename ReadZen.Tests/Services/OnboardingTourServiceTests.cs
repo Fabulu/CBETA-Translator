@@ -190,12 +190,13 @@ public class OnboardingTourServiceTests
         Assert.Equal(0, _svc.CurrentIndex);
     }
 
-    // ---- 10. Steps count: 61 after Phase 2 (Masters + Witness expansion + Wave 3-5 features) ----
+    // ---- 10. Steps count: 65 after the reader-layout / zen-underline / dictionary-tab /
+    // research-graph expansion (was 61 after Phase 2) ----
 
     [Fact]
     public void Steps_Count_Is56()
     {
-        Assert.Equal(61, _svc.Steps.Count);
+        Assert.Equal(65, _svc.Steps.Count);
     }
 
     // ---- Mandatory steps cannot be skipped ----
@@ -317,10 +318,15 @@ public class OnboardingTourServiceTests
     [Fact]
     public void Tutorial_Includes_MastersTabStep()
     {
+        // The tab is labeled "Lineage" and now hosts the embedded lineage graph
+        // directly (the separate "Explore Zen Masters" window + Scan/Explore
+        // launcher were removed). The step targets the embed host border.
         var step = Assert.Single(_svc.Steps, s => s.Id == "masters-tab");
-        Assert.Equal("BtnOpenMasters", step.TargetControlName);
+        Assert.Equal("MastersTabHost", step.TargetControlName);
         Assert.Contains("301", step.Body);
-        Assert.Contains("Masters tab", step.Body);
+        Assert.Contains("Lineage tab", step.Body);
+        Assert.Contains("graph", step.Body);
+        Assert.DoesNotContain("Explore Zen Masters", step.Body);
         Assert.Equal(5, step.SwitchToTabIndex);
     }
 
@@ -347,6 +353,75 @@ public class OnboardingTourServiceTests
         var step = Assert.Single(_svc.Steps, s => s.Id == "masters-lineage");
         Assert.Contains("zoom slider", step.Body);
         Assert.Contains("Y-axis", step.Body);
+        Assert.Contains("Go to", step.Body);
+        Assert.Contains("detail panel", step.Body);
+    }
+
+    // ---- New feature-expansion steps (reader layouts, zen underlines,
+    // dictionary tab, research graph) ----
+
+    [Fact]
+    public void Tutorial_Includes_ReaderLayoutModesStep()
+    {
+        var step = Assert.Single(_svc.Steps, s => s.Id == "reader-layout-modes");
+        Assert.Equal("CmbReadingLayout", step.TargetControlName);
+        Assert.Equal(0, step.SwitchToTabIndex);
+        Assert.Contains("single-column", step.Body);
+        Assert.Contains("Merged flow", step.Body);
+    }
+
+    [Fact]
+    public void Tutorial_Includes_ZenTermUnderlinesStep()
+    {
+        var step = Assert.Single(_svc.Steps, s => s.Id == "zen-term-underlines");
+        Assert.Equal("EditorOriginal", step.TargetControlName);
+        Assert.Equal(0, step.SwitchToTabIndex);
+        Assert.Contains("underline", step.Body);
+        Assert.Contains("Study panel", step.Body);
+    }
+
+    [Fact]
+    public void Tutorial_Includes_DictionaryTabBrowseStep()
+    {
+        var step = Assert.Single(_svc.Steps, s => s.Id == "dictionary-tab-browse");
+        Assert.Equal("TxtDictSearch", step.TargetControlName);
+        Assert.Equal(6, step.SwitchToTabIndex);
+        Assert.Contains("evidence", step.Body);
+        Assert.Contains("local", step.Body);
+    }
+
+    [Fact]
+    public void Tutorial_Includes_ResearchGraphStep()
+    {
+        var step = Assert.Single(_svc.Steps, s => s.Id == "research-graph");
+        Assert.Equal("BtnShowGraph", step.TargetControlName);
+        Assert.Equal(4, step.SwitchToTabIndex);
+        Assert.Contains("Dictionary entry (term)", step.Body);
+    }
+
+    [Fact]
+    public void Tutorial_IndexStep_ReflectsBundledIndexAdoption()
+    {
+        // First run no longer cold-builds when the shipped prebuilt index is
+        // adopted; the step must not promise a corpus-wide build.
+        var step = Assert.Single(_svc.Steps, s => s.Id == "building-index");
+        Assert.Contains("prebuilt", step.Body);
+        Assert.Contains("adopted instantly", step.Body);
+        Assert.Equal("index-built", step.WaitForEvent);
+        Assert.True(step.IsMandatory);
+    }
+
+    [Fact]
+    public void Tutorial_FootnoteColorsStep_MatchesLegend()
+    {
+        // Marker legend (now inside the "⋯" More actions overflow flyout):
+        // amber = master notes, grey = CBETA editorial/apparatus, blue =
+        // community. The old "Orange = original text footnotes" is gone, and
+        // the standalone BtnMarkersLegend button was removed in the toolbar rebuild.
+        var step = Assert.Single(_svc.Steps, s => s.Id == "footnote-colors");
+        Assert.Equal("BtnOverflow", step.TargetControlName);
+        Assert.Contains("Amber", step.Body);
+        Assert.DoesNotContain("Orange", step.Body);
     }
 
     [Fact]
@@ -451,7 +526,8 @@ public class OnboardingTourServiceTests
     public void Tutorial_Includes_ReaderDictionaryAndCompareSteps()
     {
         var dictStep = Assert.Single(_svc.Steps, s => s.Id == "reader-dictionary-button");
-        Assert.Contains("Dict button", dictStep.Body);
+        Assert.Contains("Dictionary tab", dictStep.Body);
+        Assert.Equal("TabDictionaryItem", dictStep.TargetControlName);
 
         var compareStep = Assert.Single(_svc.Steps, s => s.Id == "reader-compare-tools");
         Assert.Contains("Compare Translations", compareStep.Body);
@@ -479,8 +555,10 @@ public class OnboardingTourServiceTests
     [Fact]
     public void Tutorial_Includes_ProvenancePanelStep()
     {
+        // The Provenance checkbox moved into the "⚙ View" flyout in the toolbar
+        // rebuild, so the step now spotlights the flyout-opener button.
         var step = Assert.Single(_svc.Steps, s => s.Id == "provenance-panel");
-        Assert.Equal("ChkProvenance", step.TargetControlName);
+        Assert.Equal("BtnViewOptions", step.TargetControlName);
         Assert.Contains("Provenance", step.Body);
         Assert.Contains("SHA-256", step.Body);
     }
@@ -573,8 +651,8 @@ public class OnboardingTourServiceTests
         Assert.Null(_svc.Steps[4].WaitForEvent);
     }
 
-    // ---- 13. Steps with SwitchToTabIndex have valid tab indices (0-5) ----
-    // Masters tab is index 5 — added to MainWindow in v4.1.
+    // ---- 13. Steps with SwitchToTabIndex have valid tab indices (0-6) ----
+    // Masters tab is index 5 (v4.1); the Zen Dictionary tab is index 6.
 
     [Fact]
     public void Steps_WithSwitchToTabIndex_HaveValidIndices()
@@ -585,7 +663,7 @@ public class OnboardingTourServiceTests
 
         foreach (var step in stepsWithTab)
         {
-            Assert.InRange(step.SwitchToTabIndex!.Value, 0, 5);
+            Assert.InRange(step.SwitchToTabIndex!.Value, 0, 6);
         }
     }
 

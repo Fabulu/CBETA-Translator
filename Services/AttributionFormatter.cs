@@ -3,6 +3,7 @@
 // "Copy with attribution" context-menu flow. MVP ships only Plain(); Markdown,
 // HtmlFooter, and BibTeX formatters are deferred to Phase 2.
 using System.Text;
+using ReadZen.App.Infrastructure;
 using ReadZen.App.Models;
 
 namespace ReadZen.App.Services;
@@ -44,10 +45,24 @@ public static class AttributionFormatter
             sb.AppendLine(license.RequiredAttribution!.Trim());
 
         if (!string.IsNullOrWhiteSpace(license.StableRevisionUrl))
+        {
             sb.Append("Source (stable): ").AppendLine(license.StableRevisionUrl);
+            AppendAccessedLine(sb);
+        }
         else if (!string.IsNullOrWhiteSpace(license.SourceUrl))
+        {
             sb.Append("Source: ").AppendLine(license.SourceUrl);
+            AppendAccessedLine(sb);
+        }
 
         return sb.ToString().TrimEnd();
     }
+
+    /// <summary>
+    /// Appends the access-date line for a web source. Only called when a
+    /// source URL was emitted — attribution without a URL is a print citation
+    /// and carries no access date.
+    /// </summary>
+    private static void AppendAccessedLine(StringBuilder sb) =>
+        sb.Append("Accessed ").Append(CitationDates.DayMonthYear(CitationDates.Today)).Append('.').AppendLine();
 }

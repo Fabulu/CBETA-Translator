@@ -12,10 +12,11 @@ using ReadZen.App.ViewModels;
 namespace ReadZen.App.Views;
 
 /// <summary>
-/// Rich Zen-dictionary editor window (schema v2). The legacy flat editor
-/// (<see cref="TermbaseEditorWindow"/>) is untouched; this is its rich sibling. Code-behind stays
-/// thin: it resolves services from <c>App.Services</c>, builds the VM, and wires the master picker
-/// and reader navigation the way TermbaseEditorWindow does.
+/// Rich Zen-dictionary editor window (schema v2) — the ONLY editing surface for the Zen
+/// dictionary. The Dictionary tab and its pop-out (<see cref="TermbaseEditorWindow"/>) are
+/// read-only browse views that open this window via their "Open Editor" button. Code-behind
+/// stays thin: it resolves services from <c>App.Services</c>, builds the VM, and wires the
+/// master picker and reader navigation.
 /// </summary>
 public partial class DictionaryEditorWindow : Window
 {

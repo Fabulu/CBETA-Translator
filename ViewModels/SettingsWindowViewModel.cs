@@ -18,6 +18,9 @@ public partial class SettingsWindowViewModel : ViewModelBase
     private bool _enableBilingualScrollSync;
 
     [ObservableProperty]
+    private bool _showApparatusNotes;
+
+    [ObservableProperty]
     private string _username = string.Empty;
 
     [ObservableProperty]
@@ -53,6 +56,7 @@ public partial class SettingsWindowViewModel : ViewModelBase
         _isDarkTheme = config.IsDarkTheme;
         _enableHoverDictionary = config.EnableHoverDictionary;
         _enableBilingualScrollSync = config.EnableBilingualScrollSync;
+        _showApparatusNotes = config.ShowApparatusNotes;
         _enableConcordance = config.EnableConcordance;
         _instantSearch = config.InstantSearch;
         _tmMaxResults = config.TmMaxResults;
@@ -78,6 +82,7 @@ public partial class SettingsWindowViewModel : ViewModelBase
         result.IsDarkTheme = IsDarkTheme;
         result.EnableHoverDictionary = EnableHoverDictionary;
         result.EnableBilingualScrollSync = EnableBilingualScrollSync;
+        result.ShowApparatusNotes = ShowApparatusNotes;
         result.EnableConcordance = EnableConcordance;
         result.InstantSearch = InstantSearch;
         result.TmMaxResults = Math.Clamp(TmMaxResults, 4, 20);

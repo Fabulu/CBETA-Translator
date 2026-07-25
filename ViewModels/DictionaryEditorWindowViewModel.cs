@@ -16,8 +16,8 @@ namespace ReadZen.App.ViewModels;
 /// <see cref="DictionaryEntry"/> articles, each carrying one or more senses (a corpus-wide
 /// Zen sense plus optional master-specific senses). Each sense pulls Zen-scoped occurrence
 /// evidence from <see cref="IDictionaryEvidenceService"/>, which the lexicographer curates
-/// down to the defining occurrences persisted on the sense. The legacy flat editor
-/// (<c>TermbaseEditorWindowViewModel</c>) is untouched; this is its rich sibling.
+/// down to the defining occurrences persisted on the sense. This is the only editing VM for
+/// the Zen dictionary; browsing lives in <see cref="ZenDictionaryBrowseViewModel"/>.
 /// </summary>
 public partial class DictionaryEditorWindowViewModel : ViewModelBase
 {

@@ -344,7 +344,13 @@ public partial class ScholarTabViewModel : ViewModelBase
             await RunOnUiAsync(() =>
             {
                 _allCollections.Clear();
-                _allCollections.AddRange(loaded);
+                // Deduplicate by Id at the single point of ingestion. Duplicate-Id
+                // entries (e.g. persisted by an earlier bug) would otherwise fan out
+                // to every consumer of _allCollections — the tree, the Collections
+                // ComboBox, search, AllCollections, and the next SaveAsync (which
+                // would re-persist the corruption). Healing here repairs all of them
+                // and lets the next save write clean data.
+                _allCollections.AddRange(DeduplicateById(loaded));
                 RefreshCollectionsList();
                 RebuildTree();
 
@@ -1279,6 +1285,8 @@ public partial class ScholarTabViewModel : ViewModelBase
     {
         CollectionTreeNodes.Clear();
 
+        // _allCollections is deduplicated by Id at ingestion (see LoadAsync), so nodes
+        // keyed by Id below map one-to-one to collections here.
         // Pass 1: create all collection nodes with their passage children
         var nodeMap = new Dictionary<string, CollectionTreeNode>();
         foreach (var collection in _allCollections)
@@ -1944,6 +1952,23 @@ public partial class ScholarTabViewModel : ViewModelBase
 
         SelectedCommunityPassage = SelectedCommunityCollection?.Passages.FirstOrDefault(p => p.Id == passageId);
         return SelectedCommunityPassage?.Id == passageId;
+    }
+
+    /// <summary>
+    /// Returns the collections with the first entry for each distinct Id, dropping any
+    /// later duplicate-Id entries. Ordinal Id comparison keeps this in lockstep with the
+    /// Id-keyed node/lookup dictionaries. Used to heal corrupted on-disk data at load.
+    /// </summary>
+    private static List<ScholarCollection> DeduplicateById(IEnumerable<ScholarCollection> collections)
+    {
+        var unique = new List<ScholarCollection>();
+        var seenIds = new HashSet<string>(StringComparer.Ordinal);
+        foreach (var collection in collections)
+        {
+            if (seenIds.Add(collection.Id))
+                unique.Add(collection);
+        }
+        return unique;
     }
 
     private void NormalizeOwnedCollections(IEnumerable<ScholarCollection> collections)

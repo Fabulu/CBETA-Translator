@@ -10,7 +10,12 @@ namespace ReadZen.App.Models
         public bool IsDarkTheme { get; set; } = true;
         public bool ZenOnly { get; set; }
 
-        public bool EnableHoverDictionary { get; set; } = true;
+        /// <summary>
+        /// CC-CEDICT hover tooltips over Chinese text (I3). OFF by default — the Zen
+        /// dictionary (underline + on-click side panel + Dictionary tab) is always on and
+        /// is the primary dictionary; CC-CEDICT is an opt-in hover-only fallback.
+        /// </summary>
+        public bool EnableHoverDictionary { get; set; }
 
         /// <summary>
         /// Bilingual scroll sync in the reader: scrolling one pane keeps the other
@@ -33,6 +38,14 @@ namespace ReadZen.App.Models
         public double EditorFontSize { get; set; } = 14.0;
 
         public bool EnableProvenancePanel { get; set; }
+
+        /// <summary>
+        /// When true, the reader shows the "Apparatus Notes" panel (critical-edition
+        /// variant readings) below the Chinese pane whenever the current text has
+        /// apparatus. OFF by default: the panel is scholarly and noisy for most readers,
+        /// so it only appears when this is explicitly enabled in Settings.
+        /// </summary>
+        public bool ShowApparatusNotes { get; set; }
 
         /// <summary>Preferred citation style used as default across all citation surfaces.</summary>
         public CitationStyle PreferredCitationStyle { get; set; } = CitationStyle.Chicago;

@@ -24,10 +24,11 @@ public class AppConfigTests
     }
 
     [Fact]
-    public void EnableHoverDictionary_DefaultsTrue()
+    public void EnableHoverDictionary_DefaultsFalse()
     {
+        // CC-CEDICT hover is opt-in (I3): the Zen dictionary is the always-on primary.
         var config = new AppConfig();
-        Assert.True(config.EnableHoverDictionary);
+        Assert.False(config.EnableHoverDictionary);
     }
 
     [Fact]

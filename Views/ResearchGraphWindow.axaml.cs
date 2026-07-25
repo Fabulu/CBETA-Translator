@@ -116,7 +116,7 @@ public partial class ResearchGraphWindow : Window
                 menu.Items.Add(CreateMenuItem("Passage", () => OnAddPassageFromEmpty()));
                 menu.Items.Add(CreateMenuItem("Concept (Ctrl+Shift+C)", () => OnAddConcept(null, null)));
                 menu.Items.Add(CreateMenuItem("Master", () => OnAddMaster()));
-                menu.Items.Add(CreateMenuItem("Term", () => OnAddTerm()));
+                menu.Items.Add(CreateMenuItem("Dictionary entry (term)", () => OnAddTerm()));
                 menu.Items.Add(CreateMenuItem("Collection", () => OnAddCollectionRef()));
                 menu.Items.Add(CreateMenuItem("Text", () => OnAddBook()));
                 menu.Items.Add(CreateMenuItem("Link", () => OnAddLink()));
@@ -1012,13 +1012,13 @@ public partial class ResearchGraphWindow : Window
         {
             var renameWindow = new Window
             {
-                Title = "Add Term", Width = 350, Height = 150,
+                Title = "Add dictionary entry", Width = 350, Height = 150,
                 WindowStartupLocation = WindowStartupLocation.CenterOwner, CanResize = false
             };
             var grid = new Grid { RowDefinitions = RowDefinitions.Parse("*,Auto"), Margin = new Avalonia.Thickness(12) };
             var txt = new TextBox { Watermark = "Enter Chinese or English term..." };
             var btnPanel = new StackPanel { Orientation = Avalonia.Layout.Orientation.Horizontal, HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Right, Spacing = 8 };
-            var btnOk = new Button { Content = "Add Term", Padding = new Avalonia.Thickness(12, 6) };
+            var btnOk = new Button { Content = "Add dictionary entry", Padding = new Avalonia.Thickness(12, 6) };
             var btnCancel = new Button { Content = "Cancel", Padding = new Avalonia.Thickness(12, 6) };
             btnPanel.Children.Add(btnCancel);
             btnPanel.Children.Add(btnOk);
@@ -1651,6 +1651,12 @@ public partial class ResearchGraphWindow : Window
                 var card = new DictionaryEntryCard
                 {
                     BrushResolver = key => this.TryFindResource(key, out var res) && res is Avalonia.Media.IBrush b ? b : null,
+                    // Must precede Entry (Entry's setter renders): related entries default
+                    // to "english gloss · 術語" resolved from the loaded dictionary.
+                    RelatedGlossResolver = term =>
+                        lookup != null && lookup.TryLookupExact(term, out var related)
+                            ? related.FirstSenseTarget
+                            : null,
                     Entry = entry
                 };
                 card.OpenOccurrenceRequested += (_, e) =>

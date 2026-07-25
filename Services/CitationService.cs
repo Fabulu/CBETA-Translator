@@ -92,6 +92,7 @@ public sealed class CitationService : ICitationService
             ShareableUrl = shareUrl,
             SourceUrl = license.SourceUrl,
             RelPath = license.RelPath,
+            AccessedDate = CitationDates.Today,
         };
     }
 
@@ -132,7 +133,11 @@ public sealed class CitationService : ICitationService
             sb.Append(m.LicenseLabel).Append(". ");
 
         if (!string.IsNullOrWhiteSpace(m.ShareableUrl))
+        {
             sb.Append(m.ShareableUrl);
+            // Web citation → access date (print-only citations skip this).
+            sb.Append(". Accessed ").Append(CitationDates.DayMonthYear(AccessDate(m))).Append('.');
+        }
 
         return sb.ToString().TrimEnd();
     }
@@ -170,9 +175,13 @@ public sealed class CitationService : ICitationService
         if (!string.IsNullOrWhiteSpace(m.TranslatorName))
             sb.Append("Translated by ").Append(m.TranslatorName).Append(". ");
 
-        // URL
+        // Access date + URL. Chicago 17th ed. places the access date before
+        // the URL for online sources: "Accessed July 24, 2026. https://...".
         if (!string.IsNullOrWhiteSpace(m.ShareableUrl))
+        {
+            sb.Append("Accessed ").Append(CitationDates.MonthDayYear(AccessDate(m))).Append(". ");
             sb.Append(m.ShareableUrl);
+        }
 
         return sb.ToString().TrimEnd().TrimEnd('.');
         // Intentionally no trailing period -- Chicago style for online sources
@@ -211,10 +220,12 @@ public sealed class CitationService : ICitationService
             sb.Append(" (").Append(cbetaRef).Append(')');
         sb.Append(". ");
 
-        // Database + URL
+        // Database + retrieval date + URL. APA 7 uses a retrieval date for
+        // content designed to change: "Retrieved July 24, 2026, from URL".
         sb.Append("CBETA. ");
         if (!string.IsNullOrWhiteSpace(m.ShareableUrl))
-            sb.Append(m.ShareableUrl);
+            sb.Append("Retrieved ").Append(CitationDates.MonthDayYear(AccessDate(m)))
+              .Append(", from ").Append(m.ShareableUrl);
 
         return sb.ToString().TrimEnd();
     }
@@ -250,10 +261,12 @@ public sealed class CitationService : ICitationService
         if (cbetaRef != null)
             sb.Append(cbetaRef).Append(", ");
 
-        // Database + URL
+        // Database + URL + access date. MLA 9 appends the access date after
+        // the URL: "URL. Accessed 24 July 2026."
         sb.Append("CBETA, ");
         if (!string.IsNullOrWhiteSpace(m.ShareableUrl))
-            sb.Append(m.ShareableUrl);
+            sb.Append(m.ShareableUrl)
+              .Append(". Accessed ").Append(CitationDates.DayMonthYear(AccessDate(m)));
 
         sb.Append('.');
         return sb.ToString();
@@ -308,7 +321,12 @@ public sealed class CitationService : ICitationService
             sb.AppendLine($"  note = {{{EscapeBibTeX(cbetaRef)}}},");
 
         if (!string.IsNullOrWhiteSpace(m.ShareableUrl))
+        {
             sb.AppendLine($"  url = {{{m.ShareableUrl}}},");
+            // Web resource → urldate (biblatex access date). Print-only
+            // entries (no url) carry no urldate.
+            sb.AppendLine($"  urldate = {{{CitationDates.Iso(AccessDate(m))}}},");
+        }
 
         sb.AppendLine($"  publisher = {{CBETA}},");
 
@@ -366,7 +384,15 @@ public sealed class CitationService : ICitationService
 
         entry["publisher"] = "CBETA";
         if (!string.IsNullOrWhiteSpace(m.ShareableUrl))
+        {
             entry["URL"] = m.ShareableUrl;
+            // CSL "accessed" date — only for entries that cite the website.
+            var accessed = AccessDate(m);
+            entry["accessed"] = new System.Collections.Generic.Dictionary<string, object?>
+            {
+                ["date-parts"] = new[] { new[] { accessed.Year, accessed.Month, accessed.Day } }
+            };
+        }
 
         return JsonSerializer.Serialize(new[] { entry },
             new JsonSerializerOptions { WriteIndented = true });
@@ -415,7 +441,11 @@ public sealed class CitationService : ICitationService
         sb.Append("PB  - CBETA\r\n");
 
         if (!string.IsNullOrWhiteSpace(m.ShareableUrl))
+        {
             sb.Append("UR  - ").Append(m.ShareableUrl).Append("\r\n");
+            // Y2 = RIS access date, emitted only alongside a URL.
+            sb.Append("Y2  - ").Append(CitationDates.RisY2(AccessDate(m))).Append("\r\n");
+        }
 
         sb.Append("DB  - CBETA\r\n");
 
@@ -493,6 +523,12 @@ public sealed class CitationService : ICitationService
     // ---------------------------------------------------------------
     // Helpers
     // ---------------------------------------------------------------
+
+    /// <summary>
+    /// Resolve the access date for a web citation: the metadata's pinned date
+    /// when present (deterministic tests), otherwise the system clock.
+    /// </summary>
+    private static DateTime AccessDate(CitationMetadata m) => m.AccessedDate ?? CitationDates.Today;
 
     private static void AppendTitleAuthor(StringBuilder sb, CitationMetadata m)
     {

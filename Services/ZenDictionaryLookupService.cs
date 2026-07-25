@@ -47,6 +47,13 @@ public interface IZenDictionaryLookup
 
     /// <summary>Exact lookup of a whole term (head term or alias) to its owning entry.</summary>
     bool TryLookupExact(string term, out DictionaryEntry entry);
+
+    /// <summary>
+    /// Drops the built index so the next <see cref="EnsureLoadedAsync"/> rebuilds from disk.
+    /// Called after the dictionary editor saves; readers pick the new entries up on their
+    /// next lookup/underline pass.
+    /// </summary>
+    void Invalidate();
 }
 
 public sealed class ZenDictionaryLookupService : IZenDictionaryLookup
@@ -68,6 +75,22 @@ public sealed class ZenDictionaryLookupService : IZenDictionaryLookup
     }
 
     public bool IsLoaded => _loaded;
+
+    public void Invalidate()
+    {
+        lock (_gate)
+        {
+            _loaded = false;
+            _loadedRoot = null;
+            // A completed load task must not satisfy the next EnsureLoadedAsync for the
+            // same root; in-flight builds are left to finish (they carry fresh data anyway).
+            if (_loadTask is { IsCompleted: true })
+            {
+                _loadTask = null;
+                _pendingRoot = null;
+            }
+        }
+    }
 
     public Task EnsureLoadedAsync(string root, CancellationToken ct = default)
     {

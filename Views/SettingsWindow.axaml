@@ -86,9 +86,10 @@
 				        Opacity="0.5"
 				        Margin="0,2,0,2"/>
 
-				<!-- Hover dictionary checkbox -->
-				<CheckBox Content="Enable hover dictionary in reader"
+				<!-- CC-CEDICT hover dictionary checkbox (Zen dictionary is always on) -->
+				<CheckBox Content="Enable CC-CEDICT hover dictionary (word-gloss tooltips)"
 				          VerticalAlignment="Top"
+				          ToolTip.Tip="Optional Chinese–English gloss tooltips on hover. The Zen dictionary (underlined terms, click to open) is always on and unaffected."
 				          IsChecked="{Binding EnableHoverDictionary}"/>
 
 				<!-- Bilingual scroll sync checkbox -->
@@ -96,6 +97,12 @@
 				          VerticalAlignment="Top"
 				          ToolTip.Tip="Scrolling one reader pane keeps the other aligned on the same passage. Turn off for independent scrolling."
 				          IsChecked="{Binding EnableBilingualScrollSync}"/>
+
+				<!-- Apparatus notes checkbox -->
+				<CheckBox Content="Show apparatus notes (critical-edition variant readings)"
+				          VerticalAlignment="Top"
+				          ToolTip.Tip="When on, the reader shows the Apparatus Notes panel below the Chinese text with critical-edition variant readings for texts that carry apparatus. Off by default."
+				          IsChecked="{Binding ShowApparatusNotes}"/>
 
 				<!-- Instant search checkbox -->
 				<CheckBox Content="Instant search (rank by frequency, load snippets on demand)"
