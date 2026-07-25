@@ -909,13 +909,48 @@ public sealed class MasterCorpusSearchService
         return matrix;
     }
 
-    /// <summary>Gets top co-occurring masters for a specific master.</summary>
+    /// <summary>Gets top co-occurring masters for a specific master — the masters that
+    /// share the most texts with this one.</summary>
+    /// <remarks>
+    /// Computed DIRECTLY for the single requested master (scanning only the files it
+    /// appears in), NOT by materializing <see cref="GetCoOccurrenceMatrix"/> for the
+    /// whole corpus. The full matrix is O(Σ masters-per-file²) across every text, and it
+    /// was being rebuilt from scratch on every master selection — a pure waste (the index
+    /// never changes) that froze the UI for many seconds on a full corpus index whenever a
+    /// master was picked (including a lineage-chart node click, which mirrors its selection
+    /// onto <c>SelectedMaster</c>). This variant is O(appearances) and returns an identical
+    /// top-N.
+    /// </remarks>
     public static List<(string MasterName, int SharedTexts)> GetTopCoOccurrences(
         MasterCorpusIndex index, string masterName, int limit = 10)
     {
-        var matrix = GetCoOccurrenceMatrix(index);
-        if (!matrix.TryGetValue(masterName, out var peers))
-            return new();
+        // 1. The set of files in which THIS master appears.
+        var myFiles = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        foreach (var a in index.Appearances)
+            if (string.Equals(a.MasterName, masterName, StringComparison.OrdinalIgnoreCase))
+                myFiles.Add(a.RelPath);
+        if (myFiles.Count == 0) return new();
+
+        // 2. For each such file, the OTHER distinct masters that co-appear there.
+        var perFile = new Dictionary<string, HashSet<string>>(StringComparer.OrdinalIgnoreCase);
+        foreach (var a in index.Appearances)
+        {
+            if (!myFiles.Contains(a.RelPath)) continue;
+            if (string.Equals(a.MasterName, masterName, StringComparison.OrdinalIgnoreCase)) continue;
+            if (!perFile.TryGetValue(a.RelPath, out var set))
+                perFile[a.RelPath] = set = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            set.Add(a.MasterName);
+        }
+
+        // 3. Shared-text count per peer = number of those files it also appears in
+        //    (parity with matrix[masterName][peer]).
+        var peers = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+        foreach (var set in perFile.Values)
+            foreach (var peer in set)
+            {
+                peers.TryGetValue(peer, out var count);
+                peers[peer] = count + 1;
+            }
 
         return peers
             .OrderByDescending(kv => kv.Value)

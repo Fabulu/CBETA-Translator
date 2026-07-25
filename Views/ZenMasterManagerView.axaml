@@ -1,0 +1,319 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:models="using:ReadZen.App.Models"
+             xmlns:vm="using:ReadZen.App.ViewModels"
+             xmlns:local="using:ReadZen.App.Views"
+             x:Class="ReadZen.App.Views.ZenMasterManagerView"
+             x:DataType="vm:ZenMasterManagerWindowViewModel">
+
+  <!-- SelectedIndex=2 (Lineage Web): the graph is the entry point, so the control
+       paints on it from frame one. The code-behind activation/reuse handlers switch to
+       Browse (0) only when an explicit master landing is pending. This UserControl is
+       the reusable content shared by the embedded Lineage tab and the floating
+       ZenMasterManagerWindow (which is now a thin host of this control). -->
+  <TabControl Name="TabMain" Margin="8" SelectedIndex="2">
+    <!-- List tab (existing layout) -->
+    <TabItem Header="Browse">
+      <Grid RowDefinitions="*,Auto" ColumnDefinitions="280,12,*" Margin="4">
+        <Border Grid.Row="0" Grid.Column="0"
+                Background="{DynamicResource ControlBg}"
+                BorderBrush="{DynamicResource BorderBrush}"
+                BorderThickness="1"
+                CornerRadius="6"
+                Padding="8">
+          <Grid RowDefinitions="Auto,Auto,*" RowSpacing="8">
+            <TextBox Grid.Row="0" Text="{Binding FilterText}" Watermark="Search masters or aliases..."/>
+            <TextBlock Grid.Row="1" Text="{Binding StatusText}" Classes="muted" FontSize="11"/>
+            <ListBox Grid.Row="2" Name="LstMasters" ItemsSource="{Binding Masters}" SelectedItem="{Binding SelectedMaster}">
+              <ListBox.ContextMenu>
+                <ContextMenu>
+                  <MenuItem Name="MnuCopyMasterLink" Header="Copy Link"/>
+                  <MenuItem Name="MnuCopyMasterRedditLink" Header="Copy Reddit Link"/>
+                  <Separator/>
+                  <MenuItem Name="MnuCiteMaster" Header="Cite this master"/>
+                </ContextMenu>
+              </ListBox.ContextMenu>
+              <ListBox.ItemTemplate>
+                <DataTemplate x:DataType="models:ZenMasterRecord">
+                  <StackPanel Margin="2" Spacing="1">
+                    <TextBlock Text="{Binding CanonicalName}" FontWeight="SemiBold"/>
+                    <TextBlock Text="{Binding DatesSummary}" Classes="muted" FontSize="11"/>
+                    <TextBlock Text="{Binding SourceSummary}" Classes="muted" FontSize="10"/>
+                  </StackPanel>
+                </DataTemplate>
+              </ListBox.ItemTemplate>
+            </ListBox>
+          </Grid>
+        </Border>
+
+        <GridSplitter Grid.Row="0" Grid.Column="1" Width="12" ResizeDirection="Columns" Background="Transparent"/>
+
+        <Border Grid.Row="0" Grid.Column="2"
+                Background="{DynamicResource ControlBg}"
+                BorderBrush="{DynamicResource BorderBrush}"
+                BorderThickness="1"
+                CornerRadius="6"
+                Padding="12">
+          <DockPanel>
+          <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8" Margin="0,8,0,0">
+            <Button Name="BtnCopyLink" Content="Copy Link" MinWidth="100"/>
+            <Button Name="BtnEditDates" Content="Edit Dates" MinWidth="100"/>
+            <Button Name="BtnClose" Content="Close" MinWidth="100"/>
+          </StackPanel>
+          <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+          <StackPanel Spacing="10" Margin="0,0,0,8">
+            <TextBlock Text="{Binding SelectedMaster.CanonicalName}" FontSize="22" FontWeight="Bold"/>
+
+            <!-- All name variants (copyable) -->
+            <StackPanel Spacing="2" IsVisible="{Binding HasSelection}">
+              <TextBlock Text="Names &amp; Aliases" FontWeight="SemiBold"/>
+              <SelectableTextBlock Text="{Binding SelectedAliasesText}" TextWrapping="Wrap" FontSize="12"/>
+            </StackPanel>
+
+            <!-- Dates -->
+            <StackPanel Spacing="2" IsVisible="{Binding HasSelection}">
+              <TextBlock Text="Dates" FontWeight="SemiBold"/>
+              <TextBlock Text="{Binding SelectedDatesText}" TextWrapping="Wrap"/>
+            </StackPanel>
+
+            <!-- School -->
+            <StackPanel Spacing="2" IsVisible="{Binding HasSchool}">
+              <TextBlock Text="School" FontWeight="SemiBold"/>
+              <TextBlock Text="{Binding SelectedMaster.School}" TextWrapping="Wrap"/>
+            </StackPanel>
+
+            <!-- Teacher -->
+            <StackPanel Spacing="2" IsVisible="{Binding HasTeacher}">
+              <TextBlock Text="Teacher" FontWeight="SemiBold"/>
+              <Button Name="BtnJumpTeacher" Classes="link"
+                      Content="{Binding SelectedMaster.Teacher}"
+                      HorizontalAlignment="Left" Padding="0" Background="Transparent"
+                      BorderThickness="0" Cursor="Hand"
+                      Foreground="{DynamicResource SystemAccentColor}"/>
+            </StackPanel>
+
+            <!-- Students -->
+            <StackPanel Spacing="2" IsVisible="{Binding HasStudents}">
+              <TextBlock Text="Students" FontWeight="SemiBold"/>
+              <ItemsControl Name="StudentLinksList"
+                            ItemsSource="{Binding SelectedMaster.Students}">
+                <ItemsControl.ItemsPanel>
+                  <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal"/>
+                  </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                  <DataTemplate>
+                    <Button Classes="link student-link"
+                            Content="{Binding}"
+                            Margin="0,0,8,2" Padding="0" Background="Transparent"
+                            BorderThickness="0" Cursor="Hand"
+                            Foreground="{DynamicResource SystemAccentColor}"/>
+                  </DataTemplate>
+                </ItemsControl.ItemTemplate>
+              </ItemsControl>
+            </StackPanel>
+
+            <!-- Notes / Biography -->
+            <StackPanel Spacing="2" IsVisible="{Binding HasNotes}">
+              <TextBlock Text="Biography" FontWeight="SemiBold"/>
+              <TextBlock Text="{Binding SelectedMaster.Notes}" TextWrapping="Wrap" FontSize="12"/>
+            </StackPanel>
+
+            <!-- Region -->
+            <StackPanel Spacing="2" IsVisible="{Binding HasRegion}">
+              <TextBlock Text="Region" FontWeight="SemiBold"/>
+              <TextBlock Text="{Binding SelectedMaster.Region}" TextWrapping="Wrap"/>
+            </StackPanel>
+
+            <!-- Links -->
+            <StackPanel Spacing="2" IsVisible="{Binding HasLinks}">
+              <TextBlock Text="Links" FontWeight="SemiBold"/>
+              <ItemsControl ItemsSource="{Binding SelectedMaster.Links}">
+                <ItemsControl.ItemTemplate>
+                  <DataTemplate x:DataType="models:MasterLink">
+                    <TextBlock Name="LinkItem" Text="{Binding Label}" FontSize="12"
+                               Foreground="{DynamicResource SystemAccentColor}"
+                               Cursor="Hand" TextDecorations="Underline" Margin="0,1"
+                               Tag="{Binding Url}"/>
+                  </DataTemplate>
+                </ItemsControl.ItemTemplate>
+              </ItemsControl>
+            </StackPanel>
+
+            <!-- Sources -->
+            <StackPanel Spacing="2" IsVisible="{Binding HasSelection}">
+              <TextBlock Text="Sources" FontWeight="SemiBold"/>
+              <TextBlock Text="{Binding SelectedSourceText}" TextWrapping="Wrap"/>
+            </StackPanel>
+
+            <TextBlock Text="Select a master from the left to view details."
+                       Classes="muted"
+                       IsVisible="{Binding HasNoSelection}"/>
+          </StackPanel>
+          </ScrollViewer>
+          </DockPanel>
+        </Border>
+      </Grid>
+    </TabItem>
+
+    <!-- Corpus tab -->
+    <TabItem Header="Corpus">
+      <Grid RowDefinitions="Auto,*" Margin="4">
+        <!-- Toolbar -->
+        <Grid Grid.Row="0" ColumnDefinitions="Auto,Auto,*,Auto" Margin="0,0,0,4">
+          <Button Name="BtnBuildCorpusIndex" Content="Scan Texts for Masters" Padding="8,4" Margin="0,0,8,0"
+                  ToolTip.Tip="Scan all XML files in the corpus for mentions of every zen master. This takes a few seconds."/>
+          <Button Name="BtnCancelCorpusScan" Content="Cancel" Padding="8,4" Margin="0,0,8,0"
+                  IsVisible="{Binding IsCorpusScanning}"/>
+          <StackPanel Grid.Column="2" Orientation="Vertical" VerticalAlignment="Center">
+            <TextBlock Text="{Binding CorpusStatusText}" FontSize="11" Opacity="0.8" TextTrimming="CharacterEllipsis"/>
+            <ProgressBar IsVisible="{Binding IsCorpusScanning}" Value="{Binding CorpusScanProgress}"
+                         Minimum="0" Maximum="100" Height="4" Margin="0,2,0,0"/>
+          </StackPanel>
+          <TextBlock Grid.Column="3" Text="{Binding CorpusScanProgressText}" FontSize="10" Opacity="0.6"
+                     VerticalAlignment="Center" Margin="8,0,0,0"/>
+        </Grid>
+
+        <!-- Results split: left = primary/secondary, right = stats -->
+        <Grid Grid.Row="1" ColumnDefinitions="*,12,280">
+          <!-- No master selected -->
+          <StackPanel Grid.Column="0" Grid.ColumnSpan="3"
+                      HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="8"
+                      IsVisible="{Binding HasNoSelection}">
+            <TextBlock Text="Select a master in the List tab to see their corpus appearances."
+                       Classes="muted" FontSize="13" HorizontalAlignment="Center"/>
+            <TextBlock Text="The corpus index scans every XML file and finds which texts mention each master."
+                       Classes="muted" FontSize="11" HorizontalAlignment="Center" Opacity="0.6"/>
+          </StackPanel>
+
+          <!-- Primary + Secondary results -->
+          <Border Grid.Column="0"
+                  Background="{DynamicResource ControlBg}"
+                  BorderBrush="{DynamicResource BorderBrush}"
+                  BorderThickness="1" CornerRadius="6" Padding="8"
+                  IsVisible="{Binding HasSelection}">
+            <Grid RowDefinitions="Auto,*,Auto,*">
+              <!-- Primary -->
+              <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="6" Margin="0,0,0,4">
+                <TextBlock Text="Primary Texts (author/subject)" FontWeight="SemiBold" FontSize="13"/>
+                <TextBlock Text="{Binding CorpusPrimaryResults.Count, StringFormat='({0})'}"
+                           Classes="muted" FontSize="11" VerticalAlignment="Center"/>
+              </StackPanel>
+              <ListBox Grid.Row="1" Name="LstCorpusPrimary"
+                       ItemsSource="{Binding CorpusPrimaryResults}"
+                       Margin="0,0,0,8">
+                <ListBox.ItemTemplate>
+                  <DataTemplate x:DataType="models:MasterTextAppearance">
+                    <StackPanel Margin="2" Spacing="1">
+                      <StackPanel Orientation="Horizontal" Spacing="6">
+                        <TextBlock Text="{Binding TextTitleZh}" FontWeight="SemiBold" FontSize="12"/>
+                        <TextBlock Text="{Binding MentionCount, StringFormat='({0}x)'}"
+                                   Classes="muted" FontSize="10" VerticalAlignment="Center"/>
+                      </StackPanel>
+                      <TextBlock Text="{Binding TextTitle}" Classes="muted" FontSize="11"
+                                 IsVisible="{Binding TextTitle, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                      <TextBlock Text="{Binding RelPath}" Classes="muted" FontSize="10" Opacity="0.5"/>
+                      <TextBlock Text="{Binding Snippet}" FontSize="11" TextWrapping="Wrap" Opacity="0.7"
+                                 IsVisible="{Binding Snippet, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                                 Margin="0,2,0,0"/>
+                    </StackPanel>
+                  </DataTemplate>
+                </ListBox.ItemTemplate>
+              </ListBox>
+
+              <!-- Secondary -->
+              <StackPanel Grid.Row="2" Orientation="Horizontal" Spacing="6" Margin="0,0,0,4">
+                <TextBlock Text="Secondary Mentions (quoted/referenced)" FontWeight="SemiBold" FontSize="13"/>
+                <TextBlock Text="{Binding CorpusSecondaryResults.Count, StringFormat='({0})'}"
+                           Classes="muted" FontSize="11" VerticalAlignment="Center"/>
+              </StackPanel>
+              <ListBox Grid.Row="3" Name="LstCorpusSecondary"
+                       ItemsSource="{Binding CorpusSecondaryResults}">
+                <ListBox.ItemTemplate>
+                  <DataTemplate x:DataType="models:MasterTextAppearance">
+                    <StackPanel Margin="2" Spacing="1">
+                      <StackPanel Orientation="Horizontal" Spacing="6">
+                        <TextBlock Text="{Binding TextTitleZh}" FontWeight="SemiBold" FontSize="12"/>
+                        <TextBlock Text="{Binding MentionCount, StringFormat='({0}x)'}"
+                                   Classes="muted" FontSize="10" VerticalAlignment="Center"/>
+                      </StackPanel>
+                      <TextBlock Text="{Binding TextTitle}" Classes="muted" FontSize="11"
+                                 IsVisible="{Binding TextTitle, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                      <TextBlock Text="{Binding RelPath}" Classes="muted" FontSize="10" Opacity="0.5"/>
+                      <TextBlock Text="{Binding Snippet}" FontSize="11" TextWrapping="Wrap" Opacity="0.7"
+                                 IsVisible="{Binding Snippet, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                                 Margin="0,2,0,0"/>
+                    </StackPanel>
+                  </DataTemplate>
+                </ListBox.ItemTemplate>
+              </ListBox>
+            </Grid>
+          </Border>
+
+          <GridSplitter Grid.Column="1" Width="12" ResizeDirection="Columns" Background="Transparent"/>
+
+          <!-- Stats pane -->
+          <Border Grid.Column="2"
+                  Background="{DynamicResource ControlBg}"
+                  BorderBrush="{DynamicResource BorderBrush}"
+                  BorderThickness="1" CornerRadius="6" Padding="8"
+                  IsVisible="{Binding HasSelection}">
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+              <StackPanel Spacing="10">
+                <TextBlock Text="Co-occurring Masters" FontWeight="SemiBold" FontSize="13"/>
+                <TextBlock Text="Masters who appear in the same texts."
+                           Classes="muted" FontSize="11" TextWrapping="Wrap"
+                           IsVisible="{Binding HasCorpusCoOccurrences}"/>
+                <ItemsControl ItemsSource="{Binding CorpusCoOccurrences}">
+                  <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="vm:CorpusCoOccurrence">
+                      <StackPanel Orientation="Horizontal" Spacing="6" Margin="0,1">
+                        <TextBlock Text="{Binding MasterName}" FontSize="12"/>
+                        <TextBlock Text="{Binding SharedTexts, StringFormat='({0})'}"
+                                   Classes="muted" FontSize="11" VerticalAlignment="Center"/>
+                      </StackPanel>
+                    </DataTemplate>
+                  </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <TextBlock Text="No co-occurrences found." Classes="muted" FontSize="11"
+                           IsVisible="{Binding !HasCorpusCoOccurrences}"/>
+
+                <Separator Margin="0,4"/>
+
+                <TextBlock Text="{Binding CorpusSummaryText}" FontSize="11" TextWrapping="Wrap" Opacity="0.7"/>
+              </StackPanel>
+            </ScrollViewer>
+          </Border>
+        </Grid>
+      </Grid>
+    </TabItem>
+
+    <!-- Lineage Web tab -->
+    <TabItem Header="Lineage Web">
+      <Grid RowDefinitions="Auto,*" Margin="4">
+        <Grid Grid.Row="0" ColumnDefinitions="*,Auto,Auto,Auto,Auto,Auto" Margin="0,0,0,4">
+          <TextBox Name="TxtLineageSearch" Watermark="Search masters..."
+                   FontSize="12" Margin="0,0,4,0"
+                   ToolTip.Tip="Type a name to highlight matching masters. Press Enter to center on the first match."/>
+          <Button Grid.Column="1" Name="BtnLineageCenter" Content="Go to" Padding="8,4"
+                  ToolTip.Tip="Center and zoom to the highlighted search match"/>
+          <TextBlock Grid.Column="2" Name="TxtLineageInfo"
+                     VerticalAlignment="Center" FontSize="11" Opacity="0.7" Margin="8,0,8,0"/>
+          <TextBlock Grid.Column="3" Text="Zoom" VerticalAlignment="Center" FontSize="11"
+                     Opacity="0.5" Margin="8,0,4,0"/>
+          <Slider Grid.Column="4" Name="SliderLineageZoom"
+                  Minimum="5" Maximum="300" Value="80"
+                  Width="120" VerticalAlignment="Center" Margin="0,0,8,0"/>
+          <Button Grid.Column="5" Name="BtnLineageFullscreen" Content="Fullscreen" Padding="8,4"
+                  ToolTip.Tip="Fill the screen with the lineage chart (Esc to exit)"/>
+        </Grid>
+        <Grid Grid.Row="1" Name="LineageBodyGrid" ColumnDefinitions="*,8,340">
+          <local:LineageChartControl Grid.Column="0" Name="LineageGraph"/>
+          <GridSplitter Grid.Column="1" Name="LineageSplitter" Width="8" ResizeDirection="Columns" Background="Transparent"/>
+          <local:LineageDetailPanel Grid.Column="2" Name="LineagePanel"/>
+        </Grid>
+      </Grid>
+    </TabItem>
+  </TabControl>
+</UserControl>

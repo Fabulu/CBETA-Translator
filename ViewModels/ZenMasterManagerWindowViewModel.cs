@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,6 +28,10 @@ public partial class ZenMasterManagerWindowViewModel : ViewModelBase
     private readonly MasterCorpusSearchService _corpusSearchService;
     private MasterCorpusIndex? _corpusIndex;
     private CancellationTokenSource? _corpusScanCts;
+    // Guards the lazy corpus-index load so it runs at most once (the first time the
+    // Corpus sub-view is shown). It used to run eagerly inside LoadAsync — see
+    // EnsureCorpusIndexLoadedAsync for why that was moved off the window-open path.
+    private bool _corpusLoadAttempted;
 
     public ZenMasterCatalog? GetCatalog() => _catalog.Records.Count > 0 ? _catalog : null;
     public MasterCorpusIndex? GetCorpusIndex() => _corpusIndex;
@@ -111,7 +117,10 @@ public partial class ZenMasterManagerWindowViewModel : ViewModelBase
 
     public async Task LoadAsync()
     {
+        var sw = Stopwatch.StartNew();
+
         _catalog = await _service.LoadAsync(_repoRoot, _baseFilePath);
+        LogLineageTiming("LoadAsync.catalog", sw.ElapsedMilliseconds);
 
         _allMasters.Clear();
         foreach (var master in _catalog.Records)
@@ -128,8 +137,50 @@ public partial class ZenMasterManagerWindowViewModel : ViewModelBase
                  !StatusText.StartsWith("Zen master ", StringComparison.OrdinalIgnoreCase))
             StatusText = _catalog.SummaryText;
 
-        // Try loading cached corpus index
+        // NOTE: the cached corpus index is NO LONGER loaded here. It carries ~38k
+        // appearances and the Lineage graph (the window's default landing tab) does
+        // not need it, so loading it on the open path was the bulk of the "ages".
+        // It is now loaded lazily on first view of the Corpus tab — see
+        // EnsureCorpusIndexLoadedAsync. RefreshCorpusResultsForSelectedMaster stays a
+        // cheap no-op while _corpusIndex is null, so master selection here is free.
+        LogLineageTiming("LoadAsync.total", sw.ElapsedMilliseconds);
+    }
+
+    /// <summary>
+    /// Lazily load the cached master-corpus index the first time the Corpus sub-view
+    /// is shown. Idempotent (guarded by <see cref="_corpusLoadAttempted"/>). This work
+    /// used to run eagerly inside <see cref="LoadAsync"/>, which forced the slow index
+    /// load onto the window-open / graph-open path even though the Lineage graph and
+    /// the Browse detail card never touch corpus data. Deferring it keeps the
+    /// graph-open path fast; the Corpus tab pays the cost only when actually opened.
+    /// </summary>
+    public async Task EnsureCorpusIndexLoadedAsync()
+    {
+        if (_corpusLoadAttempted) return;
+        _corpusLoadAttempted = true;
+
+        var sw = Stopwatch.StartNew();
         await TryLoadCachedCorpusIndexAsync();
+        LogLineageTiming("EnsureCorpusIndex(lazy)", sw.ElapsedMilliseconds);
+    }
+
+    /// <summary>
+    /// Best-effort timing instrumentation for the lineage/masters-window open path.
+    /// Appends one line per phase to <c>lineage-open-timing.log</c> next to the exe so
+    /// a real launch records exact numbers, and mirrors each line to Debug output.
+    /// Never throws into the UI (a logging failure must not break the window).
+    /// </summary>
+    internal static void LogLineageTiming(string phase, long elapsedMs)
+    {
+        try
+        {
+            var line = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss.fff}  {phase,-28} {elapsedMs,7} ms";
+            Debug.WriteLine("[LineageTiming] " + line);
+            File.AppendAllText(
+                Path.Combine(AppContext.BaseDirectory, "lineage-open-timing.log"),
+                line + Environment.NewLine);
+        }
+        catch { /* instrumentation must never surface as a user-facing failure */ }
     }
 
     private async Task TryLoadCachedCorpusIndexAsync()

@@ -19,11 +19,13 @@
 // node — and rebuilt only when the theme variant changes. Render() allocates
 // nothing per frame beyond transient geometry points.
 //
-// L5 SEAMS (left intentionally, clearly marked below): transmission geometry
+// SPA-PARITY SURFACE (ported from lineage-graph.js): transmission geometry
 // (遙嗣 circle / 代囑 diamond / book 冊 glyph / off-chart ⊣ stub), the contested
-// vermilion seal + rival arc, book-source click/interactivity, focus-dim, the
-// zoom floor tuning, and the legend. L4 renders nodes + edges + bilingual
-// labels + book-source capsules (label only), and wires selection.
+// vermilion seal + rival arc, focus-dim, the legend, bezier "descent" edges
+// (edgePath), hover highlight + tooltip (updateTooltip/.lin-tip), the century
+// rail (drawRail), the animated fly-to (flyTo, 300ms ease-out cubic with the
+// 0.7 zoom floor), keyboard navigation (arrows walk teacher/heir/siblings,
+// Esc clears focus then fits), and the SPA node-label LOD ladder.
 
 using System;
 using System.Collections.Generic;
@@ -34,6 +36,7 @@ using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Media;
 using Avalonia.Styling;
+using Avalonia.Threading;
 using ReadZen.App.Infrastructure;
 using ReadZen.App.ViewModels;
 
@@ -144,6 +147,11 @@ public sealed class LineageChartControl : Control
     private const double DIM = 0.12;        // focus-dim alpha multiplier (parity: lineage-graph.js DIM)
     private const double MID_GLYPH_ZOOM = 0.5;  // transmission glyphs appear at/above this zoom
     private const double STUB_LABEL_ZOOM = 0.4; // the ⊣ cap appears at/above this zoom
+    private const double TIP_ZOOM = 0.2;        // tooltip hidden below this zoom (SPA parity)
+    private const double SRC_EN_ZOOM = 0.45;    // source English title joins here (SPA drawSource)
+    private const double SRC_CJK_ZOOM = 0.75;   // source hanja title joins here (SPA drawSource)
+    private const double FLY_ZOOM_FLOOR = 0.7;  // fly-to raises the zoom to a readable floor (SPA flyTo)
+    private const double FLY_MS = 300;          // fly-to duration (SPA flyTo dur)
 
     // ── Level-of-detail zoom ladder (parity with lineage-graph.js drawNode z-gates,
     //    lines 492-506). Below LOD_DOT a node is a bare dot (NO text) — this is what
@@ -164,6 +172,25 @@ public sealed class LineageChartControl : Control
     private Point _lastPan;
     private bool _isPanning;
     private bool _needsFit;
+
+    // First-paint timing (best-effort): records how long from a VM being set until the
+    // chart actually draws its first frame, so the lineage-open timing log captures the
+    // real "graph on screen" moment. Reset each time a new VM is attached.
+    private DateTime _vmSetAt;
+    private bool _firstPaintLogged;
+
+    // ── fly-to animation (parity: flyTo — 300ms ease-out cubic). The timer only
+    //    mutates view state OUTSIDE the render pass (the crash-fix rule holds). ──
+    private DispatcherTimer? _flyTimer;
+
+    // ── hover state (parity: state.hovered + updateTooltip). The tooltip texts are
+    //    rebuilt only when the hovered node changes, never per frame. ──
+    private LineageNode? _hovered;
+    private Point _hoverPos;
+    private FormattedText? _tipTitle, _tipMeta;
+    private readonly Cursor _cursorPoint = new(StandardCursorType.Hand);
+    private readonly Cursor _cursorArrow = new(StandardCursorType.Arrow);
+    private readonly Cursor _cursorPan = new(StandardCursorType.SizeAll);
 
     // ── cached render resources (rebuilt only on theme change) ──
     private ThemeVariant? _builtVariant;
@@ -193,6 +220,24 @@ public sealed class LineageChartControl : Control
     private IPen _sourceLinePen = null!;              // …the three faint text lines
     private LegendCache? _legend;
 
+    // ── legend collapse (session-scoped view state; NO config, per spec). The in-
+    //    canvas "Key" panel folds to a small "Key ▸" header pill so the chart reclaims
+    //    the freed space; a click on the header toggles it. Default: expanded (visible).
+    //    _legendToggleRect is the screen-space header hit target, refreshed each draw. ──
+    private bool _legendCollapsed;
+    private Rect _legendToggleRect;
+
+    // hover tooltip chrome + text brushes (theme-scoped, parity: .lin-tip)
+    private IBrush _tipFill = Brushes.Transparent;
+    private IPen _tipBorder = null!;
+    private IBrush _textBrush = Brushes.Transparent;
+    private IBrush _mutedBrush = Brushes.Transparent;
+
+    // century rail (parity: drawRail) — precomputed at cache time: one tick per
+    // FIRST layer of each century (median death year per layer, ≥3 dated masters).
+    private readonly List<(int Layer, FormattedText Label)> _railTicks = new();
+    private IPen _railPen = null!;
+
     // ── focus-dim state (parity: recomputeRel + relevance). The selected node is
     //    the focus anchor; its ancestor path + direct heirs stay lit, all else
     //    dims to DIM. Recomputed only when the selection changes. ──
@@ -212,9 +257,40 @@ public sealed class LineageChartControl : Control
         public IBrush Fill = Brushes.Transparent;
         public IPen Stroke = null!;
         public IBrush Dot = Brushes.Transparent;  // the LOD dot (stroke hue) drawn below LOD_DOT
+
+        // ── LAZY label build — the one expensive step, deferred off first paint. ──
+        // Building a node's FormattedText shapes CJK glyphs through font fallback,
+        // and doing it eagerly for all ~946 nodes in BuildCaches blocked the first
+        // render for seconds on an EMPTY canvas. But at the fit-view zoom every node
+        // draws as a text-less dot (_zoom < LOD_DOT), so NONE of that text is even
+        // visible on open. The label strings + brushes are prepared cheaply up front;
+        // the FormattedText objects are shaped ONCE, on the first draw at a text-
+        // bearing zoom, and only for viewport-culled (on-screen) nodes — SPA parity:
+        // dots appear instantly, labels resolve as you zoom in. Cleared with the rest
+        // of the cache on a theme change, then re-shaped lazily in the new theme.
+        private bool _textReady;
+        public string? HanjaStr, RomanStr, DatesStr, SubStr;
+        public IBrush LabelBrush = Brushes.Transparent;
+        public IBrush DatesBrush = Brushes.Transparent;
+        public IBrush SubBrush = Brushes.Transparent;
+        public double LabelW;
+
         public FormattedText? Hanja;   // top line (13px)
         public FormattedText? Roman;   // bottom line (11px) — always present, never hanja-only
         public FormattedText? Dates;   // (9px)
+        public FormattedText? Sub;     // "primary · dates" close-zoom sub-line (8.5px, SPA drawNode)
+
+        /// <summary>Shape this node's labels on first use (idempotent). Called only
+        /// when the node is about to draw text — never at the fit-view dot zoom.</summary>
+        public void EnsureText()
+        {
+            if (_textReady) return;
+            _textReady = true;
+            if (!string.IsNullOrEmpty(HanjaStr)) Hanja = MakeText(HanjaStr!, 13, LabelBrush, LabelW, serif: true);
+            if (!string.IsNullOrEmpty(RomanStr)) Roman = MakeText(RomanStr!, 11, LabelBrush, LabelW, serif: false);
+            if (!string.IsNullOrEmpty(DatesStr)) Dates = MakeText(DatesStr!, 9, DatesBrush, LabelW, serif: false);
+            if (!string.IsNullOrEmpty(SubStr)) Sub = MakeText(SubStr!, 8.5, SubBrush, LabelW, serif: false);
+        }
     }
 
     // Cached per-edge strand geometry (see <see cref="_edgeGeometries"/>). A
@@ -229,7 +305,7 @@ public sealed class LineageChartControl : Control
     {
         ClipToBounds = true;
         Focusable = true;
-        Cursor = new Cursor(StandardCursorType.Hand);
+        Cursor = _cursorArrow;   // pointer only over interactive targets (SPA grab/pointer)
 
         // Double-click activates a node (L6 host mirrors it to the List tab). A
         // book SOURCE is not a List-tab record, so a source double-click is ignored
@@ -260,6 +336,7 @@ public sealed class LineageChartControl : Control
     /// <summary>Set the zoom about the viewport centre (the L6 zoom slider binds here).</summary>
     public void SetZoom(double zoom)
     {
+        StopFly();
         double z = Math.Clamp(zoom, ZOOM_MIN, ZOOM_MAX);
         if (Math.Abs(z - _zoom) < 1e-9) return;
         double cx = Bounds.Width / 2, cy = Bounds.Height / 2;
@@ -271,19 +348,56 @@ public sealed class LineageChartControl : Control
         InvalidateVisual();
     }
 
-    /// <summary>Centre the view on a node at the current zoom (L6 "Go to" / list-sync).</summary>
+    /// <summary>Centre the view on a node (L6 "Go to" / list-sync / panel links). Parity
+    /// with the SPA flyTo: raises the zoom to at least <see cref="FLY_ZOOM_FLOOR"/> and
+    /// animates pan+zoom over 300ms with an ease-out cubic. The animation timer mutates
+    /// view state only OUTSIDE the render pass (the crash-fix rule holds).</summary>
     public void CenterOn(LineageNode node)
     {
         if (node == null) return;
         _needsFit = false;
-        _offsetX = Bounds.Width / 2 - node.X * _zoom;
-        _offsetY = Bounds.Height / 2 - node.Y * _zoom;
-        InvalidateVisual();
+        double tz = Math.Clamp(Math.Max(_zoom, FLY_ZOOM_FLOOR), ZOOM_MIN, ZOOM_MAX);
+        double tx = Bounds.Width / 2 - node.X * tz;
+        double ty = Bounds.Height / 2 - node.Y * tz;
+        StartFly(tz, tx, ty);
+    }
+
+    private void StartFly(double tz, double tx, double ty)
+    {
+        StopFly();
+        double z0 = _zoom, x0 = _offsetX, y0 = _offsetY;
+        var start = DateTime.UtcNow;
+        _flyTimer = new DispatcherTimer(TimeSpan.FromMilliseconds(15), DispatcherPriority.Render, (_, _) =>
+        {
+            double k = Math.Min(1, (DateTime.UtcNow - start).TotalMilliseconds / FLY_MS);
+            double ease = 1 - Math.Pow(1 - k, 3);   // SPA flyTo ease-out cubic
+            _zoom = z0 + (tz - z0) * ease;
+            _offsetX = x0 + (tx - x0) * ease;
+            _offsetY = y0 + (ty - y0) * ease;
+            InvalidateVisual();
+            if (k >= 1)
+            {
+                StopFly();
+                ZoomChanged?.Invoke(_zoom);   // sync the slider once, at the landing zoom
+            }
+        });
+        _flyTimer.Start();
+    }
+
+    private void StopFly()
+    {
+        _flyTimer?.Stop();
+        _flyTimer = null;
     }
 
     public void SetViewModel(LineageChartViewModel vm)
     {
         _vm = vm;
+        _vmSetAt = DateTime.UtcNow;
+        _firstPaintLogged = false;
+        StopFly();
+        _hovered = null;           // a stale hover must not outlive its layout
+        _tipTitle = _tipMeta = null;
         _builtVariant = null;      // force a cache rebuild on next render
         _needsFit = true;          // fit the whole chart once we know our size
         InvalidateVisual();
@@ -292,6 +406,7 @@ public sealed class LineageChartControl : Control
     /// <summary>Re-fit the whole chart into view (the ⛶ action; L6 will bind a button to it).</summary>
     public void FitToView()
     {
+        StopFly();
         _needsFit = true;
         InvalidateVisual();
     }
@@ -303,6 +418,13 @@ public sealed class LineageChartControl : Control
         base.Render(ctx);
         var bounds = Bounds;
         if (_vm == null || bounds.Width <= 0 || bounds.Height <= 0) return;
+
+        if (!_firstPaintLogged)
+        {
+            _firstPaintLogged = true;
+            ZenMasterManagerWindowViewModel.LogLineageTiming(
+                "Chart.vmSet->firstPaint", (long)(DateTime.UtcNow - _vmSetAt).TotalMilliseconds);
+        }
 
         EnsureCaches();
         ctx.FillRectangle(_background, new Rect(bounds.Size));
@@ -329,8 +451,66 @@ public sealed class LineageChartControl : Control
             DrawNodes(ctx, vLeft, vTop, vRight, vBottom);
         }
 
-        // Screen-space overlay: the legend (the chart's thesis).
+        // Screen-space overlays: the century rail, the legend (the chart's thesis),
+        // and the hover tooltip (parity: drawRail / buildLegend / .lin-tip).
+        DrawRail(ctx, bounds);
         DrawLegend(ctx, bounds);
+        DrawTooltip(ctx, bounds);
+    }
+
+    // ── century rail (parity: drawRail) — screen-space ticks down the left edge,
+    //    one per century, placed at the first layer whose median death year enters
+    //    that century. Ticks are precomputed at cache time; no per-frame alloc. ──
+    private void DrawRail(DrawingContext ctx, Rect bounds)
+    {
+        if (bounds.Width < 40 || _railTicks.Count == 0) return;
+        bool narrow = bounds.Width < 480;
+        foreach (var (layer, label) in _railTicks)
+        {
+            double sy = layer * LineageForestLayout.LAYER_PITCH * _zoom + _offsetY;
+            if (sy < 10 || sy > bounds.Height - 6) continue;
+            ctx.DrawLine(_railPen, new Point(0, sy), new Point(narrow ? 6 : 10, sy));
+            if (!narrow)
+                ctx.DrawText(label, new Point(13, sy - label.Height / 2));
+        }
+    }
+
+    // ── hover tooltip (parity: updateTooltip + .lin-tip) — a screen-space card at
+    //    cursor+(14,10), clamped into the viewport; hidden below TIP_ZOOM. Texts are
+    //    cached on hover change (BuildTooltip); only the rect is per-frame. ──
+    private void DrawTooltip(DrawingContext ctx, Rect bounds)
+    {
+        if (_hovered == null || _tipTitle == null || _zoom < TIP_ZOOM) return;
+        double w = Math.Max(_tipTitle.Width, _tipMeta?.Width ?? 0) + 18;
+        double h = _tipTitle.Height + (_tipMeta?.Height ?? 0) + 11;
+        double x = _hoverPos.X + 14, y = _hoverPos.Y + 10;
+        if (x + w > bounds.Width - 4) x = Math.Max(4, bounds.Width - w - 4);
+        if (y + h > bounds.Height - 4) y = Math.Max(4, _hoverPos.Y - h - 6);
+        ctx.DrawRectangle(_tipFill, _tipBorder, new Rect(x, y, w, h), 5, 5);
+        ctx.DrawText(_tipTitle, new Point(x + 9, y + 5));
+        if (_tipMeta != null)
+            ctx.DrawText(_tipMeta, new Point(x + 9, y + 5 + _tipTitle.Height + 1));
+    }
+
+    /// <summary>Rebuild the cached tooltip texts for a newly hovered node (null clears).
+    /// Master: name / cjk · dates · school. Source: name / cjk · author (SPA parity).</summary>
+    private void BuildTooltip(LineageNode? n)
+    {
+        _tipTitle = _tipMeta = null;
+        if (n == null || _builtVariant == null) return;
+        var sans = new Typeface("Segoe UI, system-ui, sans-serif");
+        _tipTitle = new FormattedText(n.Primary ?? "", CultureInfo.InvariantCulture,
+            FlowDirection.LeftToRight, new Typeface(sans.FontFamily, FontStyle.Normal, FontWeight.SemiBold),
+            12, _textBrush)
+        { MaxTextWidth = 220, MaxLineCount = 1, Trimming = TextTrimming.CharacterEllipsis };
+        var parts = n.IsSource
+            ? new[] { n.Cjk, n.SourceAuthor }
+            : new[] { n.Cjk, n.DatesText, n.SchoolKey };
+        string meta = string.Join(" · ", parts.Where(s => !string.IsNullOrEmpty(s)));
+        if (meta.Length > 0)
+            _tipMeta = new FormattedText(meta, CultureInfo.InvariantCulture,
+                FlowDirection.LeftToRight, sans, 11, _mutedBrush)
+            { MaxTextWidth = 220, MaxLineCount = 1, Trimming = TextTrimming.CharacterEllipsis };
     }
 
     /// <summary>Recompute the lit set (focus + ancestor path + direct heirs) when
@@ -405,14 +585,59 @@ public sealed class LineageChartControl : Control
             DrawMidGlyph(ctx, pts, marker, e.Attestation);
     }
 
-    private static Geometry BuildStrandGeometry(IReadOnlyList<LayoutPoint> pts, double dx)
+    // Bezier "descent" strand (parity: edgePath). Two-point edges dive out of the
+    // teacher and rise into the heir — the wider the horizontal run, the harder the
+    // curve, so a long connector still READS as descent, not as a horizontal wire.
+    // Multi-point (routed) edges ease each segment with a half-span vertical pull.
+    private static Geometry BuildEdgeGeometry(IReadOnlyList<LayoutPoint> pts)
     {
         var geo = new StreamGeometry();
         using (var gc = geo.Open())
         {
-            gc.BeginFigure(new Point(pts[0].X + dx, pts[0].Y), isFilled: false);
-            for (int i = 1; i < pts.Count; i++)
-                gc.LineTo(new Point(pts[i].X + dx, pts[i].Y));
+            gc.BeginFigure(new Point(pts[0].X, pts[0].Y), isFilled: false);
+            if (pts.Count == 2)
+            {
+                double span = pts[1].Y - pts[0].Y;
+                double c = Math.Max(span * 0.45,
+                    Math.Min(Math.Abs(pts[1].X - pts[0].X) * 0.35, span - 24));
+                gc.CubicBezierTo(
+                    new Point(pts[0].X, pts[0].Y + c),
+                    new Point(pts[1].X, pts[1].Y - c),
+                    new Point(pts[1].X, pts[1].Y));
+            }
+            else
+            {
+                for (int i = 1; i < pts.Count; i++)
+                {
+                    var p0 = pts[i - 1];
+                    var p1 = pts[i];
+                    double dy = (p1.Y - p0.Y) * 0.5;
+                    gc.CubicBezierTo(
+                        new Point(p0.X, p0.Y + dy),
+                        new Point(p1.X, p1.Y - dy),
+                        new Point(p1.X, p1.Y));
+                }
+            }
+            gc.EndFigure(false);
+        }
+        return geo;
+    }
+
+    // One disputed strand (parity: drawDisputedEdge): endpoints only, offset ±1.5,
+    // a single 0.45-span bezier — the twin pair reads as a fork that never resolves.
+    private static Geometry BuildDisputedStrand(IReadOnlyList<LayoutPoint> pts, double off)
+    {
+        var first = pts[0];
+        var last = pts[pts.Count - 1];
+        double dy = (last.Y - first.Y) * 0.45;
+        var geo = new StreamGeometry();
+        using (var gc = geo.Open())
+        {
+            gc.BeginFigure(new Point(first.X + off, first.Y), isFilled: false);
+            gc.CubicBezierTo(
+                new Point(first.X + off, first.Y + dy),
+                new Point(last.X + off, last.Y - dy),
+                new Point(last.X + off, last.Y));
             gc.EndFigure(false);
         }
         return geo;
@@ -531,9 +756,10 @@ public sealed class LineageChartControl : Control
 
             if (!_nodeVisuals.TryGetValue(n, out var vis)) continue;
 
-            // channel 4 stays inside the node visual (school hue). Selection /
+            // channel 4 stays inside the node visual (school hue). Selection / hover /
             // search highlight is an ORTHOGONAL accent border, not an evidence channel.
-            bool active = ReferenceEquals(n, selected) || (hits.Count > 0 && hits.Contains(n.Id));
+            bool active = ReferenceEquals(n, selected) || ReferenceEquals(n, _hovered) ||
+                          (hits.Count > 0 && hits.Contains(n.Id));
             double rel = Rel(n);
             DrawingContext.PushedState? dim = rel < 1 ? ctx.PushOpacity(rel) : (DrawingContext.PushedState?)null;
             try
@@ -560,26 +786,29 @@ public sealed class LineageChartControl : Control
             return;
         }
 
-        bool showHanja = _zoom >= LOD_NAME;   // second (hanja) name line joins here
-        bool showDates = _zoom >= LOD_DATES;  // dates only at the closest tier
+        // Past the dot tier this node WILL show text — shape its labels now (once).
+        vis.EnsureText();
 
-        // ── bilingual label: the romanized/English line ALWAYS renders, so a node
-        //    is never hanja-only. ──
-        if (showHanja && vis.Hanja != null && vis.Roman != null)
+        // ── SPA drawNode LOD ladder (lines 497-506). Bilingual doctrine holds: the
+        //    romanized/English line reads first; the hanja joins only at the closest
+        //    tier, where the "primary · dates" sub-line keeps it from being hanja-only. ──
+        if (_zoom < LOD_DATES)
         {
-            DrawCentered(ctx, vis.Hanja, n.X, n.Y - hNode / 2 + 2);
-            DrawCentered(ctx, vis.Roman, n.X, n.Y + 1);
+            // mid tiers: the romanized name, with the dates joining at/above LOD_NAME.
+            bool dates = _zoom >= LOD_NAME && vis.Dates != null;
+            if (vis.Roman != null)
+                DrawCenteredMid(ctx, vis.Roman, n.X, dates ? n.Y - 5 : n.Y);
+            if (dates)
+                DrawCenteredMid(ctx, vis.Dates!, n.X, n.Y + 9);
         }
-        else if (vis.Roman != null)
+        else
         {
-            DrawCentered(ctx, vis.Roman, n.X, n.Y - vis.Roman.Height / 2);
+            // closest tier: hanja headline + the "primary · dates" sub-line.
+            if (vis.Hanja != null)
+                DrawCenteredMid(ctx, vis.Hanja, n.X, n.Y - 5);
+            if (vis.Sub != null)
+                DrawCenteredMid(ctx, vis.Sub, n.X, vis.Hanja != null ? n.Y + 10 : n.Y);
         }
-        else if (vis.Hanja != null)
-        {
-            DrawCentered(ctx, vis.Hanja, n.X, n.Y - vis.Hanja.Height / 2);
-        }
-        if (showDates && vis.Dates != null)
-            DrawCentered(ctx, vis.Dates, n.X, n.Y + hNode / 2 - vis.Dates.Height - 1);
     }
 
     // A book source: the folded-sutra capsule (a vertical leaf with a spine line
@@ -595,13 +824,17 @@ public sealed class LineageChartControl : Control
         for (int i = 1; i <= 3; i++)                                                    // three ribs
             ctx.DrawLine(_sourceLinePen, new Point(x + 9, y + i * 7), new Point(x + wpx - 3, y + i * 7));
 
-        // LOD: below LOD_DOT the folded-sutra glyph stands alone (no title text),
-        // so a fitted view of the whole forest draws no sub-pixel label smudge.
-        if (_zoom < LOD_DOT) return;
+        // LOD (parity: drawSource z-gates): far out the folded-sutra glyph stands
+        // alone; the English title joins at 0.45, the hanja title at 0.75 — so a
+        // fitted view of the whole forest draws no sub-pixel label smudge.
+        if (_zoom < SRC_EN_ZOOM) return;
+
+        // The source title is about to draw — shape its labels now (once).
+        vis.EnsureText();
 
         double ly = y + hpx + 3;
         if (vis.Roman != null) { DrawCentered(ctx, vis.Roman, n.X, ly); ly += vis.Roman.Height + 1; }
-        if (vis.Hanja != null) DrawCentered(ctx, vis.Hanja, n.X, ly);
+        if (_zoom >= SRC_CJK_ZOOM && vis.Hanja != null) DrawCentered(ctx, vis.Hanja, n.X, ly);
     }
 
     // The off-chart teacher: a dashed drop rising from the node's top edge, capped
@@ -619,6 +852,10 @@ public sealed class LineageChartControl : Control
 
     private static void DrawCentered(DrawingContext ctx, FormattedText ft, double cx, double top)
         => ctx.DrawText(ft, new Point(cx - ft.Width / 2, top));
+
+    /// <summary>Centre a text on (cx, cy) — the SPA's textBaseline='middle' anchoring.</summary>
+    private static void DrawCenteredMid(DrawingContext ctx, FormattedText ft, double cx, double cy)
+        => ctx.DrawText(ft, new Point(cx - ft.Width / 2, cy - ft.Height / 2));
 
     // ── cache building (theme-scoped; NO per-frame allocation) ──
 
@@ -657,6 +894,17 @@ public sealed class LineageChartControl : Control
         var textBrush = new SolidColorBrush(text);
         var mutedBrush = new SolidColorBrush(muted);
         var accentBrush = new SolidColorBrush(accent);
+        _textBrush = textBrush;
+        _mutedBrush = mutedBrush;
+
+        // hover tooltip chrome (parity: .lin-tip — bg-soft card, faint gold border).
+        var bgc = dark ? Color.FromRgb(19, 16, 12) : Color.FromRgb(245, 239, 227);
+        _tipFill = new SolidColorBrush(Color.FromArgb(242, bgc.R, bgc.G, bgc.B));
+        _tipBorder = new Pen(new SolidColorBrush(Color.FromArgb(64, accent.R, accent.G, accent.B)), 1);
+        BuildTooltip(_hovered);   // re-ink a live tooltip in the new theme
+
+        // century rail (parity: TOK.border ticks + muted labels).
+        _railPen = new Pen(new SolidColorBrush(Color.FromArgb(dark ? (byte)41 : (byte)72, accent.R, accent.G, accent.B)), 1);
 
         // channel 2 (transmission geometry): glyph outlines + the 冊 book mark.
         _glyphPenText = new Pen(textBrush, 1.2);
@@ -688,6 +936,7 @@ public sealed class LineageChartControl : Control
         // node visuals: fill/stroke/label brushes + cached FormattedText per node.
         _nodeVisuals.Clear();
         _edgeGeometries.Clear();
+        _railTicks.Clear();
         if (_vm == null) { _legend = null; return; }
         foreach (var n in _vm.Nodes)
             _nodeVisuals[n] = BuildNodeVisual(n, dark, muted);
@@ -700,18 +949,48 @@ public sealed class LineageChartControl : Control
             var eg = new EdgeGeometry();
             if (MarkerFor(e.Transmission) == TransmissionMarker.Disputed)
             {
-                eg.Main = BuildStrandGeometry(route.Points, -1.5);
-                eg.Second = BuildStrandGeometry(route.Points, 1.5);
+                eg.Main = BuildDisputedStrand(route.Points, -1.5);
+                eg.Second = BuildDisputedStrand(route.Points, 1.5);
             }
             else
             {
-                eg.Main = BuildStrandGeometry(route.Points, 0);
+                eg.Main = BuildEdgeGeometry(route.Points);
             }
             _edgeGeometries[e] = eg;
         }
 
+        BuildRailTicks(mutedBrush);
         _legend = BuildLegend(text, muted, accent);
         ComputeWorldBounds();
+    }
+
+    /// <summary>Precompute the century-rail ticks (parity: the drawRail layerYear map):
+    /// per layer, the MEDIAN death year across its dated masters (≥3 required, sources
+    /// excluded); one tick per century, at the first layer that enters it.</summary>
+    private void BuildRailTicks(IBrush mutedBrush)
+    {
+        _railTicks.Clear();
+        if (_vm == null) return;
+        var byLayer = new Dictionary<int, List<int>>();
+        foreach (var n in _vm.Nodes)
+        {
+            if (n.IsSource || n.Year is null or 0 || n.Death == 0) continue;
+            if (!byLayer.TryGetValue(n.Layer, out var list)) byLayer[n.Layer] = list = new List<int>();
+            list.Add(n.Death);
+        }
+        var face = new Typeface("Segoe UI, system-ui, sans-serif");
+        int lastCentury = int.MinValue;
+        foreach (var layer in byLayer.Keys.OrderBy(l => l))
+        {
+            var ys = byLayer[layer];
+            if (ys.Count < 3) continue;   // too thin a layer to date honestly
+            ys.Sort();
+            int century = (int)Math.Floor(ys[ys.Count / 2] / 100.0) * 100;
+            if (century == lastCentury) continue;
+            lastCentury = century;
+            _railTicks.Add((layer, new FormattedText(century + "s", CultureInfo.InvariantCulture,
+                FlowDirection.LeftToRight, face, 10, mutedBrush)));
+        }
     }
 
     private static NodeVisual BuildNodeVisual(LineageNode n, bool dark, Color muted)
@@ -736,12 +1015,31 @@ public sealed class LineageChartControl : Control
         if (!string.IsNullOrEmpty(hanja) && string.Equals(hanja, roman, StringComparison.Ordinal))
             hanja = ""; // identical → one line only
 
-        if (!string.IsNullOrEmpty(hanja))
-            vis.Hanja = MakeText(hanja, 13, labelBrush, w, serif: true);
-        if (!string.IsNullOrEmpty(roman))
-            vis.Roman = MakeText(roman, 11, labelBrush, w, serif: false);
+        // Prepare label strings + brushes cheaply; the FormattedText shaping is
+        // deferred to NodeVisual.EnsureText (see its note) so it never runs for the
+        // text-less dots drawn at the fit-view zoom.
+        vis.LabelBrush = labelBrush;
+        vis.LabelW = w;
+        vis.HanjaStr = string.IsNullOrEmpty(hanja) ? null : hanja;
+        vis.RomanStr = string.IsNullOrEmpty(roman) ? null : roman;
         if (!n.IsSource && !string.IsNullOrEmpty(n.DatesText))
-            vis.Dates = MakeText(n.DatesText, 9, new SolidColorBrush(Color.FromArgb(160, label.R, label.G, label.B)), w, serif: false);
+        {
+            vis.DatesStr = n.DatesText;
+            vis.DatesBrush = new SolidColorBrush(Color.FromArgb(160, label.R, label.G, label.B));
+        }
+
+        // closest-tier sub-line "primary · dates" (parity: drawNode z>=1.2) — keeps
+        // the hanja headline from ever standing alone.
+        if (!n.IsSource)
+        {
+            string sub = string.Join(" · ",
+                new[] { roman, n.DatesText }.Where(s => !string.IsNullOrEmpty(s)));
+            if (sub.Length > 0)
+            {
+                vis.SubStr = sub;
+                vis.SubBrush = new SolidColorBrush(Color.FromArgb(179, label.R, label.G, label.B));
+            }
+        }
 
         return vis;
     }
@@ -813,6 +1111,8 @@ public sealed class LineageChartControl : Control
     private sealed class LegendCache
     {
         public FormattedText Title = null!;
+        public FormattedText CaretDown = null!;  // ▾ shown when the legend is expanded
+        public FormattedText CaretRight = null!; // ▸ shown when the legend is collapsed
         public FormattedText[] Att = null!;      // A/B/C/D lines
         public FormattedText[] Glyph = null!;    // ○ ◇ 冊 ⊣
         public FormattedText Seal = null!;
@@ -849,6 +1149,8 @@ public sealed class LineageChartControl : Control
         return new LegendCache
         {
             Title = new FormattedText("Key", CultureInfo.InvariantCulture, FlowDirection.LeftToRight, face, 11, textBrush),
+            CaretDown = new FormattedText("▾", CultureInfo.InvariantCulture, FlowDirection.LeftToRight, face, 11, textBrush),
+            CaretRight = new FormattedText("▸", CultureInfo.InvariantCulture, FlowDirection.LeftToRight, face, 11, textBrush),
             Att = new[]
             {
                 L("A  his own words, or his stone"),
@@ -877,17 +1179,37 @@ public sealed class LineageChartControl : Control
         if (lc == null) return;
 
         const double pad = 10, row = 15, gap = 6, sw = 22, panelW = 256;
+
+        // ── COLLAPSED: only the "Key ▸" header pill; the rest of the surface is the
+        //    chart's. The pill IS the toggle target (click it to expand). ──
+        if (_legendCollapsed)
+        {
+            double cw = lc.Title.Width + 8 + lc.CaretRight.Width + pad * 2;
+            double ch = lc.Title.Height + pad * 2;
+            if (bounds.Width < cw + 24 || bounds.Height < ch + 24) { _legendToggleRect = default; return; }
+            double cx0 = 12, cy0 = bounds.Height - ch - 12;
+            ctx.DrawRectangle(lc.PanelFill, lc.PanelBorder, new Rect(cx0, cy0, cw, ch), 8, 8);
+            double ctx0 = cx0 + pad, cty0 = cy0 + pad;
+            ctx.DrawText(lc.Title, new Point(ctx0, cty0));
+            ctx.DrawText(lc.CaretRight, new Point(ctx0 + lc.Title.Width + 8, cty0));
+            _legendToggleRect = new Rect(cx0, cy0, cw, ch);
+            return;
+        }
+
         double schoolRows = Math.Ceiling(lc.School.Length / 2.0);
         double panelH = pad * 2 + row + gap + 4 * row + gap + 4 * row + gap + row + gap + schoolRows * row;
 
         // non-clipping guard: if the panel won't fit, don't draw it.
-        if (bounds.Width < panelW + 24 || bounds.Height < panelH + 24) return;
+        if (bounds.Width < panelW + 24 || bounds.Height < panelH + 24) { _legendToggleRect = default; return; }
 
         double x0 = 12, y0 = bounds.Height - panelH - 12;
         ctx.DrawRectangle(lc.PanelFill, lc.PanelBorder, new Rect(x0, y0, panelW, panelH), 8, 8);
 
         double x = x0 + pad, y = y0 + pad;
         ctx.DrawText(lc.Title, new Point(x, y));
+        ctx.DrawText(lc.CaretDown, new Point(x + lc.Title.Width + 8, y));
+        // The header row (title + caret) folds the legend when clicked.
+        _legendToggleRect = new Rect(x0, y0, panelW, row + pad);
         y += row + gap;
 
         // attestation ink samples (channel 1) — the actual cached edge pens.
@@ -981,7 +1303,13 @@ public sealed class LineageChartControl : Control
         // Programmatic zoom change: tell the world (the L6 slider) so it tracks the
         // fitted zoom instead of showing a stale value. The host guards its slider
         // write against feedback, so this raises no loop.
-        ZoomChanged?.Invoke(_zoom);
+        //
+        // FitAll runs INSIDE Render (the render pass); the host's ZoomChanged handler
+        // writes zoomSlider.Value, which invalidates the slider's visual. Doing that
+        // synchronously here throws "Visual was invalidated during the render pass".
+        // Defer the notification off the render pass so the slider updates cleanly.
+        double fitted = _zoom;
+        Dispatcher.UIThread.Post(() => ZoomChanged?.Invoke(fitted));
     }
 
     // ── helpers ──
@@ -1018,7 +1346,19 @@ public sealed class LineageChartControl : Control
         if (_vm == null) return;
         if (!e.GetCurrentPoint(this).Properties.IsLeftButtonPressed) return;
 
+        StopFly();   // user input always wins over an in-flight fly-to
         var pos = e.GetPosition(this);
+
+        // The legend "Key ▾/▸" header is a screen-space overlay drawn ON TOP of the
+        // world, so its toggle is checked BEFORE any world hit-test — a click on the
+        // header folds/unfolds the in-canvas key (session state; no config).
+        if (_legendToggleRect.Width > 0 && _legendToggleRect.Contains(pos))
+        {
+            _legendCollapsed = !_legendCollapsed;
+            InvalidateVisual();
+            e.Handled = true;
+            return;
+        }
 
         // A contested seal is its own hit target (checked FIRST, a 14px screen
         // radius like the SPA). Clicking it selects the contested edge and its
@@ -1054,6 +1394,7 @@ public sealed class LineageChartControl : Control
         }
         _isPanning = true;
         _lastPan = pos;
+        Cursor = _cursorPan;   // SPA 'grabbing'
         e.Handled = true;
     }
 
@@ -1076,24 +1417,116 @@ public sealed class LineageChartControl : Control
     protected override void OnPointerMoved(PointerEventArgs e)
     {
         base.OnPointerMoved(e);
-        if (!_isPanning) return;
         var pos = e.GetPosition(this);
-        _offsetX += pos.X - _lastPan.X;   // pan is screen-space (zoom-independent)
-        _offsetY += pos.Y - _lastPan.Y;
-        _lastPan = pos;
-        InvalidateVisual();
-        e.Handled = true;
+        if (_isPanning)
+        {
+            _offsetX += pos.X - _lastPan.X;   // pan is screen-space (zoom-independent)
+            _offsetY += pos.Y - _lastPan.Y;
+            _lastPan = pos;
+            InvalidateVisual();
+            e.Handled = true;
+            return;
+        }
+
+        // ── hover (parity: mousemove → hovered + tooltip + cursor). The tooltip
+        //    texts rebuild only on a hover CHANGE; the card follows the cursor. ──
+        var hit = HitTest(pos.X, pos.Y);
+        bool overSeal = hit == null && SealHit(pos.X, pos.Y) != null;
+        bool overLegend = _legendToggleRect.Width > 0 && _legendToggleRect.Contains(pos);
+        Cursor = (hit != null || overSeal || overLegend) ? _cursorPoint : _cursorArrow;
+        _hoverPos = pos;
+        if (!ReferenceEquals(hit, _hovered))
+        {
+            _hovered = hit;
+            BuildTooltip(hit);
+            InvalidateVisual();
+        }
+        else if (hit != null)
+        {
+            InvalidateVisual();   // same node — the tooltip card tracks the cursor
+        }
     }
 
     protected override void OnPointerReleased(PointerReleasedEventArgs e)
     {
         base.OnPointerReleased(e);
         _isPanning = false;
+        Cursor = _hovered != null ? _cursorPoint : _cursorArrow;
+    }
+
+    protected override void OnPointerExited(PointerEventArgs e)
+    {
+        base.OnPointerExited(e);
+        if (_hovered == null) return;
+        _hovered = null;
+        _tipTitle = _tipMeta = null;
+        InvalidateVisual();
+    }
+
+    // ── keyboard (parity: onKey) — arrows walk the transmission structure from the
+    //    selected node (Up → teacher, Down → first heir, Left/Right → siblings);
+    //    Esc clears the focus, a second Esc steps out to the whole chart. Navigation
+    //    goes through VM.FocusNode so the host centres (fly-to) and syncs the list. ──
+    protected override void OnKeyDown(KeyEventArgs e)
+    {
+        base.OnKeyDown(e);
+        if (_vm == null || e.Handled) return;
+
+        if (e.Key == Key.Escape)
+        {
+            if (_vm.SelectedNode != null || _vm.SelectedEdge != null)
+            {
+                _vm.SelectedNode = null;
+                _vm.SelectedEdge = null;
+                InvalidateVisual();
+                e.Handled = true;
+            }
+            else
+            {
+                // Second Esc = step out. Deliberately NOT handled: the host's
+                // fullscreen-exit Escape must still see the event (its own re-fit
+                // makes this a no-op there).
+                FitToView();
+            }
+            return;
+        }
+
+        var f = _vm.SelectedNode;
+        if (f == null) return;
+        LineageNode? target = e.Key switch
+        {
+            Key.Up => f.ParentEdge?.From,
+            Key.Down => f.ChildEdges.Count > 0 ? f.ChildEdges[0].To : null,
+            Key.Left => Sibling(f, -1),
+            Key.Right => Sibling(f, +1),
+            _ => null,
+        };
+        if (target != null)
+        {
+            _vm.FocusNode(target);   // selects + raises NodeFocusRequested (centre + list-sync)
+            e.Handled = true;
+        }
+    }
+
+    /// <summary>The selected node's previous/next sibling under its teacher (SPA onKey).</summary>
+    private static LineageNode? Sibling(LineageNode f, int dir)
+    {
+        var pe = f.ParentEdge;
+        if (pe == null) return null;
+        var sibs = pe.From.ChildEdges;
+        for (int i = 0; i < sibs.Count; i++)
+        {
+            if (!ReferenceEquals(sibs[i].To, f)) continue;
+            int j = i + dir;
+            return j >= 0 && j < sibs.Count ? sibs[j].To : null;
+        }
+        return null;
     }
 
     protected override void OnPointerWheelChanged(PointerWheelEventArgs e)
     {
         base.OnPointerWheelChanged(e);
+        StopFly();   // user input always wins over an in-flight fly-to
         var pos = e.GetPosition(this);
         double factor = e.Delta.Y > 0 ? 1.12 : 0.893;   // parity with the SPA wheel step
         double oldZoom = _zoom;
