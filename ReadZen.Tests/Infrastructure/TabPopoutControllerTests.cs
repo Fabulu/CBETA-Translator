@@ -85,6 +85,40 @@ public class TabPopoutControllerTests
     }
 
     [Fact]
+    public void Hooks_FireOnBothPopOutAndDockBack()
+    {
+        // Translate relies on AfterAttach firing in BOTH directions to re-settle its
+        // AvaloniaEdit viewport/focus after the reparent (design risk 8).
+        Dispatcher.UIThread.Invoke(() =>
+        {
+            var owner = new Window();
+            var view = new Border();
+            var slot = new Decorator { Child = view };
+            owner.Content = slot;
+
+            int beforeDetach = 0, afterAttach = 0;
+            var controller = new TabPopoutController(owner);
+            controller.Register(new TabPopoutDescriptor
+            {
+                TabIndex = 1,
+                Title = "Translate",
+                Slot = slot,
+                BeforeDetach = () => beforeDetach++,
+                AfterAttach = () => afterAttach++,
+            });
+
+            controller.PopOut(1);
+            Assert.Equal(1, beforeDetach);
+            Assert.Equal(1, afterAttach);
+
+            controller.DockBack(1);
+            Assert.Equal(2, beforeDetach);
+            Assert.Equal(2, afterAttach);
+            Assert.Same(view, slot.Child);
+        });
+    }
+
+    [Fact]
     public void DockAllBack_ClosesEveryFloat()
     {
         Dispatcher.UIThread.Invoke(() =>

@@ -168,7 +168,8 @@
                                      a tab's content. Unobtrusive (hidden) until the tab is hovered or
                                      selected, then fully lit on its own hover. Carried by the tabs that
                                      own a standalone window host (Read / Lineage / Dictionary) and by
-                                     the reparenting-primitive pilot (Search). -->
+                                     the reparenting-primitive tabs (Translate / Search / Collect). Sync
+                                     is intentionally excluded (user decision — no pop-out). -->
                                 <Style Selector="TabStrip#MainTabs > TabStripItem Button.tab-popout">
                                     <Setter Property="Opacity" Value="0"/>
                                     <Setter Property="Padding" Value="0"/>
@@ -211,6 +212,9 @@
                                                   Data="M12.87 15.07L10.33 12.56L10.36 12.53C12.1 10.59 13.34 8.36 14.07 6H17V4H10V2H8V4H1V6H12.17C11.5 7.92 10.44 9.75 9 11.35C8.07 10.32 7.3 9.19 6.69 8H4.69C5.42 9.63 6.42 11.17 7.67 12.56L2.58 17.58L4 19L9 14L12.11 17.11L12.87 15.07M18.5 10H16.5L12 22H14L15.12 19H19.87L21 22H23L18.5 10M15.88 17L17.5 12.67L19.12 17H15.88Z"
                                                   Foreground="{Binding $parent[TabStripItem].Foreground}"/>
                                         <TextBlock Text="Translate" VerticalAlignment="Center"/>
+                                        <Button Name="BtnPopoutTranslate" Classes="tab-popout"
+                                                Content="&#x29C9;"
+                                                ToolTip.Tip="Open the translation editor in a new window (keeps your text, edits and caret)"/>
                                     </StackPanel>
                             </TabStripItem>
                             <TabStripItem ToolTip.Tip="Full-text corpus search">
@@ -238,6 +242,9 @@
                                                   Data="M4 6H2V20C2 21.1 2.9 22 4 22H18V20H4V6M20 2H8C6.9 2 6 2.9 6 4V16C6 17.1 6.9 18 8 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2M20 16H8V4H20V16M10 9H18V11H10V9M10 12H14V14H10V12M10 6H18V8H10V6Z"
                                                   Foreground="{Binding $parent[TabStripItem].Foreground}"/>
                                         <TextBlock Text="Collect" VerticalAlignment="Center"/>
+                                        <Button Name="BtnPopoutCollect" Classes="tab-popout"
+                                                Content="&#x29C9;"
+                                                ToolTip.Tip="Open collections in a new window (keeps your selection and scroll)"/>
                                     </StackPanel>
                             </TabStripItem>
                             <TabStripItem ToolTip.Tip="Zen master lineage explorer">

@@ -1264,6 +1264,32 @@ public partial class TranslationTabView : UserControl
         => _editor?.IsFocused == true || _editor?.TextArea?.IsFocused == true;
 
     /// <summary>
+    /// Re-settles the AvaloniaEdit viewport after this whole view is REPARENTED into a
+    /// floating pop-out window (or docked back). It stays a single live instance, so the
+    /// document, edits, dirty-state and caret OFFSET (model state on TextArea.Caret) all
+    /// survive the move untouched; only the scroll viewport can snap to the top when the
+    /// editor attaches to a new visual root. Scroll the preserved caret line back into
+    /// view and restore keyboard focus so the user can keep typing where they left off.
+    /// Posted at Background priority so it runs after the new window's first layout pass.
+    /// </summary>
+    public void RestoreEditorViewAfterReparent()
+    {
+        if (_editor == null) return;
+        Avalonia.Threading.Dispatcher.UIThread.Post(() =>
+        {
+            try
+            {
+                if (_editor?.Document == null) return;
+                int caret = Math.Clamp(_editor.CaretOffset, 0, _editor.Document.TextLength);
+                int line = _editor.Document.GetLineByOffset(caret).LineNumber;
+                _editor.ScrollToLine(line);
+                _editor.Focus();
+            }
+            catch { /* editor not yet realized in the new root — best-effort re-settle */ }
+        }, Avalonia.Threading.DispatcherPriority.Background);
+    }
+
+    /// <summary>
     /// Populates the translation source ComboBox with available options.
     /// </summary>
     public void SetTranslationSourceOptions(List<string> options)

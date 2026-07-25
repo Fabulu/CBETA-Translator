@@ -2461,24 +2461,49 @@ private async Task LoadConfigAndAutoloadAsync()
         WireReparentingPopouts();
     }
 
-    // Tab pop-out via the reparenting primitive (PR2 + PR3).
+    // Tab pop-out via the reparenting primitive (PR2/PR3 + PR4/5).
     //
     // Unlike the reuse-based tabs above, these DETACH the live tab view into a thin
-    // FloatingTabWindow — same instance, so query/results/scroll/selection survive with
-    // no rebuild — and leave a placeholder in the tab. PR3 wires SEARCH as the pilot;
-    // Sync / Collect / Translate register here in later PRs (their slots already exist).
+    // FloatingTabWindow — the SAME instance, so all live state survives with no rebuild —
+    // and leave a placeholder in the tab. Registered: Translate (1), Search (2),
+    // Collect (4). Sync (3) is intentionally EXCLUDED (user decision — Slot3 stays inert,
+    // no affordance, no registration). Read/Lineage/Dictionary use the reuse window hosts.
     // ===========================================================
     private void WireReparentingPopouts()
     {
         // Per-window controller. Global veto: no pop-out while the onboarding tour is
         // running (spotlight coordinates are MainWindow-relative — §6 risk 1) or while
         // the welcome/empty-state overlay covers the content (§4.6.5). Evaluated lazily
-        // at pop-out time, so the field references stay current.
+        // at pop-out time, so the field references stay current. DockAllBack (tour start +
+        // shutdown) and the veto cover EVERY registered tab automatically.
         _popoutController = new TabPopoutController(this, globalCanPopOut: () =>
             _tourService?.IsActive != true
             && !(_emptyStateOverlay?.IsVisible ?? false));
 
-        // PR3 pilot — Search (Carousel index 2, slot "Slot2").
+        // Translate (Carousel index 1, slot "Slot1"). REPARENTS the single live editor —
+        // there is never a second TranslationTabView/editor over the same file, so save
+        // and dirty-tracking (which target the _translationView instance) stay correct and
+        // the two-live-editors clobber hazard the design feared (fresh-instance approach)
+        // cannot occur. AfterAttach re-settles the AvaloniaEdit viewport + focus (design
+        // risk 8); it fires on both pop-out and dock-back.
+        var slotTranslate = Find<Decorator>("Slot1");
+        if (slotTranslate != null)
+        {
+            _popoutController.Register(new TabPopoutDescriptor
+            {
+                TabIndex = 1,
+                Title = "Translate",
+                Slot = slotTranslate,
+                DefaultSize = new Size(1200, 800),
+                AfterAttach = () => _translationView?.RestoreEditorViewAfterReparent(),
+            });
+        }
+
+        var btnPopoutTranslate = Find<Button>("BtnPopoutTranslate");
+        if (btnPopoutTranslate != null)
+            btnPopoutTranslate.Click += (_, _) => _popoutController?.PopOut(1);
+
+        // Search (Carousel index 2, slot "Slot2") — the PR3 pilot.
         var slotSearch = Find<Decorator>("Slot2");
         if (slotSearch != null)
         {
@@ -2494,6 +2519,24 @@ private async Task LoadConfigAndAutoloadAsync()
         var btnPopoutSearch = Find<Button>("BtnPopoutSearch");
         if (btnPopoutSearch != null)
             btnPopoutSearch.Click += (_, _) => _popoutController?.PopOut(2);
+
+        // Collect (Carousel index 4, slot "Slot4"). Clean UserControl — the reparented
+        // instance carries its collections tree / selection / scroll live; no hooks needed.
+        var slotCollect = Find<Decorator>("Slot4");
+        if (slotCollect != null)
+        {
+            _popoutController.Register(new TabPopoutDescriptor
+            {
+                TabIndex = 4,
+                Title = "Collect",
+                Slot = slotCollect,
+                DefaultSize = new Size(1200, 800),
+            });
+        }
+
+        var btnPopoutCollect = Find<Button>("BtnPopoutCollect");
+        if (btnPopoutCollect != null)
+            btnPopoutCollect.Click += (_, _) => _popoutController?.PopOut(4);
     }
 
     private async Task OpenTermbaseEditorWindowAsync(string root, string origDir, string transDir, string? username = null, string? landingTerm = null, string? landingCommunityUser = null)
