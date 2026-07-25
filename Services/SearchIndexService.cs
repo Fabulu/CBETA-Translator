@@ -196,20 +196,55 @@ public sealed class SearchIndexService : ISearchIndexService
     /// </summary>
     internal Action? TestOnlyIncrementalFault;
 
-    // FL1: the ordered list of index families. Today it holds a single member — the
-    // combined `search.*` family with today's file names + guid. Query/invalidation
-    // sites iterate this list; with one member the result is byte/order-identical to
-    // the pre-FL1 single-slot fields. Never mutated after construction in FL1, so
-    // _families[0] needs no lock; each family's cache slots are guarded by _indexCacheLock.
-    private readonly List<SearchFamily> _families = new()
-    {
-        new SearchFamily(
-            binFileName: BinFileName,
-            invertedBinFileName: InvertedBinFileName)
-    };
+    // FL4: the COMBINED family is a stable, dedicated instance (never reassigned): the
+    // build/save path and the combined load/serve path always route through it. `_families`
+    // (below) is the QUERY-path family list — [combined] for a combined root, [origin, overlay]
+    // for a split root (design §4.3). Query/invalidation sites iterate `_families`; keeping
+    // Combined separate from _families[0] means loading a split root never repoints the build
+    // path's family at the origin layer. Cache slots are guarded by _indexCacheLock; the list
+    // reference is reassigned (never mutated in place) under the same lock, so a lock-free
+    // reader that captured the old reference stays self-consistent.
+    private readonly SearchFamily _combinedFamily = new SearchFamily(
+        binFileName: BinFileName,
+        invertedBinFileName: InvertedBinFileName,
+        textManifestFileName: TextManifestFileName,
+        textBinFileName: TextBinFileName,
+        corpusFreqManifestFileName: CorpusFreqManifestFileName,
+        corpusFreqBinFileName: CorpusFreqBinFileName);
 
-    /// <summary>FL1: the sole combined family. FL4 introduces {origin, overlay}.</summary>
-    private SearchFamily Combined => _families[0];
+    // FL1/FL4: the ordered query-path family list. Starts as [combined]. FL4's split load
+    // (TryLoadSplitAsync) replaces it with [origin, overlay]; the combined load resets it to
+    // [combined]. Reassigned (never mutated in place) under _indexCacheLock so a concurrent
+    // reader that captured the old reference stays consistent.
+    private List<SearchFamily> _families;
+
+    /// <summary>The stable combined family (build/save + combined serve). Split roots serve
+    /// through the two members of <see cref="_families"/>, leaving this dormant.</summary>
+    private SearchFamily Combined => _combinedFamily;
+
+    // FL4 split-root load cache (design §4.3 "in-memory merged view"). Guarded by
+    // _indexCacheLock. Mirrors the combined manifest fast path: a repeat TryLoadAsync on the
+    // same split root (both layer manifests unchanged on disk) returns the cached merged view
+    // and leaves the already-loaded origin/overlay families (mmaps, inverted, corpusfreq) warm.
+    private SearchIndexManifest? _cachedMergedManifest;
+    private string? _cachedMergedOriginPath;
+    private DateTime _cachedMergedOriginWriteUtc;
+    private string? _cachedMergedOverlayPath;
+    private DateTime _cachedMergedOverlayWriteUtc;
+    // True while _families is the [origin, overlay] split set. Read (under lock) by the text
+    // route + verify paths so combined roots stay on the exact pre-FL4 single-sidecar path.
+    private bool _splitLoaded;
+
+    public SearchIndexService()
+    {
+        _families = new List<SearchFamily> { _combinedFamily };
+        _defaultTextRoute = new TextRoute { Entry = null, TextBinFileName = TextBinFileName, Family = _combinedFamily };
+    }
+
+    // FL4: shared fallback route for a (rel, side) with no text sidecar entry — entry == null
+    // forces the XML-parse fallback in TryReadSearchableTextFromSidecar, so the bin/family are
+    // inert. Immutable in practice; safe to share across parallel verify workers.
+    private readonly TextRoute _defaultTextRoute;
 
     /// <summary>
     /// FL1 (frozen/live split, design §2.4/§4.3): bundles the per-family index state that
@@ -223,8 +258,17 @@ public sealed class SearchIndexService : ISearchIndexService
     private sealed class SearchFamily
     {
         // ── identity (file names; the combined family == today's constants) ──
+        // FL4: a family is now fully self-describing — it carries the bloom, inverted, text
+        // and corpusfreq file names it owns. The combined family carries the legacy names
+        // (byte-identical); the origin/overlay families carry search.origin.* / search.overlay.*.
+        // This lets the two-bin bloom sweep + text/corpusfreq routing pick the right file per
+        // (rel, side) with no external lookup table (design §2.4/§2.5/§2.3).
         public readonly string BinFileName;
         public readonly string InvertedBinFileName;
+        public readonly string TextManifestFileName;
+        public readonly string TextBinFileName;
+        public readonly string CorpusFreqManifestFileName;
+        public readonly string CorpusFreqBinFileName;
 
         // ── cached manifest + mmap slots (guarded by SearchIndexService._indexCacheLock) ──
         public SearchIndexManifest? CachedManifest;
@@ -249,10 +293,20 @@ public sealed class SearchIndexService : ISearchIndexService
         public IReadOnlyDictionary<string, int>? BigramFreqs;
         public long TotalChars;
 
-        public SearchFamily(string binFileName, string invertedBinFileName)
+        public SearchFamily(
+            string binFileName,
+            string invertedBinFileName,
+            string textManifestFileName,
+            string textBinFileName,
+            string corpusFreqManifestFileName,
+            string corpusFreqBinFileName)
         {
             BinFileName = binFileName;
             InvertedBinFileName = invertedBinFileName;
+            TextManifestFileName = textManifestFileName;
+            TextBinFileName = textBinFileName;
+            CorpusFreqManifestFileName = corpusFreqManifestFileName;
+            CorpusFreqBinFileName = corpusFreqBinFileName;
         }
 
         /// <summary>
@@ -936,10 +990,21 @@ public sealed class SearchIndexService : ISearchIndexService
     {
         lock (_indexCacheLock)
         {
-            // FL1: invalidate every family's cache slots. One member today, so this is
-            // byte-identical to the previous single-slot clear.
+            // FL1/FL4: invalidate the combined family AND every query-path family's cache
+            // slots. For a combined root _families == [_combinedFamily] so this is one clear;
+            // for a split root the combined family (dormant) plus origin+overlay are all
+            // cleared. InvalidateCaches is idempotent, so the combined-root double-touch is
+            // harmless.
+            _combinedFamily.InvalidateCaches();
             foreach (var fam in _families)
                 fam.InvalidateCaches();
+
+            // FL4: drop the split merged-view cache so the next load re-detects + re-folds.
+            _cachedMergedManifest = null;
+            _cachedMergedOriginPath = null;
+            _cachedMergedOriginWriteUtc = default;
+            _cachedMergedOverlayPath = null;
+            _cachedMergedOverlayWriteUtc = default;
         }
 
         // FL2: the cached corpusfreq fold is derived from family partials; invalidate it
@@ -2080,7 +2145,9 @@ public sealed class SearchIndexService : ISearchIndexService
         long lengthBytes,
         SearchTextEntry? textEntry,
         string absPath,
-        bool htmlDecodeIfAmpersandPresent)
+        bool htmlDecodeIfAmpersandPresent,
+        string textBinFileName,
+        SearchFamily textFamily)
     {
         var key = (rel: NormalizeRelKey(relPath), side, ticks: lastWriteUtcTicks, len: lengthBytes);
 
@@ -2094,7 +2161,7 @@ public sealed class SearchIndexService : ISearchIndexService
             }
         }
 
-        if (!TryReadSearchableTextFromSidecar(root, key, textEntry, out string searchable))
+        if (!TryReadSearchableTextFromSidecar(root, key, textEntry, textBinFileName, textFamily, out string searchable))
         {
             string xml;
             try { xml = File.ReadAllText(absPath, Utf8NoBom); }
@@ -2128,6 +2195,8 @@ public sealed class SearchIndexService : ISearchIndexService
         string root,
         (string rel, SearchSide side, long ticks, long len) key,
         SearchTextEntry? textEntry,
+        string textBinFileName,
+        SearchFamily textFamily,
         out string searchable)
     {
         searchable = "";
@@ -2140,7 +2209,10 @@ public sealed class SearchIndexService : ISearchIndexService
 
         try
         {
-            string textBinPath = GetTextBinPath(root);
+            // FL4: route to the OWNING layer's text sidecar (combined → search.text.bin;
+            // origin → search.origin.text.bin; overlay → search.overlay.text.bin) and use that
+            // family's mmap cache slot so combined + split roots never thrash one slot.
+            string textBinPath = Path.Combine(root, textBinFileName);
             var full = Path.GetFullPath(textBinPath);
             if (!File.Exists(full)) return false;
 
@@ -2149,7 +2221,7 @@ public sealed class SearchIndexService : ISearchIndexService
             if (textEntry.TextOffset < 0 || end < textEntry.TextOffset || end > fileLen)
                 return false;
 
-            using var accessor = GetOrCreateTextMappedFile(full, File.GetLastWriteTimeUtc(full), Combined)
+            using var accessor = GetOrCreateTextMappedFile(full, File.GetLastWriteTimeUtc(full), textFamily)
                 .CreateViewAccessor(textEntry.TextOffset, textEntry.TextLengthBytes, MemoryMappedFileAccess.Read);
 
             var bytes = new byte[textEntry.TextLengthBytes];
@@ -2361,6 +2433,22 @@ public sealed class SearchIndexService : ISearchIndexService
 
     public async Task<SearchIndexManifest?> TryLoadAsync(string root)
     {
+        // FL4 (design §4.3): if the root holds a split family — search.origin.manifest.json
+        // (LayerRole=="origin", guid search-v9-origin) AND search.overlay.manifest.json — load
+        // BOTH layers and return an in-memory MERGED view (Entries = origin ∪ overlay). Only a
+        // fully-formed, guid-current split pair engages this path; anything short of it falls
+        // through to the combined loader below, which behaves EXACTLY as pre-FL4.
+        if (File.Exists(Path.Combine(root, OriginManifestFileName)) &&
+            File.Exists(Path.Combine(root, OverlayManifestFileName)))
+        {
+            var merged = await TryLoadSplitAsync(root).ConfigureAwait(false);
+            if (merged != null)
+                return merged;
+            // Split pair present but not loadable (guid mismatch / torn) → do not silently serve
+            // a combined family for a split root; refuse (mirrors the guid gate discipline).
+            return null;
+        }
+
         try
         {
             var mp = GetManifestPath(root);
@@ -2368,6 +2456,10 @@ public sealed class SearchIndexService : ISearchIndexService
 
             if (!File.Exists(mp) || !File.Exists(bp))
                 return null;
+
+            // A combined root: make sure the query-path family list is the combined singleton
+            // (a prior split load on this instance may have left it as [origin, overlay]).
+            ResetToCombinedFamilies();
 
             var mpFull = Path.GetFullPath(mp);
             var mpWriteUtc = File.GetLastWriteTimeUtc(mpFull);
@@ -2457,6 +2549,212 @@ public sealed class SearchIndexService : ISearchIndexService
         }
     }
 
+    /// <summary>FL4: reset the query-path family list to the combined singleton if a prior
+    /// split load left it as [origin, overlay]. Disposes the split families' mmap slots and
+    /// drops the merged-view cache. No-op for an already-combined instance.</summary>
+    private void ResetToCombinedFamilies()
+    {
+        lock (_indexCacheLock)
+        {
+            if (!_splitLoaded && _families.Count == 1 && ReferenceEquals(_families[0], _combinedFamily))
+                return;
+
+            foreach (var fam in _families)
+                if (!ReferenceEquals(fam, _combinedFamily))
+                    fam.InvalidateCaches();
+
+            _families = new List<SearchFamily> { _combinedFamily };
+            _splitLoaded = false;
+            _cachedMergedManifest = null;
+            _cachedMergedOriginPath = null;
+            _cachedMergedOriginWriteUtc = default;
+            _cachedMergedOverlayPath = null;
+            _cachedMergedOverlayWriteUtc = default;
+        }
+        InvalidateMergedCorpusFreqs();
+    }
+
+    /// <summary>
+    /// FL4 (design §4.3): load a SPLIT root — the frozen origin family (search.origin.*) and
+    /// the live overlay family (search.overlay.*) — into two <see cref="SearchFamily"/> query
+    /// members and return an in-memory MERGED manifest view (Entries = origin ∪ overlay, each
+    /// entry kept under its owning family; IndexStamp = origin stamp for diagnostics). The
+    /// per-layer inverted indexes + corpusfreq partials are loaded onto their families so the
+    /// query path's disjoint-union merge (§2.2) and additive corpusfreq fold (§2.3) engage.
+    /// Returns null (caller refuses the root) if either layer manifest is absent, guid-stale,
+    /// mis-roled, or fails bloom-offset validation.
+    /// </summary>
+    private async Task<SearchIndexManifest?> TryLoadSplitAsync(string root)
+    {
+        try
+        {
+            var originMp = Path.Combine(root, OriginManifestFileName);
+            var originBp = Path.Combine(root, OriginBinFileName);
+            var overlayMp = Path.Combine(root, OverlayManifestFileName);
+            var overlayBp = Path.Combine(root, OverlayBinFileName);
+
+            if (!File.Exists(originMp) || !File.Exists(originBp) ||
+                !File.Exists(overlayMp) || !File.Exists(overlayBp))
+                return null;
+
+            var originMpFull = Path.GetFullPath(originMp);
+            var overlayMpFull = Path.GetFullPath(overlayMp);
+            var originWriteUtc = File.GetLastWriteTimeUtc(originMpFull);
+            var overlayWriteUtc = File.GetLastWriteTimeUtc(overlayMpFull);
+
+            // Fast path: both layer manifests unchanged since the last split load → return the
+            // cached merged view; the origin/overlay families are already warm.
+            lock (_indexCacheLock)
+            {
+                if (_splitLoaded && _cachedMergedManifest != null &&
+                    string.Equals(_cachedMergedOriginPath, originMpFull, StringComparison.OrdinalIgnoreCase) &&
+                    _cachedMergedOriginWriteUtc == originWriteUtc &&
+                    string.Equals(_cachedMergedOverlayPath, overlayMpFull, StringComparison.OrdinalIgnoreCase) &&
+                    _cachedMergedOverlayWriteUtc == overlayWriteUtc)
+                {
+                    return _cachedMergedManifest;
+                }
+            }
+
+            var originMan = await LoadLayerManifestAsync(originMp, originBp, root, OriginBuildGuid, "origin").ConfigureAwait(false);
+            if (originMan == null) return null;
+            var overlayMan = await LoadLayerManifestAsync(overlayMp, overlayBp, root, OverlayBuildGuid, "overlay").ConfigureAwait(false);
+            if (overlayMan == null) return null;
+
+            // Build the two query families (self-describing file names). Fresh instances each
+            // split load — the inverted + corpusfreq handles below populate them.
+            var originFam = new SearchFamily(
+                binFileName: OriginBinFileName,
+                invertedBinFileName: OriginInvertedBinFileName,
+                textManifestFileName: OriginTextManifestFileName,
+                textBinFileName: OriginTextBinFileName,
+                corpusFreqManifestFileName: OriginCorpusFreqManifestFileName,
+                corpusFreqBinFileName: OriginCorpusFreqBinFileName)
+            {
+                CachedManifest = originMan,
+                CachedManifestPath = originMpFull,
+                CachedManifestWriteUtc = originWriteUtc,
+            };
+            var overlayFam = new SearchFamily(
+                binFileName: OverlayBinFileName,
+                invertedBinFileName: OverlayInvertedBinFileName,
+                textManifestFileName: OverlayTextManifestFileName,
+                textBinFileName: OverlayTextBinFileName,
+                corpusFreqManifestFileName: OverlayCorpusFreqManifestFileName,
+                corpusFreqBinFileName: OverlayCorpusFreqBinFileName)
+            {
+                CachedManifest = overlayMan,
+                CachedManifestPath = overlayMpFull,
+                CachedManifestWriteUtc = overlayWriteUtc,
+            };
+
+            // Load each layer's inverted index against ITS OWN manifest stamp (same-build
+            // binding; a stale/torn per-layer inverted is refused, leaving that layer to the
+            // bloom fallback — §2.2 conservative rule then makes the whole query fall back).
+            await TryLoadLayerInvertedAsync(root, originFam, originMan.IndexStamp).ConfigureAwait(false);
+            await TryLoadLayerInvertedAsync(root, overlayFam, overlayMan.IndexStamp).ConfigureAwait(false);
+
+            // Load each layer's corpusfreq partial (stamped with that layer's IndexStamp). The
+            // FL2 additive fold turns the two partials into the corpus-global view.
+            try { await TryLoadCorpusFrequenciesIntoFamilyAsync(root, originMan.IndexStamp, originFam); } catch { }
+            try { await TryLoadCorpusFrequenciesIntoFamilyAsync(root, overlayMan.IndexStamp, overlayFam); } catch { }
+
+            // Merged manifest view: entries are the disjoint union of both layers (partition
+            // invariant §1.2 → no (rel, side) collision). Origin entries first so any
+            // impossible dup resolves origin-wins downstream (entryMap.ToDictionary keep-first).
+            var mergedEntries = new List<SearchIndexEntry>(originMan.Entries.Count + overlayMan.Entries.Count);
+            mergedEntries.AddRange(originMan.Entries);
+            mergedEntries.AddRange(overlayMan.Entries);
+
+            var merged = new SearchIndexManifest
+            {
+                Version = originMan.Version,
+                RootPath = root,
+                BuiltUtc = originMan.BuiltUtc,
+                BloomBits = BloomBits,
+                BloomHashCount = BloomHashCount,
+                BuildGuid = originMan.BuildGuid,
+                IndexStamp = originMan.IndexStamp,   // diagnostics only
+                LayerRole = null,
+                Entries = mergedEntries,
+            };
+
+            lock (_indexCacheLock)
+            {
+                _families = new List<SearchFamily> { originFam, overlayFam };
+                _splitLoaded = true;
+                _cachedMergedManifest = merged;
+                _cachedMergedOriginPath = originMpFull;
+                _cachedMergedOriginWriteUtc = originWriteUtc;
+                _cachedMergedOverlayPath = overlayMpFull;
+                _cachedMergedOverlayWriteUtc = overlayWriteUtc;
+            }
+            // A family partial changed → re-fold the corpus-global corpusfreq on next access.
+            InvalidateMergedCorpusFreqs();
+
+            Dbg($"Split root loaded: origin={originMan.Entries.Count} entries, overlay={overlayMan.Entries.Count} entries, " +
+                $"originInverted={originFam.Inverted?.IsLoaded == true}, overlayInverted={overlayFam.Inverted?.IsLoaded == true}");
+
+            return merged;
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    /// <summary>FL4: read + validate one split-layer bloom manifest (guid/role/root/bloom
+    /// geometry + per-entry bloom-offset bounds against its own bin). Null on any mismatch.</summary>
+    private async Task<SearchIndexManifest?> LoadLayerManifestAsync(
+        string manifestPath, string binPath, string root, string expectedGuid, string expectedRole)
+    {
+        try
+        {
+            var json = await File.ReadAllTextAsync(manifestPath, Utf8NoBom).ConfigureAwait(false);
+            if (string.IsNullOrWhiteSpace(json)) return null;
+
+            var man = JsonSerializer.Deserialize<SearchIndexManifest>(json, JsonOpts);
+            if (man == null) return null;
+
+            if (!string.Equals(Path.GetFullPath(man.RootPath), Path.GetFullPath(root), StringComparison.OrdinalIgnoreCase))
+                return null;
+            if (man.Version != 1) return null;
+            if (!string.Equals(man.BuildGuid, expectedGuid, StringComparison.Ordinal)) return null;
+            if (!string.Equals(man.LayerRole, expectedRole, StringComparison.Ordinal)) return null;
+            if (man.BloomBits != BloomBits || man.BloomHashCount != BloomHashCount) return null;
+            if (man.Entries == null) return null;
+
+            var binLen = new FileInfo(binPath).Length;
+            foreach (var e in man.Entries)
+            {
+                if (e.BloomOffset < 0 || e.BloomOffset + BloomBytes > binLen)
+                    return null;
+            }
+
+            return man;
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    /// <summary>FL4: load one layer's inverted index onto its family, gated on the layer's
+    /// IndexStamp (same-build binding). Silent on absence/refusal — the family simply has no
+    /// usable inverted index and the query path's conservative rule (§2.2) handles it.</summary>
+    private async Task TryLoadLayerInvertedAsync(string root, SearchFamily fam, string? indexStamp)
+    {
+        if (string.IsNullOrEmpty(indexStamp)) return;
+        try
+        {
+            var invPath = Path.Combine(root, fam.InvertedBinFileName);
+            var inv = new InvertedSearchIndex();
+            if (await inv.TryLoadAsync(invPath, indexStamp, CancellationToken.None).ConfigureAwait(false))
+                fam.Inverted = inv;
+        }
+        catch { /* inverted index is optional */ }
+    }
+
     /// <summary>
     /// Loads the corpus frequency index from disk. Returns true on success.
     /// <paramref name="expectedStamp"/> is the loaded main manifest's IndexStamp; the
@@ -2465,10 +2763,18 @@ public sealed class SearchIndexService : ISearchIndexService
     /// manifest commit and the corpusfreq save must not leave a previous build's
     /// frequencies silently trusted for ranking.
     /// </summary>
-    public async Task<bool> TryLoadCorpusFrequenciesAsync(string root, string? expectedStamp)
+    public Task<bool> TryLoadCorpusFrequenciesAsync(string root, string? expectedStamp)
+        => TryLoadCorpusFrequenciesIntoFamilyAsync(root, expectedStamp, Combined);
+
+    /// <summary>FL4: corpusfreq load core, parametrized by the owning family. The combined
+    /// family reads search.corpusfreq.*; the origin/overlay families read their own partials
+    /// (search.origin.corpusfreq.* / search.overlay.corpusfreq.*). Sets the family's
+    /// CharFreqs/BigramFreqs/TotalChars and invalidates the merged fold. Byte-identical to the
+    /// pre-FL4 body when <paramref name="fam"/> == Combined.</summary>
+    private async Task<bool> TryLoadCorpusFrequenciesIntoFamilyAsync(string root, string? expectedStamp, SearchFamily fam)
     {
-        var manifestPath = Path.Combine(root, "search.corpusfreq.manifest.json");
-        var binPath = Path.Combine(root, "search.corpusfreq.bin");
+        var manifestPath = Path.Combine(root, fam.CorpusFreqManifestFileName);
+        var binPath = Path.Combine(root, fam.CorpusFreqBinFileName);
 
         if (!File.Exists(manifestPath) || !File.Exists(binPath))
             return false;
@@ -2521,9 +2827,9 @@ public sealed class SearchIndexService : ISearchIndexService
                 bigramFreqs[string.Concat(c1, c2)] = freq;
             }
 
-            Combined.CharFreqs = charFreqs;
-            Combined.BigramFreqs = bigramFreqs;
-            Combined.TotalChars = totalChars;
+            fam.CharFreqs = charFreqs;
+            fam.BigramFreqs = bigramFreqs;
+            fam.TotalChars = totalChars;
             InvalidateMergedCorpusFreqs(); // FL2: a family partial changed → re-fold on next getter access
 
             Dbg($"Corpus freq index loaded: {charCount} chars, {bigramCount} bigrams, {totalChars} total");
@@ -2536,12 +2842,72 @@ public sealed class SearchIndexService : ISearchIndexService
         }
     }
 
-    public async Task<SearchTextManifest?> TryLoadTextManifestAsync(string root)
+    public Task<SearchTextManifest?> TryLoadTextManifestAsync(string root)
+        => TryLoadTextManifestForFamilyAsync(root, Combined);
+
+    /// <summary>FL4 (design §2.5): per-(rel, side) routing target for a verify/snippet read —
+    /// the text sidecar entry plus which layer's text.bin + mmap-cache family owns it.</summary>
+    private sealed class TextRoute
+    {
+        public SearchTextEntry? Entry;
+        public string TextBinFileName = "";
+        public SearchFamily Family = null!;
+    }
+
+    /// <summary>
+    /// FL4 (design §2.5): union the per-family text sidecars into one (rel, side) → route map.
+    /// Combined root → one entry per (rel, side) routed to search.text.bin/Combined (byte-
+    /// identical to the pre-FL4 single textEntryMap). Split root → origin sidecar entries route
+    /// to search.origin.text.bin/originFam and overlay entries to search.overlay.text.bin/
+    /// overlayFam; the partition invariant (§1.2) guarantees no (rel, side) key collision.
+    /// </summary>
+    private async Task<Dictionary<(string rel, SearchSide side), TextRoute>> BuildTextRouteMapAsync(
+        string root, IReadOnlyList<SearchFamily> families)
+    {
+        var map = new Dictionary<(string rel, SearchSide side), TextRoute>(new RelSideComparer());
+        foreach (var fam in families)
+        {
+            SearchTextManifest? tm;
+            try { tm = await TryLoadTextManifestForFamilyAsync(root, fam).ConfigureAwait(false); }
+            catch { tm = null; } // Sidecar is optional — verify falls back to XML parse.
+            if (tm?.Entries == null) continue;
+            foreach (var e in tm.Entries)
+                map[(e.RelPath, e.Side)] = new TextRoute
+                {
+                    Entry = e,
+                    TextBinFileName = fam.TextBinFileName,
+                    Family = fam,
+                };
+        }
+        return map;
+    }
+
+    /// <summary>FL4 (§2.4): the manifest entries a family owns for the two-bin bloom sweep.
+    /// Combined root (one family) → the passed merged entries directly (no cache dependency →
+    /// byte-identical to the pre-FL4 single-bin sweep). Split root → the family's own cached
+    /// manifest entries, whose bloom offsets are valid only in that family's bin.</summary>
+    private static IReadOnlyList<SearchIndexEntry> EntriesForFamily(
+        SearchFamily fam, IReadOnlyList<SearchFamily> families, List<SearchIndexEntry> mergedEntries)
+    {
+        if (families.Count == 1) return mergedEntries;
+        return fam.CachedManifest?.Entries ?? (IReadOnlyList<SearchIndexEntry>)Array.Empty<SearchIndexEntry>();
+    }
+
+    /// <summary>FL4: the text route for a (rel, side), or the combined fallback (entry == null
+    /// → XML-parse path) when no sidecar entry exists for it.</summary>
+    private TextRoute RouteFor(Dictionary<(string rel, SearchSide side), TextRoute> map, string rel, SearchSide side)
+        => map.TryGetValue((rel, side), out var r) ? r : _defaultTextRoute;
+
+    /// <summary>FL4: text-manifest load core, parametrized by the owning family. The combined
+    /// family reads search.text.*; the origin/overlay families read their own text sidecars.
+    /// Uses the family's own cache slots. Byte-identical to the pre-FL4 body when
+    /// <paramref name="fam"/> == Combined.</summary>
+    private async Task<SearchTextManifest?> TryLoadTextManifestForFamilyAsync(string root, SearchFamily fam)
     {
         try
         {
-            var mp = GetTextManifestPath(root);
-            var bp = GetTextBinPath(root);
+            var mp = Path.Combine(root, fam.TextManifestFileName);
+            var bp = Path.Combine(root, fam.TextBinFileName);
 
             if (!File.Exists(mp) || !File.Exists(bp))
                 return null;
@@ -2551,11 +2917,11 @@ public sealed class SearchIndexService : ISearchIndexService
 
             lock (_indexCacheLock)
             {
-                if (Combined.CachedTextManifest != null &&
-                    string.Equals(Combined.CachedTextManifestPath, mpFull, StringComparison.OrdinalIgnoreCase) &&
-                    Combined.CachedTextManifestWriteUtc == mpWriteUtc)
+                if (fam.CachedTextManifest != null &&
+                    string.Equals(fam.CachedTextManifestPath, mpFull, StringComparison.OrdinalIgnoreCase) &&
+                    fam.CachedTextManifestWriteUtc == mpWriteUtc)
                 {
-                    return Combined.CachedTextManifest;
+                    return fam.CachedTextManifest;
                 }
             }
 
@@ -2582,9 +2948,9 @@ public sealed class SearchIndexService : ISearchIndexService
 
             lock (_indexCacheLock)
             {
-                Combined.CachedTextManifest = man;
-                Combined.CachedTextManifestPath = mpFull;
-                Combined.CachedTextManifestWriteUtc = mpWriteUtc;
+                fam.CachedTextManifest = man;
+                fam.CachedTextManifestPath = mpFull;
+                fam.CachedTextManifestWriteUtc = mpWriteUtc;
             }
 
             return man;
@@ -4801,6 +5167,11 @@ public sealed class SearchIndexService : ISearchIndexService
 
         var entries = manifest.Entries ?? new List<SearchIndexEntry>();
 
+        // FL4: capture the query-path family list ONCE (a concurrent reload reassigns the field
+        // to a new list; every phase of this query must see the same set). Combined root →
+        // [combined]; split root → [origin, overlay].
+        var families = _families;
+
         var swTotal = System.Diagnostics.Stopwatch.StartNew();
         Dbg($"SearchAllAsync START q='{query}' effectiveQ='{effectiveQuery}' len={effectiveQuery.Length} includeO={includeOriginal} includeT={includeTranslated} entries={entries.Count}");
 
@@ -4821,15 +5192,21 @@ public sealed class SearchIndexService : ISearchIndexService
         Dictionary<string, long>? tfByRel = null;
 
         // Fast path: inverted index (0% false positives, sub-millisecond).
-        // FL1: iterate the family list. Today it holds a single member (the combined
-        // family), so this is byte/order-identical to the pre-FL1 single-InvertedIndex
-        // path: usedInvertedIndex flips true only when a loaded index returns hits.
-        // FL4 turns this into the disjoint-union merge of {origin, overlay} (design §2.2):
-        // per-family doc sets are disjoint, so candidates + tf union with no cross-layer
-        // arithmetic, and each layer's ushort docId space stays local to its GetRelPath.
-        if (effectiveQuery.Length >= 2)
+        // FL4 disjoint-union merge of the loaded families (design §2.2): per-family doc sets are
+        // disjoint (partition invariant §1.2), so candidates + tf UNION with no cross-layer
+        // arithmetic, and each layer's ushort docId space stays local to its own GetRelPath.
+        //
+        // CONSERVATIVE FAST-PATH RULE (§2.2): use the inverted fast path ONLY when EVERY loaded
+        // family has a usable (loaded) inverted index. If any family's inverted index failed to
+        // load, the whole query falls back to the two-bin bloom sweep — otherwise that family's
+        // docs would be silently dropped (inverted covers only the loaded families, and
+        // usedInvertedIndex would suppress the bloom fallback). A mixed inverted+bloom mode is
+        // explicitly deferred. For a combined root (one family) this collapses to today's rule
+        // ("inverted iff the combined index is loaded"), byte-identical.
+        bool allInvertedUsable = families.Count > 0 && families.All(f => f.Inverted?.IsLoaded == true);
+        if (effectiveQuery.Length >= 2 && allInvertedUsable)
         {
-            foreach (var fam in _families)
+            foreach (var fam in families)
             {
                 var inv = fam.Inverted;
                 if (inv?.IsLoaded != true) continue;
@@ -4867,13 +5244,9 @@ public sealed class SearchIndexService : ISearchIndexService
             {
                 Dbg($"Candidate phase START useBloom={useBloom}");
 
-                // FL1: sweep the family list. One member today (the combined family), so
-                // the total bytes scanned and the candidate set are byte-identical to the
-                // pre-FL1 single-bin sweep. FL4 partitions `entries` per family (disjoint by
-                // design §1.2) and gives origin/overlay distinct bloom bins — here the sole
-                // combined family owns every entry and fam.BinFileName == search.index.bin.
-                foreach (var fam in _families)
-                {
+                // FL4 brute 1-char path (§2.4): union of ALL families' manifest entries.
+                // `entries` IS that union (the merged view for a split root; the sole family's
+                // entries for a combined root), so scan it ONCE — no per-family repeat.
                 if (!useBloom)
                 {
                     int seen = 0;
@@ -4898,7 +5271,13 @@ public sealed class SearchIndexService : ISearchIndexService
                 }
                 else
                 {
-                    // FL1: combined family → Path.Combine(root, fam.BinFileName) == GetBinPath(root).
+                    // FL4 two-bin bloom sweep (§2.4): each family mmaps its OWN bin and scans
+                    // ITS OWN manifest entries (bloom offsets are valid only in the owning bin).
+                    // Combined root → the sole family owns every entry and its bin is
+                    // search.index.bin, so this is byte-identical to the pre-FL4 single-bin sweep.
+                    foreach (var fam in families)
+                    {
+                    var famEntries = EntriesForFamily(fam, families, entries);
                     string binPath = Path.Combine(root, fam.BinFileName);
                     var binFull = Path.GetFullPath(binPath);
 
@@ -4927,7 +5306,7 @@ public sealed class SearchIndexService : ISearchIndexService
                         Dbg($"Candidate phase bloom: Parallel.ForEach START dop={po.MaxDegreeOfParallelism}, grams={grams.Count}");
 
                         Parallel.ForEach(
-                            entries,
+                            famEntries,
                             po,
                             localInit: () =>
                             {
@@ -5004,8 +5383,8 @@ public sealed class SearchIndexService : ISearchIndexService
                         swBloom.Stop();
                         Dbg($"Candidate phase bloom DONE in {swBloom.ElapsedMilliseconds}ms scanned={scannedEntries} bloomPass={bloomPass} candidateKeys={candidates.Count}");
                     }
+                    } // FL4: end foreach family (two-bin bloom sweep)
                 }
-                } // FL1: end foreach family
             }
             finally
             {
@@ -5112,27 +5491,13 @@ public sealed class SearchIndexService : ISearchIndexService
                 candidateList.Take(take), StringComparer.OrdinalIgnoreCase);
         }
         int skippedVerifyGroups = 0;
-        // FL1: entryMap/textEntryMap are built from the passed manifest + the combined
-        // family's text sidecar (read via the now family-backed cache). Today `entries`
-        // belongs to the sole combined family, so this is the whole map. FL4 (design §2.5)
-        // makes these the union of {origin, overlay} manifests — disjoint by §1.2, so no
-        // key collision — and routes each (rel, side) verify to its owning layer's text.bin.
+        // FL4 (design §2.5): entryMap is the union of the loaded families' manifests — `entries`
+        // already IS that union (the merged view for a split root; the sole family's entries for
+        // a combined root), disjoint by §1.2 so no key collision. textRouteMap unions the
+        // per-family text sidecars and remembers, per (rel, side), which layer's text.bin +
+        // mmap-cache family owns it so each verify reads from the right sidecar.
         var entryMap = entries.ToDictionary(e => (e.RelPath, e.Side), e => e, new RelSideComparer());
-        var textEntryMap = new Dictionary<(string rel, SearchSide side), SearchTextEntry>(new RelSideComparer());
-
-        try
-        {
-            var textManifest = await TryLoadTextManifestAsync(root);
-            if (textManifest?.Entries != null)
-            {
-                foreach (var e in textManifest.Entries)
-                    textEntryMap[(e.RelPath, e.Side)] = e;
-            }
-        }
-        catch
-        {
-            // Sidecar is optional. Fallback path keeps search correctness.
-        }
+        var textRouteMap = await BuildTextRouteMapAsync(root, families);
 
         var verifyPo = new ParallelOptions
         {
@@ -5232,7 +5597,7 @@ public sealed class SearchIndexService : ISearchIndexService
                         {
                             string abs = ResolveAbsPath(originalDir, additionalOriginalDirs, relKey);
                             entryMap.TryGetValue((relKey, SearchSide.Original), out var metaOriginal);
-                            textEntryMap.TryGetValue((relKey, SearchSide.Original), out var textOriginal);
+                            var routeO = RouteFor(textRouteMap, relKey, SearchSide.Original);
                             originalHits = VerifyFileAllHits(
                                 root,
                                 relKey,
@@ -5240,10 +5605,12 @@ public sealed class SearchIndexService : ISearchIndexService
                                 abs,
                                 metaOriginal?.LastWriteUtcTicks ?? 0,
                                 metaOriginal?.LengthBytes ?? 0,
-                                textOriginal,
+                                routeO.Entry,
                                 effectiveQuery,
                                 contextWidth,
-                                htmlDecodeIfAmpersandPresent: Options.HtmlDecodeIfAmpersandPresent);
+                                htmlDecodeIfAmpersandPresent: Options.HtmlDecodeIfAmpersandPresent,
+                                textBinFileName: routeO.TextBinFileName,
+                                textFamily: routeO.Family);
                             Interlocked.Increment(ref verifiedDocs);
                             hitsO = originalHits.Count;
                             Interlocked.Add(ref totalHits, hitsO);
@@ -5253,7 +5620,7 @@ public sealed class SearchIndexService : ISearchIndexService
                         {
                             string abs = ResolveAbsPath(translatedDir, additionalTranslatedDirs, relKey);
                             entryMap.TryGetValue((relKey, SearchSide.Translated), out var metaTranslated);
-                            textEntryMap.TryGetValue((relKey, SearchSide.Translated), out var textTranslated);
+                            var routeT = RouteFor(textRouteMap, relKey, SearchSide.Translated);
                             translatedHits = VerifyFileAllHits(
                                 root,
                                 relKey,
@@ -5261,10 +5628,12 @@ public sealed class SearchIndexService : ISearchIndexService
                                 abs,
                                 metaTranslated?.LastWriteUtcTicks ?? 0,
                                 metaTranslated?.LengthBytes ?? 0,
-                                textTranslated,
+                                routeT.Entry,
                                 effectiveQuery,
                                 contextWidth,
-                                htmlDecodeIfAmpersandPresent: Options.HtmlDecodeIfAmpersandPresent);
+                                htmlDecodeIfAmpersandPresent: Options.HtmlDecodeIfAmpersandPresent,
+                                textBinFileName: routeT.TextBinFileName,
+                                textFamily: routeT.Family);
                             Interlocked.Increment(ref verifiedDocs);
                             hitsT = translatedHits.Count;
                             Interlocked.Add(ref totalHits, hitsT);
@@ -5430,23 +5799,12 @@ public sealed class SearchIndexService : ISearchIndexService
 
         Dbg($"LoadSnippetsForAsync START promoting={promote.Count} q='{query}' effectiveQ='{effectiveQuery}'");
 
-        // Pre-build the entry/text-entry maps once for the whole batch (mirrors SearchAllAsync).
+        // Pre-build the entry/text-route maps once for the whole batch (mirrors SearchAllAsync).
+        // FL4: entryMap union + per-(rel, side) text sidecar routing across the loaded families.
+        var families = _families;
         var entries = manifest?.Entries ?? new List<SearchIndexEntry>();
         var entryMap = entries.ToDictionary(e => (e.RelPath, e.Side), e => e, new RelSideComparer());
-        var textEntryMap = new Dictionary<(string rel, SearchSide side), SearchTextEntry>(new RelSideComparer());
-        try
-        {
-            var textManifest = await TryLoadTextManifestAsync(root);
-            if (textManifest?.Entries != null)
-            {
-                foreach (var e in textManifest.Entries)
-                    textEntryMap[(e.RelPath, e.Side)] = e;
-            }
-        }
-        catch
-        {
-            // Sidecar is optional. Fallback path keeps verify correctness.
-        }
+        var textRouteMap = await BuildTextRouteMapAsync(root, families);
 
         var result = new ConcurrentDictionary<string, IReadOnlyList<SearchResultChild>>(StringComparer.OrdinalIgnoreCase);
         int totalToVerify = 0;
@@ -5490,7 +5848,7 @@ public sealed class SearchIndexService : ISearchIndexService
                 {
                     string abs = ResolveAbsPath(originalDir, additionalOriginalDirs, relKey);
                     entryMap.TryGetValue((relKey, SearchSide.Original), out var metaOriginal);
-                    textEntryMap.TryGetValue((relKey, SearchSide.Original), out var textOriginal);
+                    var routeO = RouteFor(textRouteMap, relKey, SearchSide.Original);
                     originalHits = VerifyFileAllHits(
                         root,
                         relKey,
@@ -5498,10 +5856,12 @@ public sealed class SearchIndexService : ISearchIndexService
                         abs,
                         metaOriginal?.LastWriteUtcTicks ?? 0,
                         metaOriginal?.LengthBytes ?? 0,
-                        textOriginal,
+                        routeO.Entry,
                         effectiveQuery,
                         contextWidth,
-                        htmlDecodeIfAmpersandPresent: Options.HtmlDecodeIfAmpersandPresent);
+                        htmlDecodeIfAmpersandPresent: Options.HtmlDecodeIfAmpersandPresent,
+                        textBinFileName: routeO.TextBinFileName,
+                        textFamily: routeO.Family);
                     Interlocked.Increment(ref verifiedDocs);
                     Interlocked.Add(ref totalHits, originalHits.Count);
                 }
@@ -5510,7 +5870,7 @@ public sealed class SearchIndexService : ISearchIndexService
                 {
                     string abs = ResolveAbsPath(translatedDir, additionalTranslatedDirs, relKey);
                     entryMap.TryGetValue((relKey, SearchSide.Translated), out var metaTranslated);
-                    textEntryMap.TryGetValue((relKey, SearchSide.Translated), out var textTranslated);
+                    var routeT = RouteFor(textRouteMap, relKey, SearchSide.Translated);
                     translatedHits = VerifyFileAllHits(
                         root,
                         relKey,
@@ -5518,10 +5878,12 @@ public sealed class SearchIndexService : ISearchIndexService
                         abs,
                         metaTranslated?.LastWriteUtcTicks ?? 0,
                         metaTranslated?.LengthBytes ?? 0,
-                        textTranslated,
+                        routeT.Entry,
                         effectiveQuery,
                         contextWidth,
-                        htmlDecodeIfAmpersandPresent: Options.HtmlDecodeIfAmpersandPresent);
+                        htmlDecodeIfAmpersandPresent: Options.HtmlDecodeIfAmpersandPresent,
+                        textBinFileName: routeT.TextBinFileName,
+                        textFamily: routeT.Family);
                     Interlocked.Increment(ref verifiedDocs);
                     Interlocked.Add(ref totalHits, translatedHits.Count);
                 }
@@ -5701,7 +6063,9 @@ public sealed class SearchIndexService : ISearchIndexService
         SearchTextEntry? textEntry,
         string query,
         int contextWidth,
-        bool htmlDecodeIfAmpersandPresent)
+        bool htmlDecodeIfAmpersandPresent,
+        string textBinFileName,
+        SearchFamily textFamily)
     {
         var hits = new List<SearchHit>();
         if (!File.Exists(absPath)) return hits;
@@ -5728,7 +6092,9 @@ public sealed class SearchIndexService : ISearchIndexService
             lengthBytes,
             textEntry,
             absPath,
-            htmlDecodeIfAmpersandPresent);
+            htmlDecodeIfAmpersandPresent,
+            textBinFileName,
+            textFamily);
 
         if (string.IsNullOrEmpty(text)) return hits;
 
