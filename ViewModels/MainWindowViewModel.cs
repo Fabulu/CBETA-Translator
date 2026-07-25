@@ -1076,8 +1076,9 @@ public partial class MainWindowViewModel : ViewModelBase
                         // (diverged corpus/roster/titles) or an absent/corrupt bundle is a no-op,
                         // leaving the TryLoadAsync → build → save fallback untouched.
                         var liveCompositeStamp = MasterCorpusSearchService.ComputeCompositeStamp(_root, catalog);
-                        var masterBundlePath = Path.Combine(
-                            AppContext.BaseDirectory, "Assets", "Data", "master-corpus-index.json");
+                        // Manifest path resolves both casings; TryAdoptBundleAsync copies the
+                        // manifest + all its sibling appearance shards (SHARD_MASTER_INDEX).
+                        var masterBundlePath = AppPaths.GetBundledMasterCorpusPath();
                         await corpusSvc.TryAdoptBundleAsync(cacheDir, masterBundlePath, liveCompositeStamp, ct);
 
                         var cached = await corpusSvc.TryLoadAsync(

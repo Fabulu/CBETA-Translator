@@ -259,9 +259,16 @@ public sealed class MasterBundleLockstepTests : IClassFixture<MasterBundleLockst
             RosterPath = Path.Combine(AssetsDir, "master-dates.json");
             Assert.True(File.Exists(RosterPath), "committed roster missing: " + RosterPath);
 
-            var json = await File.ReadAllTextAsync(BundlePath, Encoding.UTF8);
-            Index = JsonSerializer.Deserialize<MasterCorpusIndex>(json)
-                    ?? throw new InvalidOperationException("committed bundle did not deserialize");
+            // The committed asset is a sharded MANIFEST (SHARD_MASTER_INDEX): metadata + a
+            // shard list, with the appearances split across sibling
+            // master-corpus-index.appearances.*.json files (each under GitHub's 50 MB limit).
+            // Load through the production loader (freshness OFF — CI has no CBETA corpus to
+            // recompute the corpus half) so it concatenates the shards back into Appearances.
+            // Also handles a legacy single-file (inline) asset, so the guard survives either form.
+            Index = await new MasterCorpusSearchService().TryLoadAsync(
+                        AssetsDir, CancellationToken.None,
+                        parentRootForFreshness: null, rosterIdentity: null)
+                    ?? throw new InvalidOperationException("committed bundle did not load");
 
             // Base roster only (repoRoot null ⇒ no community overlay) — exactly the record set
             // the bake used and the shipped app resolves on a fresh install.

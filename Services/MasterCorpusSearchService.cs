@@ -22,6 +22,21 @@ public sealed class MasterCorpusSearchService
     private const string CacheFileName = "master-corpus-index.json";
     private const int MinNameLength = 2; // minimum CJK chars for matching
 
+    // ── Sharded manifest layout (GitHub's 50 MB single-file limit) ─────────────────────
+    // The on-disk file <see cref="CacheFileName"/> is a small MANIFEST (metadata + a shard
+    // list, no inline appearances); the appearances array lives across sibling shard files
+    // each byte-budgeted well under the limit. Shard filenames are
+    // "master-corpus-index.appearances.{i}.json". These consts are the single source of
+    // truth for that naming (AppPaths mirrors the glob for bundle enumeration).
+    internal const string ShardPrefix = "master-corpus-index.appearances.";
+    internal const string ShardGlobPattern = "master-corpus-index.appearances.*.json";
+    internal static string ShardFileName(int index) => $"{ShardPrefix}{index}.json";
+
+    // Byte budget per shard: ~25 MB, so today's ~57 MB payload yields ~3 shards and no single
+    // file ever approaches GitHub's 50 MB limit. Grows shard COUNT (never file size) as the
+    // corpus grows.
+    private const long ShardByteBudget = 25L * 1024 * 1024;
+
     // Names that are also common Buddhist concepts. When matching these, require
     // the master's longer name to also appear in the same file, otherwise skip.
     private static readonly HashSet<string> ConceptNames = new()
@@ -494,13 +509,88 @@ public sealed class MasterCorpusSearchService
         return index;
     }
 
-    /// <summary>Saves the index to a cache file.</summary>
+    /// <summary>
+    /// Saves the index as a small MANIFEST (<see cref="CacheFileName"/>) plus byte-budgeted
+    /// <c>appearances</c> shard files, so no single file ever nears GitHub's 50 MB limit
+    /// (SHARD_MASTER_INDEX). The manifest keeps ALL top-level metadata
+    /// (built_utc/corpus/corpus_stamp/file_count/master_count) — corpus_stamp stays the 3rd
+    /// property so <see cref="ReadCorpusStampCheap"/> reads it without touching a shard — and
+    /// adds <c>appearance_shards</c> + the ordered <c>shards</c> filename list. Each shard is a
+    /// JSON array of a contiguous run of appearances (records byte-identical to the inline form).
+    /// Any stale shard files from a prior, larger save are removed so the on-disk set matches
+    /// the manifest exactly. Used by BOTH the app's local rebuild and the CI/asset bake.
+    /// </summary>
     public async Task SaveAsync(string cacheDir, MasterCorpusIndex index, CancellationToken ct = default)
     {
         Directory.CreateDirectory(cacheDir);
-        var path = Path.Combine(cacheDir, CacheFileName);
-        var json = JsonSerializer.Serialize(index, JsonOpts);
-        await File.WriteAllTextAsync(path, json, new UTF8Encoding(false), ct);
+
+        // 1. Serialize each appearance once, grouping into shards by a UTF-8 byte budget.
+        var shardBodies = new List<string>();           // each shard's inner "rec,\nrec,\n..." body
+        var current = new StringBuilder();
+        long currentBytes = 0;
+        int currentCount = 0;
+        foreach (var appearance in index.Appearances)
+        {
+            ct.ThrowIfCancellationRequested();
+            var rec = JsonSerializer.Serialize(appearance, JsonOpts);
+            long recBytes = Encoding.UTF8.GetByteCount(rec) + 2; // + ",\n" separator
+
+            if (currentCount > 0 && currentBytes + recBytes > ShardByteBudget)
+            {
+                shardBodies.Add(current.ToString());
+                current.Clear();
+                currentBytes = 0;
+                currentCount = 0;
+            }
+
+            if (currentCount > 0) current.Append(",\n");
+            current.Append(rec);
+            currentBytes += recBytes;
+            currentCount++;
+        }
+        if (currentCount > 0) shardBodies.Add(current.ToString());
+
+        // 2. Write the shard files (array of appearances each). Manifest is written LAST so a
+        //    crash mid-write never leaves a manifest pointing at an incomplete shard set.
+        var shardNames = new List<string>(shardBodies.Count);
+        for (int i = 0; i < shardBodies.Count; i++)
+        {
+            var name = ShardFileName(i);
+            shardNames.Add(name);
+            var shardJson = "[\n" + shardBodies[i] + "\n]";
+            await File.WriteAllTextAsync(Path.Combine(cacheDir, name), shardJson, new UTF8Encoding(false), ct);
+        }
+
+        // 3. Manifest: all metadata + shard list, NO inline appearances. corpus_stamp stays 3rd.
+        var manifest = new
+        {
+            built_utc = index.BuiltUtc,
+            corpus = index.Corpus,
+            corpus_stamp = index.CorpusStamp,
+            file_count = index.FileCount,
+            master_count = index.MasterCount,
+            appearance_shards = shardNames.Count,
+            shards = shardNames,
+        };
+        var manifestJson = JsonSerializer.Serialize(manifest, JsonOpts);
+        await File.WriteAllTextAsync(Path.Combine(cacheDir, CacheFileName), manifestJson, new UTF8Encoding(false), ct);
+
+        // 4. Drop any stale higher-index shard files left by a previous, larger save so the
+        //    on-disk shard set matches the manifest exactly (no orphan cruft, no confusion).
+        foreach (var stale in EnumerateShardFiles(cacheDir))
+        {
+            var fn = Path.GetFileName(stale);
+            if (!shardNames.Contains(fn, StringComparer.Ordinal))
+                try { File.Delete(stale); } catch { /* best-effort */ }
+        }
+    }
+
+    /// <summary>Enumerates the appearance shard files (siblings of the manifest) in a dir.</summary>
+    private static IEnumerable<string> EnumerateShardFiles(string dir)
+    {
+        if (!Directory.Exists(dir)) return Array.Empty<string>();
+        try { return Directory.EnumerateFiles(dir, ShardGlobPattern).ToList(); }
+        catch { return Array.Empty<string>(); }
     }
 
     /// <summary>
@@ -737,6 +827,25 @@ public sealed class MasterCorpusSearchService
                 }
             }
 
+            // Sharded manifest: concatenate all shard arrays into the appearances list. A
+            // missing/corrupt shard makes the whole cache unusable → null → caller rebuilds.
+            // Legacy single-file caches (no shards list, inline appearances) fall through
+            // unchanged. Done AFTER the freshness gate so a stale cache never reads its shards.
+            if (index.Shards is { Count: > 0 })
+            {
+                var all = new List<MasterTextAppearance>();
+                foreach (var shardName in index.Shards)
+                {
+                    var shardPath = Path.Combine(cacheDir, shardName);
+                    if (!File.Exists(shardPath)) return null;
+                    var shardJson = await File.ReadAllTextAsync(shardPath, Encoding.UTF8, ct);
+                    var recs = JsonSerializer.Deserialize<List<MasterTextAppearance>>(shardJson, JsonOpts);
+                    if (recs == null) return null;
+                    all.AddRange(recs);
+                }
+                index.Appearances = all;
+            }
+
             return index;
         }
         catch { return null; }
@@ -776,27 +885,71 @@ public sealed class MasterCorpusSearchService
         var localStamp = ReadCorpusStampCheap(cachePath); // null when absent/corrupt/unstamped
         if (localStamp == liveCompositeStamp) return false;
 
-        // Local absent or stale AND bundle == live ⇒ adopt via atomic tmp+rename copy.
-        var tmp = Path.Combine(cacheDir, CacheFileName + ".tmp-" + Guid.NewGuid().ToString("N"));
+        // Local absent or stale AND bundle == live ⇒ adopt the manifest + ALL its shard files.
+        // Sharded bundles (today's asset) ship the manifest next to its
+        // "master-corpus-index.appearances.*.json" siblings; a legacy single-file bundle has no
+        // siblings and this degrades to exactly the old one-file copy. Shard discovery is a
+        // sibling GLOB (never a full deserialize — the malformed-tail/large-bundle guarantee),
+        // so a stamp-matching bundle with a broken appearances tail still adopts by byte copy.
+        var bundleDir = Path.GetDirectoryName(bundlePath) ?? "";
+        var shardSrcs = EnumerateShardFiles(bundleDir);
+        var shardNames = new HashSet<string>(StringComparer.Ordinal);
+
+        var staged = new List<(string Tmp, string Dst)>(); // (tmp, final) pairs, shards then manifest
+        var tmpSuffix = ".tmp-" + Guid.NewGuid().ToString("N");
         try
         {
             Directory.CreateDirectory(cacheDir);
-            using (var src = new FileStream(bundlePath, FileMode.Open, FileAccess.Read, FileShare.Read))
-            using (var dst = new FileStream(tmp, FileMode.CreateNew, FileAccess.Write, FileShare.None))
+
+            // Stage every shard, then the manifest, into sibling tmp files (same volume as the
+            // finals ⇒ each rename is atomic).
+            foreach (var shardSrc in shardSrcs)
             {
-                await src.CopyToAsync(dst, ct);
+                var name = Path.GetFileName(shardSrc);
+                shardNames.Add(name);
+                var dst = Path.Combine(cacheDir, name);
+                var tmp = dst + tmpSuffix;
+                await CopyFileAsync(shardSrc, tmp, ct);
+                staged.Add((tmp, dst));
             }
-            // Same-volume move (both paths under cacheDir) ⇒ atomic replace; no partial cache.
-            File.Move(tmp, cachePath, overwrite: true);
+            var manifestTmp = cachePath + tmpSuffix;
+            await CopyFileAsync(bundlePath, manifestTmp, ct);
+
+            // Rename shards FIRST, manifest LAST: TryLoadAsync keys on the manifest, so it only
+            // ever observes a complete shard set (a mid-sequence failure leaves the old/absent
+            // manifest, which never reads as fresh).
+            foreach (var (tmp, dst) in staged)
+                File.Move(tmp, dst, overwrite: true);
+            File.Move(manifestTmp, cachePath, overwrite: true);
+            staged.Clear();
+
+            // Drop any stale local shard files the adopted manifest does not reference (e.g. a
+            // prior larger adopt, or adopting a legacy single-file bundle over a sharded cache).
+            foreach (var stale in EnumerateShardFiles(cacheDir))
+            {
+                var fn = Path.GetFileName(stale);
+                if (!shardNames.Contains(fn))
+                    try { File.Delete(stale); } catch { /* best-effort */ }
+            }
             return true;
         }
         catch
         {
             // Copy/rename failure (or cancellation) leaves the cache untouched; best-effort
-            // remove the partial tmp so the fallback rebuild starts clean.
-            try { if (File.Exists(tmp)) File.Delete(tmp); } catch { }
+            // remove every staged tmp so the fallback rebuild starts clean.
+            foreach (var (tmp, _) in staged)
+                try { if (File.Exists(tmp)) File.Delete(tmp); } catch { }
+            try { var mt = cachePath + tmpSuffix; if (File.Exists(mt)) File.Delete(mt); } catch { }
             return false;
         }
+    }
+
+    /// <summary>Copies a file via a cancellable stream into a fresh tmp path.</summary>
+    private static async Task CopyFileAsync(string src, string tmp, CancellationToken ct)
+    {
+        using var s = new FileStream(src, FileMode.Open, FileAccess.Read, FileShare.Read);
+        using var d = new FileStream(tmp, FileMode.CreateNew, FileAccess.Write, FileShare.None);
+        await s.CopyToAsync(d, ct);
     }
 
     /// <summary>

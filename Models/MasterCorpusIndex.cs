@@ -37,6 +37,27 @@ public sealed class MasterCorpusIndex
 
     [JsonPropertyName("appearances")]
     public List<MasterTextAppearance> Appearances { get; set; } = new();
+
+    /// <summary>
+    /// Sharded layout (GitHub's 50 MB single-file limit): when the on-disk file is a small
+    /// MANIFEST rather than an inline index, this is the number of <c>appearances</c> shard
+    /// files and <see cref="Shards"/> is their ordered filename list. The full
+    /// <see cref="Appearances"/> array is stored across those sibling files (each byte-budgeted
+    /// well under 50 MB) and is concatenated back into <see cref="Appearances"/> on load. Null /
+    /// absent in the legacy single-file format (inline <c>appearances</c>), which still loads.
+    /// Serialization-only metadata — never populated for an in-memory index.
+    /// </summary>
+    [JsonPropertyName("appearance_shards")]
+    public int? AppearanceShards { get; set; }
+
+    /// <summary>
+    /// Ordered shard filenames (siblings of the manifest, e.g.
+    /// <c>master-corpus-index.appearances.0.json</c>), each a JSON array that is a contiguous
+    /// chunk of <see cref="Appearances"/>. Present only in the sharded manifest format; null in
+    /// the legacy single-file format. See <see cref="AppearanceShards"/>.
+    /// </summary>
+    [JsonPropertyName("shards")]
+    public List<string>? Shards { get; set; }
 }
 
 /// <summary>A single master's appearance in a text.</summary>

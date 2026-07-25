@@ -100,6 +100,17 @@
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
 		</Content>
+		<!--
+		SHARD_MASTER_INDEX: the manifest above is small (metadata + shard list); its bulk
+		`appearances` ship as sibling shard files (each byte-budgeted under GitHub's 50 MB
+		single-file limit). Glob them so every shard ships in build output + all publish zips +
+		the installer, mirroring the manifest entry. Adopted together at launch by
+		MasterCorpusSearchService.TryAdoptBundleAsync.
+		-->
+		<Content Include="Assets\Data\master-corpus-index.appearances.*.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</Content>
 		<Content Include="Assets\Data\lineage-masters.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>

@@ -415,6 +415,46 @@ public partial class AppPaths
     }
 
     /// <summary>
+    /// Resolves the exe-adjacent prebuilt master-corpus index MANIFEST
+    /// (<c>Assets/Data/master-corpus-index.json</c>). Since SHARD_MASTER_INDEX this file is a
+    /// small manifest (metadata + a shard list); its bulk <c>appearances</c> ship as sibling
+    /// <c>master-corpus-index.appearances.*.json</c> shard files (each under GitHub's 50 MB
+    /// limit) — see <see cref="GetBundledMasterCorpusShards"/>. On launch
+    /// <c>MasterCorpusSearchService.TryAdoptBundleAsync</c> adopts the manifest + all shards into
+    /// the user cache with zero rebuild when the stamp matches live. Tries both casings for
+    /// case-sensitive filesystems, mirroring <see cref="GetBundledNavCachePath"/>. Returns the
+    /// preferred (PascalCase) path even when neither exists so callers get a stable location.
+    /// </summary>
+    public static string GetBundledMasterCorpusPath()
+    {
+        var upper = System.IO.Path.Combine(System.AppContext.BaseDirectory, "Assets", "Data", "master-corpus-index.json");
+        if (File.Exists(upper)) return upper;
+
+        var lower = System.IO.Path.Combine(System.AppContext.BaseDirectory, "assets", "data", "master-corpus-index.json");
+        if (File.Exists(lower)) return lower;
+
+        return upper;
+    }
+
+    /// <summary>
+    /// Enumerates the exe-adjacent master-corpus appearance SHARD files
+    /// (<c>master-corpus-index.appearances.*.json</c>) that accompany the manifest resolved by
+    /// <see cref="GetBundledMasterCorpusPath"/>, in the same directory (whichever casing the
+    /// manifest resolved to). Empty when none ship (a legacy single-file bundle, or a raw source
+    /// build). The glob string is kept in lockstep with
+    /// <c>MasterCorpusSearchService.ShardGlobPattern</c>.
+    /// </summary>
+    public static System.Collections.Generic.IReadOnlyList<string> GetBundledMasterCorpusShards()
+    {
+        const string shardGlob = "master-corpus-index.appearances.*.json"; // == MasterCorpusSearchService.ShardGlobPattern
+        var dir = System.IO.Path.GetDirectoryName(GetBundledMasterCorpusPath());
+        if (string.IsNullOrEmpty(dir) || !Directory.Exists(dir))
+            return System.Array.Empty<string>();
+        try { return Directory.EnumerateFiles(dir, shardGlob).ToList(); }
+        catch { return System.Array.Empty<string>(); }
+    }
+
+    /// <summary>
     /// App-owned search-index directory for a corpus, next to the exe (portable layout,
     /// user decision D8). The full-text index is a large DERIVED artifact and must NEVER
     /// live inside a corpus/translations git repo: the index files run to hundreds of MB /
