@@ -59,7 +59,20 @@ public sealed class RowGridSurface : ListBox
 
     // Matches the reader's serif/CJK stack (ReadableTabView.axaml line 23).
     private static readonly FontFamily ReaderFont = new(
-        "Georgia, Noto Serif, Noto Serif CJK SC, Source Han Serif SC, SimSun, Songti SC, serif");
+        "Noto Serif CJK SC, Source Han Serif SC, SimSun, Songti SC, serif");
+
+    /// <summary>
+    /// Style this control as a <see cref="ListBox"/>. This is LOAD-BEARING: a ListBox subclass
+    /// defaults its style key to its own type (<c>RowGridSurface</c>), so the Fluent
+    /// <see cref="ListBox"/> ControlTheme — keyed to <c>typeof(ListBox)</c> — never matches and the
+    /// control receives NO control template. With no template there is no ScrollViewer /
+    /// VirtualizingStackPanel, no item container is ever realized, and every row renders blank in
+    /// all four grid modes (the cell-render wiring below is correct but never runs because no cell
+    /// is ever instantiated). Redirecting the style key to <see cref="ListBox"/> makes the theme
+    /// apply and the surface virtualize + render like the app's other ListBoxes. Regression pinned
+    /// by RowGridSurfaceRenderSmokeTests.
+    /// </summary>
+    protected override Type StyleKeyOverride => typeof(ListBox);
 
     public RowGridSurface()
     {
@@ -88,6 +101,47 @@ public sealed class RowGridSurface : ListBox
         Styles.Add(CopyLinkOpacityStyle(hover: true, 0.95));
 
         ItemTemplate = new FuncDataTemplate<RowVm>((_, _) => BuildRow(), supportsRecycling: true);
+    }
+
+    // ── Runtime instrumentation (best-effort safety net) ─────────────────────────────────────
+    // Writes to <BaseDirectory>/rowgrid-render.log so a real launch pinpoints where a blank comes
+    // from: the ItemsSource count on every (re)assignment (one line per mode switch), and a
+    // one-shot "first row realized" line per ItemsSource carrying the rendered text length and the
+    // render path taken (plain | find | merged). Entirely wrapped in try/catch — logging must never
+    // affect rendering. Reset per ItemsSource set so each mode logs its own first-realized row.
+    private static readonly object LogGate = new();
+    private static volatile bool _loggedFirstRow;
+
+    protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
+    {
+        base.OnPropertyChanged(change);
+        if (change.Property == ItemsSourceProperty)
+        {
+            _loggedFirstRow = false; // new mode/model → allow one fresh "first row realized" line
+            int count = -1;
+            try
+            {
+                if (change.GetNewValue<System.Collections.IEnumerable?>() is { } items)
+                {
+                    count = 0;
+                    foreach (var _ in items) count++;
+                }
+            }
+            catch { /* counting is best-effort */ }
+            TryLog($"ItemsSource set: count={count}");
+        }
+    }
+
+    private static void TryLog(string line)
+    {
+        try
+        {
+            var path = System.IO.Path.Combine(AppContext.BaseDirectory, "rowgrid-render.log");
+            lock (LogGate)
+                System.IO.File.AppendAllText(path,
+                    $"{DateTime.Now:yyyy-MM-dd HH:mm:ss.fff} {line}{Environment.NewLine}");
+        }
+        catch { /* instrumentation must never throw into the render/layout path */ }
     }
 
     /// <summary>Removes the ListBoxItem padding so cells sit flush.</summary>
@@ -217,8 +271,11 @@ public sealed class RowGridSurface : ListBox
         zh.Bind(Grid.ColumnSpanProperty, new Binding(nameof(RowVm.PrimaryColumnSpan)));
         // C2 find highlights: the primary cell shows ZH normally, or EN when collapsed to an
         // EN-only view / a single-column EN row — so it picks the matching highlight list.
+        // I3 Zen-dictionary underlines apply only while the primary cell shows ZH (the spans
+        // index into ZhText, so they must never decorate a collapsed-EN cell).
         WireHighlightableText(zh, r => r.PrimaryText,
-            r => r.PrimaryIsZh ? r.ZhHighlights : r.EnHighlights);
+            r => r.PrimaryIsZh ? r.ZhHighlights : r.EnHighlights,
+            r => r.PrimaryIsZh ? r.ZenHighlights : Array.Empty<Hspan>());
 
         // EN column (column 3) — shown only for two-column rows; hidden for single-column so
         // the primary cell's span fills its slot.
@@ -340,58 +397,173 @@ public sealed class RowGridSurface : ListBox
     private static readonly IBrush FindMatchBg = new SolidColorBrush(Color.FromArgb(100, 255, 215, 0));
     private static readonly IBrush FindCurrentBg = new SolidColorBrush(Color.FromArgb(180, 255, 165, 0));
 
+    // ── I3: Zen-dictionary term underline ───────────────────────────────────────────────────
+    // Mirrors the SPA reader's .zen-term look (a quiet dashed underline meaning exactly
+    // "this span has a Zen dictionary entry — click it"). Muted gold, dashed, kept subtle so
+    // running text stays calm; find highlights (background) compose with it independently.
+    private static readonly TextDecorationCollection ZenUnderline = new()
+    {
+        new TextDecoration
+        {
+            Location = TextDecorationLocation.Underline,
+            Stroke = new SolidColorBrush(Color.FromArgb(0xA0, 212, 171, 88)),
+            StrokeThickness = 1.2,
+            StrokeThicknessUnit = TextDecorationUnit.Pixel,
+            StrokeDashArray = new Avalonia.Collections.AvaloniaList<double> { 2, 2 },
+        },
+    };
+
     /// <summary>
-    /// Wires a cell so its text is rebuilt as highlighted inlines whenever the row's find spans
-    /// change. Rows are virtualized/recycled, so this subscribes to the CURRENT DataContext's
-    /// PropertyChanged and always detaches the previous one first — at most one live subscription
-    /// per reused cell, so recycling never leaks or mis-targets. A row with no spans renders a
-    /// single plain run (byte-identical to the old Text binding).
+    /// Wires a cell so its text is rebuilt as highlighted inlines whenever the row's find or
+    /// Zen-term spans change. Rows are virtualized/recycled, so this subscribes to the CURRENT
+    /// DataContext's PropertyChanged and always detaches the previous one first — at most one
+    /// live subscription per reused cell, so recycling never leaks or mis-targets. A row with
+    /// no spans renders a single plain run (byte-identical to the old Text binding).
     /// </summary>
     private static void WireHighlightableText(SelectableTextBlock cell,
-        Func<RowVm, string> textSel, Func<RowVm, IReadOnlyList<Hspan>> spanSel)
+        Func<RowVm, string> textSel, Func<RowVm, IReadOnlyList<Hspan>> spanSel,
+        Func<RowVm, IReadOnlyList<Hspan>>? zenSel = null)
     {
         RowVm? bound = null;
         PropertyChangedEventHandler onProp = (_, e) =>
         {
-            if (e.PropertyName == nameof(RowVm.ZhHighlights) || e.PropertyName == nameof(RowVm.EnHighlights))
-                RenderHighlightedCell(cell, bound, textSel, spanSel);
+            if (e.PropertyName == nameof(RowVm.ZhHighlights) || e.PropertyName == nameof(RowVm.EnHighlights)
+                || e.PropertyName == nameof(RowVm.ZenHighlights))
+                RenderHighlightedCell(cell, bound, textSel, spanSel, zenSel);
         };
         cell.DataContextChanged += (_, _) =>
         {
             if (bound != null) bound.PropertyChanged -= onProp;
             bound = cell.DataContext as RowVm;
             if (bound != null) bound.PropertyChanged += onProp;
-            RenderHighlightedCell(cell, bound, textSel, spanSel);
+            RenderHighlightedCell(cell, bound, textSel, spanSel, zenSel);
         };
     }
 
     private static void RenderHighlightedCell(SelectableTextBlock cell, RowVm? row,
-        Func<RowVm, string> textSel, Func<RowVm, IReadOnlyList<Hspan>> spanSel)
+        Func<RowVm, string> textSel, Func<RowVm, IReadOnlyList<Hspan>> spanSel,
+        Func<RowVm, IReadOnlyList<Hspan>>? zenSel)
     {
         if (row == null) { SetPlainText(cell, ""); return; }
         var text = textSel(row) ?? "";
         var spans = spanSel(row);
-        if (spans == null || spans.Count == 0) { SetPlainText(cell, text); return; }
+        var zen = zenSel?.Invoke(row);
+        bool hasFind = spans is { Count: > 0 };
+        bool hasZen = zen is { Count: > 0 };
+
+        // One-shot per-mode instrumentation: pin that the first row actually got realized and which
+        // render path it took, so a blank surface in the wild is diagnosable from the log alone.
+        if (!_loggedFirstRow && text.Length > 0)
+        {
+            _loggedFirstRow = true;
+            string path = hasZen ? "merged" : hasFind ? "find" : "plain";
+            TryLog($"first row realized: text len = {text.Length}, path = {path}");
+        }
+
+        if (!hasFind && !hasZen) { SetPlainText(cell, text); return; }
 
         int len = text.Length;
-        var inlines = new InlineCollection();
-        int pos = 0;
-        foreach (var s in spans)
+
+        // Fast path: no Zen underlines — keep the original find-only rendering verbatim.
+        if (!hasZen)
         {
-            int start = s.Start;
-            int end = s.Start + s.Length;
-            if (start < 0) start = 0;
-            if (end > len) end = len;
-            if (end <= start || start < pos) continue; // clamp / skip out-of-order overlaps
-            if (start > pos) inlines.Add(new Run(text.Substring(pos, start - pos)));
-            inlines.Add(new Run(text.Substring(start, end - start))
+            var inlines = ResetCellInlines(cell);
+            int pos = 0;
+            foreach (var s in spans!)
             {
-                Background = s.IsCurrent ? FindCurrentBg : FindMatchBg,
-            });
-            pos = end;
+                int start = s.Start;
+                int end = s.Start + s.Length;
+                if (start < 0) start = 0;
+                if (end > len) end = len;
+                if (end <= start || start < pos) continue; // clamp / skip out-of-order overlaps
+                if (start > pos) inlines.Add(new Run(text.Substring(pos, start - pos)));
+                inlines.Add(new Run(text.Substring(start, end - start))
+                {
+                    Background = s.IsCurrent ? FindCurrentBg : FindMatchBg,
+                });
+                pos = end;
+            }
+            if (pos < len) inlines.Add(new Run(text.Substring(pos)));
+            return;
         }
-        if (pos < len) inlines.Add(new Run(text.Substring(pos)));
-        cell.Inlines = inlines;
+
+        // Merged path: cut the text at every find/zen span boundary, then emit one run per
+        // segment carrying the union of its states (find background, zen underline). The cut
+        // set keeps runs minimal; spans are clamped so a stale index can never throw.
+        var cuts = new SortedSet<int> { 0, len };
+        void AddSpanCuts(IReadOnlyList<Hspan>? list)
+        {
+            if (list == null) return;
+            foreach (var s in list)
+            {
+                int a = Math.Clamp(s.Start, 0, len);
+                int b = Math.Clamp(s.Start + s.Length, 0, len);
+                if (b > a) { cuts.Add(a); cuts.Add(b); }
+            }
+        }
+        AddSpanCuts(spans);
+        AddSpanCuts(zen);
+
+        var merged = ResetCellInlines(cell);
+        int prev = -1;
+        foreach (var cut in cuts)
+        {
+            if (prev >= 0 && cut > prev)
+            {
+                var run = new Run(text.Substring(prev, cut - prev));
+
+                if (hasFind)
+                {
+                    foreach (var s in spans!)
+                    {
+                        if (s.Start <= prev && s.Start + s.Length >= cut && s.Length > 0)
+                        {
+                            run.Background = s.IsCurrent ? FindCurrentBg : FindMatchBg;
+                            if (s.IsCurrent) break;
+                        }
+                    }
+                }
+
+                foreach (var z in zen!)
+                {
+                    if (z.Start <= prev && z.Start + z.Length >= cut && z.Length > 0)
+                    {
+                        run.TextDecorations = ZenUnderline;
+                        break;
+                    }
+                }
+
+                merged.Add(run);
+            }
+            prev = cut;
+        }
+    }
+
+    /// <summary>
+    /// Returns the cell's OWN inline collection, cleared and ready to receive runs, with Text
+    /// cleared so it can never shadow the inlines. Runs MUST be added to this returned collection
+    /// (not to a detached one that is then assigned) — that is what makes the text render: in
+    /// Avalonia 11.3 assigning an already-populated <see cref="InlineCollection"/> to
+    /// <see cref="TextBlock.Inlines"/> does not raise the per-item Invalidated event that triggers
+    /// a text-layout rebuild, so the cell measures empty and renders blank. Adding to the cell's
+    /// own (host-wired) collection fires Invalidated → re-measure. This mirrors the working
+    /// WitnessComparisonPanel / EditionProcessDialog idiom and was the fix for every RowGrid row
+    /// rendering blank once Zen-term underlines routed normal reading through the inline path.
+    /// </summary>
+    private static InlineCollection ResetCellInlines(SelectableTextBlock cell)
+    {
+        cell.Text = null; // Text would shadow an empty run set; keep inlines authoritative
+        var inlines = cell.Inlines;
+        if (inlines is null)
+        {
+            inlines = new InlineCollection();
+            cell.Inlines = inlines;
+        }
+        else
+        {
+            inlines.Clear();
+        }
+        return inlines;
     }
 
     private static void SetPlainText(SelectableTextBlock cell, string text)
@@ -421,8 +593,9 @@ public sealed class RowGridSurface : ListBox
     private static readonly IBrush CommentaryBg = new SolidColorBrush(Color.FromArgb(0x14, 160, 160, 160)); // == transformer wash
     private static readonly IBrush UnitSeparatorBrush = new SolidColorBrush(Color.FromArgb(0x33, 128, 128, 128));
 
-    // Apparatus dot (id column): a warm amber marker mirroring the two-editor apparatus accent.
-    private static readonly IBrush ApparatusDotBrush = new SolidColorBrush(Color.FromRgb(200, 150, 60));
+    // Apparatus dot (id column): neutral mid-grey, matching the two-editor apparatus
+    // marker scheme (grey = CBETA apparatus; yellow = masters, blue = our comments).
+    private static readonly IBrush ApparatusDotBrush = new SolidColorBrush(Color.FromRgb(154, 154, 154));
     // Nav / deep-link / bookmark pulse wash — a soft accent that reads over any segment tint.
     private static readonly IBrush NavHighlightBg = new SolidColorBrush(Color.FromArgb(0x40, 100, 149, 237));
 
@@ -437,13 +610,9 @@ public sealed class RowGridSurface : ListBox
         public static readonly BarBrushConverter Instance = new();
         public object Convert(System.Collections.Generic.IList<object?> values, Type targetType, object? parameter, CultureInfo culture)
         {
-            if (values.Count < 2 || values[0] is not true)
-                return Brushes.Transparent;
-            var type = values[1];
-            if (Is(type, "verse")) return VerseBar;
-            if (Is(type, "dialogue")) return DialogueBar;
-            if (Is(type, "commentary")) return CommentaryBar;
-            return CommentaryBar; // any other bar-flagged type: neutral warm-gray
+            // Segment-type accent bars removed — reading text carries no structural
+            // color; only annotation markers (masters/comments/CBETA) + highlights tint.
+            return Brushes.Transparent;
         }
     }
 
@@ -454,11 +623,8 @@ public sealed class RowGridSurface : ListBox
         public static readonly RowBackgroundConverter Instance = new();
         public object Convert(System.Collections.Generic.IList<object?> values, Type targetType, object? parameter, CultureInfo culture)
         {
+            // Nav pulse highlight kept (functional); segment-type background tints removed.
             if (values.Count > 1 && values[1] is true) return NavHighlightBg;
-            var type = values.Count > 0 ? values[0] : null;
-            if (Is(type, "verse")) return VerseBg;
-            if (Is(type, "dialogue")) return DialogueBg;
-            if (Is(type, "commentary")) return CommentaryBg;
             return Brushes.Transparent;
         }
     }
@@ -517,15 +683,8 @@ public sealed class RowGridSurface : ListBox
         public static readonly PrimaryForegroundConverter Instance = new();
         public object? Convert(System.Collections.Generic.IList<object?> values, Type targetType, object? parameter, CultureInfo culture)
         {
-            if (values.Count < 2 || values[1] is not true)
-                return AvaloniaProperty.UnsetValue;
-            var type = values[0];
-            if (Is(type, "verse")) return VerseFg;
-            if (Is(type, "dialogue")) return DialogueFg;
-            if (Is(type, "commentary")) return CommentaryFg;
-            if (Is(type, "dharani")) return DharaniFg;
-            if (Is(type, "byline")) return BylineFg;
-            if (Is(type, "preface") || Is(type, "colophon")) return MutedFg;
+            // Segment-type foreground tints removed — reading text uses the default
+            // color; only annotation markers (masters/comments/CBETA) + highlights tint it.
             return AvaloniaProperty.UnsetValue;
         }
     }
@@ -537,11 +696,7 @@ public sealed class RowGridSurface : ListBox
         public static readonly PrimaryFontStyleConverter Instance = new();
         public object Convert(System.Collections.Generic.IList<object?> values, Type targetType, object? parameter, CultureInfo culture)
         {
-            if (values.Count < 2 || values[1] is not true)
-                return FontStyle.Normal;
-            var type = values[0];
-            if (Is(type, "verse") || Is(type, "dharani") || Is(type, "byline"))
-                return FontStyle.Italic;
+            // Segment-type italics removed — reading text keeps a uniform upright face.
             return FontStyle.Normal;
         }
     }

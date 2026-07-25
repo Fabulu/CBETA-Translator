@@ -62,19 +62,22 @@ public class ReadableTabViewInteractionTests
     }
 
 
+    // dict-as-tab: the Dictionary moved to a top-level tab, so the reader no longer
+    // carries a "Dictionary" toolbar button (BtnDictionary) or its BtnDictionary_Click
+    // handler. Dictionary lookup survives on the text-selection context menu ("Look up in
+    // dictionary"), which still raises DictionaryRequested — so the event stays public.
     [Fact]
-    public void BtnDictionary_Click_RaisesDictionaryRequested()
+    public void Reader_NoLongerExposes_BtnDictionaryToolbarHandler()
     {
-        var view = CreateViewShell(out _);
-        var method = typeof(ReadableTabView).GetMethod("BtnDictionary_Click", BindingFlags.Instance | BindingFlags.NonPublic)
-            ?? throw new InvalidOperationException("Missing BtnDictionary_Click");
+        var handler = typeof(ReadableTabView).GetMethod("BtnDictionary_Click", BindingFlags.Instance | BindingFlags.NonPublic);
+        Assert.Null(handler);
+    }
 
-        int raised = 0;
-        view.DictionaryRequested += (_, _) => raised++;
-
-        method.Invoke(view, new object?[] { null, new RoutedEventArgs() });
-
-        Assert.Equal(1, raised);
+    [Fact]
+    public void Reader_StillExposes_DictionaryRequestedEvent()
+    {
+        // The context-menu "Look up in dictionary" path still fires this event.
+        Assert.NotNull(typeof(ReadableTabView).GetEvent("DictionaryRequested"));
     }
 
     [Fact]

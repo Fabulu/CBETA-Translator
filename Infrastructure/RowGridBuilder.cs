@@ -166,6 +166,15 @@ public sealed class RowVm : CommunityToolkit.Mvvm.ComponentModel.ObservableObjec
 
     private IReadOnlyList<Hspan> _enHighlights = Array.Empty<Hspan>();
     public IReadOnlyList<Hspan> EnHighlights { get => _enHighlights; set => SetProperty(ref _enHighlights, value); }
+
+    /// <summary>
+    /// Spans of <see cref="ZhText"/> that have a Zen-dictionary entry (I3). The surface
+    /// renders them with a subtle underline on the ZH primary cell; clicking one opens the
+    /// entry in the docked side panel. Stamped asynchronously by the host once the Zen
+    /// dictionary index has loaded; empty until then (and always for EN rows).
+    /// </summary>
+    private IReadOnlyList<Hspan> _zenHighlights = Array.Empty<Hspan>();
+    public IReadOnlyList<Hspan> ZenHighlights { get => _zenHighlights; set => SetProperty(ref _zenHighlights, value); }
 }
 
 /// <summary>

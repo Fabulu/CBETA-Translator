@@ -31,7 +31,7 @@ public partial class ReadableTabViewModel : ViewModelBase
     private bool _isZenEnabled;
 
     [ObservableProperty]
-    private bool _hoverDictionaryEnabled = true;
+    private bool _hoverDictionaryEnabled; // CC-CEDICT hover is opt-in (config default false)
 
     [ObservableProperty]
     private string _defaultResp = "";

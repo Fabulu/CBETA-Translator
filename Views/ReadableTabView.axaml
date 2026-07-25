@@ -20,7 +20,7 @@
 		<Style Selector="local|AnnotatedTextEditor ae|TextEditor">
 			<Setter Property="Background" Value="Transparent"/>
 			<Setter Property="Foreground" Value="{DynamicResource TextFg}"/>
-			<Setter Property="FontFamily" Value="Georgia, 'Noto Serif', 'Noto Serif CJK SC', 'Source Han Serif SC', SimSun, 'Songti SC', serif"/>
+			<Setter Property="FontFamily" Value="'Noto Serif CJK SC', 'Source Han Serif SC', SimSun, 'Songti SC', serif"/>
 			<Setter Property="WordWrap" Value="True"/>
 			<Setter Property="HorizontalScrollBarVisibility" Value="Disabled"/>
 			<Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
@@ -64,92 +64,36 @@
 	<local:CorrectionTimelineBar Grid.Row="3" Name="CorrectionTimeline"
 	                              IsVisible="False" Margin="0,0,0,4"/>
 
-	<DockPanel Grid.Row="1"
-				   Margin="0,0,0,8"
-				   LastChildFill="True">
+	<!-- Row 1: top action bar — ONE slim, fixed-height row (a Grid never
+	     wraps, so the bar height is stable at any window width).
+	     Left: per-minute reading configuration — language view, layout, and
+	     the translation-source picker (only visible when the current text has
+	     more than one source; code-behind toggles TranslationSourceGroup in
+	     SetTranslationSourceOptions). Right: navigation flyouts (Outline,
+	     Bookmarks), the "⚙ View" flyout (display + panel toggles and the Zen
+	     metadata flag), the "⋯" overflow flyout (one-shot actions + marker
+	     legend), and the ambient reading-progress label. -->
+	<Grid Grid.Row="1" Margin="0,0,0,8" ColumnDefinitions="Auto,*,Auto">
 
-			<StackPanel Orientation="Horizontal"
-						Spacing="8"
-						DockPanel.Dock="Left">
-				<Button Name="BtnAddCommunityNote"
-						Content="Note"
-						Padding="6,2"
-						FontSize="11"
-						Focusable="False"
-						ToolTip.Tip="Add a community note at the current cursor position"/>
-				<Button Name="BtnDictionary"
-						Content="Dictionary"
-						Padding="6,2"
-						FontSize="11"
-						Focusable="False"
-						ToolTip.Tip="Open the Zen Dictionary (Ctrl+D)"/>
-				<Button Name="BtnFind"
-						Content="🔍 Find"
-						Padding="6,2"
-						FontSize="11"
-						Focusable="False"
-						ToolTip.Tip="Find in text (Ctrl+F)"/>
-				<Button Name="BtnSaveToCollection"
-						Content="📥 Save to Collection"
-						Padding="6,2"
-						FontSize="11"
-						Focusable="False"
-						ToolTip.Tip="Save the current passage to your Scholar collection"/>
-			</StackPanel>
-
-			<Button Name="BtnCompareTranslations"
-					DockPanel.Dock="Right"
-					Content="Compare Translations"
-					Padding="6,2"
-					FontSize="11"
-					Focusable="False"
-					Margin="4,0,0,0"
-					ToolTip.Tip="Open a 3-pane window comparing original text with two translation sources"/>
-
-			<!-- Version picker ComboBox (hidden, still used as fallback data carrier) -->
-			<ComboBox Name="CmbVersionPicker"
-					  DockPanel.Dock="Right"
-					  MinWidth="120"
-					  FontSize="11"
-					  Margin="4,0,0,0"
-					  IsVisible="False"
-					  ToolTip.Tip="View an older version of this translation (git history)"/>
-			<Button Name="BtnStarTranslation" Content="&#x2606;" FontSize="16"
-					DockPanel.Dock="Right" Margin="4,0,0,0"
-					ToolTip.Tip="Star this translation" Padding="4,2" MinWidth="28"/>
-			<ComboBox Name="CmbTranslationSource"
-					  DockPanel.Dock="Right"
-					  MinWidth="170"
-					  FontSize="12"
-					  Margin="8,0,0,0"
-					  ToolTip.Tip="Select whose translation to view"/>
-			<TextBlock DockPanel.Dock="Right" Text="Source:" VerticalAlignment="Center"
-					   FontSize="11" Margin="8,0,4,0" Opacity="0.7"/>
-
-			<CheckBox Name="ChkProvenance"
-					  DockPanel.Dock="Right"
-					  Content="Provenance"
-					  VerticalAlignment="Center"
-					  Focusable="False"
-					  Margin="8,0,0,0"
-					  ToolTip.Tip="Show or hide the provenance panel with source documentation and witness details"/>
-
-			<CheckBox Name="ChkStudyPanel"
-					  DockPanel.Dock="Right"
-					  Content="Study"
-					  VerticalAlignment="Center"
-					  Focusable="False"
-					  Margin="8,0,0,0"
-					  ToolTip.Tip="Show or hide the study panel with dictionary terms, translation memory matches, and contextual info"/>
-
+		<!-- Left: reading configuration -->
+		<StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="8"
+		            VerticalAlignment="Center">
+			<ComboBox Name="CmbReadingView"
+			          SelectedIndex="{Binding Reading.ViewModeIndex, Mode=TwoWay}"
+			          VerticalAlignment="Center"
+			          MinWidth="86"
+			          FontSize="12"
+			          ToolTip.Tip="Choose which language pane(s) to show: Chinese only, both, or English only.">
+				<ComboBoxItem>中 ZH</ComboBoxItem>
+				<ComboBoxItem>Both</ComboBoxItem>
+				<ComboBoxItem>EN</ComboBoxItem>
+			</ComboBox>
 			<ComboBox Name="CmbReadingLayout"
-					  DockPanel.Dock="Right"
-					  ItemsSource="{Binding Reading.LayoutModeOptions}"
-					  SelectedItem="{Binding Reading.SelectedLayoutOption, Mode=TwoWay}"
-					  VerticalAlignment="Center"
-					  MinWidth="118"
-					  Margin="8,0,0,0"
-					  ToolTip.Tip="Switch reading layout. Two-pane modes show original and translation side by side; single-column modes stack them. Merged flow requires a segment map for the current text.">
+			          ItemsSource="{Binding Reading.LayoutModeOptions}"
+			          SelectedItem="{Binding Reading.SelectedLayoutOption, Mode=TwoWay}"
+			          VerticalAlignment="Center"
+			          MinWidth="150"
+			          ToolTip.Tip="Switch reading layout. Two-pane modes show original and translation side by side; single-column modes stack them. Merged flow requires a segment map for the current text.">
 				<ComboBox.Styles>
 					<!-- Group-header rows are non-selectable captions. -->
 					<Style Selector="ComboBoxItem" x:DataType="vm:LayoutOption">
@@ -171,58 +115,37 @@
 				</ComboBox.ItemTemplate>
 			</ComboBox>
 
-			<ComboBox Name="CmbReadingView"
-					  DockPanel.Dock="Right"
-					  SelectedIndex="{Binding Reading.ViewModeIndex, Mode=TwoWay}"
-					  VerticalAlignment="Center"
-					  MinWidth="72"
-					  Margin="8,0,0,0"
-					  ToolTip.Tip="Choose which language pane(s) to show: Chinese only, both, or English only.">
-				<ComboBoxItem>中 ZH</ComboBoxItem>
-				<ComboBoxItem>Both</ComboBoxItem>
-				<ComboBoxItem>EN</ComboBoxItem>
-			</ComboBox>
+			<!-- Translation source — hidden unless there is an actual choice
+			     (more than one source for the current text). -->
+			<StackPanel Name="TranslationSourceGroup" Orientation="Horizontal" Spacing="4"
+			            VerticalAlignment="Center" IsVisible="False">
+				<ComboBox Name="CmbTranslationSource"
+				          MinWidth="170"
+				          FontSize="12"
+				          VerticalAlignment="Center"
+				          ToolTip.Tip="Select whose translation to view"/>
+				<Button Name="BtnStarTranslation" Content="&#x2606;" FontSize="16"
+				        VerticalAlignment="Center" Padding="4,2" MinWidth="28"
+				        ToolTip.Tip="Star this translation"/>
+			</StackPanel>
+		</StackPanel>
 
-			<CheckBox Name="ChkShowLineIds"
-					  DockPanel.Dock="Right"
-					  Content="Line IDs"
-					  IsChecked="{Binding Reading.ShowLineIds, Mode=TwoWay}"
-					  VerticalAlignment="Center"
-					  Focusable="False"
-					  Margin="8,0,0,0"
-					  ToolTip.Tip="Show line-break (lb) ids. Used by the single-column reading modes."/>
+		<!-- Right: navigation + disclosure flyouts, then ambient progress -->
+		<StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="6"
+		            VerticalAlignment="Center">
 
-			<CheckBox Name="ChkZenText"
-					  DockPanel.Dock="Right"
-					  Content="Zen"
-					  VerticalAlignment="Center"
-					  Focusable="False"
-					  ToolTip.Tip="Mark this text as a Zen/Chan Buddhist text"/>
-
-			<!-- License chip lives in the top bar now (next to the corpus
-			     badge) so the action row stays uncluttered. -->
-
-			<!-- Annotation legend (collapsible flyout) -->
-			<Button Name="BtnMarkersLegend" Content="Legend ▾"
+			<!-- Document outline / TOC flyout -->
+			<Button Name="BtnOutline" Content="Outline ▾"
 			        FontSize="11" Padding="6,2" Background="Transparent"
 			        BorderThickness="0" Cursor="Hand" VerticalAlignment="Center"
-			        Margin="16,0,0,0">
+			        ToolTip.Tip="Jump to a heading in the document">
 				<Button.Flyout>
-					<Flyout Placement="BottomEdgeAlignedLeft">
-						<StackPanel Spacing="6" Margin="8">
-							<StackPanel Orientation="Horizontal" Spacing="4">
-								<Border Background="Gray" Width="10" Height="10" CornerRadius="2"/>
-								<TextBlock Text="Source text editorial markers" FontSize="11"/>
-							</StackPanel>
-							<StackPanel Orientation="Horizontal" Spacing="4">
-								<Border Background="DarkOrange" Width="10" Height="10" CornerRadius="2"/>
-								<TextBlock Text="Footnotes" FontSize="11"/>
-							</StackPanel>
-							<StackPanel Orientation="Horizontal" Spacing="4">
-								<Border Background="DodgerBlue" Width="10" Height="10" CornerRadius="2"/>
-								<TextBlock Text="Community annotations" FontSize="11"/>
-							</StackPanel>
-						</StackPanel>
+					<Flyout Placement="BottomEdgeAlignedRight">
+						<ScrollViewer Width="320" MaxHeight="400"
+						              VerticalScrollBarVisibility="Auto"
+						              HorizontalScrollBarVisibility="Disabled">
+							<StackPanel Name="OutlineList" Spacing="2" Margin="4"/>
+						</ScrollViewer>
 					</Flyout>
 				</Button.Flyout>
 			</Button>
@@ -231,10 +154,9 @@
 			<Button Name="BtnBookmarks" Content="Bookmarks ▾"
 			        FontSize="11" Padding="6,2" Background="Transparent"
 			        BorderThickness="0" Cursor="Hand" VerticalAlignment="Center"
-			        Margin="8,0,0,0"
 			        ToolTip.Tip="Manage bookmarks (Ctrl+B to add)">
 				<Button.Flyout>
-					<Flyout Placement="BottomEdgeAlignedLeft">
+					<Flyout Placement="BottomEdgeAlignedRight">
 						<StackPanel Width="280" MaxHeight="360">
 							<Button Content="+ Bookmark here"
 							        Command="{Binding Reading.AddBookmarkCommand}"
@@ -274,30 +196,110 @@
 				</Button.Flyout>
 			</Button>
 
-			<!-- Document outline / TOC flyout -->
-			<Button Name="BtnOutline" Content="Outline ▾"
+			<!-- "⚙ View" flyout: low-frequency display + panel toggles.
+			     Designated home for future reading options — do not grow the
+			     primary row. -->
+			<Button Name="BtnViewOptions" Content="⚙ View ▾"
 			        FontSize="11" Padding="6,2" Background="Transparent"
 			        BorderThickness="0" Cursor="Hand" VerticalAlignment="Center"
-			        Margin="8,0,0,0"
-			        ToolTip.Tip="Jump to a heading in the document">
+			        ToolTip.Tip="View options: line IDs, side panels, Zen text flag">
 				<Button.Flyout>
-					<Flyout Placement="BottomEdgeAlignedLeft">
-						<ScrollViewer Width="320" MaxHeight="400"
-						              VerticalScrollBarVisibility="Auto"
-						              HorizontalScrollBarVisibility="Disabled">
-							<StackPanel Name="OutlineList" Spacing="2" Margin="4"/>
-						</ScrollViewer>
+					<Flyout Placement="BottomEdgeAlignedRight">
+						<StackPanel Spacing="8" Margin="10,8" MinWidth="170">
+							<CheckBox Name="ChkShowLineIds"
+							          Content="Line IDs"
+							          IsChecked="{Binding Reading.ShowLineIds, Mode=TwoWay}"
+							          Focusable="False"
+							          ToolTip.Tip="Show line-break (lb) ids. Used by the single-column reading modes."/>
+							<Separator/>
+							<TextBlock Text="Panels" FontSize="10" FontWeight="SemiBold" Opacity="0.55"/>
+							<CheckBox Name="ChkProvenance"
+							          Content="Provenance"
+							          Focusable="False"
+							          ToolTip.Tip="Show or hide the provenance panel with source documentation and witness details"/>
+							<CheckBox Name="ChkStudyPanel"
+							          Content="Study"
+							          Focusable="False"
+							          ToolTip.Tip="Show or hide the study panel with dictionary terms, translation memory matches, and contextual info"/>
+							<Separator/>
+							<CheckBox Name="ChkZenText"
+							          Content="Zen text"
+							          Focusable="False"
+							          ToolTip.Tip="Mark this text as a Zen/Chan Buddhist text"/>
+						</StackPanel>
 					</Flyout>
 				</Button.Flyout>
 			</Button>
 
+			<!-- "⋯" overflow flyout: one-shot actions + marker legend -->
+			<Button Name="BtnOverflow" Content="⋯"
+			        FontSize="14" Padding="8,0" Background="Transparent"
+			        BorderThickness="0" Cursor="Hand" VerticalAlignment="Center"
+			        ToolTip.Tip="More actions">
+				<Button.Flyout>
+					<Flyout Placement="BottomEdgeAlignedRight">
+						<StackPanel Spacing="2" Margin="4" MinWidth="210">
+							<Button Name="BtnFind"
+							        Content="Find in text (Ctrl+F)"
+							        FontSize="11" Padding="8,5"
+							        HorizontalAlignment="Stretch"
+							        HorizontalContentAlignment="Left"
+							        Background="Transparent" BorderThickness="0"
+							        Cursor="Hand" Focusable="False"
+							        ToolTip.Tip="Find in text (Ctrl+F)"/>
+							<Button Name="BtnAddCommunityNote"
+							        Content="Add community note"
+							        FontSize="11" Padding="8,5"
+							        HorizontalAlignment="Stretch"
+							        HorizontalContentAlignment="Left"
+							        Background="Transparent" BorderThickness="0"
+							        Cursor="Hand" Focusable="False"
+							        ToolTip.Tip="Add a community note at the current cursor position"/>
+							<Button Name="BtnSaveToCollection"
+							        Content="Save selection to collection"
+							        FontSize="11" Padding="8,5"
+							        HorizontalAlignment="Stretch"
+							        HorizontalContentAlignment="Left"
+							        Background="Transparent" BorderThickness="0"
+							        Cursor="Hand" Focusable="False"
+							        ToolTip.Tip="Save the current passage to your Scholar collection"/>
+							<Button Name="BtnCompareTranslations"
+							        Content="Compare translations…"
+							        FontSize="11" Padding="8,5"
+							        HorizontalAlignment="Stretch"
+							        HorizontalContentAlignment="Left"
+							        Background="Transparent" BorderThickness="0"
+							        Cursor="Hand" Focusable="False"
+							        ToolTip.Tip="Open a 3-pane window comparing original text with two translation sources"/>
+							<Separator Margin="0,4"/>
+							<TextBlock Text="Marker legend"
+							           FontSize="10" FontWeight="SemiBold"
+							           Opacity="0.55" Margin="8,0,0,2"/>
+							<StackPanel Orientation="Horizontal" Spacing="4" Margin="8,0,8,0">
+								<Border Background="#9A9A9A" Width="10" Height="10" CornerRadius="2" VerticalAlignment="Center"/>
+								<TextBlock Text="CBETA editorial / apparatus" FontSize="11"/>
+							</StackPanel>
+							<StackPanel Orientation="Horizontal" Spacing="4" Margin="8,0,8,0">
+								<Border Background="#E6C35C" Width="10" Height="10" CornerRadius="2" VerticalAlignment="Center"/>
+								<TextBlock Text="Master notes" FontSize="11"/>
+							</StackPanel>
+							<StackPanel Orientation="Horizontal" Spacing="4" Margin="8,0,8,4">
+								<Border Background="DodgerBlue" Width="10" Height="10" CornerRadius="2" VerticalAlignment="Center"/>
+								<TextBlock Text="Community annotations" FontSize="11"/>
+							</StackPanel>
+						</StackPanel>
+					</Flyout>
+				</Button.Flyout>
+			</Button>
+
+			<!-- Ambient reading progress -->
 			<TextBlock Name="TxtReadingProgress"
 			           Text="{Binding Reading.ReadingProgressText}"
 			           FontSize="11" Opacity="0.6"
 			           VerticalAlignment="Center"
-			           Margin="12,0,0,0"/>
-			<Border/>
-		</DockPanel>
+			           Margin="8,0,0,0"/>
+		</StackPanel>
+	</Grid>
 
 		<!-- Row 4: two readable panes + study panel + empty state overlay -->
 		<Grid Grid.Row="4">
@@ -429,9 +431,9 @@
 										BorderThickness="1"
 										BorderBrush="{DynamicResource BorderBrush}">
 									<StackPanel Spacing="4">
-										<TextBlock Text="Dictionary" FontWeight="Bold"/>
+										<TextBlock Text="Zen Dictionary" FontWeight="Bold"/>
 										<TextBlock Name="TxtStudyDictHeadword" FontSize="18" FontWeight="SemiBold"/>
-										<TextBlock Name="TxtStudyDictPinyin" FontSize="12" Opacity="0.8"/>
+										<TextBlock Name="TxtStudyDictGloss" FontSize="12" Opacity="0.8" TextWrapping="Wrap"/>
 										<StackPanel Name="StudyDictSenses" Spacing="2"/>
 									</StackPanel>
 								</Border>

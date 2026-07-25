@@ -19,7 +19,7 @@ public class ReadableTabViewModelTests
 
         Assert.False(vm.IsZenText);
         Assert.False(vm.IsZenEnabled);
-        Assert.True(vm.HoverDictionaryEnabled);
+        Assert.False(vm.HoverDictionaryEnabled); // CC-CEDICT hover is opt-in
         Assert.Equal("", vm.DefaultResp);
         Assert.Null(vm.CurrentRelPathForZen);
         Assert.False(vm.NotesPanelVisible);

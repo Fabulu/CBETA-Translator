@@ -4,12 +4,14 @@
 // Receives the segment map + RenderedDocument.Segments to map rendered
 // offsets to lb-IDs and then to segment types.
 //
-// Styling rules:
-//   verse       → italic + gold foreground tint
+// Styling rules (color tints only for body text — the reading body keeps a
+// uniform typeface; headings alone carry a weight change, matching the
+// row-grid surface's HeaderWeightConverter):
+//   verse       → gold foreground tint
 //   dialogue    → accent foreground tint
 //   commentary  → muted/dimmed foreground
 //   heading     → bold
-//   dharani     → italic + distinct color
+//   dharani     → distinct color
 //   All others  → no visual change (default prose)
 //
 // This transformer is purely additive — it never removes existing styling
@@ -164,88 +166,19 @@ public sealed class SegmentTypeTransformer : DocumentColorizingTransformer
         if (lineStart >= lineEnd)
             return;
 
-        switch (segType)
+        // NO segment-type COLOR tints — the reading body stays uniform and is
+        // colored only by annotation markers (masters/comments/CBETA) + highlights.
+        // The single surviving structural cue is a weight change for headings
+        // (a font weight, not a color — matches the row-grid HeaderWeightConverter).
+        if (segType == "heading")
         {
-            case "verse":
-                ChangeLinePart(lineStart, lineEnd, el =>
-                {
-                    el.TextRunProperties.SetForegroundBrush(VerseBrush);
-                    el.TextRunProperties.SetTypeface(new Typeface(
-                        el.TextRunProperties.Typeface.FontFamily,
-                        FontStyle.Italic,
-                        el.TextRunProperties.Typeface.Weight));
-                });
-                break;
-
-            case "dialogue":
-                ChangeLinePart(lineStart, lineEnd, el =>
-                {
-                    el.TextRunProperties.SetForegroundBrush(DialogueBrush);
-                });
-                break;
-
-            case "commentary":
-                ChangeLinePart(lineStart, lineEnd, el =>
-                {
-                    el.TextRunProperties.SetForegroundBrush(CommentaryBrush);
-                    // Faint gray wash sets commentary apart from prose without shouting.
-                    // Uses the run-level background ceiling of a colorizing transformer.
-                    el.TextRunProperties.SetBackgroundBrush(CommentaryBgBrush);
-                });
-                break;
-
-            case "heading":
-                ChangeLinePart(lineStart, lineEnd, el =>
-                {
-                    el.TextRunProperties.SetTypeface(new Typeface(
-                        el.TextRunProperties.Typeface.FontFamily,
-                        el.TextRunProperties.Typeface.Style,
-                        FontWeight.Bold));
-                });
-                break;
-
-            case "dharani":
-                ChangeLinePart(lineStart, lineEnd, el =>
-                {
-                    el.TextRunProperties.SetForegroundBrush(DharaniBrush);
-                    el.TextRunProperties.SetTypeface(new Typeface(
-                        el.TextRunProperties.Typeface.FontFamily,
-                        FontStyle.Italic,
-                        el.TextRunProperties.Typeface.Weight));
-                });
-                break;
-
-            case "preface":
-            case "colophon":
-                ChangeLinePart(lineStart, lineEnd, el =>
-                {
-                    el.TextRunProperties.SetForegroundBrush(MutedBrush);
-                });
-                break;
-
-            case "byline":
-                ChangeLinePart(lineStart, lineEnd, el =>
-                {
-                    el.TextRunProperties.SetForegroundBrush(BylineBrush);
-                    el.TextRunProperties.SetTypeface(new Typeface(
-                        el.TextRunProperties.Typeface.FontFamily,
-                        FontStyle.Italic,
-                        el.TextRunProperties.Typeface.Weight));
-                });
-                break;
-
-            // prose, fascicle_marker, table_of_contents, apparatus, unknown
-            // → no visual change (default rendering)
+            ChangeLinePart(lineStart, lineEnd, el =>
+            {
+                el.TextRunProperties.SetTypeface(new Typeface(
+                    el.TextRunProperties.Typeface.FontFamily,
+                    el.TextRunProperties.Typeface.Style,
+                    FontWeight.Bold));
+            });
         }
     }
-
-    // Static brushes for segment type styling. These are intentionally subtle
-    // to complement the existing text without overwhelming it.
-    private static readonly IBrush VerseBrush = new SolidColorBrush(Color.FromRgb(218, 165, 32));  // goldenrod
-    private static readonly IBrush DialogueBrush = new SolidColorBrush(Color.FromRgb(100, 149, 237)); // cornflower blue
-    private static readonly IBrush CommentaryBrush = new SolidColorBrush(Color.FromRgb(160, 160, 160)); // gray
-    private static readonly IBrush CommentaryBgBrush = new SolidColorBrush(Color.FromArgb(20, 160, 160, 160)); // faint gray wash
-    private static readonly IBrush DharaniBrush = new SolidColorBrush(Color.FromRgb(186, 85, 211)); // medium orchid
-    private static readonly IBrush MutedBrush = new SolidColorBrush(Color.FromRgb(140, 140, 140)); // dim gray
-    private static readonly IBrush BylineBrush = new SolidColorBrush(Color.FromRgb(112, 128, 144)); // slate gray
 }

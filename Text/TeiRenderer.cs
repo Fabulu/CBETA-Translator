@@ -687,7 +687,7 @@ public static class TeiRenderer
             baseToXmlIndex: baseToXmlIndex,
             baseTextLength: baseText.Length,
             license: null,
-            headings: headings);
+            headings: HeadingDeduplicator.Dedupe(headings));
     }
 
     // ------------------------------------------------------------

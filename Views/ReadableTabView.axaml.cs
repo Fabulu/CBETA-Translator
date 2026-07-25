@@ -53,6 +53,10 @@ public partial class ReadableTabView : UserControl
     private readonly IGrammarReferenceService _grammar = App.Services.GetRequiredService<IGrammarReferenceService>();
     private readonly ICitationService _citationService = App.Services.GetRequiredService<ICitationService>();
 
+    // Zen dictionary (I3): underline terms with an entry + on-click entry in the study panel.
+    // Always on (independent of the CC-CEDICT hover toggle).
+    private readonly IZenDictionaryLookup _zenDict = App.Services.GetRequiredService<IZenDictionaryLookup>();
+
     // -------------------------
     // Selection mirroring
     // -------------------------
@@ -103,7 +107,6 @@ public partial class ReadableTabView : UserControl
     private Button? _btnAddCommunityNote;
     private Button? _btnDeleteCommunityNote;
     private Button? _btnMoveFootnote;
-    private Button? _btnDictionary;
 
     private Border? _readableEmptyState;
 
@@ -166,7 +169,7 @@ public partial class ReadableTabView : UserControl
     private TextBlock? _txtStudySegmentEn;
     private string? _lastStudySegmentKey;
     private TextBlock? _txtStudyDictHeadword;
-    private TextBlock? _txtStudyDictPinyin;
+    private TextBlock? _txtStudyDictGloss;
     private StackPanel? _studyDictSenses;
     private string? _lastStudyDictKey;
     private readonly List<IDisposable> _studyHoverDisposables = new();
@@ -320,6 +323,10 @@ public partial class ReadableTabView : UserControl
 
     /// <summary>Returns the currently active translation user (null = community).</summary>
     public Func<string?>? GetTranslationUser { get; set; }
+
+    /// <summary>Returns the active corpus root (where termbase.v2.json lives). Set by
+    /// MainWindow; the reader's Zen-dictionary underline/click lookup loads from it.</summary>
+    public Func<string?>? GetDictionaryRoot { get; set; }
 
     /// <summary>Pre-filled value for the Resp field in the "Add community note" dialog.</summary>
     public string DefaultResp
@@ -519,7 +526,6 @@ public partial class ReadableTabView : UserControl
         _btnAddCommunityNote = this.FindControl<Button>("BtnAddCommunityNote");
         _btnDeleteCommunityNote = this.FindControl<Button>("BtnDeleteCommunityNote");
         _btnMoveFootnote = this.FindControl<Button>("BtnMoveFootnote");
-        _btnDictionary = this.FindControl<Button>("BtnDictionary");
 
         _chkZenText = this.FindControl<CheckBox>("ChkZenText");
         _cmbTranslationSource = this.FindControl<ComboBox>("CmbTranslationSource");
@@ -560,7 +566,7 @@ public partial class ReadableTabView : UserControl
         _txtStudySegmentZh = this.FindControl<TextBlock>("TxtStudySegmentZh");
         _txtStudySegmentEn = this.FindControl<TextBlock>("TxtStudySegmentEn");
         _txtStudyDictHeadword = this.FindControl<TextBlock>("TxtStudyDictHeadword");
-        _txtStudyDictPinyin = this.FindControl<TextBlock>("TxtStudyDictPinyin");
+        _txtStudyDictGloss = this.FindControl<TextBlock>("TxtStudyDictGloss");
         _studyDictSenses = this.FindControl<StackPanel>("StudyDictSenses");
 
         _btnBookmarks = this.FindControl<Button>("BtnBookmarks");
@@ -1239,12 +1245,6 @@ public partial class ReadableTabView : UserControl
             _btnMoveFootnote.Click += BtnMoveFootnote_Click;
         }
 
-        if (_btnDictionary != null)
-        {
-            _btnDictionary.Click -= BtnDictionary_Click;
-            _btnDictionary.Click += BtnDictionary_Click;
-        }
-
         if (_btnAddBookmark != null)
         {
             _btnAddBookmark.Click -= BtnAddBookmark_Click;
@@ -1253,9 +1253,6 @@ public partial class ReadableTabView : UserControl
 
         UpdateButtonsState();
     }
-
-    private void BtnDictionary_Click(object? sender, RoutedEventArgs e)
-        => DictionaryRequested?.Invoke(this, EventArgs.Empty);
 
     // =========================
     // Public API (called by host)
@@ -1392,6 +1389,7 @@ public partial class ReadableTabView : UserControl
             InstallMarkerColorizers();
 
             SetupHoverDictionary();
+            UpdateZenUnderlinesForTwoEditor();
             CancelMoveModeAndHideNotes();
 
             // Attach evidence gutter to the Chinese pane (shows apparatus dots)
@@ -1450,6 +1448,12 @@ public partial class ReadableTabView : UserControl
 
     public void SetTranslationSourceOptions(List<string> options)
     {
+        // The toolbar's source group only earns its slot when there is an
+        // actual choice to make — hide it for single-source (or empty) texts.
+        var sourceGroup = this.FindControl<StackPanel>("TranslationSourceGroup");
+        if (sourceGroup != null)
+            sourceGroup.IsVisible = options.Count > 1;
+
         if (_cmbTranslationSource == null) return;
 
         _suppressTranslationSourceEvents = true;
@@ -1532,6 +1536,8 @@ public partial class ReadableTabView : UserControl
         {
             _syncingSelection = false;
         }
+
+        UpdateZenUnderlinesForTwoEditor();
     }
 
     /// <summary>
@@ -1663,6 +1669,55 @@ public partial class ReadableTabView : UserControl
         {
             _suppressZenEvents = false;
         }
+    }
+
+    // =========================
+    // Current locus (tab pop-out)
+    // =========================
+
+    /// <summary>
+    /// Captures the reader's current position as a <see cref="NavigationRequest"/> suitable for
+    /// <see cref="ReadZen.App.Services.WindowNavigationService.OpenAndNavigate"/> — used by the
+    /// tab pop-out affordance to open a second, independent reader window at the same file and
+    /// top-visible line. Returns <c>null</c> when no text is open.
+    ///
+    /// Carries only RelPath + the top-visible lb (segment-key targeting, so no text-search
+    /// fuzziness). Find-bar state, coding-mode selections, open study-panel contents and unsaved
+    /// community-note drafts are intentionally NOT carried (pop-out v1, POPOUT_TABS_DESIGN §3).
+    /// Both surfaces are handled: the row-grid reads its top row's lb, the two-editor surface
+    /// reads the top-visible line of the original pane (falling back to the translated pane).
+    /// </summary>
+    public NavigationRequest? GetCurrentLocus()
+    {
+        var relPath = _vm.CurrentRelPathForZen;
+        if (string.IsNullOrWhiteSpace(relPath)) return null;
+
+        string? lb = null;
+        try
+        {
+            if (IsGridSurfaceActive())
+            {
+                lb = CurrentGridRow()?.Lb;
+            }
+            else
+            {
+                if (_aeOrig != null && !_vm.RenderOrig.IsEmpty)
+                    lb = TopVisibleLb(_aeOrig, _vm.RenderOrig);
+                if (string.IsNullOrEmpty(lb) && _aeTran != null && !_vm.RenderTran.IsEmpty)
+                    lb = TopVisibleLb(_aeTran, _vm.RenderTran);
+            }
+        }
+        catch
+        {
+            // Best-effort locus: a blank lb simply opens the new window at the top of the file.
+        }
+
+        return new NavigationRequest
+        {
+            RelPath = relPath!,
+            Side = SearchSide.Original,
+            FromLb = string.IsNullOrWhiteSpace(lb) ? null : lb,
+        };
     }
 
     // =========================
@@ -1829,6 +1884,19 @@ public partial class ReadableTabView : UserControl
         var border = this.FindControl<Border>("FootnotesPanel");
         if (panel == null || border == null) return;
 
+        // Apparatus Notes are OFF by default: only surface the panel when the user has
+        // opted in via Settings (ShowApparatusNotes). The setting is mirrored onto the
+        // singleton config service, synced at load and on settings-apply. Reading it
+        // here (rather than holding config) keeps the gate correct regardless of when
+        // the first render runs relative to the SettingsApplied broadcast.
+        var showApparatus = App.Services?.GetService<IAppConfigService>()?.ShowApparatusNotes ?? false;
+        if (!showApparatus)
+        {
+            border.IsVisible = false;
+            panel.Children.Clear();
+            return;
+        }
+
         panel.Children.Clear();
 
         var annotations = doc?.Annotations?
@@ -1854,7 +1922,7 @@ public partial class ReadableTabView : UserControl
                             Text = $"{i + 1}",
                             FontSize = 10,
                             VerticalAlignment = VerticalAlignment.Top,
-                            Foreground = new SolidColorBrush(Color.FromRgb(205, 92, 92)),
+                            Foreground = new SolidColorBrush(Color.FromRgb(154, 154, 154)), // apparatus grey
                             FontWeight = FontWeight.Bold,
                             Margin = new Thickness(0, 0, 2, 0)
                         };
@@ -1900,7 +1968,7 @@ public partial class ReadableTabView : UserControl
                 Text = $"{i + 1}",
                 FontSize = 10,
                 VerticalAlignment = VerticalAlignment.Top,
-                Foreground = new SolidColorBrush(Color.FromRgb(205, 92, 92)), // IndianRed
+                Foreground = new SolidColorBrush(Color.FromRgb(154, 154, 154)), // apparatus grey
                 FontWeight = FontWeight.Bold,
                 Margin = new Thickness(0, 0, 2, 0)
             };
@@ -2727,7 +2795,12 @@ public partial class ReadableTabView : UserControl
                     }
 
                     if (!TryResolveAnnotationFromMarkerSpans(doc, caret, out var ann))
+                    {
+                        // I3: not a note marker — if the click landed on an underlined Zen term
+                        // in the original pane, open its entry in the docked side panel.
+                        if (onOrig) TryShowZenDictionaryAtOffset(caret);
                         return;
+                    }
 
                     ShowNotes(ann, fromTranslatedPane: onTran);
                     NoteClicked?.Invoke(this, ann);
@@ -3027,10 +3100,11 @@ public partial class ReadableTabView : UserControl
     // =========================
     private void SetupHoverDictionary()
     {
-        // The grid has its own dictionary: an ON-CLICK lookup into the docked study panel, wired at
-        // the surface level in OnGridPointerPressed → ShowGridDictionaryForRow and gated by the same
-        // HoverDictionaryEnabled toggle. The two-editor hover behavior below must not attach to the
-        // hidden _aeOrig while the grid shows, so this path stays two-editor-only.
+        // The grid has its own dictionary: an ON-CLICK Zen lookup into the docked study panel, wired
+        // at the surface level in OnGridPointerPressed → ShowGridDictionaryForRow and always on (the
+        // Zen dictionary is never gated by the CC-CEDICT HoverDictionaryEnabled toggle). The two-editor
+        // CC-CEDICT hover behavior below must not attach to the hidden _aeOrig while the grid shows, so
+        // this path stays two-editor-only.
         if (IsGridSurfaceActive()) return;
 
         _hoverDictOrig?.Dispose();
@@ -3208,6 +3282,15 @@ public partial class ReadableTabView : UserControl
             SetHoverDictionaryEnabled(config.EnableHoverDictionary);
             SetStudyPanelVisible(config.EnableStudyPanel);
             SetProvenancePanelVisible(config.EnableProvenancePanel);
+
+            // Apparatus Notes panel: refresh the singleton mirror from the applied
+            // config, then re-evaluate the panel so toggling the setting takes effect
+            // live (no restart). PopulateFootnotes re-reads the mirror and shows/hides
+            // the panel accordingly, using the same doc + xml path it is normally
+            // called with (see the SetRendered call site).
+            var cfgSvc = App.Services?.GetService<IAppConfigService>();
+            if (cfgSvc != null) cfgSvc.ShowApparatusNotes = config.ShowApparatusNotes;
+            PopulateFootnotes(_vm.RenderOrig, _provenanceXmlAbsPath);
             DefaultResp = config.Username ?? "";
             var (compareIdentity, tagUsername) = DeriveTagIdentity(config);
             CurrentTagCompareIdentity = compareIdentity;
@@ -3926,6 +4009,14 @@ public partial class ReadableTabView : UserControl
             _getMarkers = getMarkers;
         }
 
+        // Warm yellow: the master's own commentary (e.g. Yuanwu). #E6C35C
+        private static readonly IBrush YuanwuFallback =
+            new SolidColorBrush(Color.FromRgb(230, 195, 92));
+
+        // Neutral mid-grey: CBETA apparatus markers. #9A9A9A
+        private static readonly IBrush ApparatusFallback =
+            new SolidColorBrush(Color.FromRgb(154, 154, 154));
+
         private static IBrush Brush(string key, IBrush fallback)
         {
             var app = Application.Current;
@@ -3959,20 +4050,22 @@ public partial class ReadableTabView : UserControl
                 var m = markers[i];
                 if (m.Start >= lineEnd) break;
 
+                // Scheme: yellow = the masters themselves (Yuanwu), blue = our
+                // comments (Community), grey = CBETA apparatus, Normal = no tint.
                 var fg = m.Kind switch
                 {
                     AnnotationMarkerInserter.MarkerKind.Yuanwu =>
-                        Brush("NoteMarkerYuanwuFg", Brushes.DarkOrange),
+                        Brush("NoteMarkerYuanwuFg", YuanwuFallback),
 
                     AnnotationMarkerInserter.MarkerKind.Community =>
                         Brush("NoteMarkerCommunityFg", Brushes.DodgerBlue),
 
                     AnnotationMarkerInserter.MarkerKind.Apparatus =>
-                        Brush("NoteMarkerApparatusFg", Brushes.IndianRed),
+                        Brush("NoteMarkerApparatusFg", ApparatusFallback),
 
-                    _ =>
-                        Brush("NoteMarkerNormalFg", Brushes.Gray),
+                    _ => null, // Normal: default text color, no tint
                 };
+                if (fg is null) continue;
 
                 int s = Math.Max(m.Start, lineStart);
                 int e = Math.Min(m.EndExclusive, lineEnd);
@@ -4067,6 +4160,135 @@ public partial class ReadableTabView : UserControl
         var line = $"[ReadableTabView #{++_seq}] {msg}";
         try { Say(line); } catch { }
         try { Debug.WriteLine(line); } catch { }
+    }
+
+    // =========================
+    // Zen-dictionary underlines (two-editor surface, I3)
+    // =========================
+
+    private ZenTermUnderlineTransformer? _zenUnderliner;
+
+    /// <summary>
+    /// Underlines every span of the ORIGINAL pane that has a Zen-dictionary entry (SPA
+    /// .zen-term parity). Clears stale ranges immediately (the previous document's offsets
+    /// are meaningless), then recomputes off-thread once the index is loaded; a render that
+    /// supersedes this one (generation bump) discards the result. Zen dict only — the
+    /// CC-CEDICT hover toggle has no effect on this.
+    /// </summary>
+    private void UpdateZenUnderlinesForTwoEditor()
+    {
+        var editor = _aeOrig;
+        if (editor == null) return;
+
+        if (_zenUnderliner == null)
+        {
+            _zenUnderliner = new ZenTermUnderlineTransformer();
+            try { editor.TextArea.TextView.LineTransformers.Add(_zenUnderliner); }
+            catch { _zenUnderliner = null; return; }
+        }
+
+        _zenUnderliner.SetRanges(Array.Empty<(int, int)>());
+        try { editor.TextArea?.TextView?.Redraw(); } catch { }
+
+        string docText = editor.Document?.Text ?? "";
+        if (string.IsNullOrEmpty(docText)) return;
+
+        var root = GetDictionaryRoot?.Invoke();
+        if (string.IsNullOrWhiteSpace(root)) return;
+
+        int gen = _readableRenderGen;
+        AsyncGuard.Run(async () =>
+        {
+            await _zenDict.EnsureLoadedAsync(root!);
+            var spans = await Task.Run(() => ComputeZenSpans(docText));
+            if (gen != _readableRenderGen) return; // a newer render owns the editor now
+            if (_zenUnderliner == null || _aeOrig == null) return;
+            _zenUnderliner.SetRanges(spans.Select(s => (s.Start, s.Length)));
+            try { _aeOrig.TextArea?.TextView?.Redraw(); } catch { }
+        }, "ReadableTabView.ZenUnderlines");
+    }
+
+    /// <summary>Zen-dictionary click lookup in the ORIGINAL pane: resolves the entry covering
+    /// the clicked offset and shows it in the docked study side panel (opening the panel).
+    /// No entry ⇒ nothing (CC-CEDICT is never in the click path).</summary>
+    private void TryShowZenDictionaryAtOffset(int offset)
+    {
+        if (_txtStudyDictHeadword == null) return;
+        string docText = _aeOrig?.Document?.Text ?? "";
+        if (string.IsNullOrEmpty(docText) || offset < 0 || offset >= docText.Length) return;
+
+        if (!ReaderLbGeometry.IsCjkChar(docText[offset]))
+        {
+            if (offset > 0 && ReaderLbGeometry.IsCjkChar(docText[offset - 1])) offset--;
+            else return;
+        }
+
+        if (!_zenDict.IsLoaded)
+        {
+            EnsureZenDictLoadKickoff();
+            return;
+        }
+
+        if (!TryFindZenMatchCovering(docText, offset, out var match)) return;
+
+        if (!_vm.StudyPanelVisible) SetStudyPanelVisible(true);
+
+        string key = match.Headword + "|edit";
+        if (key == _lastStudyDictKey) return;
+        _lastStudyDictKey = key;
+        RenderStudyZenEntry(match);
+    }
+
+    /// <summary>Dashed-underline colorizer for Zen-dictionary terms in the original pane —
+    /// the two-editor twin of the RowGridSurface underline (same muted-gold dash).</summary>
+    private sealed class ZenTermUnderlineTransformer : DocumentColorizingTransformer
+    {
+        private static readonly TextDecorationCollection ZenUnderline = new()
+        {
+            new TextDecoration
+            {
+                Location = TextDecorationLocation.Underline,
+                Stroke = new SolidColorBrush(Color.FromArgb(0xA0, 212, 171, 88)),
+                StrokeThickness = 1.2,
+                StrokeThicknessUnit = TextDecorationUnit.Pixel,
+                StrokeDashArray = new Avalonia.Collections.AvaloniaList<double> { 2, 2 },
+            },
+        };
+
+        private List<(int Start, int Length)> _ranges = new();
+
+        public void SetRanges(IEnumerable<(int Start, int Length)> ranges)
+        {
+            _ranges = ranges.OrderBy(r => r.Start).ToList();
+        }
+
+        protected override void ColorizeLine(DocumentLine line)
+        {
+            if (_ranges.Count == 0) return;
+            int lo = LowerBound(_ranges, line.Offset);
+            for (int i = lo; i < _ranges.Count; i++)
+            {
+                var (start, length) = _ranges[i];
+                if (start >= line.Offset + line.Length) break;
+                int s = Math.Max(start, line.Offset);
+                int e = Math.Min(start + length, line.Offset + line.Length);
+                if (s >= e) continue;
+                ChangeLinePart(s, e, el =>
+                    el.TextRunProperties.SetTextDecorations(ZenUnderline));
+            }
+        }
+
+        private static int LowerBound(List<(int Start, int Length)> ranges, int lineStart)
+        {
+            int lo = 0, hi = ranges.Count;
+            while (lo < hi)
+            {
+                int mid = (lo + hi) / 2;
+                if (ranges[mid].Start + ranges[mid].Length <= lineStart) lo = mid + 1;
+                else hi = mid;
+            }
+            return lo;
+        }
     }
 
     // =========================
@@ -5753,7 +5975,6 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
     private sealed class TermbaseHighlightTransformer : DocumentColorizingTransformer
     {
         private List<(int Start, int Length)> _ranges = new();
-        private Typeface? _cachedSemiBold;
 
         public void SetRanges(IEnumerable<(int Start, int Length)> ranges)
         {
@@ -5780,15 +6001,10 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
                 int s = Math.Max(start, line.Offset);
                 int e = Math.Min(start + length, line.Offset + line.Length);
                 if (s >= e) continue;
+                // Color-only highlight: body text keeps a uniform typeface/weight.
                 ChangeLinePart(s, e, el =>
                 {
                     el.TextRunProperties.SetForegroundBrush(fg);
-                    _cachedSemiBold ??= new Typeface(
-                        el.TextRunProperties.Typeface.FontFamily,
-                        el.TextRunProperties.Typeface.Style,
-                        FontWeight.SemiBold,
-                        el.TextRunProperties.Typeface.Stretch);
-                    el.TextRunProperties.SetTypeface(_cachedSemiBold.Value);
                 });
             }
         }
@@ -5810,7 +6026,6 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
     private sealed class TmSharedHighlightTransformer : DocumentColorizingTransformer
     {
         private List<(int Start, int Length)> _ranges = new();
-        private Typeface? _cachedSemiBold;
 
         public void SetRanges(IEnumerable<(int Start, int Length)> ranges)
         {
@@ -5837,15 +6052,10 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
                 int s = Math.Max(start, line.Offset);
                 int e = Math.Min(start + length, line.Offset + line.Length);
                 if (s >= e) continue;
+                // Color-only highlight: body text keeps a uniform typeface/weight.
                 ChangeLinePart(s, e, el =>
                 {
                     el.TextRunProperties.SetForegroundBrush(fg);
-                    _cachedSemiBold ??= new Typeface(
-                        el.TextRunProperties.Typeface.FontFamily,
-                        el.TextRunProperties.Typeface.Style,
-                        FontWeight.SemiBold,
-                        el.TextRunProperties.Typeface.Stretch);
-                    el.TextRunProperties.SetTypeface(_cachedSemiBold.Value);
                 });
             }
         }
@@ -6342,6 +6552,69 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
         // Apparatus count parity with SetRendered (the provenance panel reads it).
         var appCount = _vm.RenderOrig?.Annotations?.Count(a => a.Kind == "apparatus") ?? 0;
         _provenancePanelView?.SetApparatusCount(appCount);
+
+        // I3: underline Zen-dictionary terms in the ZH cells (async — spans arrive once the
+        // index has loaded; rows render plain until then).
+        StampZenTermHighlights();
+    }
+
+    /// <summary>
+    /// Computes and stamps <see cref="RowVm.ZenHighlights"/> for the current grid rows: every
+    /// span of a row's ZH text that has a Zen-dictionary entry gets a subtle underline (the
+    /// SPA's .zen-term look). Runs off-thread after ensuring the index is loaded; a stale
+    /// result (rows swapped mid-flight) is discarded by reference identity.
+    /// </summary>
+    private void StampZenTermHighlights()
+    {
+        var rows = _rowGridRows;
+        if (rows == null || rows.Count == 0) return;
+        var root = GetDictionaryRoot?.Invoke();
+        if (string.IsNullOrWhiteSpace(root)) return;
+
+        AsyncGuard.Run(async () =>
+        {
+            await _zenDict.EnsureLoadedAsync(root!);
+
+            var stamped = await Task.Run(() =>
+            {
+                var list = new List<(int RowIndex, Hspan[] Spans)>();
+                for (int i = 0; i < rows.Count; i++)
+                {
+                    var spans = ComputeZenSpans(rows[i].ZhText);
+                    if (spans.Length > 0) list.Add((i, spans));
+                }
+                return list;
+            });
+
+            if (!ReferenceEquals(_rowGridRows, rows)) return; // navigation superseded this pass
+
+            foreach (var (idx, spans) in stamped)
+                rows[idx].ZenHighlights = spans;
+        }, "ReadableTabView.StampZenTermHighlights");
+    }
+
+    /// <summary>Greedy longest-match scan of <paramref name="text"/> against the Zen dictionary
+    /// (mirrors the SPA highlighter: at each CJK position take the longest entry, then continue
+    /// after it). Returns an empty array when nothing matches.</summary>
+    private Hspan[] ComputeZenSpans(string text)
+    {
+        if (string.IsNullOrEmpty(text)) return Array.Empty<Hspan>();
+        List<Hspan>? spans = null;
+        int i = 0;
+        while (i < text.Length)
+        {
+            if (ReaderLbGeometry.IsCjkChar(text[i])
+                && _zenDict.TryLookupLongest(text, i, out var m))
+            {
+                (spans ??= new List<Hspan>()).Add(new Hspan(m.StartIndex, m.Length, IsCurrent: false));
+                i += Math.Max(1, m.Length);
+            }
+            else
+            {
+                i++;
+            }
+        }
+        return spans == null ? Array.Empty<Hspan>() : spans.ToArray();
     }
 
     /// <summary>
@@ -6592,10 +6865,10 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
         if (_chkStudyPanel?.IsChecked == true)
             DeriveGridSegmentContext();
 
-        // C2: on-click dictionary (NOT hover) — resolve the ZH term under the pointer and show it
-        // in the docked study side panel. Gated by the same HoverDictionaryEnabled toggle.
-        if (_vm.HoverDictionaryEnabled)
-            TryShowGridDictionaryAtPointer(e, row);
+        // I3: on-click ZEN dictionary (NOT hover) — resolve the Zen term under the pointer and
+        // show its entry in the docked study side panel. Always on (the CC-CEDICT hover toggle
+        // does not gate the Zen dictionary; CC-CEDICT never appears in the click path).
+        TryShowGridDictionaryAtPointer(e, row);
     }
 
     /// <summary>On-click grid dictionary: hit-tests the ZH primary cell under the pointer to a char
@@ -6686,9 +6959,10 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
         catch { return -1; }
     }
 
-    /// <summary>Resolves the CEDICT term at <paramref name="zhOffset"/> in the row's ZH text and
-    /// renders it into the docked study-panel Dictionary section, opening the panel if needed. If
-    /// the dictionary is still loading, kicks off the load and re-attempts once (via AsyncGuard).</summary>
+    /// <summary>Resolves the ZEN-dictionary term covering <paramref name="zhOffset"/> in the row's
+    /// ZH text and renders its entry into the docked study-panel Dictionary section, opening the
+    /// panel if needed (SPA inline-dict parity: on-CLICK, docked side panel, Zen dict only). If
+    /// the index is still loading, kicks off the load and re-attempts once (via AsyncGuard).</summary>
     private void ShowGridDictionaryForRow(RowVm row, int zhOffset)
     {
         if (_txtStudyDictHeadword == null) return;
@@ -6703,31 +6977,57 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
             else return;
         }
 
-        if (!_cedict.IsLoaded)
+        if (!_zenDict.IsLoaded)
         {
-            // Load off-thread, then re-run the lookup once the dictionary is ready.
+            var root = GetDictionaryRoot?.Invoke();
+            if (string.IsNullOrWhiteSpace(root)) return;
+            // Load off-thread, then re-run the lookup once the index is ready.
             string lb = row.Lb;
+            int offset = zhOffset;
             AsyncGuard.Run(async () =>
             {
-                await _cedict.EnsureLoadedAsync();
+                await _zenDict.EnsureLoadedAsync(root!);
                 if (!IsGridSurfaceActive()) return;
                 var again = _rowGridRows;
                 var target = again != null && _rowGridLbToRow != null && _rowGridLbToRow.TryGetValue(lb, out var ri)
                     && (uint)ri < (uint)again.Count ? again[ri] : row;
-                ShowGridDictionaryForRow(target, zhOffset);
+                ShowGridDictionaryForRow(target, offset);
             }, "ReadableTabView.GridDictionary.EnsureLoaded");
             return;
         }
 
-        if (!_cedict.TryLookupLongest(text, zhOffset, out var match)) return;
+        // Zen dict only: no entry covering the click ⇒ show nothing (never CC-CEDICT here).
+        if (!TryFindZenMatchCovering(text, zhOffset, out var match)) return;
 
         // Ensure the docked side panel is visible so the lookup is actually seen.
         if (!_vm.StudyPanelVisible) SetStudyPanelVisible(true);
 
-        string key = match.Headword + "|grid|" + row.Lb + "|" + zhOffset;
+        string key = match.Headword + "|grid|" + row.Lb;
         if (key == _lastStudyDictKey) return;
         _lastStudyDictKey = key;
-        RenderStudyDictMatch(match);
+        RenderStudyZenEntry(match);
+    }
+
+    /// <summary>
+    /// Longest Zen-dictionary match COVERING <paramref name="offset"/> (not merely starting
+    /// there), so a click mid-term still resolves — the desktop analog of the SPA's
+    /// data-term click path. Scans candidate starts from the clicked char backwards.
+    /// </summary>
+    private bool TryFindZenMatchCovering(string text, int offset, out ZenDictionaryMatch match)
+    {
+        match = default!;
+        const int MaxTermLen = 16;
+        int lowest = Math.Max(0, offset - (MaxTermLen - 1));
+        for (int start = offset; start >= lowest; start--)
+        {
+            if (_zenDict.TryLookupLongest(text, start, out var m, MaxTermLen)
+                && m.StartIndex + m.Length > offset)
+            {
+                match = m;
+                return true;
+            }
+        }
+        return false;
     }
 
     /// <summary>Surface scroll handler: schedules a resume-anchor capture from the new top-visible
@@ -7244,41 +7544,247 @@ if (match == null || string.IsNullOrWhiteSpace(match.FromLb))
                 return;
         }
 
-        if (_cedict.TryLookupLongest(docText, caret, out var match))
+        // Zen dictionary only (CC-CEDICT is hover-tooltip-only, behind its own toggle).
+        if (!_zenDict.IsLoaded)
         {
-            string key = match.Headword + "|" + caret;
+            EnsureZenDictLoadKickoff();
+            return;
+        }
+
+        if (TryFindZenMatchCovering(docText, caret, out var match))
+        {
+            string key = match.Headword + "|caret";
             if (key == _lastStudyDictKey) return;
             _lastStudyDictKey = key;
-            RenderStudyDictMatch(match);
+            RenderStudyZenEntry(match);
         }
     }
 
-    /// <summary>Populates the docked study-panel Dictionary section (headword / pinyin / senses)
-    /// from a CEDICT match. Shared by the two-editor caret path and the grid on-click path.</summary>
-    private void RenderStudyDictMatch(CedictMatch match)
+    /// <summary>Kicks off a one-shot Zen-dictionary index load for the active corpus (no-op when
+    /// the root is unknown or a load already ran). Underlines/lookups retry on later input.</summary>
+    private void EnsureZenDictLoadKickoff()
     {
-        if (_txtStudyDictHeadword == null || _txtStudyDictPinyin == null || _studyDictSenses == null) return;
+        var root = GetDictionaryRoot?.Invoke();
+        if (string.IsNullOrWhiteSpace(root)) return;
+        AsyncGuard.Run(() => _zenDict.EnsureLoadedAsync(root!), "ReadableTabView.ZenDict.EnsureLoaded");
+    }
 
-        _txtStudyDictHeadword.Text = match.Headword;
+    /// <summary>Populates the docked study-panel Zen Dictionary section (headword / gloss /
+    /// senses with explanation and evidence) from a Zen match. Shared by the two-editor click
+    /// path and the grid on-click path. Zen dictionary only \u2014 no CC-CEDICT here.</summary>
+    private void RenderStudyZenEntry(ZenDictionaryMatch match)
+    {
+        if (_txtStudyDictHeadword == null || _txtStudyDictGloss == null || _studyDictSenses == null) return;
 
-        // Build pinyin from all entries
-        var pinyinSet = match.Entries.Select(e => e.Pinyin).Distinct().ToList();
-        _txtStudyDictPinyin.Text = string.Join(" / ", pinyinSet);
+        var entry = match.Entry;
+        _txtStudyDictHeadword.Text = entry.SourceTerm;
+        _txtStudyDictGloss.Text = entry.FirstSenseTarget;
 
-        // Build senses list
+        var accent = GetResourceBrush("AccentLinkFg");
         _studyDictSenses.Children.Clear();
-        foreach (var entry in match.Entries.Take(8))
+
+        foreach (var sense in (entry.Senses ?? new List<DictionarySense>()).Take(6))
         {
-            foreach (var sense in entry.Senses.Take(4))
+            if (sense == null) continue;
+
+            var panel = new StackPanel { Spacing = 3, Margin = new Thickness(0, 6, 0, 0) };
+
+            // Sense heading + status/validation chips as one muted line.
+            string heading = string.IsNullOrWhiteSpace(sense.MasterName) ? "Corpus-wide sense" : "Sense \u00b7 " + sense.MasterName!.Trim();
+            var badges = new[] { sense.Status, sense.Validation }
+                .Where(s => !string.IsNullOrWhiteSpace(s));
+            panel.Children.Add(new TextBlock
             {
-                _studyDictSenses.Children.Add(new TextBlock
+                Text = heading + (badges.Any() ? "  \u00b7  " + string.Join(" \u00b7 ", badges) : ""),
+                FontSize = 10,
+                FontWeight = Avalonia.Media.FontWeight.SemiBold,
+                Opacity = 0.6,
+            });
+
+            if (!string.IsNullOrWhiteSpace(sense.PreferredTarget))
+            {
+                panel.Children.Add(new TextBlock
                 {
-                    Text = "\u00b7 " + sense,
-                    FontSize = 11,
+                    Text = sense.PreferredTarget,
+                    FontSize = 13,
+                    FontWeight = Avalonia.Media.FontWeight.SemiBold,
                     TextWrapping = Avalonia.Media.TextWrapping.Wrap,
-                    Opacity = 0.85
                 });
             }
+
+            if (!string.IsNullOrWhiteSpace(sense.Explanation))
+            {
+                panel.Children.Add(new TextBlock
+                {
+                    Text = sense.Explanation,
+                    FontSize = 12,
+                    TextWrapping = Avalonia.Media.TextWrapping.Wrap,
+                    Opacity = 0.92,
+                });
+            }
+
+            if (sense.AlternateTargets is { Count: > 0 })
+            {
+                panel.Children.Add(new TextBlock
+                {
+                    Text = "Also: " + string.Join(", ", sense.AlternateTargets.Where(a => !string.IsNullOrWhiteSpace(a))),
+                    FontSize = 11,
+                    TextWrapping = Avalonia.Media.TextWrapping.Wrap,
+                    Opacity = 0.75,
+                });
+            }
+
+            if (!string.IsNullOrWhiteSpace(sense.Note))
+            {
+                panel.Children.Add(new TextBlock
+                {
+                    Text = sense.Note,
+                    FontSize = 11,
+                    FontStyle = Avalonia.Media.FontStyle.Italic,
+                    TextWrapping = Avalonia.Media.TextWrapping.Wrap,
+                    Opacity = 0.75,
+                });
+            }
+
+            // Evidence: curated occurrences first, up to 3, each linking into the reader.
+            var occs = (sense.Occurrences ?? new List<DictOccurrence>())
+                .Where(o => o != null && (!string.IsNullOrWhiteSpace(o.Kwic) || !string.IsNullOrWhiteSpace(o.RelPath)))
+                .OrderByDescending(o => o.Curated)
+                .Take(3);
+            foreach (var occ in occs)
+            {
+                var occPanel = new StackPanel { Spacing = 1, Margin = new Thickness(6, 2, 0, 0) };
+                if (!string.IsNullOrWhiteSpace(occ.Kwic))
+                {
+                    occPanel.Children.Add(new TextBlock
+                    {
+                        Text = occ.Kwic,
+                        FontSize = 12,
+                        TextWrapping = Avalonia.Media.TextWrapping.Wrap,
+                        Opacity = 0.9,
+                    });
+                }
+
+                var metaRow = new StackPanel { Orientation = Avalonia.Layout.Orientation.Horizontal, Spacing = 8 };
+                if (!string.IsNullOrWhiteSpace(occ.MasterName))
+                {
+                    // Clickable master link (SPA parity: evidence bylines link to #/master/{name}) —
+                    // opens the master in the Zen Master Manager via the existing OpenMasterRequested path.
+                    var masterText = new TextBlock
+                    {
+                        Text = occ.MasterName,
+                        FontSize = 11,
+                        Cursor = new Avalonia.Input.Cursor(Avalonia.Input.StandardCursorType.Hand),
+                    };
+                    if (accent != null) masterText.Foreground = accent;
+                    ToolTip.SetTip(masterText, "Open this master in the Zen Master Manager");
+                    var capturedMaster = occ.MasterName!.Trim();
+                    masterText.PointerPressed += (_, e) =>
+                    {
+                        e.Handled = true;
+                        OpenMasterRequested?.Invoke(this, capturedMaster);
+                    };
+                    metaRow.Children.Add(masterText);
+                }
+                if (!string.IsNullOrWhiteSpace(occ.RelPath))
+                {
+                    var link = new Button
+                    {
+                        Content = ZenDictConverters.OccurrenceSourceLabel.Convert(occ, typeof(string), null, System.Globalization.CultureInfo.InvariantCulture) as string ?? "Open",
+                        FontSize = 10,
+                        Padding = new Thickness(6, 1, 6, 1),
+                    };
+                    var captured = occ;
+                    var headword = entry.SourceTerm;
+                    link.Click += (_, _) => NavigationRequested?.Invoke(this, new NavigationRequest
+                    {
+                        RelPath = captured.RelPath,
+                        FromLb = captured.FromLb,
+                        ToLb = captured.ToLb,
+                        Side = SearchSide.Original,
+                        MatchText = headword,
+                    });
+                    metaRow.Children.Add(link);
+                }
+                if (metaRow.Children.Count > 0) occPanel.Children.Add(metaRow);
+                panel.Children.Add(occPanel);
+            }
+
+            // "Masters:" row — each name is a clickable link that opens the master in the
+            // Zen Master Manager (SPA parity: RelatedMasters → #/master/{name} links).
+            if (sense.RelatedMasters is { Count: > 0 })
+            {
+                var mastersRow = new WrapPanel { Orientation = Avalonia.Layout.Orientation.Horizontal };
+                mastersRow.Children.Add(new TextBlock { Text = "Masters: ", FontSize = 11, Opacity = 0.7 });
+                bool firstMaster = true;
+                foreach (var m in sense.RelatedMasters.Where(m => !string.IsNullOrWhiteSpace(m)))
+                {
+                    if (!firstMaster)
+                        mastersRow.Children.Add(new TextBlock { Text = ", ", FontSize = 11, Opacity = 0.7 });
+                    firstMaster = false;
+
+                    var masterLink = new TextBlock
+                    {
+                        Text = m.Trim(),
+                        FontSize = 11,
+                        Cursor = new Avalonia.Input.Cursor(Avalonia.Input.StandardCursorType.Hand),
+                    };
+                    if (accent != null) masterLink.Foreground = accent;
+                    ToolTip.SetTip(masterLink, "Open this master in the Zen Master Manager");
+                    var capturedName = m.Trim();
+                    masterLink.PointerPressed += (_, e) =>
+                    {
+                        e.Handled = true;
+                        OpenMasterRequested?.Invoke(this, capturedName);
+                    };
+                    mastersRow.Children.Add(masterLink);
+                }
+                panel.Children.Add(mastersRow);
+            }
+
+            // "Related:" row — related entries default to their ENGLISH label (resolved from
+            // the structured dictionary, first sense's PreferredTarget), Chinese secondary,
+            // and click through to the related entry in this panel (SPA parity:
+            // RelatedTerms → #/term/{t} links; the lookup key stays the Chinese term).
+            if (sense.RelatedTerms is { Count: > 0 })
+            {
+                var relatedRow = new WrapPanel { Orientation = Avalonia.Layout.Orientation.Horizontal };
+                relatedRow.Children.Add(new TextBlock { Text = "Related: ", FontSize = 11, Opacity = 0.7 });
+                bool firstTerm = true;
+                foreach (var t in sense.RelatedTerms.Where(t => !string.IsNullOrWhiteSpace(t)))
+                {
+                    if (!firstTerm)
+                        relatedRow.Children.Add(new TextBlock { Text = ", ", FontSize = 11, Opacity = 0.7 });
+                    firstTerm = false;
+
+                    var term = t.Trim();
+                    string display = term;
+                    if (_zenDict.TryLookupExact(term, out var relEntry)
+                        && !string.IsNullOrWhiteSpace(relEntry.FirstSenseTarget))
+                        display = relEntry.FirstSenseTarget + " · " + term;
+
+                    var termLink = new TextBlock
+                    {
+                        Text = display,
+                        FontSize = 11,
+                        Cursor = new Avalonia.Input.Cursor(Avalonia.Input.StandardCursorType.Hand),
+                    };
+                    if (accent != null) termLink.Foreground = accent;
+                    ToolTip.SetTip(termLink, "Open this related entry");
+                    var capturedTerm = term;
+                    termLink.PointerPressed += (_, e) =>
+                    {
+                        e.Handled = true;
+                        if (_zenDict.TryLookupExact(capturedTerm, out var target))
+                            RenderStudyZenEntry(new ZenDictionaryMatch(
+                                capturedTerm, 0, capturedTerm.Length, target));
+                    };
+                    relatedRow.Children.Add(termLink);
+                }
+                panel.Children.Add(relatedRow);
+            }
+
+            _studyDictSenses.Children.Add(panel);
         }
     }
 
