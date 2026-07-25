@@ -69,6 +69,11 @@ public partial class MainWindow : Window
     private DictionaryEditorView? _dictionaryView;
     private string? _dictionaryLoadedRoot;
 
+    // Tab pop-out reparenting primitive (POPOUT_TABS_DESIGN §4). Per-window (NOT DI),
+    // so secondary shells get an independent controller. Created in
+    // WireTabPopoutAffordances; null until then and on any construction failure.
+    private TabPopoutController? _popoutController;
+
     // ViewModel
     private MainWindowViewModel _vm = null!;
     public MainWindowViewModel? ViewModel => _vm;
@@ -207,6 +212,11 @@ public partial class MainWindow : Window
         string closeWhat = isSecondaryWindow ? "close this window" : "close the app";
         Closing += async (_, e) =>
         {
+            // Dock every popped-out tab back FIRST, so persistence + dirty-close see the
+            // full live tree and no floating window leaks past shutdown
+            // (POPOUT_TABS_DESIGN §4.6.4). Idempotent when nothing is popped.
+            _popoutController?.DockAllBack();
+
             try { if (_scholarView != null) await _scholarView.SaveCurrentStateAsync(); } catch { }
             if (!await _vm.ConfirmNavigateIfDirtyAsync(closeWhat)) e.Cancel = true;
 
@@ -2190,6 +2200,12 @@ private async Task LoadConfigAndAutoloadAsync()
         _suppressTabEvents = true;
         try { _tabs.SelectedIndex = idx; }
         finally { _suppressTabEvents = false; }
+
+        // If the target tab is popped out, the tab itself shows only the placeholder —
+        // surface its floating window too so deep-link / palette callers land on the
+        // live content (POPOUT_TABS_DESIGN §4.6.1).
+        if (_popoutController?.IsPoppedOut(idx) == true)
+            _popoutController.Activate(idx);
     }
 
     // ===========================================================
@@ -2441,6 +2457,43 @@ private async Task LoadConfigAndAutoloadAsync()
                 var landingTerm = _dictionaryView?.GetCurrentTerm();
                 _ = OpenTermbaseEditorWindowAsync(root!, origDir, transDir, _vm.Username, landingTerm, null);
             };
+
+        WireReparentingPopouts();
+    }
+
+    // Tab pop-out via the reparenting primitive (PR2 + PR3).
+    //
+    // Unlike the reuse-based tabs above, these DETACH the live tab view into a thin
+    // FloatingTabWindow — same instance, so query/results/scroll/selection survive with
+    // no rebuild — and leave a placeholder in the tab. PR3 wires SEARCH as the pilot;
+    // Sync / Collect / Translate register here in later PRs (their slots already exist).
+    // ===========================================================
+    private void WireReparentingPopouts()
+    {
+        // Per-window controller. Global veto: no pop-out while the onboarding tour is
+        // running (spotlight coordinates are MainWindow-relative — §6 risk 1) or while
+        // the welcome/empty-state overlay covers the content (§4.6.5). Evaluated lazily
+        // at pop-out time, so the field references stay current.
+        _popoutController = new TabPopoutController(this, globalCanPopOut: () =>
+            _tourService?.IsActive != true
+            && !(_emptyStateOverlay?.IsVisible ?? false));
+
+        // PR3 pilot — Search (Carousel index 2, slot "Slot2").
+        var slotSearch = Find<Decorator>("Slot2");
+        if (slotSearch != null)
+        {
+            _popoutController.Register(new TabPopoutDescriptor
+            {
+                TabIndex = 2,
+                Title = "Search",
+                Slot = slotSearch,
+                DefaultSize = new Size(1100, 760),
+            });
+        }
+
+        var btnPopoutSearch = Find<Button>("BtnPopoutSearch");
+        if (btnPopoutSearch != null)
+            btnPopoutSearch.Click += (_, _) => _popoutController?.PopOut(2);
     }
 
     private async Task OpenTermbaseEditorWindowAsync(string root, string origDir, string transDir, string? username = null, string? landingTerm = null, string? landingCommunityUser = null)
@@ -3502,6 +3555,13 @@ private async Task LoadConfigAndAutoloadAsync()
 
     private void ShowTourStep(Models.TourStep step)
     {
+        // Tour spotlight coordinates are computed relative to THIS MainWindow
+        // (FindControlDeep + TranslatePoint(..., this)); a detached tab view is not in
+        // this window's tree, so dock everything back before the tour renders any step
+        // (POPOUT_TABS_DESIGN §6 risk 1). Idempotent — a no-op when nothing is popped.
+        // The global CanPopOut gate keeps tabs docked for the tour's duration.
+        _popoutController?.DockAllBack();
+
         if (_tourOverlayCanvas == null || _tourSpotlight == null || _tourTooltip == null || _tourService == null)
             return;
 
