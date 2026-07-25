@@ -61,17 +61,24 @@ public sealed class SearchIndexService : ISearchIndexService
 
     public SearchIndexServiceOptions Options { get; } = new();
 
+    // FL1 (frozen/live index split, design §2.4/§4.3): the inverted handle and the
+    // corpus-frequency partial no longer live in standalone service fields — they live
+    // in the sole <see cref="SearchFamily"/> held by <see cref="_families"/>. These public
+    // accessors delegate to that single family, so their observable value is byte-identical
+    // to the pre-FL1 fields. FL2 replaces the corpusfreq getters with an additive fold
+    // across families; FL4 turns the inverted getter's consumers into a disjoint-union merge.
+
     /// <summary>Inverted bigram index built alongside bloom filters. Null until first build/load.</summary>
-    public InvertedSearchIndex? InvertedIndex { get; private set; }
+    public InvertedSearchIndex? InvertedIndex => Combined.Inverted;
 
     /// <summary>Corpus-wide CJK character frequencies (key = single char as string). Null until loaded/built.</summary>
-    public IReadOnlyDictionary<string, int>? CorpusCharFreqs { get; private set; }
+    public IReadOnlyDictionary<string, int>? CorpusCharFreqs => Combined.CharFreqs;
 
     /// <summary>Corpus-wide CJK bigram frequencies (key = 2-char string). Null until loaded/built.</summary>
-    public IReadOnlyDictionary<string, int>? CorpusBigramFreqs { get; private set; }
+    public IReadOnlyDictionary<string, int>? CorpusBigramFreqs => Combined.BigramFreqs;
 
     /// <summary>Total CJK characters counted across the entire corpus.</summary>
-    public long CorpusTotalChars { get; private set; }
+    public long CorpusTotalChars => Combined.TotalChars;
 
     /// <summary>True when corpus frequency data has been loaded or built.</summary>
     public bool HasCorpusFrequencies => CorpusCharFreqs != null;
@@ -89,19 +96,14 @@ public sealed class SearchIndexService : ISearchIndexService
     private long _verifyTextCacheChars = 0;
     private readonly object _verifyTextCacheLock = new();
 
-    // Cached manifest + mmap (big real-world speed win for repeated searches)
+    // Cached manifest + mmap (big real-world speed win for repeated searches).
+    // FL1 (frozen/live split, design §2.4/§4.3): the per-family cache slots + inverted
+    // handle + corpusfreq partial that used to be single service fields now live in
+    // SearchFamily instances held by _families. Today the list has exactly ONE member —
+    // the combined `search.*` family (guid `search-v8-full-df`) — so every per-family
+    // accessor resolves to Combined and output is byte-identical to the pre-FL1 code.
+    // FL4 grows _families to {origin, overlay}. The lock still guards all cache-slot access.
     private readonly object _indexCacheLock = new();
-    private SearchIndexManifest? _cachedManifest;
-    private string? _cachedManifestPath;
-    private DateTime _cachedManifestWriteUtc;
-    private SearchTextManifest? _cachedTextManifest;
-    private string? _cachedTextManifestPath;
-    private DateTime _cachedTextManifestWriteUtc;
-
-    private MemoryMappedFile? _cachedMmf;
-    private MemoryMappedViewAccessor? _cachedAccessor;
-    private string? _cachedBinPath;
-    private DateTime _cachedBinWriteUtc;
 
     // PR2 (skip-verify hybrid) test-observable counters. Updated atomically at end of
     // each SearchAllAsync verify phase. Internal so ReadZen.Tests can assert on them.
@@ -158,9 +160,94 @@ public sealed class SearchIndexService : ISearchIndexService
     /// retry-as-full-rebuild fallback produces a complete, equivalent artifact family.
     /// </summary>
     internal Action? TestOnlyIncrementalFault;
-    private MemoryMappedFile? _cachedTextMmf;
-    private string? _cachedTextBinPath;
-    private DateTime _cachedTextBinWriteUtc;
+
+    // FL1: the ordered list of index families. Today it holds a single member — the
+    // combined `search.*` family with today's file names + guid. Query/invalidation
+    // sites iterate this list; with one member the result is byte/order-identical to
+    // the pre-FL1 single-slot fields. Never mutated after construction in FL1, so
+    // _families[0] needs no lock; each family's cache slots are guarded by _indexCacheLock.
+    private readonly List<SearchFamily> _families = new()
+    {
+        new SearchFamily(
+            binFileName: BinFileName,
+            invertedBinFileName: InvertedBinFileName)
+    };
+
+    /// <summary>FL1: the sole combined family. FL4 introduces {origin, overlay}.</summary>
+    private SearchFamily Combined => _families[0];
+
+    /// <summary>
+    /// FL1 (frozen/live split, design §2.4/§4.3): bundles the per-family index state that
+    /// was previously held as single service-level slots — the bloom bin + inverted file
+    /// names (identity), the cached manifest + mmap cache slots, the inverted-index handle,
+    /// and the corpus-frequency partial. Today exactly one instance exists (the combined
+    /// `search.*` family). FL4 grows the service's family list to {origin, overlay}; the
+    /// query path already iterates it. Cache-slot fields are guarded by the owning service's
+    /// _indexCacheLock (they were before this refactor and remain so).
+    /// </summary>
+    private sealed class SearchFamily
+    {
+        // ── identity (file names; the combined family == today's constants) ──
+        public readonly string BinFileName;
+        public readonly string InvertedBinFileName;
+
+        // ── cached manifest + mmap slots (guarded by SearchIndexService._indexCacheLock) ──
+        public SearchIndexManifest? CachedManifest;
+        public string? CachedManifestPath;
+        public DateTime CachedManifestWriteUtc;
+        public SearchTextManifest? CachedTextManifest;
+        public string? CachedTextManifestPath;
+        public DateTime CachedTextManifestWriteUtc;
+
+        public MemoryMappedFile? CachedMmf;
+        public MemoryMappedViewAccessor? CachedAccessor;
+        public string? CachedBinPath;
+        public DateTime CachedBinWriteUtc;
+
+        public MemoryMappedFile? CachedTextMmf;
+        public string? CachedTextBinPath;
+        public DateTime CachedTextBinWriteUtc;
+
+        // ── handles ──
+        public InvertedSearchIndex? Inverted;
+        public IReadOnlyDictionary<string, int>? CharFreqs;
+        public IReadOnlyDictionary<string, int>? BigramFreqs;
+        public long TotalChars;
+
+        public SearchFamily(string binFileName, string invertedBinFileName)
+        {
+            BinFileName = binFileName;
+            InvertedBinFileName = invertedBinFileName;
+        }
+
+        /// <summary>
+        /// Dispose + null this family's mmap/manifest cache slots. Mirrors the pre-FL1
+        /// InvalidateIndexCaches body EXACTLY: it clears only the manifest + mmap caches
+        /// and does NOT touch the Inverted handle or corpusfreq partial (those were never
+        /// cleared by InvalidateIndexCaches). Caller holds _indexCacheLock.
+        /// </summary>
+        public void InvalidateCaches()
+        {
+            CachedManifest = null;
+            CachedManifestPath = null;
+            CachedManifestWriteUtc = default;
+            CachedTextManifest = null;
+            CachedTextManifestPath = null;
+            CachedTextManifestWriteUtc = default;
+
+            try { CachedAccessor?.Dispose(); } catch { }
+            try { CachedMmf?.Dispose(); } catch { }
+            try { CachedTextMmf?.Dispose(); } catch { }
+
+            CachedAccessor = null;
+            CachedMmf = null;
+            CachedBinPath = null;
+            CachedBinWriteUtc = default;
+            CachedTextMmf = null;
+            CachedTextBinPath = null;
+            CachedTextBinWriteUtc = default;
+        }
+    }
 
     private const string ManifestFileName = "search.index.manifest.json";
     private const string BinFileName = "search.index.bin";
@@ -173,6 +260,9 @@ public sealed class SearchIndexService : ISearchIndexService
     // treated as a family mismatch (Branch B reseed/rebuild), never fresh-with-degraded-ranking.
     private const string CorpusFreqManifestFileName = "search.corpusfreq.manifest.json";
     private const string CorpusFreqBinFileName = "search.corpusfreq.bin";
+    // Exact-match inverted index (IIDX v4). Named here so the combined SearchFamily can
+    // carry it as identity (FL1); load/build sites read it from Combined.InvertedBinFileName.
+    private const string InvertedBinFileName = "search.inverted.bin";
 
     private const int BloomBits = 16384; // was 4096
     private const int BloomBytes = BloomBits / 8;
@@ -784,75 +874,63 @@ public sealed class SearchIndexService : ISearchIndexService
     {
         lock (_indexCacheLock)
         {
-            _cachedManifest = null;
-            _cachedManifestPath = null;
-            _cachedManifestWriteUtc = default;
-            _cachedTextManifest = null;
-            _cachedTextManifestPath = null;
-            _cachedTextManifestWriteUtc = default;
-
-            try { _cachedAccessor?.Dispose(); } catch { }
-            try { _cachedMmf?.Dispose(); } catch { }
-            try { _cachedTextMmf?.Dispose(); } catch { }
-
-            _cachedAccessor = null;
-            _cachedMmf = null;
-            _cachedBinPath = null;
-            _cachedBinWriteUtc = default;
-            _cachedTextMmf = null;
-            _cachedTextBinPath = null;
-            _cachedTextBinWriteUtc = default;
+            // FL1: invalidate every family's cache slots. One member today, so this is
+            // byte-identical to the previous single-slot clear.
+            foreach (var fam in _families)
+                fam.InvalidateCaches();
         }
 
         ClearVerifyTextCache();
     }
 
-    private MemoryMappedViewAccessor GetOrCreateMappedAccessor(string binPath)
+    // FL1: bloom/text mmap caches are per-family slots. Callers pass the owning family
+    // (Combined today). Behaviour is identical to the pre-FL1 single-slot helpers.
+    private MemoryMappedViewAccessor GetOrCreateMappedAccessor(string binPath, SearchFamily fam)
     {
         var full = Path.GetFullPath(binPath);
         var writeUtc = File.GetLastWriteTimeUtc(full);
 
         lock (_indexCacheLock)
         {
-            if (_cachedAccessor != null &&
-                _cachedMmf != null &&
-                string.Equals(_cachedBinPath, full, StringComparison.OrdinalIgnoreCase) &&
-                _cachedBinWriteUtc == writeUtc)
+            if (fam.CachedAccessor != null &&
+                fam.CachedMmf != null &&
+                string.Equals(fam.CachedBinPath, full, StringComparison.OrdinalIgnoreCase) &&
+                fam.CachedBinWriteUtc == writeUtc)
             {
-                return _cachedAccessor;
+                return fam.CachedAccessor;
             }
 
-            try { _cachedAccessor?.Dispose(); } catch { }
-            try { _cachedMmf?.Dispose(); } catch { }
+            try { fam.CachedAccessor?.Dispose(); } catch { }
+            try { fam.CachedMmf?.Dispose(); } catch { }
 
-            _cachedMmf = MemoryMappedFile.CreateFromFile(full, FileMode.Open, null, 0, MemoryMappedFileAccess.Read);
-            _cachedAccessor = _cachedMmf.CreateViewAccessor(0, 0, MemoryMappedFileAccess.Read);
-            _cachedBinPath = full;
-            _cachedBinWriteUtc = writeUtc;
+            fam.CachedMmf = MemoryMappedFile.CreateFromFile(full, FileMode.Open, null, 0, MemoryMappedFileAccess.Read);
+            fam.CachedAccessor = fam.CachedMmf.CreateViewAccessor(0, 0, MemoryMappedFileAccess.Read);
+            fam.CachedBinPath = full;
+            fam.CachedBinWriteUtc = writeUtc;
 
-            return _cachedAccessor;
+            return fam.CachedAccessor;
         }
     }
 
-    private MemoryMappedFile GetOrCreateTextMappedFile(string textBinPath, DateTime writeUtc)
+    private MemoryMappedFile GetOrCreateTextMappedFile(string textBinPath, DateTime writeUtc, SearchFamily fam)
     {
         var full = Path.GetFullPath(textBinPath);
 
         lock (_indexCacheLock)
         {
-            if (_cachedTextMmf != null &&
-                string.Equals(_cachedTextBinPath, full, StringComparison.OrdinalIgnoreCase) &&
-                _cachedTextBinWriteUtc == writeUtc)
+            if (fam.CachedTextMmf != null &&
+                string.Equals(fam.CachedTextBinPath, full, StringComparison.OrdinalIgnoreCase) &&
+                fam.CachedTextBinWriteUtc == writeUtc)
             {
-                return _cachedTextMmf;
+                return fam.CachedTextMmf;
             }
 
-            try { _cachedTextMmf?.Dispose(); } catch { }
+            try { fam.CachedTextMmf?.Dispose(); } catch { }
 
-            _cachedTextMmf = MemoryMappedFile.CreateFromFile(full, FileMode.Open, null, 0, MemoryMappedFileAccess.Read);
-            _cachedTextBinPath = full;
-            _cachedTextBinWriteUtc = writeUtc;
-            return _cachedTextMmf;
+            fam.CachedTextMmf = MemoryMappedFile.CreateFromFile(full, FileMode.Open, null, 0, MemoryMappedFileAccess.Read);
+            fam.CachedTextBinPath = full;
+            fam.CachedTextBinWriteUtc = writeUtc;
+            return fam.CachedTextMmf;
         }
     }
 
@@ -1519,9 +1597,9 @@ public sealed class SearchIndexService : ISearchIndexService
             var writeUtc = File.GetLastWriteTimeUtc(full);
             lock (_indexCacheLock)
             {
-                _cachedManifest = manifest;
-                _cachedManifestPath = full;
-                _cachedManifestWriteUtc = writeUtc;
+                Combined.CachedManifest = manifest;
+                Combined.CachedManifestPath = full;
+                Combined.CachedManifestWriteUtc = writeUtc;
             }
         }
         catch
@@ -1869,7 +1947,7 @@ public sealed class SearchIndexService : ISearchIndexService
             if (textEntry.TextOffset < 0 || end < textEntry.TextOffset || end > fileLen)
                 return false;
 
-            using var accessor = GetOrCreateTextMappedFile(full, File.GetLastWriteTimeUtc(full))
+            using var accessor = GetOrCreateTextMappedFile(full, File.GetLastWriteTimeUtc(full), Combined)
                 .CreateViewAccessor(textEntry.TextOffset, textEntry.TextLengthBytes, MemoryMappedFileAccess.Read);
 
             var bytes = new byte[textEntry.TextLengthBytes];
@@ -2095,11 +2173,11 @@ public sealed class SearchIndexService : ISearchIndexService
             // Fast path: cached manifest still matches file timestamp
             lock (_indexCacheLock)
             {
-                if (_cachedManifest != null &&
-                    string.Equals(_cachedManifestPath, mpFull, StringComparison.OrdinalIgnoreCase) &&
-                    _cachedManifestWriteUtc == mpWriteUtc)
+                if (Combined.CachedManifest != null &&
+                    string.Equals(Combined.CachedManifestPath, mpFull, StringComparison.OrdinalIgnoreCase) &&
+                    Combined.CachedManifestWriteUtc == mpWriteUtc)
                 {
-                    return _cachedManifest;
+                    return Combined.CachedManifest;
                 }
             }
 
@@ -2131,9 +2209,9 @@ public sealed class SearchIndexService : ISearchIndexService
 
             lock (_indexCacheLock)
             {
-                _cachedManifest = man;
-                _cachedManifestPath = mpFull;
-                _cachedManifestWriteUtc = mpWriteUtc;
+                Combined.CachedManifest = man;
+                Combined.CachedManifestPath = mpFull;
+                Combined.CachedManifestWriteUtc = mpWriteUtc;
             }
 
             // Try loading inverted index alongside bloom. Only a file stamped with THIS
@@ -2146,11 +2224,11 @@ public sealed class SearchIndexService : ISearchIndexService
             {
                 try
                 {
-                    var invPath = Path.Combine(root, "search.inverted.bin");
+                    var invPath = Path.Combine(root, Combined.InvertedBinFileName);
                     var inv = new InvertedSearchIndex();
                     if (await inv.TryLoadAsync(invPath, man.IndexStamp, CancellationToken.None))
                     {
-                        InvertedIndex = inv;
+                        Combined.Inverted = inv;
                         Dbg($"Inverted index loaded: {inv.TermCount} terms, {inv.DocCount} docs");
                     }
                     else if (File.Exists(invPath))
@@ -2241,9 +2319,9 @@ public sealed class SearchIndexService : ISearchIndexService
                 bigramFreqs[string.Concat(c1, c2)] = freq;
             }
 
-            CorpusCharFreqs = charFreqs;
-            CorpusBigramFreqs = bigramFreqs;
-            CorpusTotalChars = totalChars;
+            Combined.CharFreqs = charFreqs;
+            Combined.BigramFreqs = bigramFreqs;
+            Combined.TotalChars = totalChars;
 
             Dbg($"Corpus freq index loaded: {charCount} chars, {bigramCount} bigrams, {totalChars} total");
             return true;
@@ -2270,11 +2348,11 @@ public sealed class SearchIndexService : ISearchIndexService
 
             lock (_indexCacheLock)
             {
-                if (_cachedTextManifest != null &&
-                    string.Equals(_cachedTextManifestPath, mpFull, StringComparison.OrdinalIgnoreCase) &&
-                    _cachedTextManifestWriteUtc == mpWriteUtc)
+                if (Combined.CachedTextManifest != null &&
+                    string.Equals(Combined.CachedTextManifestPath, mpFull, StringComparison.OrdinalIgnoreCase) &&
+                    Combined.CachedTextManifestWriteUtc == mpWriteUtc)
                 {
-                    return _cachedTextManifest;
+                    return Combined.CachedTextManifest;
                 }
             }
 
@@ -2301,9 +2379,9 @@ public sealed class SearchIndexService : ISearchIndexService
 
             lock (_indexCacheLock)
             {
-                _cachedTextManifest = man;
-                _cachedTextManifestPath = mpFull;
-                _cachedTextManifestWriteUtc = mpWriteUtc;
+                Combined.CachedTextManifest = man;
+                Combined.CachedTextManifestPath = mpFull;
+                Combined.CachedTextManifestWriteUtc = mpWriteUtc;
             }
 
             return man;
@@ -2379,9 +2457,9 @@ public sealed class SearchIndexService : ISearchIndexService
             var writeUtc = File.GetLastWriteTimeUtc(full);
             lock (_indexCacheLock)
             {
-                _cachedManifest = manifest;
-                _cachedManifestPath = full;
-                _cachedManifestWriteUtc = writeUtc;
+                Combined.CachedManifest = manifest;
+                Combined.CachedManifestPath = full;
+                Combined.CachedManifestWriteUtc = writeUtc;
             }
         }
         catch
@@ -2411,9 +2489,9 @@ public sealed class SearchIndexService : ISearchIndexService
             var writeUtc = File.GetLastWriteTimeUtc(full);
             lock (_indexCacheLock)
             {
-                _cachedTextManifest = manifest;
-                _cachedTextManifestPath = full;
-                _cachedTextManifestWriteUtc = writeUtc;
+                Combined.CachedTextManifest = manifest;
+                Combined.CachedTextManifestPath = full;
+                Combined.CachedTextManifestWriteUtc = writeUtc;
             }
         }
         catch
@@ -3562,9 +3640,9 @@ public sealed class SearchIndexService : ISearchIndexService
                     invertedIndex.Build(sortedDocs);
                     sortedDocs = null; // free gram-set references immediately
                     invertedDocs.Clear();
-                    var invertedPath = Path.Combine(root, "search.inverted.bin");
+                    var invertedPath = Path.Combine(root, Combined.InvertedBinFileName);
                     await invertedIndex.SaveAsync(invertedPath, manifest.IndexStamp!, ct);
-                    InvertedIndex = invertedIndex;
+                    Combined.Inverted = invertedIndex;
                     // PERF (F): softened from GC.Collect(2, Aggressive, blocking:true, compacting:true).
                     // The aggressive blocking+compacting Gen2/LOH collect fired at builder heap peak
                     // and suspended the UI thread mid-build (D1 perf#3 / D2 jank#1, ranked #1).
@@ -3581,7 +3659,7 @@ public sealed class SearchIndexService : ISearchIndexService
                     // so an inverted file from an earlier build would never load again —
                     // delete it (and any in-memory copy) rather than leave a dead file
                     // around. Search stays correct via bloom + verify.
-                    InvertedIndex = null;
+                    Combined.Inverted = null;
                     try
                     {
                         var staleInv = Path.Combine(root, "search.inverted.bin");
@@ -3710,9 +3788,9 @@ public sealed class SearchIndexService : ISearchIndexService
                     }
                     ReplaceFileAtomicWithRetry(freqBinTmp, freqBinFinal);
 
-                    CorpusCharFreqs = corpusCharFreqs;
-                    CorpusBigramFreqs = corpusBigramFreqs;
-                    CorpusTotalChars = corpusTotalChars;
+                    Combined.CharFreqs = corpusCharFreqs;
+                    Combined.BigramFreqs = corpusBigramFreqs;
+                    Combined.TotalChars = corpusTotalChars;
 
                     Dbg($"Corpus freq index saved: {new FileInfo(freqBinFinal).Length} bytes");
                 }
@@ -3722,7 +3800,7 @@ public sealed class SearchIndexService : ISearchIndexService
                 }
 
                 // Warm mmap cache after rebuild so next search click is faster
-                try { _ = GetOrCreateMappedAccessor(finalBin); } catch { }
+                try { _ = GetOrCreateMappedAccessor(finalBin, Combined); } catch { }
 
                 // ── INC-4A: persist the gramsets sidecar — strictly AFTER the entire
                 // family commit sequence (including the mmap warm). Saved on FULL builds
@@ -4219,17 +4297,28 @@ public sealed class SearchIndexService : ISearchIndexService
         // index. Populated only on the inverted fast path; null otherwise (bloom/brute).
         Dictionary<string, long>? tfByRel = null;
 
-        // Fast path: inverted index (0% false positives, sub-millisecond)
-        if (InvertedIndex?.IsLoaded == true && effectiveQuery.Length >= 2)
+        // Fast path: inverted index (0% false positives, sub-millisecond).
+        // FL1: iterate the family list. Today it holds a single member (the combined
+        // family), so this is byte/order-identical to the pre-FL1 single-InvertedIndex
+        // path: usedInvertedIndex flips true only when a loaded index returns hits.
+        // FL4 turns this into the disjoint-union merge of {origin, overlay} (design §2.2):
+        // per-family doc sets are disjoint, so candidates + tf union with no cross-layer
+        // arithmetic, and each layer's ushort docId space stays local to its GetRelPath.
+        if (effectiveQuery.Length >= 2)
         {
-            var invertedHits = InvertedIndex.SearchWithTf(effectiveQuery);
-            if (invertedHits != null && invertedHits.Length > 0)
+            foreach (var fam in _families)
             {
+                var inv = fam.Inverted;
+                if (inv?.IsLoaded != true) continue;
+
+                var invertedHits = inv.SearchWithTf(effectiveQuery);
+                if (invertedHits == null || invertedHits.Length == 0) continue;
+
                 int sideMask = (includeOriginal ? 1 : 0) | (includeTranslated ? 2 : 0);
-                tfByRel = new Dictionary<string, long>(invertedHits.Length, StringComparer.OrdinalIgnoreCase);
+                tfByRel ??= new Dictionary<string, long>(invertedHits.Length, StringComparer.OrdinalIgnoreCase);
                 foreach (var (docId, tf) in invertedHits)
                 {
-                    var relPath = InvertedIndex.GetRelPath(docId);
+                    var relPath = inv.GetRelPath(docId);
                     if (relPath == null) continue;
                     if (relPathFilter != null && !relPathFilter(relPath)) continue;
 
@@ -4255,6 +4344,13 @@ public sealed class SearchIndexService : ISearchIndexService
             {
                 Dbg($"Candidate phase START useBloom={useBloom}");
 
+                // FL1: sweep the family list. One member today (the combined family), so
+                // the total bytes scanned and the candidate set are byte-identical to the
+                // pre-FL1 single-bin sweep. FL4 partitions `entries` per family (disjoint by
+                // design §1.2) and gives origin/overlay distinct bloom bins — here the sole
+                // combined family owns every entry and fam.BinFileName == search.index.bin.
+                foreach (var fam in _families)
+                {
                 if (!useBloom)
                 {
                     int seen = 0;
@@ -4279,7 +4375,8 @@ public sealed class SearchIndexService : ISearchIndexService
                 }
                 else
                 {
-                    string binPath = GetBinPath(root);
+                    // FL1: combined family → Path.Combine(root, fam.BinFileName) == GetBinPath(root).
+                    string binPath = Path.Combine(root, fam.BinFileName);
                     var binFull = Path.GetFullPath(binPath);
 
                     if (!File.Exists(binFull))
@@ -4385,6 +4482,7 @@ public sealed class SearchIndexService : ISearchIndexService
                         Dbg($"Candidate phase bloom DONE in {swBloom.ElapsedMilliseconds}ms scanned={scannedEntries} bloomPass={bloomPass} candidateKeys={candidates.Count}");
                     }
                 }
+                } // FL1: end foreach family
             }
             finally
             {
@@ -4491,6 +4589,11 @@ public sealed class SearchIndexService : ISearchIndexService
                 candidateList.Take(take), StringComparer.OrdinalIgnoreCase);
         }
         int skippedVerifyGroups = 0;
+        // FL1: entryMap/textEntryMap are built from the passed manifest + the combined
+        // family's text sidecar (read via the now family-backed cache). Today `entries`
+        // belongs to the sole combined family, so this is the whole map. FL4 (design §2.5)
+        // makes these the union of {origin, overlay} manifests — disjoint by §1.2, so no
+        // key collision — and routes each (rel, side) verify to its owning layer's text.bin.
         var entryMap = entries.ToDictionary(e => (e.RelPath, e.Side), e => e, new RelSideComparer());
         var textEntryMap = new Dictionary<(string rel, SearchSide side), SearchTextEntry>(new RelSideComparer());
 
