@@ -71,16 +71,24 @@ public sealed class MasterTextAppearance
     [JsonPropertyName("matched_name")]
     public string MatchedName { get; set; } = "";
 
-    /// <summary>Relative path to the XML file.</summary>
+    /// <summary>Relative path to the XML file. The stable join key against the title source
+    /// (titles.jsonl, keyed by '/'-normalized rel path).</summary>
     [JsonPropertyName("rel_path")]
     public string RelPath { get; set; } = "";
 
-    /// <summary>Text title (from titles.jsonl or TEI header).</summary>
-    [JsonPropertyName("text_title")]
+    /// <summary>
+    /// PR-M1 title decoupling: display title of the containing text, JOINED AT LOAD TIME from
+    /// titles.jsonl by <see cref="RelPath"/> (see MasterCorpusSearchService.JoinTitles) — NOT
+    /// baked into the on-disk shards. <see cref="System.Text.Json.Serialization.JsonIgnoreAttribute"/>
+    /// keeps it a purely in-memory field so a title edit changes only the (tiny) title map, never
+    /// the ~57 MB appearance shards (zero-rebuild on title edit). Legacy title-embedded shards
+    /// (pre-M1) still load; their baked <c>text_title</c> is simply ignored and re-joined live.
+    /// </summary>
+    [JsonIgnore]
     public string? TextTitle { get; set; }
 
-    /// <summary>Chinese title.</summary>
-    [JsonPropertyName("text_title_zh")]
+    /// <summary>Chinese title. Load-time join, not baked — see <see cref="TextTitle"/>.</summary>
+    [JsonIgnore]
     public string? TextTitleZh { get; set; }
 
     /// <summary>"primary" (author/subject) or "secondary" (quoted/mentioned).</summary>

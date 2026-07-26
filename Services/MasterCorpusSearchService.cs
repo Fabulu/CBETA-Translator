@@ -272,10 +272,7 @@ public sealed class MasterCorpusSearchService
         int totalFiles = 0;
         foreach (var (label, dir) in corpusDirs)
         {
-            // Try loading titles from sibling translations repo
-            var titles = TryLoadTitlesForCorpus(parentRoot, label);
-
-            var index = await BuildIndexAsync(dir, label, masters, titles, progress, ct);
+            var index = await BuildIndexAsync(dir, label, masters, progress, ct);
             combined.Appearances.AddRange(index.Appearances);
             totalFiles += index.FileCount;
         }
@@ -288,20 +285,77 @@ public sealed class MasterCorpusSearchService
             .ToList();
         combined.MasterCount = combined.Appearances.Select(a => a.MasterName).Distinct().Count();
 
+        // PR-M1: titles are NOT baked into the appearance records; populate the in-memory
+        // TextTitle/TextTitleZh via the SAME load-time join TryLoadAsync uses, so the freshly
+        // built index feeds the SPA export and desktop UI with titles while the shards that
+        // SaveAsync writes stay title-free (byte-stable across a title-only edit).
+        JoinTitles(combined, parentRoot);
+
         return combined;
     }
 
-    private static Dictionary<string, (string? Zh, string? En)> TryLoadTitlesForCorpus(string parentRoot, string corpusLabel)
+    /// <summary>
+    /// PR-M1 title-source join: merges every discovered corpus's <c>titles.jsonl</c> into one
+    /// map keyed by the '/'-normalized rel path (the same key the appearance records carry).
+    /// A shared translations root contributes once; a later corpus wins on a key collision
+    /// (rel-path namespaces are disjoint in practice, so this is not reached for the shipped
+    /// single-corpus asset).
+    /// </summary>
+    public static Dictionary<string, (string? Zh, string? En)> LoadAllTitles(string parentRoot)
     {
-        // Try to find the translations repo to load titles from
-        var corpora = AppPaths.DiscoverAllCorpora(parentRoot);
-        foreach (var layout in corpora)
+        var merged = new Dictionary<string, (string? Zh, string? En)>(StringComparer.Ordinal);
+        var seenRoots = new HashSet<string>(StringComparer.Ordinal);
+        foreach (var layout in AppPaths.DiscoverAllCorpora(parentRoot))
         {
-            if (layout.Kind.ToString() == corpusLabel && !string.IsNullOrEmpty(layout.TranslationsRepoRoot))
-                return LoadTitles(layout.TranslationsRepoRoot);
+            if (string.IsNullOrEmpty(layout.TranslationsRepoRoot)) continue;
+            if (!seenRoots.Add(layout.TranslationsRepoRoot)) continue;
+            foreach (var kv in LoadTitles(layout.TranslationsRepoRoot))
+                merged[kv.Key] = kv.Value;
         }
-        return new();
+        return merged;
     }
+
+    /// <summary>
+    /// PR-M1: populates each appearance's in-memory <see cref="MasterTextAppearance.TextTitle"/>/
+    /// <see cref="MasterTextAppearance.TextTitleZh"/> from the live title source, keyed by rel
+    /// path. An appearance whose rel path is absent from the title source keeps null titles
+    /// (graceful — the rel path remains as the stable identity, no crash). A no-op when
+    /// <paramref name="parentRoot"/> is null/empty.
+    /// </summary>
+    public static void JoinTitles(MasterCorpusIndex index, string? parentRoot)
+    {
+        if (string.IsNullOrEmpty(parentRoot)) return;
+        var titles = LoadAllTitles(parentRoot);
+        if (titles.Count == 0) return;
+        foreach (var a in index.Appearances)
+        {
+            var key = a.RelPath.Replace('\\', '/');
+            if (titles.TryGetValue(key, out var t))
+            {
+                a.TextTitle = t.En;
+                a.TextTitleZh = t.Zh;
+            }
+            else
+            {
+                a.TextTitle = null;
+                a.TextTitleZh = null;
+            }
+        }
+    }
+
+    // PR-M1: a legacy (pre-M1) v2 stamp embeds a "titles=<T16>" component; the M1 stamp keeps
+    // it too (for drift DETECTION — ComputeCorpusStamp still flips on a title edit), but the
+    // freshness/adoption DECISION ignores it: a title-only difference must NOT force an
+    // appearance rebuild (titles are re-joined at load instead). Stripping the token from both
+    // sides before comparison is what makes a title edit zero-rebuild while a committed
+    // title-embedded bundle still matches a fresh install's stamp.
+    private static readonly System.Text.RegularExpressions.Regex TitlesTokenRegex =
+        new(@";titles=[0-9a-f]{16}",
+            System.Text.RegularExpressions.RegexOptions.Compiled
+            | System.Text.RegularExpressions.RegexOptions.CultureInvariant);
+
+    internal static string? StripTitlesToken(string? stamp)
+        => stamp == null ? null : TitlesTokenRegex.Replace(stamp, "");
 
     /// <summary>
     /// Builds the master corpus index by scanning all XML files in the given directory.
@@ -311,7 +365,6 @@ public sealed class MasterCorpusSearchService
         string originalDir,
         string corpus,
         List<(string CanonicalName, List<string> ChineseNames)> masters,
-        Dictionary<string, (string? Zh, string? En)> titles,
         IProgress<(int done, int total, string status)>? progress = null,
         CancellationToken ct = default)
     {
@@ -380,9 +433,10 @@ public sealed class MasterCorpusSearchService
                     var content = File.ReadAllText(file, Encoding.UTF8);
                     var relPath = Path.GetRelativePath(originalDir, file);
 
-                    // Get title
+                    // PR-M1: rel path is the stable identity; text titles are joined at LOAD
+                    // time (JoinTitles), not baked here. relKey stays for the ManualPrimary
+                    // /-normalized prefix match below.
                     var relKey = relPath.Replace('\\', '/');
-                    titles.TryGetValue(relKey, out var titleInfo);
 
                     // Check TEI header for author (primary detection)
                     var headerEnd = content.IndexOf("</teiHeader>", StringComparison.Ordinal);
@@ -482,8 +536,6 @@ public sealed class MasterCorpusSearchService
                             MasterName = masterName,
                             MatchedName = matchedName,
                             RelPath = relPath,
-                            TextTitle = titleInfo.En,
-                            TextTitleZh = titleInfo.Zh,
                             AppearanceType = isPrimary ? "primary" : "secondary",
                             MentionCount = count,
                             Snippet = snippet,
@@ -804,7 +856,8 @@ public sealed class MasterCorpusSearchService
     /// </summary>
     public async Task<MasterCorpusIndex?> TryLoadAsync(
         string cacheDir, CancellationToken ct = default,
-        string? parentRootForFreshness = null, string? rosterIdentity = null)
+        string? parentRootForFreshness = null, string? rosterIdentity = null,
+        string? parentRootForTitles = null)
     {
         var path = Path.Combine(cacheDir, CacheFileName);
         if (!File.Exists(path)) return null;
@@ -822,7 +875,10 @@ public sealed class MasterCorpusSearchService
                 if (corpusStamp != null)
                 {
                     var live = $"{corpusStamp};{rosterIdentity}";
-                    if (index.CorpusStamp != live)
+                    // PR-M1: compare with the titles component stripped from BOTH sides — a
+                    // title-only edit re-joins at load (below) instead of forcing a rebuild.
+                    // A corpus or roster change still flips the stripped stamp → null → rebuild.
+                    if (StripTitlesToken(index.CorpusStamp) != StripTitlesToken(live))
                         return null; // stale (or unstamped/v1 legacy cache) → caller rebuilds
                 }
             }
@@ -845,6 +901,13 @@ public sealed class MasterCorpusSearchService
                 }
                 index.Appearances = all;
             }
+
+            // PR-M1: titles live in titles.jsonl, not the shards — join them onto the loaded
+            // records so every consumer (desktop appearance list, co-occurrence, SPA export)
+            // sees current titles with zero rebuild. Uses the titles root if given, else the
+            // freshness root (MainWindow supplies the latter). Null both ⇒ display-only /
+            // freshness-off call sites keep loading title-free, no crash.
+            JoinTitles(index, parentRootForTitles ?? parentRootForFreshness);
 
             return index;
         }
@@ -876,14 +939,17 @@ public sealed class MasterCorpusSearchService
         if (string.IsNullOrEmpty(liveCompositeStamp)) return false;
         if (string.IsNullOrEmpty(bundlePath) || !File.Exists(bundlePath)) return false;
 
-        // Adopt only when the bundle IS the live index. Cheap stamp-only read.
+        // Adopt only when the bundle IS the live index. Cheap stamp-only read. PR-M1: compare
+        // with the titles component stripped so a committed title-embedded bundle still adopts
+        // against a fresh install whose live stamp carries a different (or, later, absent)
+        // titles token — titles are re-joined at load, never a reason to rebuild/re-bake.
         var bundleStamp = ReadCorpusStampCheap(bundlePath);
-        if (bundleStamp != liveCompositeStamp) return false;
+        if (StripTitlesToken(bundleStamp) != StripTitlesToken(liveCompositeStamp)) return false;
 
-        // Local cache already fresh (== live) ⇒ keep it, no copy (decision-table row 1).
+        // Local cache already fresh (== live, titles aside) ⇒ keep it, no copy (row 1).
         var cachePath = Path.Combine(cacheDir, CacheFileName);
         var localStamp = ReadCorpusStampCheap(cachePath); // null when absent/corrupt/unstamped
-        if (localStamp == liveCompositeStamp) return false;
+        if (StripTitlesToken(localStamp) == StripTitlesToken(liveCompositeStamp)) return false;
 
         // Local absent or stale AND bundle == live ⇒ adopt the manifest + ALL its shard files.
         // Sharded bundles (today's asset) ship the manifest next to its

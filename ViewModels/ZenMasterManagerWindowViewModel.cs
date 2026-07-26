@@ -188,7 +188,11 @@ public partial class ZenMasterManagerWindowViewModel : ViewModelBase
         if (string.IsNullOrEmpty(_parentRoot)) return;
 
         var cacheDir = MasterCorpusSearchService.GetCacheDir(_parentRoot);
-        var cached = await _corpusSearchService.TryLoadAsync(cacheDir);
+        // PR-M1: pass the titles root so the loaded appearances get their display titles
+        // joined from titles.jsonl (the shards no longer bake them). Freshness stays off here —
+        // this is the display-only load path.
+        var cached = await _corpusSearchService.TryLoadAsync(
+            cacheDir, parentRootForTitles: _parentRoot);
         if (cached != null)
         {
             _corpusIndex = cached;

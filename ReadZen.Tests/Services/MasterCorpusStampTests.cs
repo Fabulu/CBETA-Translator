@@ -485,8 +485,13 @@ public class MasterCorpusStampTests : IDisposable
     }
 
     [Fact]
-    public async Task TryLoad_NullOnTitlesEdit()
+    public async Task TryLoad_ServesOnTitlesEdit_AndReJoinsLiveTitles()
     {
+        // PR-M1 re-pin (was TryLoad_NullOnTitlesEdit): titles are decoupled from the baked
+        // shards. A title-only edit no longer forces a rebuild — the freshness gate ignores
+        // the titles component (corpus + roster unchanged ⇒ still fresh) and the loader
+        // RE-JOINS the CURRENT titles.jsonl onto the served appearances. So a title edit is
+        // zero-rebuild yet the displayed title is immediately up to date.
         var (parent, _, transRepo) = NewCorpus(withTitles: true);
         var cat = SampleRosterA();
         var cacheDir = MasterCorpusSearchService.GetCacheDir(parent);
@@ -497,7 +502,11 @@ public class MasterCorpusStampTests : IDisposable
         var svc = new MasterCorpusSearchService();
         var loaded = await svc.TryLoadAsync(cacheDir, CancellationToken.None,
             parent, MasterCorpusSearchService.ComputeRosterIdentity(cat));
-        Assert.Null(loaded);
+
+        Assert.NotNull(loaded);                       // served, NOT rebuilt
+        var appearance = Assert.Single(loaded!.Appearances);
+        Assert.Equal("Changed", appearance.TextTitle); // re-joined from the edited titles.jsonl
+        Assert.Equal("改", appearance.TextTitleZh);
     }
 
     [Fact]
