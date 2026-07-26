@@ -208,8 +208,8 @@ public sealed class SplitMigrationTests : IDisposable
         var combinedOutcomes = await CaptureCombinedAsync(root);
 
         using var svc = Probe(bundleDir);
-        // The combined root still reports the combined verdict from IsStaleAsync; the MIGRATION runs
-        // on the next build (a real user's first rebuild after FL6), converting it to split.
+        // FL8 (eager): IsStaleAsync now reports the legacy combined root migration-owed; the MIGRATION
+        // runs here on the build (Path A adopt, since the bundle matches live), converting it to split.
         await svc.BuildOrUpdateAsync(root, _origDir, new[] { _tranDir }, forceRebuild: false);
 
         // Origin ADOPTED (not built): its IndexStamp equals the bundle's, and only the overlay
@@ -328,5 +328,81 @@ public sealed class SplitMigrationTests : IDisposable
         Assert.True(Has(root, "search.overlay.manifest.json"));
         Assert.Empty(Directory.EnumerateFiles(root, "search.index.*"));
         Assert.False(await retry.IsStaleAsync(root, _origDir, new[] { _tranDir }));
+    }
+
+    // ══════════════════════════════════════════════════════════════════════════════════
+    // FL8 EAGER migration: the launch probe (IsStaleAsync) itself reports a legacy combined root
+    // migration-owed WITHOUT any translation edit — so the launch auto-index drives the migration
+    // on the NEXT launch. (FL6 was LAZY: only a build/edit triggered it.) The migrated split then
+    // serves byte-identical results to the pre-migration combined index.
+    // ══════════════════════════════════════════════════════════════════════════════════
+    [Fact]
+    public async Task EagerMigration_LegacyCombined_IsStaleWithoutEdit_ThenMigrates_ServesIdentical()
+    {
+        WriteCorpus();
+        var root = NewDir("root");
+        await BuildCombined(root, _origDir, _tranDir);
+        Assert.True(Has(root, "search.index.manifest.json"));
+        Assert.False(Has(root, "search.origin.manifest.json"));
+
+        var combinedOutcomes = await CaptureCombinedAsync(root);
+
+        // EAGER: a FRESH combined root (no edit, corpus unchanged) is reported migration-owed by the
+        // probe itself — this is the signal the launch auto-index uses to drive migration eagerly.
+        using var svc = Probe(EmptyBundle());
+        Assert.True(await svc.IsStaleAsync(root, _origDir, new[] { _tranDir }));
+
+        // The launch auto-index then migrates (Path B carve here — no bundle staged).
+        await svc.BuildOrUpdateAsync(root, _origDir, new[] { _tranDir }, forceRebuild: false);
+
+        Assert.True(Has(root, "search.origin.manifest.json"));
+        Assert.True(Has(root, "search.overlay.manifest.json"));
+        Assert.Empty(Directory.EnumerateFiles(root, "search.index.*"));   // legacy migrated away
+        Assert.False(await svc.IsStaleAsync(root, _origDir, new[] { _tranDir }));
+        await AssertServesIdenticalAsync(root, combinedOutcomes);
+    }
+
+    // ══════════════════════════════════════════════════════════════════════════════════
+    // FL8 (FL6 review MINOR-1): the legacy-family SWEEP. Once a SERVABLE split is on disk, a later
+    // BuildSplitAsync best-effort deletes any lingering legacy combined family (the ~1 GB power-loss-
+    // between-layers window / a forceRebuild-over-legacy leftover). Gated on a servable split present
+    // so the fallback-read is never removed while the split is absent; never throws.
+    // ══════════════════════════════════════════════════════════════════════════════════
+    [Fact]
+    public async Task LegacySweep_RemovesLingeringCombinedFamily_WhenSplitServable()
+    {
+        WriteCorpus();
+        var root = NewDir("root");
+        using (var build = new SearchIndexService())
+        {
+            await build.BuildOriginLayerAsync(root, _origDir);
+            await build.BuildOverlayLayerAsync(root, new[] { _tranDir });
+        }
+        Assert.True(Has(root, "search.origin.manifest.json"));
+
+        // Plant a lingering legacy combined family, as a power-loss-between-layers window would leave.
+        foreach (var name in new[]
+                 {
+                     "search.index.bin", "search.index.manifest.json", "search.text.bin",
+                     "search.text.manifest.json", "search.corpusfreq.bin", "search.inverted.bin",
+                     "search.gramsets.bin",
+                 })
+            File.WriteAllText(Path.Combine(root, name), "stale-legacy-leftover");
+        Assert.True(Has(root, "search.index.bin"));
+
+        // Edit a translation so the next build rebuilds the overlay → BuildSplitAsync runs → sweeps.
+        Write(_tranDir, "a.xml", "edited overlay " + Guid.NewGuid().ToString("N")[..8]);
+        using var svc = Probe(EmptyBundle());
+        await svc.BuildOrUpdateAsync(root, _origDir, new[] { _tranDir }, forceRebuild: false);
+
+        // Lingering legacy family swept; the split remains servable (its own artifacts untouched).
+        Assert.Empty(Directory.EnumerateFiles(root, "search.index.*"));
+        Assert.Empty(Directory.EnumerateFiles(root, "search.text.*"));
+        Assert.Empty(Directory.EnumerateFiles(root, "search.corpusfreq.*"));
+        Assert.Empty(Directory.EnumerateFiles(root, "search.inverted.*"));
+        Assert.Empty(Directory.EnumerateFiles(root, "search.gramsets.*"));
+        Assert.True(Has(root, "search.origin.manifest.json"));
+        Assert.True(Has(root, "search.overlay.manifest.json"));
+        Assert.False(await svc.IsStaleAsync(root, _origDir, new[] { _tranDir }));
     }
 }

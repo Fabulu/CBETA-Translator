@@ -2270,32 +2270,31 @@ public sealed class SearchIndexService : ISearchIndexService
         IReadOnlyList<string>? additionalOriginalDirs = null,
         IReadOnlyList<string>? additionalTranslatedDirs = null)
     {
+        // FL8 (EAGER migration): a legacy combined root — search.index.* with NO split family — is
+        // reported migration-owed HERE, so the launch auto-index probe drives the eager
+        // combined→split migration (BuildOrUpdateAsync → NeedsMigration → MigrateCombinedToSplitAsync)
+        // on the NEXT launch, BEFORE any translation edit. This is the flip FL6 deferred ("kept
+        // migration in the build path only"). Until the migration completes — or if a torn migration
+        // rolls back (S5) — TryLoadAsync serves the still-present legacy combined family as the
+        // migration-failure FALLBACK-READ, so no launch ever serves nothing (the safety invariant).
+        if (NeedsMigration(root))
+            return true;
+
         // FL5 (finding B): a split root is judged by the per-layer Origin/Overlay probes, NOT the
-        // merged view's null InputHash (which would fall to IsStaleByMtime and hunt the absent
-        // combined corpusfreq manifest → churn). The origin probe adopts/seeds as a side effect;
-        // the return is simply "does either layer still owe a build?".
+        // merged view's null InputHash. The origin probe adopts/seeds as a side effect; a guid-current
+        // split bundle also routes a virgin root here. The return is "does either layer still owe a
+        // build?".
+        var splitBundle = ResolveBundleDir();
+        if (UseSplitPath(root, splitBundle))
         {
-            // FL6 note: a legacy combined root is NOT reported migration-stale here — IsStaleAsync
-            // keeps its combined verdict so the combined path stays alive (its serving code is
-            // retired in FL8, not FL6). The combined→split MIGRATION runs in the build orchestration
-            // (BuildOrUpdateAsync → MigrateCombinedToSplitAsync, gated by NeedsMigration): a real
-            // user's next rebuild carves/adopts to split with no mass rebuild. A SPLIT root here is
-            // judged by the per-layer Origin/Overlay probes.
-            var splitBundle = ResolveBundleDir();
-            if (UseSplitPath(root, splitBundle))
-            {
-                var probe = await ProbeLayersAsync(root, originalDir, translatedDirs,
-                    additionalOriginalDirs, additionalTranslatedDirs, splitBundle).ConfigureAwait(false);
-                return probe.OriginNeedsBuild || probe.OverlayNeedsBuild;
-            }
+            var probe = await ProbeLayersAsync(root, originalDir, translatedDirs,
+                additionalOriginalDirs, additionalTranslatedDirs, splitBundle).ConfigureAwait(false);
+            return probe.OriginNeedsBuild || probe.OverlayNeedsBuild;
         }
 
-        // ScopeComplete (§2.1a): the search InputHash covers only the ACTIVE corpus
-        // (originalDir + translatedDirs), while a build with additional dirs also indexes
-        // other corpora whose postings the stamp does not cover. Stamp equality therefore
-        // proves full coverage ONLY when no additional dirs are present. Zero-build verdicts
-        // (adopt-over-local / seeded-not-stale) are gated on this; with additional corpora
-        // present, row 2 degrades to keep-local+catch-up and row 4 degrades to seed+catch-up.
+        // ScopeComplete (§2.1a): stamp equality proves full coverage of the ACTIVE corpus only when
+        // no additional dirs are present. After FL8 this gates ONLY the row-4 virgin SEED verdict
+        // below; the combined adopt-over-local "Branch A" that also consulted it is deleted.
         bool scopeComplete =
             (additionalOriginalDirs == null || additionalOriginalDirs.Count == 0) &&
             (additionalTranslatedDirs == null || additionalTranslatedDirs.Count == 0);
@@ -2303,72 +2302,14 @@ public sealed class SearchIndexService : ISearchIndexService
         var bundleDir = ResolveBundleDir();
         var manifestPath = GetManifestPath(root);
 
-        // Determine local usability up front (before any hashing) so we can pick the branch.
-        // "Usable" = the bloom manifest loads (guid/version/root gated in TryLoadAsync) AND the
-        // corpusfreq sibling stamps the current family guid (§2.2a). A current-bloom root whose
-        // corpusfreq is absent/guid-mismatched is treated as a family mismatch → Branch B, so
-        // the reseed/rebuild re-materializes corpusfreq rather than serving degraded ranking.
-        SearchIndexManifest? localManifest;
-        try { localManifest = await TryLoadAsync(root); }
-        catch { localManifest = null; }
-        bool localFamilyCurrent = localManifest != null && CorpusFreqGuidCurrentAt(root);
-
-        if (localFamilyCurrent)
-        {
-            // ===== Branch A — loadable local index (serves queries throughout the wait) =====
-            // Legacy manifests written before InputHash keep the mtime semantics (no forced
-            // rebuild on upgrade). Adoption cannot apply without a comparable live hash.
-            if (string.IsNullOrEmpty(localManifest!.InputHash))
-                return IsStaleByMtime(manifestPath, originalDir, translatedDirs, localManifest);
-
-            try
-            {
-                // Hash-aware path: bust only on real content/structure changes, ignoring
-                // spurious mtime bumps from git pull / git checkout. The manifest's per-file
-                // entries seed a content-hash cache: (LengthBytes, LastWriteUtcTicks) hit →
-                // reuse stored ContentHash (no read); miss → fresh SHA256 + write-back.
-                var cache = BuildContentHashCache(localManifest);
-                var writeBack = new Dictionary<string, string>(StringComparer.Ordinal);
-                var stampWriteBack = new Dictionary<string, (long Ticks, long Length)>(StringComparer.Ordinal);
-
-                var currentHash = await ComputeInputHashAsync(originalDir, translatedDirs, cache, writeBack, CancellationToken.None, stampWriteBack).ConfigureAwait(false);
-
-                bool localFresh =
-                    string.Equals(localManifest.InputHash, currentHash, StringComparison.Ordinal) &&
-                    !(localManifest.Entries.Count == 0 && Directory.Exists(originalDir));
-
-                if (localFresh)
-                {
-                    // Row 1 — local matches live; bundle untouched. Heal any stale stat stamps.
-                    await MaybeBackfillContentHashesAsync(root, localManifest, writeBack, stampWriteBack).ConfigureAwait(false);
-                    return false;
-                }
-
-                // Local is stale. Adopt the bundle over it ONLY when ScopeComplete AND the
-                // bundle provably matches live (row 2); otherwise keep local authoritative and
-                // let the incremental catch-up compute the delta (row 3). Adoption over a
-                // multi-corpus local index is refused because the bundle lacks corpus B's
-                // postings (§2.1a).
-                if (scopeComplete)
-                {
-                    var decision = EvaluateBundleAdoption(root, bundleDir ?? "", currentHash);
-                    if (decision == BundleAdoptionDecision.AdoptOverLocal &&
-                        CopyBundleFamilyIntoRoot(root, bundleDir!))
-                    {
-                        // Row 2 — zero build. The seeded manifest's CI ticks heal on the next
-                        // probe via the existing stampWriteBack path.
-                        return false;
-                    }
-                    // Adoption declined or the copy rolled back → fall through to keep-local.
-                }
-                return true; // Row 3 — keep local, incremental catch-up.
-            }
-            catch (IOException)
-            {
-                // Filesystem race — fall back to mtime so a startup hiccup never crashes the probe.
-                return IsStaleByMtime(manifestPath, originalDir, translatedDirs, localManifest);
-            }
-        }
+        // FL8: the combined ADOPT-OVER-LOCAL staleness ("Branch A") is DELETED. After the eager-
+        // migration return at the top of this method, a loadable local combined family is ALWAYS
+        // migration-owed (returned above), so Branch A — the "loadable local combined index is
+        // fresh/adopt-over-local" path — became dead code. What remains is the virgin cold-build /
+        // combined-bundle SEED path ("Branch B" below), reached ONLY by a root with no local family,
+        // no split family, and no usable split bundle: dev builds with no staged bundle + the
+        // combined-bundle test fixtures. PRODUCTION never reaches here (the release ships an
+        // origin-only bundle → UseSplitPath adopts the split above; a legacy install migrated above).
 
         // ===== Branch B — local absent / corrupt / family-guid mismatch =====
         // Seed the bundle FIRST, before any hashing (ordering invariant §2.2): search becomes
@@ -3088,6 +3029,14 @@ public sealed class SearchIndexService : ISearchIndexService
             return null;
         }
 
+        // ── FL8: LEGACY COMBINED FALLBACK-READ (safety invariant) ──────────────────────────────
+        // After FL8, combined is no longer a steady-state serving path: a legacy install migrates
+        // to the split EAGERLY on the next launch (IsStaleAsync → NeedsMigration). This combined
+        // loader survives ONLY as the migration-failure fallback: a torn migration (S5 rollback)
+        // deletes the split partials and KEEPS the legacy combined family, so THIS load path serves
+        // it that launch (retrying migration next launch). It is also how a virgin dev cold build /
+        // combined-bundle test fixture is served. Never delete it — a torn migration would otherwise
+        // leave a launch that serves NOTHING. Behaviour is byte-identical to pre-FL4.
         try
         {
             var mp = GetManifestPath(root);
@@ -3096,7 +3045,7 @@ public sealed class SearchIndexService : ISearchIndexService
             if (!File.Exists(mp) || !File.Exists(bp))
                 return null;
 
-            // A combined root: make sure the query-path family list is the combined singleton
+            // A legacy combined root: make sure the query-path family list is the combined singleton
             // (a prior split load on this instance may have left it as [origin, overlay]).
             ResetToCombinedFamilies();
 
@@ -4103,6 +4052,28 @@ public sealed class SearchIndexService : ISearchIndexService
         if (buildOverlay)
             await BuildOverlayLayerAsync(root, translatedDirs,
                 additionalOriginalDirs, additionalTranslatedDirs, progress, ct).ConfigureAwait(false);
+
+        // FL8 (FL6 review MINOR-1): best-effort sweep of any lingering LEGACY combined family now
+        // that a servable split is on disk. Covers the ~1 GB power-loss-between-layers window (a
+        // prior torn migration that kept the legacy family, later completed by this build) and a
+        // forceRebuild that rebuilt the split over a legacy root. Gated on a servable split present,
+        // so it NEVER removes the migration-failure fallback-read while the split is absent; never throws.
+        SweepLegacyCombinedIfSplitServable(root);
+    }
+
+    /// <summary>FL8: best-effort delete of a lingering legacy combined family, but ONLY when a
+    /// SERVABLE split (origin AND overlay manifests) is present — so a torn/absent-split root always
+    /// keeps its legacy combined family as the fallback-read (safety invariant). Never throws.</summary>
+    private static void SweepLegacyCombinedIfSplitServable(string root)
+    {
+        try
+        {
+            if (File.Exists(Path.Combine(root, OriginManifestFileName)) &&
+                File.Exists(Path.Combine(root, OverlayManifestFileName)) &&
+                File.Exists(Path.Combine(root, ManifestFileName)))
+                DeleteLegacyCombinedFamily(root);
+        }
+        catch { /* best-effort disk hygiene; a locked/again-missing file must never break a build */ }
     }
 
     /// <summary>

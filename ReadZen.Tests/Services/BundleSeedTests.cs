@@ -174,16 +174,24 @@ public class BundleSeedTests : IAsyncLifetime, IDisposable
         Assert.False(stale);
     }
 
-    [Fact]
-    public async Task SeededIndex_IsStaleAfterCorpusDrift_ThenIncrementalCatchUp()
+    [Fact] // FL8 re-pin: a fresh SPLIT root is stale after an ORIGIN-corpus drift; a catch-up build
+           // (local origin rebuild, no bundle) reconciles it. The old combined seed→drift→incremental
+           // catch-up is retired — a legacy combined seed now MIGRATES to the split on the launch probe.
+    public async Task SplitIndex_IsStaleAfterCorpusDrift_ThenCatchUp()
     {
         var root = NewIndexRoot();
-        Assert.True(SearchIndexService.CopyBundleFamilyIntoRoot(root, _bundleDir));
+        using (var build = new SearchIndexService())
+        {
+            await build.BuildOriginLayerAsync(root, _origDir);
+            await build.BuildOverlayLayerAsync(root, new[] { _tranDir });
+        }
 
-        // Drift the corpus past the bundle: add a new file.
+        // Drift the origin corpus past the built family: add a new origin file.
         File.WriteAllText(Path.Combine(_origDir, "added.xml"), SampleXml);
 
-        var svc = new SearchIndexService();
+        var empty = Path.Combine(_tempRoot, "empty-" + Guid.NewGuid().ToString("N")[..8]);
+        Directory.CreateDirectory(empty);
+        var svc = new SearchIndexService { TestOnlyBundleDirOverride = empty };
         Assert.True(await svc.IsStaleAsync(root, _origDir, new[] { _tranDir }));
 
         // The catch-up build reconciles; afterwards the index is fresh again.

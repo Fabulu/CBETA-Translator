@@ -256,54 +256,14 @@ public sealed class TrimmedSidecarTests : IDisposable
     // GROUP B — staleness with the sidecar absent
     // ===================================================================
 
-    /// <summary>SPEC §5.2: a missing text sidecar is NOT stale — IsStaleAsync reads only the
-    /// main manifest + InputHash, both of which survive the trim.</summary>
-    [Fact]
-    public async Task IsStale_False_WhenTextSidecarMissing()
-    {
-        WriteOrigCorpus(6);
-        await BuildIndexAsync(_tempRoot, _origDir, _tranDir);
-
-        DeleteTextSidecar(_tempRoot);
-
-        using var svc = new SearchIndexService();
-        Assert.False(await svc.IsStaleAsync(_tempRoot, _origDir, new[] { _tranDir }));
-    }
-
-    /// <summary>Edge: an orphaned text MANIFEST with no bin (manifest present, bin gone) is
-    /// treated as the clean sidecar-absent state — not stale, search unaffected.</summary>
-    [Fact]
-    public async Task IsStale_False_WhenOnlyTextBinMissing_OrphanManifest()
-    {
-        WriteOrigCorpus(5);
-        await BuildIndexAsync(_tempRoot, _origDir, _tranDir);
-
-        SafeDelete(Path.Combine(_tempRoot, "search.text.bin")); // leave manifest orphaned
-
-        using var svc = new SearchIndexService();
-        Assert.Null(await svc.TryLoadTextManifestAsync(_tempRoot)); // orphan manifest ⇒ null
-        Assert.False(await svc.IsStaleAsync(_tempRoot, _origDir, new[] { _tranDir }));
-
-        var groups = await SearchAsync(_tempRoot);
-        Assert.Equal(5, groups.Count);
-    }
-
-    /// <summary>Edge: an orphaned text BIN with no manifest is likewise the clean absent state.</summary>
-    [Fact]
-    public async Task IsStale_False_WhenOnlyTextManifestMissing_OrphanBin()
-    {
-        WriteOrigCorpus(5);
-        await BuildIndexAsync(_tempRoot, _origDir, _tranDir);
-
-        SafeDelete(Path.Combine(_tempRoot, "search.text.manifest.json")); // leave bin orphaned
-
-        using var svc = new SearchIndexService();
-        Assert.Null(await svc.TryLoadTextManifestAsync(_tempRoot));
-        Assert.False(await svc.IsStaleAsync(_tempRoot, _origDir, new[] { _tranDir }));
-
-        var groups = await SearchAsync(_tempRoot);
-        Assert.Equal(5, groups.Count);
-    }
+    // FL8 RETIRED (GROUP B staleness-with-absent-sidecar, 3 tests): IsStale_False_WhenTextSidecarMissing,
+    // IsStale_False_WhenOnlyTextBinMissing_OrphanManifest, IsStale_False_WhenOnlyTextManifestMissing_OrphanBin.
+    // They built a COMBINED root and asserted the absent COMBINED text sidecar left it not-stale. After
+    // the eager flip a combined root is always migration-owed, so the combined framing no longer holds.
+    // The split equivalent (an absent/stale ORIGIN text sidecar keeps the split not-stale + search
+    // correct via XML fallback) is covered by OriginTextMaterializationTests and
+    // SearchAdoptionTests.TextGuidMismatch_IsIgnoredNotFatal. GROUP A search-with-absent-sidecar tests
+    // stay active (they now also exercise the combined FALLBACK-READ path).
 
     /// <summary>
     /// FALSE-FRESH GUARD (the data-loss hazard this run exists to kill): the absent sidecar must
@@ -431,10 +391,12 @@ public sealed class TrimmedSidecarTests : IDisposable
     // ===================================================================
 
     /// <summary>
-    /// Stages a bundle exactly as CI ships it (text + gram-sets trimmed away), seeds it into a
-    /// virgin index root via <see cref="SearchIndexService.CopyBundleFamilyIntoRoot"/>, and proves
-    /// the seeded index is instantly queryable with snippets served through the XML fallback — and
-    /// that IsStaleAsync reports the seeded family fresh against the shipped corpus.
+    /// Stages a legacy COMBINED bundle as CI once shipped it (text + gram-sets trimmed away), seeds
+    /// it into a virgin index root via <see cref="SearchIndexService.CopyBundleFamilyIntoRoot"/>, and
+    /// proves the seeded family is instantly queryable with snippets served through the XML fallback —
+    /// exercising the FL8 combined FALLBACK-READ path (TryLoadAsync serving a legacy combined family).
+    /// FL8 re-pin: a seeded legacy combined family is reported migration-owed by IsStaleAsync (eager),
+    /// NOT fresh — the eager signal that drives its one-time migration to the split on the next launch.
     /// </summary>
     [Fact]
     public async Task TrimmedBundle_SeededIntoVirginRoot_QueryableWithSnippetFallback()
@@ -479,9 +441,10 @@ public sealed class TrimmedSidecarTests : IDisposable
         Assert.Equal(8, groups.Count);
         Assert.Contains(groups, g => g.Children.Any(c => !c.IsSkippedVerify && c.Hit.Match.Contains(Query)));
 
-        // Seeded family is fresh against the shipped corpus (single-corpus, ScopeComplete).
-        using var probe = new SearchIndexService();
-        Assert.False(await probe.IsStaleAsync(root, _origDir, new[] { _tranDir }));
+        // FL8 (eager): a seeded LEGACY COMBINED family is reported migration-owed (not fresh) so the
+        // launch auto-index migrates it to the split — meanwhile the fallback-read served the query above.
+        using var probe = new SearchIndexService { TestOnlyBundleDirOverride = bundleDir };
+        Assert.True(await probe.IsStaleAsync(root, _origDir, new[] { _tranDir }));
     }
 
     /// <summary>

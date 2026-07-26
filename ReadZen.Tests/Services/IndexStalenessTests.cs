@@ -47,20 +47,20 @@ public class IndexStalenessTests : IDisposable
         Assert.True(stale);
     }
 
-    [Fact]
-    public async Task IsStaleAsync_ReturnsFalseWhenAllFilesOlderThanManifest()
+    [Fact] // FL8 re-pin: a fresh SPLIT index (origin + overlay) over an unchanged corpus is not
+           // stale. (A plain combined BuildAsync is now migration-owed on the launch probe — the
+           // eager flip — so the "fresh index not stale" contract is asserted on the split reality.)
+    public async Task IsStaleAsync_FreshSplitIndex_NotStale()
     {
         var svc = new SearchIndexService();
 
-        // Create an XML file with old timestamp
         var xmlFile = Path.Combine(_origDir, "test.xml");
         File.WriteAllText(xmlFile, "<x/>");
         File.SetLastWriteTimeUtc(xmlFile, DateTime.UtcNow.AddHours(-2));
 
-        // Build the index (creates manifest)
-        await svc.BuildAsync(_tempRoot, _origDir, new[] { _tranDir });
+        await svc.BuildOriginLayerAsync(_tempRoot, _origDir);
+        await svc.BuildOverlayLayerAsync(_tempRoot, new[] { _tranDir });
 
-        // Manifest should now be newer than the XML file
         bool stale = await svc.IsStaleAsync(_tempRoot, _origDir, new[] { _tranDir });
 
         Assert.False(stale);
@@ -110,19 +110,21 @@ public class IndexStalenessTests : IDisposable
         // any mtime mutation yield the same root hash.
         var svc = new SearchIndexService();
 
+        // A non-empty origin corpus (an empty origin dir is treated as build-owed, not "fresh").
+        var origFile = Path.Combine(_origDir, "test.xml");
+        File.WriteAllText(origFile, "<x>origin</x>");
+        File.SetLastWriteTimeUtc(origFile, DateTime.UtcNow.AddHours(-2));
+
         var tranFile = Path.Combine(_tranDir, "test.xml");
         File.WriteAllText(tranFile, "<x/>");
         File.SetLastWriteTimeUtc(tranFile, DateTime.UtcNow.AddHours(-2));
 
-        await svc.BuildAsync(_tempRoot, _origDir, new[] { _tranDir });
+        // FL8: build the SPLIT family; mtime immunity is a content-hash property of both layers.
+        await svc.BuildOriginLayerAsync(_tempRoot, _origDir);
+        await svc.BuildOverlayLayerAsync(_tempRoot, new[] { _tranDir });
 
         // Simulate a git pull: file content unchanged, mtime bumped forward.
         File.SetLastWriteTimeUtc(tranFile, DateTime.UtcNow.AddMinutes(5));
-
-        // Backdate the manifest too so the legacy mtime-only path WOULD flag this as stale
-        // — but the hash path overrides because file bytes are identical.
-        var manifestPath = svc.GetManifestPath(_tempRoot);
-        File.SetLastWriteTimeUtc(manifestPath, DateTime.UtcNow.AddHours(-3));
 
         bool stale = await svc.IsStaleAsync(_tempRoot, _origDir, new[] { _tranDir });
 
@@ -173,23 +175,10 @@ public class IndexStalenessTests : IDisposable
         Assert.True(stale); // legacy path detected the bumped mtime
     }
 
-    [Fact]
-    public async Task IsStaleAsync_NullHash_AllFilesOlder_ReturnsFalse()
-    {
-        var svc = new SearchIndexService();
-
-        var tranFile = Path.Combine(_tranDir, "test.xml");
-        File.WriteAllText(tranFile, "<x/>");
-        File.SetLastWriteTimeUtc(tranFile, DateTime.UtcNow.AddHours(-2));
-
-        await svc.BuildAsync(_tempRoot, _origDir, new[] { _tranDir });
-        StripInputHashFromManifest(svc.GetManifestPath(_tempRoot));
-
-        // Legacy mtime path: manifest is newer than the XML (XML at -2h, manifest just written).
-        bool stale = await svc.IsStaleAsync(_tempRoot, _origDir, new[] { _tranDir });
-
-        Assert.False(stale);
-    }
+    // FL8 RETIRED: IsStaleAsync_NullHash_AllFilesOlder_ReturnsFalse. It asserted the legacy
+    // null-InputHash combined-manifest mtime fallback returns "not stale". After the eager flip a
+    // legacy combined root is always migration-owed (IsStaleAsync → NeedsMigration → true), so a
+    // "null-hash combined root is not stale" verdict no longer exists — the path is dead.
 
     [Fact]
     public async Task IsStaleAsync_NullHash_OneFileNewer_ReturnsTrue()
