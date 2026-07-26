@@ -990,11 +990,14 @@ public partial class MainWindowViewModel : ViewModelBase
                 // Let the initial file load finish before competing for disk I/O
                 await Task.Delay(3000, ct);
 
-                // Search index. The additional-corpus dirs are computed BEFORE the staleness
-                // probe so it can apply the ScopeComplete gate (§2.1a): with additional corpora
-                // present, the shipped bundle covers only the active corpus, so IsStaleAsync must
-                // never return a zero-build verdict — the catch-up build below (which DOES walk
-                // the additional dirs) re-materializes their postings.
+                // Search index. The additional-corpus dirs are computed BEFORE the probe and fed
+                // to both IsStaleAsync and BuildOrUpdateAsync. FL5 (frozen/live split): those
+                // calls are a split-aware FACADE — for a SPLIT root they run per-layer probes
+                // (ensure the frozen origin via adopt/build; rebuild the live overlay, whose hash
+                // basis now includes the additional corpora, when stale); for a COMBINED root
+                // (incl. an existing legacy combined family) they keep exactly today's single
+                // build path, so an existing install is never mass-rebuilt (combined→split
+                // migration is FL6). ScopeComplete lives only on the combined path now.
                 var addOrigDirsAuto = _availableCorpora
                     .Where(c => c.Kind != ActiveCorpus && Directory.Exists(c.OriginalDir))
                     .Select(c => c.OriginalDir).ToList();

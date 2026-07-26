@@ -103,6 +103,34 @@ public sealed class SearchAdoptionTests : IDisposable
     /// return so a probe deterministically sees "no bundle" (never the exe-adjacent one).</summary>
     private string EmptyBundle() => NewDir("empty-bundle");
 
+    /// <summary>FL5: builds a SPLIT root (frozen origin + live overlay) — the shape a migrated /
+    /// FL6-seeded install holds. Origin over <paramref name="src"/>; overlay over the
+    /// translations + any additional corpora.</summary>
+    private static async Task BuildSplitRoot(string outDir, string src, IReadOnlyList<string> tranDirs,
+        IReadOnlyList<string>? addOrig = null, IReadOnlyList<string>? addTran = null)
+    {
+        using var svc = new SearchIndexService();
+        await svc.BuildOriginLayerAsync(outDir, src);
+        await svc.BuildOverlayLayerAsync(outDir, tranDirs, addOrig, addTran);
+    }
+
+    /// <summary>FL5: builds an ORIGIN-only bundle (the shipped shape post-FL6: search.origin.*
+    /// only) from <paramref name="src"/> into <paramref name="bundleDir"/>.</summary>
+    private static async Task BuildOriginBundle(string bundleDir, string src)
+    {
+        using var svc = new SearchIndexService();
+        await svc.BuildOriginLayerAsync(bundleDir, src);
+    }
+
+    /// <summary>The origin manifest's IndexStamp — equal across a bundle and the root that
+    /// ADOPTED it (a file copy), distinct from any locally-rebuilt origin (fresh random stamp).</summary>
+    private static string? OriginStampOf(string root)
+    {
+        var f = Path.Combine(root, "search.origin.manifest.json");
+        if (!File.Exists(f)) return null;
+        return JsonNode.Parse(File.ReadAllText(f))?["IndexStamp"]?.GetValue<string>();
+    }
+
     private static string? InputHashOf(string root)
     {
         var f = Path.Combine(root, IndexManifest);
@@ -456,46 +484,55 @@ public sealed class SearchAdoptionTests : IDisposable
     }
 
     // ==================================================================================
-    // Multi-corpus (§2.1a ScopeComplete) — never a zero-build verdict; never clobber corpus B
+    // Multi-corpus (FL5 §4.2) — ScopeComplete is GONE: the frozen origin is adopted zero-build
+    // and the additional corpora live in the overlay, whose stamp actually covers them. These
+    // two tests were REWRITTEN (approved §7.2 #1) from the old keep-local/seed-but-stale
+    // degradations to the new zero-origin-build outcomes.
     // ==================================================================================
 
-    [Fact] // Additional corpora present + a stamp-matching (active-corpus) bundle over a LOADABLE
-           // local index ⇒ adoption REFUSED (would drop corpus B's postings) → keep local, stale.
+    [Fact] // SPLIT root covering A(origin)+B(overlay); corpus A drifts and a matching ORIGIN
+           // bundle is staged ⇒ the origin is ADOPTED (file copy, zero origin build) and only the
+           // tiny overlay rebuilds. Corpus B is never lost — it lives in the overlay.
     public async Task MultiCorpus_AdoptOverLocal_Refused()
     {
         WriteBaseCorpus();
         var bOrig = NewDir("bOrig"); var bTran = NewDir("bTran");
         Write(bOrig, "b.xml", BodyB); Write(bTran, "b.xml", BodyB);
 
-        // Local index covers A + B.
+        // Split root: origin over A, overlay over the translations + additional corpus B.
         var root = NewDir("root");
-        using (var build = new SearchIndexService())
-            await build.BuildOrUpdateAsync(root, _origDir, new[] { _tranDir }, forceRebuild: true,
-                additionalOriginalDirs: new[] { bOrig }, additionalTranslatedDirs: new[] { bTran });
+        await BuildSplitRoot(root, _origDir, new[] { _tranDir }, new[] { bOrig }, new[] { bTran });
 
-        // Corpus A drifts (local now stale for the active corpus). Cut a bundle from A′
-        // (active-corpus only) so its stamp WOULD equal live — the trap the gate must resist.
-        Write(_origDir, "a2.xml", BodyA2);
-        Write(_tranDir, "a2.xml", BodyA2);
+        // Corpus A drifts (origin now stale). Cut an ORIGIN bundle from A′ so it matches live origin.
+        Write(_origDir, "a.xml", BodyA + BodyA2);
         var bundle = NewDir("bundle");
-        await BuildFamily(bundle, _origDir, _tranDir);
+        await BuildOriginBundle(bundle, _origDir);
+        var bundleOriginStamp = OriginStampOf(bundle);
 
         using var probe = Probe(bundle);
         var stale = await probe.IsStaleAsync(root, _origDir, new[] { _tranDir },
             additionalOriginalDirs: new[] { bOrig }, additionalTranslatedDirs: new[] { bTran });
-        Assert.True(stale);                                    // never a zero-build verdict here
+        Assert.True(stale);                                    // overlay rebuild owed (origin restamped)
 
-        // The decisive data-loss guard: corpus B is STILL searchable — the local index was kept,
-        // not clobbered by the B-less bundle.
+        // The frozen origin was ADOPTED from the bundle (its IndexStamp == the bundle's), NOT
+        // locally rebuilt — the ~4,990-file origin rebuild the old ScopeComplete path forced is gone.
+        Assert.Equal(bundleOriginStamp, OriginStampOf(root));
+
+        // The overlay-only catch-up reconciles the root; corpus B is STILL searchable (it lives
+        // in the overlay whose stamp covers it — never clobbered by the B-less origin bundle).
+        await probe.BuildOrUpdateAsync(root, _origDir, new[] { _tranDir }, forceRebuild: false,
+            additionalOriginalDirs: new[] { bOrig }, additionalTranslatedDirs: new[] { bTran });
+        Assert.Equal(bundleOriginStamp, OriginStampOf(root)); // origin untouched by the overlay rebuild
+
         using var query = new SearchIndexService();
         var hits = await SearchOriginal(query, root, "臨濟義玄",
             addOrig: new[] { bOrig }, addTran: new[] { bTran });
         Assert.NotEmpty(hits);
     }
 
-    [Fact] // Fresh install with additional corpora + matching (active) bundle ⇒ SEED happens
-           // (active corpus instant) but the verdict is STALE so the catch-up walks the
-           // additional dirs — corpus B is never silently unsearchable.
+    [Fact] // Fresh install with additional corpora + a matching ORIGIN bundle ⇒ the origin is
+           // SEEDED zero-build (adopted file copy) and the overlay (covering the additional
+           // corpora) is built. No origin corpus build ever runs; corpus B is searchable.
     public async Task MultiCorpus_FreshInstall_SeedsButReturnsStale()
     {
         WriteBaseCorpus();
@@ -503,25 +540,24 @@ public sealed class SearchAdoptionTests : IDisposable
         Write(bOrig, "b.xml", BodyB); Write(bTran, "b.xml", BodyB);
 
         var bundle = NewDir("bundle");
-        await BuildFamily(bundle, _origDir, _tranDir);         // active-corpus bundle only (no B)
+        await BuildOriginBundle(bundle, _origDir);             // ORIGIN-only bundle (A)
+        var bundleOriginStamp = OriginStampOf(bundle);
 
         var root = NewDir("root");                             // virgin
         using var probe = Probe(bundle);
         var stale = await probe.IsStaleAsync(root, _origDir, new[] { _tranDir },
             additionalOriginalDirs: new[] { bOrig }, additionalTranslatedDirs: new[] { bTran });
-        Assert.True(stale);                                    // seeded but NOT zero-build
-        Assert.True(Has(root, IndexBin));                      // active corpus searchable from the seed
+        Assert.True(stale);                                    // origin seeded zero-build; overlay owed
 
-        // Before the catch-up the seeded (A-only) index cannot find corpus B — proving that a
-        // wrongly-fresh verdict would have left B permanently unsearchable.
-        using (var pre = new SearchIndexService())
-            Assert.Empty(await SearchOriginal(pre, root, "臨濟義玄",
-                addOrig: new[] { bOrig }, addTran: new[] { bTran }));
+        // Origin SEEDED (adopted file copy), not built: its IndexStamp equals the bundle's.
+        Assert.True(File.Exists(Path.Combine(root, "search.origin.bin")));
+        Assert.Equal(bundleOriginStamp, OriginStampOf(root));
 
-        // The catch-up build DOES walk the additional dirs → corpus B becomes searchable.
-        using (var catchUp = new SearchIndexService())
-            await catchUp.BuildOrUpdateAsync(root, _origDir, new[] { _tranDir }, forceRebuild: false,
-                additionalOriginalDirs: new[] { bOrig }, additionalTranslatedDirs: new[] { bTran });
+        // The overlay build walks the additional dirs → corpus B becomes searchable, and the
+        // origin was never locally rebuilt (stamp still equals the bundle's).
+        await probe.BuildOrUpdateAsync(root, _origDir, new[] { _tranDir }, forceRebuild: false,
+            additionalOriginalDirs: new[] { bOrig }, additionalTranslatedDirs: new[] { bTran });
+        Assert.Equal(bundleOriginStamp, OriginStampOf(root));
 
         using var after = new SearchIndexService();
         Assert.NotEmpty(await SearchOriginal(after, root, "臨濟義玄",

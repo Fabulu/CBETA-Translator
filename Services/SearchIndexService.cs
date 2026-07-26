@@ -1350,8 +1350,14 @@ public sealed class SearchIndexService : ISearchIndexService
     /// <paramref name="dir"/> and stamps the current <see cref="CorpusFreqBuildGuid"/>.
     /// Absent or mismatched ⇒ false (family-guid mismatch → Branch B reseed/rebuild).</summary>
     private static bool CorpusFreqGuidCurrentAt(string dir)
+        => CorpusFreqGuidCurrentAt(dir, CorpusFreqManifestFileName);
+
+    /// <summary>FL5: as <see cref="CorpusFreqGuidCurrentAt(string)"/> but over an arbitrary
+    /// corpusfreq manifest file name — used to gate the ORIGIN family's corpusfreq sibling
+    /// (<c>search.origin.corpusfreq.manifest.json</c>) with the same §2.2a discipline.</summary>
+    private static bool CorpusFreqGuidCurrentAt(string dir, string corpusFreqManifestFileName)
     {
-        var mp = Path.Combine(dir, CorpusFreqManifestFileName);
+        var mp = Path.Combine(dir, corpusFreqManifestFileName);
         if (!File.Exists(mp)) return false;
         try
         {
@@ -1487,6 +1493,138 @@ public sealed class SearchIndexService : ISearchIndexService
         var tmp = manifestPath + ".tmp";
         File.WriteAllText(tmp, node.ToJsonString(JsonOpts), Utf8NoBom);
         File.Move(tmp, manifestPath, overwrite: true);
+    }
+
+    // ═══════════════════════════════════════════════════════════════════════════════════
+    // FL5 (design §4.1/§4.2): ORIGIN-family bundle adoption. Mirrors the combined
+    // EvaluateBundleAdoption / CopyBundleFamilyIntoRoot pair but scoped to the frozen
+    // origin family (search.origin.*). Adopt-over-local is now UNCONDITIONALLY safe (the
+    // origin family holds only origin postings; all user-local data lives in the overlay,
+    // which adoption never touches) — so the ScopeComplete rider is gone.
+    // ═══════════════════════════════════════════════════════════════════════════════════
+
+    /// <summary>FL5: pure decision for the ORIGIN family — should the launch probe adopt/seed the
+    /// origin bundle at <paramref name="bundleDir"/> into <paramref name="indexRoot"/>? Guards
+    /// mirror <see cref="EvaluateBundleAdoption"/>: (1) origin bloom manifest+bin present;
+    /// (2) origin family guid current — origin bloom <c>BuildGuid</c>==<see cref="OriginBuildGuid"/>,
+    /// <c>LayerRole=="origin"</c>, AND the origin corpusfreq sibling stamps the current guid;
+    /// (3) stamp comparison against <paramref name="liveOriginHashOrNull"/> (null ⇒ pre-hash
+    /// virgin ⇒ <see cref="BundleAdoptionDecision.SeedVirgin"/>). With a live hash and a present
+    /// local origin bin, adoption fires only when the bundle's baked <c>OriginHash</c> == live.</summary>
+    internal static BundleAdoptionDecision EvaluateOriginBundleAdoption(
+        string indexRoot, string bundleDir, string? liveOriginHashOrNull)
+    {
+        if (string.IsNullOrEmpty(bundleDir))
+            return BundleAdoptionDecision.NoBundle;
+        var bundleManifest = Path.Combine(bundleDir, OriginManifestFileName);
+        var bundleBin = Path.Combine(bundleDir, OriginBinFileName);
+        if (!File.Exists(bundleManifest) || !File.Exists(bundleBin))
+            return BundleAdoptionDecision.NoBundle;
+
+        // Guard 2: origin family guid — bloom guid + role + corpusfreq sibling guid.
+        if (!OriginBundleFamilyGuidCurrent(bundleDir))
+            return BundleAdoptionDecision.NoBundle;
+
+        bool localPresent = File.Exists(Path.Combine(indexRoot, OriginBinFileName));
+        if (liveOriginHashOrNull == null || !localPresent)
+            return BundleAdoptionDecision.SeedVirgin;
+
+        var bundleHash = TryReadBundleOriginHash(bundleManifest);
+        bool bundleMatchesLive = bundleHash != null &&
+            string.Equals(bundleHash, liveOriginHashOrNull, StringComparison.Ordinal);
+        return bundleMatchesLive ? BundleAdoptionDecision.AdoptOverLocal : BundleAdoptionDecision.KeepLocal;
+    }
+
+    /// <summary>FL5: the origin bundle stamps the current family — origin bloom manifest
+    /// <c>BuildGuid</c>==<see cref="OriginBuildGuid"/> AND <c>LayerRole=="origin"</c> AND the
+    /// origin corpusfreq sibling (<c>search.origin.corpusfreq.manifest.json</c>) is guid-current.</summary>
+    private static bool OriginBundleFamilyGuidCurrent(string bundleDir)
+    {
+        SearchIndexManifest? man = null;
+        try
+        {
+            var json = File.ReadAllText(Path.Combine(bundleDir, OriginManifestFileName), Utf8NoBom);
+            if (!string.IsNullOrWhiteSpace(json))
+                man = JsonSerializer.Deserialize<SearchIndexManifest>(json, JsonOpts);
+        }
+        catch { return false; }
+        if (man == null) return false;
+        if (!string.Equals(man.BuildGuid, OriginBuildGuid, StringComparison.Ordinal)) return false;
+        if (!string.Equals(man.LayerRole, "origin", StringComparison.Ordinal)) return false;
+        return CorpusFreqGuidCurrentAt(bundleDir, OriginCorpusFreqManifestFileName);
+    }
+
+    private static string? TryReadBundleOriginHash(string manifestPath)
+    {
+        try
+        {
+            var json = File.ReadAllText(manifestPath, Utf8NoBom);
+            if (string.IsNullOrWhiteSpace(json)) return null;
+            var man = JsonSerializer.Deserialize<SearchIndexManifest>(json, JsonOpts);
+            return string.IsNullOrEmpty(man?.OriginHash) ? null : man!.OriginHash;
+        }
+        catch { return null; }
+    }
+
+    /// <summary>FL5: copies ONLY the frozen <c>search.origin.*</c> family from
+    /// <paramref name="bundleDir"/> into <paramref name="indexRoot"/>, re-homes the path-bound
+    /// origin manifests, and deletes pre-existing local <c>search.origin.*</c> files the bundle
+    /// did not bring (leftover-delete, restricted to the origin glob). The <c>search.overlay.*</c>
+    /// and legacy <c>search.index.*</c> families are NEVER touched — origin adoption is layer-local.
+    /// All-or-nothing: any failure rolls back the just-copied files. Returns true only when the
+    /// origin family was actually copied in.</summary>
+    internal static bool CopyOriginBundleFamilyIntoRoot(string indexRoot, string bundleDir, TextWriter? log = null)
+    {
+        if (string.IsNullOrEmpty(bundleDir) || !Directory.Exists(bundleDir))
+            return false;
+
+        var copied = new List<string>();
+        try
+        {
+            Directory.CreateDirectory(indexRoot);
+
+            var bundleNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            foreach (var src in Directory.EnumerateFiles(bundleDir, "search.origin.*", SearchOption.TopDirectoryOnly))
+            {
+                var name = Path.GetFileName(src);
+                if (name.EndsWith(".tmp", StringComparison.OrdinalIgnoreCase)) continue;
+                var dst = Path.Combine(indexRoot, name);
+                File.Copy(src, dst, overwrite: true);
+                copied.Add(dst);
+                bundleNames.Add(name);
+            }
+
+            if (copied.Count == 0)
+                return false;
+
+            // Re-home the RootPath the path-bound origin manifests embed (main + optional text
+            // sidecar). The corpusfreq sibling is bound by IndexStamp, not RootPath (RehomeManifest
+            // is a no-op when the field is absent), so re-homing it is harmless.
+            RehomeManifestRootPath(Path.Combine(indexRoot, OriginManifestFileName), indexRoot);
+            RehomeManifestRootPath(Path.Combine(indexRoot, OriginTextManifestFileName), indexRoot);
+            RehomeManifestRootPath(Path.Combine(indexRoot, OriginCorpusFreqManifestFileName), indexRoot);
+
+            // Leftover-delete, restricted to the origin glob (never overlay/legacy families).
+            foreach (var local in Directory.EnumerateFiles(indexRoot, "search.origin.*", SearchOption.TopDirectoryOnly))
+            {
+                var name = Path.GetFileName(local);
+                if (name.EndsWith(".tmp", StringComparison.OrdinalIgnoreCase)) continue;
+                if (bundleNames.Contains(name)) continue;
+                try { File.Delete(local); } catch { }
+            }
+
+            log?.WriteLine($"Adopted origin family from bundle: {copied.Count} files -> {indexRoot}");
+            return true;
+        }
+        catch (Exception ex)
+        {
+            log?.WriteLine($"Origin bundle adopt failed ({ex.Message}); rolling back.");
+            foreach (var f in copied)
+            {
+                try { File.Delete(f); } catch { }
+            }
+            return false;
+        }
     }
 
     /// <summary>Test-only override for the exe-adjacent prebuilt bundle directory. When non-null,
@@ -1647,6 +1785,257 @@ public sealed class SearchIndexService : ISearchIndexService
         return 0;
     }
 
+    // ═══════════════════════════════════════════════════════════════════════════════════
+    // FL5 (design §4): two-layer staleness / adoption for SPLIT roots. A root uses the split
+    // path when a split family already exists on disk OR a guid-current split bundle is present;
+    // otherwise (incl. an existing LEGACY COMBINED root with no split bundle) it stays on the
+    // combined path verbatim — combined→split migration is FL6, so an existing combined user is
+    // NEVER mass-rebuilt by FL5. This guard is the #1 FL5 safety constraint.
+    // ═══════════════════════════════════════════════════════════════════════════════════
+
+    /// <summary>Per-layer probe verdict. <c>OriginNeedsBuild</c> = origin is stale/absent AND
+    /// could not be adopted from a bundle (a rare local origin build is owed).
+    /// <c>OverlayNeedsBuild</c> = overlay stale/absent OR its <c>BasedOnOriginStamp</c> no longer
+    /// matches the current origin stamp (§1.5).</summary>
+    private readonly record struct SplitProbeResult(bool OriginNeedsBuild, bool OverlayNeedsBuild);
+
+    /// <summary>FL5 routing: is <paramref name="root"/> served by the split (origin/overlay)
+    /// path? True iff a split manifest is already on disk, OR — for a root with no legacy
+    /// combined family — a guid-current split bundle is available to seed from. A legacy
+    /// combined root with no split-on-disk stays combined until FL6 (migration).</summary>
+    private bool UseSplitPath(string root, string? bundleDir)
+    {
+        bool splitOnDisk = File.Exists(Path.Combine(root, OriginManifestFileName)) ||
+                           File.Exists(Path.Combine(root, OverlayManifestFileName));
+        if (splitOnDisk) return true;
+
+        // #1 constraint: an existing legacy combined family with no split-on-disk stays combined
+        // (its migration to split is FL6). Never adopt a split bundle OVER a live combined root.
+        bool legacyCombinedOnDisk = File.Exists(Path.Combine(root, ManifestFileName));
+        if (legacyCombinedOnDisk) return false;
+
+        // Virgin root: prefer a split bundle when one ships (guid-current). Absent → combined
+        // cold build (today's behaviour); the real origin bundle ships in FL6.
+        return SplitBundleAvailable(bundleDir);
+    }
+
+    /// <summary>FL5: a usable, guid-current origin bundle is present (origin bloom manifest+bin,
+    /// current guid + role, origin corpusfreq sibling guid-current).</summary>
+    private static bool SplitBundleAvailable(string? bundleDir)
+    {
+        if (string.IsNullOrEmpty(bundleDir)) return false;
+        if (!File.Exists(Path.Combine(bundleDir, OriginManifestFileName)) ||
+            !File.Exists(Path.Combine(bundleDir, OriginBinFileName)))
+            return false;
+        return OriginBundleFamilyGuidCurrent(bundleDir);
+    }
+
+    /// <summary>FL5 (§4.1): run both per-layer probes. The ORIGIN probe is side-effecting (it
+    /// adopts/seeds the origin bundle when appropriate, preserving the seed-before-hash ordering
+    /// invariant); the OVERLAY probe then reads the possibly-updated origin stamp for its
+    /// <c>BasedOnOriginStamp</c> comparison, so an origin adopt automatically flags the overlay
+    /// stale. Returns the per-layer build verdict for both <see cref="IsStaleAsync"/> and the
+    /// build orchestrator.</summary>
+    private async Task<SplitProbeResult> ProbeLayersAsync(
+        string root, string originalDir, IReadOnlyList<string> translatedDirs,
+        IReadOnlyList<string>? additionalOriginalDirs, IReadOnlyList<string>? additionalTranslatedDirs,
+        string? bundleDir)
+    {
+        bool originNeedsBuild = await ProbeOriginAsync(root, originalDir, bundleDir).ConfigureAwait(false);
+        bool overlayNeedsBuild = await ProbeOverlayAsync(
+            root, translatedDirs, additionalOriginalDirs, additionalTranslatedDirs).ConfigureAwait(false);
+        return new SplitProbeResult(originNeedsBuild, overlayNeedsBuild);
+    }
+
+    /// <summary>FL5 (§4.1 origin probe): freshness of the frozen origin family, adopt-preferred.
+    /// Fresh (OriginHash == live origin hash, guid-current) → false (zero work). Stale/absent →
+    /// adopt the origin bundle when it provably matches live (or seed a virgin root before
+    /// hashing); returns true ONLY when neither fresh nor adopted, i.e. a local origin build is
+    /// owed (the rare corpus-diverged last resort). Adopt/seed happen as a side effect here.</summary>
+    private async Task<bool> ProbeOriginAsync(string root, string originalDir, string? bundleDir)
+    {
+        var originMp = Path.Combine(root, OriginManifestFileName);
+        var originBp = Path.Combine(root, OriginBinFileName);
+        bool localPresent = File.Exists(originMp) && File.Exists(originBp);
+
+        SearchIndexManifest? localOrigin = localPresent
+            ? await LoadLayerManifestAsync(originMp, originBp, root, OriginBuildGuid, "origin").ConfigureAwait(false)
+            : null;
+        bool originFamilyCurrent = localOrigin != null &&
+            CorpusFreqGuidCurrentAt(root, OriginCorpusFreqManifestFileName);
+
+        if (originFamilyCurrent && !string.IsNullOrEmpty(localOrigin!.OriginHash))
+        {
+            try
+            {
+                // §5.2 heal: a bundle-adopted/seeded origin manifest carries the CI machine's
+                // (ticks,len) stamps, so the first local probe cache-MISSES on every origin entry
+                // (one content-hash pass over ~4,990 files). Capture the fresh hashes + local
+                // stamps and — on the fresh verdict — write them back to search.origin.manifest.json
+                // so EVERY subsequent probe is stat-only. Mirrors the combined heal at row 1.
+                var writeBack = new Dictionary<string, string>(StringComparer.Ordinal);
+                var stampWriteBack = new Dictionary<string, (long Ticks, long Length)>(StringComparer.Ordinal);
+                var currentHash = await ComputeOriginHashAsync(originalDir, localOrigin, writeBack, stampWriteBack).ConfigureAwait(false);
+                bool fresh = string.Equals(localOrigin.OriginHash, currentHash, StringComparison.Ordinal) &&
+                    !(localOrigin.Entries.Count == 0 && Directory.Exists(originalDir));
+                if (fresh)
+                {
+                    await MaybeBackfillOriginContentHashesAsync(root, localOrigin, writeBack, stampWriteBack).ConfigureAwait(false);
+                    return false; // origin fresh — zero work (stat-only after the one-time heal)
+                }
+
+                // Stale: adopt the bundle over local ONLY when it provably matches live origin.
+                var decision = EvaluateOriginBundleAdoption(root, bundleDir ?? "", currentHash);
+                if (decision == BundleAdoptionDecision.AdoptOverLocal &&
+                    CopyOriginBundleFamilyIntoRoot(root, bundleDir!))
+                    return false; // adopted → fresh
+                return true; // local origin build owed (last resort)
+            }
+            catch (IOException)
+            {
+                return true; // fs race → treat as build-owed (origin has no legacy mtime path)
+            }
+        }
+
+        // ── origin absent / corrupt / family-guid mismatch → seed FIRST (ordering invariant) ──
+        bool seeded = false;
+        if (EvaluateOriginBundleAdoption(root, bundleDir ?? "", null) == BundleAdoptionDecision.SeedVirgin)
+            seeded = CopyOriginBundleFamilyIntoRoot(root, bundleDir!);
+
+        if (!File.Exists(originMp))
+            return true; // nothing seeded, no origin → local build owed
+
+        var man = await LoadLayerManifestAsync(originMp, originBp, root, OriginBuildGuid, "origin").ConfigureAwait(false);
+        if (man == null || string.IsNullOrEmpty(man.OriginHash))
+            return true;
+        try
+        {
+            // §5.2 heal (seeded branch): the just-seeded origin manifest carries CI-machine stamps;
+            // capture fresh local stamps so a seeded-and-fresh origin heals on THIS probe and every
+            // later probe is stat-only. Mirrors the combined seeded row-4 heal.
+            var writeBack = new Dictionary<string, string>(StringComparer.Ordinal);
+            var stampWriteBack = new Dictionary<string, (long Ticks, long Length)>(StringComparer.Ordinal);
+            var currentHash = await ComputeOriginHashAsync(originalDir, man, writeBack, stampWriteBack).ConfigureAwait(false);
+            bool matches = string.Equals(man.OriginHash, currentHash, StringComparison.Ordinal) &&
+                !(man.Entries.Count == 0 && Directory.Exists(originalDir));
+            // A seeded origin that matches live is fresh (zero build). A pre-existing origin that
+            // reached here only via a corpusfreq-guid mismatch (seeded==false) rebuilds so the
+            // partial re-materialises (§2.2a), mirroring the combined Branch-B discipline.
+            if (seeded && matches)
+            {
+                await MaybeBackfillOriginContentHashesAsync(root, man, writeBack, stampWriteBack).ConfigureAwait(false);
+                return false;
+            }
+            return true;
+        }
+        catch (IOException)
+        {
+            return true;
+        }
+    }
+
+    /// <summary>FL5: live origin-corpus hash over <paramref name="originalDir"/> only, reusing the
+    /// origin manifest's per-entry <c>(len,ticks)→ContentHash</c> stat cache. When
+    /// <paramref name="writeBack"/>/<paramref name="stampWriteBack"/> are supplied, cache-miss
+    /// entries (a bundle-adopted manifest's CI stamps) deposit their fresh hash + local stamp so
+    /// the caller can heal the manifest (§5.2). Same value recipe as
+    /// <see cref="ComputeInputHashAsync"/>.</summary>
+    private static Task<string> ComputeOriginHashAsync(
+        string originalDir, SearchIndexManifest originManifest,
+        IDictionary<string, string>? writeBack = null,
+        IDictionary<string, (long Ticks, long Length)>? stampWriteBack = null)
+    {
+        var cache = BuildContentHashCache(originManifest); // origin entries are all Original → "orig/…"
+        return ComputeInputHashAsync(originalDir, Array.Empty<string>(), cache,
+            writeBack, CancellationToken.None, stampWriteBack);
+    }
+
+    /// <summary>FL5 (§5.2): origin-scoped stat-cache heal — mirrors
+    /// <see cref="MaybeBackfillContentHashesAsync"/> but persists to
+    /// <c>search.origin.manifest.json</c> (never the combined manifest / Combined cache). A
+    /// bundle-adopted origin heals its CI-machine stamps to local <c>(ticks,len)</c> on the first
+    /// probe; every later probe is stat-only. Single-writer guarded (shares the backfill flag +
+    /// count), never throws.</summary>
+    private async Task MaybeBackfillOriginContentHashesAsync(
+        string root,
+        SearchIndexManifest manifest,
+        IReadOnlyDictionary<string, string> writeBack,
+        IReadOnlyDictionary<string, (long Ticks, long Length)> stampWriteBack)
+    {
+        if (writeBack.Count == 0) return;
+        if (Interlocked.CompareExchange(ref _contentHashBackfillFlag, 1, 0) != 0) return;
+        try
+        {
+            ApplyContentHashWriteBack(manifest, writeBack, stampWriteBack);
+            await SaveOriginContentHashBackfillAsync(root, manifest, CancellationToken.None).ConfigureAwait(false);
+            Interlocked.Increment(ref _contentHashBackfillCount);
+        }
+        catch
+        {
+            // Best-effort: a failed heal just means the next probe retries.
+        }
+        finally
+        {
+            Interlocked.Exchange(ref _contentHashBackfillFlag, 0);
+        }
+    }
+
+    /// <summary>FL5: atomically rewrites the healed origin manifest (patched per-entry
+    /// ContentHash + local stamps) to <c>search.origin.manifest.json</c> via temp-file + rename.
+    /// Does NOT touch the Combined manifest cache (an origin manifest is not the served combined
+    /// manifest); the split load path re-reads on the file's mtime change.</summary>
+    private async Task SaveOriginContentHashBackfillAsync(string root, SearchIndexManifest manifest, CancellationToken ct)
+    {
+        var final = Path.Combine(root, OriginManifestFileName);
+        var tmp = final + ".tmp";
+        var json = JsonSerializer.Serialize(manifest, JsonOpts);
+        await File.WriteAllTextAsync(tmp, json, Utf8NoBom, ct).ConfigureAwait(false);
+        ReplaceFileAtomicWithRetry(tmp, final);
+    }
+
+    /// <summary>FL5 (§4.1 overlay probe / §1.5): the live overlay family is stale iff its
+    /// <c>OverlayHash</c> differs from the live hash over the overlay dir set (translated +
+    /// additional) OR its <c>BasedOnOriginStamp</c> no longer equals the current origin
+    /// <c>IndexStamp</c>. Absent/guid-stale overlay ⇒ stale. There is no overlay bundle, ever.</summary>
+    private async Task<bool> ProbeOverlayAsync(
+        string root, IReadOnlyList<string> translatedDirs,
+        IReadOnlyList<string>? additionalOriginalDirs, IReadOnlyList<string>? additionalTranslatedDirs)
+    {
+        var overlayMp = Path.Combine(root, OverlayManifestFileName);
+        var overlayBp = Path.Combine(root, OverlayBinFileName);
+        if (!File.Exists(overlayMp) || !File.Exists(overlayBp))
+            return true; // absent → overlay build owed
+
+        var overlayMan = await LoadLayerManifestAsync(overlayMp, overlayBp, root, OverlayBuildGuid, "overlay").ConfigureAwait(false);
+        if (overlayMan == null || !CorpusFreqGuidCurrentAt(root, OverlayCorpusFreqManifestFileName))
+            return true; // guid-stale / corrupt / corpusfreq-stale → rebuild
+
+        // §1.5 cross-layer binding: an overlay built against a superseded origin stamp is stale
+        // (the origin rel-set it excluded may have changed) — rebuild the overlay, never origin.
+        var currentOriginStamp = await ReadOriginIndexStampAsync(root, CancellationToken.None).ConfigureAwait(false);
+        if (!string.Equals(overlayMan.BasedOnOriginStamp, currentOriginStamp, StringComparison.Ordinal))
+            return true;
+
+        if (string.IsNullOrEmpty(overlayMan.OverlayHash))
+            return true; // no stamp to compare against → rebuild
+
+        try
+        {
+            // Plain recount over the (tiny) overlay dir set — no stat cache. Basis + ordering
+            // MUST match the build stamp (BuildLayerCoreAsync overlay basis: translatedDirs, then
+            // additionalOriginalDirs, then additionalTranslatedDirs, hashed with an empty origin slot).
+            var basis = new List<string>(translatedDirs);
+            if (additionalOriginalDirs != null) basis.AddRange(additionalOriginalDirs);
+            if (additionalTranslatedDirs != null) basis.AddRange(additionalTranslatedDirs);
+            var currentOverlayHash = await ComputeInputHashAsync("", basis, CancellationToken.None).ConfigureAwait(false);
+            return !string.Equals(overlayMan.OverlayHash, currentOverlayHash, StringComparison.Ordinal);
+        }
+        catch (IOException)
+        {
+            return true;
+        }
+    }
+
     public async Task<bool> IsStaleAsync(
         string root,
         string originalDir,
@@ -1654,6 +2043,20 @@ public sealed class SearchIndexService : ISearchIndexService
         IReadOnlyList<string>? additionalOriginalDirs = null,
         IReadOnlyList<string>? additionalTranslatedDirs = null)
     {
+        // FL5 (finding B): a split root is judged by the per-layer Origin/Overlay probes, NOT the
+        // merged view's null InputHash (which would fall to IsStaleByMtime and hunt the absent
+        // combined corpusfreq manifest → churn). The origin probe adopts/seeds as a side effect;
+        // the return is simply "does either layer still owe a build?".
+        {
+            var splitBundle = ResolveBundleDir();
+            if (UseSplitPath(root, splitBundle))
+            {
+                var probe = await ProbeLayersAsync(root, originalDir, translatedDirs,
+                    additionalOriginalDirs, additionalTranslatedDirs, splitBundle).ConfigureAwait(false);
+                return probe.OriginNeedsBuild || probe.OverlayNeedsBuild;
+            }
+        }
+
         // ScopeComplete (§2.1a): the search InputHash covers only the ACTIVE corpus
         // (originalDir + translatedDirs), while a build with additional dirs also indexes
         // other corpora whose postings the stamp does not cover. Stamp equality therefore
@@ -2621,6 +3024,19 @@ public sealed class SearchIndexService : ISearchIndexService
             var overlayMan = await LoadLayerManifestAsync(overlayMp, overlayBp, root, OverlayBuildGuid, "overlay").ConfigureAwait(false);
             if (overlayMan == null) return null;
 
+            // FL5 finding A (§1.5 / risk #3): the load-time cross-layer binding guard. An overlay
+            // built against a superseded origin stamp excluded a DIFFERENT origin rel-set from its
+            // inverted feed (§3.2); serving it against the current origin would double-serve or
+            // drop rels that changed layers (the tf-collision the FL4 review found). Refuse the
+            // split root until the overlay is rebuilt against the current origin (IsStaleAsync's
+            // overlay probe returns stale for exactly this case → overlay-only rebuild, cheap).
+            if (!string.Equals(overlayMan.BasedOnOriginStamp, originMan.IndexStamp, StringComparison.Ordinal))
+            {
+                Dbg($"Split root refused: overlay BasedOnOriginStamp ({overlayMan.BasedOnOriginStamp}) " +
+                    $"!= origin IndexStamp ({originMan.IndexStamp}) — overlay rebuild owed.");
+                return null;
+            }
+
             // Build the two query families (self-describing file names). Fresh instances each
             // split load — the inverted + corpusfreq handles below populate them.
             var originFam = new SearchFamily(
@@ -3317,6 +3733,18 @@ public sealed class SearchIndexService : ISearchIndexService
                 Interlocked.Exchange(ref _lastBuildFallbackCount, 0);
                 Interlocked.Exchange(ref _lastBuildDeltaGuardTripped, 0);
 
+                // FL5 (design §3.1/§4.3): SPLIT-root orchestration behind the public facade —
+                // ensure the frozen origin (adopt/build if stale) then build the live overlay if
+                // stale. A combined root (incl. an existing legacy combined family with no split
+                // bundle) keeps EXACTLY today's single build path below, so existing users are
+                // never mass-rebuilt (#1 constraint).
+                if (UseSplitPath(root, ResolveBundleDir()))
+                {
+                    await BuildSplitAsync(root, originalDir, translatedDirs,
+                        additionalOriginalDirs, additionalTranslatedDirs, forceRebuild, progress, ct);
+                    return;
+                }
+
                 // SINGLE FALLBACK (S5): any exception thrown while incremental sourcing
                 // was enabled (except cancellation) => delete stray family tmp files and
                 // retry ONCE with incremental sourcing disabled (full compute), inside
@@ -3362,6 +3790,49 @@ public sealed class SearchIndexService : ISearchIndexService
                 _indexIoGate.Release();
             }
         }, ct);
+    }
+
+    /// <summary>
+    /// FL5 (design §3.1/§4.2): SPLIT-root build orchestration. Re-probes the two layers (the
+    /// origin probe adopts/seeds as a side effect), then: builds the frozen origin locally ONLY
+    /// when a build is still owed (adoption failed / corpus diverged — the rare last resort);
+    /// builds the live overlay when it is stale OR the origin was (re)built (a new origin stamp
+    /// invalidates the overlay's <c>BasedOnOriginStamp</c>, §1.5). The overlay build is scoped to
+    /// the overlay dirs — a frozen origin is never touched by a translation edit. <paramref
+    /// name="forceRebuild"/> (CI/headless) rebuilds both layers unconditionally. Runs inside the
+    /// caller's <see cref="_indexIoGate"/> acquisition.
+    /// </summary>
+    private async Task BuildSplitAsync(
+        string root, string originalDir, IReadOnlyList<string> translatedDirs,
+        IReadOnlyList<string>? additionalOriginalDirs, IReadOnlyList<string>? additionalTranslatedDirs,
+        bool forceRebuild,
+        IProgress<(int done, int total, string phase)>? progress, CancellationToken ct)
+    {
+        Interlocked.Exchange(ref _lastBuildFallbackCount, 0);
+        Interlocked.Exchange(ref _lastBuildDeltaGuardTripped, 0);
+
+        bool buildOrigin, buildOverlay;
+        if (forceRebuild)
+        {
+            buildOrigin = true;
+            buildOverlay = true;
+        }
+        else
+        {
+            var probe = await ProbeLayersAsync(root, originalDir, translatedDirs,
+                additionalOriginalDirs, additionalTranslatedDirs, ResolveBundleDir()).ConfigureAwait(false);
+            buildOrigin = probe.OriginNeedsBuild;
+            // The origin was just (re)built ⇒ its IndexStamp changed ⇒ the overlay's
+            // BasedOnOriginStamp no longer matches ⇒ the overlay must be rebuilt too.
+            buildOverlay = probe.OverlayNeedsBuild || probe.OriginNeedsBuild;
+        }
+
+        if (buildOrigin)
+            await BuildOriginLayerAsync(root, originalDir, progress, ct).ConfigureAwait(false);
+
+        if (buildOverlay)
+            await BuildOverlayLayerAsync(root, translatedDirs,
+                additionalOriginalDirs, additionalTranslatedDirs, progress, ct).ConfigureAwait(false);
     }
 
     /// <summary>
