@@ -488,7 +488,8 @@ public sealed class TrimmedSidecarTests : IDisposable
     /// FL6 (§6) end-to-end: after adopting a trimmed COMBINED bundle, the user's first corpus edit
     /// runs a build that MIGRATES the family to the split — materialising the origin text sidecar
     /// and deleting the legacy family. From that point every split artifact is present and fresh.
-    /// (The FL7 §5.3 job will later fill the origin text sidecar off the edit path.)
+    /// (Origin ADOPT from a trimmed ORIGIN bundle — where the migration/carve does NOT re-extract
+    /// the text — is now filled by the FL7 §5.3 job; see OriginTextMaterializationTests.)
     /// </summary>
     [Fact]
     public async Task TrimmedBundle_FirstEdit_MigratesToSplit()

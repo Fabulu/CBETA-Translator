@@ -189,6 +189,29 @@ public sealed class SearchIndexService : ISearchIndexService
     private int _lastBuildGramComputeCount;
     internal int LastBuildGramComputeCount => Volatile.Read(ref _lastBuildGramComputeCount);
 
+    // FL7 (design §5.3) test-observable: incremented once per verify/snippet read that PARSED
+    // XML from disk (the sidecar-miss fallback in GetSearchableTextCached). With the origin text
+    // sidecar present, origin-side verify reads route through the mmap and this stays 0; absent,
+    // every origin verify parses XML (the perf hole FL7's materialization job closes). Reset by
+    // tests via ResetVerifyXmlReadCount before a query to assert sidecar-vs-XML routing.
+    private int _lastVerifyXmlReadCount;
+    internal int LastVerifyXmlReadCount => Volatile.Read(ref _lastVerifyXmlReadCount);
+    internal void ResetVerifyXmlReadCount() => Interlocked.Exchange(ref _lastVerifyXmlReadCount, 0);
+
+    // FL7 (design §5.3): the origin-text materialization job. Best-effort, background, idle-
+    // priority, single-writer. _originTextMaterializeFlag gates concurrent spawns (only one job
+    // in flight per service); _originTextMaterializeTask exposes the last-fired task so tests can
+    // deterministically await it; _originTextMaterializeCount counts completed materializations.
+    // _backgroundCts cancels any in-flight job on Dispose so shutdown never blocks on it.
+    private int _originTextMaterializeFlag;
+    private int _originTextMaterializeCount;
+    private Task? _originTextMaterializeTask;
+    private readonly CancellationTokenSource _backgroundCts = new();
+    internal int LastOriginTextMaterializeCount => Volatile.Read(ref _originTextMaterializeCount);
+    /// <summary>FL7: awaits the last-fired origin-text materialization job (or completes
+    /// immediately when none has fired). Test hook for deterministic assertions.</summary>
+    internal Task WhenOriginTextMaterializedAsync() => Volatile.Read(ref _originTextMaterializeTask) ?? Task.CompletedTask;
+
     /// <summary>
     /// Test instrumentation ONLY: invoked at the top of the incremental build path
     /// (never on the full path) so tests can inject a fault and prove the
@@ -982,6 +1005,9 @@ public sealed class SearchIndexService : ISearchIndexService
 
     public void Dispose()
     {
+        // FL7: cancel any in-flight origin-text materialization so disposal never blocks on it
+        // (the job is best-effort; a cancelled run just leaves the sidecar absent → XML fallback).
+        try { _backgroundCts.Cancel(); } catch { }
         InvalidateIndexCaches();
         GC.SuppressFinalize(this);
     }
@@ -2774,7 +2800,10 @@ public sealed class SearchIndexService : ISearchIndexService
         if (!TryReadSearchableTextFromSidecar(root, key, textEntry, textBinFileName, textFamily, out string searchable))
         {
             string xml;
-            try { xml = File.ReadAllText(absPath, Utf8NoBom); }
+            // FL7 (§5.3): sidecar miss → parse XML from disk. Count it so tests can prove the
+            // origin text sidecar (once materialized) actually serves origin verify/snippet reads
+            // (this stays 0) vs. the absent-sidecar fallback (this fires per origin verify).
+            try { xml = File.ReadAllText(absPath, Utf8NoBom); Interlocked.Increment(ref _lastVerifyXmlReadCount); }
             catch (Exception ex) { System.Diagnostics.Debug.WriteLine($"[SearchIndexService] Read failed for {absPath}: {ex.Message}"); return ""; }
 
             try { searchable = MakeSearchableTextFromXml_Fast(xml, htmlDecodeIfAmpersandPresent); }
@@ -3494,6 +3523,15 @@ public sealed class SearchIndexService : ISearchIndexService
             try { tm = await TryLoadTextManifestForFamilyAsync(root, fam).ConfigureAwait(false); }
             catch { tm = null; } // Sidecar is optional — verify falls back to XML parse.
             if (tm?.Entries == null) continue;
+            // FL7 (§5.3 accelerator binding): a text sidecar that carries an IndexStamp (today
+            // only the ORIGIN sidecar, materialized by MaterializeOriginTextAsync) is REFUSED when
+            // its stamp no longer matches the owning family's manifest IndexStamp — the origin
+            // corpus advanced under a now-stale sidecar. Skipping the whole family routes every one
+            // of its (rel, side) reads to _defaultTextRoute (XML parse), so search stays fully
+            // correct without it. Combined/overlay sidecars carry no IndexStamp (null) → never refused.
+            if (tm.IndexStamp != null &&
+                !string.Equals(tm.IndexStamp, fam.CachedManifest?.IndexStamp, StringComparison.Ordinal))
+                continue;
             foreach (var e in tm.Entries)
                 map[(e.RelPath, e.Side)] = new TextRoute
                 {
@@ -3960,6 +3998,9 @@ public sealed class SearchIndexService : ISearchIndexService
                 {
                     await MigrateCombinedToSplitAsync(root, originalDir, translatedDirs,
                         additionalOriginalDirs, additionalTranslatedDirs, progress, ct);
+                    // FL7 (§5.3): after a Path-A adopt the origin text sidecar is absent — fill it
+                    // at idle. Path-B carve already wrote it, so this is a no-op there.
+                    MaybeTriggerOriginTextMaterialization(root, originalDir);
                     return;
                 }
 
@@ -3967,6 +4008,10 @@ public sealed class SearchIndexService : ISearchIndexService
                 {
                     await BuildSplitAsync(root, originalDir, translatedDirs,
                         additionalOriginalDirs, additionalTranslatedDirs, forceRebuild, progress, ct);
+                    // FL7 (§5.3): after an origin adopt-from-trimmed-bundle the origin text sidecar
+                    // is absent — materialize it once at idle (decoupled from the overlay build).
+                    // A locally-built/adopted-with-text origin already has it → cheap no-op.
+                    MaybeTriggerOriginTextMaterialization(root, originalDir);
                     return;
                 }
 
@@ -4450,6 +4495,211 @@ public sealed class SearchIndexService : ISearchIndexService
         await BuildLayerCoreAsync(OverlaySpec(originRels), root, originalDir: "", translatedDirs,
             allowIncremental: false, additionalOriginalDirs, additionalTranslatedDirs,
             progress, ct).ConfigureAwait(false);
+    }
+
+    // ═══════════════════════════════════════════════════════════════════════════════════
+    // FL7 (design §5.3): ORIGIN-TEXT MATERIALIZATION JOB.
+    //
+    // The frozen origin family never rebuilds on a standard install (it is adopt-preferred),
+    // and the shipped origin bundle is TRIMMED — it carries no search.origin.text.* (the 779 MB
+    // trim constraint). So right after an ADOPT-from-trimmed-bundle the origin text sidecar is
+    // ABSENT, and every origin-side verify + snippet parses the corpus XML from disk forever
+    // (slow snippets AND slower multi-bigram verify). In the COMBINED world the first incremental
+    // catch-up re-materialized text as a side effect; the split world rebuilds only the overlay on
+    // an edit, so that side effect is gone. This job replaces it deliberately: it (re)builds
+    // search.origin.text.bin + search.origin.text.manifest.json off the adopted origin manifest,
+    // once, at idle priority, decoupled from any edit. It is BEST-EFFORT (never throws into a
+    // caller) and SKIPPABLE — search is fully correct WITHOUT the sidecar (XML fallback); the job
+    // only restores the post-first-edit steady-state snippet/verify speed of the combined world.
+    //
+    // A locally-built or Path-B-carved origin already has a stamp-current text sidecar (the build
+    // core writes it), so the job is a cheap no-op there — it is needed specifically for the
+    // adopt-from-trimmed-bundle path.
+    // ═══════════════════════════════════════════════════════════════════════════════════
+
+    /// <summary>FL7: true iff a stamp-current origin text sidecar (bin + manifest, its
+    /// <see cref="SearchTextManifest.IndexStamp"/> == <paramref name="originIndexStamp"/>) already
+    /// exists — the idempotency gate for <see cref="MaterializeOriginTextAsync"/>.</summary>
+    private bool OriginTextSidecarIsCurrent(string root, string originIndexStamp)
+    {
+        var bp = Path.Combine(root, OriginTextBinFileName);
+        var mp = Path.Combine(root, OriginTextManifestFileName);
+        if (!File.Exists(bp) || !File.Exists(mp)) return false;
+        try
+        {
+            var json = File.ReadAllText(mp, Utf8NoBom);
+            var man = JsonSerializer.Deserialize<SearchTextManifest>(json, JsonOpts);
+            return man != null && string.Equals(man.IndexStamp, originIndexStamp, StringComparison.Ordinal);
+        }
+        catch { return false; }
+    }
+
+    /// <summary>
+    /// FL7 (§5.3): (re)materialize the frozen origin text sidecar from the on-disk origin manifest.
+    /// Reads each origin XML once (<see cref="MakeSearchableTextFromXml_Fast"/>), writes
+    /// search.origin.text.bin + manifest stamped with the CURRENT origin <c>IndexStamp</c> (the
+    /// accelerator binding — a stamp-mismatched sidecar is loader-refused in
+    /// <see cref="BuildTextRouteMapAsync"/>), atomically (temp + rename). BEST-EFFORT: never throws;
+    /// IDEMPOTENT: no-op when a stamp-current sidecar already exists; CANCELLABLE via
+    /// <paramref name="ct"/>. Does NOT touch the origin bloom/inverted/corpusfreq family or the
+    /// _lastBuildXmlReadCount build counter (this is a decoupled accelerator, not a build).
+    /// </summary>
+    internal async Task MaterializeOriginTextAsync(string root, string originalDir, CancellationToken ct)
+    {
+        try
+        {
+            var originMp = Path.Combine(root, OriginManifestFileName);
+            var originBp = Path.Combine(root, OriginBinFileName);
+            if (!File.Exists(originMp) || !File.Exists(originBp)) return; // not a split-origin root
+
+            var originMan = await LoadLayerManifestAsync(originMp, originBp, root, OriginBuildGuid, "origin").ConfigureAwait(false);
+            if (originMan == null || string.IsNullOrEmpty(originMan.IndexStamp)) return; // nothing to bind the sidecar to
+            var stamp = originMan.IndexStamp!;
+
+            // Idempotent: a stamp-current sidecar is already on disk (locally-built/carved origin,
+            // or a prior run of this job) → nothing to do.
+            if (OriginTextSidecarIsCurrent(root, stamp)) return;
+
+            ct.ThrowIfCancellationRequested();
+
+            var finalBin = Path.Combine(root, OriginTextBinFileName);
+            var finalMan = Path.Combine(root, OriginTextManifestFileName);
+            var tmpBin = finalBin + ".tmp";
+            var tmpMan = finalMan + ".tmp";
+            try { if (File.Exists(tmpBin)) File.Delete(tmpBin); } catch { }
+            try { if (File.Exists(tmpMan)) File.Delete(tmpMan); } catch { }
+
+            bool htmlDecode = Options.HtmlDecodeIfAmpersandPresent;
+            var textManifest = new SearchTextManifest
+            {
+                RootPath = root,
+                BuiltUtc = DateTime.UtcNow,
+                BuildGuid = TextBuildGuid,
+                Version = TextManifestVersion,
+                IndexStamp = stamp, // accelerator binding to the origin family
+            };
+
+            long textOffset = 0;
+            using (var outTextFs = new FileStream(tmpBin, FileMode.Create, FileAccess.Write, FileShare.Read, 65536))
+            {
+                foreach (var e in originMan.Entries)
+                {
+                    ct.ThrowIfCancellationRequested();
+
+                    // Origin entries are all Original-side; resolve under originalDir (no additional
+                    // dirs — the frozen layer is exactly xml-p5). Extract the SAME searchable text
+                    // the build core / verify XML-fallback produce (DecodeXmlBytes == ReadAllText
+                    // Utf8NoBom semantics), so the sidecar is byte-identical to a locally-built one.
+                    string abs = ResolveAbsPath(originalDir, null, e.RelPath);
+                    string searchable;
+                    try
+                    {
+                        var raw = File.ReadAllBytes(abs);
+                        searchable = MakeSearchableTextFromXml_Fast(DecodeXmlBytes(raw), htmlDecode);
+                    }
+                    catch
+                    {
+                        // Best-effort: a missing/unreadable origin file yields a 0-length block; the
+                        // verify path XML-falls-back for it (and gracefully handles the missing file).
+                        searchable = "";
+                    }
+
+                    var bytes = string.IsNullOrEmpty(searchable) ? Array.Empty<byte>() : Utf8NoBom.GetBytes(searchable);
+                    if (bytes.Length > 0)
+                        await outTextFs.WriteAsync(bytes, 0, bytes.Length, ct).ConfigureAwait(false);
+
+                    textManifest.Entries.Add(new SearchTextEntry
+                    {
+                        Id = e.Id,
+                        RelPath = e.RelPath,
+                        Side = e.Side,
+                        LastWriteUtcTicks = e.LastWriteUtcTicks,
+                        LengthBytes = e.LengthBytes,
+                        TextOffset = textOffset,
+                        TextLengthBytes = bytes.Length,
+                    });
+                    textOffset += bytes.Length;
+                }
+                await outTextFs.FlushAsync(ct).ConfigureAwait(false);
+            }
+
+            var manJson = JsonSerializer.Serialize(textManifest, JsonOpts);
+            await File.WriteAllTextAsync(tmpMan, manJson, Utf8NoBom, ct).ConfigureAwait(false);
+
+            // Commit the BIN first, then the MANIFEST: a torn commit that leaves only the bin is the
+            // clean sidecar-absent state (the loader needs BOTH files), so a reader never sees a
+            // manifest whose offsets point past a not-yet-written bin.
+            ReplaceFileAtomicWithRetry(tmpBin, finalBin);
+            ReplaceFileAtomicWithRetry(tmpMan, finalMan);
+
+            Interlocked.Increment(ref _originTextMaterializeCount);
+            Dbg($"Origin text sidecar materialized: {textManifest.Entries.Count} entries, {textOffset} bytes (stamp {stamp}).");
+        }
+        catch (OperationCanceledException)
+        {
+            // Cancelled (Dispose / shutdown): leave the sidecar absent → search stays correct.
+            CleanupOriginTextTmp(root);
+        }
+        catch (Exception ex)
+        {
+            Dbg($"Origin text materialization failed (best-effort; search stays correct via XML fallback): {ex.Message}");
+            CleanupOriginTextTmp(root);
+        }
+    }
+
+    /// <summary>FL7: best-effort removal of any stray origin-text tmp files left by a torn/cancelled
+    /// materialization, so a later run starts clean.</summary>
+    private static void CleanupOriginTextTmp(string root)
+    {
+        try { var b = Path.Combine(root, OriginTextBinFileName) + ".tmp"; if (File.Exists(b)) File.Delete(b); } catch { }
+        try { var m = Path.Combine(root, OriginTextManifestFileName) + ".tmp"; if (File.Exists(m)) File.Delete(m); } catch { }
+    }
+
+    /// <summary>
+    /// FL7 (§5.3): fire the origin-text materialization job at IDLE priority when the frozen origin
+    /// family is present but its text sidecar is ABSENT — i.e. right after an adopt from a trimmed
+    /// bundle. Non-blocking (detached <see cref="Task.Run(Action)"/>), SINGLE-WRITER (a second call
+    /// no-ops while one job runs), and self-gating (the job re-checks idempotency). A locally-built
+    /// or carved origin already has the sidecar → the cheap File.Exists pre-check skips the spawn,
+    /// so the frozen-never-rebuilds edit paths pay nothing. Never blocks the UI or the build.
+    /// </summary>
+    private void MaybeTriggerOriginTextMaterialization(string root, string originalDir)
+    {
+        try
+        {
+            // Cheap synchronous pre-check: a split-origin root whose text sidecar is absent. (A
+            // present sidecar — stamp-current or, in the rare stamp-stale case, re-written by the
+            // next local origin build — needs no idle job, so skip the spawn.)
+            if (!File.Exists(Path.Combine(root, OriginManifestFileName))) return;
+            if (File.Exists(Path.Combine(root, OriginTextBinFileName)) &&
+                File.Exists(Path.Combine(root, OriginTextManifestFileName)))
+                return;
+
+            // Single-writer: only one materialization in flight per service instance.
+            if (Interlocked.CompareExchange(ref _originTextMaterializeFlag, 1, 0) != 0) return;
+
+            var ct = _backgroundCts.Token;
+            var task = Task.Run(async () =>
+            {
+                try
+                {
+                    // Idle/low priority: a best-effort accelerator, never on a hot path.
+                    try { Thread.CurrentThread.Priority = ThreadPriority.Lowest; } catch { }
+                    await MaterializeOriginTextAsync(root, originalDir, ct).ConfigureAwait(false);
+                }
+                finally
+                {
+                    Interlocked.Exchange(ref _originTextMaterializeFlag, 0);
+                }
+            }, ct);
+            Volatile.Write(ref _originTextMaterializeTask, task);
+        }
+        catch
+        {
+            // Trigger is itself best-effort; a failure to spawn just means the sidecar stays absent
+            // (search correct via XML fallback) until a later launch retries.
+            Interlocked.Exchange(ref _originTextMaterializeFlag, 0);
+        }
     }
 
     /// <summary>FL3: the combined build routes through the shared layer core with the

@@ -126,6 +126,13 @@ public sealed class SearchSplitZeroRebuildTests : IDisposable
         await svc.BuildOrUpdateAsync(_root, _origDir, new[] { _tranDir }, forceRebuild: false);
         Assert.True(File.Exists(Path.Combine(_root, "search.overlay.manifest.json")));
         Assert.Equal(2, svc.LastBuildXmlReadCount);   // only the 2 translations — origin never read
+
+        // FL7 (§5.3): the adopt-from-trimmed-bundle left search.origin.text.* absent; the split
+        // build fires the idle materialization job to fill it. Await it deterministically before
+        // snapshotting the origin family so the sidecar is a stable member of the snapshot (and NOT
+        // a build of the frozen family — LastBuildXmlReadCount stayed 2 above, origin XML unread).
+        await svc.WhenOriginTextMaterializedAsync();
+        Assert.True(File.Exists(Path.Combine(_root, "search.origin.text.bin")));   // materialized
         Assert.Equal(0, svc.LastBuildFallbackCount);
         Assert.Equal(bundleOriginStamp, StampField(Path.Combine(_root, "search.origin.manifest.json"), "IndexStamp"));
         Assert.False(await svc.IsStaleAsync(_root, _origDir, new[] { _tranDir }));  // fresh, no rebuild loop

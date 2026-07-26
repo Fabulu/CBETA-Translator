@@ -424,6 +424,20 @@ public sealed class SearchTextManifest
     public string RootPath { get; set; } = "";
     public DateTime BuiltUtc { get; set; } = DateTime.UtcNow;
     public string BuildGuid { get; set; } = "search-v1-text-sidecar";
+
+    /// <summary>
+    /// FL7 (frozen/live split, design §5.3): the owning layer's <see cref="SearchIndexManifest.IndexStamp"/>
+    /// this text sidecar was materialized against — the accelerator binding for the ORIGIN text
+    /// sidecar (written by <c>SearchIndexService.MaterializeOriginTextAsync</c>). The read-path
+    /// route builder REFUSES a sidecar whose stamp differs from its family manifest's current
+    /// stamp (the origin corpus advanced under a stale sidecar), falling back to the XML parse so
+    /// search stays fully correct without it. Nullable, JSON-tolerant and OMITTED when null
+    /// (<see cref="JsonIgnoreCondition.WhenWritingNull"/>): the combined/overlay text sidecars —
+    /// written by the normal build, which does not stamp them — stay byte-identical to pre-FL7.
+    /// </summary>
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public string? IndexStamp { get; set; } = null;
+
     public List<SearchTextEntry> Entries { get; set; } = new();
 }
 
