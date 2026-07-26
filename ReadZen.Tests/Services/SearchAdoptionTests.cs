@@ -177,52 +177,47 @@ public sealed class SearchAdoptionTests : IDisposable
     // Decision table (§2.1) — one row per test, single-corpus (ScopeComplete = true)
     // ==================================================================================
 
-    [Fact] // Row 1: FRESH local, any bundle → keep local, no copy, no build.
+    [Fact] // Row 1 (FL6 split): FRESH split local, matching origin bundle → keep local, no build.
     public async Task Row1_FreshLocal_KeepsLocal_ZeroBuild_BundleUntouched()
     {
         WriteBaseCorpus();
         var root = NewDir("root");
-        await BuildFamily(root, _origDir, _tranDir);   // local == live
+        await BuildSplitRoot(root, _origDir, new[] { _tranDir });   // split local == live (fresh)
 
-        // A MATCHING bundle staged; a sentinel non-family file in the root would be removed by
-        // the leftover-delete if adoption fired. On a fresh local, adoption must never run.
+        // A MATCHING origin bundle staged; on a fresh local origin, adoption must never fire.
         var bundle = NewDir("bundle");
-        await BuildFamily(bundle, _origDir, _tranDir);
-        var sentinel = Path.Combine(root, "search.SENTINEL.marker");
-        File.WriteAllText(sentinel, "keep-me");
-        var hashBefore = InputHashOf(root);
+        await BuildOriginBundle(bundle, _origDir);
+        var originStamp = OriginStampOf(root);
 
         using var probe = Probe(bundle);
         Assert.False(await probe.IsStaleAsync(root, _origDir, new[] { _tranDir }));
 
         Assert.Equal(0, probe.LastBuildXmlReadCount);          // no build ran
-        Assert.True(File.Exists(sentinel));                    // leftover-delete never ran
-        Assert.Equal(hashBefore, InputHashOf(root));           // manifest untouched (not adopted)
+        Assert.Equal(originStamp, OriginStampOf(root));        // origin kept local (not adopted-over)
     }
 
-    [Fact] // Row 2: STALE local, bundle MATCHES live + ScopeComplete → ADOPT over local, zero build.
+    [Fact] // Row 2 (FL6 split): STALE origin, matching origin bundle → ADOPT origin over local
+           // (file copy, zero origin build); the tiny overlay catch-up is then owed.
     public async Task Row2_StaleLocal_MatchingBundle_AdoptsOverLocal_ZeroBuild()
     {
         WriteBaseCorpus();
         var root = NewDir("root");
-        await BuildFamily(root, _origDir, _tranDir);           // local == corpus v1
-        var localHash = InputHashOf(root);
+        await BuildSplitRoot(root, _origDir, new[] { _tranDir });   // split local == origin v1
 
-        // Advance the corpus to v2 (add a file) and cut a bundle from v2 → bundle == live.
-        Write(_origDir, "b.xml", BodyA2);
-        Write(_tranDir, "b.xml", BodyA2);
+        // Advance the origin corpus and cut an ORIGIN bundle from it → bundle == live origin.
+        Write(_origDir, "a.xml", BodyA + BodyA2);
         var bundle = NewDir("bundle");
-        await BuildFamily(bundle, _origDir, _tranDir);
-        var bundleHash = InputHashOf(bundle);
-        Assert.NotEqual(localHash, bundleHash);                // sanity: local really is stale
+        await BuildOriginBundle(bundle, _origDir);
+        var bundleOriginStamp = OriginStampOf(bundle);
+        Assert.NotEqual(bundleOriginStamp, OriginStampOf(root));    // sanity: local origin really is stale
 
         using var probe = Probe(bundle);
-        Assert.False(await probe.IsStaleAsync(root, _origDir, new[] { _tranDir })); // adopt → zero build
-        Assert.Equal(0, probe.LastBuildXmlReadCount);
+        // Origin adopted (fresh); overlay's BasedOnOriginStamp now mismatches ⇒ overlay catch-up owed.
+        Assert.True(await probe.IsStaleAsync(root, _origDir, new[] { _tranDir }));
+        Assert.Equal(bundleOriginStamp, OriginStampOf(root));       // ADOPTED over local, zero origin build
 
-        // The bundle's manifest (v2 InputHash) now owns the root — adoption over local happened.
-        Assert.Equal(bundleHash, InputHashOf(root));
-        // A second probe confirms the adopted root is genuinely fresh (idempotent, still zero build).
+        await probe.BuildOrUpdateAsync(root, _origDir, new[] { _tranDir }, forceRebuild: false);
+        Assert.Equal(bundleOriginStamp, OriginStampOf(root));       // origin untouched by the overlay rebuild
         using var probe2 = Probe(bundle);
         Assert.False(await probe2.IsStaleAsync(root, _origDir, new[] { _tranDir }));
     }
@@ -310,42 +305,40 @@ public sealed class SearchAdoptionTests : IDisposable
     // Leftover-delete (§2.2) + re-home (three path-bound manifests)
     // ==================================================================================
 
-    [Fact] // Adopting a TRIMMED bundle over a full local family deletes the orphaned
-           // text + gramsets — bins AND manifests — so the root is canonical, not merely safe.
+    [Fact] // FL6 split: adopting a TRIMMED origin bundle over a full local origin deletes the
+           // orphaned origin text sidecar (bin AND manifest) — the origin root is canonical.
     public async Task AdoptOverStale_ReplacesWholeFamily_AndDeletesLeftovers()
     {
         WriteBaseCorpus();
         var root = NewDir("root");
-        await BuildFamily(root, _origDir, _tranDir);           // full local family (has text + gramsets)
-        Assert.True(Has(root, TextBin) && Has(root, GramBin)); // precondition: leftovers exist
+        await BuildSplitRoot(root, _origDir, new[] { _tranDir });   // local origin build writes the text sidecar
+        Assert.True(Has(root, "search.origin.text.bin"));           // precondition: leftover exists
 
-        // Advance corpus to v2 and cut a bundle from v2, then TRIM it (the shipped shape:
-        // bloom + inverted + corpusfreq only — no text sidecar, no gramsets).
-        Write(_origDir, "b.xml", BodyA2);
-        Write(_tranDir, "b.xml", BodyA2);
+        // Advance the origin corpus and cut an origin bundle from it, then TRIM it (the shipped
+        // shape: origin family MINUS text).
+        Write(_origDir, "a.xml", BodyA + BodyA2);
         var full = NewDir("full-bundle");
-        await BuildFamily(full, _origDir, _tranDir);
+        await BuildOriginBundle(full, _origDir);
         var trimmed = NewDir("trimmed-bundle");
-        foreach (var f in Directory.EnumerateFiles(full, "search.*"))
+        foreach (var f in Directory.EnumerateFiles(full, "search.origin.*"))
         {
             var name = Path.GetFileName(f);
-            if (name.StartsWith("search.text.", StringComparison.Ordinal) ||
-                name.StartsWith("search.gramsets.", StringComparison.Ordinal)) continue;
+            if (name.StartsWith("search.origin.text.", StringComparison.Ordinal)) continue;  // trim text
             File.Copy(f, Path.Combine(trimmed, name));
         }
-        var bundleHash = InputHashOf(trimmed);
+        var bundleOriginStamp = OriginStampOf(trimmed);
 
         using var probe = Probe(trimmed);
-        Assert.False(await probe.IsStaleAsync(root, _origDir, new[] { _tranDir })); // adopt-over-local
+        Assert.True(await probe.IsStaleAsync(root, _origDir, new[] { _tranDir })); // adopt origin, overlay owed
 
-        // The whole trimmed family is present…
-        Assert.True(Has(root, IndexBin) && Has(root, InvertedBin) && Has(root, CorpusFreqBin));
-        Assert.Equal(bundleHash, InputHashOf(root));
-        // …and every orphaned sidecar file the bundle did NOT bring is gone — MANIFESTS included.
-        Assert.False(Has(root, TextBin), "stale text.bin must be deleted");
-        Assert.False(Has(root, TextManifest), "stale text.manifest.json must be deleted");
-        Assert.False(Has(root, GramBin), "stale gramsets.bin must be deleted");
-        Assert.False(Has(root, GramManifest), "stale gramsets.manifest.json must be deleted");
+        // The origin family is present and adopted…
+        Assert.True(Has(root, "search.origin.bin") &&
+                    Has(root, "search.origin.inverted.bin") &&
+                    Has(root, "search.origin.corpusfreq.bin"));
+        Assert.Equal(bundleOriginStamp, OriginStampOf(root));
+        // …and the orphaned origin text sidecar the trimmed bundle did NOT bring is gone.
+        Assert.False(Has(root, "search.origin.text.bin"), "stale origin text.bin must be deleted");
+        Assert.False(Has(root, "search.origin.text.manifest.json"), "stale origin text.manifest.json must be deleted");
     }
 
     [Fact] // The copy re-homes the RootPath of ALL THREE path-bound manifests (bloom, text,
@@ -371,24 +364,24 @@ public sealed class SearchAdoptionTests : IDisposable
     // False-fresh / adopt-never-fires guards
     // ==================================================================================
 
-    [Fact] // A live-mismatching bundle must never overwrite a FRESH local index (false-positive guard).
+    [Fact] // FL6 split: a live-mismatching origin bundle must never overwrite a FRESH local origin.
     public async Task AdoptNeverFiresOnFreshLocal()
     {
         WriteBaseCorpus();
         var root = NewDir("root");
-        await BuildFamily(root, _origDir, _tranDir);           // local == live (fresh)
-        var localHash = InputHashOf(root);
+        await BuildSplitRoot(root, _origDir, new[] { _tranDir });   // origin == live (fresh)
+        var originStamp = OriginStampOf(root);
 
-        // A bundle from an unrelated corpus (≠ live). Even so, a fresh local short-circuits
+        // An origin bundle from an unrelated corpus (≠ live). A fresh local origin short-circuits
         // BEFORE the adoption branch — the bundle is never consulted.
-        var cOrig = NewDir("cOrig"); var cTran = NewDir("cTran");
-        Write(cOrig, "c.xml", BodyC); Write(cTran, "c.xml", BodyC);
+        var cOrig = NewDir("cOrig");
+        Write(cOrig, "c.xml", BodyC);
         var bundle = NewDir("bundle");
-        await BuildFamily(bundle, cOrig, cTran);
+        await BuildOriginBundle(bundle, cOrig);
 
         using var probe = Probe(bundle);
         Assert.False(await probe.IsStaleAsync(root, _origDir, new[] { _tranDir }));
-        Assert.Equal(localHash, InputHashOf(root));            // untouched
+        Assert.Equal(originStamp, OriginStampOf(root));            // untouched
     }
 
     // ==================================================================================
@@ -424,37 +417,37 @@ public sealed class SearchAdoptionTests : IDisposable
         Assert.Empty(Directory.EnumerateFiles(root, "search.*"));
     }
 
-    [Fact] // A current bloom but wrong-guid CORPUSFREQ sibling is a FAMILY mismatch → Branch B
-           // (reseed/rebuild), never served fresh-with-degraded-ranking (§2.2a).
+    [Fact] // FL6 split: a current origin bloom but wrong-guid ORIGIN corpusfreq sibling is a FAMILY
+           // mismatch → stale (§2.2a), never served fresh-with-degraded-ranking.
     public async Task CorpusFreqGuidMismatch_TreatedAsFamilyMismatch()
     {
         WriteBaseCorpus();
         var root = NewDir("root");
-        await BuildFamily(root, _origDir, _tranDir);
+        await BuildSplitRoot(root, _origDir, new[] { _tranDir });
         var empty = EmptyBundle();
 
-        // Baseline: the intact family on an unchanged corpus is NOT stale.
+        // Baseline: the intact split family on an unchanged corpus is NOT stale.
         using (var baseline = Probe(empty))
             Assert.False(await baseline.IsStaleAsync(root, _origDir, new[] { _tranDir }));
 
-        // Poison ONLY the corpusfreq guid — bloom stays current, corpus unchanged. A bloom-only
-        // freshness check would still say "fresh"; the family gate must instead force stale.
-        PoisonGuid(Path.Combine(root, CorpusFreqManifest), "corpusfreq-vSTALE");
+        // Poison ONLY the origin corpusfreq guid — origin bloom stays current, corpus unchanged.
+        // The origin family gate must force stale (an origin rebuild/adopt re-materialises it).
+        PoisonGuid(Path.Combine(root, "search.origin.corpusfreq.manifest.json"), "corpusfreq-vSTALE");
         using var probe = Probe(empty);
         Assert.True(await probe.IsStaleAsync(root, _origDir, new[] { _tranDir }));
     }
 
-    [Fact] // The optional TEXT sidecar's guid is NOT part of the family gate — a mismatch is
-           // ignored (equivalent to an absent sidecar), never fatal (§2.2a / §5).
+    [Fact] // FL6 split: the optional ORIGIN text sidecar's guid is NOT part of the family gate —
+           // a mismatch is ignored (equivalent to an absent sidecar), never fatal (§2.2a / §5).
     public async Task TextGuidMismatch_IsIgnoredNotFatal()
     {
         WriteBaseCorpus();
         var root = NewDir("root");
-        await BuildFamily(root, _origDir, _tranDir);
+        await BuildSplitRoot(root, _origDir, new[] { _tranDir });
 
-        PoisonGuid(Path.Combine(root, TextManifest), "text-vSTALE");
+        PoisonGuid(Path.Combine(root, "search.origin.text.manifest.json"), "text-vSTALE");
         using var probe = Probe(EmptyBundle());
-        // Corpus unchanged, bloom + corpusfreq current → still fresh despite the stale sidecar guid.
+        // Corpus unchanged, origin bloom + corpusfreq current → still fresh despite the stale sidecar.
         Assert.False(await probe.IsStaleAsync(root, _origDir, new[] { _tranDir }));
     }
 
@@ -583,25 +576,24 @@ public sealed class SearchAdoptionTests : IDisposable
     // Update simulation + stale-detection truth table (hash path, mtime-immune)
     // ==================================================================================
 
-    [Fact] // The headline update case: a content EDIT (not just an added file) advances the
-           // corpus to the bundle's state ⇒ the probe adopts, IsStaleAsync false, zero build.
+    [Fact] // FL6 split headline update: a content EDIT advances the origin corpus to the origin
+           // bundle's state ⇒ the probe ADOPTS the origin over local (zero origin build).
     public async Task UpdateSimulation_CorpusAdvancesToBundle_AdoptsZeroBuild()
     {
         WriteBaseCorpus();
         var root = NewDir("root");
-        await BuildFamily(root, _origDir, _tranDir);           // local == v1
+        await BuildSplitRoot(root, _origDir, new[] { _tranDir });   // origin == v1
 
-        // Edit an existing file's content (a genuine translation change) → v2, then bundle v2.
+        // Edit an existing origin file's content → v2, then cut an origin bundle from v2.
         Write(_origDir, "a.xml", BodyA + BodyA2);
         var bundle = NewDir("bundle");
-        await BuildFamily(bundle, _origDir, _tranDir);
-        var bundleHash = InputHashOf(bundle);
-        Assert.NotEqual(InputHashOf(root), bundleHash);
+        await BuildOriginBundle(bundle, _origDir);
+        var bundleOriginStamp = OriginStampOf(bundle);
+        Assert.NotEqual(bundleOriginStamp, OriginStampOf(root));
 
         using var probe = Probe(bundle);
-        Assert.False(await probe.IsStaleAsync(root, _origDir, new[] { _tranDir }));
-        Assert.Equal(0, probe.LastBuildXmlReadCount);
-        Assert.Equal(bundleHash, InputHashOf(root));           // adopted
+        Assert.True(await probe.IsStaleAsync(root, _origDir, new[] { _tranDir })); // origin adopted, overlay owed
+        Assert.Equal(bundleOriginStamp, OriginStampOf(root));      // adopted over local, zero origin build
     }
 
     [Fact] // Content changed but mtime forced back to the original ⇒ STALE (freshness is content-
@@ -621,13 +613,13 @@ public sealed class SearchAdoptionTests : IDisposable
         Assert.True(await probe.IsStaleAsync(root, _origDir, new[] { _tranDir }));
     }
 
-    [Fact] // mtime bumped but content identical ⇒ NOT stale (git pull / checkout mtime churn is
-           // ignored). The hash is recomputed on the cache miss and matches.
+    [Fact] // FL6 split: origin mtime bumped but content identical ⇒ NOT stale (git pull / checkout
+           // mtime churn is ignored). The origin hash is recomputed on the cache miss and matches.
     public async Task StaleTruthTable_MtimeChangeNoContent_NotStale()
     {
         WriteBaseCorpus();
         var root = NewDir("root");
-        await BuildFamily(root, _origDir, _tranDir);
+        await BuildSplitRoot(root, _origDir, new[] { _tranDir });
 
         var file = Path.Combine(_origDir, "a.xml");
         File.SetLastWriteTimeUtc(file, File.GetLastWriteTimeUtc(file).AddDays(3)); // mtime only
@@ -640,31 +632,31 @@ public sealed class SearchAdoptionTests : IDisposable
     // Incremental catch-up is delta-only (row 3/5 "delta-only (search)")
     // ==================================================================================
 
-    [Fact] // Keep-local (no usable bundle) then incremental catch-up reads ONLY the changed
-           // delta — not the whole corpus — and reconciles to fresh.
+    [Fact] // FL6 split: a translation-side change (no origin drift) rebuilds ONLY the overlay — the
+           // frozen origin's files are never re-read (the split analogue of the old delta-only catch-up).
     public async Task StaleLocal_NoBundle_IncrementalCatchUp_ReadsOnlyDelta()
     {
-        // A corpus big enough that a 1-file delta stays under the 20% full-rebuild threshold.
         for (int i = 0; i < 12; i++)
         {
             Write(_origDir, $"f{i:D2}.xml", BodyA + i);
             Write(_tranDir, $"f{i:D2}.xml", BodyA + i);
         }
         var root = NewDir("root");
-        await BuildFamily(root, _origDir, _tranDir);
+        await BuildSplitRoot(root, _origDir, new[] { _tranDir });
+        var originStamp = OriginStampOf(root);
 
-        // Add exactly one file (1/24 files ≈ 4% delta).
-        Write(_origDir, "new.xml", BodyA2);
-        Write(_tranDir, "new.xml", BodyA2);
+        // Edit ONE translation (origin corpus unchanged ⇒ origin stays frozen).
+        Write(_tranDir, "f00.xml", BodyA2 + "changed");
 
         using var probe = Probe(EmptyBundle());
         Assert.True(await probe.IsStaleAsync(root, _origDir, new[] { _tranDir }));
 
-        using var build = new SearchIndexService();
+        using var build = new SearchIndexService { TestOnlyBundleDirOverride = EmptyBundle() };
         await build.BuildOrUpdateAsync(root, _origDir, new[] { _tranDir }, forceRebuild: false);
-        Assert.Equal(0, build.LastBuildDeltaGuardTripped);     // stayed on the incremental path
         Assert.Equal(0, build.LastBuildFallbackCount);         // no fault-retry
-        Assert.Equal(2, build.LastBuildXmlReadCount);          // only the 2 added (orig+tran) files read
+        Assert.Equal(originStamp, OriginStampOf(root));        // origin FROZEN — never rebuilt/re-read
+        // A full per-layer overlay build reads the 12 translations — NOT the 12 frozen origin files.
+        Assert.Equal(12, build.LastBuildXmlReadCount);
 
         using var after = Probe(EmptyBundle());
         Assert.False(await after.IsStaleAsync(root, _origDir, new[] { _tranDir }));

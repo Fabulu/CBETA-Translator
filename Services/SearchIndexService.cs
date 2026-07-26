@@ -1268,6 +1268,16 @@ public sealed class SearchIndexService : ISearchIndexService
     /// (and its tests) can reject a bundle cut for an older index format.</summary>
     internal static string CurrentSearchBuildGuid => BuildGuid;
 
+    /// <summary>FL6: the current frozen-ORIGIN family guid — the value CI bakes into the shipped
+    /// bundle's <c>search.origin.manifest.json</c> and the guid-bundle-guard compares.</summary>
+    internal static string CurrentOriginBuildGuid => OriginBuildGuid;
+
+    /// <summary>FL6: the current live-OVERLAY family guid.</summary>
+    internal static string CurrentOverlayBuildGuid => OverlayBuildGuid;
+
+    /// <summary>FL6: the current corpusfreq sibling guid (§2.2a family gate).</summary>
+    internal static string CurrentCorpusFreqBuildGuid => CorpusFreqBuildGuid;
+
     /// <summary>Outcome of <see cref="EvaluateBundleAdoption"/>: what a launch probe should do
     /// with the prebuilt bundle given the local index state and (when known) the live InputHash.
     /// Maps onto the §2.1 decision table.</summary>
@@ -1780,7 +1790,14 @@ public sealed class SearchIndexService : ISearchIndexService
     /// </summary>
     public static int RunPrintBuildGuid(TextWriter log)
     {
+        // FL6 (§6.3): the release ships the frozen ORIGIN family as its bundle, so the
+        // release-blocking guid-bundle-guard now compares the ORIGIN guid against the staged
+        // search.origin.manifest.json. Emit the origin/overlay/corpusfreq guids; the legacy
+        // SearchBuildGuid line is kept for older tooling (harmless — combined serving is
+        // retired in FL8, and nothing new parses it).
         log.WriteLine($"SearchBuildGuid={BuildGuid}");
+        log.WriteLine($"SearchOriginBuildGuid={OriginBuildGuid}");
+        log.WriteLine($"SearchOverlayBuildGuid={OverlayBuildGuid}");
         log.WriteLine($"CorpusFreqBuildGuid={CorpusFreqBuildGuid}");
         return 0;
     }
@@ -1809,8 +1826,12 @@ public sealed class SearchIndexService : ISearchIndexService
                            File.Exists(Path.Combine(root, OverlayManifestFileName));
         if (splitOnDisk) return true;
 
-        // #1 constraint: an existing legacy combined family with no split-on-disk stays combined
-        // (its migration to split is FL6). Never adopt a split bundle OVER a live combined root.
+        // A legacy combined family with no split-on-disk stays on the COMBINED path for
+        // serving/staleness (its serving code is retired in FL8, not FL6). FL6's combined→split
+        // MIGRATION is driven separately by the build orchestration (BuildOrUpdateAsync →
+        // MigrateCombinedToSplitAsync, gated by NeedsMigration), which converts the family to split
+        // via Path A (adopt origin bundle + fresh overlay) or Path B (carve from the legacy
+        // artifacts) — never a mass rebuild. Once migrated, splitOnDisk above routes it to split.
         bool legacyCombinedOnDisk = File.Exists(Path.Combine(root, ManifestFileName));
         if (legacyCombinedOnDisk) return false;
 
@@ -2036,6 +2057,186 @@ public sealed class SearchIndexService : ISearchIndexService
         }
     }
 
+    // ═══════════════════════════════════════════════════════════════════════════════════
+    // FL6 (design §6): one-time migration of an existing LEGACY COMBINED root (search.index.* /
+    // search.text.* / …, guid search-v8-full-df) to the two-layer split. Path A (bundle-first):
+    // adopt the frozen origin bundle by file copy + build the overlay fresh. Path B (carve): a
+    // one-time split build that reads ONLY the legacy artifacts (byte-copy bloom, carry text +
+    // ContentHashes, recompute grams/tf + corpusfreq from the carried text) — the SAME cost class
+    // as one incremental catch-up, NO XML parse for stat-unchanged entries. NEITHER path mass-
+    // rebuilds. The legacy family is deleted only after the split family commits; a torn carve
+    // rolls back to the (still-servable) legacy family — never a torn/hybrid split root.
+    // ═══════════════════════════════════════════════════════════════════════════════════
+
+    /// <summary>FL6: the carry-forward source for a Path-B carve — the legacy combined manifest +
+    /// text manifest and their bin paths, fed to <see cref="BuildLayerCoreAsync"/> as the "old"
+    /// artifacts so the skip-read path carries every stat-unchanged entry with no XML read.</summary>
+    private sealed record LayerCarrySource(
+        SearchIndexManifest Manifest, SearchTextManifest? TextManifest, string BinPath, string TextBinPath);
+
+    /// <summary>FL6: a migration is owed iff a legacy combined bloom manifest is present AND neither
+    /// split-layer manifest exists yet. Pure/cheap (three File.Exists) — safe on the staleness and
+    /// build hot paths.</summary>
+    private static bool NeedsMigration(string root)
+        => File.Exists(Path.Combine(root, ManifestFileName)) &&
+           !File.Exists(Path.Combine(root, OriginManifestFileName)) &&
+           !File.Exists(Path.Combine(root, OverlayManifestFileName));
+
+    /// <summary>FL6 (§6): the deliberate migration reader — v9 <see cref="TryLoadAsync"/> refuses a
+    /// combined manifest for SERVING, but the migration reads it here to carve from. Loads the
+    /// legacy combined bloom manifest (guid <see cref="BuildGuid"/>) and its text sidecar manifest
+    /// (may be null on a trimmed root — then the carve re-extracts text from XML for those entries).
+    /// Returns null when the combined manifest is absent/guid-stale/corrupt.</summary>
+    private async Task<LayerCarrySource?> ReadCombinedManifestForMigrationAsync(string root, CancellationToken ct)
+    {
+        var mp = GetManifestPath(root);
+        var bp = GetBinPath(root);
+        if (!File.Exists(mp) || !File.Exists(bp)) return null;
+        try
+        {
+            var json = await File.ReadAllTextAsync(mp, Utf8NoBom, ct).ConfigureAwait(false);
+            if (string.IsNullOrWhiteSpace(json)) return null;
+            var man = JsonSerializer.Deserialize<SearchIndexManifest>(json, JsonOpts);
+            if (man == null) return null;
+            if (man.Version != 1) return null;
+            if (!string.Equals(man.BuildGuid, BuildGuid, StringComparison.Ordinal)) return null;
+            if (man.Entries == null || man.Entries.Count == 0) return null;
+
+            var textMan = await TryLoadTextManifestAsync(root).ConfigureAwait(false);
+            return new LayerCarrySource(man, textMan,
+                Path.Combine(root, BinFileName), Path.Combine(root, TextBinFileName));
+        }
+        catch { return null; }
+    }
+
+    /// <summary>FL6: the live origin-corpus hash computed CHEAPLY from the legacy combined manifest's
+    /// per-entry ContentHashes (its Original-side entries seed the stat cache — stats, not reads),
+    /// so Path A can decide "does the shipped origin bundle match this user's corpus?" without a
+    /// read. Same value recipe as the origin build's OriginHash. Null on a filesystem race.</summary>
+    private static async Task<string?> ComputeOriginHashFromLegacyAsync(
+        string originalDir, SearchIndexManifest legacyCombined, CancellationToken ct)
+    {
+        try
+        {
+            var cache = BuildContentHashCache(legacyCombined); // Original entries → "orig/…"
+            return await ComputeInputHashAsync(originalDir, Array.Empty<string>(),
+                cache: cache, writeBack: null, ct).ConfigureAwait(false);
+        }
+        catch (IOException) { return null; }
+    }
+
+    /// <summary>FL6 (§6): run the combined→split migration inside the caller's _indexIoGate. Path A
+    /// when the shipped origin bundle provably matches the live origin corpus (adopt origin family
+    /// by file copy, build the overlay fresh); else Path B carve (one-time split build over the
+    /// legacy artifacts only). On success the legacy combined family is deleted. On a torn carve the
+    /// partial split families are removed and the legacy family is kept (still servable) — never a
+    /// torn split root, never a mass rebuild.</summary>
+    private async Task MigrateCombinedToSplitAsync(
+        string root, string originalDir, IReadOnlyList<string> translatedDirs,
+        IReadOnlyList<string>? additionalOriginalDirs, IReadOnlyList<string>? additionalTranslatedDirs,
+        IProgress<(int done, int total, string phase)>? progress, CancellationToken ct)
+    {
+        Interlocked.Exchange(ref _lastBuildFallbackCount, 0);
+        Interlocked.Exchange(ref _lastBuildDeltaGuardTripped, 0);
+        Interlocked.Exchange(ref _lastBuildXmlReadCount, 0);
+
+        var legacy = await ReadCombinedManifestForMigrationAsync(root, ct).ConfigureAwait(false);
+        if (legacy == null)
+        {
+            // No readable legacy manifest (shouldn't happen — NeedsMigration checked the file):
+            // fall back to a normal split build (cold path).
+            await BuildSplitAsync(root, originalDir, translatedDirs,
+                additionalOriginalDirs, additionalTranslatedDirs, forceRebuild: false, progress, ct).ConfigureAwait(false);
+            return;
+        }
+
+        progress?.Report((0, 0, "Migrating search index to split format..."));
+
+        try
+        {
+            // ── Path A: bundle-first. Live origin hash computed cheaply from the legacy manifest's
+            //    ContentHashes (stats). If a v9 origin bundle ships and its baked OriginHash ==
+            //    live, adopt it (file copy) and build the overlay fresh — zero origin XML reads.
+            var bundleDir = ResolveBundleDir();
+            var liveOriginHash = await ComputeOriginHashFromLegacyAsync(originalDir, legacy.Manifest, ct).ConfigureAwait(false);
+            if (liveOriginHash != null && SplitBundleAvailable(bundleDir))
+            {
+                var bundleHash = TryReadBundleOriginHash(Path.Combine(bundleDir!, OriginManifestFileName));
+                if (bundleHash != null &&
+                    string.Equals(bundleHash, liveOriginHash, StringComparison.Ordinal) &&
+                    CopyOriginBundleFamilyIntoRoot(root, bundleDir!, null))
+                {
+                    await BuildOverlayLayerAsync(root, translatedDirs,
+                        additionalOriginalDirs, additionalTranslatedDirs, progress, ct).ConfigureAwait(false);
+                    // Release any mmap this instance held on the legacy family BEFORE deleting it.
+                    InvalidateIndexCaches();
+                    DeleteLegacyCombinedFamily(root);
+                    return;
+                }
+            }
+
+            // ── Path B: carve. One-time split build reading ONLY the legacy artifacts. Origin
+            //    first (the overlay reads the origin rel-set for §1.2 shadowing + §3.2 inverted
+            //    exclusion), then overlay. The delta guard is bypassed inside BuildLayerCoreAsync.
+            await BuildLayerCoreAsync(OriginSpec(), root, originalDir, Array.Empty<string>(),
+                allowIncremental: false, additionalOriginalDirs: null, additionalTranslatedDirs: null,
+                progress, ct, carrySource: legacy).ConfigureAwait(false);
+
+            var originRels = await LoadOriginRelSetAsync(root, ct).ConfigureAwait(false);
+            await BuildLayerCoreAsync(OverlaySpec(originRels), root, originalDir: "", translatedDirs,
+                allowIncremental: false, additionalOriginalDirs, additionalTranslatedDirs,
+                progress, ct, carrySource: legacy).ConfigureAwait(false);
+
+            // Release any mmap this instance held on the legacy family BEFORE deleting it.
+            InvalidateIndexCaches();
+            DeleteLegacyCombinedFamily(root);
+        }
+        catch (OperationCanceledException)
+        {
+            throw;
+        }
+        catch (Exception ex)
+        {
+            // S5-style torn-carve fallback: remove any partial split families so no torn/hybrid
+            // split root can load, and KEEP the legacy combined family (still servable — TryLoadAsync
+            // serves it — and a later launch retries the migration). Never a mass rebuild.
+            Dbg($"Combined→split migration failed ({ex.Message}); rolling back partial split families, keeping legacy combined.");
+            DeleteFamilyFiles(root, "search.origin.*");
+            DeleteFamilyFiles(root, "search.overlay.*");
+            DeleteStrayFamilyTmpFiles(root);
+            InvalidateIndexCaches();
+        }
+    }
+
+    /// <summary>FL6: delete the legacy combined family (search.index.* / search.text.* /
+    /// search.corpusfreq.* / search.inverted.* / search.gramsets.*) after a successful migration.
+    /// None of these globs match the origin/overlay names, so the freshly-committed split family is
+    /// untouched.</summary>
+    private static void DeleteLegacyCombinedFamily(string root)
+    {
+        foreach (var glob in new[]
+        {
+            "search.index.*", "search.text.*", "search.corpusfreq.*",
+            "search.inverted.*", "search.gramsets.*",
+        })
+            DeleteFamilyFiles(root, glob);
+    }
+
+    /// <summary>FL6: best-effort delete of every non-.tmp file matching <paramref name="glob"/>
+    /// directly under <paramref name="root"/>.</summary>
+    private static void DeleteFamilyFiles(string root, string glob)
+    {
+        try
+        {
+            foreach (var f in Directory.EnumerateFiles(root, glob, SearchOption.TopDirectoryOnly))
+            {
+                if (f.EndsWith(".tmp", StringComparison.OrdinalIgnoreCase)) continue;
+                try { File.Delete(f); } catch { }
+            }
+        }
+        catch { }
+    }
+
     public async Task<bool> IsStaleAsync(
         string root,
         string originalDir,
@@ -2048,6 +2249,12 @@ public sealed class SearchIndexService : ISearchIndexService
         // combined corpusfreq manifest → churn). The origin probe adopts/seeds as a side effect;
         // the return is simply "does either layer still owe a build?".
         {
+            // FL6 note: a legacy combined root is NOT reported migration-stale here — IsStaleAsync
+            // keeps its combined verdict so the combined path stays alive (its serving code is
+            // retired in FL8, not FL6). The combined→split MIGRATION runs in the build orchestration
+            // (BuildOrUpdateAsync → MigrateCombinedToSplitAsync, gated by NeedsMigration): a real
+            // user's next rebuild carves/adopts to split with no mass rebuild. A SPLIT root here is
+            // judged by the per-layer Origin/Overlay probes.
             var splitBundle = ResolveBundleDir();
             if (UseSplitPath(root, splitBundle))
             {
@@ -3405,11 +3612,15 @@ public sealed class SearchIndexService : ISearchIndexService
             manifest.LayerRole = spec!.Role == LayerRole.Origin ? "origin" : "overlay";
             try
             {
-                // Plain content hash (same recipe as InputHash) over the caller-supplied
-                // basis dirs — no per-file cache/write-back on the layer path (FL3 does not
-                // need per-entry stamp propagation on layer manifests; the entries already
-                // carry fresh ContentHash from the build's Phase 1).
-                var h = await ComputeInputHashAsync(originalDir, translatedDirs, ct).ConfigureAwait(false);
+                // Content hash (same recipe as InputHash) over the caller-supplied basis dirs.
+                // FL6: pass the per-file content-hash cache (this build's fresh Phase-1 hashes,
+                // or — on a carve — the hashes carried from the legacy manifest) so the layer
+                // stamp is computed by STATS, not a second corpus read. Value-identical to the
+                // cache-less recipe (ComputeInputHashAsync invariant); this is what makes a Path-B
+                // carve read zero XML for stat-unchanged entries (a fresh layer build also stops
+                // paying the previously-redundant second read here).
+                var h = await ComputeInputHashAsync(originalDir, translatedDirs,
+                    cache: contentHashCache, writeBack: null, ct).ConfigureAwait(false);
                 if (spec.StampField == StampField.OriginHash) manifest.OriginHash = h;
                 else manifest.OverlayHash = h;
             }
@@ -3738,6 +3949,20 @@ public sealed class SearchIndexService : ISearchIndexService
                 // stale. A combined root (incl. an existing legacy combined family with no split
                 // bundle) keeps EXACTLY today's single build path below, so existing users are
                 // never mass-rebuilt (#1 constraint).
+                // FL6 (§6): a legacy combined root with no split family MIGRATES to split here —
+                // Path A (adopt the origin bundle + build the overlay fresh) or Path B (carve from
+                // the legacy artifacts, no XML for stat-unchanged entries) — NEVER a mass rebuild.
+                // forceRebuild (CI/headless) skips migration and rebuilds directly. Runs before the
+                // split orchestration so the legacy family is converted, not served alongside a new
+                // split. On a torn carve the migration rolls back to the (still-servable) legacy
+                // family, so an existing combined user is never left without search.
+                if (!forceRebuild && NeedsMigration(root))
+                {
+                    await MigrateCombinedToSplitAsync(root, originalDir, translatedDirs,
+                        additionalOriginalDirs, additionalTranslatedDirs, progress, ct);
+                    return;
+                }
+
                 if (UseSplitPath(root, ResolveBundleDir()))
                 {
                     await BuildSplitAsync(root, originalDir, translatedDirs,
@@ -4251,13 +4476,22 @@ public sealed class SearchIndexService : ISearchIndexService
         IReadOnlyList<string>? additionalOriginalDirs,
         IReadOnlyList<string>? additionalTranslatedDirs,
         IProgress<(int done, int total, string phase)>? progress,
-        CancellationToken ct)
+        CancellationToken ct,
+        LayerCarrySource? carrySource = null)
     {
         // FL3: incremental sourcing (old-artifact skip-read, delta guard, corpusfreq/gramsets
         // reuse) is wired only for the COMBINED layer in FL3. Origin/overlay always run a full
         // build here (their incremental staleness/adoption wiring is FL5). For the combined
         // spec this equals the caller's allowIncremental, so combined behaviour is unchanged.
-        bool coreIncremental = allowIncremental && spec.Role == LayerRole.Combined;
+        //
+        // FL6 carve (§6, Path B): a non-null carrySource enables incremental sourcing for an
+        // ORIGIN/OVERLAY build too, but points the "old" artifacts at the LEGACY COMBINED family
+        // (search.index.* / search.text.*) so every stat-unchanged entry is carried (byte-copy
+        // bloom, carried text + ContentHash) with NO XML read. The >20% delta guard, the gramsets
+        // sidecar, and the corpusfreq algebraic delta are all bypassed on a carve (grams/tf and
+        // the corpusfreq partial are recomputed from the carried text — a one-time O(text) pass).
+        bool carve = carrySource != null;
+        bool coreIncremental = (allowIncremental && spec.Role == LayerRole.Combined) || carve;
             // NOTE: body indentation is preserved from the pre-INC-2A BuildOrUpdateAsync
             // pipeline (this method is that pipeline, extracted so the public wrapper can
             // retry it once with allowIncremental:false). Keeps the refactor diff reviewable.
@@ -4274,10 +4508,22 @@ public sealed class SearchIndexService : ISearchIndexService
 
                 SearchIndexManifest? oldMan = null;
                 SearchTextManifest? oldTextMan = null;
-                string oldBinPath = Path.Combine(root, spec.BinFileName);
-                string oldTextBinPath = Path.Combine(root, spec.TextBinFileName);
+                // FL6 carve: the "old" artifacts are the LEGACY COMBINED family (passed in), not
+                // this layer's own (still-absent) files — the skip-read path carries every
+                // stat-unchanged entry from the legacy bin/text.bin.
+                string oldBinPath = carve ? carrySource!.BinPath : Path.Combine(root, spec.BinFileName);
+                string oldTextBinPath = carve ? carrySource!.TextBinPath : Path.Combine(root, spec.TextBinFileName);
 
-                if (coreIncremental)
+                if (carve)
+                {
+                    oldMan = carrySource!.Manifest;
+                    oldTextMan = carrySource!.TextManifest;
+
+                    // Test instrumentation: a torn-carve injection so the S5-style rollback
+                    // (delete partial split families, keep the legacy family) is provable.
+                    TestOnlyIncrementalFault?.Invoke();
+                }
+                else if (coreIncremental)
                 {
                     oldMan = await TryLoadAsync(root);
                     oldTextMan = await TryLoadTextManifestAsync(root);
@@ -4328,9 +4574,12 @@ public sealed class SearchIndexService : ISearchIndexService
                 Dictionary<string, int>? freqDeltaBigrams = null;
                 long freqDeltaTotal = 0;
                 bool freqDeltaActive = false;
-                if (coreIncremental && oldMan != null && oldTextMan != null &&
+                if (coreIncremental && !carve && oldMan != null && oldTextMan != null &&
                     oldFs != null && oldTextHandle != null)
                 {
+                    // FL6 carve: skip the corpusfreq algebraic delta (the legacy combined partial
+                    // mixes origin+overlay counts, and the layer partition is not a delta) — the
+                    // partial is recounted from this layer's carried text blocks instead.
                     oldFreq = await TryLoadOldCorpusFreqForDeltaAsync(root, oldMan.IndexStamp, ct);
                     if (oldFreq != null)
                     {
@@ -4437,7 +4686,11 @@ public sealed class SearchIndexService : ISearchIndexService
                 // the threshold, bail HERE — before the gramsets sidecar is loaded, before
                 // any tmp file is written — and let the public wrapper run a clean full
                 // rebuild. Never wrong, only ever a speed choice.
-                if (coreIncremental && oldMan != null)
+                // FL6 carve: bypass the >20% delta guard entirely — a carve is a one-time full
+                // split build (every non-origin entry looks "removed" from the origin layer's
+                // perspective, which would spuriously trip the guard and fall back to an XML mass
+                // rebuild). The carve is not a delta build.
+                if (coreIncremental && !carve && oldMan != null)
                 {
                     bool StatUnchanged(string rel, SearchSide side, FileInfo fi)
                     {
@@ -4514,7 +4767,11 @@ public sealed class SearchIndexService : ISearchIndexService
                 // (missing/corrupt/mismatched sidecar) just means every entry's gram sets
                 // are computed fresh — never a full rebuild, never a failure. On the full
                 // path (forceRebuild / fallback) the sidecar is IGNORED entirely.
-                LoadedGramSets? gramSets = coreIncremental
+                // FL6 carve: do NOT consult the (combined-named) gramsets sidecar — recompute gram
+                // sets/tf from the carried text, per §6 ("recompute gram sets/tf from the carried
+                // text"). A hit would only skip the gram-SET recompute anyway (tf is always
+                // re-derived), and the origin/overlay layers write no combined-named sidecar.
+                LoadedGramSets? gramSets = (coreIncremental && !carve)
                     ? await GramSetsStore.TryLoadAsync(root, ct)
                     : null;
 

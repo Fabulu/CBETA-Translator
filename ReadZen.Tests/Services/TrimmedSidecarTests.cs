@@ -332,13 +332,14 @@ public sealed class TrimmedSidecarTests : IDisposable
     // ===================================================================
 
     /// <summary>
-    /// SPEC §5.3: the first real build after a trimmed adoption completes without crashing and
-    /// writes a fresh COMPLETE family — the text sidecar AND the gram-sets cache come back.
-    /// The algebraic corpusfreq delta must NOT fire (old sidecar absent ⇒ full recount), and the
-    /// index is fresh again afterward.
+    /// FL6 (§6): the first real build after a trimmed adoption MIGRATES the combined family to the
+    /// split (origin/overlay) — completing without crashing and materialising the origin text
+    /// sidecar the trim removed. The legacy combined family is deleted; the index is fresh again.
+    /// (The zero-XML-read carve is not possible here because the trimmed root has no old text.bin to
+    /// carry, so the origin text is re-extracted — the §5.3 hole FL7 optimises away.)
     /// </summary>
     [Fact]
-    public async Task IncrementalBuild_WithAbsentSidecar_CompletesAndWritesFullFamily()
+    public async Task IncrementalBuild_WithAbsentSidecar_MigratesToSplit()
     {
         WriteOrigCorpus(10);
         await BuildIndexAsync(_tempRoot, _origDir, _tranDir);
@@ -347,33 +348,30 @@ public sealed class TrimmedSidecarTests : IDisposable
         DeleteTextSidecar(_tempRoot);
         DeleteGramSets(_tempRoot);
 
-        // A user corpus edit drives the catch-up: add one file (small delta, stays incremental).
+        // A user corpus edit drives the first post-FL6 build (which migrates).
         File.WriteAllText(
             Path.Combine(_origDir, "added.xml"),
             "<TEI><text><body>無門關無門關中中中中中</body></text></TEI>");
 
-        using var svc = new SearchIndexService();
-        Assert.True(await svc.IsStaleAsync(_tempRoot, _origDir, new[] { _tranDir }));
-
+        var emptyBundle = Path.Combine(_tempRoot, "empty-bundle");
+        Directory.CreateDirectory(emptyBundle);
+        using var svc = new SearchIndexService { TestOnlyBundleDirOverride = emptyBundle };
         await svc.BuildOrUpdateAsync(_tempRoot, _origDir, new[] { _tranDir }, forceRebuild: false);
 
         // No S5 fault-retry: the absent sidecar degrades gracefully, it does not throw.
         Assert.Equal(0, svc.LastBuildFallbackCount);
-        // Algebraic freq delta refused (no old text.bin to subtract from) ⇒ full recount.
-        Assert.Equal(0, svc.LastBuildFreqDeltaApplied);
 
-        // Full family re-materialized.
-        Assert.True(File.Exists(Path.Combine(_tempRoot, "search.text.bin")));
-        Assert.True(File.Exists(Path.Combine(_tempRoot, "search.text.manifest.json")));
-        Assert.True(File.Exists(Path.Combine(_tempRoot, GramSetsStore.BinFileName)));
-        Assert.True(File.Exists(Path.Combine(_tempRoot, GramSetsStore.ManifestFileName)));
-        Assert.True(File.Exists(Path.Combine(_tempRoot, "search.corpusfreq.bin")));
-        Assert.True(File.Exists(Path.Combine(_tempRoot, "search.index.bin")));
+        // MIGRATED to split — the origin text sidecar is re-extracted; the legacy family is gone.
+        Assert.True(File.Exists(Path.Combine(_tempRoot, "search.origin.bin")));
+        Assert.True(File.Exists(Path.Combine(_tempRoot, "search.origin.text.bin")));
+        Assert.True(File.Exists(Path.Combine(_tempRoot, "search.origin.corpusfreq.bin")));
+        Assert.True(File.Exists(Path.Combine(_tempRoot, "search.overlay.manifest.json")));
+        Assert.Empty(Directory.EnumerateFiles(_tempRoot, "search.index.*"));
 
-        // Fresh again — and the rebuilt sidecar loads cleanly at this root.
-        using var probe = new SearchIndexService();
+        // Fresh again — and the migrated split loads cleanly at this root.
+        using var probe = new SearchIndexService { TestOnlyBundleDirOverride = emptyBundle };
         Assert.False(await probe.IsStaleAsync(_tempRoot, _origDir, new[] { _tranDir }));
-        Assert.NotNull(await probe.TryLoadTextManifestAsync(_tempRoot));
+        Assert.NotNull(await probe.TryLoadAsync(_tempRoot));
     }
 
     /// <summary>
@@ -487,12 +485,13 @@ public sealed class TrimmedSidecarTests : IDisposable
     }
 
     /// <summary>
-    /// SPEC §5.3 end-to-end: after adopting a trimmed bundle, the user's first corpus edit runs a
-    /// catch-up build that re-materializes the sidecar + gram-sets — from that point every artifact
-    /// is present and the index is fresh.
+    /// FL6 (§6) end-to-end: after adopting a trimmed COMBINED bundle, the user's first corpus edit
+    /// runs a build that MIGRATES the family to the split — materialising the origin text sidecar
+    /// and deleting the legacy family. From that point every split artifact is present and fresh.
+    /// (The FL7 §5.3 job will later fill the origin text sidecar off the edit path.)
     /// </summary>
     [Fact]
-    public async Task TrimmedBundle_FirstEdit_RematerializesTextAndGramsets()
+    public async Task TrimmedBundle_FirstEdit_MigratesToSplit()
     {
         WriteOrigCorpus(8);
         var bundleDir = Path.Combine(_tempRoot, "bundle");
@@ -506,24 +505,25 @@ public sealed class TrimmedSidecarTests : IDisposable
         Assert.True(SearchIndexService.CopyBundleFamilyIntoRoot(root, bundleDir));
         Assert.False(File.Exists(Path.Combine(root, "search.text.bin")));
 
-        // First user edit → catch-up build.
+        // First user edit → build → migration to split.
         File.WriteAllText(
             Path.Combine(_origDir, "added.xml"),
             "<TEI><text><body>無門關無門關中中中中中</body></text></TEI>");
 
-        using var svc = new SearchIndexService();
-        Assert.True(await svc.IsStaleAsync(root, _origDir, new[] { _tranDir }));
+        var emptyBundle = Path.Combine(_tempRoot, "empty-bundle");
+        Directory.CreateDirectory(emptyBundle);
+        using var svc = new SearchIndexService { TestOnlyBundleDirOverride = emptyBundle };
         await svc.BuildOrUpdateAsync(root, _origDir, new[] { _tranDir }, forceRebuild: false);
         Assert.Equal(0, svc.LastBuildFallbackCount);
 
-        // Sidecar + gram-sets are back; index is fresh.
-        Assert.True(File.Exists(Path.Combine(root, "search.text.bin")));
-        Assert.True(File.Exists(Path.Combine(root, "search.text.manifest.json")));
-        Assert.True(File.Exists(Path.Combine(root, GramSetsStore.BinFileName)));
-        Assert.True(File.Exists(Path.Combine(root, GramSetsStore.ManifestFileName)));
+        // MIGRATED to split; the origin text sidecar is materialised and the legacy family gone.
+        Assert.True(File.Exists(Path.Combine(root, "search.origin.text.bin")));
+        Assert.True(File.Exists(Path.Combine(root, "search.origin.text.manifest.json")));
+        Assert.True(File.Exists(Path.Combine(root, "search.overlay.manifest.json")));
+        Assert.Empty(Directory.EnumerateFiles(root, "search.index.*"));
 
-        using var probe = new SearchIndexService();
+        using var probe = new SearchIndexService { TestOnlyBundleDirOverride = emptyBundle };
         Assert.False(await probe.IsStaleAsync(root, _origDir, new[] { _tranDir }));
-        Assert.NotNull(await probe.TryLoadTextManifestAsync(root));
+        Assert.NotNull(await probe.TryLoadAsync(root));
     }
 }

@@ -184,7 +184,19 @@ public class CorpusFreqDeltaTests
     // (b) integration: delta path, map-equal + zero-prune proven
     // =====================================================================
 
-    [Fact]
+    // FL6 note: the COMBINED algebraic corpusfreq delta (INC-3A) is only reachable via a combined
+    // root's incremental rebuild — which FL6 now MIGRATES to split instead (the delta is bypassed;
+    // the split corpusfreq is an additive fold of per-layer recounts). The corpusfreq CORRECTNESS
+    // these integration tests assert (map-equal to a full recount, removed-only keys pruned) is
+    // preserved and re-verified by SplitParityTests (exact merged==combined corpusfreq) and
+    // TrimmedSidecarTests.IncrementalBuild_WithAbsentSidecar_CorpusFreqEqualsFromScratchRecount.
+    // The algebraic-delta path + its combined-family artifact assertions are retired with the
+    // combined serving code in FL8; the CountCorpusFreqs unit tests above stay active.
+    private const string CombinedDeltaSkip =
+        "FL6: combined algebraic corpusfreq delta superseded by split migration; correctness covered " +
+        "by SplitParityTests. Path retired with combined serving in FL8.";
+
+    [Fact(Skip = CombinedDeltaSkip)]
     public async Task DeltaPath_AddRemoveChange_MapEqualToFull_RemovedOnlyKeysPruned()
     {
         using var fx = new IndexFixtureCorpus();
@@ -238,7 +250,7 @@ public class CorpusFreqDeltaTests
     // (c) fallback: old corpusfreq bin missing → full recount, still equivalent
     // =====================================================================
 
-    [Fact]
+    [Fact(Skip = CombinedDeltaSkip)]
     public async Task MissingOldFreqBin_FallsBackToFullRecount_StillEquivalent()
     {
         using var fx = new IndexFixtureCorpus();
@@ -255,7 +267,7 @@ public class CorpusFreqDeltaTests
         // full rebuild here, so the assertion on the incremental run happens first.)
     }
 
-    [Fact]
+    [Fact(Skip = CombinedDeltaSkip)]
     public async Task MissingOldFreqBin_IncrementalRun_DoesNotApplyDelta()
     {
         using var fx = new IndexFixtureCorpus();
@@ -277,7 +289,7 @@ public class CorpusFreqDeltaTests
     // (d) stamp-gated trust: old stamp mismatch → full recount, still equivalent
     // =====================================================================
 
-    [Fact]
+    [Fact(Skip = CombinedDeltaSkip)]
     public async Task OldFreqStampMismatch_FallsBackToFullRecount_StillEquivalent()
     {
         using var fx = new IndexFixtureCorpus();

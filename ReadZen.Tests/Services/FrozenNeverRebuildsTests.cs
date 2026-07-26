@@ -182,13 +182,14 @@ public sealed class FrozenNeverRebuildsTests : IDisposable
     }
 
     // ==================================================================================
-    // #1 CONSTRAINT: a LEGACY COMBINED root with no split bundle is NOT mass-rebuilt.
+    // FL6 #1 CONSTRAINT: a LEGACY COMBINED root MIGRATES to split via Path B carve — reading
+    // ONLY the old artifacts (plus the one edited translation), NEVER a mass XML rebuild.
     // ==================================================================================
 
     [Fact]
-    public async Task LegacyCombinedRoot_NoSplitBundle_StaysCombinedIncremental_NotMassRebuiltIntoSplit()
+    public async Task LegacyCombinedRoot_NoSplitBundle_MigratesToSplitViaCarve_NotMassRebuilt()
     {
-        // A corpus big enough that a 1-file delta stays well under the 20% full-rebuild threshold.
+        // A corpus big enough that a mass rebuild (24 reads) is unmistakable vs. a carve (≤2).
         for (int i = 0; i < 12; i++)
         {
             Write(_origDir, $"c{i:D2}.xml", Body0 + i);
@@ -201,21 +202,21 @@ public sealed class FrozenNeverRebuildsTests : IDisposable
         Assert.True(Has(root, "search.index.manifest.json"));
         Assert.False(Has(root, "search.origin.manifest.json")); // precondition: NOT a split root
 
-        // A single translation edit.
+        // A single translation edit before the (first post-FL6) build.
         Write(_tranDir, "c00.xml", Body0 + BodyEdit);
 
-        using var svc = Probe(EmptyBundle()); // deterministically NO split bundle
-        Assert.True(await svc.IsStaleAsync(root, _origDir, new[] { _tranDir })); // combined stale
+        using var svc = Probe(EmptyBundle()); // deterministically NO split bundle ⇒ Path B carve
+        Assert.True(await svc.IsStaleAsync(root, _origDir, new[] { _tranDir })); // migration owed
         await svc.BuildOrUpdateAsync(root, _origDir, new[] { _tranDir }, forceRebuild: false);
 
-        // Stayed on the COMBINED incremental path — NOT promoted to a split family, NOT a mass rebuild.
-        Assert.False(Has(root, "search.origin.manifest.json"), "must not create an origin family");
-        Assert.False(Has(root, "search.overlay.manifest.json"), "must not create an overlay family");
-        Assert.True(Has(root, "search.index.manifest.json"), "combined family must remain");
+        // MIGRATED to split via a carve (only the edited translation read) — NOT a mass rebuild.
+        Assert.True(Has(root, "search.origin.manifest.json"), "origin family created by migration");
+        Assert.True(Has(root, "search.overlay.manifest.json"), "overlay family created by migration");
+        Assert.False(Has(root, "search.index.manifest.json"), "legacy combined family deleted after migration");
         Assert.Equal(0, svc.LastBuildFallbackCount);
-        Assert.Equal(0, svc.LastBuildDeltaGuardTripped);          // stayed incremental (no full rebuild)
+        Assert.Equal(0, svc.LastBuildDeltaGuardTripped);          // carve bypasses the guard, never trips it
         Assert.True(svc.LastBuildXmlReadCount <= 2,               // only the edited delta — NOT all 24 files
-            $"expected an incremental delta read, got {svc.LastBuildXmlReadCount} XML reads (mass rebuild?)");
+            $"expected a carve (no XML for unchanged), got {svc.LastBuildXmlReadCount} XML reads (mass rebuild?)");
 
         using var after = Probe(EmptyBundle());
         Assert.False(await after.IsStaleAsync(root, _origDir, new[] { _tranDir }));

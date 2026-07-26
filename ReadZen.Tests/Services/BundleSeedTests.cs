@@ -157,15 +157,19 @@ public class BundleSeedTests : IAsyncLifetime, IDisposable
     [Fact]
     public async Task SeededIndex_LoadsAndIsNotStaleForSameCorpus()
     {
+        // FL6: the served shape is the SPLIT family (a migrated/seeded install). Build it, then
+        // confirm a fresh service loads the merged view and reports NOT stale for the same corpus.
         var root = NewIndexRoot();
-        Assert.True(SearchIndexService.CopyBundleFamilyIntoRoot(root, _bundleDir));
+        using (var build = new SearchIndexService())
+        {
+            await build.BuildOriginLayerAsync(root, _origDir);
+            await build.BuildOverlayLayerAsync(root, new[] { _tranDir });
+        }
 
-        // A fresh service must be able to load the re-homed manifest (proves RootPath fix).
         var svc = new SearchIndexService();
         var loaded = await svc.TryLoadAsync(root);
         Assert.NotNull(loaded);
 
-        // Identical corpus → not stale → no build, just the seeded family.
         var stale = await svc.IsStaleAsync(root, _origDir, new[] { _tranDir });
         Assert.False(stale);
     }
@@ -268,30 +272,35 @@ public class BundleSeedTests : IAsyncLifetime, IDisposable
     [Fact]
     public async Task SeededManifest_StatCache_HealsToLocalTicks_AfterFirstProbe()
     {
+        // FL6: the frozen ORIGIN manifest is what a seeded/adopted install carries with foreign
+        // (CI-machine) ticks. Build a split root, poison the ORIGIN manifest's ticks, and confirm
+        // the first probe heals them to local, then is stat-only. (The overlay is local-built.)
         var root = NewIndexRoot();
-        Assert.True(SearchIndexService.CopyBundleFamilyIntoRoot(root, _bundleDir));
+        using (var build = new SearchIndexService())
+        {
+            await build.BuildOriginLayerAsync(root, _origDir);
+            await build.BuildOverlayLayerAsync(root, new[] { _tranDir });
+        }
 
-        var manifestPath = Path.Combine(root, "search.index.manifest.json");
-
-        // Simulate a bundle cut on a different machine: poison every entry's mtime ticks so
-        // they no longer match the local clone (the real-world seed condition). ContentHash and
-        // InputHash are left intact, so the corpus is still "not stale".
+        var manifestPath = Path.Combine(root, "search.origin.manifest.json");
         const long PoisonTicks = 12345L;
         var poisoned = JsonSerializer.Deserialize<SearchIndexManifest>(File.ReadAllText(manifestPath))!;
         foreach (var e in poisoned.Entries) e.LastWriteUtcTicks = PoisonTicks;
         File.WriteAllText(manifestPath, JsonSerializer.Serialize(poisoned));
 
-        var svc = new SearchIndexService();
+        var emptyBundle = Path.Combine(_tempRoot, "empty-" + Guid.NewGuid().ToString("N")[..8]);
+        Directory.CreateDirectory(emptyBundle);
+        var svc = new SearchIndexService { TestOnlyBundleDirOverride = emptyBundle };
 
-        // First probe: not stale, but every file cache-misses on the poisoned ticks, so the
-        // backfill now refreshes ticks/length (not just ContentHash) and rewrites the manifest.
+        // First probe: not stale, but every origin file cache-misses on the poisoned ticks, so the
+        // backfill refreshes ticks/length (not just ContentHash) and rewrites the origin manifest.
         Assert.False(await svc.IsStaleAsync(root, _origDir, new[] { _tranDir }));
 
         var healed = JsonSerializer.Deserialize<SearchIndexManifest>(File.ReadAllText(manifestPath))!;
         foreach (var e in healed.Entries)
         {
-            var dir = e.Side == SearchSide.Original ? _origDir : _tranDir;
-            var filePath = Path.Combine(dir, e.RelPath.Replace('/', Path.DirectorySeparatorChar));
+            // Origin entries are all Original-side ⇒ resolve under _origDir.
+            var filePath = Path.Combine(_origDir, e.RelPath.Replace('/', Path.DirectorySeparatorChar));
             var actualTicks = File.GetLastWriteTimeUtc(filePath).Ticks;
             Assert.NotEqual(PoisonTicks, e.LastWriteUtcTicks); // poison healed away
             Assert.Equal(actualTicks, e.LastWriteUtcTicks);    // to the real local mtime

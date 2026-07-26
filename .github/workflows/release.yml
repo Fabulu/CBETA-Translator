@@ -110,13 +110,15 @@ jobs:
           set -euo pipefail
           OUT="$(dotnet run -c Release --project "${{ env.PROJECT_FILE }}" -v quiet -- --print-build-guid)"
           echo "$OUT"
-          GUID="$(printf '%s\n' "$OUT" | sed -n 's/^SearchBuildGuid=//p' | tr -d '[:space:]')"
+          # FL6 (§6.3): the release ships the frozen ORIGIN family, so the guid-bundle-guard
+          # compares the ORIGIN guid against the staged search.origin.manifest.json.
+          GUID="$(printf '%s\n' "$OUT" | sed -n 's/^SearchOriginBuildGuid=//p' | tr -d '[:space:]')"
           if [ -z "$GUID" ]; then
-            echo "::error::--print-build-guid produced no SearchBuildGuid line"; exit 1
+            echo "::error::--print-build-guid produced no SearchOriginBuildGuid line"; exit 1
           fi
           echo "build_guid=$GUID" >> "$GITHUB_OUTPUT"
           echo "CUR_GUID=$GUID"   >> "$GITHUB_ENV"
-          echo "Current search family BuildGuid: $GUID"
+          echo "Current search ORIGIN family BuildGuid: $GUID"
 
       # Build the bundle ONCE, trim to the query family, and PROVE both the trim
       # (allow/deny by explicit filename) and the guid EQUALITY (bundle manifest
@@ -146,52 +148,57 @@ jobs:
           OUT="Assets/PrebuiltIndex"
           mkdir -p "$OUT"
 
-          echo "Building bundled search index into $OUT ..."
+          # FL6 (§6.3): bake the ORIGIN-only family (--layer origin) — the frozen origin
+          # is the only layer that ships; the live overlay is always built locally.
+          echo "Building bundled ORIGIN search index into $OUT ..."
           dotnet run -c Release --project "${{ env.PROJECT_FILE }}" -- \
             --build-search-index \
+            --layer      origin \
             --source-dir "$SRC" \
             --trans-dir  "$TRN" \
             --out-dir    "$OUT"
 
-          if [ ! -f "$OUT/search.index.bin" ]; then
-            echo "::error::--build-search-index did not produce search.index.bin"; exit 1
+          if [ ! -f "$OUT/search.origin.bin" ]; then
+            echo "::error::--build-search-index --layer origin did not produce search.origin.bin"; exit 1
           fi
 
-          # ── Trim (PR-S2, SPEC §5.1): ship only the QUERY family (bloom + inverted
-          #    + corpusfreq + their manifests). Drop the 779 MB text sidecar (snippets
-          #    fall back to XML parse when absent; the manifest MUST go with its bin)
-          #    and the 235 MB build-only gramsets cache.
-          echo "Trimming build-only / lazily-regenerated artifacts from the bundle ..."
-          rm -f "$OUT/search.text.bin" \
-                "$OUT/search.text.manifest.json" \
-                "$OUT"/search.gramsets.*
+          # ── Trim (SPEC §5.3): the origin bundle = the origin family MINUS its text
+          #    sidecar (the 779 MB the trim constraint forbids; origin snippets fall back
+          #    to XML parse when absent, filled later by the FL7 materialization job).
+          #    The origin layer emits no gramsets sidecar (build-time, overlay-only).
+          echo "Trimming the origin text sidecar from the bundle ..."
+          rm -f "$OUT"/search.origin.text.*
 
-          # ── Validate DENY list: prove the trim actually ran.
-          for gone in search.text.bin search.text.manifest.json; do
-            if [ -e "$OUT/$gone" ]; then echo "::error::trim failed: $gone still present"; exit 1; fi
+          # ── Validate DENY list: no origin text sidecar, and NO overlay/combined/legacy
+          #    families (only the frozen origin ships).
+          if ls "$OUT"/search.origin.text.* >/dev/null 2>&1; then
+            echo "::error::trim failed: search.origin.text.* still present"; exit 1
+          fi
+          for pat in "search.overlay.*" "search.index.*" "search.text.*" "search.gramsets.*"; do
+            if ls "$OUT"/$pat >/dev/null 2>&1; then
+              echo "::error::origin bundle must not contain $pat"; exit 1
+            fi
           done
-          if ls "$OUT"/search.gramsets.* >/dev/null 2>&1; then
-            echo "::error::trim failed: search.gramsets.* still present"; exit 1
-          fi
 
-          # ── Validate ALLOW list: the whole query family must remain (a partial
+          # ── Validate ALLOW list: the whole ORIGIN query family must remain (a partial
           #    family shares one IndexStamp and would be rejected by loaders).
-          for keep in search.index.bin search.index.manifest.json \
-                      search.inverted.bin search.corpusfreq.bin search.corpusfreq.manifest.json; do
-            if [ ! -e "$OUT/$keep" ]; then echo "::error::bundle missing required query artifact: $keep"; exit 1; fi
+          for keep in search.origin.bin search.origin.manifest.json \
+                      search.origin.inverted.bin search.origin.corpusfreq.bin \
+                      search.origin.corpusfreq.manifest.json; do
+            if [ ! -e "$OUT/$keep" ]; then echo "::error::origin bundle missing required artifact: $keep"; exit 1; fi
           done
 
-          # ── Validate guid EQUALITY: the bundle's own manifest guid must equal the
-          #    binary that will ship this release. Not-equal ⇒ a stale artifact or a
-          #    format drift snuck in; fail loudly rather than seed a mismatched bundle.
-          MANIFEST_GUID="$(sed -n 's/.*"BuildGuid"[: ]*"\([^"]*\)".*/\1/p' "$OUT/search.index.manifest.json" | head -n1)"
+          # ── Validate guid EQUALITY: the ORIGIN manifest's guid must equal the binary
+          #    that will ship this release. Not-equal ⇒ a stale artifact or a format
+          #    drift snuck in; fail loudly rather than seed a mismatched bundle.
+          MANIFEST_GUID="$(sed -n 's/.*"BuildGuid"[: ]*"\([^"]*\)".*/\1/p' "$OUT/search.origin.manifest.json" | head -n1)"
           if [ -z "$MANIFEST_GUID" ]; then
-            echo "::error::could not read BuildGuid from $OUT/search.index.manifest.json"; exit 1
+            echo "::error::could not read BuildGuid from $OUT/search.origin.manifest.json"; exit 1
           fi
           if [ "$MANIFEST_GUID" != "$CUR_GUID" ]; then
-            echo "::error::bundle BuildGuid ($MANIFEST_GUID) != release binary BuildGuid ($CUR_GUID) — stale artifact or format drift"; exit 1
+            echo "::error::bundle origin BuildGuid ($MANIFEST_GUID) != release binary origin BuildGuid ($CUR_GUID) — stale artifact or format drift"; exit 1
           fi
-          echo "Bundle guid matches release binary guid: $CUR_GUID"
+          echo "Bundle origin guid matches release binary origin guid: $CUR_GUID"
 
           echo "Staged bundled index (trimmed):"
           ls -la "$OUT"
@@ -369,8 +376,8 @@ jobs:
         run: |
           set -euo pipefail
           OUT="Assets/PrebuiltIndex"
-          if [ -f "$OUT/search.index.bin" ]; then
-            echo "Bundled prebuilt index present — will ship in this build:"
+          if [ -f "$OUT/search.origin.bin" ]; then
+            echo "Bundled prebuilt ORIGIN index present — will ship in this build:"
             ls -la "$OUT"
           elif [ "${{ needs.prebuild-index.outputs.bundleless_ok }}" = "1" ]; then
             echo "::warning::No prebuilt search index in this release — shipping bundle-less (sanctioned: vars unset / SKIP_BUNDLE / prerelease). First run does a cold build."
