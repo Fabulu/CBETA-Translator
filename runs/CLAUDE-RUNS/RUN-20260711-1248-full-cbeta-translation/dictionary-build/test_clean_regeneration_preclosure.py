@@ -96,6 +96,29 @@ def main():
             "duplicated generic predecessor rejection within one entry was accepted"
         )
 
+    relpath_disguise = fixture("relpath-disguise")
+    relpath_disguise["dossier"]["predecessorEvidenceAudit"] = [
+        {
+            "decision": "REJECT",
+            "reason": (
+                "REJECT X/X82/X82n1571.xml: the excluded occurrence uses the "
+                "same referent and adds no distinct sense."
+            ),
+        },
+        {
+            "decision": "REJECT",
+            "reason": (
+                "REJECT T/T51/T51n2076.xml: the excluded occurrence uses the "
+                "same referent and adds no distinct sense."
+            ),
+        },
+    ]
+    relpath_disguise_ok = rejected(
+        [relpath_disguise], "generic predecessor rejection boilerplate"
+    )
+    if not relpath_disguise_ok:
+        failures.append("relPath-substituted rejection boilerplate was accepted")
+
     stale = copy.deepcopy(baseline)
     stale["worksheet"]["FamilyHarvest"]["Scope"] = "R11 clean regeneration"
     stale["worksheet"]["Admission"]["DuplicateCheck"]["Scope"] = "R11 predecessors"
@@ -114,6 +137,7 @@ def main():
         "falseOccurrenceCountProseRejected": count_ok,
         "genericPredecessorBoilerplateRejected": generic_ok,
         "genericPredecessorBoilerplateWithinOneEntryRejected": within_one_ok,
+        "relPathSubstitutedPredecessorBoilerplateRejected": relpath_disguise_ok,
         "staleScopeLabelsRejected": stale_ok,
     }
     report = HERE / "maintenance" / "clean-regeneration-preclosure-canaries.json"

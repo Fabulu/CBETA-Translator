@@ -25,6 +25,9 @@ GENERIC_REJECTION_MARKERS = (
     "weaker or redundant",
     "retained only",
     "survives the new",
+    "adds no distinct sense",
+    "adds no conflicting",
+    "excluded occurrence uses the same",
 )
 
 
@@ -70,6 +73,15 @@ def _scope_values(value: Any, coordinate: str = ""):
             yield child_coordinate, child
         if isinstance(child, dict):
             yield from _scope_values(child, child_coordinate)
+
+
+def _generic_template_key(reason: str) -> str:
+    """Normalize coordinates that otherwise disguise copied rejection prose."""
+    return re.sub(
+        r"\b(?:[A-Z]/)?[A-Z]\d+(?:/[A-Z]\d+n[A-Za-z0-9]+)?\.xml\b",
+        "<source>",
+        reason.lower(),
+    )
 
 
 def validate_preclosure(rows: list[dict]) -> list[str]:
@@ -122,7 +134,9 @@ def validate_preclosure(rows: list[dict]) -> list[str]:
             if decision.startswith("REJECT") and any(
                 marker in lowered for marker in GENERIC_REJECTION_MARKERS
             ):
-                generic_rejections.setdefault(lowered, []).append(entry_id)
+                generic_rejections.setdefault(
+                    _generic_template_key(lowered), []
+                ).append(entry_id)
 
         cohort = _cohort_token(worksheet)
         if cohort:
