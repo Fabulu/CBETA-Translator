@@ -287,6 +287,10 @@ and publication/push 720 seconds. Check the matching phase before handing off. T
 correction convergence commands must pass `--timegate <receipt> --timegate-phase <phase>`; an expired
 receipt makes the gate fail with exit 124. Unfinished entries are deferred at the deadline. They do not
 receive a same-cohort timer reset, a v2 loop, compensating overtime, or an expanded research mandate.
+**Do not seal a passing receipt at viability, research, construction, or review handoff.** Sealing is
+terminal for that cohort and is permitted only after publication succeeds or when the cohort is explicitly
+stopped/deferred at a deadline. A sealed receipt cannot authorize a later phase and must never be replaced
+with a fresh same-cohort timer.
 However, completed research and hash-bound partial artifacts are not discarded. A deadline receipt must
 record their hashes, exact remaining finite failures, and last green checks. A later cohort may assign one
 such partial as an ordinary slot when viability estimates no more than 90 seconds of finite completion
