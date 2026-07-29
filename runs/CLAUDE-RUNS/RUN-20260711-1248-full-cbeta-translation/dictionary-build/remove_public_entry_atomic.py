@@ -80,32 +80,72 @@ def require(condition: bool, message: str) -> None:
         raise RuntimeError(message)
 
 
-def prepare(closure_path: Path) -> None:
-    audit = load(AUDIT)
+def authorized_removal(authority: dict, target_id: str, target_term: str) -> bool:
+    for row in authority.get("rows") or []:
+        if (
+            isinstance(row, dict)
+            and row.get("id") == target_id
+            and row.get("term") == target_term
+            and row.get("decision") in {
+                "AUTHORIZE_RECOVERABLE_REMOVAL",
+                "AUTHORIZE_REMOVAL",
+            }
+        ):
+            return True
+    return False
+
+
+def prepare(
+    closure_path: Path,
+    target_id: str | None = None,
+    target_term: str | None = None,
+    authority_path: Path | None = None,
+) -> None:
+    audit = None
+    if target_id is None:
+        audit = load(AUDIT)
+        target_id = audit["candidate"]["id"]
+        target_term = audit["candidate"]["term"]
+    else:
+        require(bool(target_term), "--target-term is required with --target-id")
+        require(authority_path is not None, "--authority is required with --target-id")
+        authority_path = authority_path.resolve()
+        authority = load(authority_path)
+        require(
+            authorized_removal(authority, target_id, str(target_term)),
+            "authority does not authorize exact recoverable removal",
+        )
     aggregate, _, entries = public_entries()
-    target_id = audit["candidate"]["id"]
     hits = [entry for entry in entries if entry.get("Id") == target_id]
     require(len(hits) == 1, f"candidate ID multiplicity is {len(hits)}, expected 1")
     candidate = hits[0]
-    require(candidate["SourceTerm"] == audit["candidate"]["term"], "candidate term drift")
-    require(
-        canonical_sha(candidate) == audit["candidate"]["publicCanonicalObjectSha256"],
-        "candidate object differs from audited restore payload",
-    )
-    require(
-        canonical_sha(audit["restorePayload"]["entry"]) == canonical_sha(candidate),
-        "audit restore payload is not exact",
-    )
+    require(candidate["SourceTerm"] == target_term, "candidate term drift")
+    if audit is not None:
+        require(
+            canonical_sha(candidate) == audit["candidate"]["publicCanonicalObjectSha256"],
+            "candidate object differs from audited restore payload",
+        )
+        require(
+            canonical_sha(audit["restorePayload"]["entry"]) == canonical_sha(candidate),
+            "audit restore payload is not exact",
+        )
     outbound, inbound = graph(entries, candidate)
     require(not outbound and not inbound, "candidate has graph edges; explicit reciprocal cleanup is required")
+    if audit is not None:
+        source_authority = {
+            "path": str(AUDIT.relative_to(ROOT)),
+            "sha256": sha_file(AUDIT),
+        }
+    else:
+        source_authority = {
+            "path": str(authority_path.relative_to(ROOT)),
+            "sha256": sha_file(authority_path),
+        }
     closure = {
         "schemaVersion": "hash-bound-public-entry-removal.v1",
         "operation": "REMOVE_EXACT_ENTRY",
         "status": "PREPARED_NOT_EXECUTED",
-        "sourceAudit": {
-            "path": str(AUDIT.relative_to(ROOT)),
-            "sha256": sha_file(AUDIT),
-        },
+        "sourceAudit": source_authority,
         "publicRepository": str(PUBLIC),
         "aggregate": {
             "path": "termbase.v2.json",
@@ -298,9 +338,17 @@ def main():
     parser.add_argument("--closure", type=Path, default=DEFAULT_CLOSURE)
     parser.add_argument("--receipt", type=Path, default=DEFAULT_RECEIPT)
     parser.add_argument("--closure-sha")
+    parser.add_argument("--target-id")
+    parser.add_argument("--target-term")
+    parser.add_argument("--authority", type=Path)
     args = parser.parse_args()
     if args.prepare:
-        prepare(args.closure)
+        prepare(
+            args.closure,
+            target_id=args.target_id,
+            target_term=args.target_term,
+            authority_path=args.authority,
+        )
     else:
         run_removal(args.closure, args.receipt, args.execute, args.closure_sha)
 
