@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "r05-r06-clean-contract-boundary-audit-summary.v1",
+  "scope": "Exactly five R05 and five R06 canonical cohort entries; bounded diagnostic, not a broad purge.",
+  "rows": [
+    {
+      "cohort": "R05",
+      "auditedEntries": 5,
+      "exactParityPass": 5,
+      "completeAnchorPass": 5,
+      "parityFailures": [],
+      "anchorFailures": [],
+      "metadataOnlyTierCountFailures": [
+        "t_b8a0d8ccd40b: dossier tier3Lamp=None but registry count=0",
+        "t_a955e6457675: dossier tier3Lamp=None but registry count=0",
+        "t_329b1563a810: dossier tier3Lamp=None but registry count=0",
+        "t_2d1f7efa7aba: dossier tier3Lamp=None but registry count=0",
+        "t_0d8d00c9bbc7: dossier tier3Lamp=None but registry count=0"
+      ],
+      "ruling": "Core parity and anchors pass; only explicit dossier Tier-3 count metadata is absent.",
+      "reportPath": "maintenance/r05-clean-contract-boundary-audit-b.json",
+      "reportSha256": "bc1ccc7c7799b5bafd1ac2c48c44a8fdc304310fee9b5119ab5e6bd51157b5dc"
+    },
+    {
+      "cohort": "R06",
+      "auditedEntries": 5,
+      "exactParityPass": 3,
+      "completeAnchorPass": 5,
+      "parityFailures": [
+        "t_20373fb359ea: worksheet does not reproduce exact canonical product",
+        "t_157a08c37c3d: worksheet does not reproduce exact canonical product"
+      ],
+      "anchorFailures": [],
+      "metadataOnlyTierCountFailures": [
+        "t_11ee68fa9b21: dossier tier3Lamp=None but registry count=0",
+        "t_517fe08384e7: dossier tier3Lamp=None but registry count=0",
+        "t_cffaf560969c: dossier tier3Lamp=None but registry count=0",
+        "t_20373fb359ea: dossier tier3Lamp=None but registry count=0",
+        "t_157a08c37c3d: dossier tier3Lamp=None but registry count=0"
+      ],
+      "ruling": "Shared stale-product failure reaches selected rows in this cohort; bounded audit only, no purge started.",
+      "reportPath": "maintenance/r06-clean-contract-boundary-audit-b.json",
+      "reportSha256": "b92750e2e1de49ad7ac06d5123a4e3210513bd68cfaabe6303fffb86ecd5d352"
+    }
+  ],
+  "publicMutation": false
+}

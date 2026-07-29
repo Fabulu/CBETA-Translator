@@ -1,0 +1,91 @@
+{
+  "schemaVersion": "r06-pine-removal-recoverability-graph-audit.v1",
+  "status": "NON_MUTATING_AUDIT_COMPLETE",
+  "candidate": {
+    "id": "t_20373fb359ea",
+    "term": "吹折門前一枝松",
+    "publicCanonicalObjectSha256": "359e378ca09912ffb47e78febaf9f280c605f89be0d74026397ad7f957fa499d",
+    "publicAggregateSha256": "558d9dbeca8904166379567a360f40388147a29b388aa79bf698fc2ff52f6d65",
+    "predecessorHead": "c82c526",
+    "predecessorCount": 4699
+  },
+  "graph": {
+    "outboundTerms": [],
+    "outboundCount": 0,
+    "inboundEntries": [],
+    "inboundCount": 0,
+    "requiredInboundCleanup": []
+  },
+  "countProjection": {
+    "precount": 4699,
+    "removals": 1,
+    "additions": 0,
+    "postcount": 4698
+  },
+  "restorePayload": {
+    "operation": "RESTORE_EXACT_ENTRY",
+    "insertIfMissing": true,
+    "rejectIfIdExists": true,
+    "expectedPostRestoreCount": 4699,
+    "entry": {
+      "Id": "t_20373fb359ea",
+      "SourceTerm": "吹折門前一枝松",
+      "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff",
+      "CreatedBy": "V7 batch72 admitted constructor C",
+      "WrittenUtc": "2026-07-29T16:52:00Z",
+      "Senses": [
+        {
+          "SenseKey": null,
+          "MasterName": null,
+          "PreferredTarget": "it snapped a pine branch before the gate",
+          "AlternateTargets": [],
+          "SearchAliases": [
+            "snapped a pine branch before the gate"
+          ],
+          "Status": "preferred",
+          "Validation": "provisional",
+          "Note": "Bind 夜來好風 and 一得一失 to the case.",
+          "Occurrences": [
+            {
+              "RelPath": "T/T47/T47n2000.xml",
+              "FromLb": "1028c18",
+              "ToLb": "1029a19",
+              "Kwic": "中棒。僧拂袖便行。山云。饒汝如是也。只得一半。僧轉身便喝。山打云。須是我打爾始得。僧云。諸方有明眼人在。山云。天然有眼。僧擘開眼云。猫。便出。山云。黃河三千年一度清。別云。我平生好打人。今日不合停囚長智。舉。道場訥和尚因。僧問。如何得見聞性不隨緣。云。汝聽看。僧作禮。場云。聾人也唱胡家曲。好惡高低自不知。僧云。聞性宛然也。場云。石從空裏立。火向水中焚。別僧聞性宛然處。喚僧近前少立。擬議唾出。舉。南泉問僧。夜來好風。僧云。夜來好風。泉云。吹折門前一枝松。僧云。吹折門前一枝松。次問一僧。夜來好風。僧云。是甚麼風。泉云。吹折門前一枝松。僧云。是甚麼松。泉云。一得一失。別南泉後語咨嗟云。明皇幸蜀。舉。文殊令善財採藥云。是藥者採將來。善財遍採。無不是藥。却來白云。無不是藥者。殊云。是藥採將來。善財乃拈一枝草。度與文殊。殊拈起示眾云。此藥亦能殺人亦能活人。別文殊接草處。與一嗅復度與善財。舉。孚上座初參雪峯。跨門纔見雪峯。便參主事。次日却來禮拜云。昨日觸忤和尚。峯云。知是般事便休。別云。我此間來千去萬。舉。石梯一日。見侍者托鉢上堂。乃喚侍者。者應喏。梯云。甚處去。云。上堂齋去。梯云。我豈不知汝上堂齋去。云。除此外別。道箇甚麼。梯云。我只問汝本分事。云。",
+              "MasterName": "Nanquan Puyuan",
+              "Curated": true,
+              "ContextMasters": [
+                {
+                  "MasterName": "Nanquan Puyuan",
+                  "Roles": [
+                    "utterer"
+                  ]
+                },
+                {
+                  "MasterName": "Xutang Zhiyu",
+                  "Roles": [
+                    "later-raiser",
+                    "commentator"
+                  ]
+                }
+              ],
+              "AttributionNote": "Source record (T/T47/T47n2000.xml). Recorded Sayings of Monk Xutang. Nanquan Puyuan owns the retained deployment: inherited saying actively raised by Xutang Zhiyu."
+            }
+          ],
+          "SourceTexts": [
+            "T/T47/T47n2000.xml"
+          ],
+          "RelatedMasters": [
+            "Nanquan Puyuan",
+            "Xutang Zhiyu"
+          ],
+          "RelatedTerms": [],
+          "ClaimAnchors": [],
+          "Explanation": "Nanquan's concrete reply in the good-wind exchange, repeated before he judges one gain and one loss. Nanquan Puyuan supplies the retained deployment through inherited saying actively raised by Xutang Zhiyu."
+        }
+      ]
+    },
+    "canonicalObjectSha256": "359e378ca09912ffb47e78febaf9f280c605f89be0d74026397ad7f957fa499d"
+  },
+  "deletionPerformed": false,
+  "publicMutationPerformed": false
+}

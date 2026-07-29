@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "r07-r09-clean-promotion-process-fix.v1",
+  "hardPass": true,
+  "errors": [],
+  "rootCause": "R07-R09 hand-promoted entry.v2.json products independently of their evidence.draft.json worksheets and stored only hit-line anchors, leaving stale regeneration inputs and incomplete line ranges.",
+  "correctedPath": {
+    "module": "promote_clean_regeneration.py",
+    "sha256": "ebd502a42f28310035d7c555c613dd3cfef1ea403602cbb5e3015b8deb458677",
+    "invariants": [
+      "A reviewed semantic entry and dossier are serialized into one pipeline-v2 worksheet.",
+      "Complete-context FromLb/ToLb coordinates are generated from unique zc.verify results.",
+      "The worksheet compiles once into the canonical product.",
+      "A second compile must preserve byte-identical canonical bytes.",
+      "Tier-3 selection is rejected when stronger unselected candidates remain without exceptional justification.",
+      "SourceTexts and RelatedMasters are mechanically derived from retained occurrences."
+    ]
+  },
+  "regressionTest": {
+    "path": "test_clean_regeneration_contract.py",
+    "sha256": "cca60950e412f0239ecb36ffb3efc43d3e78e4f892b065947018374138f83ed4",
+    "report": "maintenance/r09-clean-regeneration-contract-test-b.json",
+    "reportSha256": "69b4165ce8c376db26e8124b13137f3d5a3dad73335292ff2e9bfb3fd3632d49",
+    "hardPass": true,
+    "negativeTier3CanaryRejected": true
+  },
+  "regenerationDriver": {
+    "path": "maintenance/regenerate_r09_with_clean_promotion_b.py",
+    "sha256": "cefc56a38a2be3cc2c25e609b38605794bbd600b557df0d96a75a9a39895024c",
+    "output": "maintenance/r09-clean-regeneration-process-output-b.json",
+    "outputSha256": "120065104d0308d12dd026f8cfda874b3f4d907a33b0e27594a3b3f069d35afb"
+  },
+  "publicMutation": false,
+  "rosterMutation": false
+}
