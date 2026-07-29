@@ -291,6 +291,12 @@ receive a same-cohort timer reset, a v2 loop, compensating overtime, or an expan
 terminal for that cohort and is permitted only after publication succeeds or when the cohort is explicitly
 stopped/deferred at a deadline. A sealed receipt cannot authorize a later phase and must never be replaced
 with a fresh same-cohort timer.
+
+**Ordinary cohort size is three entries.** The measured end-to-end repair path for three entries—including
+16-context independent review, one finite correction transaction, aggregate regeneration, integrity audit,
+Windows-Git commit/push, and terminal sealing—completed in 584 seconds. Five-entry construction repeatedly
+consumed the 330-second construction window before review could begin. Larger sets therefore belong in
+separately authorized complex work; do not enlarge an ordinary cohort merely because selection is fast.
 However, completed research and hash-bound partial artifacts are not discarded. A deadline receipt must
 record their hashes, exact remaining finite failures, and last green checks. A later cohort may assign one
 such partial as an ordinary slot when viability estimates no more than 90 seconds of finite completion
