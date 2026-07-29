@@ -83,6 +83,19 @@ def main():
     if not generic_ok:
         failures.append("duplicated generic predecessor rejection was accepted")
 
+    generic_within_one = fixture("generic-within-one")
+    generic_within_one["dossier"]["predecessorEvidenceAudit"] = [
+        {"decision": "REJECT", "reason": template},
+        {"decision": "REJECT", "reason": template},
+    ]
+    within_one_ok = rejected(
+        [generic_within_one], "generic predecessor rejection boilerplate"
+    )
+    if not within_one_ok:
+        failures.append(
+            "duplicated generic predecessor rejection within one entry was accepted"
+        )
+
     stale = copy.deepcopy(baseline)
     stale["worksheet"]["FamilyHarvest"]["Scope"] = "R11 clean regeneration"
     stale["worksheet"]["Admission"]["DuplicateCheck"]["Scope"] = "R11 predecessors"
@@ -100,6 +113,7 @@ def main():
         "missingDossierClosureFieldsRejected": missing_ok,
         "falseOccurrenceCountProseRejected": count_ok,
         "genericPredecessorBoilerplateRejected": generic_ok,
+        "genericPredecessorBoilerplateWithinOneEntryRejected": within_one_ok,
         "staleScopeLabelsRejected": stale_ok,
     }
     report = HERE / "maintenance" / "clean-regeneration-preclosure-canaries.json"

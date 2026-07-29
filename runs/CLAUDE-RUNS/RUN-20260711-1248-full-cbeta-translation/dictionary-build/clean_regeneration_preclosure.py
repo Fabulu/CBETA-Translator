@@ -75,7 +75,7 @@ def _scope_values(value: Any, coordinate: str = ""):
 def validate_preclosure(rows: list[dict]) -> list[str]:
     """Validate entry/worksheet/dossier rows and return stable error strings."""
     errors: list[str] = []
-    generic_rejections: dict[str, set[str]] = {}
+    generic_rejections: dict[str, list[str]] = {}
     for row in rows:
         entry_id = str(row.get("id") or "<unknown>")
         entry = row.get("entry") or {}
@@ -122,7 +122,7 @@ def validate_preclosure(rows: list[dict]) -> list[str]:
             if decision.startswith("REJECT") and any(
                 marker in lowered for marker in GENERIC_REJECTION_MARKERS
             ):
-                generic_rejections.setdefault(lowered, set()).add(entry_id)
+                generic_rejections.setdefault(lowered, []).append(entry_id)
 
         cohort = _cohort_token(worksheet)
         if cohort:
