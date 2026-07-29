@@ -77,6 +77,40 @@ class AuthorizedReplacementStagingTest(unittest.TestCase):
         self.write_json(path, value)
         return path
 
+    def sealed_novel(self):
+        product = self.fresh / "t_novel_sealed" / "entry.v2.json"
+        product.parent.mkdir(exist_ok=True)
+        self.write_json(product, {
+            "Id": "t_novel_sealed",
+            "SourceTerm": "新封語",
+            "Senses": [{"PreferredTarget": "sealed novel"}],
+        })
+        return {
+            "hardPass": True,
+            "releaseAuthorized": True,
+            "closureKind": "novel-add",
+            "publicPredecessor": {
+                "path": str(self.predecessor),
+                "sha256": self.file_sha(self.predecessor),
+                "entryCount": 1,
+            },
+            "rows": [{
+                "id": "t_novel_sealed",
+                "term": "新封語",
+                "operation": "ADD_NOVEL",
+                "product": {
+                    "path": str(product),
+                    "sha256": self.file_sha(product),
+                },
+            }],
+            "verification": {
+                "authorizedRows": 1,
+                "authorizedProductHashesMatchFinalManifests": 1,
+                "stableIdsAbsentFromPublicPredecessor": 1,
+                "sourceTermsAbsentFromPublicPredecessor": 1,
+            },
+        }
+
     def test_replacement_stages_exact_authorized_product(self):
         closure = self.write_closure("replacement.json", self.replacement())
         out = self.root / "out"
@@ -127,6 +161,56 @@ class AuthorizedReplacementStagingTest(unittest.TestCase):
         with mock.patch.object(staging, "FRESH", self.fresh):
             self.assertEqual(0, staging.stage([closure], out))
         self.assertEqual(novel.read_bytes(), (out / "t_novel" / "entry.v2.json").read_bytes())
+
+    def test_sealed_novel_add_stages_when_absence_proofs_are_exact(self):
+        value = self.sealed_novel()
+        closure = self.write_closure("sealed-novel.json", value)
+        out = self.root / "out-sealed-novel"
+        with mock.patch.object(staging, "FRESH", self.fresh):
+            self.assertEqual(0, staging.stage([closure], out))
+        source = Path(value["rows"][0]["product"]["path"])
+        self.assertEqual(
+            source.read_bytes(),
+            (out / "t_novel_sealed" / "entry.v2.json").read_bytes(),
+        )
+
+    def test_sealed_novel_rejects_present_id(self):
+        value = self.sealed_novel()
+        value["rows"][0]["id"] = "t_existing"
+        closure = self.write_closure("sealed-present-id.json", value)
+        with mock.patch.object(staging, "FRESH", self.fresh):
+            with self.assertRaisesRegex(SystemExit, "stable ID already present"):
+                staging.stage([closure], self.root / "out-present-id")
+
+    def test_sealed_novel_rejects_present_source_term(self):
+        value = self.sealed_novel()
+        value["rows"][0]["term"] = "舊語"
+        closure = self.write_closure("sealed-present-term.json", value)
+        with mock.patch.object(staging, "FRESH", self.fresh):
+            with self.assertRaisesRegex(SystemExit, "source term already present"):
+                staging.stage([closure], self.root / "out-present-term")
+
+    def test_sealed_novel_rejects_stale_predecessor(self):
+        value = self.sealed_novel()
+        value["publicPredecessor"]["sha256"] = "0" * 64
+        closure = self.write_closure("sealed-stale.json", value)
+        with mock.patch.object(staging, "FRESH", self.fresh):
+            with self.assertRaisesRegex(SystemExit, "stale predecessor aggregate"):
+                staging.stage([closure], self.root / "out-sealed-stale")
+
+    def test_sealed_novel_rejects_product_path_escape(self):
+        value = self.sealed_novel()
+        escaped = self.root / "escaped-entry.v2.json"
+        source = Path(value["rows"][0]["product"]["path"])
+        escaped.write_bytes(source.read_bytes())
+        value["rows"][0]["product"] = {
+            "path": str(escaped),
+            "sha256": self.file_sha(escaped),
+        }
+        closure = self.write_closure("sealed-escape.json", value)
+        with mock.patch.object(staging, "FRESH", self.fresh):
+            with self.assertRaisesRegex(SystemExit, "path escapes stable entry"):
+                staging.stage([closure], self.root / "out-sealed-escape")
 
     def test_superseded_sealed_closure_rejects_predecessor_object_drift(self):
         closure = (

@@ -186,6 +186,75 @@ def verify_replacement_closure(closure: dict, closure_path: Path) -> None:
             raise SystemExit(f"authorized product identity mismatch: {entry_id}")
 
 
+def verify_sealed_novel_closure(closure: dict, closure_path: Path) -> None:
+    """Verify a novel-add closure sealed to an exact public predecessor."""
+    binding = closure.get("publicPredecessor")
+    if not isinstance(binding, dict):
+        raise SystemExit(f"sealed novel closure lacks publicPredecessor: {closure_path}")
+    predecessor_path = bound_path(str(binding.get("path") or ""), closure_path)
+    if (
+        not predecessor_path.is_file()
+        or sha(predecessor_path) != str(binding.get("sha256") or "")
+    ):
+        raise SystemExit(f"stale predecessor aggregate: {closure_path}")
+    aggregate = json.loads(predecessor_path.read_text(encoding="utf-8-sig"))
+    entries = aggregate.get("Entries") if isinstance(aggregate, dict) else None
+    if not isinstance(entries, list):
+        raise SystemExit(f"predecessor aggregate lacks Entries list: {closure_path}")
+    expected_count = binding.get("entryCount")
+    if not isinstance(expected_count, int) or len(entries) != expected_count:
+        raise SystemExit(f"predecessor aggregate count drift: {closure_path}")
+
+    rows = closure_rows(closure)
+    verification = closure.get("verification") or {}
+    product_binding_counts = [
+        verification.get("authorizedProductHashesMatchFinalManifests"),
+        verification.get("authorizedProductHashesMatchConstructionManifests"),
+    ]
+    if (
+        verification.get("authorizedRows") != len(rows)
+        or verification.get("stableIdsAbsentFromPublicPredecessor") != len(rows)
+        or verification.get("sourceTermsAbsentFromPublicPredecessor") != len(rows)
+        or not any(count == len(rows) for count in product_binding_counts)
+        or any(row.get("operation") != "ADD_NOVEL" for row in rows)
+    ):
+        raise SystemExit(f"novel-add count or absence proof is not exact: {closure_path}")
+
+    public_ids = {
+        str(entry.get("Id") or "") for entry in entries if isinstance(entry, dict)
+    }
+    public_terms = {
+        str(entry.get("SourceTerm") or "") for entry in entries if isinstance(entry, dict)
+    }
+    seen_ids: set[str] = set()
+    seen_terms: set[str] = set()
+    for row in rows:
+        entry_id, source_term = row_identity(row)
+        if not entry_id or not source_term:
+            raise SystemExit("novel-add row lacks stable ID or source term")
+        if entry_id in public_ids:
+            raise SystemExit(f"novel stable ID already present: {entry_id}")
+        if source_term in public_terms:
+            raise SystemExit(f"novel source term already present: {source_term}")
+        if entry_id in seen_ids or source_term in seen_terms:
+            raise SystemExit(f"duplicate novel identity in closure: {entry_id}")
+        seen_ids.add(entry_id)
+        seen_terms.add(source_term)
+
+        product, expected_product_sha = authorized_product(row, closure_path)
+        expected_product_path = (FRESH / entry_id / "entry.v2.json").resolve()
+        if product.resolve() != expected_product_path:
+            raise SystemExit(f"authorized product path escapes stable entry: {entry_id}")
+        if not product.is_file() or sha(product) != expected_product_sha:
+            raise SystemExit(f"entry hash drift: {entry_id}")
+        parsed_product = json.loads(product.read_text(encoding="utf-8-sig"))
+        if (
+            parsed_product.get("Id") != entry_id
+            or parsed_product.get("SourceTerm") != source_term
+        ):
+            raise SystemExit(f"authorized product identity mismatch: {entry_id}")
+
+
 def stage(closures: list[Path], out: Path) -> int:
     if out.exists():
         raise SystemExit("isolated staging destination already exists")
@@ -217,6 +286,8 @@ def stage(closures: list[Path], out: Path) -> int:
             verify_replacement_closure(closure, closure_path)
             replacements += len(rows)
         elif kind in {"novel-add", "novel-additions"}:
+            if "publicPredecessor" in closure:
+                verify_sealed_novel_closure(closure, closure_path)
             novel += len(rows)
         else:
             raise SystemExit(f"unsupported closureKind {kind!r}: {closure_path}")
