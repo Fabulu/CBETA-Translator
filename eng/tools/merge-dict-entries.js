@@ -43,6 +43,7 @@ const FORBIDDEN_ENGLISH = /\b(?:Buddhism|meditation|Bodhiteaching)\b/i;
 const ID_REPLACEMENTS = new Map([
   ['t_d69c18a98053', 't_bc9b4740f883'], // 吃茶去-derived ID -> canonical 喫茶去 ID
   ['t_d3c00df255f8', 't_d0b8619bf019'], // full-width-comma 雲從龍，風從虎 -> canonical ideographic-comma headword
+  ['t_d0b24f7f47f8', 't_15201b52222e'], // unsupported 虎靠山處 headword -> attested 虎逢山勢 headword
 ]);
 
 function readJsonSafe(p) { try { return JSON.parse(fs.readFileSync(p, 'utf8')); } catch { return null; } }
