@@ -13,7 +13,6 @@ public class StubTermbaseStorageService : ITermbaseStorageService
 {
     public List<TermbaseEntry> Entries { get; set; } = new();
     public List<TermbaseEntry>? LastSaved { get; private set; }
-    public Dictionary<string, List<TermbaseEntry>> CommunityEntriesByUser { get; set; } = new(StringComparer.OrdinalIgnoreCase);
     public bool ThrowOnLoad { get; set; }
     public bool ThrowOnSave { get; set; }
 
@@ -43,11 +42,8 @@ public class StubTermbaseStorageService : ITermbaseStorageService
         return Task.CompletedTask;
     }
 
-    public Task WriteUserJsonlAsync(string communityDir, string username, List<TermbaseEntry> entries, CancellationToken ct = default)
-        => Task.CompletedTask;
-
-    public Task<Dictionary<string, List<TermbaseEntry>>> LoadAllCommunityJsonlAsync(string communityDir, CancellationToken ct = default)
-        => Task.FromResult(CommunityEntriesByUser.ToDictionary(kv => kv.Key, kv => new List<TermbaseEntry>(kv.Value), StringComparer.OrdinalIgnoreCase));
+    // WriteUserJsonlAsync / LoadAllCommunityJsonlAsync stubs removed: those interface
+    // members were retired (personal termbases are local-only).
 }
 
 // ---- IGitRepoService ----

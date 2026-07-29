@@ -35,16 +35,9 @@ public sealed class TermbaseService : ITermbaseService
     private sealed record PersonalTermsCache(string Path, DateTime LastWriteUtc, List<TermRow> Rows);
     private PersonalTermsCache? _personalCache;
 
-    // Community termbases previously re-read EVERY community/termbases/*.jsonl from
-    // disk on every segment change (audit P2.6 / R3-M8); now cached against a
-    // (file count, newest mtime) stamp — same idea as the personal cache above.
-    private sealed record CommunityTermsCache(string Dir, int FileCount, long MaxWriteTicks, Dictionary<string, List<TermbaseEntry>> Data);
-    private CommunityTermsCache? _communityCache;
-
     public void InvalidateCache()
     {
         _personalCache = null;
-        _communityCache = null;
     }
 
     private static readonly JsonSerializerOptions JsonOpts = new()
@@ -181,86 +174,9 @@ public sealed class TermbaseService : ITermbaseService
         return s.Trim();
     }
 
-    public async Task<List<TermHit>> FindCommunityTermsAsync(
-        CurrentSegmentContext ctx, string? root, CancellationToken ct = default)
-    {
-        if (string.IsNullOrWhiteSpace(root) || string.IsNullOrWhiteSpace(ctx.ZhText))
-            return new();
-
-        var communityDir = TermbaseStorageService.GetCommunityTermbasesDir(root);
-        if (!Directory.Exists(communityDir)) return new();
-
-        var allCommunity = await LoadCommunityCachedAsync(communityDir, ct).ConfigureAwait(false);
-        var zh = NormalizeForMatch(ctx.ZhText);
-        var results = new List<TermHit>();
-
-        foreach (var (username, entries) in allCommunity)
-        {
-            foreach (var entry in entries)
-            {
-                if (string.IsNullOrWhiteSpace(entry.SourceTerm)) continue;
-                if (!zh.Contains(NormalizeForMatch(entry.SourceTerm), StringComparison.Ordinal)) continue;
-
-                results.Add(new TermHit
-                {
-                    SourceTerm = entry.SourceTerm,
-                    PreferredTarget = entry.PreferredTarget,
-                    AlternateTargets = entry.AlternateTargets ?? new(),
-                    Status = entry.Status,
-                    Note = entry.Note,
-                    CreatedBy = entry.CreatedBy ?? username
-                });
-            }
-        }
-
-        return results
-            .GroupBy(t => t.SourceTerm, StringComparer.Ordinal)
-            .Select(g => g.First())
-            .OrderByDescending(t => t.SourceTerm.Length)
-            .ToList();
-    }
-
-    /// <summary>
-    /// Stat-only staleness check: re-reads the community jsonl files only when a file
-    /// was added/removed or the newest last-write time moved. This method is called on
-    /// every segment change via the assistant snapshot (audit P2.6 / R3-M8).
-    /// The cached dictionary is treated as immutable — this class only iterates it.
-    /// </summary>
-    private async Task<Dictionary<string, List<TermbaseEntry>>> LoadCommunityCachedAsync(
-        string communityDir, CancellationToken ct)
-    {
-        int fileCount = 0;
-        long maxTicks = 0;
-        try
-        {
-            foreach (var f in Directory.EnumerateFiles(communityDir, "*.jsonl"))
-            {
-                fileCount++;
-                var t = File.GetLastWriteTimeUtc(f).Ticks;
-                if (t > maxTicks) maxTicks = t;
-            }
-        }
-        catch
-        {
-            // stat failed — fall back to a plain load below
-            fileCount = -1;
-        }
-
-        var cache = _communityCache; // single read: consistent slot
-        if (cache != null &&
-            fileCount >= 0 &&
-            string.Equals(cache.Dir, communityDir, StringComparison.OrdinalIgnoreCase) &&
-            cache.FileCount == fileCount &&
-            cache.MaxWriteTicks == maxTicks)
-        {
-            return cache.Data;
-        }
-
-        var data = await _storage.LoadAllCommunityJsonlAsync(communityDir, ct).ConfigureAwait(false);
-        if (fileCount >= 0)
-            _communityCache = new CommunityTermsCache(communityDir, fileCount, maxTicks, data);
-        return data;
-    }
+    // FindCommunityTermsAsync / LoadCommunityCachedAsync removed: personal termbases are
+    // local-only. The app no longer reads or renders other users' community termbase
+    // entries (community/termbases/*.jsonl).
 
     public async Task<List<TermHit>> GetAllTermsAsync(string? root, CancellationToken ct = default)
     {

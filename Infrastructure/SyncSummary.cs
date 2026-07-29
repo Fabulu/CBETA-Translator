@@ -43,7 +43,7 @@ public static class SyncSummary
                 translations++;
             else if (path.Contains("translation-memory"))
                 tmEntries++;
-            else if (path.Contains("termbase") || path.Contains("community/termbases/"))
+            else if (path.Contains("termbase"))
                 termbases++;
             else if (path.Contains("community/tags/") || path.Contains("tag-vocabularies"))
                 tags++;

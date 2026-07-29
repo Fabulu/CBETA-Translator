@@ -23,12 +23,6 @@ public sealed class TermbaseStorageService : ITermbaseStorageService
         Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
     };
 
-    private static readonly JsonSerializerOptions CompactOpts = new()
-    {
-        WriteIndented = false,
-        Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
-    };
-
     public async Task<List<TermbaseEntry>> LoadAsync(string root, CancellationToken ct = default)
     {
         if (string.IsNullOrWhiteSpace(root))
@@ -103,78 +97,9 @@ public sealed class TermbaseStorageService : ITermbaseStorageService
         File.Move(tmpPath, path, overwrite: true);
     }
 
-    public async Task WriteUserJsonlAsync(string communityDir, string username, List<TermbaseEntry> entries, CancellationToken ct = default)
-    {
-        if (string.IsNullOrWhiteSpace(communityDir))
-            throw new ArgumentException("Community directory is required.", nameof(communityDir));
-        if (string.IsNullOrWhiteSpace(username))
-            throw new ArgumentException("Username is required.", nameof(username));
-        if (entries == null)
-            throw new ArgumentNullException(nameof(entries));
-
-        Directory.CreateDirectory(communityDir);
-
-        // Sanitize username to prevent path traversal
-        var safeUsername = SanitizeFilename(username);
-        var path = Path.Combine(communityDir, safeUsername + ".jsonl");
-        var fullPath = Path.GetFullPath(path);
-        var fullDir = Path.GetFullPath(communityDir);
-        if (!fullPath.StartsWith(fullDir, StringComparison.OrdinalIgnoreCase))
-            throw new ArgumentException("Username produces a path outside the community directory.", nameof(username));
-
-        // Safety: never overwrite a non-empty file with empty data
-        if (entries.Count == 0 && File.Exists(path) && new FileInfo(path).Length > 10)
-            return;
-
-        var sb = new StringBuilder();
-
-        foreach (var e in entries)
-        {
-            sb.AppendLine(JsonSerializer.Serialize(e, CompactOpts));
-        }
-
-        var tmpPath = path + ".tmp";
-        await File.WriteAllTextAsync(tmpPath, sb.ToString(), new UTF8Encoding(false), ct);
-        File.Move(tmpPath, path, overwrite: true);
-    }
-
-    public async Task<Dictionary<string, List<TermbaseEntry>>> LoadAllCommunityJsonlAsync(string communityDir, CancellationToken ct = default)
-    {
-        var result = new Dictionary<string, List<TermbaseEntry>>(StringComparer.OrdinalIgnoreCase);
-
-        if (string.IsNullOrWhiteSpace(communityDir) || !Directory.Exists(communityDir))
-            return result;
-
-        foreach (var file in Directory.GetFiles(communityDir, "*.jsonl"))
-        {
-            ct.ThrowIfCancellationRequested();
-
-            var username = Path.GetFileNameWithoutExtension(file);
-            var entries = new List<TermbaseEntry>();
-
-            var lines = await File.ReadAllLinesAsync(file, Encoding.UTF8, ct);
-            foreach (var line in lines)
-            {
-                if (string.IsNullOrWhiteSpace(line)) continue;
-
-                try
-                {
-                    var e = JsonSerializer.Deserialize<TermbaseEntry>(line, ReadOpts);
-                    if (e != null)
-                        entries.Add(e);
-                }
-                catch
-                {
-                    // Skip malformed lines
-                }
-            }
-
-            if (entries.Count > 0)
-                result[username] = entries;
-        }
-
-        return result;
-    }
+    // WriteUserJsonlAsync / LoadAllCommunityJsonlAsync removed: personal termbase entries
+    // are local-only. They are no longer published to community/termbases/{login}.jsonl,
+    // nor are other users' community termbases read/rendered.
 
     public async Task<List<TermbaseEntry>> LoadUserAsync(string root, string username, CancellationToken ct = default)
     {
@@ -244,9 +169,6 @@ public sealed class TermbaseStorageService : ITermbaseStorageService
 
     public static string GetCommunityTermbasesDir(string repoRoot)
         => Path.Combine(repoRoot, "community", "termbases");
-
-    private static string SanitizeFilename(string name)
-        => ReadZen.App.Infrastructure.FileNameSanitizer.Strict(name);
 
     public static string GetPath(string root)
     {

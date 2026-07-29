@@ -51,17 +51,12 @@ public sealed class TranslationAssistantService : ITranslationAssistantService
         var approvedTask = _tm.FindApprovedMatchesAsync(ctx, root, translatedDir, ct, maxResults);
         var referenceTask = _tm.FindReferenceMatchesAsync(ctx, root, translatedDir, ct, maxResults);
         var termsTask = _terms.FindTermsAsync(ctx, root, ct);
-        var communityTermsTask = _terms.FindCommunityTermsAsync(ctx, root, ct);
-        await Task.WhenAll(approvedTask, referenceTask, termsTask, communityTermsTask).ConfigureAwait(false);
+        // Personal termbases are local-only: other users' community termbase entries are
+        // no longer contributed to the assistant snapshot.
+        await Task.WhenAll(approvedTask, referenceTask, termsTask).ConfigureAwait(false);
         var approved = approvedTask.Result;
         var reference = referenceTask.Result;
         var terms = termsTask.Result;
-        var communityTerms = communityTermsTask.Result;
-
-        // Merge: personal terms first, then community (dedup by SourceTerm)
-        var personalSourceTerms = new System.Collections.Generic.HashSet<string>(
-            terms.Select(t => t.SourceTerm), System.StringComparer.Ordinal);
-        terms.AddRange(communityTerms.Where(ct2 => !personalSourceTerms.Contains(ct2.SourceTerm)));
 
         var qa = _qa.Check(ctx, terms);
 

@@ -1717,13 +1717,8 @@ public partial class GitTabViewModel : ViewModelBase
                 AppendLog($"[dedup] termbase: {kept:n0} entries after dedup");
             }
 
-            // --- Write per-user termbase JSONL ---
-            ProgressText = "Writing per-user termbase JSONL\u2026";
-            var communityTbDir = TermbaseStorageService.GetCommunityTermbasesDir(repoDir);
-            var localTermbase = await _termbaseSvc.LoadAsync(repoDir, ct);
-            await _termbaseSvc.WriteUserJsonlAsync(communityTbDir, _githubLogin!, localTermbase, ct);
-            var tbJsonlRelPath = Path.Combine("community", "termbases", _githubLogin + ".jsonl").Replace('\\', '/');
-            AppendLog($"[step] wrote {localTermbase.Count} term(s) to {tbJsonlRelPath}");
+            // Personal termbase entries are LOCAL-ONLY and are no longer published to
+            // community/termbases/{login}.jsonl (removed: personal-termbase publish path).
 
             // --- Scholar collections dedup ---
             var scPath = Path.Combine(repoDir, ScholarCollectionsFile);
@@ -1803,7 +1798,6 @@ public partial class GitTabViewModel : ViewModelBase
             var gitattribPath = Path.Combine(repoDir, ".gitattributes");
             string[] mergeRules =
             {
-                "community/termbases/*.jsonl merge=union",
                 "community/collections/*.jsonl merge=union",
                 "community/reviews/*.jsonl merge=union",
                 "community/master-dates/*.jsonl merge=union",
@@ -2202,37 +2196,9 @@ public partial class GitTabViewModel : ViewModelBase
                 FireDeviceFlowCompleted();
             }
 
-            // --- Write per-user termbase JSONL ---
-            ProgressText = "Writing per-user termbase JSONL\u2026";
-            var communityTbDir = TermbaseStorageService.GetCommunityTermbasesDir(repoDir);
-            var localTermbase = await _termbaseSvc.LoadAsync(repoDir, ct);
-            await _termbaseSvc.WriteUserJsonlAsync(communityTbDir, _githubLogin!, localTermbase, ct);
-            var tbJsonlRelPath = Path.Combine("community", "termbases", _githubLogin + ".jsonl").Replace('\\', '/');
-            AppendLog($"[step] wrote {localTermbase.Count} term(s) to {tbJsonlRelPath}");
-
-            // Ensure .gitattributes has merge=union for termbase JSONL
-            var gitattribPath = Path.Combine(repoDir, ".gitattributes");
-            const string tbJsonlMergeRule = "community/termbases/*.jsonl merge=union";
-            bool tbGitattribChanged = false;
-            if (File.Exists(gitattribPath))
-            {
-                var content = await File.ReadAllTextAsync(gitattribPath, Encoding.UTF8, ct);
-                if (!content.Contains(tbJsonlMergeRule, StringComparison.Ordinal))
-                {
-                    if (!content.EndsWith("\n", StringComparison.Ordinal))
-                        content += "\n";
-                    content += tbJsonlMergeRule + "\n";
-                    await File.WriteAllTextAsync(gitattribPath, content, new UTF8Encoding(false), ct);
-                    tbGitattribChanged = true;
-                    AppendLog("[step] appended termbase merge=union rule to .gitattributes");
-                }
-            }
-            else
-            {
-                await File.WriteAllTextAsync(gitattribPath, tbJsonlMergeRule + "\n", new UTF8Encoding(false), ct);
-                tbGitattribChanged = true;
-                AppendLog("[step] created .gitattributes with termbase merge=union rule");
-            }
+            // Personal termbase entries are LOCAL-ONLY and are no longer published to
+            // community/termbases/{login}.jsonl (removed: personal-termbase publish path
+            // and its .gitattributes merge=union rule).
 
             // --- Commit ---
             string originalBranch = await _git.GetCurrentBranchAsync(repoDir, ct);
@@ -2254,26 +2220,6 @@ public partial class GitTabViewModel : ViewModelBase
                     ProgressText = "Stage failed.";
                     AppendLog("[error] " + stage.Error);
                     return;
-                }
-            }
-
-            // Stage per-user termbase JSONL
-            ProgressText = "Staging " + tbJsonlRelPath + "\u2026";
-            AppendLog("[step] git add -- " + tbJsonlRelPath);
-            var stageTbJsonl = await _git.StagePathAsync(repoDir, tbJsonlRelPath, prog, ct);
-            if (!stageTbJsonl.Success)
-            {
-                AppendLog("[warn] failed to stage termbase JSONL: " + stageTbJsonl.Error);
-            }
-
-            // Stage .gitattributes if changed by termbase JSONL rule
-            if (tbGitattribChanged)
-            {
-                AppendLog("[step] git add -- .gitattributes (termbase rule)");
-                var stageAttr = await _git.StagePathAsync(repoDir, ".gitattributes", prog, ct);
-                if (!stageAttr.Success)
-                {
-                    AppendLog("[warn] failed to stage .gitattributes: " + stageAttr.Error);
                 }
             }
 
@@ -3454,7 +3400,7 @@ public partial class GitTabViewModel : ViewModelBase
             return trackedPaths;
 
         var login = _githubLogin.Trim();
-        trackedPaths.Add($"community/termbases/{login}.jsonl");
+        // Personal termbases are local-only: community/termbases/{login}.jsonl is not shared.
         trackedPaths.Add($"community/collections/{login}.jsonl");
         trackedPaths.Add($"community/reviews/{login}.jsonl");
         trackedPaths.Add($"community/master-dates/{login}.jsonl");
@@ -3496,8 +3442,8 @@ public partial class GitTabViewModel : ViewModelBase
             return false;
 
         var login = _githubLogin.Trim();
-        return string.Equals(normalized, $"community/termbases/{login}.jsonl", StringComparison.OrdinalIgnoreCase)
-            || string.Equals(normalized, $"community/collections/{login}.jsonl", StringComparison.OrdinalIgnoreCase)
+        // Personal termbases are local-only: community/termbases/{login}.jsonl is not auto-merged.
+        return string.Equals(normalized, $"community/collections/{login}.jsonl", StringComparison.OrdinalIgnoreCase)
             || string.Equals(normalized, $"community/reviews/{login}.jsonl", StringComparison.OrdinalIgnoreCase)
             || string.Equals(normalized, $"community/master-dates/{login}.jsonl", StringComparison.OrdinalIgnoreCase)
             || string.Equals(normalized, $"community/tags/{login}.jsonl", StringComparison.OrdinalIgnoreCase)

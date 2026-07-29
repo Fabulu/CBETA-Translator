@@ -4457,8 +4457,8 @@ public partial class ReadableTabView : UserControl
             sb.AppendLine($"Status: {hit.Status}");
         if (!string.IsNullOrWhiteSpace(hit.Note))
             sb.AppendLine($"Note: {hit.Note}");
-        if (!string.IsNullOrWhiteSpace(hit.CreatedBy))
-            sb.AppendLine($"By: {hit.CreatedBy}");
+        // "By: {hit.CreatedBy}" attribution removed: community-term hits are no longer
+        // produced (personal termbases are local-only); TermHit.CreatedBy is never set here.
 
         _notesBody.Text = sb.ToString().TrimEnd();
         _vm.CanDeleteCommunityNote = false;

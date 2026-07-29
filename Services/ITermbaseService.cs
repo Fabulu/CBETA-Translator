@@ -15,10 +15,8 @@ public interface ITermbaseService
         string? root,
         CancellationToken ct = default);
 
-    Task<List<TermHit>> FindCommunityTermsAsync(
-        CurrentSegmentContext ctx,
-        string? root,
-        CancellationToken ct = default);
+    // FindCommunityTermsAsync removed: personal termbases are local-only; other users'
+    // community termbase entries are no longer read or rendered.
 
     /// <summary>Pre-loads termbase files into cache so the first assistant lookup is instant.</summary>
     Task WarmupCacheAsync(string root, CancellationToken ct = default);

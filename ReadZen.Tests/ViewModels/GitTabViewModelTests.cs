@@ -402,7 +402,9 @@ public class GitTabViewModelTests
             var tracked = (HashSet<string>)method!.Invoke(vm, new object[] { repoDir })!;
 
             Assert.Contains("community/translations/Fabulu/T48n2005.xml", tracked, StringComparer.OrdinalIgnoreCase);
-            Assert.Contains("community/termbases/Fabulu.jsonl", tracked, StringComparer.OrdinalIgnoreCase);
+            // Retired: personal termbases are local-only, so community/termbases/{login}.jsonl
+            // is no longer a tracked community share path.
+            Assert.DoesNotContain("community/termbases/Fabulu.jsonl", tracked, StringComparer.OrdinalIgnoreCase);
         }
         finally
         {
