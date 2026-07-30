@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "r88-mixed-atomic-install.v1",
+  "cohort": "R88",
+  "authority": [
+    {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r88-final-product-review-a.json",
+      "sha256": "9290a794d4df05dfb157eb09efbd7c77205c805aa14c0600d139aa9602fa7932"
+    },
+    {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r88-depth-final-root.json",
+      "sha256": "5f4a424b227761aeee43da77a10f8adf971f91d58b14f76b655fcfe588933641"
+    },
+    {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r88-attribution-final-c.json",
+      "sha256": "a8ca1648b97b1edf4c92601ceead12021cbc85b26b267a66124d6c1874c804f3"
+    }
+  ],
+  "entries": [
+    {
+      "id": "t_1e38e6b91833",
+      "baselineSha256": null,
+      "installedEntrySha256": "5538a4f715ad51d4ca7b71a760a53762ab60fba775bfd77a10233e62db7352f2"
+    },
+    {
+      "id": "t_1e3d3a5173a6",
+      "baselineSha256": "0ea1f63f65c01ef746ca5796222a499abb66d5da9127494c497023fc64a88493",
+      "installedEntrySha256": "aad0c4ee11f8bd4de628cd27b99a03f6dffd7cefca1ed30b1401be9f2c48c922"
+    },
+    {
+      "id": "t_1e3e02536ca2",
+      "baselineSha256": "d5333c4b9d5c0a35f667e995fe70d2cd47c1e3ab4d7504cbe8e2ee19abe6d1dd",
+      "installedEntrySha256": "697d3cb05e3ec3c95a945a1c23a18ea6fe6f899f182634ec40ee66e97c2a6ee3"
+    }
+  ],
+  "installed": 3,
+  "postInstallHardPass": true
+}

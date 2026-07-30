@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "authoritative-catastrophe-ledger-advancement.v1",
+  "cohort": "R88",
+  "publicCommit": "ee2310baa6478c9993758267bb8af6ef4390853c",
+  "publishedIds": [
+    "t_1e38e6b91833",
+    "t_1e3d3a5173a6",
+    "t_1e3e02536ca2"
+  ],
+  "authoritativeRepairedBefore": 152,
+  "authoritativeRepairedAfter": 155,
+  "authoritativeRemainderBefore": 873,
+  "resolvedThisAdvancement": 3,
+  "authoritativeRemainderAfter": 870,
+  "arithmeticHardPass": true,
+  "publicIntegrity": {
+    "entryCount": 4714,
+    "aggregateCount": 4714,
+    "legacyCount": 4714,
+    "indexCount": 4714,
+    "shardCount": 4714,
+    "exactProductParity": "3/3",
+    "replacementParity": "3/3",
+    "headEqualsOriginMain": true,
+    "hardPass": true
+  },
+  "timegate": {
+    "publicationDeadlineEpoch": 1785413130.196248,
+    "atomicInstallEpoch": 1785413729,
+    "atomicInstallLatenessSeconds": 598.803752,
+    "publicCommitEpoch": 1785413780,
+    "publicCommitLatenessSeconds": 649.803752,
+    "deadlineHardPass": false,
+    "latePublicationDisclosed": true
+  },
+  "finalReleaseAuthoritySha256": "8e08f3f623c37b5f25a0ba9b5f38c2f617a47ed05c4964578d6148b7d0730923",
+  "sourceHierarchy": "7 retained Tier-1 authored plus 10 Tier-2 recorded-sayings witnesses; zero Tier-3 lamps.",
+  "windowsNodeMerge": true,
+  "windowsGitPush": true,
+  "sealed": true
+}

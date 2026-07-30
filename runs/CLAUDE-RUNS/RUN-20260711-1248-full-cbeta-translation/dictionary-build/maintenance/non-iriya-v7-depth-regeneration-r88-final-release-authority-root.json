@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "r88-final-release-authority.v1",
+  "cohort": "R88",
+  "verdict": "RELEASE_AUTHORIZED_AND_PUBLISHED",
+  "replacements": [
+    {"id":"t_1e38e6b91833","term":"宜作舟航","productSha256":"5538a4f715ad51d4ca7b71a760a53762ab60fba775bfd77a10233e62db7352f2"},
+    {"id":"t_1e3d3a5173a6","term":"回互","productSha256":"aad0c4ee11f8bd4de628cd27b99a03f6dffd7cefca1ed30b1401be9f2c48c922"},
+    {"id":"t_1e3e02536ca2","term":"疑團","productSha256":"697d3cb05e3ec3c95a945a1c23a18ea6fe6f899f182634ec40ee66e97c2a6ee3"}
+  ],
+  "review": {
+    "independentFinalReviewPath": "maintenance/non-iriya-v7-depth-regeneration-r88-final-product-review-a.json",
+    "independentFinalReviewSha256": "9290a794d4df05dfb157eb09efbd7c77205c805aa14c0600d139aa9602fa7932",
+    "rootDepthAuditPath": "maintenance/non-iriya-v7-depth-regeneration-r88-depth-final-root.json",
+    "rootDepthAuditSha256": "5f4a424b227761aeee43da77a10f8adf971f91d58b14f76b655fcfe588933641",
+    "rootAttributionAuditPath": "maintenance/non-iriya-v7-depth-regeneration-r88-attribution-final-c.json",
+    "rootAttributionAuditSha256": "a8ca1648b97b1edf4c92601ceead12021cbc85b26b267a66124d6c1874c804f3",
+    "retainedEvidence": "17 quotations across 17 independently reviewed source works",
+    "tierMix": "7 Tier-1 authored and 10 Tier-2 recorded-sayings witnesses; zero lamps",
+    "attributionAudit": "zero hard failures",
+    "depthSenseAudit": "three audited; zero hard failures and zero review flags",
+    "staleCollisionRejected": true,
+    "failedIndependentReviewRejected": true
+  },
+  "processRepairs": {
+    "multiSenseDepthFloorAppliedOncePerEntry": true,
+    "aggregateFourWorkGuardPreserved": true,
+    "regressionTests": "8/8 pass",
+    "staleDepthReportRegeneratedFromAbsentOutput": true,
+    "lateContinuationKeptOriginalClock": true
+  },
+  "publicIntegrity": {
+    "entryCount": 4714,
+    "exactProductParity": "3/3",
+    "publicCommit": "ee2310baa6478c9993758267bb8af6ef4390853c",
+    "headEqualsOriginMain": true,
+    "hardPass": true
+  },
+  "publicationTiming": {
+    "publicationDeadlineEpoch": 1785413130.196248,
+    "atomicInstallEpoch": 1785413729,
+    "atomicInstallLatenessSeconds": 598.803752,
+    "publicCommitEpoch": 1785413780,
+    "publicCommitLatenessSeconds": 649.803752,
+    "deadlineHardPass": false,
+    "latePublicationDisclosed": true,
+    "cause": "A failed independent review was rejected and corrected; three stale canonical paths were recoverably quarantined; the multi-sense compiler required a tested entry-scoped floor repair; final actor and depth artifacts were corrected before publication."
+  },
+  "releaseAuthorized": true,
+  "published": true,
+  "hardPass": true
+}

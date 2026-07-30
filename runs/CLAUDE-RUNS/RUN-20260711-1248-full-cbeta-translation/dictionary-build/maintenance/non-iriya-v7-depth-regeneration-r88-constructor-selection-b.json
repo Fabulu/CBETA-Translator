@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "r88-admitted-constructor-selection.v1",
+  "cohort": "R88",
+  "artifactZeroSelectionPath": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r88-selection-b.json",
+  "artifactZeroSelectionSha256": "c9e2e137bbb3f0780771a15d312966331592ada9dcec9742371c14b26a96cc16",
+  "rows": [
+    {
+      "queueOrdinal": 1,
+      "identityId": "t_1e38e6b91833",
+      "term": "宜作舟航",
+      "requiredFloor": 4,
+      "classification": "hard-fail"
+    },
+    {
+      "queueOrdinal": 2,
+      "identityId": "t_1e3d3a5173a6",
+      "term": "回互",
+      "requiredFloor": 7,
+      "classification": "legacy-selected-depth-repair"
+    },
+    {
+      "queueOrdinal": 3,
+      "identityId": "t_1e3e02536ca2",
+      "term": "疑團",
+      "requiredFloor": 6,
+      "classification": "legacy-selected-depth-repair"
+    }
+  ],
+  "excluded": [],
+  "hardPass": true
+}

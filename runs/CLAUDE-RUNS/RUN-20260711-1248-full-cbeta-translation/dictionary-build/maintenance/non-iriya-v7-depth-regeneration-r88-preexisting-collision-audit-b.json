@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "r88-preexisting-canonical-path-collision.v1",
+  "cohort": "R88",
+  "auditedUtc": "2026-07-30T11:50:38Z",
+  "artifactZeroStartedEpoch": 1785412102.196248,
+  "constructorInvokedByThisWorkerBeforeAudit": false,
+  "rows": [
+    {
+      "id": "t_1e38e6b91833",
+      "productSha256": "1b49d769f4f062e5c97901f3242e4b80d92db9aaf5ac7942975e7dcd930216c7",
+      "productMtimeEpoch": 1785330454,
+      "worksheetSha256": "1d5c26eb0db696e3cd441aafdf39fae35f6f8cb8752a69532a8620c1b42ebae2",
+      "worksheetMtimeEpoch": 1785330453,
+      "sourceDossierSha256": "6ea17f687bb319947134fcc33152a8e08c9a3e52c5a80b54f0e0eae6f5341076",
+      "sourceDossierMtimeEpoch": 1785329695,
+      "predatesArtifactZero": true
+    },
+    {
+      "id": "t_1e3d3a5173a6",
+      "productSha256": "0ea1f63f65c01ef746ca5796222a499abb66d5da9127494c497023fc64a88493",
+      "productMtimeEpoch": 1784596525,
+      "worksheetSha256": "eac67ec5fc2a88d5423988fa6b647b10cea366e9e3cdc012a86fdde0623e3d2d",
+      "worksheetMtimeEpoch": 1784245803,
+      "sourceDossierPresent": false,
+      "predatesArtifactZero": true
+    },
+    {
+      "id": "t_1e3e02536ca2",
+      "productSha256": "7f315801fb2c3c48d483bceea9f0addc70df02a140766f7528f8747ea3994c96",
+      "productMtimeEpoch": 1785145211,
+      "worksheetSha256": "53f6c1742227479ad0cd36a3c02fecdb9b0f41e185ab8ef845828ffdd761d964",
+      "worksheetMtimeEpoch": 1785144428,
+      "sourceDossierPresent": false,
+      "predatesArtifactZero": true
+    }
+  ],
+  "rootCause": "All three canonical targets were nonempty before R88 artifact-zero. Their bound mtimes prove they are legacy staging products, not outputs from the current governed extraction or constructor.",
+  "requiredAction": "After source adjudication, recoverably quarantine all three complete directories before clean construction. The generic constructor must continue to reject any nonempty per-ID path before the first write.",
+  "hardPass": false,
+  "publicMutation": false
+}

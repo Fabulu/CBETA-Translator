@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "bounded-source-adjudication.v1",
+  "cohort": "R88",
+  "reviewer": "r88_review_a",
+  "constraints": {
+    "readOnlyResearch": true,
+    "boundedToExtractionArtifact": "maintenance/non-iriya-v7-depth-regeneration-r88-extraction-output-b.json",
+    "sourceOrder": ["tier1-authored", "tier2-recorded-sayings", "tier3-lamp"],
+    "paddingForbidden": true
+  },
+  "terms": [
+    {
+      "id": "t_1e38e6b91833",
+      "term": "宜作舟航",
+      "preferredTarget": "you should serve as a ferryboat",
+      "senseRuling": "One figurative imperative: Mazu tells Yaoshan that realization is not a private stopping place; he should leave, establish himself, and carry others across. 舟航 is the serviceable conveyance, not literal travel.",
+      "validationRuling": "multi-source active redeployment, but all seven witnesses quote the same Mazu–Yaoshan encounter and therefore constitute one inherited case family; validation must not be calculated as seven independent origins",
+      "matrix": [
+        {"relPath":"J/J25/J25nB171.xml","tier":2,"exactActor":"Mazu","voice":"nested quoted imperative, followed by the record owner's active comment","family":"Mazu–Yaoshan ferryboat case","decision":"retain","reason":"clear complete case and active application"},
+        {"relPath":"J/J26/J26nB177.xml","tier":2,"exactActor":"Mazu","voice":"nested quoted imperative, followed by the record owner's active disagreement","family":"Mazu–Yaoshan ferryboat case","decision":"retain","reason":"materially independent active redeployment"},
+        {"relPath":"J/J35/J35nB343.xml","tier":2,"exactActor":"Mazu","voice":"nested quoted imperative, followed by the record owner's active comment","family":"Mazu–Yaoshan ferryboat case","decision":"retain","reason":"clear semantic gloss through carrying later generations across"},
+        {"relPath":"J/J36/J36nB362.xml","tier":2,"exactActor":"Mazu","voice":"nested quoted imperative, followed by the record owner's active criticism","family":"Mazu–Yaoshan ferryboat case","decision":"retain","reason":"independent active treatment"},
+        {"relPath":"L/L153/L153n1637.xml","tier":2,"exactActor":"Mazu","voice":"passive case quotation in Huanyou Chuan's discourse","family":"Mazu–Yaoshan ferryboat case","decision":"exclude","reason":"adds no lexical information beyond retained active deployments"},
+        {"relPath":"L/L154/L154n1639.xml","tier":2,"exactActor":"Mazu","voice":"parallel form of the same case inside Tianyin Xiu's record","family":"Mazu–Yaoshan ferryboat case","decision":"exclude","reason":"substantially duplicates J25nB171 deployment/context"},
+        {"relPath":"L/L155/L155n1643.xml","tier":2,"exactActor":"Mazu","voice":"case quotation in Hongjue Min's record","family":"Mazu–Yaoshan ferryboat case","decision":"exclude","reason":"reserve witness; four clearer active Tier-2 deployments already meet floor"}
+      ],
+      "retainExactPaths": ["J/J25/J25nB171.xml","J/J26/J26nB177.xml","J/J35/J35nB343.xml","J/J36/J36nB362.xml"],
+      "excludeExactPaths": ["L/L153/L153n1637.xml","L/L154/L154n1639.xml","L/L155/L155n1643.xml"],
+      "lampRuling": "No lamp consultation or retention warranted."
+    },
+    {
+      "id": "t_1e3e02536ca2",
+      "term": "回互",
+      "preferredTarget": "interweave",
+      "alternateTargets": ["interact reciprocally", "turn through one another"],
+      "senseRuling": "Primary technical sense: distinct positions or aspects interweave and function through one another without collapsing into identity. A contextually negative extension, 無回互 or 不回互, means without turning aside, mediation, or reciprocal displacement. Keep these in one sense unless construction can demonstrate two different referents rather than positive/negative deployment.",
+      "matrix": [
+        {"relPath":"X/X63/X63n1257.xml","tier":1,"exactActor":"unresolved from extracted frame","voice":"mixed handbook exposition","family":"doctrinal schema","decision":"exclude","reason":"generic compilation context and weaker actor proof; tier label alone does not establish Zen-master authorship"},
+        {"relPath":"X/X69/X69n1357.xml","tier":1,"exactActor":"unresolved from extracted frame","voice":"source exposition","family":"Dongshan interweaving schema","decision":"exclude","reason":"actor/voice not securely recoverable from bounded frame"},
+        {"relPath":"X/X71/X71n1413.xml","tier":1,"exactActor":"unresolved from extracted frame","voice":"source exposition","family":"Dongshan interweaving schema","decision":"exclude","reason":"actor/voice not securely recoverable from bounded frame"},
+        {"relPath":"X/X72/X72n1442.xml","tier":1,"exactActor":"unresolved from extracted frame","voice":"source exposition","family":"Dongshan interweaving schema","decision":"exclude","reason":"actor/voice not securely recoverable from bounded frame"},
+        {"relPath":"X/X78/X78n1554.xml","tier":1,"exactActor":"author of the authored lineage praise","voice":"authored evaluative verse/prose","family":"Dongshan interweaving schema","decision":"retain","reason":"higher-tier authored active use"},
+        {"relPath":"X/X87/X87n1624.xml","tier":1,"exactActor":"Huihong","voice":"authored historical explanation","family":"Dongshan interweaving schema","decision":"retain","reason":"explicit self-gloss: the mechanism values 回互 so as not to violate the correct position"},
+        {"relPath":"B/B25/B25n0145.xml","tier":2,"exactActor":"Zhongfeng Mingben","voice":"direct discourse","family":"no-detour negative deployment","decision":"retain","reason":"一踏到底更無回互 clearly establishes the no-turning-aside extension"},
+        {"relPath":"B/B27/B27n0152.xml","tier":2,"exactActor":"Yulin Tongxiu","voice":"direct polemical discourse","family":"Dongshan interweaving schema","decision":"exclude","reason":"dense derivative doctrinal polemic adds less lexical clarity than retained witnesses"},
+        {"relPath":"C/C077/C077n1710.xml","tier":2,"exactActor":"record-owner master in the extracted discourse","voice":"direct raising and contrast: 回互不回互","family":"explicit contrast deployment","decision":"retain","reason":"strongest operational contrast; points to a board then removes the naming fixation"},
+        {"relPath":"J/J10/J10nA158.xml","tier":2,"exactActor":"Miyun Yuanwu","voice":"direct verse in hall discourse","family":"no-detour negative deployment","decision":"retain","reason":"步步何曾有回互 independently confirms the negative extension"}
+      ],
+      "retainExactPaths": ["X/X78/X78n1554.xml","X/X87/X87n1624.xml","B/B25/B25n0145.xml","C/C077/C077n1710.xml","J/J10/J10nA158.xml"],
+      "excludeExactPaths": ["X/X63/X63n1257.xml","X/X69/X69n1357.xml","X/X71/X71n1413.xml","X/X72/X72n1442.xml","B/B27/B27n0152.xml"],
+      "lampRuling": "No Tier-3 witness is needed; the retained set has two authored and three recorded-sayings deployments."
+    }
+  ],
+  "overallRuling": "Both terms can be constructed without lamps. Count active redeployments, not filenames: 宜作舟航 is one inherited case actively handled by several later masters; 回互 has a stronger authored/recorded-sayings spread and should not be padded with uncertain compilations."
+}
