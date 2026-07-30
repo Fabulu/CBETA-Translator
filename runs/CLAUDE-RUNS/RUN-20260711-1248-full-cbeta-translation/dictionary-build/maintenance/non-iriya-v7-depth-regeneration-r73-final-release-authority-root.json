@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "r73-final-release-authority.v1",
+  "cohort": "R73",
+  "verdict": "RELEASE_AUTHORIZED",
+  "constructionClosureSha256": "169c69d9284bbbe957fc615394b1d11915e77913439e88e3d9333b311d3d2792",
+  "replacements": [
+    {
+      "id": "t_193535d6b929",
+      "term": "禾山打皷",
+      "sha256": "55205fc3d73fb71b8f769e419745e121f78e68e16b86a32f22211b9e1aaea06c",
+      "reviewSha256": "865427a654afa174bb1551c659beb5b122fea84e4bce547c4a819c0d06ec077c"
+    },
+    {
+      "id": "t_195a2b5b63d4",
+      "term": "瞞人",
+      "sha256": "3d3bd469d4d92a5029463b44d61fd6b4ece9d545fc868f9cbe08f609fdb1cf53",
+      "reviewSha256": "03c42956419cf583621f86a434816e5ac86202d2023a241bdfe075d9ae944152",
+      "correctionClosure": "maintenance/non-iriya-v7-depth-regeneration-r73-product-delta-closure-root.json"
+    }
+  ],
+  "removal": {
+    "id": "t_19784084ccb4",
+    "term": "誌公",
+    "reason": "Every reviewed occurrence is a proper-name or honorific reference to Baozhi/Zhigong; zero lexical deployment families survive.",
+    "decisionSha256": "bd35d35558e8c243c9d62485adb127205bb26b3c06c6d836fd7c8f046bf1a293",
+    "reviewSha256": "5351afa9bd5c9fe8e686fa44be194908d9b5d3da9d328a354759a98a1e81733b"
+  },
+  "review": {
+    "semanticRulings": "3/3 pass, including one approved nonlexical removal",
+    "retainedEvidence": "12 quotations across 12 independent deployment families for the two lexical entries",
+    "tierMix": "2 Tier-1, 10 Tier-2, 0 Tier-3",
+    "duplicateOpeningRegression": "pass",
+    "compilerProjectionParity": "pass"
+  },
+  "releaseAuthorized": true,
+  "hardPass": true
+}

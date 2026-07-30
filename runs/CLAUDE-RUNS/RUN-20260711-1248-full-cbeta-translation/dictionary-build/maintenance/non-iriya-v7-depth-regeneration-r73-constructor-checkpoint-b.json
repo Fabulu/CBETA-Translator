@@ -1,0 +1,70 @@
+{
+  "schemaVersion": "construction-start-receipt.v1",
+  "startedEpoch": 1785399277.065534,
+  "invokedEpoch": 1785399356.113285,
+  "ids": [
+    "t_193535d6b929",
+    "t_195a2b5b63d4"
+  ],
+  "terms": [
+    "禾山打皷",
+    "瞞人"
+  ],
+  "configSha256": "81d38b7c12dfdee9addc7a5e83d6df26af94b4ce74fd05a4310acd76a2aee259",
+  "requiredFloors": [
+    4,
+    6
+  ],
+  "admittedRequiredOccurrences": 10,
+  "adjudicatedCaseLoad": 10,
+  "deadlinesSeconds": {
+    "viability": 120,
+    "researchExtraction": 120,
+    "adjudicatedConfig": 524,
+    "constructor": 534,
+    "firstProduct": 554,
+    "construction": 614,
+    "review": 810,
+    "correction": 938,
+    "publication": 1028
+  },
+  "engineSha256": "d90150c6223653939a6597828c48533682f533d3a4e1c25bdc46997d770f8c13",
+  "wrapperSha256": "1cb33f9ac63ded2b1722a1f4b01860314cf5b4fa6008ff0b7e94a68f98d02fd2",
+  "commandAuditSha256": "0a786e432e9ad39beced620bdd960f8a62d52c2c83e70b862160ab601be116fb",
+  "cohortArtifacts": [
+    {
+      "kind": "config",
+      "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r73-constructor-config-b.json",
+      "sha256": "81d38b7c12dfdee9addc7a5e83d6df26af94b4ce74fd05a4310acd76a2aee259"
+    },
+    {
+      "kind": "selection",
+      "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r73-constructor-selection-b.json",
+      "sha256": "8233bdc032279596baac01984ac2bf044c7a4438f8fd901966ca9c87e2ff449a"
+    },
+    {
+      "kind": "research",
+      "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r73-research-b.json",
+      "sha256": "21365de0738e3dd4f6d63006d76db9bb10abc3ae7bea424937e8925ead07b7dd"
+    },
+    {
+      "kind": "command-audit",
+      "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r73-constructor-command-audit-b.json",
+      "sha256": "0a786e432e9ad39beced620bdd960f8a62d52c2c83e70b862160ab601be116fb"
+    }
+  ],
+  "command": [
+    "/usr/bin/python3.10",
+    "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/dictionary_python_env.py",
+    "--script",
+    "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/generic_bounded_constructor.py",
+    "--",
+    "--config",
+    "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r73-constructor-config-b.json",
+    "--allowed-build-root",
+    "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build"
+  ],
+  "processState": "ready",
+  "returnCode": null,
+  "hardPass": true
+}

@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "bounded-cohort-fail-closed.v1",
+  "cohort": "R72",
+  "failedGate": "firstProduct",
+  "deadlineSeconds": 554,
+  "observedElapsedSeconds": 558.858,
+  "overrunSeconds": 4.858,
+  "reason": "Canonical compilation completed, but the first-product checkpoint was reached after its artifact-zero deadline.",
+  "productsActuallyWrittenBeforeGate": [
+    {
+      "id": "t_193535d6b929",
+      "term": "禾山打皷",
+      "sha256": "55205fc3d73fb71b8f769e419745e121f78e68e16b86a32f22211b9e1aaea06c"
+    }
+  ],
+  "stalePathExcludedFromCarryoverAuthority": [
+    {
+      "id": "t_195a2b5b63d4",
+      "term": "瞞人",
+      "observedSha256": "659f49370802735ab373444644e1095d3a48e4aa354c4eabb094cddf626d669a",
+      "reason": "The constructor enforced the first-product deadline immediately after writing 禾山打皷 and never entered the second item. This pre-existing path was not emitted by R72 and carries no R72 product authority."
+    }
+  ],
+  "removalDecisionPreserved": {
+    "id": "t_19784084ccb4",
+    "term": "誌公",
+    "decisionSha256": "bd35d35558e8c243c9d62485adb127205bb26b3c06c6d836fd7c8f046bf1a293",
+    "reviewSha256": "5351afa9bd5c9fe8e686fa44be194908d9b5d3da9d328a354759a98a1e81733b"
+  },
+  "continuedBrowsingProhibited": true,
+  "carryoverPolicy": "Carry the exact SHA-bound evidence, decisions, reviews, and the one proved R72 product under a fresh artifact-zero; construct 瞞人 for the first time without repeating source research.",
+  "sealed": true
+}

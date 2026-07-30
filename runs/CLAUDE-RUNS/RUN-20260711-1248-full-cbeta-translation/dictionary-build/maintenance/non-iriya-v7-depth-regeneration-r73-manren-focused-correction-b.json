@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "r73-focused-correction.v1",
+  "cohort": "R73",
+  "id": "t_195a2b5b63d4",
+  "term": "瞞人",
+  "createdUtc": "2026-07-30T08:21:54.362413Z",
+  "beforeSha256": {
+    "config": "81d38b7c12dfdee9addc7a5e83d6df26af94b4ce74fd05a4310acd76a2aee259",
+    "worksheet": "4161b504fbe8dd96bbb62d23ea0eb84b25e7aca81a921d31f15b80785357b194",
+    "product": "3d3bd469d4d92a5029463b44d61fd6b4ece9d545fc868f9cbe08f609fdb1cf53"
+  },
+  "afterSha256": {
+    "config": "4f185c9efca1bbcd233e5c7e92e251273b8b206cc444997b436d8f0174304687",
+    "worksheet": "4161b504fbe8dd96bbb62d23ea0eb84b25e7aca81a921d31f15b80785357b194",
+    "product": "3d3bd469d4d92a5029463b44d61fd6b4ece9d545fc868f9cbe08f609fdb1cf53",
+    "compileReport": "a5972c0e2a195d7b96184c3c6c4a89ee3f2799100711d2dd83b1f76ac81fc732"
+  },
+  "corrections": {
+    "aliasProjection": "AlternateTargets=['mislead others']; SearchAliases=['fool people','deceive others'].",
+    "opening": "Replaced the tautological means-definition with the corpus-earned charge about misleading another person."
+  },
+  "semanticRulingChanged": false,
+  "actorsFamiliesSourcesChanged": false,
+  "focusedChecks": {
+    "actorClosure": true,
+    "wholeConfigPreclosure": true,
+    "canonicalCompilePrewrite": true,
+    "canonicalCompile": true
+  },
+  "hardPass": true
+}

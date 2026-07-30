@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "r72-independent-source-first-review.v1",
+  "cohort": "R72",
+  "id": "t_195a2b5b63d4",
+  "term": "瞞人",
+  "decisionPath": "maintenance/non-iriya-v7-depth-regeneration-r72-decision-manren-c.json",
+  "sourceFirstRuling": {
+    "admission": "PASS: 瞞人 is a stable transitive verb-object expression in all nine complete contexts.",
+    "senseCount": "PASS: one ordinary lexical sense. The positive, negative, interpersonal, self/other, and saying-testing constructions change the deployment, not the meaning of 瞞人.",
+    "preferredTarget": "PASS: 'deceive people' preserves both the active force of 瞞 and the human object 人. 'Mislead others' is an appropriate alternate.",
+    "familyAccounting": "PASS: the six retained rows are six independent deployment families. C077n1710, J23nB134, and J24nB138 preserve the same Yunmen prompt and substitute answer and must count once; J24nB138 is reasonably preferred as Yunmen's own recorded-sayings recension.",
+    "sourceHierarchy": "PASS: one Tier-1 authored admonition and five Tier-2 records establish the entry without any lamp evidence.",
+    "reserveExclusion": "PASS: Wunian You's 說大話瞞人 is genuine direct evidence, but it does not establish a distinct semantic family. Deception by speech is already represented by the Yunmen sentence test and Miyun's warning about listeners construing words. Rejecting it as surplus loses no sense or construction needed by the explanation.",
+    "actors": [
+      "PASS: Wuyi Yuanlai owns the continuous authored admonition containing 非但瞞人，亦自瞞耳.",
+      "PASS: Zhongfeng Mingben owns the continuous discourse containing 瞞人猶自可，自瞞愁殺人.",
+      "PASS: Miyun Yuanwu owns the hall address containing 覿面瞞人.",
+      "PASS: Yunmen Wenyan owns the 師或云 prompt and 代云 substitute preserved in the retained Yunmen record.",
+      "PASS: Wuhuan Xingchong is the first-person autobiographical respondent marked 答云 in the Chushan exchange; Chushan remains the addressee rather than the headword actor.",
+      "PASS: Guting Shanjian owns the continuous authored exposition containing 一點瞞人不得.",
+      "PASS: rejected reserve Wunian You owns the continuous letter containing 說大話瞞人."
+    ]
+  },
+  "proseReview": "PASS: the explanation is grounded in the retained contexts and correctly treats deception of others, self-deception, a non-deceiving sentence, direct interpersonal challenge, and inability to deceive as applications of one lexical action rather than mystical senses.",
+  "defects": [
+    {
+      "severity": "non-blocking",
+      "coordinate": "caseDecisions[evidenceKey=r72-o3].reason",
+      "finding": "The duplicate-family cross-reference says 'same Yunmen sequence as r72-o7 and r72-o8'; r72-o8 is the independent Wuhuan case. The intended references are r72-o6 and r72-o7.",
+      "requiredBeforePublication": true
+    }
+  ],
+  "verdict": "APPROVE_WITH_COORDINATE",
+  "hardPass": true,
+  "publicMutation": false
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "r73-final-exact-product-rereview.v1",
+  "cohort": "R73",
+  "id": "t_195a2b5b63d4",
+  "term": "瞞人",
+  "worksheetPath": "fresh-build/entries/t_195a2b5b63d4/evidence.draft.json",
+  "worksheetSha256": "4161b504fbe8dd96bbb62d23ea0eb84b25e7aca81a921d31f15b80785357b194",
+  "productPath": "fresh-build/entries/t_195a2b5b63d4/entry.v2.json",
+  "productSha256": "3d3bd469d4d92a5029463b44d61fd6b4ece9d545fc868f9cbe08f609fdb1cf53",
+  "compilerReportPath": "fresh-build/entries/t_195a2b5b63d4/evidence-compile-report.json",
+  "compilerReportSha256": "669173baecfd1468c164919b9abc6b3acbf854455d15ea84d7bbce54fc2c7a13",
+  "supersedesReviewPath": "maintenance/non-iriya-v7-depth-regeneration-r73-product-rereview-manren-r27.json",
+  "changedCoordinateReview": {
+    "targetProjection": "PASS: AlternateTargets now contains exactly 'mislead others'; SearchAliases now contain exactly 'fool people' and 'deceive others', matching the corrected semantic decision.",
+    "corpusEarnedOpening": "PASS: 'The records use 瞞人 as a charge that words, instruction, or pretended incomprehension mislead another person.' synthesizes the retained deployments rather than repeating the headword and preferred target.",
+    "openingIdempotence": "PASS: the new opening occurs once in the canonical Explanation, once in the worksheet CorpusEarnedOpening field, and zero times in EvidenceBody.",
+    "compilerBinding": "PASS: the canonical-render report hard-passes and binds the exact worksheet and product SHA-256 values above."
+  },
+  "unchangedProductReview": {
+    "semanticCore": "PASS: one ordinary transitive sense, preferred target 'deceive people', and the negative-form limitation remain source-grounded.",
+    "occurrencesAndFamilies": "PASS: six occurrences preserve the same six approved independent families; the Yunmen family remains represented once by J/J24/J24nB138.xml.",
+    "actors": "PASS: Wuyi Yuanlai, Zhongfeng Mingben, Miyun Yuanwu, Yunmen Wenyan, Wuhuan Xingchong, and Guting Shanjian remain the exact actors; Chushan remains contextual addressee/interlocutor only.",
+    "sourceHierarchy": "PASS: one Tier-1 authored source, five Tier-2 recorded-sayings sources, and no lamp padding."
+  },
+  "defects": [],
+  "verdict": "APPROVE",
+  "hardPass": true,
+  "publicMutation": false
+}

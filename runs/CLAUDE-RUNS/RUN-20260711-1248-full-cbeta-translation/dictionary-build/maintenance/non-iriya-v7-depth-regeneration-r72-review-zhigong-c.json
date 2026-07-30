@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "r72-independent-source-first-review.v1",
+  "cohort": "R72",
+  "id": "t_19784084ccb4",
+  "term": "誌公",
+  "decisionPath": "maintenance/non-iriya-v7-depth-regeneration-r72-decision-zhigong-r27.json",
+  "sourceFirstRuling": {
+    "entityIdentification": "PASS: 誌公 is the respectful shortened designation of Baozhi, conventionally Zhigong; 公 is honorific and does not create a separate corpus-specific lexical action or technical sense.",
+    "candidateCoverage": "PASS: all ten complete extracted cases are pure references to the same historical person—as attributed speaker or verse author, interlocutor, or named figure in the Emperor Wu, Bodhidharma, and Fu Dashi stories.",
+    "lexicalFamilies": "PASS: zero semantic witness families. Multiple independent sources and active later commentary create reception families around Baozhi, but none turns his name into a lexical unit.",
+    "parallelControl": "PASS: J/J23/J23nB134.xml and J/J24/J24nB138.xml are parallel Yunmen witnesses; repeated quotations of the same historical stories cannot manufacture dictionary depth.",
+    "sourceHierarchy": "PASS: three Tier-1 and seven Tier-2 witnesses confirm identity only. Stronger source authority cannot convert a person name into a dictionary term.",
+    "removal": "PASS: reject and remove the installed dictionary article through the bounded atomic repair path; route the identity to person/entity authority instead of inventing an English gloss."
+  },
+  "caseAudit": [
+    "X/X69/X69n1357.xml: 誌公 identifies the attributed verse author.",
+    "X/X78/X78n1554.xml: 誌公 identifies Baozhi as the person associated with Fu Dashi.",
+    "X/X87/X87n1624.xml: 誌公 is the historical person questioning Emperor Wu.",
+    "C/C077/C077n1710.xml: 誌公云 is personal speech attribution.",
+    "J/J23/J23nB134.xml: 誌公云 is personal speech attribution.",
+    "J/J24/J24nB138.xml: parallel personal speech attribution.",
+    "J/J25/J25nB154.xml: 誌公 is an interlocutor in the Bodhidharma–Emperor Wu case.",
+    "J/J25/J25nB155.xml: 誌公 is the person acting for Emperor Wu.",
+    "J/J25/J25nB171.xml: 誌公 is the named figure in the Fu Dashi case.",
+    "J/J25/J25nB174.xml: 寶誌公/誌公 is the named case figure addressing Emperor Wu."
+  ],
+  "defects": [],
+  "verdict": "APPROVE_REMOVAL",
+  "hardPass": true,
+  "publicMutation": false
+}

@@ -1,0 +1,424 @@
+{
+  "SchemaVersion": 1,
+  "ConstructionPipelineVersion": 2,
+  "Admission": {
+    "Decision": "admit",
+    "LexicalUnitReason": "瞞人 is a stable fixed expression used in public answers, verses, appraisals, or case commentary.",
+    "ObservableChanJob": "瞞人 means deceive people.",
+    "DuplicateCheck": {
+      "DeterministicIdChecked": true,
+      "ExactHeadwordChecked": true,
+      "NearDuplicateRuling": "No exact or punctuation-normalized collision occurs in R01-R10 or the current R11 selection; companion clauses remain separately named family leads."
+    }
+  },
+  "EvidenceTransport": {
+    "DossierPath": "source-dossier.json",
+    "DossierSha256": "0be8dbd451efe0434f4df228ba42ac921d45c80966e070727d6e85957ce23456",
+    "SourceAuthorityManifestSha256": "2ee44bf19a2533958e5620c38915f3d03fbb81209c76c7183742a4f3d059f501",
+    "DiscoveryMethods": [
+      "exact concordance count",
+      "complete-turn actor review",
+      "Tier 1 then Tier 2 source ranking",
+      "predecessor-evidence adjudication"
+    ],
+    "ExactCount": 303,
+    "BridgedCount": 303,
+    "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+  },
+  "Entry": {
+    "Id": "t_195a2b5b63d4",
+    "SourceTerm": "瞞人",
+    "CreatedBy": "R72 source-hierarchy repair",
+    "WrittenUtc": "2026-07-30T08:04:10.728784Z",
+    "Senses": [
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "deceive people",
+        "AlternateTargets": [],
+        "SearchAliases": [
+          "mislead others"
+        ],
+        "Status": "preferred",
+        "Validation": "multi-source",
+        "Explanation": "瞞人 means deceive people. Wuyi Yuanlai warns that teaching a place one has not reached deceives both others and oneself. Zhongfeng Mingben and Miyun Yuanwu sharpen the same contrast: deceiving others is bad, but relying on words and thereby deceiving oneself is worse. Yunmen Wenyan turns the phrase into a test about a saying that does not deceive people; Wuhuan Xingchong uses it as a direct challenge to a teacher's claimed incomprehension; and Guting Shanjian says that in the fully exposed working of the record not one point can deceive anyone.",
+        "Note": "Keep the ordinary transitive force of 瞞. The Zen records make it a practical verdict about claims, sayings, and self-understanding; they do not establish a separate mystical sense. Negative forms such as 不瞞人 and 一點瞞人不得 remain the same lexical action under negation.",
+        "Occurrences": [
+          {
+            "RelPath": "X/X63/X63n1257.xml",
+            "FromLb": "0759a08",
+            "ToLb": "0759a14",
+            "Kwic": "看。此語做工夫最要，不可不知。做工夫自己打未徹，祇可辦自己事，不可教人。如人未到京城，便為他人說京城中事，非但瞞人，亦自瞞耳。做工夫曉夕不敢自怠，如慈明大師夜欲將睡，用引錐刺之。又云：古人為道，不食不𥨊。余又何人耶？古人𦘕一",
+            "MasterName": "Wuyi Yuanlai",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Wuyi Yuanlai",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (X/X63/X63n1257.xml). Boshan Admonitions. The continuous authored admonition says that one who has not reached the capital but explains it to others 非但瞞人，亦自瞞耳.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "瞞人",
+              "GrammaticalSubject": "Wuyi Yuanlai",
+              "SpeechFrame": "Source record (X/X63/X63n1257.xml). Boshan Admonitions. The continuous authored admonition says that one who has not reached the capital but explains it to others 非但瞞人，亦自瞞耳.",
+              "FullCaseDecision": "Wuyi Yuanlai is the exact actor at the headword-bearing clause; contextual speakers are not substituted."
+            }
+          },
+          {
+            "RelPath": "B/B25/B25n0145.xml",
+            "FromLb": "0765b12",
+            "ToLb": "0765b16",
+            "Kwic": "公說難。路遙知馬力。龐婆說易。歲久見人心。靈照說不難不易。移華兼蝶至買石得雲饒。六祖謂。非風動非幡動仁者心動。瞞人猶自可。自瞞愁殺人。德山入門便棒。臨濟入門便喝。佗得底人其神機智用。如水赴壑。如風行空。語言作略圓轉活脫。雖局",
+            "MasterName": "Zhongfeng Mingben",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Zhongfeng Mingben",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (B/B25/B25n0145.xml). Zhongfeng Mingben: Extensive Record. Zhongfeng Mingben's continuous general discourse directly says 瞞人猶自可，自瞞愁殺人.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "瞞人",
+              "GrammaticalSubject": "Zhongfeng Mingben",
+              "SpeechFrame": "Source record (B/B25/B25n0145.xml). Zhongfeng Mingben: Extensive Record. Zhongfeng Mingben's continuous general discourse directly says 瞞人猶自可，自瞞愁殺人.",
+              "FullCaseDecision": "Zhongfeng Mingben is the exact actor at the headword-bearing clause; contextual speakers are not substituted."
+            }
+          },
+          {
+            "RelPath": "J/J10/J10nA158.xml",
+            "FromLb": "0012b13",
+            "ToLb": "0012b18",
+            "Kwic": "好手一句，作麼生道？敵勝還他師子子，出群須是丈夫兒。」下座。上堂。「人人本具，個個圓成，雖是當頭道著，未免覿面瞞人。何以？諸人聞恁麼道，往往依語生解，便將『人人本具，個個圓成』當自己本命元辰，豈不瞞自了也？若有不受瞞底，明明",
+            "MasterName": "Miyun Yuanwu",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Miyun Yuanwu",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J10/J10nA158.xml). Miyun Chan Sayings. In Miyun's own hall address, 未免覿面瞞人 is followed by 豈不瞞自了也, explicitly connecting misleading listeners with their self-deception.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "瞞人",
+              "GrammaticalSubject": "Miyun Yuanwu",
+              "SpeechFrame": "Source record (J/J10/J10nA158.xml). Miyun Chan Sayings. In Miyun's own hall address, 未免覿面瞞人 is followed by 豈不瞞自了也, explicitly connecting misleading listeners with their self-deception.",
+              "FullCaseDecision": "Miyun Yuanwu is the exact actor at the headword-bearing clause; contextual speakers are not substituted."
+            }
+          },
+          {
+            "RelPath": "J/J24/J24nB138.xml",
+            "FromLb": "0389b08",
+            "ToLb": "0389b08",
+            "Kwic": "作麼生是不瞞人底句",
+            "MasterName": "Yunmen Wenyan",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Yunmen Wenyan",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J24/J24nB138.xml). Yunmen Kuangzhen Sayings. In Yunmen's own recorded sayings sequence, 師或云 governs 作麼生是不瞞人底句 and 代云 supplies 莫道這箇是瞞人底.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "瞞人",
+              "GrammaticalSubject": "Yunmen Wenyan",
+              "SpeechFrame": "Source record (J/J24/J24nB138.xml). Yunmen Kuangzhen Sayings. In Yunmen's own recorded sayings sequence, 師或云 governs 作麼生是不瞞人底句 and 代云 supplies 莫道這箇是瞞人底.",
+              "FullCaseDecision": "Yunmen Wenyan is the exact actor at the headword-bearing clause; contextual speakers are not substituted."
+            }
+          },
+          {
+            "RelPath": "J/J25/J25nB159.xml",
+            "FromLb": "0142c07",
+            "ToLb": "0142c12",
+            "Kwic": "」你道中峰如何這等頌出耶？』荅云：『中峰太煞老婆相為人，爭柰錯會者多。』云：『我到這裡都不會。』荅云：『師叔莫瞞人好。』云：『善首座！你今到太崗去，我且未與你向紫羅帳裡撒珍珠。甚不易你到這地位，只是你未脫得情見在。』荅云：『",
+            "MasterName": "Wuhuan Xingchong",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Wuhuan Xingchong",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [
+              {
+                "Status": "identified-unlinked-master",
+                "ActorLabel": "Chushan, the elder addressed in the dialogue",
+                "Roles": [
+                  "addressee",
+                  "interlocutor"
+                ],
+                "GrammarEvidence": "至蘇州遇楚山長老 identifies Chushan as the elder questioning Wuhuan; 師叔莫瞞人好 directly addresses him."
+              }
+            ],
+            "AttributionNote": "Source record (J/J25/J25nB159.xml). Tianzhen Dufengshan Essentials. In Wuhuan Xingchong's autobiographical dialogue, 答云 directly governs 師叔莫瞞人好 in response to Chushan's repeated claim not to understand.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "瞞人",
+              "GrammaticalSubject": "Wuhuan Xingchong",
+              "SpeechFrame": "Source record (J/J25/J25nB159.xml). Tianzhen Dufengshan Essentials. In Wuhuan Xingchong's autobiographical dialogue, 答云 directly governs 師叔莫瞞人好 in response to Chushan's repeated claim not to understand.",
+              "FullCaseDecision": "Wuhuan Xingchong is the exact actor at the headword-bearing clause; contextual speakers are not substituted."
+            }
+          },
+          {
+            "RelPath": "J/J25/J25nB163.xml",
+            "FromLb": "0240a01",
+            "ToLb": "0240a05",
+            "Kwic": "道有說，文殊早自錯了。若道無說，世尊陞座，又自錯了。若論華藏大意，說與未說，錯與未錯，開口不開口，舉目之間一點瞞人不得。如趙州問投子：「大死的人卻活時如何？」子云：「不許夜行，投明早到。」似此一問一答，如常人說話，又不曾作機",
+            "MasterName": "Guting Shanjian",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Guting Shanjian",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J25/J25nB163.xml). Guting Sayings (Selected). Guting Shanjian's continuous authored exposition says 舉目之間一點瞞人不得 before raising Zhaozhou and Touzi.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "瞞人",
+              "GrammaticalSubject": "Guting Shanjian",
+              "SpeechFrame": "Source record (J/J25/J25nB163.xml). Guting Sayings (Selected). Guting Shanjian's continuous authored exposition says 舉目之間一點瞞人不得 before raising Zhaozhou and Touzi.",
+              "FullCaseDecision": "Guting Shanjian is the exact actor at the headword-bearing clause; contextual speakers are not substituted."
+            }
+          }
+        ],
+        "ClaimAnchors": [],
+        "SourceTexts": [
+          "X/X63/X63n1257.xml",
+          "B/B25/B25n0145.xml",
+          "J/J10/J10nA158.xml",
+          "J/J24/J24nB138.xml",
+          "J/J25/J25nB159.xml",
+          "J/J25/J25nB163.xml"
+        ],
+        "RelatedMasters": [
+          "Wuyi Yuanlai",
+          "Zhongfeng Mingben",
+          "Miyun Yuanwu",
+          "Yunmen Wenyan",
+          "Wuhuan Xingchong",
+          "Guting Shanjian"
+        ],
+        "RelatedTerms": [],
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "瞞人 means deceive people.",
+          "EvidenceBody": [
+            "Wuyi Yuanlai warns that teaching a place one has not reached deceives both others and oneself. Zhongfeng Mingben and Miyun Yuanwu sharpen the same contrast: deceiving others is bad, but relying on words and thereby deceiving oneself is worse. Yunmen Wenyan turns the phrase into a test about a saying that does not deceive people; Wuhuan Xingchong uses it as a direct challenge to a teacher's claimed incomprehension; and Guting Shanjian says that in the fully exposed working of the record not one point can deceive anyone."
+          ]
+        },
+        "DraftEvidence": {
+          "LiteralGraphFloor": "deceive people",
+          "LexicalJob": "瞞人 means deceive people.",
+          "DeploymentClasses": [
+            "source-case",
+            "independent deployment",
+            "parallel witness"
+          ],
+          "HighValueEvidenceLedger": [
+            {
+              "Disposition": "keep",
+              "Finding": "Wuyi Yuanlai uses the headword in the retained passage in Boshan Admonitions.",
+              "Reason": "The complete case secures the exact actor and adds a distinct direct use or active commentary."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Zhongfeng Mingben uses the headword in the retained passage in Zhongfeng Mingben: Extensive Record.",
+              "Reason": "The complete case secures the exact actor and adds a distinct direct use or active commentary."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Miyun Yuanwu uses the headword in the retained passage in Miyun Chan Sayings.",
+              "Reason": "The complete case secures the exact actor and adds a distinct direct use or active commentary."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Yunmen Wenyan uses the headword in the retained passage in Yunmen Kuangzhen Sayings.",
+              "Reason": "The complete case secures the exact actor and adds a distinct direct use or active commentary."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Wuhuan Xingchong uses the headword in the retained passage in Tianzhen Dufengshan Essentials.",
+              "Reason": "The complete case secures the exact actor and adds a distinct direct use or active commentary."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Guting Shanjian uses the headword in the retained passage in Guting Sayings (Selected).",
+              "Reason": "The complete case secures the exact actor and adds a distinct direct use or active commentary."
+            }
+          ],
+          "OpeningClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3",
+            "o4",
+            "o5",
+            "o6"
+          ],
+          "EvidenceBodyClaimKeys": [
+            [
+              "o1",
+              "o2",
+              "o3",
+              "o4",
+              "o5",
+              "o6"
+            ]
+          ],
+          "ZenBend": "瞞人 means deceive people.",
+          "CounterexampleOrLimit": "Keep the ordinary transitive force of 瞞. The Zen records make it a practical verdict about claims, sayings, and self-understanding; they do not establish a separate mystical sense. Negative forms such as 不瞞人 and 一點瞞人不得 remain the same lexical action under negation.",
+          "DifferentThingTest": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "deceive people"
+            ],
+            "Reason": "The question, verse, appraisal, and commentary frames retain the same lexical referent; none names a separate object, person, title, or institutional role."
+          },
+          "AliasRationale": "The aliases preserve the concrete wording of “deceive people” without adding a new interpretation.",
+          "ModifierControls": [
+            {
+              "Term": "瞞人",
+              "Finding": "No material or color modifier creates a separate referent; the full fixed expression is translated as one unit."
+            }
+          ],
+          "FamilyControls": [
+            {
+              "Term": "瞞人",
+              "Finding": "Not applicable: no distinct family candidate was admitted or rejected in this bounded source-first construction."
+            }
+          ],
+          "IndependentWorkIds": [
+            "work:X63n1257",
+            "work:B25n0145",
+            "work:J10nA158",
+            "work:J24nB138",
+            "work:J25nB159",
+            "work:J25nB163"
+          ],
+          "SourceAuthorityRows": [
+            {
+              "EvidenceKey": "o1",
+              "RelPath": "X/X63/X63n1257.xml",
+              "WorkId": "work:X63n1257",
+              "Tier": 1,
+              "SourceClass": "master-authored",
+              "AuthorityReason": "Boshan’s admonitions are sustained authored instruction by a named Chan master.",
+              "WitnessFamilyId": "manren:wuyi-unreached-capital-warning",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o2",
+              "RelPath": "B/B25/B25n0145.xml",
+              "WorkId": "work:B25n0145",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "The registered title identifies a named master’s sayings, discourse, question-and-answer, session, or comparable speech record; exact embedded quotations still require passage-level actor review.",
+              "WitnessFamilyId": "manren:zhongfeng-other-self-deception",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o3",
+              "RelPath": "J/J10/J10nA158.xml",
+              "WorkId": "work:J10nA158",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "The registered title identifies a named master’s sayings, discourse, question-and-answer, session, or comparable speech record; exact embedded quotations still require passage-level actor review.",
+              "WitnessFamilyId": "manren:miyun-face-to-face-self-deception",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o4",
+              "RelPath": "J/J24/J24nB138.xml",
+              "WorkId": "work:J24nB138",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "The registered title identifies a named master’s sayings, discourse, question-and-answer, session, or comparable speech record; exact embedded quotations still require passage-level actor review.",
+              "WitnessFamilyId": "manren:yunmen-nondeceiving-sentence-test",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o5",
+              "RelPath": "J/J25/J25nB159.xml",
+              "WorkId": "work:J25nB159",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "The registered title identifies a named master’s sayings, discourse, question-and-answer, session, or comparable speech record; exact embedded quotations still require passage-level actor review.",
+              "WitnessFamilyId": "manren:wuhuan-chushan-direct-challenge",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o6",
+              "RelPath": "J/J25/J25nB163.xml",
+              "WorkId": "work:J25nB163",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "The registered title identifies a named master’s sayings, discourse, question-and-answer, session, or comparable speech record; exact embedded quotations still require passage-level actor review.",
+              "WitnessFamilyId": "manren:guting-nothing-can-deceive",
+              "DeploymentRole": "original-use"
+            }
+          ],
+          "LampExcessJustification": "No Tier-3 lamp or lineage compilation is retained.",
+          "NoHigherWitnessSearchReceipt": "Every matching allowlisted file was classified by authority; the retained set uses only Tier 1 or Tier 2 sources, and no lamp is needed.",
+          "DepthHarvestReceipt": {
+            "Complete": true,
+            "ReviewedExactHitCount": 303,
+            "AvailableSourceFiles": 135,
+            "SearchedDeploymentClasses": [
+              "source-case",
+              "independent deployment",
+              "parallel witness"
+            ],
+            "OmissionAudit": [
+              "All five retained complete cases were read and exact-actor adjudicated.",
+              "Parallel containers and passive quotations were excluded from independent-family counting.",
+              "Tier-3 lamps were considered last and none was needed.",
+              "The predecessor was opened only after the source-first semantic draft was complete."
+            ]
+          }
+        },
+        "DraftAcceptedDerivedFields": {
+          "SourceTexts": [
+            "X/X63/X63n1257.xml",
+            "B/B25/B25n0145.xml",
+            "J/J10/J10nA158.xml",
+            "J/J24/J24nB138.xml",
+            "J/J25/J25nB159.xml",
+            "J/J25/J25nB163.xml"
+          ],
+          "RelatedMasters": [
+            "Wuyi Yuanlai",
+            "Zhongfeng Mingben",
+            "Miyun Yuanwu",
+            "Yunmen Wenyan",
+            "Wuhuan Xingchong",
+            "Guting Shanjian"
+          ]
+        }
+      }
+    ],
+    "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+  },
+  "FamilyHarvest": {
+    "PolicyVersion": 1,
+    "Scope": "R72 source-hierarchy repair exact source-first family harvest",
+    "Edges": [],
+    "NegativeReceipt": [],
+    "GraphicVariants": []
+  }
+}

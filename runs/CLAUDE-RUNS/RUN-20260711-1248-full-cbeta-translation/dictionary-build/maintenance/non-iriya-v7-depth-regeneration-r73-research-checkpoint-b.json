@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "cohort-research-checkpoint.v1",
+  "startedEpoch": 1785399277.065534,
+  "invokedEpoch": 1785399355.9724624,
+  "elapsedSeconds": 78.90692830085754,
+  "deadlineSeconds": 120,
+  "requiredFloors": [
+    4,
+    6
+  ],
+  "admittedRequiredOccurrences": 10,
+  "adjudicatedCaseLoad": 10,
+  "researchCandidateReserve": 3,
+  "deadlinesSeconds": {
+    "viability": 120,
+    "researchExtraction": 120,
+    "adjudicatedConfig": 524,
+    "constructor": 534,
+    "firstProduct": 554,
+    "construction": 614,
+    "review": 810,
+    "correction": 938,
+    "publication": 1028
+  },
+  "ids": [
+    "t_193535d6b929",
+    "t_195a2b5b63d4"
+  ],
+  "terms": [
+    "禾山打皷",
+    "瞞人"
+  ],
+  "selectionPath": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r73-constructor-selection-b.json",
+  "selectionSha256": "8233bdc032279596baac01984ac2bf044c7a4438f8fd901966ca9c87e2ff449a",
+  "researchPath": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r73-research-b.json",
+  "researchSha256": "21365de0738e3dd4f6d63006d76db9bb10abc3ae7bea424937e8925ead07b7dd",
+  "sourceExtractionPath": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r72-extraction-output-b.json",
+  "sourceExtractionSha256": "8bced0b15fa63d367eed4a45e3c7ce3924744cc8aee990a5fcee6a656b7832c9",
+  "decisionSha256": {
+    "t_193535d6b929": "dc56e1b9ab6e20c7cf00ac07d9c359f95176ba454d5b42b5ac146484795151bc",
+    "t_195a2b5b63d4": "564dc9ed77473f60b524db03cd8ec9e927fe1fa6043d15a4a625f8173ba6fcf6"
+  },
+  "processState": "completed-sha-carryover",
+  "returnCode": 0,
+  "hardPass": true
+}

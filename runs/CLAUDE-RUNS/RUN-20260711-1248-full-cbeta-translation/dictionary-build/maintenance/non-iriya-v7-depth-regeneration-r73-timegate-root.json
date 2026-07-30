@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "bounded-dictionary-timegate.v2",
+  "cohort": "R73",
+  "artifactZero": true,
+  "startedEpoch": 1785399277.065534,
+  "createdUtc": "2026-07-30T08:14:37.065534Z",
+  "requiredFloors": [
+    4,
+    6,
+    7
+  ],
+  "admittedRequiredOccurrences": 17,
+  "adjudicatedCaseLoad": 17,
+  "researchCandidateReserve": 3,
+  "deadlinesSeconds": {
+    "viability": 120,
+    "researchExtraction": 120,
+    "adjudicatedConfig": 524,
+    "constructor": 534,
+    "firstProduct": 554,
+    "construction": 614,
+    "review": 810,
+    "correction": 938,
+    "publication": 1028
+  },
+  "assignedLaunch": {
+    "selector": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/last1500-public-depth/final-scope/full-regeneration-selector.json",
+    "priorUnion": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r71-resolved-union-root.json",
+    "entries": [
+      {
+        "id": "t_193535d6b929",
+        "term": "禾山打皷",
+        "requiredFloor": 4
+      },
+      {
+        "id": "t_195a2b5b63d4",
+        "term": "瞞人",
+        "requiredFloor": 6
+      },
+      {
+        "id": "t_19784084ccb4",
+        "term": "誌公",
+        "requiredFloor": 7
+      }
+    ],
+    "reserveIds": [],
+    "researchCandidateReserve": 3
+  },
+  "continuationOf": "R72-FIRST-PRODUCT-DEADLINE-FAIL-CLOSED-SHA-CARRYOVER"
+}

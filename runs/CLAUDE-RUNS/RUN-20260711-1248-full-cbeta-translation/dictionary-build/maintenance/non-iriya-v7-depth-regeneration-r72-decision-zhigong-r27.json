@@ -1,0 +1,89 @@
+{
+  "schemaVersion": "bounded-lexical-admission-decision.v1",
+  "cohort": "R72",
+  "id": "t_19784084ccb4",
+  "term": "誌公",
+  "decision": "REJECT_AND_REMOVE_DICTIONARY_ENTRY",
+  "reasonCode": "pure-person-name-honorific",
+  "ruling": "誌公 is a shortened respectful name for Baozhi (寶誌/誌), conventionally called Master Zhigong. Across the extracted cases it identifies that same historical person; it does not name an independently definable Chan action, image, judgment, institution, or technical distinction. 公 is the honorific attached to the name, not a corpus-specific lexical sense. The entity belongs in person/entity authority rather than the translation dictionary.",
+  "installedEntryPolicy": "Installed status creates no presumption of lexical validity. Remove the dictionary article through the bounded atomic repair path; do not invent a gloss such as 'Master Zhi' and do not count quotations of the person as semantic depth.",
+  "sourceBinding": {
+    "path": "maintenance/non-iriya-v7-depth-regeneration-r72-extraction-output-b.json",
+    "completeCasesRead": 10,
+    "requiredFloor": 7
+  },
+  "caseClassifications": [
+    {
+      "relPath": "X/X69/X69n1357.xml",
+      "fromLb": "0498b09",
+      "tier": 1,
+      "classification": "Yuanwu Keqin quotes a verse attributed to Zhigong; 誌公 is the quoted author's personal designation."
+    },
+    {
+      "relPath": "X/X78/X78n1554.xml",
+      "fromLb": "0592b04",
+      "tier": 1,
+      "classification": "The authored verse names Zhigong as the person who assists Fu Dashi; proper-name reference."
+    },
+    {
+      "relPath": "X/X87/X87n1624.xml",
+      "fromLb": "0255b18",
+      "tier": 1,
+      "classification": "Huihong discusses a later story in which Zhigong questions Emperor Wu; historical-person reference."
+    },
+    {
+      "relPath": "C/C077/C077n1710.xml",
+      "fromLb": "0625b14",
+      "tier": 2,
+      "classification": "The discourse introduces a saying with 誌公云; personal attribution, not a lexical deployment."
+    },
+    {
+      "relPath": "J/J23/J23nB134.xml",
+      "fromLb": "0549b06",
+      "tier": 2,
+      "classification": "The record raises a verse with 誌公云; personal attribution."
+    },
+    {
+      "relPath": "J/J24/J24nB138.xml",
+      "fromLb": "0386a06",
+      "tier": 2,
+      "classification": "Parallel Yunmen-record witness of the same 誌公云 quotation; same entity and same deployment family as J23nB134."
+    },
+    {
+      "relPath": "J/J25/J25nB154.xml",
+      "fromLb": "0034b18",
+      "tier": 2,
+      "classification": "A verse-commentary case names Zhigong as interlocutor in the Bodhidharma–Emperor Wu story; person-name only."
+    },
+    {
+      "relPath": "J/J25/J25nB155.xml",
+      "fromLb": "0047a24",
+      "tier": 2,
+      "classification": "The verse says 誌公 acted for Emperor Wu; historical-person reference."
+    },
+    {
+      "relPath": "J/J25/J25nB171.xml",
+      "fromLb": "0517c01",
+      "tier": 2,
+      "classification": "Tianyin Yuanxiu raises and comments on the Fu Dashi story; Zhigong is a named case figure."
+    },
+    {
+      "relPath": "J/J25/J25nB174.xml",
+      "fromLb": "0691b21",
+      "tier": 2,
+      "classification": "The hall address raises the Bodhidharma–Emperor Wu story and names Baozhi/Zhigong as a case figure."
+    }
+  ],
+  "familyFinding": {
+    "semanticWitnessFamilies": 0,
+    "entityReferenceFamilies": "multiple",
+    "parallelControl": "J23nB134 and J24nB138 are parallel witnesses of one Yunmen passage; repeated historical-case quotations likewise cannot manufacture lexical depth."
+  },
+  "tierFinding": {
+    "tier1Cases": 3,
+    "tier2Cases": 7,
+    "tier3LampCases": 0,
+    "effect": "Higher source authority confirms the identity reference but cannot turn a proper name into a dictionary term."
+  },
+  "publicMutation": false
+}

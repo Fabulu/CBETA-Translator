@@ -1,0 +1,162 @@
+{
+  "schemaVersion": "r72-source-first-author-decision.v1",
+  "cohort": "R72",
+  "id": "t_193535d6b929",
+  "term": "禾山打皷",
+  "requiredFloor": 4,
+  "researchCandidateReserve": 3,
+  "sourceBinding": {
+    "extractionPath": "maintenance/non-iriya-v7-depth-regeneration-r72-extraction-output-b.json",
+    "researchSkeletonPath": "maintenance/non-iriya-v7-depth-regeneration-r72-research-skeleton-b.json",
+    "completeCandidatesRead": 7
+  },
+  "semanticRuling": {
+    "senseCount": 1,
+    "unitType": "named case formula",
+    "preferredTarget": "Heshan beats the drum",
+    "alternateTargets": [
+      "Heshan's drum-beating"
+    ],
+    "searchAliases": [
+      "禾山打鼓"
+    ],
+    "explanation": "禾山打皷 is the fixed label for Heshan's drum-beating response. Later masters place it beside other recognizable cases such as Zhaozhou's tea, Xuefeng's rolling ball, Mimo's fork, and Shigong's drawn bow; others actively judge or redirect the inherited label. Cheongheo Hyujeong classifies it as an example of the ordinary or level mode (平常) among the four great modes.",
+    "note": "皷 is a graphic variant of 鼓, not a second sense: the corpus also preserves 禾山打鼓 extensively. Translate the named case rather than generalizing the phrase into an instruction to drum or silently substituting a doctrinal abstraction."
+  },
+  "caseDecisions": [
+    {
+      "evidenceKey": "o1",
+      "relPath": "X/X63/X63n1255.xml",
+      "fromLb": "0745a05",
+      "workId": "work:X63n1255",
+      "tier": 1,
+      "decision": "keep",
+      "exactActor": {
+        "masterName": "Cheongheo Hyujeong",
+        "role": "record-owner",
+        "grammarEvidence": "In his authored Chan Guide, the 四大式 section states 平常禾山打皷類, making Heshan's drum-beating the example of the ordinary mode."
+      },
+      "WitnessFamilyId": "heshan-dagu:hyujeong-four-modes",
+      "deploymentRole": "commentary",
+      "semanticContribution": "An authored taxonomy actively classifies the named case as 平常.",
+      "contextSha256": "31aab3ca011256f482d01025c04db3ebfc74cf4ed75b89ec91b2067a07e3c106"
+    },
+    {
+      "evidenceKey": "o2",
+      "relPath": "C/C077/C077n1710.xml",
+      "fromLb": "0778b16",
+      "workId": "work:guzunsu-yulu",
+      "tier": 2,
+      "decision": "keep",
+      "exactActor": {
+        "masterName": "Wuzu Fayan",
+        "role": "utterer",
+        "grammarEvidence": "Within 黃梅東山五祖演和尚語中, Wuzu Fayan's continuous 上堂 voice lists 禾山打皷 among conspicuous ancestral actions and asks what they are."
+      },
+      "WitnessFamilyId": "heshan-dagu:wuzu-ancestral-actions",
+      "deploymentRole": "active-quotation",
+      "semanticContribution": "Wuzu treats the phrase as one recognizable ancestral case among several physical case labels.",
+      "contextSha256": "fd52fd18ac41eb02a369c552070716cbc0f45d8928c5caecc9c350837639bc8d"
+    },
+    {
+      "evidenceKey": "o3",
+      "relPath": "X/X67/X67n1303.xml",
+      "fromLb": "0268b14",
+      "workId": "work:X67n1303",
+      "tier": 2,
+      "decision": "reject-passive-table-of-contents",
+      "exactActor": null,
+      "grammarEvidence": "The hit is item seventy-three in 空谷集目錄, before the work's first case, and has no headword-bearing speaker or commentary.",
+      "reason": "It confirms the stable case title but is passive index metadata, not an independent active deployment; it cannot pad semantic depth."
+    },
+    {
+      "evidenceKey": "o4",
+      "relPath": "X/X69/X69n1365.xml",
+      "fromLb": "0667a01",
+      "workId": "work:X69n1365",
+      "tier": 2,
+      "decision": "keep",
+      "exactActor": {
+        "masterName": "Beijian Jujian",
+        "role": "utterer",
+        "grammarEvidence": "In Beijian Jujian's own 上堂, the continuous voice says 趙州喫茶，禾山打皷，不堪共語 and follows it with his own contrast."
+      },
+      "WitnessFamilyId": "heshan-dagu:beijian-not-worth-discussing",
+      "deploymentRole": "commentary",
+      "semanticContribution": "Beijian actively pairs and judges the inherited formula rather than merely indexing it.",
+      "contextSha256": "24ebac9c2e5365d99df81bb33d23081ea18bf373de1e1995ffe970b1475f1473"
+    },
+    {
+      "evidenceKey": "o5",
+      "relPath": "X/X69/X69n1369.xml",
+      "fromLb": "0755c13",
+      "workId": "work:X69n1369",
+      "tier": 2,
+      "decision": "keep",
+      "exactActor": {
+        "masterName": "Dachuan Puji",
+        "role": "utterer",
+        "grammarEvidence": "Dachuan Puji's 開爐上堂 begins 禾山打皷，雪峯輥毬 and then rejects operating in that familiar cart."
+      },
+      "WitnessFamilyId": "heshan-dagu:dachuan-opening-furnace",
+      "deploymentRole": "commentary",
+      "semanticContribution": "Dachuan invokes the case formula as a familiar model and immediately distances his own activity from it.",
+      "contextSha256": "ace1c4495e5851fc428f5e01de68058bc5a1a047e013cb76a6482c67b9aaee25"
+    },
+    {
+      "evidenceKey": "o6",
+      "relPath": "X/X70/X70n1376.xml",
+      "fromLb": "0049c01",
+      "workId": "work:X70n1376",
+      "tier": 2,
+      "decision": "keep",
+      "exactActor": {
+        "masterName": "Chijue Daochong",
+        "role": "utterer",
+        "grammarEvidence": "Chijue Daochong's own 上堂 lists 祕魔擎杈，趙州喫茶，禾山打皷，歸宗斬蛇 before capping the list."
+      },
+      "WitnessFamilyId": "heshan-dagu:chijue-four-cases",
+      "deploymentRole": "active-quotation",
+      "semanticContribution": "The phrase functions as a compact named ancestral case parallel to three other case labels.",
+      "contextSha256": "490a756e6e51fe31cc37b24a194dc1ef1f5e5c2fe8571246d4f19d6af7752af0"
+    },
+    {
+      "evidenceKey": "o7",
+      "relPath": "X/X70/X70n1386.xml",
+      "fromLb": "0323b04",
+      "workId": "work:X70n1386",
+      "tier": 2,
+      "decision": "keep",
+      "exactActor": {
+        "masterName": "Shitian Faxun",
+        "role": "utterer",
+        "grammarEvidence": "Shitian Faxun's own 上堂 joins 雪峯輥毬 and 禾山打皷, then asks for their purport and supplies a capping line."
+      },
+      "WitnessFamilyId": "heshan-dagu:shitian-purport-question",
+      "deploymentRole": "commentary",
+      "semanticContribution": "Shitian actively raises the formula's purport rather than passively repeating a title.",
+      "contextSha256": "d4aa4f054d3e16ac7e9566d19771faa47a589e6d59855e0c6095530d647c4162"
+    }
+  ],
+  "retainedSubset": {
+    "occurrenceCount": 6,
+    "independentWorkCount": 6,
+    "activeDeploymentFamilyCount": 6,
+    "tier1Count": 1,
+    "tier2Count": 5,
+    "tier3LampCount": 0,
+    "floorMet": true,
+    "reserveRuling": "Six active Tier-1/2 families exceed the floor of four. The seventh extracted candidate is adjudicated and rejected because it is only a table-of-contents title.",
+    "sharedInheritanceWarning": "The six families are independent active deployments of one inherited named case, not six separately coined lexical meanings."
+  },
+  "variantAudit": {
+    "headwordGraph": "皷",
+    "standardVariant": "鼓",
+    "exactCorpusCountHeadword": 32,
+    "exactCorpusCountStandardVariant": 135,
+    "ruling": "orthographic variant only; expose 禾山打鼓 as a search alias"
+  },
+  "lampPolicy": "No lamp consulted or retained; Tier-1 and Tier-2 evidence exceed the floor.",
+  "hardPass": true,
+  "publicMutation": false
+}

@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "authoritative-catastrophe-ledger-advancement.v1",
+  "cohort": "R73",
+  "publicCommit": "bdd64d40bd09f4d10ccd234b78c6fe345c031115",
+  "publicCommitSubject": "Repair 禾山打皷 and 瞞人; remove 誌公",
+  "publishedIds": [
+    "t_193535d6b929",
+    "t_195a2b5b63d4",
+    "t_19784084ccb4"
+  ],
+  "authoritativeRemainderBefore": 897,
+  "resolvedThisAdvancement": 3,
+  "authoritativeRemainderAfter": 894,
+  "arithmeticHardPass": true,
+  "publicIntegrity": {
+    "entryCount": 4716,
+    "aggregateCount": 4716,
+    "legacyCount": 4716,
+    "indexCount": 4716,
+    "shardCount": 4716,
+    "exactProductParity": "3/3",
+    "replacementParity": "2/2",
+    "removalParity": "1/1",
+    "hardPass": true
+  },
+  "timegate": {
+    "artifactZeroSha256": "ffec33c5f3f35e619df4736fb9c719e31c4d3bc43f501abecd8b18cd2a7b2c99",
+    "publicationDeadlineEpoch": 1785400305.065534,
+    "publicCommitEpoch": 1785399756,
+    "commitMarginSeconds": 549.065534,
+    "remoteEqualityVerifiedEpoch": 1785399800.051626,
+    "remoteVerificationMarginSeconds": 505.013908,
+    "publicationDeadlineHardPass": true
+  },
+  "reviewCarryoverAuthoritySha256": "911540f72d4897aa12d32a516a18457f9ebc68606d329b935064ddd93230a0f2",
+  "windowsNodeMergeReceiptSha256": "7bd9cc3ffaf7d819e0b388f67f8d089e1570216265e7e975c087087114560ea2",
+  "exactChangedFiles": [
+    "termbase.index.json",
+    "termbase.json",
+    "termbase.v2.json",
+    "termbase/140.json",
+    "termbase/158.json",
+    "termbase/190.json"
+  ],
+  "unrelatedPublicDirtPreserved": true,
+  "windowsNodeMerge": true,
+  "windowsGitPush": true,
+  "sealed": true
+}

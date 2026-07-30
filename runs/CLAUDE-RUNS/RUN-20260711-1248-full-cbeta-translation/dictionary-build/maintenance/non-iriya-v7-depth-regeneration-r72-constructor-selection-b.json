@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "r72-admitted-constructor-selection.v1",
+  "cohort": "R72",
+  "artifactZeroSelectionPath": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r72-selection-b.json",
+  "artifactZeroSelectionSha256": "c0bb095dfaa88f8c0e3004b7cfe09873ab43e763ece471e6d232e565f646e4f3",
+  "rows": [
+    {
+      "queueOrdinal": 1,
+      "identityId": "t_193535d6b929",
+      "term": "禾山打皷",
+      "requiredFloor": 4,
+      "classification": "hard-fail"
+    },
+    {
+      "queueOrdinal": 2,
+      "identityId": "t_195a2b5b63d4",
+      "term": "瞞人",
+      "requiredFloor": 6,
+      "classification": "legacy-selected-depth-repair"
+    }
+  ],
+  "excluded": [
+    {
+      "id": "t_19784084ccb4",
+      "term": "誌公",
+      "decisionPath": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r72-decision-zhigong-r27.json",
+      "decisionSha256": "bd35d35558e8c243c9d62485adb127205bb26b3c06c6d836fd7c8f046bf1a293",
+      "ruling": "REJECT_AND_REMOVE_DICTIONARY_ENTRY"
+    }
+  ],
+  "hardPass": true
+}

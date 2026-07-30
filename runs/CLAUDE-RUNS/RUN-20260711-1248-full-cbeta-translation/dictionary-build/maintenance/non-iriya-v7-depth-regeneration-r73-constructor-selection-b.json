@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "r73-admitted-constructor-selection.v1",
+  "cohort": "R73",
+  "artifactZeroSelectionPath": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r73-selection-b.json",
+  "artifactZeroSelectionSha256": "efc32f30217a4fe8e1a168f61b9a6491f7cd7663b96c49d2a0fc09bfe265bc6d",
+  "rows": [
+    {
+      "queueOrdinal": 1,
+      "identityId": "t_193535d6b929",
+      "term": "禾山打皷",
+      "requiredFloor": 4,
+      "classification": "hard-fail"
+    },
+    {
+      "queueOrdinal": 2,
+      "identityId": "t_195a2b5b63d4",
+      "term": "瞞人",
+      "requiredFloor": 6,
+      "classification": "legacy-selected-depth-repair"
+    }
+  ],
+  "excluded": [
+    {
+      "id": "t_19784084ccb4",
+      "term": "誌公",
+      "ruling": "REJECT_AND_REMOVE_DICTIONARY_ENTRY"
+    }
+  ],
+  "hardPass": true
+}

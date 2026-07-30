@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "r73-exact-product-rereview.v1",
+  "cohort": "R73",
+  "id": "t_195a2b5b63d4",
+  "term": "瞞人",
+  "productPath": "fresh-build/entries/t_195a2b5b63d4/entry.v2.json",
+  "productSha256": "2a1b7bc2f8a5734afdf51c11b2b8a8fbcc92ee53b0754e076866d7eb9ee06003",
+  "correctedDecisionPath": "maintenance/non-iriya-v7-depth-regeneration-r72-decision-manren-c.json",
+  "correctedDecisionSha256": "564dc9ed77473f60b524db03cd8ec9e927fe1fa6043d15a4a625f8173ba6fcf6",
+  "priorSourceFirstReviewPath": "maintenance/non-iriya-v7-depth-regeneration-r72-review-manren-r27.json",
+  "productRuling": {
+    "semanticCore": "PASS: one sense, preferred target 'deceive people', and the ordinary transitive/negative-use note agree with the source-first ruling.",
+    "occurrences": "PASS: all six approved independent families occur once; neither rejected Yunmen parallel recensions nor the surplus Wunian reserve leaked into the product.",
+    "actors": "PASS: Wuyi Yuanlai, Zhongfeng Mingben, Miyun Yuanwu, Yunmen Wenyan, Wuhuan Xingchong, and Guting Shanjian remain the exact headword actors. Chushan is correctly retained only as Wuhuan's identified unlinked addressee/interlocutor.",
+    "families": "PASS: the six source paths match the six approved witness families, and the Yunmen family appears only through J/J24/J24nB138.xml.",
+    "sourceHierarchy": "PASS: one Tier-1 authored source plus five Tier-2 recorded-sayings sources; no lamp padding.",
+    "duplicateOpeningGate": "PASS: the canonical Explanation contains no consecutive duplicated opening sentence.",
+    "compilerReceipt": "PASS WITH CAVEAT: evidence-compile-report.json binds the exact canonical product SHA and reports canonical-render hardPass. compile-report.json is stale and names an earlier output SHA, so only the evidence compiler receipt can serve as the exact-product receipt.",
+    "compilerProjection": "FAIL: the corrected decision's alternate/search-alias coordinates were not projected faithfully. The decision has AlternateTargets=['mislead others'] and SearchAliases=['fool people','deceive others']; the product has AlternateTargets=[] and SearchAliases=['mislead others'].",
+    "readerProse": "FAIL: the opening '瞞人 means deceive people.' merely restates SourceTerm plus PreferredTarget. DICTIONARY_ENTRY_GUIDE.md explicitly rejects an opening that only repeats the preferred target/calque. The following evidence paragraph is useful and source-grounded, but it does not make the opening itself corpus-earned."
+  },
+  "defects": [
+    {
+      "severity": "blocking",
+      "coordinate": "Senses[0].AlternateTargets and Senses[0].SearchAliases",
+      "finding": "Compiler projection diverges from the SHA-bound corrected decision: 'mislead others' was moved from alternate target to search alias, while 'fool people' and 'deceive others' were dropped.",
+      "requiredRepair": "Recompile from a worksheet that faithfully preserves the corrected decision's alternate target and search aliases, or produce an explicitly reviewed superseding semantic decision for the changed classification."
+    },
+    {
+      "severity": "blocking",
+      "coordinate": "Senses[0].Explanation first sentence; mirrored worksheet coordinate Entry.Senses[0].ExplanationParts.CorpusEarnedOpening",
+      "finding": "The opening is a calque restatement, not an informative corpus-earned interpretation.",
+      "requiredRepair": "Replace only the opening with a concise falsifiable synthesis of the retained cases; preserve the already useful evidence paragraph and do not duplicate the new opening into EvidenceBody."
+    },
+    {
+      "severity": "non-blocking-receipt-hygiene",
+      "coordinate": "fresh-build/entries/t_195a2b5b63d4/compile-report.json",
+      "finding": "The report records output SHA 7ff78a1d..., not the canonical product SHA 2a1b7bc2.... evidence-compile-report.json is current and exact.",
+      "requiredRepair": "Do not cite compile-report.json as current exact-product proof; refresh or retire it when the product is recompiled."
+    }
+  ],
+  "verdict": "DENY",
+  "hardPass": false,
+  "publicMutation": false
+}

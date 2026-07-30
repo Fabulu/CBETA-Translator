@@ -1,0 +1,414 @@
+{
+  "SchemaVersion": 1,
+  "ConstructionPipelineVersion": 2,
+  "Admission": {
+    "Decision": "admit",
+    "LexicalUnitReason": "禾山打皷 is a stable fixed expression used in public answers, verses, appraisals, or case commentary.",
+    "ObservableChanJob": "禾山打皷 means Heshan beats the drum.",
+    "DuplicateCheck": {
+      "DeterministicIdChecked": true,
+      "ExactHeadwordChecked": true,
+      "NearDuplicateRuling": "No exact or punctuation-normalized collision occurs in R01-R10 or the current R11 selection; companion clauses remain separately named family leads."
+    }
+  },
+  "EvidenceTransport": {
+    "DossierPath": "source-dossier.json",
+    "DossierSha256": "d84506d9a0d64d91ef4c4bee0dfe241fcee75f6597075dea0839fca8dba91184",
+    "SourceAuthorityManifestSha256": "2ee44bf19a2533958e5620c38915f3d03fbb81209c76c7183742a4f3d059f501",
+    "DiscoveryMethods": [
+      "exact concordance count",
+      "complete-turn actor review",
+      "Tier 1 then Tier 2 source ranking",
+      "predecessor-evidence adjudication"
+    ],
+    "ExactCount": 32,
+    "BridgedCount": 32,
+    "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+  },
+  "Entry": {
+    "Id": "t_193535d6b929",
+    "SourceTerm": "禾山打皷",
+    "CreatedBy": "R72 source-hierarchy repair",
+    "WrittenUtc": "2026-07-30T08:04:10.728784Z",
+    "Senses": [
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "Heshan beats the drum",
+        "AlternateTargets": [],
+        "SearchAliases": [
+          "Heshan's drum-beating"
+        ],
+        "Status": "preferred",
+        "Validation": "multi-source",
+        "Explanation": "禾山打皷 means Heshan beats the drum. Later masters place it beside other recognizable cases such as Zhaozhou's tea, Xuefeng's rolling ball, Mimo's fork, and Shigong's drawn bow; others actively judge or redirect the inherited label. Cheongheo Hyujeong classifies it as an example of the ordinary or level mode (平常) among the four great modes.",
+        "Note": "皷 is a graphic variant of 鼓, not a second sense: the corpus also preserves 禾山打鼓 extensively. Translate the named case rather than generalizing the phrase into an instruction to drum or silently substituting a doctrinal abstraction.",
+        "Occurrences": [
+          {
+            "RelPath": "X/X63/X63n1255.xml",
+            "FromLb": "0745a02",
+            "ToLb": "0745a09",
+            "Kwic": "先用後照有法在。照用同時，驅耕奪食；照用不同時，有問有答。四大式(正利平常本分貢假)四大式正利少林面壁類。平常禾山打皷類。本分山僧不會類。貢假達磨不識類。四喝四喝金剛王寶劒，一刀揮斷一切情解。踞地獅子，發言吐氣。眾魔腦烈，探竿影",
+            "MasterName": "Cheongheo Hyujeong",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Cheongheo Hyujeong",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (X/X63/X63n1255.xml). Chan Guide. In his authored Chan Guide, the 四大式 section states 平常禾山打皷類, making Heshan's drum-beating the example of the ordinary mode.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "禾山打皷",
+              "GrammaticalSubject": "Cheongheo Hyujeong",
+              "SpeechFrame": "Source record (X/X63/X63n1255.xml). Chan Guide. In his authored Chan Guide, the 四大式 section states 平常禾山打皷類, making Heshan's drum-beating the example of the ordinary mode.",
+              "FullCaseDecision": "Cheongheo Hyujeong is the exact actor at the headword-bearing clause; contextual speakers are not substituted."
+            }
+          },
+          {
+            "RelPath": "C/C077/C077n1710.xml",
+            "FromLb": "0778b13",
+            "ToLb": "0778b19",
+            "Kwic": "足越坈大迦葉聆箏起舞畢陵迦訶罵河神迦㽞陀夷埋身糞壤此事教中一一有出處捴道是習氣秪如祖師門下達磨九年面壁秘魔擎杈禾山打皷石鞏彎弓雪峯輥毬國師水椀歸宗拽石德山入門便棒臨濟入門便喝無業纔有人問便道莫妄想且道是個什麼眾中還有久參先德天下",
+            "MasterName": "Wuzu Fayan",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Wuzu Fayan",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (C/C077/C077n1710.xml). Recorded Sayings of Ancient Masters. Within 黃梅東山五祖演和尚語中, Wuzu Fayan's continuous 上堂 voice lists 禾山打皷 among conspicuous ancestral actions and asks what they are.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "禾山打皷",
+              "GrammaticalSubject": "Wuzu Fayan",
+              "SpeechFrame": "Source record (C/C077/C077n1710.xml). Recorded Sayings of Ancient Masters. Within 黃梅東山五祖演和尚語中, Wuzu Fayan's continuous 上堂 voice lists 禾山打皷 among conspicuous ancestral actions and asks what they are.",
+              "FullCaseDecision": "Wuzu Fayan is the exact actor at the headword-bearing clause; contextual speakers are not substituted."
+            }
+          },
+          {
+            "RelPath": "X/X69/X69n1365.xml",
+            "FromLb": "0666c23",
+            "ToLb": "0667a04",
+            "Kwic": "無諍三昧，知音者寡。三昧即且置，如何是無諍？客來須接，賊來須打。上堂：諸方譚禪，地藏種田，只見一邊。趙州喫茶，禾山打皷，不堪共語。我者裏絕承當，家醜無端向外揚。法華經會，上堂：法華經藏，深固幽遠。師曠之聰不聞，離婁之明不見。南山",
+            "MasterName": "Beijian Jujian",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Beijian Jujian",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (X/X69/X69n1365.xml). Beijian Jujian: Sayings. In Beijian Jujian's own 上堂, the continuous voice says 趙州喫茶，禾山打皷，不堪共語 and follows it with his own contrast.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "禾山打皷",
+              "GrammaticalSubject": "Beijian Jujian",
+              "SpeechFrame": "Source record (X/X69/X69n1365.xml). Beijian Jujian: Sayings. In Beijian Jujian's own 上堂, the continuous voice says 趙州喫茶，禾山打皷，不堪共語 and follows it with his own contrast.",
+              "FullCaseDecision": "Beijian Jujian is the exact actor at the headword-bearing clause; contextual speakers are not substituted."
+            }
+          },
+          {
+            "RelPath": "X/X69/X69n1369.xml",
+            "FromLb": "0755c09",
+            "ToLb": "0755c16",
+            "Kwic": "而不費。者僧悟則不無，󳫠舌犂耕有日在。中秋，上堂。翳盡還明極，家鄉萬八千，懸崖重撒手，古劒髑髏前。開爐，上堂：禾山打皷，雪峯輥毬，妙勝不打箇般車裏油。一雙窮相手，兩箇死柴頭，擬議則燎却面門。且道妙勝眉毛在麼？上堂，舉：僧到鶴林敲",
+            "MasterName": "Dachuan Puji",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Dachuan Puji",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (X/X69/X69n1369.xml). Dachuan Puji: Sayings. Dachuan Puji's 開爐上堂 begins 禾山打皷，雪峯輥毬 and then rejects operating in that familiar cart.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "禾山打皷",
+              "GrammaticalSubject": "Dachuan Puji",
+              "SpeechFrame": "Source record (X/X69/X69n1369.xml). Dachuan Puji: Sayings. Dachuan Puji's 開爐上堂 begins 禾山打皷，雪峯輥毬 and then rejects operating in that familiar cart.",
+              "FullCaseDecision": "Dachuan Puji is the exact actor at the headword-bearing clause; contextual speakers are not substituted."
+            }
+          },
+          {
+            "RelPath": "X/X70/X70n1376.xml",
+            "FromLb": "0049b22",
+            "ToLb": "0049c04",
+            "Kwic": "，盡大地人痛入骨髓，其柰不知拄杖來處。若知來處，正法眼藏付囑有在。是汝諸人還猛省麼？上堂。祕魔擎杈，趙州喫茶，禾山打皷，歸宗斬蛇。良久，云：慣釣鯨鯢沉巨浸，却嗟蛙步𩥇泥沙。上堂，舉：教中道：大通智勝佛，十劫坐道場。佛法不現前，不",
+            "MasterName": "Chijue Daochong",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Chijue Daochong",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (X/X70/X70n1376.xml). Chijue Daochong: Sayings. Chijue Daochong's own 上堂 lists 祕魔擎杈，趙州喫茶，禾山打皷，歸宗斬蛇 before capping the list.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "禾山打皷",
+              "GrammaticalSubject": "Chijue Daochong",
+              "SpeechFrame": "Source record (X/X70/X70n1376.xml). Chijue Daochong: Sayings. Chijue Daochong's own 上堂 lists 祕魔擎杈，趙州喫茶，禾山打皷，歸宗斬蛇 before capping the list.",
+              "FullCaseDecision": "Chijue Daochong is the exact actor at the headword-bearing clause; contextual speakers are not substituted."
+            }
+          },
+          {
+            "RelPath": "X/X70/X70n1386.xml",
+            "FromLb": "0323b02",
+            "ToLb": "0323b07",
+            "Kwic": "上堂：巧盡拙出，水到渠成。舉足下足，十字縱橫。三千里外，已被南山換却眼睛。若也不信，試摸索看。上堂：雪峯輥毬，禾山打皷。要覓旨歸，月不破五。上堂：取不得，捨不得，狀不得。西天碧眼胡，盡力道不識。識不識，臨際德山，太平姦賊。上堂：",
+            "MasterName": "Shitian Faxun",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Shitian Faxun",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (X/X70/X70n1386.xml). Shitian Faxun: Sayings. Shitian Faxun's own 上堂 joins 雪峯輥毬 and 禾山打皷, then asks for their purport and supplies a capping line.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "禾山打皷",
+              "GrammaticalSubject": "Shitian Faxun",
+              "SpeechFrame": "Source record (X/X70/X70n1386.xml). Shitian Faxun: Sayings. Shitian Faxun's own 上堂 joins 雪峯輥毬 and 禾山打皷, then asks for their purport and supplies a capping line.",
+              "FullCaseDecision": "Shitian Faxun is the exact actor at the headword-bearing clause; contextual speakers are not substituted."
+            }
+          }
+        ],
+        "ClaimAnchors": [],
+        "SourceTexts": [
+          "X/X63/X63n1255.xml",
+          "C/C077/C077n1710.xml",
+          "X/X69/X69n1365.xml",
+          "X/X69/X69n1369.xml",
+          "X/X70/X70n1376.xml",
+          "X/X70/X70n1386.xml"
+        ],
+        "RelatedMasters": [
+          "Cheongheo Hyujeong",
+          "Wuzu Fayan",
+          "Beijian Jujian",
+          "Dachuan Puji",
+          "Chijue Daochong",
+          "Shitian Faxun"
+        ],
+        "RelatedTerms": [],
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "禾山打皷 means Heshan beats the drum.",
+          "EvidenceBody": [
+            "Later masters place it beside other recognizable cases such as Zhaozhou's tea, Xuefeng's rolling ball, Mimo's fork, and Shigong's drawn bow; others actively judge or redirect the inherited label. Cheongheo Hyujeong classifies it as an example of the ordinary or level mode (平常) among the four great modes."
+          ]
+        },
+        "DraftEvidence": {
+          "LiteralGraphFloor": "Heshan beats the drum",
+          "LexicalJob": "禾山打皷 means Heshan beats the drum.",
+          "DeploymentClasses": [
+            "source-case",
+            "independent deployment",
+            "parallel witness"
+          ],
+          "HighValueEvidenceLedger": [
+            {
+              "Disposition": "keep",
+              "Finding": "Cheongheo Hyujeong uses the headword in the retained passage in Chan Guide.",
+              "Reason": "The complete case secures the exact actor and adds a distinct direct use or active commentary."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Wuzu Fayan uses the headword in the retained passage in Recorded Sayings of Ancient Masters.",
+              "Reason": "The complete case secures the exact actor and adds a distinct direct use or active commentary."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Beijian Jujian uses the headword in the retained passage in Beijian Jujian: Sayings.",
+              "Reason": "The complete case secures the exact actor and adds a distinct direct use or active commentary."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Dachuan Puji uses the headword in the retained passage in Dachuan Puji: Sayings.",
+              "Reason": "The complete case secures the exact actor and adds a distinct direct use or active commentary."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Chijue Daochong uses the headword in the retained passage in Chijue Daochong: Sayings.",
+              "Reason": "The complete case secures the exact actor and adds a distinct direct use or active commentary."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Shitian Faxun uses the headword in the retained passage in Shitian Faxun: Sayings.",
+              "Reason": "The complete case secures the exact actor and adds a distinct direct use or active commentary."
+            }
+          ],
+          "OpeningClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3",
+            "o4",
+            "o5",
+            "o6"
+          ],
+          "EvidenceBodyClaimKeys": [
+            [
+              "o1",
+              "o2",
+              "o3",
+              "o4",
+              "o5",
+              "o6"
+            ]
+          ],
+          "ZenBend": "禾山打皷 means Heshan beats the drum.",
+          "CounterexampleOrLimit": "皷 is a graphic variant of 鼓, not a second sense: the corpus also preserves 禾山打鼓 extensively. Translate the named case rather than generalizing the phrase into an instruction to drum or silently substituting a doctrinal abstraction.",
+          "DifferentThingTest": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "Heshan beats the drum"
+            ],
+            "Reason": "The question, verse, appraisal, and commentary frames retain the same lexical referent; none names a separate object, person, title, or institutional role."
+          },
+          "AliasRationale": "The aliases preserve the concrete wording of “Heshan beats the drum” without adding a new interpretation.",
+          "ModifierControls": [
+            {
+              "Term": "禾山打皷",
+              "Finding": "No material or color modifier creates a separate referent; the full fixed expression is translated as one unit."
+            }
+          ],
+          "FamilyControls": [
+            {
+              "Term": "禾山打皷",
+              "Finding": "Not applicable: no distinct family candidate was admitted or rejected in this bounded source-first construction."
+            }
+          ],
+          "IndependentWorkIds": [
+            "work:X63n1255",
+            "work:guzunsu-yulu",
+            "work:X69n1365",
+            "work:X69n1369",
+            "work:X70n1376",
+            "work:X70n1386"
+          ],
+          "SourceAuthorityRows": [
+            {
+              "EvidenceKey": "o1",
+              "RelPath": "X/X63/X63n1255.xml",
+              "WorkId": "work:X63n1255",
+              "Tier": 1,
+              "SourceClass": "master-authored",
+              "AuthorityReason": "This is sustained authored writing by the named Chan master.",
+              "WitnessFamilyId": "heshan-dagu:hyujeong-four-modes",
+              "DeploymentRole": "commentary"
+            },
+            {
+              "EvidenceKey": "o2",
+              "RelPath": "C/C077/C077n1710.xml",
+              "WorkId": "work:guzunsu-yulu",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "The registered title identifies a named master’s sayings, discourse, question-and-answer, session, or comparable speech record; exact embedded quotations still require passage-level actor review.",
+              "WitnessFamilyId": "heshan-dagu:wuzu-ancestral-actions",
+              "DeploymentRole": "active-quotation"
+            },
+            {
+              "EvidenceKey": "o3",
+              "RelPath": "X/X69/X69n1365.xml",
+              "WorkId": "work:X69n1365",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "The registered title identifies a named master’s sayings, expanded record, discourse, or comparable speech record; embedded quotations still require exact-turn review.",
+              "WitnessFamilyId": "heshan-dagu:beijian-not-worth-discussing",
+              "DeploymentRole": "commentary"
+            },
+            {
+              "EvidenceKey": "o4",
+              "RelPath": "X/X69/X69n1369.xml",
+              "WorkId": "work:X69n1369",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "The registered title identifies a named master’s sayings, expanded record, discourse, or comparable speech record; embedded quotations still require exact-turn review.",
+              "WitnessFamilyId": "heshan-dagu:dachuan-opening-furnace",
+              "DeploymentRole": "commentary"
+            },
+            {
+              "EvidenceKey": "o5",
+              "RelPath": "X/X70/X70n1376.xml",
+              "WorkId": "work:X70n1376",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "The registered title identifies a named master’s sayings, expanded record, discourse, or comparable speech record; embedded quotations still require exact-turn review.",
+              "WitnessFamilyId": "heshan-dagu:chijue-four-cases",
+              "DeploymentRole": "active-quotation"
+            },
+            {
+              "EvidenceKey": "o6",
+              "RelPath": "X/X70/X70n1386.xml",
+              "WorkId": "work:X70n1386",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "The registered title identifies a named master’s sayings, expanded record, discourse, or comparable speech record; embedded quotations still require exact-turn review.",
+              "WitnessFamilyId": "heshan-dagu:shitian-purport-question",
+              "DeploymentRole": "commentary"
+            }
+          ],
+          "LampExcessJustification": "No Tier-3 lamp or lineage compilation is retained.",
+          "NoHigherWitnessSearchReceipt": "Every matching allowlisted file was classified by authority; the retained set uses only Tier 1 or Tier 2 sources, and no lamp is needed.",
+          "DepthHarvestReceipt": {
+            "Complete": true,
+            "ReviewedExactHitCount": 32,
+            "AvailableSourceFiles": 22,
+            "SearchedDeploymentClasses": [
+              "source-case",
+              "independent deployment",
+              "parallel witness"
+            ],
+            "OmissionAudit": [
+              "All five retained complete cases were read and exact-actor adjudicated.",
+              "Parallel containers and passive quotations were excluded from independent-family counting.",
+              "Tier-3 lamps were considered last and none was needed.",
+              "The predecessor was opened only after the source-first semantic draft was complete."
+            ]
+          }
+        },
+        "DraftAcceptedDerivedFields": {
+          "SourceTexts": [
+            "X/X63/X63n1255.xml",
+            "C/C077/C077n1710.xml",
+            "X/X69/X69n1365.xml",
+            "X/X69/X69n1369.xml",
+            "X/X70/X70n1376.xml",
+            "X/X70/X70n1386.xml"
+          ],
+          "RelatedMasters": [
+            "Cheongheo Hyujeong",
+            "Wuzu Fayan",
+            "Beijian Jujian",
+            "Dachuan Puji",
+            "Chijue Daochong",
+            "Shitian Faxun"
+          ]
+        }
+      }
+    ],
+    "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+  },
+  "FamilyHarvest": {
+    "PolicyVersion": 1,
+    "Scope": "R72 source-hierarchy repair exact source-first family harvest",
+    "Edges": [],
+    "NegativeReceipt": [],
+    "GraphicVariants": []
+  }
+}

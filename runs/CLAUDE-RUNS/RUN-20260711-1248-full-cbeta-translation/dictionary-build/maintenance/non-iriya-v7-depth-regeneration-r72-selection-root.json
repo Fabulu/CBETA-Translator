@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "non-iriya-v7-depth-regeneration-selection.v1",
+  "cohort": "R72",
+  "selectionRule": "exact next three collision-free authoritative catastrophe-scope rows after sealed R71",
+  "rows": [
+    {
+      "queueOrdinal": 1,
+      "identityId": "t_193535d6b929",
+      "term": "禾山打皷",
+      "requiredFloor": 4,
+      "classification": "hard-fail"
+    },
+    {
+      "queueOrdinal": 2,
+      "identityId": "t_195a2b5b63d4",
+      "term": "瞞人",
+      "requiredFloor": 6,
+      "classification": "legacy-selected-depth-repair"
+    },
+    {
+      "queueOrdinal": 3,
+      "identityId": "t_19784084ccb4",
+      "term": "誌公",
+      "requiredFloor": 7,
+      "classification": "legacy-selected-depth-repair"
+    }
+  ],
+  "collisionCheck": {
+    "priorIds": 179,
+    "collisions": [],
+    "hardPass": true
+  }
+}

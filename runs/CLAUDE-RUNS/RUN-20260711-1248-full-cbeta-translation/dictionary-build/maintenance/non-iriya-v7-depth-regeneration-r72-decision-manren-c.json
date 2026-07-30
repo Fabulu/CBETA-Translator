@@ -1,0 +1,200 @@
+{
+  "schemaVersion": "r72-source-first-semantic-decision.v1",
+  "cohort": "R72",
+  "id": "t_195a2b5b63d4",
+  "term": "瞞人",
+  "sourceBinding": {
+    "extractionPath": "maintenance/non-iriya-v7-depth-regeneration-r72-extraction-output-b.json",
+    "skeletonPath": "maintenance/non-iriya-v7-depth-regeneration-r72-research-skeleton-b.json",
+    "completeCasesRead": 9,
+    "requiredFloor": 6,
+    "reserveRead": 3
+  },
+  "semanticRuling": {
+    "senseCount": 1,
+    "preferredTarget": "deceive people",
+    "alternateTargets": [
+      "mislead others"
+    ],
+    "searchAliases": [
+      "fool people",
+      "deceive others"
+    ],
+    "validation": "multi-source",
+    "explanation": "瞞人 means to deceive people or mislead others. Wuyi Yuanlai warns that teaching a place one has not reached deceives both others and oneself. Zhongfeng Mingben and Miyun Yuanwu sharpen the same contrast: deceiving others is bad, but relying on words and thereby deceiving oneself is worse. Yunmen Wenyan turns the phrase into a test about a saying that does not deceive people; Wuhuan Xingchong uses it as a direct challenge to a teacher's claimed incomprehension; and Guting Shanjian says that in the fully exposed working of the record not one point can deceive anyone.",
+    "note": "Keep the ordinary transitive force of 瞞. The Zen records make it a practical verdict about claims, sayings, and self-understanding; they do not establish a separate mystical sense. Negative forms such as 不瞞人 and 一點瞞人不得 remain the same lexical action under negation."
+  },
+  "caseDecisions": [
+    {
+      "evidenceKey": "r72-o1",
+      "relPath": "X/X63/X63n1257.xml",
+      "fromLb": "0759a10",
+      "tier": 1,
+      "decision": "keep",
+      "exactActor": {
+        "masterName": "Wuyi Yuanlai",
+        "role": "author",
+        "grammarEvidence": "The continuous authored admonition says that one who has not reached the capital but explains it to others 非但瞞人，亦自瞞耳."
+      },
+      "WitnessFamilyId": "manren:wuyi-unreached-capital-warning",
+      "deploymentRole": "authored-admonition",
+      "semanticContribution": "A clear self/other contrast: unsupported instruction deceives the hearer and the instructor.",
+      "contextSha256": "5696121aa17c2e3d4fc9468187ae58d8c59f4eda822a41aa2599dd7b139e191d"
+    },
+    {
+      "evidenceKey": "r72-o2",
+      "relPath": "B/B25/B25n0145.xml",
+      "fromLb": "0765b14",
+      "tier": 2,
+      "decision": "keep",
+      "exactActor": {
+        "masterName": "Zhongfeng Mingben",
+        "role": "utterer",
+        "grammarEvidence": "Zhongfeng Mingben's continuous general discourse directly says 瞞人猶自可，自瞞愁殺人."
+      },
+      "WitnessFamilyId": "manren:zhongfeng-other-self-deception",
+      "deploymentRole": "active-aphoristic-contrast",
+      "semanticContribution": "Contrasts deceiving others with the more dangerous act of deceiving oneself.",
+      "contextSha256": "6c84d6e5f21311b304f979cc1d6bfc5633e05dc7c5e731a4c7da3359ed8b6e97"
+    },
+    {
+      "evidenceKey": "r72-o3",
+      "relPath": "C/C077/C077n1710.xml",
+      "fromLb": "0737c19",
+      "tier": 2,
+      "decision": "reject-parallel-recension",
+      "exactActor": {
+        "masterName": "Yunmen Wenyan",
+        "role": "utterer",
+        "grammarEvidence": "Within Yunmen's recorded substitutes, 師或云 governs 作麼生是不瞞人底句 and the following 代云 gives 莫道這箇是瞞人底."
+      },
+      "WitnessFamilyId": "manren:yunmen-nondeceiving-sentence-test",
+      "deploymentRole": "parallel-recension",
+      "reason": "Same Yunmen sequence as r72-o6 and r72-o7; retain one best direct Yunmen-record recension only."
+    },
+    {
+      "evidenceKey": "r72-o4",
+      "relPath": "J/J10/J10nA158.xml",
+      "fromLb": "0012b16",
+      "tier": 2,
+      "decision": "keep",
+      "exactActor": {
+        "masterName": "Miyun Yuanwu",
+        "role": "utterer",
+        "grammarEvidence": "In Miyun's own hall address, 未免覿面瞞人 is followed by 豈不瞞自了也, explicitly connecting misleading listeners with their self-deception."
+      },
+      "WitnessFamilyId": "manren:miyun-face-to-face-self-deception",
+      "deploymentRole": "active-hall-warning",
+      "semanticContribution": "Even a direct assertion can mislead listeners when they turn its words into a fixed understanding.",
+      "contextSha256": "5dfee302c8b2d5bcd633635713272fbeaf5958a3257b286d2a7f5b9236b05e9b"
+    },
+    {
+      "evidenceKey": "r72-o5",
+      "relPath": "J/J20/J20nB098.xml",
+      "fromLb": "0512b04",
+      "tier": 2,
+      "decision": "reject-surplus",
+      "exactActor": {
+        "masterName": "Wunian You",
+        "role": "author",
+        "grammarEvidence": "Wunian You's continuous letter says that Confucius, after penetrating the source, 開口說大話瞞人."
+      },
+      "candidateWitnessFamilyId": "manren:wunian-confucius-big-talk",
+      "deploymentRole": "authored-evaluative-use",
+      "reason": "Legitimate direct use, but it adds no lexical sense beyond speaking so as to mislead; six stronger families already meet the floor."
+    },
+    {
+      "evidenceKey": "r72-o6",
+      "relPath": "J/J23/J23nB134.xml",
+      "fromLb": "0551c22",
+      "tier": 2,
+      "decision": "reject-parallel-recension",
+      "exactActor": {
+        "masterName": "Yunmen Wenyan",
+        "role": "utterer",
+        "grammarEvidence": "The Five Houses recension preserves the same Yunmen prompt 作麼生是不瞞人底句 and substitute 莫道這箇是瞞人底."
+      },
+      "WitnessFamilyId": "manren:yunmen-nondeceiving-sentence-test",
+      "deploymentRole": "parallel-recension",
+      "reason": "Same inherited Yunmen sequence as r72-o3 and r72-o7; counting it separately would pad the evidence."
+    },
+    {
+      "evidenceKey": "r72-o7",
+      "relPath": "J/J24/J24nB138.xml",
+      "fromLb": "0389b08",
+      "tier": 2,
+      "decision": "keep",
+      "exactActor": {
+        "masterName": "Yunmen Wenyan",
+        "role": "utterer",
+        "grammarEvidence": "In Yunmen's own recorded sayings sequence, 師或云 governs 作麼生是不瞞人底句 and 代云 supplies 莫道這箇是瞞人底."
+      },
+      "WitnessFamilyId": "manren:yunmen-nondeceiving-sentence-test",
+      "deploymentRole": "active-test-and-substitute",
+      "semanticContribution": "Turns 'not deceiving people' into the criterion for a sentence, then refuses to let the proposed substitute be classified mechanically.",
+      "contextSha256": "8835c3f86af3c0782da9f85b254461732a778a3087f8b99d1c993007480a7ccc"
+    },
+    {
+      "evidenceKey": "r72-o8",
+      "relPath": "J/J25/J25nB159.xml",
+      "fromLb": "0142c10",
+      "tier": 2,
+      "decision": "keep",
+      "exactActor": {
+        "masterName": "Wuhuan Xingchong",
+        "role": "utterer",
+        "grammarEvidence": "In Wuhuan Xingchong's autobiographical dialogue, 答云 directly governs 師叔莫瞞人好 in response to Chushan's repeated claim not to understand."
+      },
+      "contextActors": [
+        {
+          "status": "identified-unlinked-master",
+          "actorLabel": "Chushan, the elder addressed in the dialogue",
+          "roles": [
+            "addressee",
+            "interlocutor"
+          ],
+          "grammarEvidence": "至蘇州遇楚山長老 identifies Chushan as the elder questioning Wuhuan; 師叔莫瞞人好 directly addresses him."
+        }
+      ],
+      "WitnessFamilyId": "manren:wuhuan-chushan-direct-challenge",
+      "deploymentRole": "direct-interpersonal-admonition",
+      "semanticContribution": "A plain challenge not to deceive another person by feigning incomprehension.",
+      "contextSha256": "ec3cb33d6c7f4e77f54b3f02fcb20f55eb6d3bb0a42fdd50ebe5bc21814cb235"
+    },
+    {
+      "evidenceKey": "r72-o9",
+      "relPath": "J/J25/J25nB163.xml",
+      "fromLb": "0240a03",
+      "tier": 2,
+      "decision": "keep",
+      "exactActor": {
+        "masterName": "Guting Shanjian",
+        "role": "author",
+        "grammarEvidence": "Guting Shanjian's continuous authored exposition says 舉目之間一點瞞人不得 before raising Zhaozhou and Touzi."
+      },
+      "WitnessFamilyId": "manren:guting-nothing-can-deceive",
+      "deploymentRole": "authored-negative-verdict",
+      "semanticContribution": "Under negation, says the exposed working leaves not one point capable of deceiving anyone.",
+      "contextSha256": "9f7ac7d3a894c63d42ad92fe5ab1c5ea3e72c3688c0e30de88522ca365e34eb7"
+    }
+  ],
+  "retainedSubset": {
+    "occurrenceCount": 6,
+    "independentWitnessFamilyCount": 6,
+    "tier1Count": 1,
+    "tier2Count": 5,
+    "tier3LampCount": 0,
+    "families": [
+      "manren:wuyi-unreached-capital-warning",
+      "manren:zhongfeng-other-self-deception",
+      "manren:miyun-face-to-face-self-deception",
+      "manren:yunmen-nondeceiving-sentence-test",
+      "manren:wuhuan-chushan-direct-challenge",
+      "manren:guting-nothing-can-deceive"
+    ],
+    "floorRuling": "Six independent Tier-1/2 deployment families establish the ordinary transitive sense and its Zen evaluative use. Two duplicate Yunmen recensions and one semantically redundant reserve are fully adjudicated but excluded from depth.",
+    "lampPolicy": "No lamp consulted or retained."
+  },
+  "hardPass": true,
+  "publicMutation": false
+}

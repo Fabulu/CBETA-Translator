@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "r73-product-delta-closure.v1",
+  "cohort": "R73",
+  "changedIds": [
+    "t_195a2b5b63d4"
+  ],
+  "unchangedIds": [
+    "t_193535d6b929"
+  ],
+  "removedIds": [
+    "t_19784084ccb4"
+  ],
+  "reason": "Independent product review found alias projection drift and a tautological opening in 瞞人.",
+  "worksheetSha256": "4161b504fbe8dd96bbb62d23ea0eb84b25e7aca81a921d31f15b80785357b194",
+  "productSha256": "3d3bd469d4d92a5029463b44d61fd6b4ece9d545fc868f9cbe08f609fdb1cf53",
+  "compileReportSha256": "669173baecfd1468c164919b9abc6b3acbf854455d15ea84d7bbce54fc2c7a13",
+  "finalRereviewSha256": "03c42956419cf583621f86a434816e5ac86202d2023a241bdfe075d9ae944152",
+  "verifiedCoordinates": [
+    "AlternateTargets",
+    "SearchAliases",
+    "ExplanationParts.CorpusEarnedOpening",
+    "Explanation",
+    "compiler projection parity",
+    "duplicate opening regression"
+  ],
+  "unaffectedEvidenceReusedByHash": true,
+  "hardPass": true
+}
