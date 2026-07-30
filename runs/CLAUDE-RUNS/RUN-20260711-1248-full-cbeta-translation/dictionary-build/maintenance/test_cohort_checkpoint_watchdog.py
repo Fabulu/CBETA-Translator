@@ -8,6 +8,7 @@ from maintenance import cohort_checkpoint_watchdog as watchdog
 ROOT = Path(__file__).resolve().parent.parent
 W = ROOT / "maintenance/cohort_checkpoint_watchdog.py"
 WRAPPER = ROOT / "maintenance/dictionary_python_env.py"
+AUDIT_WRITER = ROOT / "maintenance/write_governed_research_audit.py"
 
 def h(text): return hashlib.sha256(text.encode()).hexdigest()
 def sh(path): return hashlib.sha256(Path(path).read_bytes()).hexdigest()
@@ -52,7 +53,17 @@ class CheckpointTests(unittest.TestCase):
         argv=watchdog.governed_research_command(
           WRAPPER.resolve(),script.resolve(),out.resolve(),research.resolve())
         audit=self.r/"audit.json"
-        audit.write_text(json.dumps({"complete":True,"commands":[{"epoch":999 if pre_epoch else 1001,"argv":argv}]}))
+        written=subprocess.run([
+          sys.executable,str(AUDIT_WRITER),"--output",str(audit),
+          "--wrapper",str(WRAPPER),"--extractor",str(script),
+          "--extraction-output",str(out),"--research-skeleton",str(research)],
+          cwd=self.r,capture_output=True,text=True)
+        if written.returncode:
+            raise AssertionError(written.stderr)
+        if pre_epoch:
+            payload=json.loads(audit.read_text())
+            payload["commands"][0]["epoch"]=999
+            audit.write_text(json.dumps(payload))
         return out,research,argv,audit
     def research_call(self,shallow=False,pre_epoch=False,now="1100"):
         out,res,argv,audit=self.extraction(shallow,pre_epoch)
@@ -119,6 +130,17 @@ class CheckpointTests(unittest.TestCase):
         self.assertEqual(sh(self.r/"audit.json"),receipt["commandAuditSha256"])
         self.assertEqual(str((self.r/"extract.py").resolve()),receipt["extractorPath"])
         self.assertEqual(sh(self.r/"extract.py"),receipt["extractorSha256"])
+
+    def test_audit_writer_launches_from_its_script_directory(self):
+        out,res,argv,audit=self.extraction()
+        second=self.r/"audit-from-script-cwd.json"
+        result=subprocess.run([
+          sys.executable,str(AUDIT_WRITER),"--output",str(second),
+          "--wrapper",str(WRAPPER),"--extractor",str(self.r/"extract.py"),
+          "--extraction-output",str(out),"--research-skeleton",str(res)],
+          cwd=AUDIT_WRITER.parent,capture_output=True,text=True)
+        self.assertEqual(0,result.returncode,result.stderr)
+        self.assertEqual(argv,json.loads(second.read_text())["commands"][0]["argv"])
 
     def test_bare_extractor_audit_is_rejected_before_launch(self):
         out,res,argv,audit=self.extraction()
