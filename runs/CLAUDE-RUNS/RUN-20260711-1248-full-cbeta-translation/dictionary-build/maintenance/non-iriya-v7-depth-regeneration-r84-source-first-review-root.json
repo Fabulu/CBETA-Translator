@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "source-first-semantic-review.v1",
+  "cohort": "R84",
+  "reviewer": "root",
+  "reviewMode": "source-first-before-product",
+  "extractionArtifact": "maintenance/non-iriya-v7-depth-regeneration-r84-extraction-output-b.json",
+  "extractionSha256": "df2366a75a7c3f7d2292930226aa489571310ab80b5a2dfbce46aaef0bb59847",
+  "productSeenBeforeRuling": false,
+  "rulings": [
+    {
+      "id": "t_1cec9c4c3c40",
+      "term": "破虗空",
+      "admitted": true,
+      "senseCount": 1,
+      "preferredTarget": "break through empty space",
+      "semanticRuling": "A verb-object constituent used in varied larger predicates such as 頂破虗空, 打破虗空, 撞破虗空, and 踏破虗空. The varying preceding verbs prevent treating one recurring larger compound as the sole lexical unit. The explanation must preserve the forceful breach or shattering of empty space and must not flatten the phrase to merely 'empty space'.",
+      "evidenceRuling": "Retain at least six independent Tier-1/Tier-2 deployment families. Prefer authored verses and direct recorded speech. Do not add lamp recensions as numerical padding.",
+      "actorRuling": "Authored verses use verse-author only when local authorship is explicit. Direct discourse uses the headword utterer. A collection owner, section subject, or later compiler is not automatically the actor.",
+      "reviewStatus": "provisional-pass-pending-product-comparison"
+    },
+    {
+      "id": "t_1cfa8b8aa2a3",
+      "term": "覿體全彰",
+      "admitted": true,
+      "senseCount": 1,
+      "preferredTarget": "fully manifest in its very substance",
+      "semanticRuling": "The phrase says that something is wholly and directly manifest in or as its own substance/body. Uses with sound and form, activity throughout the day, questions, and answers are deployments of one meaning rather than separate senses.",
+      "evidenceRuling": "Retain at least four distinct direct Tier-2 deployments, including semantically informative uses rather than passive repetitions. No lamp evidence is needed.",
+      "actorRuling": "A questioning monk who utters the phrase owns that occurrence even when the record master answers it; otherwise name the exact direct speaker. Record ownership alone does not transfer the utterance.",
+      "reviewStatus": "provisional-pass-pending-product-comparison"
+    },
+    {
+      "id": "t_1d0056511f4d",
+      "term": "集雲峰下四藤條",
+      "admitted": true,
+      "senseCount": 1,
+      "preferredTarget": "the four vine-switch strokes below Jiyun Peak",
+      "semanticRuling": "A fixed case formula recalling Yangshan's four blows below Jiyun Peak and Da Chanfo's later use of them in self-presentation. Later verses, raisings, and comments actively redeploy that inherited case; parallel passive recensions remain one family.",
+      "evidenceRuling": "Retain at least four genuinely active families. Prefer an authored verse, the recoverable Ancient Venerables case, and later direct raisings or commentaries. Collapse passive lamp recensions and retain at most one lamp only if it adds material historical value.",
+      "actorRuling": "Within the embedded base case Da Chanfo owns the formula; Yangshan is the actor of the four blows, not necessarily the formula's speaker. In later raisings the original speaker and outer raiser/commentator must occupy separate voice layers. Authored poems use verse-author only with explicit local attribution.",
+      "reviewStatus": "provisional-pass-pending-product-comparison"
+    }
+  ],
+  "hardPass": false,
+  "releaseAuthorized": false,
+  "reason": "Source-first semantic rulings are closed; comparison with emitted worksheet and product bytes remains required."
+}

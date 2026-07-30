@@ -1,0 +1,142 @@
+{
+  "schemaVersion": "r84-changed-coordinate-final-closure.v1",
+  "cohort": "R84",
+  "reviewer": "independent reviewer a",
+  "reviewScope": [
+    "t_1cec9c4c3c40",
+    "t_1cfa8b8aa2a3"
+  ],
+  "reviewMode": "changed-coordinate rereview only",
+  "bindings": {
+    "independentSourceFirstReview": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r84-review-first-two-a.json",
+      "sha256": "f95936673bd63ba8490a9ae8dd403cf76d49542d8a4b81fb60ca6838f4299265"
+    },
+    "rootSourceFirstReview": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r84-source-first-review-root.json",
+      "sha256": "092e6beec6c5632eb2fe528a269d0728abd48da7a82b4f088bb5d1e120ff05fc"
+    },
+    "products": [
+      {
+        "id": "t_1cec9c4c3c40",
+        "entrySha256": "74f0651098d856e8cb43f20f64b995093e679b6f9fc7de989d6835bb36626c4d",
+        "worksheetSha256": "b7d590120430dc9280f9e139404fe943542380767b2f2645745a33795f885f76",
+        "dossierSha256": "c90167212b43775c36471ba0a0888c01edf0f8f446fc38bb9631c8f6a93e9e4a",
+        "workLedgerSha256": "d7c2a5d91f51c5fe4ef0744d48c4e17ec38fdd1b2b2db5d66bfd1a42ab980d5a",
+        "attributionReport": {
+          "path": "maintenance/non-iriya-v7-depth-regeneration-r84-attribution-t_1cec9c4c3c40-final-b.json",
+          "sha256": "9ba8146e163f8a7d5d5e50d623936e49a1ebc44f879bf90948d7a62151878db4",
+          "hardFailures": 0
+        }
+      },
+      {
+        "id": "t_1cfa8b8aa2a3",
+        "entrySha256": "e5880063bb97d6dcc4d52b9dc51ea527ef30642c009ace4218b1f6b1ee374ee3",
+        "worksheetSha256": "90b1398dc02c92f87495ba603f1e63acad31c301371f9ff92f21c5aea2fb0e53",
+        "dossierSha256": "f66e78a5ef37f909ed9c8b7e01dc48279cd64011dd9cc75eae08ef462a9a7a99",
+        "workLedgerSha256": "aed8c7d331cfa465f54a9e645befa36198adcb376058a85150021d9c27877244",
+        "attributionReport": {
+          "path": "maintenance/non-iriya-v7-depth-regeneration-r84-attribution-t_1cfa8b8aa2a3-final-b.json",
+          "sha256": "9e640bf908a46493bb3dff044f1b9d76bd09ed55678a0c47bea9e65489799bbe",
+          "hardFailures": 0
+        }
+      }
+    ],
+    "depthReport": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r84-depth-sense-final-b.json",
+      "sha256": "982ed919bf5ecdfd8ad9a71c5507f3015a31f24d46aebea84b4e2128547422f9"
+    }
+  },
+  "coordinateRulings": [
+    {
+      "id": "t_1cec9c4c3c40",
+      "term": "破虗空",
+      "meaning": {
+        "productPreferredTarget": "break through empty space",
+        "reviewCompatibility": "PASS",
+        "reason": "The product's preferred target matches the root ruling, while the independent ruling's break open/shatter renderings remain explicit alternates. The one-sense explanation preserves the impossible forceful breach and does not reduce the phrase to empty space."
+      },
+      "retainedFamilyParity": {
+        "status": "PASS",
+        "expectedCount": 6,
+        "actualCount": 6,
+        "pathsMatch": true,
+        "actorsMatch": true,
+        "tiers": {
+          "tier1": 3,
+          "tier2": 3,
+          "tier3": 0
+        }
+      },
+      "worksheetProductParity": {
+        "status": "PASS",
+        "reason": "The emitted product reproduces the worksheet's public meaning, six source paths, six exact actors, roles, source order, and source hierarchy."
+      },
+      "sourceFirstReviewParity": {
+        "status": "FAIL",
+        "hardMismatch": {
+          "relPath": "X/X72/X72n1442.xml",
+          "masterName": "Weilin Daopei",
+          "frozenIndependentRole": "utterer",
+          "currentWorksheetAndProductRole": "verse-author",
+          "localFrame": "鼓山先師老和尚忌辰拈香; 良久，云",
+          "reason": "The retained source frame presents Weilin speaking during a memorial incense address and supplies no local 頌 or 偈 authorship marker. The current verse-author role and the public claim that Weilin uses the phrase in authored verse exceed the frozen evidence ruling. Root review permits verse-author only where local authorship is explicit."
+        }
+      },
+      "attributionAudit": "PASS",
+      "depthAudit": "PASS"
+    },
+    {
+      "id": "t_1cfa8b8aa2a3",
+      "term": "覿體全彰",
+      "meaning": {
+        "productPreferredTarget": "fully manifest in its very substance",
+        "reviewCompatibility": "PASS",
+        "reason": "The preferred target matches the root ruling; the independent ruling's directly manifest in full remains an alternate. The article preserves one meaning: complete and immediate manifestation."
+      },
+      "retainedFamilyParity": {
+        "status": "PASS",
+        "expectedCount": 4,
+        "actualCount": 4,
+        "pathsMatch": true,
+        "actorsMatch": true,
+        "tiers": {
+          "tier1": 0,
+          "tier2": 4,
+          "tier3": 0
+        }
+      },
+      "roleRuling": {
+        "status": "PASS",
+        "reason": "All four retained headword turns are assigned to their exact named utterers. The independent review's description of Jizong Che as teacher characterized the instructional deployment; the product's closed role utterer is the more exact grammatical role and does not transfer the turn."
+      },
+      "worksheetProductParity": {
+        "status": "PASS",
+        "reason": "The emitted product reproduces the worksheet's public meaning, four source paths, four exact actors, roles, source order, and source hierarchy."
+      },
+      "sourceFirstReviewParity": {
+        "status": "PASS"
+      },
+      "attributionAudit": "PASS",
+      "depthAudit": "PASS"
+    }
+  ],
+  "zeroLampRetained": true,
+  "depthReportRuling": {
+    "t_1cec9c4c3c40": {
+      "hardPass": true,
+      "reviewFlags": 0,
+      "entryShaMatches": true
+    },
+    "t_1cfa8b8aa2a3": {
+      "hardPass": true,
+      "reviewFlags": 0,
+      "entryShaMatches": true
+    }
+  },
+  "overallVerdict": "REJECT_CURRENT_BYTES_PENDING_ONE_ROLE_AND_PROSE_CORRECTION",
+  "requiredCorrection": "For X72n1442 in 破虗空, change Weilin Daopei's role from verse-author to utterer in the dossier, worksheet, and product. Revise the public Explanation so it does not call Weilin's memorial-address use an authored verse; for example, distinguish Yulin and Gulin's authored verses from Weilin's authored memorial address. Regenerate hash-bound attribution and depth reports before rereview.",
+  "hardPass": false,
+  "releaseAuthorized": false,
+  "publicMutation": false
+}

@@ -1,0 +1,144 @@
+{
+  "schemaVersion": "r84-independent-source-first-review.v1",
+  "cohort": "R84",
+  "reviewedIds": [
+    "t_1d0056511f4d"
+  ],
+  "bindings": {
+    "timegateSha256": "04e8ed0b7cdfd84f4a62a087f52c59f2ffcc3d8e607c09d999bae487ad07c215",
+    "selectionSha256": "60056596c7b5c81a5421b22b900d1495fea6cada6774e96d0f60648e15b06b44",
+    "checkpointSha256": "62f470619812106c2f2cc987cba30b1c88e80f7e3124b55c98fe8b32fbee4907",
+    "extractionSha256": "df2366a75a7c3f7d2292930226aa489571310ab80b5a2dfbce46aaef0bb59847",
+    "skeletonSha256": "3e5933b00b3451e13b43ebe2dd2161ee05a1871a802fb8b5d5c309d08c26a875"
+  },
+  "reviews": [
+    {
+      "id": "t_1d0056511f4d",
+      "term": "集雲峰下四藤條",
+      "requiredFloor": 4,
+      "candidateCount": 16,
+      "admission": "ADMIT",
+      "senseCount": 1,
+      "preferredTarget": "four vine-strokes below Jiyun Peak",
+      "alternateTargets": [
+        "Jiyun Peak's four strokes of the vine"
+      ],
+      "semanticRuling": "The phrase is a compact case-tag and credential. It recalls Yangshan's four blows with a vine switch and the recipient's later self-introduction as the Great Chan Buddha from beneath Jiyun Peak. Later masters quote or reshape the whole line to invoke that encounter, its punitive recognition, and the recipient's show of carrying it onward. It does not denote four growing vines.",
+      "translationControl": "Keep 集雲峰 as the place-name Jiyun Peak and 藤條 as the striking vine or switch. English 'vine-strokes' makes the counted blows intelligible without inflating the line into a doctrine. Explain the inherited case in prose; do not replace the phrase with an interpretive abstraction such as authorization, enlightenment, or transmission.",
+      "retainedFamilies": [
+        {
+          "relPath": "X/X71/X71n1413.xml",
+          "fromLb": "0275a16",
+          "tier": 1,
+          "contextSha256": "23038db01b670b2890adbdfa61d7c3dbcf7db00f222423683a3de49cc8891f36",
+          "masterName": "Gulin Qingmao",
+          "actorRole": "verse-author",
+          "familyId": "jiyun-four-vines:gulin-sendoff-verse",
+          "deployment": "In his authored send-off verse for Zhong, Gulin takes up the four vine-strokes and makes them a weapon that knocks the dragon king's nose down.",
+          "actorEvidence": "The headword is inside 送仲禪人參徑山 in Gulin Qingmao's authored collected verses, not in a nested quotation.",
+          "decision": "RETAIN"
+        },
+        {
+          "relPath": "C/C077/C077n1710.xml",
+          "fromLb": "0951b13",
+          "tier": 2,
+          "contextSha256": "e4c91510aac9838434daa0d7f2545ff4c7d662bedc7205ab5c595872b2631b5b",
+          "masterName": "Zhenjing Kewen",
+          "actorRole": "verse-author",
+          "familyId": "jiyun-four-vines:zhenjing-begging-verse",
+          "deployment": "Zhenjing opens a begging send-off verse with the Jiyun four-vine line and asks who again has attained freedom.",
+          "actorEvidence": "The line occurs under 雲庵真淨禪師語錄四, 偈頌, in 送長上人袁州丐; it is Zhenjing Kewen's verse rather than a compiler heading or a quoted case turn.",
+          "decision": "RETAIN"
+        },
+        {
+          "relPath": "J/J25/J25nB154.xml",
+          "fromLb": "0040c17",
+          "tier": 2,
+          "contextSha256": "b364e478e5378c6ecd5d6fd1d1bae1b961cff3084ff73e41ed9811df2ff04cf2",
+          "masterName": "Wei'an Deran",
+          "actorRole": "verse-author",
+          "familyId": "jiyun-four-vines:weian-gaofeng-tower-verse",
+          "deployment": "In a verse offered at Gaofeng's tower, Wei'an pairs the four vine-strokes with the dog-licking-hot-oil saying and casts both beyond heaven and earth.",
+          "actorEvidence": "The headword belongs to Wei'an Deran's own 禮高峰和尚塔 verse in his recorded sayings.",
+          "decision": "RETAIN"
+        },
+        {
+          "relPath": "J/J26/J26nB182.xml",
+          "fromLb": "0448a11",
+          "tier": 2,
+          "contextSha256": "318501a17e0df1c65991a97a79e9f9186a326f29b1b00a866b8d954c87a9a4b9",
+          "masterName": "Wanru Tongwei",
+          "actorRole": "utterer",
+          "familyId": "jiyun-four-vines:wanru-hall-litany",
+          "deployment": "Wanru places the Jiyun four-vine line among several cases in a hall address before telling the assembly to see directly through what precedes any sign.",
+          "actorEvidence": "The line is spoken in an unquoted 上堂 passage in Wanru Tongwei's own recorded sayings.",
+          "decision": "RETAIN"
+        }
+      ],
+      "excludedOrReserve": [
+        {
+          "relPath": "J/J32/J32nB273.xml",
+          "fromLb": "0205b20",
+          "exactActor": "Qianyan Yuanzhang",
+          "actorRole": "verse-author",
+          "reason": "Strong independent Tier-2 active verse on the case, held as first reserve because the four-family floor is already met."
+        },
+        {
+          "relPath": "X/X69/X69n1370.xml",
+          "fromLb": "0777a15",
+          "exactActor": "Huaihai Yuanzhao",
+          "actorRole": "utterer",
+          "reason": "Independent direct hall redeployment that makes the staff itself the four vine-strokes; useful reserve, but not needed above the floor."
+        },
+        {
+          "relPath": "X/X70/X70n1392.xml",
+          "fromLb": "0514c23",
+          "exactActor": "Yuejian",
+          "actorRole": "utterer",
+          "reason": "Independent hall redeployment criticizing the Great Chan Buddha's use of the inherited credential; retain as reserve."
+        },
+        {
+          "relPath": "J/J25/J25nB171.xml",
+          "fromLb": "0550c01",
+          "exactActor": "Great Chan Buddha in a nested raised case",
+          "outerVoice": "Tianyin Yuanxiu later raises and comments; Yuanwu Keqin and Xuedou Chongxian are also quoted commentators",
+          "reason": "Historically valuable complete-case witness, but the headword-bearing turn is the inherited self-introduction and therefore shares that deployment family with L158, X66 and X67. Do not count the containers as independent headword uses."
+        },
+        {
+          "relPath": "L/L154/L154n1639.xml",
+          "fromLb": "0207b13",
+          "exactActor": "Great Chan Buddha in a nested raised case",
+          "outerVoice": "Tianyin Yuanxiu later raises and comments",
+          "reason": "Parallel preservation of the same raised case found in J25nB171; not an additional independent family."
+        },
+        {
+          "relPath": "L/L158/L158n1652.xml",
+          "fromLb": "0205a13",
+          "exactActor": "compiler narration quoting Great Chan Buddha's self-designation",
+          "reason": "Narrative preservation of the inherited identity formula, not a direct lexical deployment by Mingjue Cong and not independent from the case family."
+        },
+        {
+          "relPath": "X/X66/X66n1296.xml",
+          "fromLb": "0128c10",
+          "exactActor": "Great Chan Buddha in lamp-style narrative",
+          "reason": "Case recension only; lower-value corroboration and the same inherited family. It must not displace direct Tier-1 or Tier-2 uses."
+        },
+        {
+          "relPath": "X/X67/X67n1301.xml",
+          "fromLb": "0248a09",
+          "exactActor": "Great Chan Buddha in the raised case",
+          "outerVoice": "Yuanwu Keqin comments on Xuedou Chongxian's case treatment",
+          "reason": "Authoritative for commentary history but still the same headword-bearing self-introduction; reserve rather than double-count."
+        }
+      ],
+      "sourceHierarchy": "One Tier-1 authored verse and three independent Tier-2 direct master deployments meet the floor. Tier-3 lamps were not consulted and no lamp evidence is needed.",
+      "familyGate": "The Great Chan Buddha's inherited self-introduction is one historical deployment family across J25nB171, L154n1639, L158n1652, X66n1296, X67n1301 and other recensions. A later container is independent only when its own master actively reuses the phrase in new speech or verse; passive quotation alone does not multiply depth.",
+      "actorGate": "Sense MasterName must be null. For the four retained direct deployments, MasterName is respectively Gulin Qingmao, Zhenjing Kewen, Wei'an Deran and Wanru Tongwei. In case recensions the exact headword actor is the Great Chan Buddha (identified in some witnesses as Huoshan Jingtong); later raisers, commentators, section owners and compilers belong in contextual roles and must not replace him.",
+      "verdict": "APPROVE_CONSTRUCTION",
+      "hardPass": true
+    }
+  ],
+  "overallVerdict": "APPROVE_FOR_CONSTRUCTION",
+  "hardPass": true,
+  "publicMutation": false
+}
