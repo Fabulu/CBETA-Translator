@@ -19,9 +19,9 @@ class CheckpointTests(unittest.TestCase):
         self.terms=["甲","乙"]
         self.ids=["t_"+hashlib.sha256(x.encode()).hexdigest()[:12] for x in self.terms]
         self.floors=[6,4]
-        self.deadlines={"viability":120,"researchExtraction":120,"adjudicatedConfig":300,
-          "constructor":310,"firstProduct":330,"construction":390,"review":530,
-          "correction":630,"publication":720}
+        self.deadlines={"viability":120,"researchExtraction":120,"adjudicatedConfig":440,
+          "constructor":450,"firstProduct":470,"construction":530,"review":670,
+          "correction":770,"publication":860}
         self.tg=self.r/"timegate.json"
         self.tg.write_text(json.dumps({"startedEpoch":1000,"artifactZero":True,
           "createdUtc":datetime.fromtimestamp(1000,timezone.utc).isoformat(),
@@ -91,7 +91,7 @@ class CheckpointTests(unittest.TestCase):
               "timegatePath":str(self.tg),"watchdogReceiptPath":str(self.r/"start"),
               "commandAuditPath":str(self.r/"ca"),"engineSha256":sh(engine),"paths":paths,"entries":entries}
         config.write_text(json.dumps(data)); os.utime(config,(1200,1200)); return config
-    def constructor_call(self,id_only=False,empty_payload=False,unauthorized=False,decorative=False,now="1309",overwrite=False):
+    def constructor_call(self,id_only=False,empty_payload=False,unauthorized=False,decorative=False,now="1449",overwrite=False):
         rr=self.r/"research-receipt.json"
         rr.write_text(json.dumps({"hardPass":True,"ids":self.ids,"terms":self.terms,
           "requiredFloors":self.floors,"admittedRequiredOccurrences":10,
@@ -172,16 +172,19 @@ class CheckpointTests(unittest.TestCase):
     def test_n20_evidence_scaled_schedule(self):
         total,deadlines=watchdog.evidence_schedule([6,6,8],20)
         self.assertEqual(20,total)
-        self.assertEqual({"viability":120,"researchExtraction":120,"adjudicatedConfig":420,
-          "constructor":430,"firstProduct":450,"construction":510,"review":730,
-          "correction":870,"publication":960},deadlines)
+        self.assertEqual({"viability":120,"researchExtraction":120,"adjudicatedConfig":560,
+          "constructor":570,"firstProduct":590,"construction":650,"review":870,
+          "correction":1010,"publication":1100},deadlines)
     def test_n23_and_n24_evidence_scaled_schedule(self):
         _, n23=watchdog.evidence_schedule([8,4,7],23)
-        self.assertEqual((456,546,790,942,1032),
+        self.assertEqual((596,686,930,1082,1172),
           tuple(n23[k] for k in ("adjudicatedConfig","construction","review","correction","publication")))
         _, n24=watchdog.evidence_schedule([8,8,8],24)
-        self.assertEqual((468,558,810,966,1056),
+        self.assertEqual((608,698,950,1106,1196),
           tuple(n24[k] for k in ("adjudicatedConfig","construction","review","correction","publication")))
+        _, n14=watchdog.evidence_schedule([4,4,6],14)
+        self.assertEqual((488,578,750,866,956),
+          tuple(n14[k] for k in ("adjudicatedConfig","construction","review","correction","publication")))
     def test_schedule_positive_bounds_and_low_case_load(self):
         with self.assertRaises(TypeError): watchdog.evidence_schedule([8])
         with self.assertRaises(ValueError): watchdog.evidence_schedule([],0)
@@ -303,7 +306,7 @@ class CheckpointTests(unittest.TestCase):
             self.assertTrue(path.is_file(),path)
         self.assertEqual([ident],[row["id"] for row in json.loads(manifest.read_text())["rows"]])
     def test_late_config_and_constructor_rejected(self):
-        self.assertEqual(124,self.constructor_call(now="1310.1").returncode)
+        self.assertEqual(124,self.constructor_call(now="1450.1").returncode)
     def test_receipt_overwrite_rejected(self): self.assertEqual(124,self.constructor_call(overwrite=True).returncode)
 
     def test_viability_count_ids_terms_must_match(self):
@@ -382,7 +385,7 @@ class CheckpointTests(unittest.TestCase):
           "--output-root",output,"--ids",*self.ids)
     def test_empty_manifest_rejected(self): self.assertEqual(124,self.construction_call(empty=True).returncode)
     def test_mismatched_closure_rejected(self): self.assertEqual(124,self.construction_call(mismatch=True).returncode)
-    def test_late_construction_rejected(self): self.assertEqual(124,self.construction_call(now="1390.1").returncode)
+    def test_late_construction_rejected(self): self.assertEqual(124,self.construction_call(now="1530.1").returncode)
     def test_valid_construction_passes(self): self.assertEqual(0,self.construction_call().returncode)
 
 if __name__=="__main__": unittest.main()

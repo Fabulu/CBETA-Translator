@@ -23,7 +23,10 @@ def evidence_schedule(required_floors, case_load):
         raise ValueError("adjudicatedCaseLoad must be an integer")
     if case_load < total:
         raise ValueError("adjudicatedCaseLoad cannot be below requiredFloors sum")
-    config = 180 + 12 * case_load
+    # R61's immutable receipts put the honest N=14 critical path at
+    # 439.463s.  This retains the evidence-scaled slope and provides an
+    # 11.04% hard margin without changing or resetting the original epoch.
+    config = 320 + 12 * case_load
     construction = config + 90
     review = construction + 60 + 8 * case_load
     correction = review + 60 + 4 * case_load
