@@ -1,0 +1,191 @@
+{
+  "SchemaVersion": 1,
+  "ConstructionPipelineVersion": 2,
+  "Admission": {
+    "Decision": "admit",
+    "LexicalUnitReason": "A complete comic answer used to cut off or cap a preceding interpretation.",
+    "ObservableChanJob": "A complete comic answer used to cut off or cap a preceding interpretation.",
+    "DuplicateCheck": {
+      "DeterministicIdChecked": true,
+      "ExactHeadwordChecked": true,
+      "NearDuplicateRuling": "Batch39 semantic and independent cross-review confirmed admission and boundary."
+    }
+  },
+  "EvidenceTransport": {
+    "DossierPath": "../../../maintenance/non-iriya-v5-frequency-batch39-crossreview-c.json",
+    "DossierSha256": "4ce78c1fe87a5e0eed07a4ba48d7bb494cfa3fa8a9caa3aea550ac004c7fa437",
+    "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff",
+    "SourceAuthorityManifestSha256": "e87be88aeb1c6dde00c2bfaaa7580db218ad60a39165a3125f3a981d2bcd396d",
+    "DiscoveryMethods": [
+      "frozen V5 selection",
+      "independent semantic cross-review",
+      "complete Tier-2 turn review"
+    ],
+    "ExactCount": 20,
+    "BridgedCount": 20
+  },
+  "Entry": {
+    "Id": "t_20d13943f1a6",
+    "SourceTerm": "兔子喫牛嬭",
+    "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff",
+    "CreatedBy": "Codex Batch39 lane-C construction",
+    "WrittenUtc": "2026-07-29T05:48:36.475116Z",
+    "Senses": [
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "a rabbit drinks cow’s milk",
+        "AlternateTargets": [
+          "a rabbit drinking cow's milk"
+        ],
+        "SearchAliases": [
+          "a rabbit drinks cow’s milk",
+          "a rabbit drinking cow's milk"
+        ],
+        "Status": "preferred",
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "“A rabbit drinks cow’s milk” is a deliberately incongruous answer image.",
+          "EvidenceBody": [
+            "Yangqi Fanghui gives it as a complete answer after a head seat repeats his rebuke.",
+            "Yuejiang Zhengyin independently gives the same image as an answer concerning Huineng at the pestle."
+          ]
+        },
+        "Validation": "multi-source",
+        "Note": "Preserve the animal-and-milk incongruity; the records do not give it one universal doctrinal paraphrase.",
+        "Occurrences": [
+          {
+            "RelPath": "X/X66/X66n1297.xml",
+            "FromLb": "0466b07",
+            "ToLb": "0466c04",
+            "Kwic": "毗盧光影斷，不須平地起波瀾。一箭射落天邊鴈，千人萬人著眼看，不知此箭自何來？湖南長老何曾見？東風花暖色依依，在處牆頭蝴蝶飛竈婦不聞天子敕，太平晝夜不關扉。強飲沽來酒，羞看讀了書閒花更滿地，惆悵復何如。楊岐因慈明忌設齋，眾集，師於真前，以兩手掜拳安頭上，以坐具畫一畫，打一圓相，便燒香，退身三步，作女人拜。首座曰：休掜怪。師曰：首座作麼生？曰：和尚休掜怪。師曰：兔子喫牛嬭。第二座近前，打一圓相，便燒香，亦退身三步，作女人拜。師近前作聽勢，座擬議，師與一掌曰：者漆桶也亂做。法林音云：當斷不斷，反招其亂。一棚傀儡木雕成，半是神形半鬼形。歌鼓歇時天未曉，尚餘寒月挂疎櫺。楊岐聽勢印千差，今古令人愛作家但握祖師三印在，不妨掜怪亂如麻。楊岐，上堂。天得一以清，地得一以寧，君王得一以治天下，衲僧得一堪作甚麼？良久，云：鉢盂口向天。妙喜杲云",
+            "MasterName": "Yangqi Fanghui",
+            "Curated": true,
+            "AttributionNote": "Source record (X/X66/X66n1297.xml), 宗鑑法林: Yangqi Fanghui utters the headword-bearing answer, verdict, or description in the retained complete turn.",
+            "ContextMasters": [
+              {
+                "MasterName": "Yangqi Fanghui",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "兔子喫牛嬭",
+              "GrammaticalSubject": "Yangqi Fanghui",
+              "SpeechFrame": "The retained complete source frame directly attributes the headword-bearing speech to the named master.",
+              "FullCaseDecision": "Yangqi Fanghui is the exact headword utterer; nested case figures and later container voices are not substituted."
+            }
+          },
+          {
+            "RelPath": "X/X71/X71n1409.xml",
+            "FromLb": "0121b17",
+            "ToLb": "0121c10",
+            "Kwic": "中。且道孰優孰劣？師云：兔馬有角，牛羊無角。進云：恁麼則庭前一葉落，天下盡知秋。師云：知時別宜，堪作闍黎。僧禮拜。師乃云：三十年來住子胡，二時粥飯氣力麁，無事下山行一轉，借問時人會也無？子胡大似年老心孤。雲峰則不然，三四年來住道場，二時粥飯氣力強，普請下山行一轉，萬頃田疇𥝧稏香。上堂，僧問：達磨面壁，意旨如何？師云：餿飯泥茶爐。進云：六祖踏碓又作麼生？師云：兔子喫牛嬭。進云：一人道不識，一人道不會，意在什麼處？師云：鳳林吒之。僧禮拜。師乃云：達磨不識九年面壁，六祖不會長年踏碓。帶累兒孫，東倒西儡。新婦騎驢阿家牽，張公喫酒李公醉。好大哥！上堂：一二三四五六七，地水火風空覺識。一微塵內有真空，三世如來從此出。不是心，不是佛，不是物，大方獨步更由誰？頂門放出遼天鶻。上堂，僧問：夜來小參，和尚舉：僧問投子：大死底人却活時如何？投",
+            "MasterName": "Yuejiang Zhengyin",
+            "Curated": true,
+            "AttributionNote": "Source record (X/X71/X71n1409.xml), 月江正印禪師語錄: Yuejiang Zhengyin utters the headword-bearing answer, verdict, or description in the retained complete turn.",
+            "ContextMasters": [
+              {
+                "MasterName": "Yuejiang Zhengyin",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "DraftActorProof": {
+              "ExactHeadwordClause": "兔子喫牛嬭",
+              "GrammaticalSubject": "Yuejiang Zhengyin",
+              "SpeechFrame": "The retained complete source frame directly attributes the headword-bearing speech to the named master.",
+              "FullCaseDecision": "Yuejiang Zhengyin is the exact headword utterer; nested case figures and later container voices are not substituted."
+            }
+          }
+        ],
+        "ClaimAnchors": [],
+        "SourceTexts": [],
+        "RelatedMasters": [
+          "Yangqi Fanghui",
+          "Yuejiang Zhengyin"
+        ],
+        "RelatedTerms": [],
+        "DraftEvidence": {
+          "OpeningClaimEvidenceKeys": [
+            "o1",
+            "o2"
+          ],
+          "EvidenceBodyClaimKeys": [
+            [
+              "o1"
+            ],
+            [
+              "o2"
+            ]
+          ],
+          "LiteralGraphFloor": "兔子 is a rabbit, 喫 is drinks or consumes, and 牛嬭 is cow's milk.",
+          "LexicalJob": "A complete comic answer used to cut off or cap a preceding interpretation.",
+          "DeploymentClasses": [
+            "direct Tier-2 deployment",
+            "direct Tier-2 deployment"
+          ],
+          "HighValueEvidenceLedger": [
+            {
+              "Disposition": "keep",
+              "Finding": "毗盧光影斷，不須平地起波瀾。一箭射落天邊鴈，千人萬人著眼看，不知此箭自何來？湖南長老何曾見？東風花暖色依依，在處牆頭蝴蝶飛竈婦不聞天子敕，太平晝夜不關扉。強飲沽來酒，羞看讀了書閒花更滿地，惆悵復何如。楊岐因慈明忌設齋，眾集，師於真前，以兩手掜拳安頭上，以坐具畫一畫，打一圓相，便燒香，退身三步，作女人拜。首座曰：休掜怪。師曰：首座作麼生？曰：和尚休掜怪。師曰：兔子喫牛嬭。第二座近前，打一圓相，便燒香，亦退身三步，作女人拜。師近前作聽勢，座擬議，師與一掌曰：者漆桶也亂做。法林音云：當斷不斷，反招其亂。一棚傀儡木雕成，半是神形半鬼形。歌鼓歇時天未曉，尚餘寒月挂疎櫺。楊岐聽勢印千差，今古令人愛作家但握祖師三印在，不妨掜怪亂如麻。楊岐，上堂。天得一以清，地得一以寧，君王得一以治天下，衲僧得一堪作甚麼？良久，云：鉢盂口向天。妙喜杲云",
+              "Reason": "The complete Tier-2 turn proves the headword's job and actor."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "中。且道孰優孰劣？師云：兔馬有角，牛羊無角。進云：恁麼則庭前一葉落，天下盡知秋。師云：知時別宜，堪作闍黎。僧禮拜。師乃云：三十年來住子胡，二時粥飯氣力麁，無事下山行一轉，借問時人會也無？子胡大似年老心孤。雲峰則不然，三四年來住道場，二時粥飯氣力強，普請下山行一轉，萬頃田疇𥝧稏香。上堂，僧問：達磨面壁，意旨如何？師云：餿飯泥茶爐。進云：六祖踏碓又作麼生？師云：兔子喫牛嬭。進云：一人道不識，一人道不會，意在什麼處？師云：鳳林吒之。僧禮拜。師乃云：達磨不識九年面壁，六祖不會長年踏碓。帶累兒孫，東倒西儡。新婦騎驢阿家牽，張公喫酒李公醉。好大哥！上堂：一二三四五六七，地水火風空覺識。一微塵內有真空，三世如來從此出。不是心，不是佛，不是物，大方獨步更由誰？頂門放出遼天鶻。上堂，僧問：夜來小參，和尚舉：僧問投子：大死底人却活時如何？投",
+              "Reason": "The complete Tier-2 turn proves the headword's job and actor."
+            }
+          ],
+          "ZenBend": "A complete comic answer used to cut off or cap a preceding interpretation.",
+          "CounterexampleOrLimit": "Preserve the animal-and-milk incongruity; the records do not give it one universal doctrinal paraphrase.",
+          "DifferentThingTest": {
+            "Decision": "one-thing",
+            "ComparedThings": [],
+            "Reason": "The retained turns deploy one bounded answer, verdict, or manner description."
+          },
+          "AliasRationale": "Lookup phrases preserve the concrete image or contextual force without importing doctrine.",
+          "ModifierControls": [
+            {
+              "Decision": "keep-complete-unit",
+              "Reason": "Independent Batch39 cross-review confirmed this boundary."
+            }
+          ],
+          "FamilyControls": [
+            {
+              "Decision": "keep-independent",
+              "Reason": "Only independent Tier-2 deployments count; Tier-3 and passive copies are excluded."
+            }
+          ],
+          "IndependentWorkIds": [
+            "chan:zongjian-falin",
+            "work:X71n1409"
+          ],
+          "SourceAuthorityRows": [
+            {
+              "EvidenceKey": "o1",
+              "Tier": 2,
+              "SourceClass": "case-commentary-record",
+              "AuthorityReason": "Complete Tier-2 active deployment with exact speaker review.",
+              "WitnessFamilyId": "yangqi-ciming-memorial-answer",
+              "DeploymentRole": "active-quotation"
+            },
+            {
+              "EvidenceKey": "o2",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "Complete Tier-2 active deployment with exact speaker review.",
+              "WitnessFamilyId": "yuejiang-huineng-pestle-answer",
+              "DeploymentRole": "original-use"
+            }
+          ],
+          "NoHigherWitnessSearchReceipt": null,
+          "LampExcessJustification": null
+        }
+      }
+    ]
+  }
+}

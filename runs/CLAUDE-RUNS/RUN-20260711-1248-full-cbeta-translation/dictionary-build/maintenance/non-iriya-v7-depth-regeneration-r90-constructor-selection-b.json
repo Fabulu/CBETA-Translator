@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "r90-admitted-constructor-selection.v1",
+  "cohort": "R90",
+  "artifactZeroSelectionPath": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r90-selection-b.json",
+  "artifactZeroSelectionSha256": "a7051fedb4ffc29fa7d94b9b7f8361ef1172ccf83502116a6798ee448e51435a",
+  "rows": [
+    {
+      "queueOrdinal": 1,
+      "identityId": "t_207efae5f6bd",
+      "term": "死句",
+      "requiredFloor": 6,
+      "classification": "legacy-selected-depth-repair"
+    },
+    {
+      "queueOrdinal": 2,
+      "identityId": "t_20d13943f1a6",
+      "term": "兔子喫牛嬭",
+      "requiredFloor": 4,
+      "classification": "hard-fail"
+    },
+    {
+      "queueOrdinal": 3,
+      "identityId": "t_20ff8118754b",
+      "term": "赤骨律",
+      "requiredFloor": 4,
+      "classification": "hard-fail"
+    }
+  ],
+  "excluded": [],
+  "hardPass": true
+}

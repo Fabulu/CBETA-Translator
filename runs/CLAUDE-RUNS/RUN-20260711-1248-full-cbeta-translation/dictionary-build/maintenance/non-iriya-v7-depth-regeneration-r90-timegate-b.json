@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "bounded-dictionary-timegate.v2",
+  "cohort": "R90",
+  "artifactZero": true,
+  "startedEpoch": 1785416340.4584498,
+  "createdUtc": "2026-07-30T12:59:00.458449Z",
+  "requiredFloors": [
+    6,
+    4,
+    4
+  ],
+  "admittedRequiredOccurrences": 14,
+  "adjudicatedCaseLoad": 14,
+  "researchCandidateReserve": 3,
+  "deadlinesSeconds": {
+    "viability": 120,
+    "researchExtraction": 120,
+    "adjudicatedConfig": 488,
+    "constructor": 498,
+    "firstProduct": 518,
+    "construction": 578,
+    "review": 750,
+    "correction": 866,
+    "publication": 956
+  },
+  "assignedLaunch": {
+    "selector": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/last1500-public-depth/final-scope/full-regeneration-selector.json",
+    "priorUnion": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r89-resolved-union-root.json",
+    "entries": [
+      {
+        "id": "t_207efae5f6bd",
+        "term": "死句",
+        "requiredFloor": 6
+      },
+      {
+        "id": "t_20d13943f1a6",
+        "term": "兔子喫牛嬭",
+        "requiredFloor": 4
+      },
+      {
+        "id": "t_20ff8118754b",
+        "term": "赤骨律",
+        "requiredFloor": 4
+      }
+    ],
+    "reserveIds": [],
+    "researchCandidateReserve": 3
+  },
+  "continuationOf": "R89"
+}

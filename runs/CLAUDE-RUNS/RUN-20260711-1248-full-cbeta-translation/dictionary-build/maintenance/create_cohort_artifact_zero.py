@@ -73,7 +73,7 @@ def main() -> None:
     started_ns = int(datetime.now(timezone.utc).timestamp() * 1_000_000_000)
     started = started_ns / 1_000_000_000
     payload = {
-        "schemaVersion": "bounded-dictionary-timegate.v2",
+        "schemaVersion": "bounded-dictionary-timegate.v3",
         "cohort": args.cohort,
         "artifactZero": True,
         "startedEpoch": started,

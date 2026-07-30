@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "r90-release-authority-bindings.v1",
+  "cohort": "R90",
+  "rootDecisionPending": true,
+  "releaseAuthorized": false,
+  "products": [
+    {
+      "id": "t_207efae5f6bd",
+      "term": "死句",
+      "entrySha256": "ff178b1c66b3504b69f1b438d9d1be6ceaec96f19f6f4f40c12d7fcb7ef431fc",
+      "worksheetSha256": "e7d23afa6cc3035c876bcca6ccbf7db94860d8aae62f32ee8f6fac2038346fa9",
+      "workSha256": "5507c7bdaaa36e2eaee9d8bd328552f9b50ed66aff5bbf47ba6b5475146f028d",
+      "termsInstallMode": "replace",
+      "termsBaselineSha256": "6e986c015dd32fd12007c387bc5ef931dec033a3da5359cbe1e76f69a3a125e5",
+      "publicMode": "replace"
+    },
+    {
+      "id": "t_20d13943f1a6",
+      "term": "兔子喫牛嬭",
+      "entrySha256": "9d1f8b558cc56aeac434edaa0698b49598512f7f5d8c849fe6ba301c84047f81",
+      "worksheetSha256": "4446fe7e5e0e0bc804178f737ab8314e2feb13a4eed4cea9640a39f786c14d91",
+      "workSha256": "df0411a34de78b0e9c985f554d8a0878ad0cbef9ea7cf9c2f6ea1e76182f905d",
+      "termsInstallMode": "replace",
+      "termsBaselineSha256": "6c27929ef18231ba6fcb295f09174121e09e3173fbea00f7268bc399d4f334e2",
+      "publicMode": "replace"
+    },
+    {
+      "id": "t_20ff8118754b",
+      "term": "赤骨律",
+      "entrySha256": "8feb285990392f17e98979b21afd6eca51993d8e154c3059885a66280d31e89f",
+      "worksheetSha256": "8230df05db22115fb9fb6f98781db308b2781ddf7d5bfc746786b047961ea207",
+      "workSha256": "c19ee52a3ddd06cbe1bfd67f9bffa438344c173bd5798ccb69c854fede2dbb0f",
+      "termsInstallMode": "create-missing",
+      "termsBaselineSha256": null,
+      "publicMode": "replace"
+    }
+  ],
+  "authorityBindings": {
+    "independentReview": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r90-independent-review-b.json",
+      "sha256": "e0c63f3c8d3e95b79468376ab717860aa0585c3edd18c4650964ce552add6edc",
+      "hardPass": true
+    },
+    "attributionGate": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r90-attribution-final-d.json",
+      "sha256": "5ef8c208645ca68bca0045627094d16f6b9e9dabc3a16e004bf6d1d4d2fff950",
+      "hardFailures": 0
+    },
+    "depthGate": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r90-depth-final-d.json",
+      "sha256": "f9433977a1eab3eb05538aa72e90c4c327c40a60a6cbeda946f34b48b352ab8b",
+      "hardFailures": 0
+    },
+    "closure": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r90-closure-b.json",
+      "sha256": "df06a37c922b6e344131cb4e65fba64d924dd2ada0fcf5dba70be56bcbe6cb39",
+      "hardPass": true
+    }
+  },
+  "sourceHierarchy": {
+    "tier1": 5,
+    "tier2": 9,
+    "tier3Lamps": 0,
+    "hardPass": true
+  },
+  "publicationExpectation": {
+    "currentPublicEntryCount": 4714,
+    "expectedPublicEntryCount": 4714,
+    "exactProductParity": "3/3",
+    "reason": "All three IDs already exist in the public aggregate; R90 replaces their public records. 赤骨律 is missing only from the internal terms staging tree."
+  },
+  "publicMutationPerformed": false
+}

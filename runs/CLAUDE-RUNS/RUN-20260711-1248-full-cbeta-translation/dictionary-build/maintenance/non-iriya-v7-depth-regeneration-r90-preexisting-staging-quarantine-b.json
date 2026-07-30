@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "r90-preexisting-staging-quarantine.v1",
+  "cohort": "R90",
+  "decision": "RECOVERABLE_QUARANTINE_FOR_AUTHORIZED_REPLACEMENT",
+  "authorization": "Root authorized same-scope construction for the exact three R90 replacement IDs. All three staging directories predate R90 artifact zero and must be preserved outside the canonical output coordinates before the atomic constructor runs.",
+  "artifactZeroEpoch": 1785416340.4584498,
+  "quarantineRoot": "maintenance/r90-preexisting-staging-quarantine-b",
+  "rows": [
+    {
+      "id": "t_207efae5f6bd",
+      "preexistingDirectoryMtime": "2026-07-17T01:50:08.103374500+02:00",
+      "entrySha256": "6e986c015dd32fd12007c387bc5ef931dec033a3da5359cbe1e76f69a3a125e5",
+      "evidenceDraftSha256": "9eea8f33e8a47e7cac3b268437e1aa123ee081637ba6caeae2abf392721ae0c5"
+    },
+    {
+      "id": "t_20d13943f1a6",
+      "preexistingDirectoryMtime": "2026-07-29T07:48:36.793782800+02:00",
+      "entrySha256": "6c27929ef18231ba6fcb295f09174121e09e3173fbea00f7268bc399d4f334e2",
+      "evidenceDraftSha256": "77beaf0927e9756c4a87aa594ebd2f84eb1a9c2a713938ff900436ab73eecf58"
+    },
+    {
+      "id": "t_20ff8118754b",
+      "preexistingDirectoryMtime": "2026-07-29T14:16:13.550805400+02:00",
+      "entrySha256": "bdcb16ef9f6c1f999c629df78db6f76e3512580ca4f6da43801c2d12c4ec5af0",
+      "evidenceDraftSha256": "bc0a0a4e6459b07309c3535cc4cc984beda2c250785fcb35d1cdd004581c5337"
+    }
+  ],
+  "destructiveDeletionPerformed": false,
+  "publicMutationPerformed": false
+}

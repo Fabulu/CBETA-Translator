@@ -1,0 +1,153 @@
+{
+  "schemaVersion": "r90-independent-review.v1",
+  "cohort": "R90",
+  "reviewMode": "independent read-only source-first review of the final products and frozen R90 adjudications",
+  "reviewer": "Codex r89_final_review",
+  "reviewedUtc": "2026-07-30T13:20:00Z",
+  "instructionBindings": {
+    "dictionaryEntryGuideSha256": "9af872e4683a520faa0c0a2f9d66ad2606fc550453ce1f23d31be4898c58b30d",
+    "attributionFixSha256": "dd4bf75b9301e538c1b52806354223426e17ddd7f236f96b05af7c497f7c6d1c",
+    "actorAuditSha256": "55b71d8efed5dcaa0c99b2d47febe2e2376b6fb8eed76894e1b2acb659adb00d"
+  },
+  "artifactBindings": {
+    "adjudicationDeadPhrase": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r90-adjudication-a.json",
+      "sha256": "e44a649b9d4b3e8853af270554123af6699e65dc7df78af6267067d7994738f9"
+    },
+    "adjudicationRabbitAndBare": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r90-adjudication-c.json",
+      "sha256": "681edf628472d2d711a75a72eeb33798e387a46509b8de276878d219760a59c6"
+    },
+    "finalConfig": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r90-constructor-config-b.json",
+      "sha256": "9bca3d64f1735d92750ec14e5c66dc0500656049c17b787babcfb90bd56886e1"
+    },
+    "constructionManifest": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r90-construction-manifest-b.json",
+      "sha256": "a7c8f5c8ec428c876f28f35e0d82f3a62e5f4ebfc8e4e844c59f4b26a247a15b"
+    },
+    "closure": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r90-closure-b.json",
+      "sha256": "df06a37c922b6e344131cb4e65fba64d924dd2ada0fcf5dba70be56bcbe6cb39"
+    },
+    "attributionGate": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r90-attribution-final-d.json",
+      "sha256": "5ef8c208645ca68bca0045627094d16f6b9e9dabc3a16e004bf6d1d4d2fff950",
+      "hardFailures": 0
+    },
+    "depthGate": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r90-depth-final-d.json",
+      "sha256": "f9433977a1eab3eb05538aa72e90c4c327c40a60a6cbeda946f34b48b352ab8b",
+      "hardFailures": 0
+    },
+    "preflightDefectReceipt": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r90-constructor-preflight-defect-b.json",
+      "sha256": "a289248ecf52e5677689e852827aa7043957a1d78a5033b3c369f26326a48dd3"
+    },
+    "attributionCorrection": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r90-attribution-correction-b.json",
+      "sha256": "53cafbf98c426cfd6802118742ce3b601a6f3a736aa98112205b8af2b10f336e"
+    },
+    "depthWordingCorrection": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r90-depth-wording-correction-b.json",
+      "sha256": "d3ed11177fd09e253cecd9dc8037192b7a4b36947c8c58f38312f416cd758f39"
+    }
+  },
+  "products": [
+    {
+      "id": "t_207efae5f6bd",
+      "term": "死句",
+      "dossierSha256": "6c41f591d9b80e8c0d864a0a188e76ed55074f1262cb8806f25af924ad2fcc90",
+      "worksheetSha256": "e7d23afa6cc3035c876bcca6ccbf7db94860d8aae62f32ee8f6fac2038346fa9",
+      "compileReportSha256": "71c599d413a2e8386547a70c8e2902a32c96a3cb5b586dc193c413ae1fda5570",
+      "productSha256": "ff178b1c66b3504b69f1b438d9d1be6ceaec96f19f6f4f40c12d7fcb7ef431fc",
+      "compilerByteParity": "pass"
+    },
+    {
+      "id": "t_20d13943f1a6",
+      "term": "兔子喫牛嬭",
+      "dossierSha256": "e42c1f8bf01347dd9dcdb2d8fe352137095832fbb7db13a506432905e674c037",
+      "worksheetSha256": "4446fe7e5e0e0bc804178f737ab8314e2feb13a4eed4cea9640a39f786c14d91",
+      "compileReportSha256": "17ed64c9045b00ef1d7243814489d630be1f414f5e8f7b08e6ba53d9929a48b2",
+      "productSha256": "9d1f8b558cc56aeac434edaa0698b49598512f7f5d8c849fe6ba301c84047f81",
+      "compilerByteParity": "pass"
+    },
+    {
+      "id": "t_20ff8118754b",
+      "term": "赤骨律",
+      "dossierSha256": "66c854d646c0cb9557e5a90dce1efdd9db866f31ced2c26b6901b075c3ba70b2",
+      "worksheetSha256": "8230df05db22115fb9fb6f98781db308b2781ddf7d5bfc746786b047961ea207",
+      "compileReportSha256": "807c622b6764c226bed2319ec5c2b91de7a5b033acf3e007c7ce8a5eddcad420",
+      "productSha256": "8feb285990392f17e98979b21afd6eca51993d8e154c3059885a66280d31e89f",
+      "compilerByteParity": "pass"
+    }
+  ],
+  "actorCoordinateReview": [
+    {
+      "id": "t_207efae5f6bd",
+      "occurrence": 3,
+      "relPath": "X/X73/X73n1457.xml",
+      "verdict": "pass",
+      "finding": "The public KWIC begins with 答曰 and contains only Mailang Huai's answer, not the anonymous question. ActorAttribution correctly represents Mailang Huai as the identified-unlinked master utterer, with MasterName null and no duplicate utterer in ContextActors."
+    },
+    {
+      "id": "t_207efae5f6bd",
+      "occurrence": 4,
+      "relPath": "X/X87/X87n1624.xml",
+      "verdict": "pass",
+      "finding": "Huihong's 予 narration introduces a collected record, while 大略曰 presents Dongshan Shouchu's quoted definition. Dongshan is correctly the MasterName utterer; Huihong is correctly structured as identified later-quoter and record-owner and is explicitly named in the public AttributionNote."
+    },
+    {
+      "id": "t_20ff8118754b",
+      "occurrence": 1,
+      "relPath": "J/J25/J25nB165.xml",
+      "verdict": "pass",
+      "finding": "Dawei Jinglun is consistently represented as an identified-unlinked Chan master utterer in ActorAttribution, with MasterName null and no duplicate utterer in ContextActors."
+    }
+  ],
+  "semanticReview": [
+    {
+      "id": "t_207efae5f6bd",
+      "preferredTarget": "dead phrase",
+      "senseCount": 1,
+      "verdict": "pass",
+      "finding": "The retained explicit definitions and contrasts establish one contrastive use opposed to a living phrase. Person-dependent living or dead use changes deployment, not the lexical referent."
+    },
+    {
+      "id": "t_20d13943f1a6",
+      "preferredTarget": "a rabbit drinks cow's milk",
+      "senseCount": 1,
+      "verdict": "pass",
+      "finding": "The literal incongruous answer-image is preserved without assigning one abstract doctrinal explanation. Four direct deployments support one image-level sense."
+    },
+    {
+      "id": "t_20ff8118754b",
+      "preferredTarget": "stark naked",
+      "senseCount": 1,
+      "verdict": "pass",
+      "finding": "The retained discourse and verse uses support an intensifier for being utterly bare, exposed, or without covering. Adjectival and adverbial packaging does not establish separate things."
+    }
+  ],
+  "sourceHierarchyReview": {
+    "tier1": 5,
+    "tier2": 9,
+    "tier3": 0,
+    "occurrences": 14,
+    "lampOccurrences": 0,
+    "verdict": "pass",
+    "finding": "The final worksheets retain five Tier 1 and nine Tier 2 witnesses. No lamp is retained or needed."
+  },
+  "correctionNonRegression": {
+    "verdict": "pass",
+    "checks": [
+      "Mailang Huai and Dawei Jinglun are not duplicated as primary utterers in ContextActors.",
+      "Huihong remains explicitly named in the public AttributionNote while Dongshan Shouchu remains the quoted utterer.",
+      "The rabbit-image note says single abstract paraphrase and does not restore the rejected framing word doctrinal.",
+      "All final product hashes match the final construction manifest and both final gates.",
+      "Canonical recompilation from each final worksheet produced byte-identical output."
+    ]
+  },
+  "hardFailures": [],
+  "hardPass": true,
+  "publishAuthorized": false
+}

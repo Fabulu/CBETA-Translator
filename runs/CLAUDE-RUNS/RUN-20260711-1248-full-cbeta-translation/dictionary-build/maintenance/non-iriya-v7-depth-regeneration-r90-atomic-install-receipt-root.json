@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "r90-mixed-atomic-install.v1",
+  "cohort": "R90",
+  "authorityPath": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r90-final-release-authority-root.json",
+  "authoritySha256": "dbd94eb7b9ebd9041435c853a7c239d165916cd9b2dd70985a5125f2d38415b1",
+  "bindingsSha256": "0ff9a019466e35c937a57f31ad5ac7c51d1cd85650c636c568e9d100b534a029",
+  "entries": [
+    {
+      "id": "t_207efae5f6bd",
+      "mode": "replace",
+      "baselineSha256": "6e986c015dd32fd12007c387bc5ef931dec033a3da5359cbe1e76f69a3a125e5",
+      "installedEntrySha256": "ff178b1c66b3504b69f1b438d9d1be6ceaec96f19f6f4f40c12d7fcb7ef431fc"
+    },
+    {
+      "id": "t_20d13943f1a6",
+      "mode": "replace",
+      "baselineSha256": "6c27929ef18231ba6fcb295f09174121e09e3173fbea00f7268bc399d4f334e2",
+      "installedEntrySha256": "9d1f8b558cc56aeac434edaa0698b49598512f7f5d8c849fe6ba301c84047f81"
+    },
+    {
+      "id": "t_20ff8118754b",
+      "mode": "create-missing",
+      "baselineSha256": null,
+      "installedEntrySha256": "8feb285990392f17e98979b21afd6eca51993d8e154c3059885a66280d31e89f"
+    }
+  ],
+  "replacementCount": 2,
+  "createdCount": 1,
+  "postInstallHardPass": true
+}

@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "non-iriya-v7-depth-regeneration-selection-proposal.v1",
+  "cohort": "R90",
+  "status": "proposal-only-pending-r89-publication",
+  "selectionRule": "first three authoritative selector rows absent from the R89 prior union and the exact R89 selection",
+  "authorityBindings": {
+    "r89PriorUnionPath": "maintenance/non-iriya-v7-depth-regeneration-r89-prior-union-b.json",
+    "r89PriorUnionSha256": "ce632a1fd50e8aa0d242b1f7e659640701037a62a31cb331e41a953df0b332a3",
+    "r89SelectionPath": "maintenance/non-iriya-v7-depth-regeneration-r89-selection-b.json",
+    "r89SelectionSha256": "4321d5b2d6676ff53f113dd687b3bcb5bbb6fe77b9a18bc1fbc8428422a1f46e",
+    "authoritativeSelectorPath": "maintenance/last1500-public-depth/final-scope/full-regeneration-selector.json",
+    "authoritativeSelectorSha256": "07a2c8dac36e9b8945195b8d080222fd4be8a795b2d10d1be2807d6302ba0b15"
+  },
+  "prospectivePriorUnion": {
+    "r89PriorIds": 206,
+    "r89IdsAdded": [
+      "t_1e41b014d80e",
+      "t_1f3653f30389",
+      "t_1fe4eac13d6e"
+    ],
+    "uniqueIdCount": 209,
+    "contingency": "R89 must be independently accepted, sealed, and published before this proposal can become an active selection."
+  },
+  "rows": [
+    {
+      "queueOrdinal": 1,
+      "identityId": "t_207efae5f6bd",
+      "term": "死句",
+      "requiredFloor": 6,
+      "currentOccurrences": 6,
+      "corpusHits": 442,
+      "corpusFiles": 131,
+      "classification": "legacy-selected-depth-repair"
+    },
+    {
+      "queueOrdinal": 2,
+      "identityId": "t_20d13943f1a6",
+      "term": "兔子喫牛嬭",
+      "requiredFloor": 4,
+      "currentOccurrences": 2,
+      "corpusHits": 20,
+      "corpusFiles": 18,
+      "classification": "hard-fail"
+    },
+    {
+      "queueOrdinal": 3,
+      "identityId": "t_20ff8118754b",
+      "term": "赤骨律",
+      "requiredFloor": 4,
+      "currentOccurrences": 2,
+      "corpusHits": 92,
+      "corpusFiles": 62,
+      "classification": "hard-fail"
+    }
+  ],
+  "collisionCheck": {
+    "prospectivePriorIds": 209,
+    "collisions": [],
+    "hardPass": true
+  },
+  "constructionAuthorized": false,
+  "publicMutationPerformed": false
+}

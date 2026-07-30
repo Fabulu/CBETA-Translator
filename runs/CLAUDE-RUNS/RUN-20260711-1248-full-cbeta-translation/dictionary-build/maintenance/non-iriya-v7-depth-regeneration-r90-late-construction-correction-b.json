@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "r90-authorized-late-construction-correction.v1",
+  "cohort": "R90",
+  "ids": [
+    "t_207efae5f6bd",
+    "t_20d13943f1a6",
+    "t_20ff8118754b"
+  ],
+  "authorization": "Root authorized a bounded transparent late-construction correction for the same frozen R90 config and IDs.",
+  "watchdogFailure": "research extraction failed closed at 158.175s > 120s; root authorized exact frozen-packet adjudication and subsequently authorized exact-config same-scope late construction on the original clock",
+  "configPath": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r90-constructor-config-b.json",
+  "configSha256": "624e9b91652ad0fdd52ed70e124dc1deb9ea127f1d61b0002636d0ebe1c31e1b",
+  "rows": [
+    {
+      "id": "t_207efae5f6bd",
+      "term": "死句",
+      "dossierSha256": "6c41f591d9b80e8c0d864a0a188e76ed55074f1262cb8806f25af924ad2fcc90",
+      "worksheetSha256": "63bc5e14b7951c2a96bf87bad338c1e2aa22bc4f5358dc200108b2c2ec49c26f",
+      "productSha256": "f6b27969270a3035103cb3fae06ce7c93b75178da46a7adabc0f508f4ac12c0b",
+      "compileReportSha256": "e076528a0bf68a0990c7cb656e027ff031d0ee1efc0835c02688755a49a20a97",
+      "workSha256": "5507c7bdaaa36e2eaee9d8bd328552f9b50ed66aff5bbf47ba6b5475146f028d"
+    },
+    {
+      "id": "t_20d13943f1a6",
+      "term": "兔子喫牛嬭",
+      "dossierSha256": "94a8c54a545f25c11461042f6dd72cba47afe4c70b68de1403d567f802b9ec5e",
+      "worksheetSha256": "4745b724600176116e4622363c2245d474433802f7484d28d3e4971df3d3ed9d",
+      "productSha256": "5ec4701e80df0b12ad2ba1d693830d9063c291b4f62af1b1dd3f08c07a5fa5a7",
+      "compileReportSha256": "fb961903ec6b2677e0b4f35df0d5f183d5d0b27389aac437d04e6f23d436e4dd",
+      "workSha256": "df0411a34de78b0e9c985f554d8a0878ad0cbef9ea7cf9c2f6ea1e76182f905d"
+    },
+    {
+      "id": "t_20ff8118754b",
+      "term": "赤骨律",
+      "dossierSha256": "66c854d646c0cb9557e5a90dce1efdd9db866f31ced2c26b6901b075c3ba70b2",
+      "worksheetSha256": "8230df05db22115fb9fb6f98781db308b2781ddf7d5bfc746786b047961ea207",
+      "productSha256": "8feb285990392f17e98979b21afd6eca51993d8e154c3059885a66280d31e89f",
+      "compileReportSha256": "807c622b6764c226bed2319ec5c2b91de7a5b033acf3e007c7ce8a5eddcad420",
+      "workSha256": "c19ee52a3ddd06cbe1bfd67f9bffa438344c173bd5798ccb69c854fede2dbb0f"
+    }
+  ],
+  "manifestSha256": "70aebfc03ffaa740ebef70bd10b577e4edcd882911f19fa143b886542b22d011",
+  "preclosureSha256": "f979d7d0ac6538b83422e35c5a8b474ccdc22afb8291959df524146e72b34f7e",
+  "closureSha256": "0f7db9dab78c516d3748489117de36c47fb472ac69c848ff909909cc36b929d6",
+  "elapsedSeconds": 762.5244882106781,
+  "deadlineExceeded": true,
+  "hardPass": true,
+  "publicMutation": false
+}

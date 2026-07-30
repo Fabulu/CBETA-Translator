@@ -1,0 +1,320 @@
+{
+  "SchemaVersion": 1,
+  "ConstructionPipelineVersion": 2,
+  "Admission": {
+    "Decision": "admit",
+    "LexicalUnitReason": "兔子喫牛嬭 is a stable expression with repeated active Chan deployments.",
+    "ObservableChanJob": "兔子喫牛嬭 means a rabbit drinks cow's milk.",
+    "DuplicateCheck": {
+      "DeterministicIdChecked": true,
+      "ExactHeadwordChecked": true,
+      "NearDuplicateRuling": "兔子喫牛嬭 was checked against the installed dictionary; no exact or punctuation-normalized collision is admitted."
+    }
+  },
+  "EvidenceTransport": {
+    "DossierPath": "source-dossier.json",
+    "DossierSha256": "e42c1f8bf01347dd9dcdb2d8fe352137095832fbb7db13a506432905e674c037",
+    "SourceAuthorityManifestSha256": "2ee44bf19a2533958e5620c38915f3d03fbb81209c76c7183742a4f3d059f501",
+    "DiscoveryMethods": [
+      "exact concordance count",
+      "complete-turn actor review",
+      "Tier 1 then Tier 2 source ranking",
+      "predecessor-evidence adjudication"
+    ],
+    "ExactCount": 20,
+    "BridgedCount": 20,
+    "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+  },
+  "Entry": {
+    "Id": "t_20d13943f1a6",
+    "SourceTerm": "兔子喫牛嬭",
+    "CreatedBy": "R90 source-hierarchy repair",
+    "WrittenUtc": "2026-07-30T10:38:00Z",
+    "Senses": [
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "a rabbit drinks cow's milk",
+        "AlternateTargets": [
+          "a rabbit drinking cow's milk"
+        ],
+        "SearchAliases": [
+          "rabbit drinks cow's milk"
+        ],
+        "Status": "preferred",
+        "Validation": "multi-source",
+        "Explanation": "A deliberately incongruous answer-image: a rabbit drinking cow's milk. Yangqi Fanghui, Wuzhun Shifan, Yuejiang Zhengyin, and Liao'an Qingyu independently deploy the image as an answer or verdict in recorded sayings.",
+        "Note": "Preserve the animal-and-milk incongruity; the records do not give it one single abstract paraphrase.",
+        "Occurrences": [
+          {
+            "RelPath": "T/T47/T47n1994A.xml",
+            "FromLb": "0642b12",
+            "ToLb": "0642b17",
+            "Kwic": "。以坐具劃一劃。打一圓相便燒香。退身三步作女人拜。首座云。休揑怪。師云。首座作麼生。首座云。和尚休揑怪。師云。兔子喫牛嬭。第二座近前。打一圓相便燒香。亦退身三步作女人拜。師近前作聽勢。第二座擬議。師打一掌云。者漆桶也亂做。送武泉常",
+            "MasterName": "Yangqi Fanghui",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Yangqi Fanghui",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (T/T47/T47n1994A.xml). Recorded Sayings of Monk Fanghui of Yangqi. Exact actor: Yangqi Fanghui. The complete source frame assigns the retained headword-bearing action to Yangqi Fanghui.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "兔子喫牛嬭",
+              "GrammaticalSubject": "Yangqi Fanghui",
+              "SpeechFrame": "Source record (T/T47/T47n1994A.xml). Recorded Sayings of Monk Fanghui of Yangqi. Exact actor: Yangqi Fanghui. The complete source frame assigns the retained headword-bearing action to Yangqi Fanghui.",
+              "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to Yangqi Fanghui."
+            }
+          },
+          {
+            "RelPath": "X/X70/X70n1382.xml",
+            "FromLb": "0237b04",
+            "ToLb": "0237b10",
+            "Kwic": "尚忌日拈香。楊歧設忌，做盡鬼怪。徑山設忌，一無所解。隨分淡淡薄薄，點一盃茶，燒一炷香，謾禮三拜。若謂報德醻恩，兔子喫牛嬭。上堂。時節不相饒，俄當七月朝，未聞桐葉落，已覺稻香飄。泣露蟬聲咽，迎秋鴈影遙，有誰相共委？突兀對凌霄。解夏，",
+            "MasterName": "Wuzhun Shifan",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Wuzhun Shifan",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (X/X70/X70n1382.xml). Recorded Sayings of Chan Master Wuzhun Shifan. Exact actor: Wuzhun Shifan. The complete source frame assigns the retained headword-bearing action to Wuzhun Shifan.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "兔子喫牛嬭",
+              "GrammaticalSubject": "Wuzhun Shifan",
+              "SpeechFrame": "Source record (X/X70/X70n1382.xml). Recorded Sayings of Chan Master Wuzhun Shifan. Exact actor: Wuzhun Shifan. The complete source frame assigns the retained headword-bearing action to Wuzhun Shifan.",
+              "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to Wuzhun Shifan."
+            }
+          },
+          {
+            "RelPath": "X/X71/X71n1409.xml",
+            "FromLb": "0121b23",
+            "ToLb": "0121c04",
+            "Kwic": "請下山行一轉，萬頃田疇𥝧稏香。上堂，僧問：達磨面壁，意旨如何？師云：餿飯泥茶爐。進云：六祖踏碓又作麼生？師云：兔子喫牛嬭。進云：一人道不識，一人道不會，意在什麼處？師云：鳳林吒之。僧禮拜。師乃云：達磨不識九年面壁，六祖不會長年踏碓",
+            "MasterName": "Yuejiang Zhengyin",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Yuejiang Zhengyin",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (X/X71/X71n1409.xml). Recorded Sayings of Chan Master Yuejiang Zhengyin. Exact actor: Yuejiang Zhengyin. The complete source frame assigns the retained headword-bearing action to Yuejiang Zhengyin.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "兔子喫牛嬭",
+              "GrammaticalSubject": "Yuejiang Zhengyin",
+              "SpeechFrame": "Source record (X/X71/X71n1409.xml). Recorded Sayings of Chan Master Yuejiang Zhengyin. Exact actor: Yuejiang Zhengyin. The complete source frame assigns the retained headword-bearing action to Yuejiang Zhengyin.",
+              "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to Yuejiang Zhengyin."
+            }
+          },
+          {
+            "RelPath": "X/X71/X71n1414.xml",
+            "FromLb": "0321c05",
+            "ToLb": "0321c11",
+            "Kwic": "留取雙眉蓋眼睛，鳳臺老人相體解。小參，僧問：達磨未來時，還有者个消息也無？師云：是什麼消息？僧提起坐具，師云：兔子喫牛嬭。僧拂袖便行，師云：莫謾山僧好。乃云：莫更有問話者麼？有則逆風把柁，無則順水張帆，任他八面四方，管取縱橫得妙。",
+            "MasterName": "Liao'an Qingyu",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Liao'an Qingyu",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (X/X71/X71n1414.xml). Recorded Sayings of Chan Master Liao’an Qingyu. Exact actor: Liao'an Qingyu. The complete source frame assigns the retained headword-bearing action to Liao'an Qingyu.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "兔子喫牛嬭",
+              "GrammaticalSubject": "Liao'an Qingyu",
+              "SpeechFrame": "Source record (X/X71/X71n1414.xml). Recorded Sayings of Chan Master Liao’an Qingyu. Exact actor: Liao'an Qingyu. The complete source frame assigns the retained headword-bearing action to Liao'an Qingyu.",
+              "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to Liao'an Qingyu."
+            }
+          }
+        ],
+        "ClaimAnchors": [],
+        "SourceTexts": [
+          "T/T47/T47n1994A.xml",
+          "X/X70/X70n1382.xml",
+          "X/X71/X71n1409.xml",
+          "X/X71/X71n1414.xml"
+        ],
+        "RelatedMasters": [
+          "Yangqi Fanghui",
+          "Wuzhun Shifan",
+          "Yuejiang Zhengyin",
+          "Liao'an Qingyu"
+        ],
+        "RelatedTerms": [],
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "A deliberately incongruous answer-image: a rabbit drinking cow's milk.",
+          "EvidenceBody": [
+            "Yangqi Fanghui, Wuzhun Shifan, Yuejiang Zhengyin, and Liao'an Qingyu independently deploy the image as an answer or verdict in recorded sayings."
+          ]
+        },
+        "DraftEvidence": {
+          "LiteralGraphFloor": "a rabbit drinks cow's milk",
+          "LexicalJob": "兔子喫牛嬭 means a rabbit drinks cow's milk.",
+          "DeploymentClasses": [
+            "authored verse",
+            "direct instruction"
+          ],
+          "HighValueEvidenceLedger": [
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to Yangqi Fanghui.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to Wuzhun Shifan.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to Yuejiang Zhengyin.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to Liao'an Qingyu.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            }
+          ],
+          "OpeningClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3",
+            "o4"
+          ],
+          "EvidenceBodyClaimKeys": [
+            [
+              "o1",
+              "o2",
+              "o3",
+              "o4"
+            ]
+          ],
+          "ZenBend": "A deliberately incongruous answer-image: a rabbit drinking cow's milk.",
+          "CounterexampleOrLimit": "Preserve the animal-and-milk incongruity; the records do not give it one single abstract paraphrase.",
+          "DifferentThingTest": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "a rabbit drinks cow's milk"
+            ],
+            "Reason": "One lexical job."
+          },
+          "AliasRationale": "Alternates preserve the same lexical job.",
+          "ModifierControls": [
+            {
+              "Term": "兔子喫牛嬭",
+              "Finding": "No modifier creates a second referent."
+            }
+          ],
+          "FamilyControls": [
+            {
+              "Term": "兔子喫牛嬭",
+              "Finding": "4 independent higher-tier families meet the floor."
+            }
+          ],
+          "IndependentWorkIds": [
+            "work:T47n1994A",
+            "work:X70n1382",
+            "work:X71n1409",
+            "work:X71n1414"
+          ],
+          "SourceAuthorityRows": [
+            {
+              "EvidenceKey": "o1",
+              "RelPath": "T/T47/T47n1994A.xml",
+              "WorkId": "work:T47n1994A",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "rabbit-milk:yangqi-direct",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o2",
+              "RelPath": "X/X70/X70n1382.xml",
+              "WorkId": "work:X70n1382",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "rabbit-milk:wuzhun-direct",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o3",
+              "RelPath": "X/X71/X71n1409.xml",
+              "WorkId": "work:X71n1409",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "rabbit-milk:yuejiang-direct",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o4",
+              "RelPath": "X/X71/X71n1414.xml",
+              "WorkId": "work:X71n1414",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "rabbit-milk:liaoan-direct",
+              "DeploymentRole": "original-use"
+            }
+          ],
+          "LampExcessJustification": "No Tier-3 lamp retained.",
+          "NoHigherWitnessSearchReceipt": "Tier 1 searched first, then Tier 2; no lamp needed.",
+          "DepthHarvestReceipt": {
+            "Complete": true,
+            "ReviewedExactHitCount": 20,
+            "AvailableSourceFiles": 18,
+            "SearchedDeploymentClasses": [
+              "authored verse",
+              "direct instruction"
+            ],
+            "OmissionAudit": [
+              "4 retained cases actor-adjudicated.",
+              "No lamp retained."
+            ]
+          }
+        },
+        "DraftAcceptedDerivedFields": {
+          "SourceTexts": [
+            "T/T47/T47n1994A.xml",
+            "X/X70/X70n1382.xml",
+            "X/X71/X71n1409.xml",
+            "X/X71/X71n1414.xml"
+          ],
+          "RelatedMasters": [
+            "Yangqi Fanghui",
+            "Wuzhun Shifan",
+            "Yuejiang Zhengyin",
+            "Liao'an Qingyu"
+          ]
+        }
+      }
+    ],
+    "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+  },
+  "FamilyHarvest": {
+    "PolicyVersion": 1,
+    "Scope": "R90 source-hierarchy repair",
+    "Edges": [],
+    "NegativeReceipt": [],
+    "GraphicVariants": []
+  }
+}

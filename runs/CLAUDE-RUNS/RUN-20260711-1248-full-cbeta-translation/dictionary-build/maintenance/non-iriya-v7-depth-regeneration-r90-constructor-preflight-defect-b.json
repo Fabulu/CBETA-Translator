@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "r90-constructor-preflight-defect.v1",
+  "cohort": "R90",
+  "defect": "The specialized config initially represented the same identified-unlinked primary actor both in ActorAttribution and in ContextActors with an utterer role.",
+  "affectedCoordinates": [
+    "t_207efae5f6bd s1 o3 Mailang Huai",
+    "t_20ff8118754b s1 o1 Dawei Jinglun"
+  ],
+  "detection": "verify_actor_closure failed before config emission and before product construction with 'closed non-utterer roles required'.",
+  "cause": "The specialization copied full adjudication contextActors objects even though the generic builder already emits an identified-unlinked primary ActorAttribution from actorStatus.",
+  "correction": "Keep the primary identified-unlinked actor solely in ActorAttribution; reserve ContextActors for additional contextual people with non-utterer roles.",
+  "prevention": {
+    "existingGenericGuard": "verify_actor_closure already rejects ContextActors utterer duplication before product writes.",
+    "specializationRule": "When actorStatus is identified-unlinked-master, role metadata must not repeat actorLabel in ContextActors.",
+    "semanticInferenceRequired": false
+  },
+  "productContaminationOccurred": false,
+  "hardPass": true
+}

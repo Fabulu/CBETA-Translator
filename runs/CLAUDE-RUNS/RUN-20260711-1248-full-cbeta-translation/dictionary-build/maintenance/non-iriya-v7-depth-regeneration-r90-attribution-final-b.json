@@ -1,0 +1,21 @@
+{
+  "counts": {
+    "entries": 3,
+    "senses": 3,
+    "occurrences": 14,
+    "named_occurrences": 12,
+    "context_master_links": 13,
+    "attribution_notes": 14,
+    "actor_identified_unlinked_master": 2,
+    "context_actor_identities": 1,
+    "context_actor_missing_from_note": 1
+  },
+  "hardFailures": 1,
+  "failures": [
+    {
+      "kind": "context_actor_missing_from_note",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_207efae5f6bd/entry.v2.json",
+      "detail": "死句 s1 o4 a1: 'Huihong' must appear in AttributionNote"
+    }
+  ]
+}

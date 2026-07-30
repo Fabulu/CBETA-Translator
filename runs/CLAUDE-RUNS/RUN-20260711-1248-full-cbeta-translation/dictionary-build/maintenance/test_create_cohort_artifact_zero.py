@@ -31,6 +31,8 @@ class ArtifactZeroTests(unittest.TestCase):
             self.assertLessEqual(output.stat().st_mtime, after)
             self.assertEqual(20, gate["admittedRequiredOccurrences"])
             self.assertEqual(20, gate["adjudicatedCaseLoad"])
+            self.assertEqual(120, gate["deadlinesSeconds"]["viability"])
+            self.assertEqual(240, gate["deadlinesSeconds"]["researchExtraction"])
             self.assertEqual(560, gate["deadlinesSeconds"]["adjudicatedConfig"])
             self.assertEqual(1100, gate["deadlinesSeconds"]["publication"])
             self.assertNotIn("os.utime", HELPER.read_text(encoding="utf-8"))

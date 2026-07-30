@@ -31,7 +31,10 @@ def evidence_schedule(required_floors, case_load):
     review = construction + 60 + 8 * case_load
     correction = review + 60 + 4 * case_load
     return total, {
-        "viability": 120, "researchExtraction": 120, "adjudicatedConfig": config,
+        # Viability and extraction are sequential phases.  Give each its own
+        # bounded 120-second window on the immutable cohort clock instead of
+        # making extraction share viability's absolute deadline.
+        "viability": 120, "researchExtraction": 240, "adjudicatedConfig": config,
         "constructor": config + 10, "firstProduct": config + 30,
         "construction": construction, "review": review,
         "correction": correction, "publication": correction + 90,
@@ -45,6 +48,10 @@ def governed_schedule(gate, ids):
     total = sum(floors)
     case_load = gate.get("adjudicatedCaseLoad")
     _, deadlines = evidence_schedule(floors, case_load)
+    # Cohorts already launched under v2 retain their exact immutable schedule.
+    # New v3 receipts correct the sequential extraction window.
+    if gate.get("schemaVersion") != "bounded-dictionary-timegate.v3":
+        deadlines["researchExtraction"] = 120
     if gate.get("admittedRequiredOccurrences") != total:
         raise ValueError("timegate admitted occurrence total mismatch")
     if gate.get("deadlinesSeconds") != deadlines:
