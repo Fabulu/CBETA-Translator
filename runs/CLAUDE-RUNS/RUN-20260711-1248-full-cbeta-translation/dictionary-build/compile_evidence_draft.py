@@ -146,7 +146,11 @@ def validate_new_entry_depth(
         )
 
     exact_count = transport.get("ExactCount")
-    if isinstance(exact_count, int) and exact_count >= 0:
+    if (
+        isinstance(exact_count, int)
+        and exact_count >= 0
+        and transport.get("DepthFloorScope") != "entry"
+    ):
         floor = required_depth_floor(exact_count)
         unique_count = len(set(identities))
         if unique_count < floor:
@@ -198,6 +202,55 @@ def validate_new_entry_depth(
         errors.append(
             f"{coordinate}.ReviewedExactHitCount: must equal EvidenceTransport.ExactCount"
         )
+
+
+def validate_entry_scoped_depth(
+    transport: dict, senses: list[dict], errors: list[str]
+) -> None:
+    """Apply the immutable dynamic floor once across a multi-sense entry."""
+    exact_count = transport.get("ExactCount")
+    identities = [
+        occurrence_identity(row)
+        for sense in senses
+        for row in (sense.get("Occurrences") or [])
+    ]
+    if len(set(identities)) != len(identities):
+        errors.append("Entry.Senses: duplicate witness identity across senses is forbidden")
+    if isinstance(exact_count, int) and exact_count >= 0:
+        floor = required_depth_floor(exact_count)
+        if len(set(identities)) < floor:
+            errors.append(
+                f"Entry.Senses: {len(set(identities))} unique exact witnesses retained "
+                f"for {exact_count} frozen hits; entry-scoped guide depth floor is {floor}"
+            )
+        available_files = max(
+            (
+                int((sense.get("DraftEvidence") or {}).get(
+                    "DepthHarvestReceipt", {}
+                ).get("AvailableSourceFiles"))
+                for sense in senses
+                if isinstance(
+                    (sense.get("DraftEvidence") or {}).get(
+                        "DepthHarvestReceipt", {}
+                    ).get("AvailableSourceFiles"),
+                    int,
+                )
+            ),
+            default=0,
+        )
+        work_ids = {
+            str(row.get("WorkId") or "").strip()
+            for sense in senses
+            for row in (
+                (sense.get("DraftEvidence") or {}).get("SourceAuthorityRows") or []
+            )
+            if str(row.get("WorkId") or "").strip()
+        }
+        if exact_count >= 100 and available_files >= 4 and len(work_ids) < 4:
+            errors.append(
+                f"Entry.Senses: {exact_count} hits require four source works "
+                "across entry-scoped senses when four exist"
+            )
 
 
 def validate_new_entry_pipeline(
@@ -293,7 +346,11 @@ def validate_new_entry_pipeline(
                     "registry is not bound to the entry corpus baseline"
                 )
             source_registry = {row["RelPath"]: row for row in registry.get("entries") or []}
-    for index, sense in enumerate(entry.get("Senses") or [], 1):
+    senses = entry.get("Senses") or []
+    entry_scoped_depth = transport.get("DepthFloorScope") == "entry"
+    if entry_scoped_depth:
+        validate_entry_scoped_depth(transport, senses, errors)
+    for index, sense in enumerate(senses, 1):
         validate_new_entry_depth(transport, sense, index, errors)
         draft = sense.get("DraftEvidence") or {}
         required_text(draft.get("LiteralGraphFloor"), f"sense {index}.DraftEvidence.LiteralGraphFloor", errors)
@@ -551,7 +608,11 @@ def compile_occurrence(value: dict, coordinate: str, errors: list[str]) -> dict:
         roles = context.get("Roles") or []
         if not roles or any(role not in ALLOWED_CONTEXT_ROLES for role in roles):
             errors.append(f"{coordinate}.ContextMasters[{ci}]: use only closed, nonempty roles")
-        if not occurrence.get("MasterName") and "utterer" in roles:
+        if (
+            not occurrence.get("MasterName")
+            and not occurrence.get("ActorAttribution")
+            and "utterer" in roles
+        ):
             errors.append(f"{coordinate}.ContextMasters[{ci}]: utterer role contradicts null MasterName")
     for ci, context in enumerate(occurrence.get("ContextActors") or [], 1):
         if not isinstance(context, dict):
