@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "authoritative-catastrophe-ledger-advancement.v1",
+  "cohort": "R71",
+  "publicCommit": "23deac974c61255e70aabe81eb15e7d815ab1060",
+  "publicCommitSubject": "Repair 縱觀寫出飛禽跡 三界唯心 and 唐喪光陰",
+  "publishedIds": [
+    "t_19025ed20021",
+    "t_192801178305",
+    "t_192de5925365"
+  ],
+  "authoritativeRemainderBefore": 900,
+  "resolvedThisAdvancement": 3,
+  "authoritativeRemainderAfter": 897,
+  "arithmeticHardPass": true,
+  "publicIntegrity": {
+    "entryCount": 4717,
+    "aggregateCount": 4717,
+    "legacyCount": 4717,
+    "indexCount": 4717,
+    "shardCount": 4717,
+    "exactProductParity": "3/3",
+    "hardPass": true
+  },
+  "timegate": {
+    "artifactZeroSha256": "d5ee013f93f161abf24cf8216855fbd1130b103d9ae53f44a7192f2889f17989",
+    "publicationDeadlineEpoch": 1785398467.362026,
+    "publicCommitEpoch": 1785398453,
+    "commitMarginSeconds": 14.362026,
+    "commitWithinPublicationDeadline": true,
+    "ledgerReconciledAfterDeadline": true,
+    "note": "The atomic install and public commit completed before the bound publication deadline. The exact Windows Git push subsequently reported main -> main and HEAD equals origin/main; the administrative advancement ledger was reconciled afterward."
+  },
+  "reviewCarryoverAuthoritySha256": "21125f1749e7a9c2b9c865a92d0530484f879c67267f3feab16d0bf2cd81404b",
+  "windowsNodeMergeReceiptSha256": "74012bcde836bfa3ebe84caf1ca60bfc460f6d6460125c2d84c127c189ddea72",
+  "exactChangedFiles": [
+    "termbase.index.json",
+    "termbase.json",
+    "termbase.v2.json",
+    "termbase/009.json",
+    "termbase/016.json",
+    "termbase/049.json"
+  ],
+  "unrelatedPublicDirtPreserved": true,
+  "windowsNodeMerge": true,
+  "windowsGitPush": true,
+  "sealed": true
+}

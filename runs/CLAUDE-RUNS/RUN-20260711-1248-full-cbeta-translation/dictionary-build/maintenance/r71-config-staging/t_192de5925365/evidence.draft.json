@@ -1,0 +1,460 @@
+{
+  "SchemaVersion": 1,
+  "ConstructionPipelineVersion": 2,
+  "Admission": {
+    "Decision": "admit",
+    "LexicalUnitReason": "唐喪光陰 is a stable fixed expression used in public answers, verses, appraisals, or case commentary.",
+    "ObservableChanJob": "唐喪光陰 means waste one's time.",
+    "DuplicateCheck": {
+      "DeterministicIdChecked": true,
+      "ExactHeadwordChecked": true,
+      "NearDuplicateRuling": "No exact or punctuation-normalized collision occurs in R01-R10 or the current R11 selection; companion clauses remain separately named family leads."
+    }
+  },
+  "EvidenceTransport": {
+    "DossierPath": "source-dossier.json",
+    "DossierSha256": "bc3282c2b50685432449739e16c67cbf713422c7420cf04887ff41ecc81ea14a",
+    "SourceAuthorityManifestSha256": "2ee44bf19a2533958e5620c38915f3d03fbb81209c76c7183742a4f3d059f501",
+    "DiscoveryMethods": [
+      "exact concordance count",
+      "complete-turn actor review",
+      "Tier 1 then Tier 2 source ranking",
+      "predecessor-evidence adjudication"
+    ],
+    "ExactCount": 53,
+    "BridgedCount": 53,
+    "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+  },
+  "Entry": {
+    "Id": "t_192de5925365",
+    "SourceTerm": "唐喪光陰",
+    "CreatedBy": "R71 source-hierarchy repair",
+    "WrittenUtc": "2026-07-30T07:45:11.362026Z",
+    "Senses": [
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "waste one's time",
+        "AlternateTargets": [],
+        "SearchAliases": [
+          "squander one's time in vain"
+        ],
+        "Status": "preferred",
+        "Validation": "multi-source",
+        "Explanation": "唐喪光陰 means waste one's time. 唐喪光陰 is an admonition against wasting one's time. Dufeng Shan and Guting Shanjian warn that discursive learning or failing to face birth and death can squander a lifetime. Tianyin Yuanxiu and Linye Tongqi urge practitioners not to let the training period pass fruitlessly. Poshan Haiming and Daxiu Zhu pair the phrase with 虛溷日子 or 虛消信施, while Sanyi Mingyu applies it sharply in a funeral address.",
+        "Note": "唐 is adverbial here—vainly or to no purpose. The compound does not mean that the Tang dynasty lost time.",
+        "Occurrences": [
+          {
+            "RelPath": "J/J25/J25nB159.xml",
+            "FromLb": "0137c30",
+            "ToLb": "0138a05",
+            "Kwic": "向意根下卜度；又不許向舉起處承當；又不許作有無之理和會；又不許作世法佛法之義摶量；又不許向一切文字中尋討，等閒唐喪光陰，到老不得成辦。唯貴棄捨身世，向所參話頭上廝挨，立身於萬仞崖巔、著腳於千尺竿上，不覺舉步翻身，打個懸空筋斗，歸",
+            "MasterName": "Dufeng Shan",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Dufeng Shan",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J25/J25nB159.xml). Tianzhen Dufengshan Essentials. warns that searching through writings idly wastes time and leaves the matter unfinished",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "唐喪光陰",
+              "GrammaticalSubject": "Dufeng Shan",
+              "SpeechFrame": "Source record (J/J25/J25nB159.xml). Tianzhen Dufengshan Essentials. warns that searching through writings idly wastes time and leaves the matter unfinished",
+              "FullCaseDecision": "Dufeng Shan is the exact actor at the headword-bearing clause; contextual speakers are not substituted."
+            }
+          },
+          {
+            "RelPath": "J/J25/J25nB163.xml",
+            "FromLb": "0248a11",
+            "ToLb": "0248a16",
+            "Kwic": "漫，于欲死不死之際，求生不得，求死不得，古人謂生龜退殼，活牛剝皮，豈不大苦？若是真實要了生死的，豈肯埋沒自己，唐喪光陰？直下舉一念如生鐵鑄就，一切情緣境界盡情擯卻，只向無字話頭，心心念念，綿綿密密，打成一片，外不見有山河大地人物",
+            "MasterName": "Guting Shanjian",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Guting Shanjian",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J25/J25nB163.xml). Guting Sayings (Selected). asks whether one who truly intends to resolve birth and death would bury oneself and waste time",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "唐喪光陰",
+              "GrammaticalSubject": "Guting Shanjian",
+              "SpeechFrame": "Source record (J/J25/J25nB163.xml). Guting Sayings (Selected). asks whether one who truly intends to resolve birth and death would bury oneself and waste time",
+              "FullCaseDecision": "Guting Shanjian is the exact actor at the headword-bearing clause; contextual speakers are not substituted."
+            }
+          },
+          {
+            "RelPath": "J/J25/J25nB171.xml",
+            "FromLb": "0519b27",
+            "ToLb": "0519c02",
+            "Kwic": "，又落在法濟手裏；你若道三處俱不著，又是莽莽蕩蕩了也。』到這裏，諸人十二時中如何用力？生死事大，切不得悠悠漾漾唐喪光陰；他日有人算飯錢，莫言不道。」卓拄杖云：「參！」示眾，舉：「忠國師因虞軍容問：『師住白崖山，如何修行？』師喚童",
+            "MasterName": "Tianyin Yuanxiu",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Tianyin Yuanxiu",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J25/J25nB171.xml). Tianyin Sayings. warns the assembly not to drift along and waste time because birth and death are grave",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "唐喪光陰",
+              "GrammaticalSubject": "Tianyin Yuanxiu",
+              "SpeechFrame": "Source record (J/J25/J25nB171.xml). Tianyin Sayings. warns the assembly not to drift along and waste time because birth and death are grave",
+              "FullCaseDecision": "Tianyin Yuanxiu is the exact actor at the headword-bearing clause; contextual speakers are not substituted."
+            }
+          },
+          {
+            "RelPath": "J/J26/J26nB177.xml",
+            "FromLb": "0045c06",
+            "ToLb": "0045c12",
+            "Kwic": "示深居禪人人有南北，佛性本同，只要腳跟穩當，不被境風所鼓，日益日損，漸有成器。恐念頭不真，隨邪逐惡，朝三暮四，唐喪光陰，虛溷日子，縱有行如普賢、功超彌勒，終是忘家浪子。示圓虛禪人示圓虛禪人既到為僧田地，千自由、百自由，若住、若行",
+            "MasterName": "Poshan Haiming",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Poshan Haiming",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J26/J26nB177.xml). Poshan Chan Sayings. warns that wavering thoughts waste time and muddle away the days",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "唐喪光陰",
+              "GrammaticalSubject": "Poshan Haiming",
+              "SpeechFrame": "Source record (J/J26/J26nB177.xml). Poshan Chan Sayings. warns that wavering thoughts waste time and muddle away the days",
+              "FullCaseDecision": "Poshan Haiming is the exact actor at the headword-bearing clause; contextual speakers are not substituted."
+            }
+          },
+          {
+            "RelPath": "J/J26/J26nB186.xml",
+            "FromLb": "0637a21",
+            "ToLb": "0637a27",
+            "Kwic": "解則不宜。所以道『學道如鑽火，逢煙未可休。直待金星露，燒然始到頭。』汝等還得恁麼一回也未？如未得恁麼一回，不得唐喪光陰，空消歲月。仍把瓶盂安舊位，莫教虛費草鞋錢。」結制上堂。問：「當陽無一物，句裏絕囊藏。請師道一句。」師云：「好",
+            "MasterName": "Linye Tongqi",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Linye Tongqi",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J26/J26nB186.xml). Linyexi Chan Sayings. tells the summer-retreat assembly not to waste time or let the months pass empty",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "唐喪光陰",
+              "GrammaticalSubject": "Linye Tongqi",
+              "SpeechFrame": "Source record (J/J26/J26nB186.xml). Linyexi Chan Sayings. tells the summer-retreat assembly not to waste time or let the months pass empty",
+              "FullCaseDecision": "Linye Tongqi is the exact actor at the headword-bearing clause; contextual speakers are not substituted."
+            }
+          },
+          {
+            "RelPath": "J/J27/J27nB189.xml",
+            "FromLb": "0069b10",
+            "ToLb": "0069b16",
+            "Kwic": "。」亡僧入塔。「火出木盡，風送漁舟到岸；灰飛煙滅，露出腦後圓光。此是他身後底形模，卻是爾輩生前底儀狀。可惜許！唐喪光陰。我為汝等，盡情道破。」舉骨云：「會麼？」復云：「莫妄想。」天真寺存虛老僧火。「師子巖秋風蕭瑟，鳳皇山江天一碧",
+            "MasterName": "Sanyi Mingyu",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Sanyi Mingyu",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J27/J27nB189.xml). Sanyi Yu Sayings. laments wasted time while addressing a deceased monk's remains",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "唐喪光陰",
+              "GrammaticalSubject": "Sanyi Mingyu",
+              "SpeechFrame": "Source record (J/J27/J27nB189.xml). Sanyi Yu Sayings. laments wasted time while addressing a deceased monk's remains",
+              "FullCaseDecision": "Sanyi Mingyu is the exact actor at the headword-bearing clause; contextual speakers are not substituted."
+            }
+          },
+          {
+            "RelPath": "J/J27/J27nB192.xml",
+            "FromLb": "0184c26",
+            "ToLb": "0185a01",
+            "Kwic": "人！豫先若不打徹，臘月三十日到來，眼光落地時，如螃蟹落湯，悔之晚矣。看來當勇猛自警，舊歲已過新歲又來，大眾切莫唐喪光陰、虛消信施，異日閻羅老子盤算飯錢，莫謂曹溪老漢不道。豈不見？只因差一念，現出萬般形。」師到南京，普惠寺眾請說法",
+            "MasterName": "Daxiu Zhu",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Daxiu Zhu",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J27/J27nB192.xml). Daxiu Zhu Sayings. warns the assembly not to waste time or consume offerings fruitlessly",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "唐喪光陰",
+              "GrammaticalSubject": "Daxiu Zhu",
+              "SpeechFrame": "Source record (J/J27/J27nB192.xml). Daxiu Zhu Sayings. warns the assembly not to waste time or consume offerings fruitlessly",
+              "FullCaseDecision": "Daxiu Zhu is the exact actor at the headword-bearing clause; contextual speakers are not substituted."
+            }
+          }
+        ],
+        "ClaimAnchors": [],
+        "SourceTexts": [
+          "J/J25/J25nB159.xml",
+          "J/J25/J25nB163.xml",
+          "J/J25/J25nB171.xml",
+          "J/J26/J26nB177.xml",
+          "J/J26/J26nB186.xml",
+          "J/J27/J27nB189.xml",
+          "J/J27/J27nB192.xml"
+        ],
+        "RelatedMasters": [
+          "Dufeng Shan",
+          "Guting Shanjian",
+          "Tianyin Yuanxiu",
+          "Poshan Haiming",
+          "Linye Tongqi",
+          "Sanyi Mingyu",
+          "Daxiu Zhu"
+        ],
+        "RelatedTerms": [],
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "唐喪光陰 means waste one's time.",
+          "EvidenceBody": [
+            "唐喪光陰 is an admonition against wasting one's time. Dufeng Shan and Guting Shanjian warn that discursive learning or failing to face birth and death can squander a lifetime. Tianyin Yuanxiu and Linye Tongqi urge practitioners not to let the training period pass fruitlessly. Poshan Haiming and Daxiu Zhu pair the phrase with 虛溷日子 or 虛消信施, while Sanyi Mingyu applies it sharply in a funeral address."
+          ]
+        },
+        "DraftEvidence": {
+          "LiteralGraphFloor": "waste one's time",
+          "LexicalJob": "唐喪光陰 means waste one's time.",
+          "DeploymentClasses": [
+            "source-case",
+            "independent deployment",
+            "parallel witness"
+          ],
+          "HighValueEvidenceLedger": [
+            {
+              "Disposition": "keep",
+              "Finding": "Dufeng Shan uses the headword in the retained passage in Tianzhen Dufengshan Essentials.",
+              "Reason": "The complete case secures the exact actor and adds a distinct direct use or active commentary."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Guting Shanjian uses the headword in the retained passage in Guting Sayings (Selected).",
+              "Reason": "The complete case secures the exact actor and adds a distinct direct use or active commentary."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Tianyin Yuanxiu uses the headword in the retained passage in Tianyin Sayings.",
+              "Reason": "The complete case secures the exact actor and adds a distinct direct use or active commentary."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Poshan Haiming uses the headword in the retained passage in Poshan Chan Sayings.",
+              "Reason": "The complete case secures the exact actor and adds a distinct direct use or active commentary."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Linye Tongqi uses the headword in the retained passage in Linyexi Chan Sayings.",
+              "Reason": "The complete case secures the exact actor and adds a distinct direct use or active commentary."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Sanyi Mingyu uses the headword in the retained passage in Sanyi Yu Sayings.",
+              "Reason": "The complete case secures the exact actor and adds a distinct direct use or active commentary."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Daxiu Zhu uses the headword in the retained passage in Daxiu Zhu Sayings.",
+              "Reason": "The complete case secures the exact actor and adds a distinct direct use or active commentary."
+            }
+          ],
+          "OpeningClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3",
+            "o4",
+            "o5",
+            "o6",
+            "o7"
+          ],
+          "EvidenceBodyClaimKeys": [
+            [
+              "o1",
+              "o2",
+              "o3",
+              "o4",
+              "o5",
+              "o6",
+              "o7"
+            ]
+          ],
+          "ZenBend": "唐喪光陰 means waste one's time.",
+          "CounterexampleOrLimit": "唐 is adverbial here—vainly or to no purpose. The compound does not mean that the Tang dynasty lost time.",
+          "DifferentThingTest": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "waste one's time"
+            ],
+            "Reason": "The question, verse, appraisal, and commentary frames retain the same lexical referent; none names a separate object, person, title, or institutional role."
+          },
+          "AliasRationale": "The aliases preserve the concrete wording of “waste one's time” without adding a new interpretation.",
+          "ModifierControls": [
+            {
+              "Term": "唐喪光陰",
+              "Finding": "No material or color modifier creates a separate referent; the full fixed expression is translated as one unit."
+            }
+          ],
+          "FamilyControls": [
+            {
+              "Term": "唐喪光陰",
+              "Finding": "Not applicable: no distinct family candidate was admitted or rejected in this bounded source-first construction."
+            }
+          ],
+          "IndependentWorkIds": [
+            "work:J25nB159",
+            "work:J25nB163",
+            "work:J25nB171",
+            "work:J26nB177",
+            "work:J26nB186",
+            "work:J27nB189",
+            "work:J27nB192"
+          ],
+          "SourceAuthorityRows": [
+            {
+              "EvidenceKey": "o1",
+              "RelPath": "J/J25/J25nB159.xml",
+              "WorkId": "work:J25nB159",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "The registered title identifies a named master’s sayings, discourse, question-and-answer, session, or comparable speech record; exact embedded quotations still require passage-level actor review.",
+              "WitnessFamilyId": "t_192de5925365-dufeng-instruction",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o2",
+              "RelPath": "J/J25/J25nB163.xml",
+              "WorkId": "work:J25nB163",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "The registered title identifies a named master’s sayings, discourse, question-and-answer, session, or comparable speech record; exact embedded quotations still require passage-level actor review.",
+              "WitnessFamilyId": "t_192de5925365-guting-birth-death",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o3",
+              "RelPath": "J/J25/J25nB171.xml",
+              "WorkId": "work:J25nB171",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "The registered title identifies a named master’s sayings, discourse, question-and-answer, session, or comparable speech record; exact embedded quotations still require passage-level actor review.",
+              "WitnessFamilyId": "t_192de5925365-tianyin-training",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o4",
+              "RelPath": "J/J26/J26nB177.xml",
+              "WorkId": "work:J26nB177",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "The registered title identifies a named master’s sayings, discourse, question-and-answer, session, or comparable speech record; exact embedded quotations still require passage-level actor review.",
+              "WitnessFamilyId": "t_192de5925365-poshan-instruction",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o5",
+              "RelPath": "J/J26/J26nB186.xml",
+              "WorkId": "work:J26nB186",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "The registered title identifies a named master’s sayings, discourse, question-and-answer, session, or comparable speech record; exact embedded quotations still require passage-level actor review.",
+              "WitnessFamilyId": "t_192de5925365-linye-retreat",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o6",
+              "RelPath": "J/J27/J27nB189.xml",
+              "WorkId": "work:J27nB189",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "The registered title identifies a named master’s sayings, discourse, question-and-answer, session, or comparable speech record; exact embedded quotations still require passage-level actor review.",
+              "WitnessFamilyId": "t_192de5925365-sanyi-funeral",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o7",
+              "RelPath": "J/J27/J27nB192.xml",
+              "WorkId": "work:J27nB192",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "The registered title identifies a named master’s sayings, discourse, question-and-answer, session, or comparable speech record; exact embedded quotations still require passage-level actor review.",
+              "WitnessFamilyId": "t_192de5925365-daxiu-year-end",
+              "DeploymentRole": "original-use"
+            }
+          ],
+          "LampExcessJustification": "No Tier-3 lamp or lineage compilation is retained.",
+          "NoHigherWitnessSearchReceipt": "Every matching allowlisted file was classified by authority; the retained set uses only Tier 1 or Tier 2 sources, and no lamp is needed.",
+          "DepthHarvestReceipt": {
+            "Complete": true,
+            "ReviewedExactHitCount": 53,
+            "AvailableSourceFiles": 35,
+            "SearchedDeploymentClasses": [
+              "source-case",
+              "independent deployment",
+              "parallel witness"
+            ],
+            "OmissionAudit": [
+              "All five retained complete cases were read and exact-actor adjudicated.",
+              "Parallel containers and passive quotations were excluded from independent-family counting.",
+              "Tier-3 lamps were considered last and none was needed.",
+              "The predecessor was opened only after the source-first semantic draft was complete."
+            ]
+          }
+        },
+        "DraftAcceptedDerivedFields": {
+          "SourceTexts": [
+            "J/J25/J25nB159.xml",
+            "J/J25/J25nB163.xml",
+            "J/J25/J25nB171.xml",
+            "J/J26/J26nB177.xml",
+            "J/J26/J26nB186.xml",
+            "J/J27/J27nB189.xml",
+            "J/J27/J27nB192.xml"
+          ],
+          "RelatedMasters": [
+            "Dufeng Shan",
+            "Guting Shanjian",
+            "Tianyin Yuanxiu",
+            "Poshan Haiming",
+            "Linye Tongqi",
+            "Sanyi Mingyu",
+            "Daxiu Zhu"
+          ]
+        }
+      }
+    ],
+    "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+  },
+  "FamilyHarvest": {
+    "PolicyVersion": 1,
+    "Scope": "R71 source-hierarchy repair exact source-first family harvest",
+    "Edges": [],
+    "NegativeReceipt": [],
+    "GraphicVariants": []
+  }
+}

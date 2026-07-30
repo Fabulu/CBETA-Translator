@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "r71-independent-source-first-review.v1",
+  "cohort": "R71",
+  "id": "t_19025ed20021",
+  "term": "縱觀寫出飛禽跡",
+  "entryPath": "fresh-build/entries/t_19025ed20021/entry.v2.json",
+  "entrySha256": "5d584e6f58f939a8f6680ef98efb7613a1e017e4d1a6cea055b90a7bbb18966c",
+  "review": {
+    "lexicalAdmission": "PASS: the exact seven-character line is a stable inherited poetic unit, not an accidental n-gram. The entry headword neither absorbs 徐/隨行踏斷流水聲 nor treats a full couplet as the lexical unit.",
+    "preferredTarget": "PASS: 'gaze freely and trace the tracks of flying birds' preserves 縱觀, 寫出, and the deliberately impossible 飛禽跡 image without imposing a doctrinal equivalent.",
+    "senseStructure": "PASS: one reusable poetic-line sense is supported. Variation in occasion and couplet order does not create additional senses.",
+    "prose": "PASS: the explanation identifies the line as inherited and reusable, mentions the paired line only as context, and the note explicitly forbids silent headword expansion or doctrinal flattening.",
+    "sourceHierarchy": "PASS: seven Tier-2 recorded-sayings witnesses and no lamp padding.",
+    "familyAccounting": "PASS: all seven witnesses inherit the same line but actively deploy it in seven distinct contexts; the entry does not claim seven independent coinages.",
+    "spans": "PASS: every stored KWIC contains the exact headword intact. Context windows may show its paired line, but no occurrence changes the headword boundary.",
+    "actors": [
+      "PASS B/B27/B27n0152.xml: Yulin Tongxiu owns the substitute response introduced by 自代云.",
+      "PASS J/J26/J26nB178.xml: Feiyin Tongrong owns the hall capping line.",
+      "PASS J/J32/J32nB276.xml: Buhui Fatong owns the enthronement speech introduced by 師指法座云.",
+      "PASS J/J33/J33nB284.xml: Yezhu Fuhui owns the seasonal verse introduced by 乃云.",
+      "PASS J/J33/J33nB285.xml: Bulin Zongjian is correctly represented as an identified-unlinked Chan master and exact utterer of the continuous 小參 voice.",
+      "PASS J/J33/J33nB288.xml: Hanyu Hongxian owns the funeral capping line introduced by 擲炬云.",
+      "PASS J/J35/J35nB343.xml: Miyin Zhenchuan gives the line as his direct answer introduced by 師云."
+    ]
+  },
+  "defects": [],
+  "exhaustiveness": "No blocking or nonblocking discrepancy found in admission, exact-line boundary, gloss, sense count, seven actors, seven deployment families, source tiers, stored spans, or prose scope.",
+  "verdict": "APPROVE",
+  "hardPass": true
+}

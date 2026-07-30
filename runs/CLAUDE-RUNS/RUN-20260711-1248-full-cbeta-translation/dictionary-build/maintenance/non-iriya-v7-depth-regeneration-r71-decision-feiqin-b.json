@@ -1,0 +1,137 @@
+{
+  "schemaVersion": "r71-source-first-author-decision.v1",
+  "cohort": "R71",
+  "id": "t_19025ed20021",
+  "term": "縱觀寫出飛禽跡",
+  "requiredFloor": 4,
+  "researchCandidateReserve": 3,
+  "sourceExtraction": {
+    "path": "maintenance/non-iriya-v7-depth-regeneration-r71-extraction-output-b.json",
+    "sha256": "5828f7bbc6605c908df9a5b898788df6a7e5bcc6687fbd5d83e7b13c416d2cc3"
+  },
+  "lexicalAdmission": {
+    "decision": "ADMIT",
+    "unitType": "stable inherited poetic line",
+    "preferredTarget": "gaze freely and trace the tracks of flying birds",
+    "literalImage": "With the gaze released or opened wide, write or trace out the marks left by flying birds.",
+    "reason": "The seven-character string is not an accidental extraction. It recurs exactly across 28 independent works and the seven retained Tier-2 cases actively redeploy it in substitutions, hall verses, enthronement, small talks, a funeral address, and direct question-and-answer. It is commonly paired with 徐行踏斷流水聲, while one retained witness has 隨行 and one reverses the couplet order; these variants confirm inheritance rather than accidental clipping.",
+    "scopeWarning": "Retain the impossible-track image. The sources do not establish a single doctrinal paraphrase such as enlightenment, freedom, or emptiness. Do not silently expand this headword to the whole two-line couplet.",
+    "redirects": [
+      "徐行踏斷流水聲，縱觀寫出飛禽跡",
+      "隨行蹋斷流水聲，縱觀寫出飛禽跡"
+    ]
+  },
+  "senseDecision": {
+    "senseCount": 1,
+    "meaning": "A reusable poetic line in which an unrestricted or sweeping gaze writes out the tracks of birds in flight. Its paired line likewise makes slow walking break the sound of flowing water. Zen masters reuse the line as a capping response or image of conduct that cannot be reduced to an ordinary visible trail.",
+    "also": [
+      "look broadly and write out the traces of flying birds",
+      "gaze at will and draw forth the tracks of flying birds"
+    ],
+    "note": "飛禽跡 is deliberately striking because a bird in flight leaves no terrestrial track. 寫出 can be write out, depict, or trace forth; no retained case selects only one English physical medium."
+  },
+  "retainedCases": [
+    {
+      "relPath": "B/B27/B27n0152.xml",
+      "fromLb": "0536a19",
+      "workId": "work:B27n0152",
+      "tier": 2,
+      "exactActor": "Yulin Tongxiu",
+      "actorStatus": "roster-named",
+      "grammarEvidence": "師令人代初進語，自代云 introduces Yulin Tongxiu's own substitute response, which contains the complete couplet.",
+      "witnessFamilyId": "feiqin:yulin-substitute-response",
+      "deploymentRole": "active-case-substitution",
+      "disposition": "keep"
+    },
+    {
+      "relPath": "J/J26/J26nB178.xml",
+      "fromLb": "0128c30",
+      "workId": "work:J26nB178",
+      "tier": 2,
+      "exactActor": "Feiyin Tongrong",
+      "actorStatus": "roster-named",
+      "grammarEvidence": "師云 and the following 且如得意一句又作麼生道 introduce Feiyin Tongrong's capping line in his own hall address.",
+      "witnessFamilyId": "feiqin:feiyin-hall-capping-line",
+      "deploymentRole": "active-capping-verse",
+      "disposition": "keep"
+    },
+    {
+      "relPath": "J/J32/J32nB276.xml",
+      "fromLb": "0335c22",
+      "workId": "work:J32nB276",
+      "tier": 2,
+      "exactActor": "Buhui Fatong",
+      "actorStatus": "roster-named",
+      "grammarEvidence": "師指法座云 begins Buhui Fatong's enthronement speech; the couplet directly precedes his incense declarations.",
+      "witnessFamilyId": "feiqin:buhui-enthronement",
+      "deploymentRole": "active-enthronement-verse",
+      "disposition": "keep"
+    },
+    {
+      "relPath": "J/J33/J33nB284.xml",
+      "fromLb": "0427a19",
+      "workId": "work:J33nB284",
+      "tier": 2,
+      "exactActor": "Yezhu Fuhui",
+      "actorStatus": "roster-named",
+      "grammarEvidence": "乃云 begins Yezhu Fuhui's own seasonal hall verse and the retained line completes its paired image.",
+      "witnessFamilyId": "feiqin:yezhu-seasonal-hall-verse",
+      "deploymentRole": "active-hall-verse",
+      "disposition": "keep"
+    },
+    {
+      "relPath": "J/J33/J33nB285.xml",
+      "fromLb": "0471a05",
+      "workId": "work:J33nB285",
+      "tier": 2,
+      "exactActor": null,
+      "actorAttribution": {
+        "Status": "identified-unlinked-master",
+        "ActorLabel": "Bulin Zongjian (不磷宗堅)",
+        "ActorRole": "record-owner",
+        "GrammarEvidence": "The 小參 occurs in 兜率不磷堅禪師語錄, whose TEI author identifies 清宗堅說; the continuous small-talk voice owns the line."
+      },
+      "witnessFamilyId": "feiqin:zongjian-awakening-day-small-talk",
+      "deploymentRole": "active-small-talk-verse",
+      "disposition": "keep"
+    },
+    {
+      "relPath": "J/J33/J33nB288.xml",
+      "fromLb": "0584a11",
+      "workId": "work:J33nB288",
+      "tier": 2,
+      "exactActor": "Hanyu Hongxian",
+      "actorStatus": "roster-named",
+      "grammarEvidence": "The headed section 為淵白西堂舉火 is Hanyu Hongxian's funeral address; 擲炬云 introduces his closing reversal of the inherited couplet.",
+      "witnessFamilyId": "feiqin:hanyu-funeral-reversal",
+      "deploymentRole": "active-funeral-capping-line",
+      "disposition": "keep"
+    },
+    {
+      "relPath": "J/J35/J35nB343.xml",
+      "fromLb": "0821c17",
+      "workId": "work:J35nB343",
+      "tier": 2,
+      "exactActor": "Miyin Zhenchuan",
+      "actorStatus": "roster-named",
+      "grammarEvidence": "師云 introduces Miyin Zhenchuan's direct answer to the monk's question about the path of emergence.",
+      "witnessFamilyId": "feiqin:miyin-direct-answer",
+      "deploymentRole": "original-use",
+      "disposition": "keep"
+    }
+  ],
+  "familyAccounting": {
+    "retainedOccurrences": 7,
+    "independentWorks": 7,
+    "activeDeploymentFamilies": 7,
+    "sharedTextualInheritance": "All seven deploy the same inherited line; family separation records independent active contexts and must not be presented as seven independently coined meanings.",
+    "floorMet": true
+  },
+  "sourceHierarchy": {
+    "tier1": 0,
+    "tier2": 7,
+    "tier3Lamp": 0,
+    "ruling": "The floor and reserve are filled entirely by recorded sayings. No lamp record is needed."
+  },
+  "hardPass": true
+}

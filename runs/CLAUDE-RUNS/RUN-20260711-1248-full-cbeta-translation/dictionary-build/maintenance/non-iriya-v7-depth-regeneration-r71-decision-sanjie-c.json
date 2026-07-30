@@ -1,0 +1,222 @@
+{
+  "schemaVersion": "r71-source-first-semantic-decision.v1",
+  "cohort": "R71",
+  "id": "t_192801178305",
+  "term": "三界唯心",
+  "sourceBinding": {
+    "path": "maintenance/non-iriya-v7-depth-regeneration-r71-extraction-output-b.json",
+    "completeCasesRead": 9,
+    "requiredFloor": 6,
+    "reserveRead": 3
+  },
+  "semanticRuling": {
+    "senseCount": 1,
+    "preferredTarget": "the three realms are mind alone",
+    "alternateTargets": [
+      "the three realms are only mind"
+    ],
+    "searchAliases": [
+      "three realms mind-only",
+      "all three realms are mind"
+    ],
+    "validation": "multi-source",
+    "explanation": "三界唯心 is the inherited formula that the three realms are mind alone. Zen records do not merely repeat it as doctrine: Mazu Daoyi links it to the dependence of perceived forms and mind; Huangbo Xiyun names it as a statement addressed to people holding wrong views rather than a final result; Luohan Guichen turns Fayan Wenyi's customary assertion into the concrete question whether a courtyard stone is inside or outside mind; Linji Yixuan invokes it and immediately points to the person presently hearing the teaching; Wuhuan Xingchong caps it with last night's rain wetting the moss; and Tianyin Yuanxiu comments that if the three realms are mind alone there can be no literal entering or leaving them.",
+    "note": "Preserve the formula but do not inflate 唯心 into an abstract metaphysical idealism. Several retained masters test, qualify, or redirect the inherited Buddhist wording instead of treating it as a self-sufficient Zen definition."
+  },
+  "caseDecisions": [
+    {
+      "evidenceKey": "r71-o1",
+      "relPath": "T/T48/T48n2016.xml",
+      "fromLb": "0418c08",
+      "tier": 1,
+      "decision": "keep",
+      "exactActor": {
+        "masterName": "Mazu Daoyi",
+        "role": "utterer",
+        "grammarEvidence": "洪州馬祖大師云 opens Mazu's continuous quoted discourse; the turn continues through 法無自性。三界唯心 and ends before 南陽忠國師云."
+      },
+      "WitnessFamilyId": "sanjie-weixin:mazu-mind-and-form-discourse",
+      "deploymentRole": "quoted-active-teaching",
+      "semanticContribution": "Mazu actively deploys the inherited formula and follows it with mutual dependence of seen form and mind.",
+      "contextSha256": "8f7c765b9492036dfc1f2e705921adc29fd107404c22c6192c185e6831f457d5"
+    },
+    {
+      "evidenceKey": "r71-o2",
+      "relPath": "X/X78/X78n1554.xml",
+      "fromLb": "0619b13",
+      "tier": 1,
+      "decision": "keep",
+      "exactActor": {
+        "masterName": "Luohan Guichen",
+        "role": "utterer",
+        "grammarEvidence": "藏送之 and 藏又曰 identify Guichen as the speaker who says 上座尋常說，三界唯心 and then points to the courtyard stone."
+      },
+      "contextMasters": [
+        {
+          "masterName": "Fayan Wenyi",
+          "roles": [
+            "addressee",
+            "person-discussed"
+          ]
+        }
+      ],
+      "WitnessFamilyId": "sanjie-weixin:guichen-fayan-courtyard-stone",
+      "deploymentRole": "active-test-of-inherited-formula",
+      "semanticContribution": "Guichen makes the formula answer to an observable stone and Fayan's inside/outside distinction.",
+      "contextSha256": "4fe9d0cd00513527b1588d6b2b006c5d5de2db1d09fabcd3881c48c8cb5cb493"
+    },
+    {
+      "evidenceKey": "r71-o3",
+      "relPath": "X/X87/X87n1624.xml",
+      "fromLb": "0247c01",
+      "tier": 1,
+      "decision": "reject-nondefining-passive-formula",
+      "exactActor": {
+        "masterName": null,
+        "actorLabel": "Wŏnhyo",
+        "role": "later-quoter",
+        "grammarEvidence": "元曉 exclaims 如來大師曰：三界唯心 inside Huihong's biographical anecdote; the wording is expressly attributed to the Buddha rather than newly deployed as a Zen-master saying."
+      },
+      "reason": "Useful reception history, but it is a passive Buddhist-formula quotation in an anecdote and is weaker than the six active Tier-1/2 Zen deployments."
+    },
+    {
+      "evidenceKey": "r71-o4",
+      "relPath": "C/C077/C077n1710.xml",
+      "fromLb": "0635c17",
+      "tier": 2,
+      "decision": "keep",
+      "exactActor": {
+        "masterName": "Huangbo Xiyun",
+        "role": "utterer",
+        "grammarEvidence": "The continuous Huangbo discourse governs 所以三界唯心萬法唯識 and immediately qualifies it with 此猶是對外道邪見人說."
+      },
+      "WitnessFamilyId": "sanjie-weixin:huangbo-qualified-formula",
+      "deploymentRole": "active-critical-qualification",
+      "semanticContribution": "Huangbo explicitly refuses to let the formula stand as the highest or final statement.",
+      "contextSha256": "eb992d315d76e1ad00cad3bdeecf72df3ae2efb244b8920be6a17d90dd7882d9"
+    },
+    {
+      "evidenceKey": "r71-o5",
+      "relPath": "J/J10/J10nA158.xml",
+      "fromLb": "0018c24",
+      "tier": 2,
+      "decision": "reject-surplus-question-formula",
+      "exactActor": {
+        "masterName": null,
+        "actorLabel": "the unnamed questioning monk",
+        "role": "questioner",
+        "grammarEvidence": "僧問 directly governs 三界唯心，萬法唯識; the following 師便打 is Miyun Yuanwu's response."
+      },
+      "contextMasters": [
+        {
+          "masterName": "Miyun Yuanwu",
+          "roles": [
+            "respondent"
+          ]
+        }
+      ],
+      "candidateWitnessFamilyId": "sanjie-weixin:miyun-question-and-blow",
+      "reason": "Legitimate active encounter, but the headword-bearing turn only repeats the inherited formula as the premise of a question; six more semantically informative families already meet the floor."
+    },
+    {
+      "evidenceKey": "r71-o6",
+      "relPath": "J/J23/J23nB134.xml",
+      "fromLb": "0525a03",
+      "tier": 2,
+      "decision": "keep",
+      "exactActor": {
+        "masterName": "Linji Yixuan",
+        "role": "utterer",
+        "grammarEvidence": "Linji's continuous address contains 三界唯心，萬法唯識 and continues directly to 唯有道流目前現今聽法底人."
+      },
+      "WitnessFamilyId": "sanjie-weixin:linji-present-hearer-discourse",
+      "deploymentRole": "active-teaching-and-redirection",
+      "semanticContribution": "Linji invokes the formula but redirects attention from dreamlike appearances to the person presently hearing.",
+      "contextSha256": "e747140d99c5fa1baa8415f40e9a5596e2f9090e26eed5c1ec413650db215cbb"
+    },
+    {
+      "evidenceKey": "r71-o7",
+      "relPath": "J/J24/J24nB138.xml",
+      "fromLb": "0375b26",
+      "tier": 2,
+      "decision": "reject-surplus-question-formula",
+      "exactActor": {
+        "masterName": null,
+        "actorLabel": "the unnamed questioning monk",
+        "role": "questioner",
+        "grammarEvidence": "問 directly governs 如何是三界唯心，萬法唯識; 師云 introduces Yunmen Wenyan's refusal to answer."
+      },
+      "contextMasters": [
+        {
+          "masterName": "Yunmen Wenyan",
+          "roles": [
+            "respondent"
+          ]
+        }
+      ],
+      "candidateWitnessFamilyId": "sanjie-weixin:yunmen-refusal",
+      "reason": "Independent reception, but the formula is only quoted in the monk's question and adds less lexical depth than the retained active deployments."
+    },
+    {
+      "evidenceKey": "r71-o8",
+      "relPath": "J/J25/J25nB156.xml",
+      "fromLb": "0054b20",
+      "tier": 2,
+      "decision": "keep",
+      "exactActor": {
+        "masterName": "Wuhuan Xingchong",
+        "role": "utterer",
+        "grammarEvidence": "示眾 introduces Wuhuan Xingchong's own address: 三界唯心，萬法唯識; he then strikes the staff and gives the rain-and-moss capping line."
+      },
+      "WitnessFamilyId": "sanjie-weixin:wuhuan-rain-moss-capping",
+      "deploymentRole": "active-concrete-capping",
+      "semanticContribution": "Wuhuan places the inherited formula beside an ordinary concrete scene instead of explaining it doctrinally.",
+      "contextSha256": "1023cf090af305193dced384674a590488636d78dfc623dabf20b7a5022801bc"
+    },
+    {
+      "evidenceKey": "r71-o9",
+      "relPath": "J/J25/J25nB171.xml",
+      "fromLb": "0554c10",
+      "tier": 2,
+      "decision": "keep",
+      "exactActor": {
+        "masterName": null,
+        "actorLabel": "Xinxing, the master quoted in the raised case",
+        "role": "utterer",
+        "grammarEvidence": "興云 directly governs 要出三界，三界唯心 inside the case raised by Tianyin Yuanxiu."
+      },
+      "contextMasters": [
+        {
+          "masterName": "Tianyin Yuanxiu",
+          "roles": [
+            "later-raiser",
+            "commentator"
+          ]
+        }
+      ],
+      "WitnessFamilyId": "sanjie-weixin:tianyin-entry-exit-commentary",
+      "deploymentRole": "active-later-commentary",
+      "semanticContribution": "Tianyin makes the raised formula do new work by asking how entry or exit could apply if the three realms are mind alone.",
+      "contextSha256": "a7fa8eb1d26ac0bf80639e50bbc91569c03640edcd1bb558880eeae2ef45dab0"
+    }
+  ],
+  "retainedSubset": {
+    "occurrenceCount": 6,
+    "independentWitnessFamilyCount": 6,
+    "tier1Count": 2,
+    "tier2Count": 4,
+    "tier3LampCount": 0,
+    "families": [
+      "sanjie-weixin:mazu-mind-and-form-discourse",
+      "sanjie-weixin:guichen-fayan-courtyard-stone",
+      "sanjie-weixin:huangbo-qualified-formula",
+      "sanjie-weixin:linji-present-hearer-discourse",
+      "sanjie-weixin:wuhuan-rain-moss-capping",
+      "sanjie-weixin:tianyin-entry-exit-commentary"
+    ],
+    "floorRuling": "Six legitimate independent active Tier-1/2 deployment families meet the floor. The Wŏnhyo anecdote and two question-only repetitions are adjudicated but not retained as padding.",
+    "lampPolicy": "No lamp consulted or retained."
+  },
+  "hardPass": true,
+  "publicMutation": false
+}

@@ -1,0 +1,469 @@
+{
+  "SchemaVersion": 1,
+  "ConstructionPipelineVersion": 2,
+  "Admission": {
+    "Decision": "admit",
+    "LexicalUnitReason": "縱觀寫出飛禽跡 is a stable fixed expression used in public answers, verses, appraisals, or case commentary.",
+    "ObservableChanJob": "縱觀寫出飛禽跡 means gaze freely and trace the tracks of flying birds.",
+    "DuplicateCheck": {
+      "DeterministicIdChecked": true,
+      "ExactHeadwordChecked": true,
+      "NearDuplicateRuling": "No exact or punctuation-normalized collision occurs in R01-R10 or the current R11 selection; companion clauses remain separately named family leads."
+    }
+  },
+  "EvidenceTransport": {
+    "DossierPath": "source-dossier.json",
+    "DossierSha256": "6ec826788ae8521920311fadc84d9858be21dedaa8aa03be1d3c50568ed46289",
+    "SourceAuthorityManifestSha256": "2ee44bf19a2533958e5620c38915f3d03fbb81209c76c7183742a4f3d059f501",
+    "DiscoveryMethods": [
+      "exact concordance count",
+      "complete-turn actor review",
+      "Tier 1 then Tier 2 source ranking",
+      "predecessor-evidence adjudication"
+    ],
+    "ExactCount": 34,
+    "BridgedCount": 34,
+    "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+  },
+  "Entry": {
+    "Id": "t_19025ed20021",
+    "SourceTerm": "縱觀寫出飛禽跡",
+    "CreatedBy": "R71 source-hierarchy repair",
+    "WrittenUtc": "2026-07-30T07:45:11.362026Z",
+    "Senses": [
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "gaze freely and trace the tracks of flying birds",
+        "AlternateTargets": [],
+        "SearchAliases": [
+          "look broadly and write out the traces of flying birds",
+          "gaze at will and draw forth the tracks of flying birds"
+        ],
+        "Status": "preferred",
+        "Validation": "multi-source",
+        "Explanation": "縱觀寫出飛禽跡 means gaze freely and trace the tracks of flying birds. A reusable poetic line in which an unrestricted or sweeping gaze writes out the tracks of birds in flight. Its paired line likewise makes slow walking break the sound of flowing water. Zen masters reuse the line as a capping response or image of conduct that cannot be reduced to an ordinary visible trail.",
+        "Note": "Retain the impossible-track image. The sources do not establish a single doctrinal paraphrase such as enlightenment, freedom, or emptiness. Do not silently expand this headword to the whole two-line couplet.",
+        "Occurrences": [
+          {
+            "RelPath": "B/B27/B27n0152.xml",
+            "FromLb": "0536a16",
+            "ToLb": "0536b10",
+            "Kwic": "如斯示眾舉石門徹禪師因令初上座領眾來叅徹問萬仞峰頭石牛吼穿雲渡水意如何初無對師令人代初進語自代云徐行踏斷流水聲縱觀寫出飛禽跡儻徹云此間難得禪客請坐喫茶但云一躡龍門清風動地示眾舉古德見客來畫一圓相代客大展三拜古德掩上門代便回大覺普濟玉林",
+            "MasterName": "Yulin Tongxiu",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Yulin Tongxiu",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (B/B27/B27n0152.xml). Puji Yulin: Recorded Sayings. Reviewed exact actor.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "縱觀寫出飛禽跡",
+              "GrammaticalSubject": "Yulin Tongxiu",
+              "SpeechFrame": "Source record (B/B27/B27n0152.xml). Puji Yulin: Recorded Sayings. Reviewed exact actor.",
+              "FullCaseDecision": "Yulin Tongxiu is the exact actor at the headword-bearing clause; contextual speakers are not substituted."
+            }
+          },
+          {
+            "RelPath": "J/J26/J26nB178.xml",
+            "FromLb": "0128c28",
+            "ToLb": "0129a02",
+            "Kwic": "好。』他若擬議，便與一推云：『白拈賊，捉敗了也。』且道與古人相去多少？只如得意一句又作麼生道？徐行踏斷水流聲，縱觀寫出飛禽跡。」下座。雲臺蔡居士請上堂，問：「第一義諦如何？」師云：「說甚麼？」僧云：「某甲不識。」師云：「善問者不答。」",
+            "MasterName": "Feiyin Tongrong",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Feiyin Tongrong",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J26/J26nB178.xml). Feiyin Chan Sayings. Reviewed exact actor.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "縱觀寫出飛禽跡",
+              "GrammaticalSubject": "Feiyin Tongrong",
+              "SpeechFrame": "Source record (J/J26/J26nB178.xml). Feiyin Chan Sayings. Reviewed exact actor.",
+              "FullCaseDecision": "Feiyin Tongrong is the exact actor at the headword-bearing clause; contextual speakers are not substituted."
+            }
+          },
+          {
+            "RelPath": "J/J32/J32nB276.xml",
+            "FromLb": "0335c20",
+            "ToLb": "0335c25",
+            "Kwic": "對眾宣讀。」師指法座云：「登王座，絕躋攀，非是驚群敵勝子，誰堪遽下頂門錐？山僧到此，別資一路，徐行踏斷流水聲，縱觀寫出飛禽跡。此一瓣香，寬若太虛，明如杲日，爇向爐中，端為祝延今上皇帝聖壽萬歲萬歲萬萬歲，伏願龍圖永固，鳳曆常新，八表稱臣",
+            "MasterName": "Buhui Fatong",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Buhui Fatong",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J32/J32nB276.xml). Buhui Chan Sayings. Reviewed exact actor.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "縱觀寫出飛禽跡",
+              "GrammaticalSubject": "Buhui Fatong",
+              "SpeechFrame": "Source record (J/J32/J32nB276.xml). Buhui Chan Sayings. Reviewed exact actor.",
+              "FullCaseDecision": "Buhui Fatong is the exact actor at the headword-bearing clause; contextual speakers are not substituted."
+            }
+          },
+          {
+            "RelPath": "J/J33/J33nB284.xml",
+            "FromLb": "0427a17",
+            "ToLb": "0427a22",
+            "Kwic": "忌人前走屁。」乃云：「十二月初一，林下貴所適，松閒立斯須，望見蒼山雪。連絡十九峰，󳰲弄湖光日，徐行蹋斷流水聲，縱觀寫出飛禽跡。大眾！月上座自粵東來也不問他。青草愁雲，雪積將軍之樹；黃沙苦霧，冰堅太史之河。只如鎮海明珠作何色相？還能識得",
+            "MasterName": "Yezhu Fuhui",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Yezhu Fuhui",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J33/J33nB284.xml). Yizhou Mount Song Yezhu: Later Record. Reviewed exact actor.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "縱觀寫出飛禽跡",
+              "GrammaticalSubject": "Yezhu Fuhui",
+              "SpeechFrame": "Source record (J/J33/J33nB284.xml). Yizhou Mount Song Yezhu: Later Record. Reviewed exact actor.",
+              "FullCaseDecision": "Yezhu Fuhui is the exact actor at the headword-bearing clause; contextual speakers are not substituted."
+            }
+          },
+          {
+            "RelPath": "J/J33/J33nB285.xml",
+            "FromLb": "0471a02",
+            "ToLb": "0471a08",
+            "Kwic": "師玅聖玅德等記錄小參小參佛成道日，小參。「一即一切，瞿曇老子雙眼瞥；一切即一，獨坐雪山三歎息。隨行蹋斷流水聲，縱觀寫出飛禽跡。十方世界坦然平，腳跟下事浮逼逼。大眾！既是坦然平，為甚腳下猶帶浮逼逼？眾中莫有具透關眼者麼？」良久，喝云：「",
+            "MasterName": null,
+            "Curated": true,
+            "ContextMasters": [],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J33/J33nB285.xml). Doushuai Bulinjian Sayings. The 小參 occurs in 兜率不磷堅禪師語錄, whose TEI author identifies 清宗堅說; the continuous small-talk voice owns the line.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "縱觀寫出飛禽跡",
+              "GrammaticalSubject": "Bulin Zongjian (不磷宗堅)",
+              "SpeechFrame": "Source record (J/J33/J33nB285.xml). Doushuai Bulinjian Sayings. The 小參 occurs in 兜率不磷堅禪師語錄, whose TEI author identifies 清宗堅說; the continuous small-talk voice owns the line.",
+              "FullCaseDecision": "Bulin Zongjian (不磷宗堅) is the exact actor at the headword-bearing clause; contextual speakers are not substituted."
+            },
+            "ActorAttribution": {
+              "Status": "identified-unlinked-master",
+              "Kind": "Chan master",
+              "ActorLabel": "Bulin Zongjian (不磷宗堅)",
+              "ActorRole": "utterer",
+              "GrammarEvidence": "The 小參 occurs in 兜率不磷堅禪師語錄, whose TEI author identifies 清宗堅說; the continuous small-talk voice owns the line.",
+              "ReviewedBy": "R71 source-first adjudication",
+              "ReviewedUtc": "2026-07-30T07:45:11.362026Z",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ]
+            }
+          },
+          {
+            "RelPath": "J/J33/J33nB288.xml",
+            "FromLb": "0584a09",
+            "ToLb": "0584a15",
+            "Kwic": "疑石霜之句，今朝決斷於乾明，透出通身無影像，豁開眼界露全真。然雖如是，且道葉落歸根一句合作麼生？」擲炬，云：「縱觀寫出飛禽跡，徐行踏斷流水聲。」為道安上座舉火云為道安上座舉火云「大道只在目前，何須別尋蹊徑？若會大道真體，自然隨處安靜。",
+            "MasterName": "Hanyu Hongxian",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Hanyu Hongxian",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J33/J33nB288.xml). Hanyu Xian Sayings. Reviewed exact actor.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "縱觀寫出飛禽跡",
+              "GrammaticalSubject": "Hanyu Hongxian",
+              "SpeechFrame": "Source record (J/J33/J33nB288.xml). Hanyu Xian Sayings. Reviewed exact actor.",
+              "FullCaseDecision": "Hanyu Hongxian is the exact actor at the headword-bearing clause; contextual speakers are not substituted."
+            }
+          },
+          {
+            "RelPath": "J/J35/J35nB343.xml",
+            "FromLb": "0821c15",
+            "ToLb": "0821c20",
+            "Kwic": "日午打三更。」下座。雲祥、惟菴二大德請上堂。僧問：「峰頭把斷雲橫路，出身行徑作麼生？」師云：「徐行蹋斷流水聲，縱觀寫出飛禽跡。」進云：「衲僧本具超群志，誓不隨人艸地眠。且道：如何是超群志？」師云：「胸懷意氣吞幽谷，項佩圜光耀遠林。」進",
+            "MasterName": "Miyin Zhenchuan",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Miyin Zhenchuan",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J35/J35nB343.xml). Guangfu Mt. Shengjue Miyin Sayings. Reviewed exact actor.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "縱觀寫出飛禽跡",
+              "GrammaticalSubject": "Miyin Zhenchuan",
+              "SpeechFrame": "Source record (J/J35/J35nB343.xml). Guangfu Mt. Shengjue Miyin Sayings. Reviewed exact actor.",
+              "FullCaseDecision": "Miyin Zhenchuan is the exact actor at the headword-bearing clause; contextual speakers are not substituted."
+            }
+          }
+        ],
+        "ClaimAnchors": [],
+        "SourceTexts": [
+          "B/B27/B27n0152.xml",
+          "J/J26/J26nB178.xml",
+          "J/J32/J32nB276.xml",
+          "J/J33/J33nB284.xml",
+          "J/J33/J33nB285.xml",
+          "J/J33/J33nB288.xml",
+          "J/J35/J35nB343.xml"
+        ],
+        "RelatedMasters": [
+          "Yulin Tongxiu",
+          "Feiyin Tongrong",
+          "Buhui Fatong",
+          "Yezhu Fuhui",
+          "Hanyu Hongxian",
+          "Miyin Zhenchuan"
+        ],
+        "RelatedTerms": [],
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "縱觀寫出飛禽跡 means gaze freely and trace the tracks of flying birds.",
+          "EvidenceBody": [
+            "A reusable poetic line in which an unrestricted or sweeping gaze writes out the tracks of birds in flight. Its paired line likewise makes slow walking break the sound of flowing water. Zen masters reuse the line as a capping response or image of conduct that cannot be reduced to an ordinary visible trail."
+          ]
+        },
+        "DraftEvidence": {
+          "LiteralGraphFloor": "gaze freely and trace the tracks of flying birds",
+          "LexicalJob": "縱觀寫出飛禽跡 means gaze freely and trace the tracks of flying birds.",
+          "DeploymentClasses": [
+            "source-case",
+            "independent deployment",
+            "parallel witness"
+          ],
+          "HighValueEvidenceLedger": [
+            {
+              "Disposition": "keep",
+              "Finding": "Yulin Tongxiu uses the headword in the retained passage in Puji Yulin: Recorded Sayings.",
+              "Reason": "The complete case secures the exact actor and adds a distinct direct use or active commentary."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Feiyin Tongrong uses the headword in the retained passage in Feiyin Chan Sayings.",
+              "Reason": "The complete case secures the exact actor and adds a distinct direct use or active commentary."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Buhui Fatong uses the headword in the retained passage in Buhui Chan Sayings.",
+              "Reason": "The complete case secures the exact actor and adds a distinct direct use or active commentary."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Yezhu Fuhui uses the headword in the retained passage in Yizhou Mount Song Yezhu: Later Record.",
+              "Reason": "The complete case secures the exact actor and adds a distinct direct use or active commentary."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Bulin Zongjian (不磷宗堅) uses the headword in the retained passage in Doushuai Bulinjian Sayings.",
+              "Reason": "The complete case secures the exact actor and adds a distinct direct use or active commentary."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Hanyu Hongxian uses the headword in the retained passage in Hanyu Xian Sayings.",
+              "Reason": "The complete case secures the exact actor and adds a distinct direct use or active commentary."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Miyin Zhenchuan uses the headword in the retained passage in Guangfu Mt. Shengjue Miyin Sayings.",
+              "Reason": "The complete case secures the exact actor and adds a distinct direct use or active commentary."
+            }
+          ],
+          "OpeningClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3",
+            "o4",
+            "o5",
+            "o6",
+            "o7"
+          ],
+          "EvidenceBodyClaimKeys": [
+            [
+              "o1",
+              "o2",
+              "o3",
+              "o4",
+              "o5",
+              "o6",
+              "o7"
+            ]
+          ],
+          "ZenBend": "縱觀寫出飛禽跡 means gaze freely and trace the tracks of flying birds.",
+          "CounterexampleOrLimit": "Retain the impossible-track image. The sources do not establish a single doctrinal paraphrase such as enlightenment, freedom, or emptiness. Do not silently expand this headword to the whole two-line couplet.",
+          "DifferentThingTest": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "gaze freely and trace the tracks of flying birds"
+            ],
+            "Reason": "The question, verse, appraisal, and commentary frames retain the same lexical referent; none names a separate object, person, title, or institutional role."
+          },
+          "AliasRationale": "The aliases preserve the concrete wording of “gaze freely and trace the tracks of flying birds” without adding a new interpretation.",
+          "ModifierControls": [
+            {
+              "Term": "縱觀寫出飛禽跡",
+              "Finding": "No material or color modifier creates a separate referent; the full fixed expression is translated as one unit."
+            }
+          ],
+          "FamilyControls": [
+            {
+              "Term": "縱觀寫出飛禽跡",
+              "Finding": "Not applicable: no distinct family candidate was admitted or rejected in this bounded source-first construction."
+            }
+          ],
+          "IndependentWorkIds": [
+            "work:B27n0152",
+            "work:J26nB178",
+            "work:J32nB276",
+            "work:J33nB284",
+            "work:J33nB285",
+            "work:J33nB288",
+            "work:J35nB343"
+          ],
+          "SourceAuthorityRows": [
+            {
+              "EvidenceKey": "o1",
+              "RelPath": "B/B27/B27n0152.xml",
+              "WorkId": "work:B27n0152",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "The registered title identifies a named master’s sayings, discourse, question-and-answer, session, or comparable speech record; exact embedded quotations still require passage-level actor review.",
+              "WitnessFamilyId": "feiqin:yulin-substitute-response",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o2",
+              "RelPath": "J/J26/J26nB178.xml",
+              "WorkId": "work:J26nB178",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "The registered title identifies a named master’s sayings, discourse, question-and-answer, session, or comparable speech record; exact embedded quotations still require passage-level actor review.",
+              "WitnessFamilyId": "feiqin:feiyin-hall-capping-line",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o3",
+              "RelPath": "J/J32/J32nB276.xml",
+              "WorkId": "work:J32nB276",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "The registered title identifies a named master’s sayings, discourse, question-and-answer, session, or comparable speech record; exact embedded quotations still require passage-level actor review.",
+              "WitnessFamilyId": "feiqin:buhui-enthronement",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o4",
+              "RelPath": "J/J33/J33nB284.xml",
+              "WorkId": "work:J33nB284",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "The registered title identifies a named master’s sayings, discourse, question-and-answer, session, or comparable speech record; exact embedded quotations still require passage-level actor review.",
+              "WitnessFamilyId": "feiqin:yezhu-seasonal-hall-verse",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o5",
+              "RelPath": "J/J33/J33nB285.xml",
+              "WorkId": "work:J33nB285",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "The registered title identifies a named master’s sayings, discourse, question-and-answer, session, or comparable speech record; exact embedded quotations still require passage-level actor review.",
+              "WitnessFamilyId": "feiqin:zongjian-awakening-day-small-talk",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o6",
+              "RelPath": "J/J33/J33nB288.xml",
+              "WorkId": "work:J33nB288",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "The registered title identifies a named master’s sayings, discourse, question-and-answer, session, or comparable speech record; exact embedded quotations still require passage-level actor review.",
+              "WitnessFamilyId": "feiqin:hanyu-funeral-reversal",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o7",
+              "RelPath": "J/J35/J35nB343.xml",
+              "WorkId": "work:J35nB343",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "The registered title identifies a named master’s sayings, discourse, question-and-answer, session, or comparable speech record; exact embedded quotations still require passage-level actor review.",
+              "WitnessFamilyId": "feiqin:miyin-direct-answer",
+              "DeploymentRole": "original-use"
+            }
+          ],
+          "LampExcessJustification": "No Tier-3 lamp or lineage compilation is retained.",
+          "NoHigherWitnessSearchReceipt": "Every matching allowlisted file was classified by authority; the retained set uses only Tier 1 or Tier 2 sources, and no lamp is needed.",
+          "DepthHarvestReceipt": {
+            "Complete": true,
+            "ReviewedExactHitCount": 34,
+            "AvailableSourceFiles": 28,
+            "SearchedDeploymentClasses": [
+              "source-case",
+              "independent deployment",
+              "parallel witness"
+            ],
+            "OmissionAudit": [
+              "All five retained complete cases were read and exact-actor adjudicated.",
+              "Parallel containers and passive quotations were excluded from independent-family counting.",
+              "Tier-3 lamps were considered last and none was needed.",
+              "The predecessor was opened only after the source-first semantic draft was complete."
+            ]
+          }
+        },
+        "DraftAcceptedDerivedFields": {
+          "SourceTexts": [
+            "B/B27/B27n0152.xml",
+            "J/J26/J26nB178.xml",
+            "J/J32/J32nB276.xml",
+            "J/J33/J33nB284.xml",
+            "J/J33/J33nB285.xml",
+            "J/J33/J33nB288.xml",
+            "J/J35/J35nB343.xml"
+          ],
+          "RelatedMasters": [
+            "Yulin Tongxiu",
+            "Feiyin Tongrong",
+            "Buhui Fatong",
+            "Yezhu Fuhui",
+            "Hanyu Hongxian",
+            "Miyin Zhenchuan"
+          ]
+        }
+      }
+    ],
+    "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+  },
+  "FamilyHarvest": {
+    "PolicyVersion": 1,
+    "Scope": "R71 source-hierarchy repair exact source-first family harvest",
+    "Edges": [],
+    "NegativeReceipt": [],
+    "GraphicVariants": []
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "schemaVersion": "bounded-semantic-decision.v1",
+  "cohort": "R71",
+  "id": "t_192de5925365",
+  "term": "唐喪光陰",
+  "decision": "READY",
+  "preferredTarget": "waste one's time",
+  "alternateTargets": ["squander one's time in vain"],
+  "senseDecision": {
+    "count": 1,
+    "literalFloor": "vainly lose the passing time",
+    "meaning": "To waste or squander one's available time without accomplishing the matter at hand.",
+    "explanation": "唐喪光陰 is an admonition against wasting one's time. Dufeng Shan and Guting Shanjian warn that discursive learning or failing to face birth and death can squander a lifetime. Tianyin Yuanxiu and Linye Tongqi urge practitioners not to let the training period pass fruitlessly. Poshan Haiming and Daxiu Zhu pair the phrase with 虛溷日子 or 虛消信施, while Sanyi Mingyu applies it sharply in a funeral address.",
+    "limit": "唐 is adverbial here—vainly or to no purpose. The compound does not mean that the Tang dynasty lost time."
+  },
+  "occurrences": [
+    {
+      "evidenceKey": "o1", "relPath": "J/J25/J25nB159.xml", "fromLb": "0138a02",
+      "workId": "work:J25nB159", "tier": 2, "MasterName": "Dufeng Shan",
+      "action": "warns that searching through writings idly wastes time and leaves the matter unfinished",
+      "WitnessFamilyId": "t_192de5925365-dufeng-instruction", "deploymentRole": "direct-admonition", "retain": true
+    },
+    {
+      "evidenceKey": "o2", "relPath": "J/J25/J25nB163.xml", "fromLb": "0248a14",
+      "workId": "work:J25nB163", "tier": 2, "MasterName": "Guting Shanjian",
+      "action": "asks whether one who truly intends to resolve birth and death would bury oneself and waste time",
+      "WitnessFamilyId": "t_192de5925365-guting-birth-death", "deploymentRole": "rhetorical-admonition", "retain": true
+    },
+    {
+      "evidenceKey": "o3", "relPath": "J/J25/J25nB171.xml", "fromLb": "0519b29",
+      "workId": "work:J25nB171", "tier": 2, "MasterName": "Tianyin Yuanxiu",
+      "action": "warns the assembly not to drift along and waste time because birth and death are grave",
+      "WitnessFamilyId": "t_192de5925365-tianyin-training", "deploymentRole": "assembly-admonition", "retain": true
+    },
+    {
+      "evidenceKey": "o4", "relPath": "J/J26/J26nB177.xml", "fromLb": "0045c09",
+      "workId": "work:J26nB177", "tier": 2, "MasterName": "Poshan Haiming",
+      "action": "warns that wavering thoughts waste time and muddle away the days",
+      "WitnessFamilyId": "t_192de5925365-poshan-instruction", "deploymentRole": "direct-admonition", "retain": true
+    },
+    {
+      "evidenceKey": "o5", "relPath": "J/J26/J26nB186.xml", "fromLb": "0637a24",
+      "workId": "work:J26nB186", "tier": 2, "MasterName": "Linye Tongqi",
+      "action": "tells the summer-retreat assembly not to waste time or let the months pass empty",
+      "WitnessFamilyId": "t_192de5925365-linye-retreat", "deploymentRole": "retreat-admonition", "retain": true
+    },
+    {
+      "evidenceKey": "o6", "relPath": "J/J27/J27nB189.xml", "fromLb": "0069b13",
+      "workId": "work:J27nB189", "tier": 2, "MasterName": "Sanyi Mingyu",
+      "action": "laments wasted time while addressing a deceased monk's remains",
+      "WitnessFamilyId": "t_192de5925365-sanyi-funeral", "deploymentRole": "funeral-admonition", "retain": true
+    },
+    {
+      "evidenceKey": "o7", "relPath": "J/J27/J27nB192.xml", "fromLb": "0184c29",
+      "workId": "work:J27nB192", "tier": 2, "MasterName": "Daxiu Zhu",
+      "action": "warns the assembly not to waste time or consume offerings fruitlessly",
+      "WitnessFamilyId": "t_192de5925365-daxiu-year-end", "deploymentRole": "year-end-admonition", "retain": true
+    }
+  ],
+  "depthAccounting": {
+    "completeCasesRead": 7,
+    "retainedWitnesses": 7,
+    "independentWitnessFamilies": 7,
+    "tier1Count": 0,
+    "tier2Count": 7,
+    "tier3LampCount": 0,
+    "parallelPadding": 0
+  },
+  "strongestEvidenceKeys": ["o1", "o2", "o3", "o5", "o7"]
+}

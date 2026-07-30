@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "r71-final-release-authority.v1",
+  "cohort": "R71",
+  "verdict": "RELEASE_AUTHORIZED",
+  "products": [
+    {
+      "id": "t_19025ed20021",
+      "term": "縱觀寫出飛禽跡",
+      "sha256": "5d584e6f58f939a8f6680ef98efb7613a1e017e4d1a6cea055b90a7bbb18966c",
+      "worksheetSha256": "6b40d0d300d7c7e1d9b54c982118e4e42d7ba8518dccada7e1ce8059f56da689",
+      "reviewSha256": "1d9733450c22041fba5ecd1b33116b36e7caa282e0588b3b52794dfceeaf1f69"
+    },
+    {
+      "id": "t_192801178305",
+      "term": "三界唯心",
+      "sha256": "20d221a57ec6cb1a3886b008edb5d0912452499e0a87d0adc0e2052d9addd41e",
+      "worksheetSha256": "5e68cdc4a4eb2a40ff86d36d54e8a0edd792a8724dcc620d61fdbc0b09fdb3b1",
+      "reviewSha256": "7c6943fc9e12f5cbae16f69e7fbe94db30bb9344cee5d7d401692239cf198ba1"
+    },
+    {
+      "id": "t_192de5925365",
+      "term": "唐喪光陰",
+      "sha256": "e4565c20e7c2f63b65d86357fcd420b92799ceff66a59f34f4f8d6a1c29b687f",
+      "worksheetSha256": "560947f5f18dfb4e0c47ed02fa854d257585ebdc7a52a5f9d14ee60d944604e5",
+      "reviewSha256": "8bb3181f923cc7df2f02a8e2d705c5209c05f682bea1a1ebc050f48ed216550c"
+    }
+  ],
+  "review": {
+    "semanticRulings": "3/3 pass",
+    "actorsAndSourceBoundaries": "20/20 pass",
+    "retainedEvidence": "20 quotations across 20 independent deployment families",
+    "tierMix": "2 Tier-1, 18 Tier-2, 0 Tier-3",
+    "compilerProjectionParity": "pass"
+  },
+  "releaseAuthorized": true,
+  "hardPass": true
+}

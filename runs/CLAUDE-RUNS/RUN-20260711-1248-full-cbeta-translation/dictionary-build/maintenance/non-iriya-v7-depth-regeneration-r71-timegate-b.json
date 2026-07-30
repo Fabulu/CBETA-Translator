@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "bounded-dictionary-timegate.v2",
+  "cohort": "R71",
+  "artifactZero": true,
+  "startedEpoch": 1785397511.362026,
+  "createdUtc": "2026-07-30T07:45:11.362026Z",
+  "requiredFloors": [
+    4,
+    6,
+    4
+  ],
+  "admittedRequiredOccurrences": 14,
+  "adjudicatedCaseLoad": 14,
+  "researchCandidateReserve": 3,
+  "deadlinesSeconds": {
+    "viability": 120,
+    "researchExtraction": 120,
+    "adjudicatedConfig": 488,
+    "constructor": 498,
+    "firstProduct": 518,
+    "construction": 578,
+    "review": 750,
+    "correction": 866,
+    "publication": 956
+  },
+  "assignedLaunch": {
+    "selector": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/last1500-public-depth/final-scope/full-regeneration-selector.json",
+    "priorUnion": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r70-resolved-union-root.json",
+    "entries": [
+      {
+        "id": "t_19025ed20021",
+        "term": "縱觀寫出飛禽跡",
+        "requiredFloor": 4
+      },
+      {
+        "id": "t_192801178305",
+        "term": "三界唯心",
+        "requiredFloor": 6
+      },
+      {
+        "id": "t_192de5925365",
+        "term": "唐喪光陰",
+        "requiredFloor": 4
+      }
+    ],
+    "reserveIds": [],
+    "researchCandidateReserve": 3
+  },
+  "continuationOf": "R70-PUBLISHED-LEDGER-ADVANCED"
+}
