@@ -19,6 +19,7 @@ from typing import Any
 
 from atomic_write import atomic_write_json
 from clean_regeneration_preclosure import load_preclosure_row, validate_preclosure
+from compile_evidence_draft import compile_occurrence
 
 ROOT = Path(__file__).resolve().parent.parent
 ENGINE = Path(__file__).resolve()
@@ -31,6 +32,24 @@ PATH_KEYS = {
     "preclosure", "manifest", "closure",
 }
 ENTRY_KEYS = {"id", "term", "sourceDossier", "evidenceDraft"}
+ACTOR_ERROR_MARKERS = (
+    ".MasterName",
+    ".ActorAttribution",
+    ".DraftActorProof",
+    ".ContextMasters",
+    ".ContextActors",
+)
+
+
+class ActorClosureError(ValueError):
+    """Exhaustive pre-write actor-schema failure across the entire config."""
+
+    def __init__(self, errors: list[str]):
+        self.errors = errors
+        super().__init__(
+            "whole-config actor closure failed: "
+            + json.dumps(errors, ensure_ascii=False)
+        )
 
 
 def read_json(path: Path) -> dict[str, Any]:
@@ -149,12 +168,41 @@ def verify_source_hierarchy(entry: dict[str, Any]) -> None:
         raise ValueError(f"{entry['id']}: Tier-3 evidence lacks exceptional justification")
 
 
+def verify_actor_closure(config: dict[str, Any]) -> None:
+    """Apply the compiler's actor schema to every occurrence before any write.
+
+    This deliberately does not infer or classify actors.  It only reuses the
+    mandatory compiler semantics and reports every bad entry/sense/occurrence
+    coordinate in one failure.
+    """
+    actor_errors: list[str] = []
+    for ei, entry in enumerate(config["entries"]):
+        worksheet_entry = entry["evidenceDraft"]["Entry"]
+        for si, sense in enumerate(worksheet_entry.get("Senses") or []):
+            for oi, occurrence in enumerate(sense.get("Occurrences") or []):
+                coordinate = (
+                    f"entries[{ei}]({entry['id']})."
+                    f"Senses[{si}].Occurrences[{oi}]"
+                )
+                occurrence_errors: list[str] = []
+                compile_occurrence(dict(occurrence), coordinate, occurrence_errors)
+                actor_errors.extend(
+                    error for error in occurrence_errors
+                    if any(marker in error for marker in ACTOR_ERROR_MARKERS)
+                )
+    if actor_errors:
+        raise ActorClosureError(actor_errors)
+
+
 def run(config_path: Path, allowed_root: Path, now=time.time) -> dict[str, Any]:
     config_path = config_path.resolve()
     allowed_root = allowed_root.resolve()
     config_path.relative_to(allowed_root)
     config = read_json(config_path)
     paths = verify_authority(config_path, config, allowed_root)
+    # This must precede source checks, mkdir, dossier writes, and compilation:
+    # one defective later entry may never leave an earlier partial product.
+    verify_actor_closure(config)
     started = float(config["startedEpoch"])
     results = []
     for ordinal, entry in enumerate(config["entries"], 1):

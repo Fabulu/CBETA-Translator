@@ -8,8 +8,10 @@ import sys
 import tempfile
 import time
 import unittest
+from unittest.mock import patch
 
 from atomic_write import atomic_write_json
+from maintenance.generic_bounded_constructor import ActorClosureError, run
 
 ROOT = Path(__file__).resolve().parent.parent
 WATCHDOG = ROOT / "maintenance/construction_start_watchdog.py"
@@ -22,6 +24,74 @@ def sha(path):
 
 
 class GenericBoundedConstructorIntegrationTest(unittest.TestCase):
+    def test_actor_closure_reports_all_coordinates_before_any_product_write(self):
+        with tempfile.TemporaryDirectory(dir=ROOT / "maintenance") as raw:
+            base = Path(raw).resolve()
+            output = base / "output"
+            config_path = base / "config.json"
+
+            def bad_occurrence(*, utterer=False, empty_grammar=False):
+                actor = {
+                    "Status": "narrated",
+                    "Kind": "identified non-master",
+                    "ActorLabel": "reviewed actor",
+                    "GrammarEvidence": (
+                        "" if empty_grammar
+                        else "The complete clause explicitly assigns this action."
+                    ),
+                }
+                return {
+                    "RelPath": "X/fixture.xml",
+                    "FromLb": "0001a01",
+                    "ToLb": "0001a02",
+                    "Kwic": "甲云測試",
+                    "MasterName": None,
+                    "ActorAttribution": actor,
+                    "ContextMasters": (
+                        [{"MasterName": "Fixture Master", "Roles": ["utterer"]}]
+                        if utterer else []
+                    ),
+                    "AttributionNote": "Source record (X/fixture.xml). Fixture.",
+                    "DraftActorProof": {
+                        "GrammaticalSubject": "reviewed actor",
+                        "FullCaseDecision": "The complete case assigns the clause.",
+                    },
+                }
+
+            entries = []
+            for index, occurrence in enumerate((
+                bad_occurrence(empty_grammar=True),
+                bad_occurrence(utterer=True),
+            )):
+                identity = f"t_fixture_{index}"
+                entries.append({
+                    "id": identity,
+                    "term": f"fixture-{index}",
+                    "sourceDossier": {},
+                    "evidenceDraft": {
+                        "Entry": {
+                            "Id": identity,
+                            "SourceTerm": f"fixture-{index}",
+                            "Senses": [{"Occurrences": [occurrence]}],
+                        }
+                    },
+                })
+            atomic_write_json(config_path, {"entries": entries})
+            governed_paths = {"outputRoot": output}
+            with patch(
+                "maintenance.generic_bounded_constructor.verify_authority",
+                return_value=governed_paths,
+            ):
+                with self.assertRaises(ActorClosureError) as raised:
+                    run(config_path, base)
+
+            errors = raised.exception.errors
+            self.assertTrue(any("entries[0](t_fixture_0)" in row for row in errors))
+            self.assertTrue(any("GrammarEvidence" in row for row in errors))
+            self.assertTrue(any("entries[1](t_fixture_1)" in row for row in errors))
+            self.assertTrue(any("utterer role contradicts null MasterName" in row for row in errors))
+            self.assertFalse(output.exists(), "actor preflight must create no product root")
+
     def test_watchdog_cli_real_compile_three_entries(self):
         with tempfile.TemporaryDirectory(dir=ROOT / "maintenance") as raw:
             base = Path(raw).resolve()
