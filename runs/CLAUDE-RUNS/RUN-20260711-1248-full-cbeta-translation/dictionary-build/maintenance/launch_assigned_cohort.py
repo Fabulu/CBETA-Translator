@@ -16,6 +16,7 @@ from pathlib import Path
 
 import zc
 from atomic_write import atomic_write_json
+from cohort_checkpoint_watchdog import clock, governed_schedule
 
 ROOT = Path(__file__).resolve().parents[1]
 WATCHDOG = Path(__file__).with_name("cohort_checkpoint_watchdog.py")
@@ -36,9 +37,23 @@ def prepare(
     output_dir: Path,
     count_fn=zc.batch_count,
 ) -> dict[str, Path]:
-    stamp = load(timegate)
+    stamp, _, _, _, _ = clock(timegate, None)
+    if stamp.get("schemaVersion") != "bounded-dictionary-timegate.v2":
+        raise RuntimeError("legacy or unknown artifact-zero schema")
     if stamp.get("cohort") != cohort or stamp.get("artifactZero") is not True:
         raise RuntimeError("artifact-zero receipt/cohort mismatch")
+    governed_schedule(stamp, [identity for identity, _, _ in entries])
+    expected_binding = {
+        "selector": str(selector.resolve()),
+        "priorUnion": str(prior_union.resolve()),
+        "entries": [
+            {"id": identity, "term": term, "requiredFloor": floor}
+            for identity, term, floor in entries
+        ],
+        "reserveIds": sorted(set(reserve_ids)),
+    }
+    if stamp.get("assignedLaunch") != expected_binding:
+        raise RuntimeError("artifact-zero assigned-launch binding mismatch")
     used = set(load(prior_union)["ids"])
     used.update(reserve_ids)
     selector_doc = load(selector)

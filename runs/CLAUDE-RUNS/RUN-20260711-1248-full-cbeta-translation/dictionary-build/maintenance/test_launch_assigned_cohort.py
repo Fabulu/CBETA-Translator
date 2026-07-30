@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
 import json
 import tempfile
+import time
 import unittest
+from datetime import datetime, timezone
 from pathlib import Path
 from unittest.mock import patch
 
 import launch_assigned_cohort as launcher
+from cohort_checkpoint_watchdog import evidence_schedule
 
 
 class AssignedCohortLauncherTest(unittest.TestCase):
@@ -27,7 +30,28 @@ class AssignedCohortLauncherTest(unittest.TestCase):
             union = maintenance / "union.json"
             union.write_text(json.dumps({"ids": ["used"]}), encoding="utf-8")
             timegate = maintenance / "timegate.json"
-            timegate.write_text(json.dumps({"cohort": "R99", "artifactZero": True}), encoding="utf-8")
+            started = time.time()
+            timegate.write_text(json.dumps({
+                "schemaVersion": "bounded-dictionary-timegate.v2",
+                "cohort": "R99", "artifactZero": True,
+                "startedEpoch": started,
+                "createdUtc": datetime.fromtimestamp(
+                    started, timezone.utc).isoformat().replace("+00:00", "Z"),
+                "requiredFloors": [8, 4, 7],
+                "admittedRequiredOccurrences": 19,
+                "adjudicatedCaseLoad": 19,
+                "deadlinesSeconds": evidence_schedule([8, 4, 7], 19)[1],
+                "assignedLaunch": {
+                    "selector": str(selector.resolve()),
+                    "priorUnion": str(union.resolve()),
+                    "entries": [
+                        {"id": "a", "term": "甲", "requiredFloor": 8},
+                        {"id": "b", "term": "乙", "requiredFloor": 4},
+                        {"id": "c", "term": "丙", "requiredFloor": 7},
+                    ],
+                    "reserveIds": ["reserved"],
+                },
+            }), encoding="utf-8")
             calls = []
 
             def fake_count(terms):

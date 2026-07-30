@@ -56,6 +56,11 @@ def main() -> None:
     parser.add_argument("--continuation-of")
     parser.add_argument("--floors", nargs="+", type=int, required=True)
     parser.add_argument("--case-load", type=int, required=True)
+    parser.add_argument("--selector")
+    parser.add_argument("--prior-union")
+    parser.add_argument("--entry", action="append", nargs=3,
+                        metavar=("ID", "TERM", "FLOOR"))
+    parser.add_argument("--reserve-id", action="append", default=[])
     args = parser.parse_args()
     output = Path(args.output).resolve()
     if output.exists():
@@ -76,6 +81,23 @@ def main() -> None:
         "adjudicatedCaseLoad": case_load,
         "deadlinesSeconds": deadlines,
     }
+    launch_fields = (args.selector, args.prior_union, args.entry, args.reserve_id)
+    if any(launch_fields):
+        if not args.selector or not args.prior_union or not args.entry:
+            raise SystemExit(
+                "selector, prior-union, and entry are jointly required for an assigned launch")
+        entries = [
+            {"id": identity, "term": term, "requiredFloor": int(floor)}
+            for identity, term, floor in args.entry
+        ]
+        if [row["requiredFloor"] for row in entries] != args.floors:
+            raise SystemExit("assigned entry floors do not match --floors")
+        payload["assignedLaunch"] = {
+            "selector": str(Path(args.selector).resolve()),
+            "priorUnion": str(Path(args.prior_union).resolve()),
+            "entries": entries,
+            "reserveIds": sorted(set(args.reserve_id)),
+        }
     if args.continuation_of:
         payload["continuationOf"] = args.continuation_of
     output.parent.mkdir(parents=True, exist_ok=True)
