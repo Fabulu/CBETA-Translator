@@ -1,8 +1,8 @@
 from __future__ import annotations
 
 import copy
+import hashlib
 import unittest
-from unittest.mock import patch
 
 import construct_r11_clean_regeneration_c as authoring
 from maintenance.generic_bounded_constructor import ActorClosureError, verify_actor_closure
@@ -112,23 +112,39 @@ def decision(key: str, kind: str) -> dict:
 
 
 def spec(key: str, kind: str) -> dict:
+    rel = "J/J10/J10nA158.xml"
+    term = "主人公"
+    exact = authoring.zc.find(rel, term, ctx=0, limit=10000)[0]
+    context = authoring.zc.find(rel, term, ctx=350, limit=10000)[0]["window"]
+    bounded = "問：「前念過去，後念未生，主人公在何處？」"
+    verified = authoring.zc.verify(rel, bounded)
+    norm, _ = authoring.zc._load(rel)
+    source_offset = norm.index(term)
+    radius = authoring.TARGET_ANCHOR_RADIUS
+    anchor = norm[max(0, source_offset-radius):source_offset] + term + norm[source_offset+len(term):source_offset+len(term)+radius]
     return {
         "evidenceKey": key,
-        "relPath": "J/J10/J10nA158.xml",
-        "occurrenceIndex": 0,
+        "relPath": rel,
+        "fromLb": exact["fromLb"],
+        "sourceSpanOrdinal": 0,
+        "sourceContextSha256": hashlib.sha256(context.encode()).hexdigest(),
+        "sourceCharOffset": source_offset,
+        "targetSpanAnchorSha256": hashlib.sha256(anchor.encode()).hexdigest(),
+        "boundedKwic": bounded,
+        "boundedFromLb": verified["fromLb"],
+        "boundedToLb": verified["toLb"],
+        "boundaryEvidence": "問 opens the anonymous monk's complete question and the closing quotation mark ends it before 師云 begins the answer.",
         "actorDecision": decision(key, kind),
     }
 
 
 def emitted(key: str, kind: str) -> dict:
-    with patch.object(
-        authoring, "concise_kwic",
-        return_value=("僧問主人公在何處師云看腳下", "0001a01"),
-    ):
-        return authoring.make_occurrence(
-            {"J/J10/J10nA158.xml": "Recorded Sayings of Miyun"},
-            "主人公", spec(key, kind), key,
-        )
+    occurrence_spec = spec(key, kind)
+    plan = authoring.plan_occurrence_recut("主人公", occurrence_spec, key)
+    return authoring.make_occurrence(
+        {"J/J10/J10nA158.xml": "Recorded Sayings of Miyun"},
+        "主人公", occurrence_spec, key, plan,
+    )
 
 
 class DecisionAwareOccurrenceEmitterTests(unittest.TestCase):
@@ -229,6 +245,67 @@ class DecisionAwareOccurrenceEmitterTests(unittest.TestCase):
             "duplicate occurrence keys", "missing occurrence keys",
         ):
             self.assertIn(fragment, message)
+
+    def test_same_dialogue_multi_span_binds_requested_source_span(self):
+        rel = "C/C077/C077n1710.xml"
+        context = authoring.zc.find(rel, "主人公", ctx=350, limit=10000)[0]["window"]
+        occurrence_spec = {
+            "evidenceKey": "o1",
+            "relPath": rel,
+            "fromLb": "0679b02",
+            "sourceSpanOrdinal": 0,
+            "sourceContextSha256": hashlib.sha256(context.encode()).hexdigest(),
+            "sourceCharOffset": authoring.zc._load(rel)[0].index("主人公"),
+            "targetSpanAnchorSha256": "",
+            "boundedKwic": "云與主人公舉話",
+            "boundedFromLb": "0679b02",
+            "boundedToLb": "0679b03",
+            "boundaryEvidence": "云 opens the monk's answer to the master's question; the following 師云 begins the master's separate reply.",
+            "actorDecision": decision("o1", "anonymous"),
+        }
+        norm = authoring.zc._load(rel)[0]
+        offset = occurrence_spec["sourceCharOffset"]
+        radius = authoring.TARGET_ANCHOR_RADIUS
+        anchor = norm[max(0, offset-radius):offset] + "主人公" + norm[offset+3:offset+3+radius]
+        occurrence_spec["targetSpanAnchorSha256"] = hashlib.sha256(anchor.encode()).hexdigest()
+        plan = authoring.plan_occurrence_recut("主人公", occurrence_spec, "o1")
+        self.assertEqual(plan["fromLb"], "0679b02")
+        self.assertEqual(plan["kwic"].count("主人公"), 1)
+        wrong = copy.deepcopy(occurrence_spec)
+        wrong["sourceSpanOrdinal"] = 1
+        with self.assertRaisesRegex(
+            ValueError, "source line/span ordinal|sourceSpanOrdinal does not bind"
+        ):
+            authoring.plan_occurrence_recut("主人公", wrong, "o1")
+        self.assertLessEqual(len(plan["kwic"]), 800)
+        self.assertIn("云與主人公舉話", plan["kwic"])
+        self.assertNotIn("主人公姓什麼", plan["kwic"])
+
+    def test_later_recut_failure_is_exhaustive_and_zero_write(self):
+        import tempfile
+        from pathlib import Path
+
+        first = spec("o1", "named")
+        later = spec("o1", "impersonal")
+        later["sourceContextSha256"] = "0" * 64
+        configs = [
+            {"id": "first", "term": "主人公", "occurrences": [first]},
+            {"id": "later", "term": "主人公", "occurrences": [later]},
+        ]
+        with tempfile.TemporaryDirectory() as raw:
+            original = authoring.FRESH
+            authoring.FRESH = Path(raw) / "must-not-exist"
+            try:
+                with self.assertRaisesRegex(
+                    authoring.OccurrenceDecisionClosureError,
+                    "later.*source context hash drift",
+                ):
+                    authoring.compile_all(
+                        configs, {}, {}, {}, expected_ids=["first", "later"]
+                    )
+                self.assertFalse(authoring.FRESH.exists())
+            finally:
+                authoring.FRESH = original
 
 
 if __name__ == "__main__":

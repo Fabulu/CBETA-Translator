@@ -55,15 +55,17 @@ def main() -> None:
     parser.add_argument("--cohort", required=True)
     parser.add_argument("--continuation-of")
     parser.add_argument("--floors", nargs="+", type=int, required=True)
+    parser.add_argument("--case-load", type=int, required=True)
     args = parser.parse_args()
     output = Path(args.output).resolve()
     if output.exists():
         raise SystemExit(f"refusing to overwrite artifact zero: {output}")
-    total, deadlines = evidence_schedule(args.floors)
+    total, deadlines = evidence_schedule(args.floors, args.case_load)
+    case_load = args.case_load
     started_ns = int(datetime.now(timezone.utc).timestamp() * 1_000_000_000)
     started = started_ns / 1_000_000_000
     payload = {
-        "schemaVersion": "bounded-dictionary-timegate.v1",
+        "schemaVersion": "bounded-dictionary-timegate.v2",
         "cohort": args.cohort,
         "artifactZero": True,
         "startedEpoch": started,
@@ -71,6 +73,7 @@ def main() -> None:
             started, timezone.utc).isoformat(timespec="microseconds").replace("+00:00", "Z"),
         "requiredFloors": args.floors,
         "admittedRequiredOccurrences": total,
+        "adjudicatedCaseLoad": case_load,
         "deadlinesSeconds": deadlines,
     }
     if args.continuation_of:

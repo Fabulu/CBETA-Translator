@@ -21,6 +21,7 @@ SELECTION_PATH = MAINT / "non-iriya-v7-depth-regeneration-r11-selection-c.json"
 TITLES_PATH = Path("/mnt/c/programmieren/CbetaZenTranslations/titles.jsonl")
 STAMP = "2026-07-29T21:10:00Z"
 CREATED_BY = "R11 clean-regeneration constructor C"
+TARGET_ANCHOR_RADIUS = 24
 
 
 def sha(path: Path) -> str:
@@ -164,7 +165,12 @@ def validate_occurrence_spec(spec, expected_key):
         raise ValueError(
             f"{expected_key}: occurrence must be an explicit keyed actor/action decision"
         )
-    if set(spec) != {"evidenceKey", "relPath", "occurrenceIndex", "actorDecision"}:
+    if set(spec) != {
+        "evidenceKey", "relPath", "fromLb", "sourceSpanOrdinal",
+        "sourceContextSha256", "sourceCharOffset", "targetSpanAnchorSha256",
+        "boundedKwic", "boundedFromLb", "boundedToLb",
+        "boundaryEvidence", "actorDecision",
+    }:
         raise ValueError(f"{expected_key}: occurrence-spec keys are incomplete or unknown")
     if spec["evidenceKey"] != expected_key:
         raise ValueError(
@@ -229,6 +235,81 @@ def validate_occurrence_spec(spec, expected_key):
     return decision
 
 
+def plan_occurrence_recut(term, spec, expected_key):
+    """Validate an explicit human-selected turn/clause cut against its source span."""
+    rel = spec["relPath"]
+    from_lb = spec["fromLb"]
+    ordinal = spec["sourceSpanOrdinal"]
+    if not isinstance(ordinal, int) or ordinal < 0:
+        raise ValueError(f"{expected_key}: sourceSpanOrdinal must be a nonnegative integer")
+    norm, idx2lb = zc._load(rel)
+    offsets = []
+    start = 0
+    while True:
+        offset = norm.find(term, start)
+        if offset < 0:
+            break
+        offsets.append(offset)
+        start = offset + 1
+    line_offsets = [offset for offset in offsets if idx2lb[offset] == from_lb]
+    if ordinal >= len(line_offsets):
+        raise ValueError(
+            f"{expected_key}: source line/span ordinal does not identify an exact hit"
+        )
+    source_offset = spec["sourceCharOffset"]
+    if not isinstance(source_offset, int) or source_offset < 0:
+        raise ValueError(f"{expected_key}: sourceCharOffset must be a nonnegative integer")
+    if line_offsets[ordinal] != source_offset:
+        raise ValueError(f"{expected_key}: sourceSpanOrdinal does not bind sourceCharOffset")
+    left = norm[max(0, source_offset - TARGET_ANCHOR_RADIUS):source_offset]
+    right_start = source_offset + len(term)
+    right = norm[right_start:right_start + TARGET_ANCHOR_RADIUS]
+    anchor_hash = hashlib.sha256((left + term + right).encode()).hexdigest()
+    if anchor_hash != spec["targetSpanAnchorSha256"]:
+        raise ValueError(f"{expected_key}: target-span anchor hash drift")
+    global_index = offsets.index(source_offset)
+    contexts = zc.find(rel, term, ctx=350, limit=10000)
+    if global_index >= len(contexts):
+        raise ValueError(f"{expected_key}: source context index drift")
+    if hashlib.sha256(contexts[global_index]["window"].encode()).hexdigest() != spec["sourceContextSha256"]:
+        raise ValueError(f"{expected_key}: source context hash drift")
+    kwic = spec["boundedKwic"]
+    boundary = spec["boundaryEvidence"]
+    if not isinstance(kwic, str) or not kwic.strip() or len(kwic) > 800:
+        raise ValueError(f"{expected_key}: explicit boundedKwic must contain 1-800 characters")
+    if kwic.count(term) != 1:
+        raise ValueError(f"{expected_key}: explicit boundedKwic must contain exactly one target span")
+    if not isinstance(boundary, str) or len(boundary.strip()) < 24:
+        raise ValueError(f"{expected_key}: explicit speech/turn boundary evidence is required")
+    verified = zc.verify(rel, kwic)
+    if not verified.get("ok") or verified.get("count") != 1:
+        raise ValueError(f"{expected_key}: explicit boundedKwic is not unique and verifiable")
+    if (
+        verified["fromLb"] != spec["boundedFromLb"]
+        or verified["toLb"] != spec["boundedToLb"]
+    ):
+        raise ValueError(f"{expected_key}: bounded KWIC line identity drift")
+    if not (spec["boundedFromLb"] <= from_lb <= spec["boundedToLb"]):
+        raise ValueError(f"{expected_key}: target source line falls outside bounded KWIC")
+    kwic_offset = norm.find(kwic)
+    if kwic_offset < 0 or norm.find(kwic, kwic_offset + 1) >= 0:
+        raise ValueError(f"{expected_key}: bounded KWIC source offset is not unique")
+    kwic_target_offset = kwic_offset + kwic.index(term)
+    if kwic_target_offset != source_offset:
+        raise ValueError(
+            f"{expected_key}: boundedKwic does not contain the cryptographically bound target span"
+        )
+    return {
+        "evidenceKey": expected_key, "relPath": rel,
+        "fromLb": from_lb, "sourceSpanOrdinal": ordinal,
+        "sourceContextSha256": spec["sourceContextSha256"],
+        "sourceCharOffset": source_offset,
+        "targetSpanAnchorSha256": anchor_hash,
+        "kwic": kwic, "verifiedFromLb": verified["fromLb"],
+        "verifiedToLb": verified["toLb"], "boundaryEvidence": boundary,
+    }
+
+
 def preflight_config_occurrence_decisions(configs, expected_ids=None):
     """Exhaustively close every keyed actor decision before any entry write."""
     errors = []
@@ -249,6 +330,7 @@ def preflight_config_occurrence_decisions(configs, expected_ids=None):
             errors.append(f"surplus config ids: {surplus}")
         if not missing and not surplus and ids != list(expected_ids):
             errors.append(f"misaligned config id order: {ids}")
+    plans = {}
     for ci, config in enumerate(configs):
         if not isinstance(config, dict):
             continue
@@ -278,24 +360,35 @@ def preflight_config_occurrence_decisions(configs, expected_ids=None):
         for number, spec in enumerate(specs, 1):
             try:
                 validate_occurrence_spec(spec, f"o{number}")
+                plan = plan_occurrence_recut(
+                    config.get("term"), spec, f"o{number}"
+                )
+                plans.setdefault(config.get("id"), []).append(plan)
             except (KeyError, TypeError, ValueError) as exc:
                 errors.append(f"{coordinate}.occurrences[{number - 1}]: {exc}")
     if errors:
         raise OccurrenceDecisionClosureError(errors)
+    return plans
 
 
-def make_occurrence(labels, term, spec, expected_key):
+def make_occurrence(labels, term, spec, expected_key, planned_recut):
     decision = validate_occurrence_spec(spec, expected_key)
     rel = spec["relPath"]
-    index = spec["occurrenceIndex"]
-    kwic, _ = concise_kwic(rel, term, index)
+    if (
+        planned_recut.get("evidenceKey") != expected_key
+        or planned_recut.get("relPath") != rel
+        or planned_recut.get("fromLb") != spec["fromLb"]
+        or planned_recut.get("sourceSpanOrdinal") != spec["sourceSpanOrdinal"]
+    ):
+        raise ValueError(f"{expected_key}: recut plan identity mismatch")
+    kwic = planned_recut["kwic"]
     clause = decision["exactHeadwordClause"]
     if clause not in kwic:
         raise ValueError(f"{expected_key}: exactHeadwordClause is absent from the KWIC")
     occurrence = {
         "RelPath": rel,
-        "FromLb": None,
-        "ToLb": None,
+        "FromLb": planned_recut["verifiedFromLb"],
+        "ToLb": planned_recut["verifiedToLb"],
         "Kwic": kwic,
         "MasterName": decision["masterName"],
         "Curated": True,
@@ -309,6 +402,17 @@ def make_occurrence(labels, term, spec, expected_key):
             "GrammaticalSubject": decision["grammarEvidence"],
             "SpeechFrame": decision["voice"],
             "FullCaseDecision": decision["fullCaseDecision"],
+            "SourceSpanIdentity": {
+                "TargetFromLb": spec["fromLb"],
+                "SourceSpanOrdinal": spec["sourceSpanOrdinal"],
+                "SourceContextSha256": spec["sourceContextSha256"],
+                "SourceCharOffset": planned_recut["sourceCharOffset"],
+                "TargetSpanAnchorSha256": planned_recut["targetSpanAnchorSha256"],
+                "TargetSpanAnchorRadius": TARGET_ANCHOR_RADIUS,
+                "BoundedFromLb": planned_recut["verifiedFromLb"],
+                "BoundedToLb": planned_recut["verifiedToLb"],
+                "BoundaryEvidence": planned_recut["boundaryEvidence"],
+            },
         },
     }
     if decision["actorAttribution"]:
@@ -350,12 +454,16 @@ def explicit_worksheet(entry, dossier, decisions):
     return worksheet, anchors
 
 
-def compile_one(config, research_row, family_counts, labels):
+def compile_one(config, research_row, family_counts, labels, recut_plan=None):
+    if not isinstance(recut_plan, list) or len(recut_plan) != len(config.get("occurrences") or []):
+        raise ValueError("whole-config preflight recut plan required before compile_one")
     entry_dir = FRESH / config["id"]
     entry_dir.mkdir(parents=True, exist_ok=True)
     # The semantic draft is complete before the predecessor is opened.
     occurrences = [
-        make_occurrence(labels, config["term"], spec, f"o{number}")
+        make_occurrence(
+            labels, config["term"], spec, f"o{number}", recut_plan[number - 1]
+        )
         for number, spec in enumerate(config["occurrences"], 1)
     ]
     entry = {
@@ -384,15 +492,20 @@ def compile_one(config, research_row, family_counts, labels):
     for number, spec in enumerate(config["occurrences"], 1):
         decision = validate_occurrence_spec(spec, f"o{number}")
         rel = spec["relPath"]
-        index = spec["occurrenceIndex"]
-        hit = zc.find(rel, config["term"], ctx=350, limit=20)[index]
+        hit = recut_plan[number - 1]
         full_cases.append({
             "relPath": rel,
             "workId": zc.work_id(rel),
             "sourceTitle": labels[rel],
             "tier": next(x["tier"] for x in research_row["fullConcordance"] if x["relPath"] == rel),
-            "fullCaseWindow": hit["window"],
-            "heading": zc.head(rel, hit["fromLb"]),
+            "fullCaseWindow": next(
+                candidate["context"]
+                for candidate in research_row["fullCandidates"]
+                if candidate["relPath"] == rel
+                and candidate["fromLb"] == spec["fromLb"]
+                and candidate["contextSha256"] == spec["sourceContextSha256"]
+            ),
+            "heading": zc.head(rel, spec["fromLb"]),
             "actorDecision": {
                 "evidenceKey": decision["evidenceKey"],
                 "masterName": decision["masterName"],
@@ -402,6 +515,15 @@ def compile_one(config, research_row, family_counts, labels):
                 "voice": decision["voice"],
                 "contextMasters": decision["contextMasters"],
                 "contextActors": decision["contextActors"],
+            },
+            "sourceSpanIdentity": {
+                "fromLb": spec["fromLb"],
+                "sourceSpanOrdinal": spec["sourceSpanOrdinal"],
+                "sourceContextSha256": spec["sourceContextSha256"],
+                "boundedKwic": hit["kwic"],
+                "boundedFromLb": hit["verifiedFromLb"],
+                "boundedToLb": hit["verifiedToLb"],
+                "boundaryEvidence": hit["boundaryEvidence"],
             },
             "decisionBasis": decision["fullCaseDecision"],
         })
@@ -464,9 +586,12 @@ def compile_one(config, research_row, family_counts, labels):
         "roles": ["original-use"] * 5,
         "highValue": [{
             "Disposition": "keep",
-            "Finding": f"{o['MasterName']} uses the expression in {labels[o['RelPath']]}.",
+            "Finding": (
+                f"{o.get('MasterName') or o['ActorAttribution']['ActorLabel']} "
+                f"{spec['actorDecision']['action']} in {labels[o['RelPath']]}."
+            ),
             "Reason": "The complete case secures the exact actor and adds a distinct direct use or active commentary.",
-        } for o in occurrences],
+        } for o, spec in zip(occurrences, config["occurrences"])],
         "zenBend": config["opening"],
         "counterexample": config["note"],
         "differentThing": {
@@ -567,9 +692,12 @@ def compile_one(config, research_row, family_counts, labels):
 
 
 def compile_all(configs, research_by_id, family_counts, labels, expected_ids=None):
-    preflight_config_occurrence_decisions(configs, expected_ids=expected_ids)
+    plans = preflight_config_occurrence_decisions(configs, expected_ids=expected_ids)
     return [
-        compile_one(config, research_by_id[config["id"]], family_counts, labels)
+        compile_one(
+            config, research_by_id[config["id"]], family_counts, labels,
+            recut_plan=plans[config["id"]],
+        )
         for config in configs
     ]
 
@@ -580,7 +708,7 @@ def main():
     family_terms = [term for config in CONFIG for term in config["family"]]
     family_counts = zc.batch_count(family_terms)
     labels = titles()
-    preflight_config_occurrence_decisions(
+    recut_plans = preflight_config_occurrence_decisions(
         CONFIG, expected_ids=[config["id"] for config in CONFIG]
     )
     checkpoint3_path = MAINT / "non-iriya-v7-depth-regeneration-r11-checkpoint-03-c.json"
@@ -612,7 +740,10 @@ def main():
     for index, config in enumerate(CONFIG, 1):
         if index <= resume_after:
             continue
-        results.append(compile_one(config, research_by_id[config["id"]], family_counts, labels))
+        results.append(compile_one(
+            config, research_by_id[config["id"]], family_counts, labels,
+            recut_plan=recut_plans[config["id"]],
+        ))
         if index in {3, 5}:
             checkpoint = {
                 "schemaVersion": "r11-clean-regeneration-checkpoint.v1",
