@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "r75-focused-correction-rereview.v1",
+  "cohort": "R75",
+  "id": "t_19c58dc2d3be",
+  "term": "度人已畢",
+  "productPath": "fresh-build/entries/t_19c58dc2d3be/entry.v2.json",
+  "productSha256": "c592953211253f21a3a5b34cc979ed4dd0c95e6c2b17ef5b1e89ab8dbeb3fdc9",
+  "worksheetSha256": "fbd23ec24795ff2b8003fcb49fddb7bc3350044ffffe1a28cc35a013056aa572",
+  "compilerReportSha256": "7225057e60fe4f6abdb88eb3c7abb86793db183fae2c4625ffc8f8aadcfd4745",
+  "supersedesReviewPath": "maintenance/non-iriya-v7-depth-regeneration-r75-product-review-duren-r27.json",
+  "focusedCoordinateReview": {
+    "opening": "PASS: the new opening identifies the completed-before-beginning temporal reversal and is not a headword-plus-target restatement.",
+    "standaloneActorProse": "PASS: the final clause now attributes the shorter predicate to an unnamed monk questioning Poshan; Poshan remains the respondent.",
+    "aliases": "PASS: the reviewed alternate target, two English search aliases, and both Chinese full-formula redirect forms are present.",
+    "wunianRole": "PASS: Wunian You is now record-owner for his authored letter.",
+    "compilerBinding": "PASS: the canonical report binds the exact worksheet and product hashes above.",
+    "duplicateOpening": "PASS: the corpus-earned opening appears once and is not duplicated into the evidence paragraph."
+  },
+  "collateralReview": {
+    "occurrencesAndFamilies": "PASS: the same six source paths and six independent Tier-2 families remain; no lamp or rejected case entered the product.",
+    "semanticCore": "PASS: preferred target, single sense, short/full formula distinction, and limitation note remain intact.",
+    "actorMetadata": "FAIL: Zhongfeng Mingben's first occurrence changed from the reviewed 'utterer' role to 'record-owner'. His continuous bathing-the-Buddha hall address is active spoken discourse introduced by 所以云, and the source-first decision/review explicitly approved him as utterer. This was not an authorized focused coordinate."
+  },
+  "defects": [
+    {
+      "severity": "blocking",
+      "coordinate": "Senses[0].Occurrences[0].ContextMasters[0].Roles; mirrored worksheet occurrence",
+      "finding": "Collateral role regression: Zhongfeng Mingben is now ['record-owner']; the reviewed decision and prior exact product had ['utterer'].",
+      "requiredRepair": "Restore only Zhongfeng's role to 'utterer' in worksheet authority and canonically recompile. Preserve Wunian's corrected 'record-owner' role."
+    }
+  ],
+  "verdict": "DENY",
+  "hardPass": false,
+  "publicMutation": false
+}

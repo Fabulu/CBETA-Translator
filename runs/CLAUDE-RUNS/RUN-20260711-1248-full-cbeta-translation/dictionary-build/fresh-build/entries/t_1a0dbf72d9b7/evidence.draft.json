@@ -1,0 +1,550 @@
+{
+  "SchemaVersion": 1,
+  "ConstructionPipelineVersion": 2,
+  "Admission": {
+    "Decision": "admit",
+    "LexicalUnitReason": "打一圓相 is a stable fixed expression used in public answers, verses, appraisals, or case commentary.",
+    "ObservableChanJob": "In these records, 打一圓相 is a displayed answer or teaching action: someone draws a circle and another participant answers, rejects, or continues from it.",
+    "DuplicateCheck": {
+      "DeterministicIdChecked": true,
+      "ExactHeadwordChecked": true,
+      "NearDuplicateRuling": "No exact or punctuation-normalized collision occurs in R01-R10 or the current R11 selection; companion clauses remain separately named family leads."
+    }
+  },
+  "EvidenceTransport": {
+    "DossierPath": "source-dossier.json",
+    "DossierSha256": "c37dd98f4edb62db7845d0b943d8a97714d71e2a8920ebce0d1558d2e7aba73a",
+    "SourceAuthorityManifestSha256": "2ee44bf19a2533958e5620c38915f3d03fbb81209c76c7183742a4f3d059f501",
+    "DiscoveryMethods": [
+      "exact concordance count",
+      "complete-turn actor review",
+      "Tier 1 then Tier 2 source ranking",
+      "predecessor-evidence adjudication"
+    ],
+    "ExactCount": 195,
+    "BridgedCount": 195,
+    "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+  },
+  "Entry": {
+    "Id": "t_1a0dbf72d9b7",
+    "SourceTerm": "打一圓相",
+    "CreatedBy": "R74 source-hierarchy repair",
+    "WrittenUtc": "2026-07-30T08:27:22.495392Z",
+    "Senses": [
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "draw a circle",
+        "AlternateTargets": [
+          "trace a circle"
+        ],
+        "SearchAliases": [
+          "make a circular figure"
+        ],
+        "Status": "preferred",
+        "Validation": "multi-source",
+        "Explanation": "In these records, 打一圓相 is a displayed answer or teaching action: someone draws a circle and another participant answers, rejects, or continues from it. An unnamed participant offers the circle and Langye answers with blows; Shiche Tongcheng gives it instead of answering Miyun's question; Wuqu Rukong, Wuhuan Xingchong, Tianyin Yuanxiu, and Wuming Huijing make circles with a whisk or firebrand in public or ceremonial addresses. The records then answer, reject, gloss, or continue from the displayed figure, so the phrase names a recurrent communicative action rather than incidental drawing.",
+        "Note": "Translate the performed action, not a supposed doctrine encoded in the circle. The instrument may be a hand, finger, whisk, firebrand, or may be unstated. Keep “walk around in a circle” separate: it is a different bodily action even when the same record juxtaposes it with a drawn circle.",
+        "Occurrences": [
+          {
+            "RelPath": "C/C077/C077n1710.xml",
+            "FromLb": "0961a13",
+            "ToLb": "0961a19",
+            "Kwic": "等諸人若到諸方遇眀眼作家與我通箇消息貴得祖風不墜若是常徒即湏寢息何故躶形國內誇服飾想君太殺不知時。師上堂有僧出打一圓相師便打云道道僧云不道不道師又打僧云三世諸佛不出於此師又打乃云大眾教中道以手指比丘犯波逸提山僧今日入地獄如箭射。",
+            "MasterName": null,
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Langye Huijue",
+                "Roles": [
+                  "respondent",
+                  "record-owner"
+                ],
+                "GrammarEvidence": "師便打 and the following exchanges belong to Langye's response after the monk draws the circle."
+              }
+            ],
+            "ContextActors": [
+              {
+                "Status": "reviewed-unnamed",
+                "ActorLabel": "the unnamed monk who comes forward",
+                "Roles": [
+                  "case-figure"
+                ],
+                "GrammarEvidence": "有僧出 identifies an unnamed monk as the person whose circle-drawing action the narrator describes."
+              }
+            ],
+            "AttributionNote": "Source record (C/C077/C077n1710.xml). Recorded Sayings of Ancient Masters. 有僧出打一圓相 is narrator-governed prose describing the action of the unnamed monk who comes forward; the monk is the described performer, not the grammatical owner of the headword-bearing narration.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "打一圓相",
+              "GrammaticalSubject": "the record narrator",
+              "SpeechFrame": "Source record (C/C077/C077n1710.xml). Recorded Sayings of Ancient Masters. 有僧出打一圓相 is narrator-governed prose describing the emerging monk's action; the monk is the described performer, not the grammatical owner of the headword-bearing narration.",
+              "FullCaseDecision": "the record narrator is the exact actor at the headword-bearing clause; contextual speakers are not substituted."
+            },
+            "ActorAttribution": {
+              "Status": "narrated",
+              "Kind": "compiler narrative",
+              "ActorLabel": "the record narrator",
+              "ActorRole": "compiler",
+              "GrammarEvidence": "有僧出打一圓相 is narrator-governed prose describing the emerging monk's action; the monk is the described performer, not the grammatical owner of the headword-bearing narration.",
+              "ReviewedBy": "R74 source-first adjudication",
+              "ReviewedUtc": "2026-07-30T08:27:22.495392Z",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ]
+            }
+          },
+          {
+            "RelPath": "J/J10/J10nA158.xml",
+            "FromLb": "0028a03",
+            "ToLb": "0028a08",
+            "Kwic": "更試舉看。」峰轉身，云：「某甲去也。」師乃付。石車到，師問：「那裡來？」云：「雲門來。」師云：「幾時起身？」車打一圓相，師云：「不可亂做。」云：「千里同風，今日特來親領痛棒。」師云：「既是千里同風，又來作麼？」車即提起左腳，師云",
+            "MasterName": null,
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Shiche Tongcheng",
+                "Roles": [
+                  "case-figure",
+                  "interlocutor"
+                ],
+                "GrammarEvidence": "石車到 and the abbreviated 車 identify Shiche as the person whose circle action is narrated."
+              },
+              {
+                "MasterName": "Miyun Yuanwu",
+                "Roles": [
+                  "questioner",
+                  "respondent",
+                  "record-owner"
+                ],
+                "GrammarEvidence": "師 asks the travel question and rejects the displayed action with 不可亂做."
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J10/J10nA158.xml). Miyun Chan Sayings. 車打一圓相 is narrator-governed prose describing Shiche's action after Miyun's question.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "打一圓相",
+              "GrammaticalSubject": "the record narrator",
+              "SpeechFrame": "Source record (J/J10/J10nA158.xml). Miyun Chan Sayings. 車打一圓相 is narrator-governed prose describing Shiche's action after Miyun's question.",
+              "FullCaseDecision": "the record narrator is the exact actor at the headword-bearing clause; contextual speakers are not substituted."
+            },
+            "ActorAttribution": {
+              "Status": "narrated",
+              "Kind": "compiler narrative",
+              "ActorLabel": "the record narrator",
+              "ActorRole": "compiler",
+              "GrammarEvidence": "車打一圓相 is narrator-governed prose describing Shiche's action after Miyun's question.",
+              "ReviewedBy": "R74 source-first adjudication",
+              "ReviewedUtc": "2026-07-30T08:27:22.495392Z",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ]
+            }
+          },
+          {
+            "RelPath": "J/J25/J25nB155.xml",
+            "FromLb": "0046b01",
+            "ToLb": "0046b06",
+            "Kwic": "不唯背了天子，此外更無國禮。畢竟作麼生，始得禮法併致一道流通？」遂舉拂子鞠躬云：「皇圖鞏固，帝道遐昌。」以拂子打一圓相云：「佛日增輝，仁風永扇。」佛涅槃日示眾：「釋迦老漢做了一生好漢，末後對眾寐語：『若謂我滅度，非吾弟子；若謂我",
+            "MasterName": null,
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Wuqu Rukong",
+                "Roles": [
+                  "case-figure",
+                  "record-owner"
+                ],
+                "GrammarEvidence": "The governing 師 in Wuqu's record identifies Wuqu as the described performer."
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J25/J25nB155.xml). Elder Wuqu Sayings. 以拂子打一圓相云 is narrator-governed action prose describing Wuqu's whisk gesture before his quoted words.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "打一圓相",
+              "GrammaticalSubject": "the record narrator",
+              "SpeechFrame": "Source record (J/J25/J25nB155.xml). Elder Wuqu Sayings. 以拂子打一圓相云 is narrator-governed action prose describing Wuqu's whisk gesture before his quoted words.",
+              "FullCaseDecision": "the record narrator is the exact actor at the headword-bearing clause; contextual speakers are not substituted."
+            },
+            "ActorAttribution": {
+              "Status": "narrated",
+              "Kind": "compiler narrative",
+              "ActorLabel": "the record narrator",
+              "ActorRole": "compiler",
+              "GrammarEvidence": "以拂子打一圓相云 is narrator-governed action prose describing Wuqu's whisk gesture before his quoted words.",
+              "ReviewedBy": "R74 source-first adjudication",
+              "ReviewedUtc": "2026-07-30T08:27:22.495392Z",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ]
+            }
+          },
+          {
+            "RelPath": "J/J25/J25nB156.xml",
+            "FromLb": "0067b21",
+            "ToLb": "0067c01",
+            "Kwic": "烘烘。」為石庵殿主秉炬為石庵殿主秉炬「三陽一轉群陰絕，某人胡為不賞節，歸鞭著在春日前，針頭削下千觔鐵。」以火把打一圓相，云：「某還見麼，若謂這個是火，十方世界無你啑唾；若謂不是火，五葉蓮花開朵朵。咄！」為童兒秉炬為童兒秉炬一點無",
+            "MasterName": null,
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Wuhuan Xingchong",
+                "Roles": [
+                  "case-figure",
+                  "record-owner"
+                ],
+                "GrammarEvidence": "The funeral address's governing 師 identifies Wuhuan as the described performer."
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J25/J25nB156.xml). Wuhuan Chan Sayings. 以火把打一圓相，云 is narrator-governed action prose describing Wuhuan's use of the firebrand before his quoted words.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "打一圓相",
+              "GrammaticalSubject": "the record narrator",
+              "SpeechFrame": "Source record (J/J25/J25nB156.xml). Wuhuan Chan Sayings. 以火把打一圓相，云 is narrator-governed action prose describing Wuhuan's use of the firebrand before his quoted words.",
+              "FullCaseDecision": "the record narrator is the exact actor at the headword-bearing clause; contextual speakers are not substituted."
+            },
+            "ActorAttribution": {
+              "Status": "narrated",
+              "Kind": "compiler narrative",
+              "ActorLabel": "the record narrator",
+              "ActorRole": "compiler",
+              "GrammarEvidence": "以火把打一圓相，云 is narrator-governed action prose describing Wuhuan's use of the firebrand before his quoted words.",
+              "ReviewedBy": "R74 source-first adjudication",
+              "ReviewedUtc": "2026-07-30T08:27:22.495392Z",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ]
+            }
+          },
+          {
+            "RelPath": "J/J25/J25nB171.xml",
+            "FromLb": "0537b04",
+            "ToLb": "0537b09",
+            "Kwic": "。到遮裏年窮歲盡，且道徹頭徹尾一句作麼生道？」喝一喝，云：「驪龍不臥澄潭水，猛虎還藏深谷林。」旦日示眾，師以拂打一圓相，復拋後云：「新年頭上佛法，信手拈來豁達，撞著無位真人，打算全無合煞。剛道拾隻達磨皮鞋，放下時元來是憨布袋破衲",
+            "MasterName": null,
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Tianyin Yuanxiu",
+                "Roles": [
+                  "case-figure",
+                  "record-owner"
+                ],
+                "GrammarEvidence": "師 in Tianyin's own record identifies Tianyin as the described performer."
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J25/J25nB171.xml). Tianyin Sayings. 旦日示眾，師以拂打一圓相 is narrator-governed prose describing Tianyin's whisk action.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "打一圓相",
+              "GrammaticalSubject": "the record narrator",
+              "SpeechFrame": "Source record (J/J25/J25nB171.xml). Tianyin Sayings. 旦日示眾，師以拂打一圓相 is narrator-governed prose describing Tianyin's whisk action.",
+              "FullCaseDecision": "the record narrator is the exact actor at the headword-bearing clause; contextual speakers are not substituted."
+            },
+            "ActorAttribution": {
+              "Status": "narrated",
+              "Kind": "compiler narrative",
+              "ActorLabel": "the record narrator",
+              "ActorRole": "compiler",
+              "GrammarEvidence": "旦日示眾，師以拂打一圓相 is narrator-governed prose describing Tianyin's whisk action.",
+              "ReviewedBy": "R74 source-first adjudication",
+              "ReviewedUtc": "2026-07-30T08:27:22.495392Z",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ]
+            }
+          },
+          {
+            "RelPath": "J/J25/J25nB173.xml",
+            "FromLb": "0671a05",
+            "ToLb": "0671a10",
+            "Kwic": "呵呵，寒山忘卻來時道。珍重。上堂「收。山僧於法無罣礙，秪欠諸人些禪債；今朝一一為酬償，要者來支無後悔。」以拂子打一圓相曰：「上不似下，下卻似上；上下打合，總不似像。會麼？將謂有許多債主，元來卻無。咦！孤峰夜半猿啼切，激月攜星拱北",
+            "MasterName": null,
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Wuming Huijing",
+                "Roles": [
+                  "case-figure",
+                  "record-owner"
+                ],
+                "GrammarEvidence": "師 in Wuming's own record identifies Wuming as the described performer."
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J25/J25nB173.xml). Shouchang Wuming Sayings. 以拂子打一圓相曰 is narrator-governed action prose describing Wuming's whisk gesture before his quoted appraisal.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "打一圓相",
+              "GrammaticalSubject": "the record narrator",
+              "SpeechFrame": "Source record (J/J25/J25nB173.xml). Shouchang Wuming Sayings. 以拂子打一圓相曰 is narrator-governed action prose describing Wuming's whisk gesture before his quoted appraisal.",
+              "FullCaseDecision": "the record narrator is the exact actor at the headword-bearing clause; contextual speakers are not substituted."
+            },
+            "ActorAttribution": {
+              "Status": "narrated",
+              "Kind": "compiler narrative",
+              "ActorLabel": "the record narrator",
+              "ActorRole": "compiler",
+              "GrammarEvidence": "以拂子打一圓相曰 is narrator-governed action prose describing Wuming's whisk gesture before his quoted appraisal.",
+              "ReviewedBy": "R74 source-first adjudication",
+              "ReviewedUtc": "2026-07-30T08:27:22.495392Z",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ]
+            }
+          }
+        ],
+        "ClaimAnchors": [],
+        "SourceTexts": [
+          "C/C077/C077n1710.xml",
+          "J/J10/J10nA158.xml",
+          "J/J25/J25nB155.xml",
+          "J/J25/J25nB156.xml",
+          "J/J25/J25nB171.xml",
+          "J/J25/J25nB173.xml"
+        ],
+        "RelatedMasters": [
+          "Langye Huijue",
+          "Shiche Tongcheng",
+          "Miyun Yuanwu",
+          "Wuqu Rukong",
+          "Wuhuan Xingchong",
+          "Tianyin Yuanxiu",
+          "Wuming Huijing"
+        ],
+        "RelatedTerms": [],
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "In these records, 打一圓相 is a displayed answer or teaching action: someone draws a circle and another participant answers, rejects, or continues from it.",
+          "EvidenceBody": [
+            "An unnamed participant offers the circle and Langye answers with blows; Shiche Tongcheng gives it instead of answering Miyun's question; Wuqu Rukong, Wuhuan Xingchong, Tianyin Yuanxiu, and Wuming Huijing make circles with a whisk or firebrand in public or ceremonial addresses. The records then answer, reject, gloss, or continue from the displayed figure, so the phrase names a recurrent communicative action rather than incidental drawing."
+          ]
+        },
+        "DraftEvidence": {
+          "LiteralGraphFloor": "draw a circle",
+          "LexicalJob": "In these records, 打一圓相 is a displayed answer or teaching action: someone draws a circle and another participant answers, rejects, or continues from it.",
+          "DeploymentClasses": [
+            "source-case",
+            "independent deployment",
+            "parallel witness"
+          ],
+          "HighValueEvidenceLedger": [
+            {
+              "Disposition": "keep",
+              "Finding": "the record narrator uses the headword in the retained passage in Recorded Sayings of Ancient Masters.",
+              "Reason": "The complete case secures the exact actor and adds a distinct direct use or active commentary."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "the record narrator uses the headword in the retained passage in Miyun Chan Sayings.",
+              "Reason": "The complete case secures the exact actor and adds a distinct direct use or active commentary."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "the record narrator uses the headword in the retained passage in Elder Wuqu Sayings.",
+              "Reason": "The complete case secures the exact actor and adds a distinct direct use or active commentary."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "the record narrator uses the headword in the retained passage in Wuhuan Chan Sayings.",
+              "Reason": "The complete case secures the exact actor and adds a distinct direct use or active commentary."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "the record narrator uses the headword in the retained passage in Tianyin Sayings.",
+              "Reason": "The complete case secures the exact actor and adds a distinct direct use or active commentary."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "the record narrator uses the headword in the retained passage in Shouchang Wuming Sayings.",
+              "Reason": "The complete case secures the exact actor and adds a distinct direct use or active commentary."
+            }
+          ],
+          "OpeningClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3",
+            "o4",
+            "o5",
+            "o6"
+          ],
+          "EvidenceBodyClaimKeys": [
+            [
+              "o1",
+              "o2",
+              "o3",
+              "o4",
+              "o5",
+              "o6"
+            ]
+          ],
+          "ZenBend": "In these records, 打一圓相 is a displayed answer or teaching action: someone draws a circle and another participant answers, rejects, or continues from it.",
+          "CounterexampleOrLimit": "Translate the performed action, not a supposed doctrine encoded in the circle. The instrument may be a hand, finger, whisk, firebrand, or may be unstated. Keep “walk around in a circle” separate: it is a different bodily action even when the same record juxtaposes it with a drawn circle.",
+          "DifferentThingTest": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "draw a circle"
+            ],
+            "Reason": "The question, verse, appraisal, and commentary frames retain the same lexical referent; none names a separate object, person, title, or institutional role."
+          },
+          "AliasRationale": "The aliases preserve the concrete wording of “draw a circle” without adding a new interpretation.",
+          "ModifierControls": [
+            {
+              "Term": "打一圓相",
+              "Finding": "No material or color modifier creates a separate referent; the full fixed expression is translated as one unit."
+            }
+          ],
+          "FamilyControls": [
+            {
+              "Term": "打一圓相",
+              "Finding": "Not applicable: no distinct family candidate was admitted or rejected in this bounded source-first construction."
+            }
+          ],
+          "IndependentWorkIds": [
+            "work:guzunsu-yulu",
+            "work:J10nA158",
+            "work:J25nB155",
+            "work:J25nB156",
+            "work:J25nB171",
+            "work:J25nB173"
+          ],
+          "SourceAuthorityRows": [
+            {
+              "EvidenceKey": "o1",
+              "RelPath": "C/C077/C077n1710.xml",
+              "WorkId": "work:guzunsu-yulu",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "The registered title identifies a named master’s sayings, discourse, question-and-answer, session, or comparable speech record; exact embedded quotations still require passage-level actor review.",
+              "WitnessFamilyId": "yuanxiang:langye-monk-circle-and-blows",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o2",
+              "RelPath": "J/J10/J10nA158.xml",
+              "WorkId": "work:J10nA158",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "The registered title identifies a named master’s sayings, discourse, question-and-answer, session, or comparable speech record; exact embedded quotations still require passage-level actor review.",
+              "WitnessFamilyId": "yuanxiang:shiche-answers-miyun-with-circle",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o3",
+              "RelPath": "J/J25/J25nB155.xml",
+              "WorkId": "work:J25nB155",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "The registered title identifies a named master’s sayings, discourse, question-and-answer, session, or comparable speech record; exact embedded quotations still require passage-level actor review.",
+              "WitnessFamilyId": "yuanxiang:wuqu-new-year-whisk-circle",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o4",
+              "RelPath": "J/J25/J25nB156.xml",
+              "WorkId": "work:J25nB156",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "The registered title identifies a named master’s sayings, discourse, question-and-answer, session, or comparable speech record; exact embedded quotations still require passage-level actor review.",
+              "WitnessFamilyId": "yuanxiang:wuhuan-firebrand-circle",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o5",
+              "RelPath": "J/J25/J25nB171.xml",
+              "WorkId": "work:J25nB171",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "The registered title identifies a named master’s sayings, discourse, question-and-answer, session, or comparable speech record; exact embedded quotations still require passage-level actor review.",
+              "WitnessFamilyId": "yuanxiang:tianyin-new-year-whisk-circle",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o6",
+              "RelPath": "J/J25/J25nB173.xml",
+              "WorkId": "work:J25nB173",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "The registered title identifies a named master’s sayings, discourse, question-and-answer, session, or comparable speech record; exact embedded quotations still require passage-level actor review.",
+              "WitnessFamilyId": "yuanxiang:wuming-whisk-circle-and-appraisal",
+              "DeploymentRole": "original-use"
+            }
+          ],
+          "LampExcessJustification": "No Tier-3 lamp or lineage compilation is retained.",
+          "NoHigherWitnessSearchReceipt": "Every matching allowlisted file was classified by authority; the retained set uses only Tier 1 or Tier 2 sources, and no lamp is needed.",
+          "DepthHarvestReceipt": {
+            "Complete": true,
+            "ReviewedExactHitCount": 195,
+            "AvailableSourceFiles": 86,
+            "SearchedDeploymentClasses": [
+              "source-case",
+              "independent deployment",
+              "parallel witness"
+            ],
+            "OmissionAudit": [
+              "All five retained complete cases were read and exact-actor adjudicated.",
+              "Parallel containers and passive quotations were excluded from independent-family counting.",
+              "Tier-3 lamps were considered last and none was needed.",
+              "The predecessor was opened only after the source-first semantic draft was complete."
+            ]
+          }
+        },
+        "DraftAcceptedDerivedFields": {
+          "SourceTexts": [
+            "C/C077/C077n1710.xml",
+            "J/J10/J10nA158.xml",
+            "J/J25/J25nB155.xml",
+            "J/J25/J25nB156.xml",
+            "J/J25/J25nB171.xml",
+            "J/J25/J25nB173.xml"
+          ],
+          "RelatedMasters": [
+            "Langye Huijue",
+            "Shiche Tongcheng",
+            "Miyun Yuanwu",
+            "Wuqu Rukong",
+            "Wuhuan Xingchong",
+            "Tianyin Yuanxiu",
+            "Wuming Huijing"
+          ]
+        }
+      }
+    ],
+    "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+  },
+  "FamilyHarvest": {
+    "PolicyVersion": 1,
+    "Scope": "R74 source-hierarchy repair exact source-first family harvest",
+    "Edges": [],
+    "NegativeReceipt": [],
+    "GraphicVariants": []
+  }
+}

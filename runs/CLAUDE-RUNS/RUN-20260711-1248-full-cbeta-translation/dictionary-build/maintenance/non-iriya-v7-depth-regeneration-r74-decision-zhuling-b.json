@@ -1,0 +1,166 @@
+{
+  "schemaVersion": "r74-source-first-removal-decision.v1",
+  "cohort": "R74",
+  "id": "t_19b90a49b420",
+  "term": "囑令加護",
+  "requiredFloor": 4,
+  "researchCandidateReserve": 3,
+  "sourceBinding": {
+    "extractionPath": "maintenance/non-iriya-v7-depth-regeneration-r74-extraction-output-b.json",
+    "researchSkeletonPath": "maintenance/non-iriya-v7-depth-regeneration-r74-research-skeleton-b.json",
+    "completeCandidatesRead": 7,
+    "selectionSha256": "105b9a02109d8aa6b09d5d763f000003c91dd9c63e07c3a86b7e57f7ab0e2699",
+    "extractionSha256": "9a8c43c2d31dbe3a3e948a2ddf6406304625a58d9c23d12a3c1c510609624a16",
+    "countSha256": "bb419068aa8245ac601f85f51959e403d0f43c881d412008d7c1efaaa263eb3c"
+  },
+  "semanticRuling": {
+    "admission": "remove",
+    "senseCount": 0,
+    "unitType": "compositional narrative clause",
+    "literalParsing": [
+      {
+        "segment": "囑令",
+        "function": "instruct, charge, or enjoin"
+      },
+      {
+        "segment": "加護",
+        "function": "protect, care for, or safeguard"
+      }
+    ],
+    "ruling": "囑令加護 is not a stable Zen lexical unit. It is ordinary narrative syntax meaning that a teacher charged someone to protect or carefully sustain something understood from context. The omitted person and object vary with the surrounding anecdote; the four graphs do not acquire an independent technical sense.",
+    "currentEntryDiagnosis": "The existing entry already calls the string a narrator's compact transition and translates a context-supplied pronoun and object ('charge him to guard it carefully'). That is sentence translation, not dictionary headword semantics. Its two retained occurrences also fail the required depth floor and one is a lamp.",
+    "repairAction": "Remove the dictionary entry rather than padding a compositional clause with repeated recensions or lamp narration. 加護 may be considered separately only if independently selected and shown to have a corpus-specific lexical use."
+  },
+  "caseDecisions": [
+    {
+      "evidenceKey": "r74-o1",
+      "relPath": "J/J27/J27nB198.xml",
+      "fromLb": "0472b20",
+      "workId": "work:J27nB198",
+      "tier": 2,
+      "decision": "reject-nonlexical-narration",
+      "exactActor": {
+        "masterName": "Xueguan Zhiyin",
+        "role": "utterer",
+        "grammarEvidence": "Xueguan's 拈曰 follows the embedded Huanglong-Lü Yan anecdote and questions why Huanglong, after Lü awakened, 又囑令加護."
+      },
+      "WitnessFamilyId": "zhuling-jiahu:huanglong-luyan",
+      "deploymentRole": "commentary-on-embedded-case",
+      "reason": "This is an active raising of an inherited event, but the headword-bearing words remain the narrator's compositional report of Huanglong's instruction; they do not establish a lexicalized term."
+    },
+    {
+      "evidenceKey": "r74-o2",
+      "relPath": "J/J28/J28nB215.xml",
+      "fromLb": "0565a20",
+      "workId": "work:J28nB215",
+      "tier": 2,
+      "decision": "reject-nonmaster-preface-narration",
+      "exactActor": null,
+      "contextActors": [
+        {
+          "status": "identified-nonmaster",
+          "actorLabel": "Zhang Youyu",
+          "roles": [
+            "author",
+            "narrator"
+          ],
+          "grammarEvidence": "合響集敘大圓居士張有譽撰 identifies the lay preface author; its prose says the elder rejoiced for the two women and 囑令加護."
+        }
+      ],
+      "WitnessFamilyId": "zhuling-jiahu:zhang-youyu-preface",
+      "deploymentRole": "lay-preface-narration",
+      "reason": "Neither a Zen-master utterance nor a lexical definition; ordinary biographical prose cannot fill the Zen evidence floor."
+    },
+    {
+      "evidenceKey": "r74-o3",
+      "relPath": "J/J29/J29nB230.xml",
+      "fromLb": "0256a04",
+      "workId": "chan:shuijian-hai-hui-lu",
+      "tier": 2,
+      "decision": "reject-parallel-case-narration",
+      "exactActor": {
+        "masterName": "Shuijian Hai",
+        "role": "utterer",
+        "grammarEvidence": "In Shuijian Hai's hall address, 師曰 introduces his discussion after he raises the Huanglong-Lü Yan story; 黃龍囑令加護 is part of the inherited narration."
+      },
+      "WitnessFamilyId": "zhuling-jiahu:huanglong-luyan",
+      "deploymentRole": "commentary-on-embedded-case",
+      "reason": "Same inherited Huanglong-Lü Yan family as r74-o1 and r74-o7; it cannot be counted as a new lexical family, and the clause remains compositional."
+    },
+    {
+      "evidenceKey": "r74-o4",
+      "relPath": "J/J29/J29nB239.xml",
+      "fromLb": "0499c24",
+      "workId": "work:J29nB239",
+      "tier": 2,
+      "decision": "reject-case-narration",
+      "exactActor": {
+        "masterName": "Chuiwan Guangzhen",
+        "role": "utterer",
+        "grammarEvidence": "Chuiwan Guangzhen's 拈云 comments on the raised Zhao Lingjin anecdote, in which the narration states that Yuanwu saw Zhao's verse and 囑令加護."
+      },
+      "WitnessFamilyId": "zhuling-jiahu:yuanwu-zhao-lingjin",
+      "deploymentRole": "commentary-on-embedded-case",
+      "reason": "An active comment on the anecdote does not lexicalize its ordinary narrative clause."
+    },
+    {
+      "evidenceKey": "r74-o5",
+      "relPath": "T/T51/T51n2077.xml",
+      "fromLb": "0659c05",
+      "workId": "work:T51n2077",
+      "tier": 3,
+      "decision": "reject-lamp-parallel",
+      "exactActor": null,
+      "WitnessFamilyId": "zhuling-jiahu:yuanwu-zhao-lingjin",
+      "deploymentRole": "lamp-narration",
+      "reason": "Lamp narration of the same Yuanwu-Zhao Lingjin anecdote as r74-o4 and r74-o6; least-verified source class and no independent semantic contribution."
+    },
+    {
+      "evidenceKey": "r74-o6",
+      "relPath": "X/X79/X79n1559.xml",
+      "fromLb": "0430b05",
+      "workId": "work:X79n1559",
+      "tier": 3,
+      "decision": "reject-lamp-parallel",
+      "exactActor": null,
+      "WitnessFamilyId": "zhuling-jiahu:yuanwu-zhao-lingjin",
+      "deploymentRole": "lamp-narration",
+      "reason": "Parallel lamp version of the Yuanwu-Zhao Lingjin anecdote. The existing entry wrongly assigns the narrator's clause to Yuanwu as an utterance; 悟見，囑令加護 is third-person narration, not quoted speech."
+    },
+    {
+      "evidenceKey": "r74-o7",
+      "relPath": "X/X80/X80n1565.xml",
+      "fromLb": "0179c11",
+      "workId": "work:X80n1565",
+      "tier": 3,
+      "decision": "reject-lamp-parallel",
+      "exactActor": null,
+      "WitnessFamilyId": "zhuling-jiahu:huanglong-luyan",
+      "deploymentRole": "lamp-narration",
+      "reason": "Parallel lamp narration of the Huanglong-Lü Yan anecdote already raised in r74-o1 and r74-o3; it adds neither an independent family nor a lexical sense."
+    }
+  ],
+  "familyAudit": {
+    "extractedCandidateCount": 7,
+    "provisionalWorkCount": 7,
+    "independentNarrativeFamilyCount": 3,
+    "families": [
+      "zhuling-jiahu:huanglong-luyan",
+      "zhuling-jiahu:yuanwu-zhao-lingjin",
+      "zhuling-jiahu:zhang-youyu-preface"
+    ],
+    "warning": "Seven files collapse to two repeated anecdote families plus one lay preface. File count would substantially overstate independent evidence."
+  },
+  "retainedSubset": {
+    "occurrenceCount": 0,
+    "independentWitnessFamilyCount": 0,
+    "tier1Count": 0,
+    "tier2Count": 0,
+    "tier3LampCount": 0,
+    "floorMet": false,
+    "floorRuling": "The floor is inapplicable after lexical admission fails. No occurrence is retained merely to preserve a nonlexical entry."
+  },
+  "lampPolicy": "All three extracted lamps are rejected. They are parallel narrations of the same two anecdotes already present in Tier-2 records and would create both lamp dominance and false family depth.",
+  "hardPass": true,
+  "publicMutation": false
+}

@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "r75-final-release-authority.v1",
+  "cohort": "R75",
+  "verdict": "RELEASE_AUTHORIZED",
+  "postCorrectionClosureSha256": "c025508e93477f3ad6a192e1e041780e64909940702c43e851cc1b0e3b77c004",
+  "replacements": [
+    {
+      "id": "t_19c58dc2d3be",
+      "term": "度人已畢",
+      "sha256": "37c02f14d84819820d9691270c9d54d178d4c409f2ff1ea6bcae02b5778b0060",
+      "reviewSha256": "2ea5a589878156cd6e3e6341abe02d02683c1e9e1e03ce8f05b2a19145c3e520"
+    },
+    {
+      "id": "t_1a0dbf72d9b7",
+      "term": "打一圓相",
+      "sha256": "c997bd050b0cebf05e5a21586546ecebe2c55172dea81db51bdbb788dc0ea112",
+      "reviewSha256": "cbbc2d71c120a878a20b39f2b1980310d512dcc1964894fdb29ce7f5a2020e49"
+    }
+  ],
+  "removal": {
+    "id": "t_19b90a49b420",
+    "term": "囑令加護",
+    "reason": "Transparent compositional narration whose omitted person and object vary by anecdote; seven candidates collapse to three families and establish no independent lexical use.",
+    "decisionSha256": "59ca29d4949fbc2bd660ae365a396a7beed05ffaf41300229b637fa09acc556b",
+    "reviewSha256": "cf80d290940dc04658851edcefa31eab53e8b4a0a7160f4737a4658a1593f551"
+  },
+  "review": {
+    "semanticRulings": "3/3 pass, including one approved nonlexical removal",
+    "retainedEvidence": "12 quotations across 12 independent deployment families",
+    "tierMix": "0 Tier-1, 12 Tier-2, 0 Tier-3",
+    "attributionAudit": "zero hard failures",
+    "semanticProjectionRegression": "pass",
+    "reviewedUnnamedContextActorRegression": "pass"
+  },
+  "releaseAuthorized": true,
+  "hardPass": true
+}

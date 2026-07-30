@@ -84,6 +84,23 @@ class EvidenceDraftTests(unittest.TestCase):
         self.assertEqual(["Test Master", "Context Master"], compiled["RelatedMasters"])
         self.assertEqual(["T/test.xml"], compiled["SourceTexts"])
 
+    def test_preserves_reviewed_unnamed_context_actor(self):
+        payload = valid_payload()
+        occurrence = payload["Entry"]["Senses"][0]["Occurrences"][0]
+        occurrence["ContextActors"] = [{
+            "Status": "reviewed-unnamed",
+            "ActorLabel": "the unnamed monk described in the narration",
+            "Roles": ["case-figure"],
+            "GrammarEvidence": (
+                "有僧 identifies an unnamed monk as the person whose narrated physical action is described."
+            ),
+        }]
+        entry, errors = compile_draft(payload)
+        self.assertEqual([], errors)
+        context = entry["Senses"][0]["Occurrences"][0]["ContextActors"][0]
+        self.assertEqual("reviewed-unnamed", context["Status"])
+        self.assertEqual(["case-figure"], context["Roles"])
+
     def test_rejects_and_strips_null_related_master(self):
         payload = valid_payload()
         payload["Entry"]["Senses"][0]["RelatedMasters"] = ["Test Master", None]

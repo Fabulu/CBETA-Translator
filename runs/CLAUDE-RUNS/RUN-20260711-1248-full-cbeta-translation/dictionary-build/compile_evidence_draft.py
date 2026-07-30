@@ -557,8 +557,9 @@ def compile_occurrence(value: dict, coordinate: str, errors: list[str]) -> dict:
         if not isinstance(context, dict):
             errors.append(f"{coordinate}.ContextActors[{ci}]: object required")
             continue
-        if context.get("Status") not in {"identified-unlinked-master", "identified-non-master"}:
-            errors.append(f"{coordinate}.ContextActors[{ci}].Status: closed unlinked identity type required")
+        if context.get("Status") not in {
+                "identified-unlinked-master", "identified-non-master", "reviewed-unnamed"}:
+            errors.append(f"{coordinate}.ContextActors[{ci}].Status: closed contextual identity type required")
         required_text(context.get("ActorLabel"), f"{coordinate}.ContextActors[{ci}].ActorLabel", errors)
         roles = context.get("Roles") or []
         if not roles or any(role not in ALLOWED_CONTEXT_ROLES for role in roles) or "utterer" in roles:

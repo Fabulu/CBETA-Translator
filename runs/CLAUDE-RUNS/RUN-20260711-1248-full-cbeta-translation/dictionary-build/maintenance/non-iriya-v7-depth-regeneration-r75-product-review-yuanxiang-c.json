@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "r75-exact-product-review.v1",
+  "cohort": "R75",
+  "id": "t_1a0dbf72d9b7",
+  "term": "打一圓相",
+  "productPath": "fresh-build/entries/t_1a0dbf72d9b7/entry.v2.json",
+  "productSha256": "ab0b9373fdf6e7c9004e1ce971603e0ca14697ff04f91fff7d5d8ae7ffb1760e",
+  "decisionPath": "maintenance/r74-decision-yuanxiang-r27.json",
+  "decisionSha256": "8e2b786bf858c2176962ed8c11bd47010ab3c83286c7362a96fd735bf3af70be",
+  "roleRereviewPath": "maintenance/non-iriya-v7-depth-regeneration-r75-carryover-rereview-yuanxiang-c.json",
+  "roleRereviewSha256": "14ba6d2aaa898582ec5dd1062ccd6f4a0b58e9d3cd750dd02db485becc0a9aa4",
+  "verification": {
+    "preferredTarget": "PASS: draw a circle.",
+    "senseAndSeparation": "PASS: one performed-action sense; Note explicitly keeps 遶一圓相 separate as a different walking action.",
+    "retainedFamilies": "PASS: exactly six retained Tier-2 source families project, with the same six paths and no lamp.",
+    "exactActorOwnership": "PASS for all six retained products: MasterName null, ActorAttribution status narrated, kind compiler narrative, role compiler, complete grammar evidence and six audit rungs.",
+    "performerAndContextRoles": "PASS except the one status coordinate listed below: all retained performers use case-figure and roster-linked people are in ContextMasters; respondents, interlocutor, questioner, and record-owner roles project correctly.",
+    "reserveActorModels": "PASS by non-projection: r74-o7 through r74-o9 were rejected as reserve and therefore correctly have no public occurrence. Their corrected actor models remain sealed in the decision rather than being emitted as fake depth.",
+    "prose": "PASS: explanation and note preserve the source-first meaning, avoid doctrinal circle symbolism, and contain no duplicate opening.",
+    "compilerProjectionParity": "FAIL: one contextual actor status and the AlternateTargets/SearchAliases distinction do not match the sealed decision."
+  },
+  "blockingCoordinates": [
+    {
+      "coordinate": "Senses[0].Occurrences[0].ContextActors[0].Status",
+      "current": "identified-non-master",
+      "required": "reviewed-unnamed",
+      "reason": "The actor label explicitly says the monk is unnamed, and the corrected decision sealed reviewed-unnamed. identified-non-master falsely implies a personally identified person."
+    },
+    {
+      "coordinate": "Senses[0].AlternateTargets",
+      "current": [],
+      "required": [
+        "trace a circle"
+      ],
+      "reason": "The sealed semantic decision classifies this as an accepted contextual translation, not merely a lookup alias."
+    },
+    {
+      "coordinate": "Senses[0].SearchAliases",
+      "current": [
+        "trace a circle"
+      ],
+      "required": [
+        "make a circular figure"
+      ],
+      "reason": "The compiler moved the alternate target into aliases and silently dropped the actual sealed search alias."
+    }
+  ],
+  "verdict": "DENY",
+  "finiteCorrectionScope": "Three public coordinates only. Do not change preferred target, prose, note, six occurrences, actor ownership, family selection, source hierarchy, or related masters.",
+  "hardPass": false,
+  "publicMutation": false
+}

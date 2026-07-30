@@ -1,0 +1,228 @@
+{
+  "schemaVersion": "r74-source-first-semantic-decision.v1",
+  "cohort": "R74",
+  "id": "t_19c58dc2d3be",
+  "term": "度人已畢",
+  "sourceBinding": {
+    "extractionPath": "maintenance/non-iriya-v7-depth-regeneration-r74-extraction-output-b.json",
+    "skeletonPath": "maintenance/non-iriya-v7-depth-regeneration-r74-research-skeleton-b.json",
+    "completeCasesRead": 9,
+    "requiredFloor": 6,
+    "reserveRead": 3
+  },
+  "lexicalAdmission": {
+    "decision": "ADMIT_SHORTER_HEADWORD_WITH_FULL_FORMULA_REDIRECT",
+    "unitType": "stable predicate and second half of an inherited birth formula",
+    "boundaryRuling": "Most witnesses use 未出母胎，度人已畢, but the shorter predicate is not an accidental clipping. Poshan Haiming independently asks about 'thirty-six years later, the work of delivering people already complete' (三十六年後度人已畢), applying the four-character predicate outside the before-birth formula. Other masters syntactically extend and interpret the second half. Keep the shorter entry, but prominently bind and redirect the full fixed formula.",
+    "fullFormula": "未出母胎，度人已畢",
+    "fullFormulaTarget": "before leaving the womb, the work of liberating people was already complete",
+    "redirects": [
+      "未出母胎度人已畢",
+      "未出母胎，度人已畢"
+    ],
+    "rejectedAlternative": "Do not expand the headword mechanically to the full formula: the Poshan witness establishes standalone active reuse."
+  },
+  "semanticRuling": {
+    "senseCount": 1,
+    "preferredTarget": "the work of liberating people was already complete",
+    "alternateTargets": [
+      "the work of delivering people was already complete"
+    ],
+    "searchAliases": [
+      "finished delivering people",
+      "before leaving the womb the work was complete"
+    ],
+    "validation": "multi-source",
+    "explanation": "度人已畢 says that the work of liberating people was already complete. It most often forms the second half of 未出母胎，度人已畢: before leaving the womb, the work was done. Zhongfeng Mingben and Foyan Qingyuan use the inherited line to put activity before the narrated birth; Miyun Yuanwu applies its two halves to dependence on parents and teachers; Wunian You pairs it with teaching already complete before the mouth opens; Feiyin Tongrong treats it as an inability to conceal what is already present; and Poshan Haiming independently reapplies the shorter predicate to thirty-six years of a teacher's life.",
+    "note": "度人 literally concerns bringing or carrying people across and conventionally means delivering or liberating them. Preserve the completed-action force of 已畢. The phrase does not mean that a later teaching career historically ended before birth; the retained masters use and test the inherited formula as a temporal reversal."
+  },
+  "caseDecisions": [
+    {
+      "evidenceKey": "r74-o1",
+      "relPath": "B/B25/B25n0145.xml",
+      "fromLb": "0718a09",
+      "tier": 2,
+      "decision": "keep",
+      "exactActor": {
+        "masterName": "Zhongfeng Mingben",
+        "role": "utterer",
+        "grammarEvidence": "Zhongfeng's continuous bathing-the-Buddha hall address introduces the inherited formula with 所以云 and then asks whether this message existed before the eighth day of the fourth month."
+      },
+      "WitnessFamilyId": "duren-yibi:zhongfeng-bathing-buddha",
+      "deploymentRole": "active-formula-and-question",
+      "semanticContribution": "Uses the complete formula and actively questions its relation to the narrated birth date.",
+      "contextSha256": "24531ae625a40a363aa908adf1806bbd5ec83cbc0b0dd18ec4901730a601197f"
+    },
+    {
+      "evidenceKey": "r74-o2",
+      "relPath": "C/C077/C077n1710.xml",
+      "fromLb": "0826b02",
+      "tier": 2,
+      "decision": "keep",
+      "exactActor": {
+        "masterName": "Foyan Qingyuan",
+        "role": "utterer",
+        "grammarEvidence": "Foyan's continuous 上堂 voice says 所以釋迦老子未離兜率已降王宮未出母胎度人已畢 and draws out a capping verse."
+      },
+      "WitnessFamilyId": "duren-yibi:foyan-birth-formula",
+      "deploymentRole": "active-hall-use",
+      "semanticContribution": "Places the complete predicate in the inherited pre-birth formula and develops it in the hall address.",
+      "contextSha256": "bfbef04599f02d535b230132ec4d11db9650532acd94fd90e2a7fb529253def0"
+    },
+    {
+      "evidenceKey": "r74-o3",
+      "relPath": "J/J10/J10nA158.xml",
+      "fromLb": "0011c06",
+      "tier": 2,
+      "decision": "keep",
+      "exactActor": {
+        "masterName": "Miyun Yuanwu",
+        "role": "utterer",
+        "grammarEvidence": "Miyun's own hall address says 未出母胎，度人已畢 and immediately interprets its second half with 豈從師長成立."
+      },
+      "WitnessFamilyId": "duren-yibi:miyun-parents-teachers",
+      "deploymentRole": "active-interpretive-use",
+      "semanticContribution": "Makes the completed-delivery half answer to the claim that one is established by teachers.",
+      "contextSha256": "e1b28b80d1ced76491605e605661e9ce4625f2a55c4b5d8ced7343d4755c7d2c"
+    },
+    {
+      "evidenceKey": "r74-o4",
+      "relPath": "J/J20/J20nB098.xml",
+      "fromLb": "0513c19",
+      "tier": 2,
+      "decision": "keep",
+      "exactActor": {
+        "masterName": "Wunian You",
+        "role": "author",
+        "grammarEvidence": "Wunian's continuous letter says 未出母胎，度人已畢；未開口時，說法已週, adding his own parallel completed-before-beginning clause."
+      },
+      "WitnessFamilyId": "duren-yibi:wunian-before-opening-mouth",
+      "deploymentRole": "authored-parallel-extension",
+      "semanticContribution": "Pairs delivery complete before birth with teaching complete before speaking, confirming the completed-action reading.",
+      "contextSha256": "998a9139504ef0362b2511b230f9683947bb8f7c6147f62015271f1c412ca8b9"
+    },
+    {
+      "evidenceKey": "r74-o5",
+      "relPath": "J/J25/J25nB154.xml",
+      "fromLb": "0034b15",
+      "tier": 2,
+      "decision": "reject-passive-case-heading",
+      "exactActor": {
+        "masterName": null,
+        "status": "impersonal",
+        "actorLabel": "an editorial case heading",
+        "role": "event-label",
+        "grammarEvidence": "世尊未離兜率已降王宮未出母胎度人已畢 is the repeated 頌古 case heading; the following verse is separately authored and does not repeat the exact headword."
+      },
+      "reason": "Confirms the stable full formula but supplies no independent headword-bearing actor or active exact-term deployment."
+    },
+    {
+      "evidenceKey": "r74-o6",
+      "relPath": "J/J26/J26nB177.xml",
+      "fromLb": "0005c14",
+      "tier": 2,
+      "decision": "keep",
+      "exactActor": {
+        "masterName": null,
+        "status": "reviewed-unnamed",
+        "actorLabel": "the unnamed questioning monk",
+        "role": "questioner",
+        "grammarEvidence": "問 directly governs 三十六年後度人已畢; Poshan Haiming responds with a blow."
+      },
+      "contextMasters": [
+        {
+          "masterName": "Poshan Haiming",
+          "roles": [
+            "respondent"
+          ]
+        }
+      ],
+      "WitnessFamilyId": "duren-yibi:poshan-thirty-six-years",
+      "deploymentRole": "standalone-active-reapplication",
+      "semanticContribution": "Decisive boundary witness: reuses 度人已畢 outside 未出母胎 as a predicate applied to thirty-six years later.",
+      "contextSha256": "23ade9476aff3a6f7ea60211eb3a18b0c69a1bd18cd2bd452d37b37643174440"
+    },
+    {
+      "evidenceKey": "r74-o7",
+      "relPath": "J/J26/J26nB178.xml",
+      "fromLb": "0107a10",
+      "tier": 2,
+      "decision": "keep",
+      "exactActor": {
+        "masterName": "Feiyin Tongrong",
+        "role": "utterer",
+        "grammarEvidence": "Feiyin says 釋迦老子云 and quotes the complete formula, then judges it as 布袋盛錐，固自藏鋒不得."
+      },
+      "WitnessFamilyId": "duren-yibi:feiyin-unconcealed-awl",
+      "deploymentRole": "active-quotation-and-commentary",
+      "semanticContribution": "Actively comments that the already-complete activity cannot be concealed.",
+      "contextSha256": "8db7288b0019590bf3d7ac34e3392586c3b05ff8a4a5091a965158cad7bf8542"
+    },
+    {
+      "evidenceKey": "r74-o8",
+      "relPath": "J/J26/J26nB180.xml",
+      "fromLb": "0289b05",
+      "tier": 2,
+      "decision": "reject-surplus-question-formula",
+      "exactActor": {
+        "masterName": null,
+        "status": "reviewed-unnamed",
+        "actorLabel": "the unnamed questioning monk",
+        "role": "questioner",
+        "grammarEvidence": "The monk asks how awakening on seeing the morning star accords with 又說未出母胎，度人已畢; Muchen Daomin answers."
+      },
+      "contextMasters": [
+        {
+          "masterName": "Muchen Daomin",
+          "roles": [
+            "respondent"
+          ]
+        }
+      ],
+      "candidateWitnessFamilyId": "duren-yibi:muchen-star-and-womb-question",
+      "reason": "Legitimate independent question, but it repeats the full formula without adding lexical evidence beyond the six stronger retained families."
+    },
+    {
+      "evidenceKey": "r74-o9",
+      "relPath": "J/J26/J26nB182.xml",
+      "fromLb": "0471b25",
+      "tier": 2,
+      "decision": "reject-passive-case-heading",
+      "exactActor": {
+        "masterName": null,
+        "status": "impersonal",
+        "actorLabel": "an editorial case heading",
+        "role": "event-label",
+        "grammarEvidence": "頌古 introduces 世尊未離兜率，已降王宮；未出母胎，度人已畢 as the case heading. Wanru Tongwei's following verse varies it as 母胎度人畢 but does not contain the exact headword."
+      },
+      "contextMasters": [
+        {
+          "masterName": "Wanru Tongwei",
+          "roles": [
+            "verse-author"
+          ]
+        }
+      ],
+      "reason": "The authored variant is a useful boundary research lead, but the exact extracted headword belongs only to passive case metadata and cannot pad defining depth."
+    }
+  ],
+  "retainedSubset": {
+    "occurrenceCount": 6,
+    "independentWitnessFamilyCount": 6,
+    "tier1Count": 0,
+    "tier2Count": 6,
+    "tier3LampCount": 0,
+    "families": [
+      "duren-yibi:zhongfeng-bathing-buddha",
+      "duren-yibi:foyan-birth-formula",
+      "duren-yibi:miyun-parents-teachers",
+      "duren-yibi:wunian-before-opening-mouth",
+      "duren-yibi:poshan-thirty-six-years",
+      "duren-yibi:feiyin-unconcealed-awl"
+    ],
+    "floorRuling": "Six independent active Tier-2 families meet the floor. Two passive 頌古 headings and one semantically redundant question are excluded. No duplicate formula recensions are counted merely for repeating the inherited line.",
+    "lampPolicy": "No lamp consulted or retained."
+  },
+  "hardPass": true,
+  "publicMutation": false
+}

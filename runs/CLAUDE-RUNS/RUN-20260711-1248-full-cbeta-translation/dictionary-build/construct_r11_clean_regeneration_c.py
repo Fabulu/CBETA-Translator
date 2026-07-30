@@ -454,6 +454,11 @@ def explicit_worksheet(entry, dossier, decisions):
     return worksheet, anchors
 
 
+def semantic_projection(config):
+    """Keep accepted translations separate from search-only lookup aliases."""
+    return list(config.get("also", [])), list(config.get("aliases", []))
+
+
 def compile_one(config, research_row, family_counts, labels, recut_plan=None):
     if not isinstance(recut_plan, list) or len(recut_plan) != len(config.get("occurrences") or []):
         raise ValueError("whole-config preflight recut plan required before compile_one")
@@ -466,6 +471,7 @@ def compile_one(config, research_row, family_counts, labels, recut_plan=None):
         )
         for number, spec in enumerate(config["occurrences"], 1)
     ]
+    alternate_targets, search_aliases = semantic_projection(config)
     entry = {
         "Id": config["id"],
         "SourceTerm": config["term"],
@@ -475,8 +481,8 @@ def compile_one(config, research_row, family_counts, labels, recut_plan=None):
             "SenseKey": None,
             "MasterName": None,
             "PreferredTarget": config["target"],
-            "AlternateTargets": [],
-            "SearchAliases": config["aliases"],
+            "AlternateTargets": alternate_targets,
+            "SearchAliases": search_aliases,
             "Status": "preferred",
             "Validation": "multi-source",
             "Explanation": config["opening"] + " " + config["body"],

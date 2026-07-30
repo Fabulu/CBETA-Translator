@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "r74-independent-source-first-review.v1",
+  "cohort": "R74",
+  "id": "t_19b90a49b420",
+  "term": "囑令加護",
+  "decisionPath": "maintenance/non-iriya-v7-depth-regeneration-r74-decision-zhuling-b.json",
+  "sourceFirstRuling": {
+    "lexicalAdmission": "PASS removal: 囑令加護 is transparent compositional narration—'instructed/charged [someone] to protect or sustain [it]'—whose person and object come from each anecdote. The four graphs acquire no distinct Zen technical action, image, verdict, or contrast.",
+    "currentGlossDiagnosis": "PASS: 'charge him to guard it carefully' necessarily supplies an unstated pronoun and object from one story, demonstrating sentence translation rather than autonomous dictionary semantics.",
+    "completeCaseCoverage": "PASS: all seven extracted cases were classified. They reduce to the Huanglong–Lü Yan anecdote, the Yuanwu–Zhao Lingjin anecdote, and one lay-authored preface.",
+    "familyCollapse": "PASS: seven files are only three narrative families. The Huanglong story appears in two Tier-2 active raisings plus one lamp; the Yuanwu story appears in one Tier-2 active raising plus two lamps; the lay preface is independent prose but not Zen-master lexical evidence.",
+    "lampContamination": "PASS: T/T51/T51n2077.xml, X/X79/X79n1559.xml, and X/X80/X80n1565.xml are Tier-3 parallel narrations and correctly contribute zero retained depth. The installed entry's X79 witness is genuine lamp contamination.",
+    "narratorOwnership": "PASS: 悟見，囑令加護 in X/X79/X79n1559.xml is third-person narrative and was wrongly stored as Yuanwu Keqin's utterance. Where Xueguan Zhiyin, Shuijian Hai, and Chuiwan Guangzhen themselves repeat the clause while raising a case, they own that repeated wording, but active quotation/commentary does not make its transparent internal narrative clause a lexicalized term.",
+    "sourceHierarchy": "PASS: no Tier-1 evidence; four Tier-2 containers include two repeated case families and one lay preface; three Tier-3 lamps add no independent meaning.",
+    "repairAction": "PASS: remove the dictionary article atomically. Do not preserve it by padding repeated anecdotes, and do not transfer the current pronoun-bearing English gloss to 加護."
+  },
+  "defects": [],
+  "verdict": "APPROVE_REMOVAL",
+  "hardPass": true,
+  "publicMutation": false
+}

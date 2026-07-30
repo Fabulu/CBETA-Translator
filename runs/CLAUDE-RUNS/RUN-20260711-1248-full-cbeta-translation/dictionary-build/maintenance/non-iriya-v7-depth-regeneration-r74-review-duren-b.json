@@ -1,0 +1,83 @@
+{
+  "schemaVersion": "r74-independent-source-first-decision-review.v1",
+  "cohort": "R74",
+  "reviewer": "source_tiers_b",
+  "id": "t_19c58dc2d3be",
+  "term": "度人已畢",
+  "reviewedDecision": "maintenance/non-iriya-v7-depth-regeneration-r74-decision-duren-c.json",
+  "reviewedDecisionSha256": "cb34f46c0961cffa460b03b3b34badf4cc9e5b73a0af0b6825acdf636793e88b",
+  "sourceBinding": {
+    "extractionPath": "maintenance/non-iriya-v7-depth-regeneration-r74-extraction-output-b.json",
+    "extractionSha256": "9a8c43c2d31dbe3a3e948a2ddf6406304625a58d9c23d12a3c1c510609624a16",
+    "completeCasesIndependentlyRead": 9
+  },
+  "verdict": "APPROVE",
+  "hardPass": true,
+  "lexicalBoundaryReview": {
+    "ruling": "PASS",
+    "fullFormula": "未出母胎，度人已畢",
+    "shortHeadword": "度人已畢",
+    "proof": "The full before-birth formula is overwhelmingly the inherited frame, so the redirect is necessary. But J/J26/J26nB177.xml independently asks 三十六年後度人已畢, contrasting thirty-six years before, after, and at the exact point. That syntax predicates 度人已畢 outside 未出母胎 and proves the shorter unit is not merely a mechanically clipped case title.",
+    "scopeControl": "The decision does not misrepresent the standalone witness as the dominant form. It labels the shorter string both a stable predicate and the second half of the inherited formula."
+  },
+  "englishReview": {
+    "preferredTarget": "PASS: 'the work of liberating people was already complete' preserves 度人 as bringing people across and 已畢 as prior completion while supplying the minimal English nominal frame needed for a grammatical predicate.",
+    "alternateTarget": "PASS: 'delivering people' is retained only as an alternative and is not allowed to suggest childbirth.",
+    "fullFormulaTarget": "PASS: 'before leaving the womb, the work of liberating people was already complete' preserves the temporal reversal without turning it into historical biography.",
+    "note": "PASS: the note distinguishes lexical force from a literal historical claim and does not add a new doctrinal sense."
+  },
+  "sourceHierarchyReview": {
+    "retainedOccurrences": 6,
+    "independentWitnessFamilies": 6,
+    "tier1": 0,
+    "tier2": 6,
+    "tier3Lamp": 0,
+    "ruling": "PASS: six Tier-2 active deployments meet the required floor without consulting or retaining a lamp. Two passive case headings are excluded, and the Muchen question is correctly treated as legitimate but surplus rather than used to inflate depth."
+  },
+  "actorAndFamilyReview": [
+    {
+      "evidenceKey": "r74-o1",
+      "ruling": "PASS",
+      "proof": "Zhongfeng Mingben's continuous hall voice introduces the formula with 所以云 and immediately questions the pre-birth message; this is active use, not heading metadata.",
+      "family": "duren-yibi:zhongfeng-bathing-buddha"
+    },
+    {
+      "evidenceKey": "r74-o2",
+      "ruling": "PASS",
+      "proof": "Foyan Qingyuan's governed 上堂 discourse supplies the formula and develops it with his own verse.",
+      "family": "duren-yibi:foyan-birth-formula"
+    },
+    {
+      "evidenceKey": "r74-o3",
+      "ruling": "PASS",
+      "proof": "Miyun Yuanwu actively states the full formula and separately interprets its parents and teachers halves.",
+      "family": "duren-yibi:miyun-parents-teachers"
+    },
+    {
+      "evidenceKey": "r74-o4",
+      "ruling": "PASS",
+      "proof": "Wunian You's authored letter pairs the exact formula with his own parallel 未開口時，說法已週, independently confirming completion before an apparent beginning.",
+      "family": "duren-yibi:wunian-before-opening-mouth"
+    },
+    {
+      "evidenceKey": "r74-o6",
+      "ruling": "PASS",
+      "proof": "問 assigns the exact words to an unnamed questioning monk, not Poshan. Poshan Haiming is correctly recorded only as respondent. This distinct dialogue is the decisive standalone boundary family.",
+      "family": "duren-yibi:poshan-thirty-six-years"
+    },
+    {
+      "evidenceKey": "r74-o7",
+      "ruling": "PASS",
+      "proof": "Feiyin Tongrong explicitly introduces Shakyamuni's formula and comments on it with the awl-in-a-bag image.",
+      "family": "duren-yibi:feiyin-unconcealed-awl"
+    }
+  ],
+  "rejectionReview": {
+    "r74-o5": "PASS: editorial 頌古 heading; following authored verse does not repeat the exact headword.",
+    "r74-o8": "PASS: exact anonymous question is active and independent but semantically surplus after six stronger retained families.",
+    "r74-o9": "PASS: exact headword is confined to the heading; Wanru Tongwei's authored verse is a variant, not an exact occurrence."
+  },
+  "blockingDefects": [],
+  "releaseAuthority": true,
+  "publicMutation": false
+}

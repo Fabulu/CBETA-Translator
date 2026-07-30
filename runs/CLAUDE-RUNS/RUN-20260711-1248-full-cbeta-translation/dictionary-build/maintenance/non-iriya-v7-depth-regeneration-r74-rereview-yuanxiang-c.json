@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "r74-changed-coordinate-rereview.v1",
+  "cohort": "R74",
+  "id": "t_1a0dbf72d9b7",
+  "term": "打一圓相",
+  "decisionPath": "maintenance/r74-decision-yuanxiang-r27.json",
+  "decisionSha256": "0bc19625829654326dd9e3e9dd05d165b851e5d02ac54576d425875e5b2965c8",
+  "rereview": {
+    "narratorOwnership": "PASS: all nine exactActor records now use MasterName null and status narrated, with grammar explicitly assigning the headword-bearing prose to the record narrator.",
+    "performerSeparation": "PASS structurally: all circle performers now appear separately under contextMasters or contextActors, and roster-linked respondents/record owners are correctly placed under contextMasters.",
+    "anonymousStatuses": "PASS: the unnamed monks in r74-o1, r74-o7, and r74-o8 are now reviewed-unnamed; Yiqin remains identified-unlinked-master.",
+    "semanticCollateral": "PASS: admission, preferred target, alternatives, one-sense ruling, explanation, note, six retained families, three reserve dispositions, and Tier-2/no-lamp hierarchy are unchanged.",
+    "roleVocabulary": "FAIL: narrator and action-performer remain outside the mandatory closed role vocabulary."
+  },
+  "remainingBlockingCoordinates": [
+    {
+      "coordinates": "caseDecisions[0..8].exactActor.role",
+      "current": "narrator",
+      "required": "compiler",
+      "count": 9,
+      "reason": "The closed actor vocabulary contains compiler, not narrator. Status narrated and GrammarEvidence already preserve the finer distinction."
+    },
+    {
+      "coordinates": [
+        "caseDecisions[0].contextActors[0].roles[0]",
+        "caseDecisions[1].contextMasters[0].roles[0]",
+        "caseDecisions[2].contextMasters[0].roles[0]",
+        "caseDecisions[3].contextMasters[0].roles[0]",
+        "caseDecisions[4].contextMasters[0].roles[0]",
+        "caseDecisions[5].contextMasters[0].roles[0]",
+        "caseDecisions[6].contextActors[0].roles[0]",
+        "caseDecisions[7].contextActors[0].roles[0]",
+        "caseDecisions[8].contextActors[0].roles[0]"
+      ],
+      "current": "action-performer",
+      "required": "case-figure",
+      "count": 9,
+      "reason": "action-performer is not in the closed public role vocabulary. case-figure records participation; each GrammarEvidence already states exactly who draws the circle and with what instrument."
+    }
+  ],
+  "verdict": "DENY",
+  "finiteCorrectionScope": "Eighteen role-string substitutions only. Do not change statuses, actor identities, buckets, grammar evidence, semantic prose, family selection, or source hierarchy.",
+  "hardPass": false,
+  "publicMutation": false
+}

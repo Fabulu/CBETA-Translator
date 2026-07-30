@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "r75-exact-product-review.v1",
+  "cohort": "R75",
+  "id": "t_19c58dc2d3be",
+  "term": "度人已畢",
+  "productPath": "fresh-build/entries/t_19c58dc2d3be/entry.v2.json",
+  "productSha256": "d67046ade4dfb7c1bfd30270a1618974a52390eea18befb73267b8f1518015b3",
+  "worksheetPath": "fresh-build/entries/t_19c58dc2d3be/evidence.draft.json",
+  "worksheetSha256": "531cc9643a4caeedfb73f604ba207cba78e35169b4e6538669e3dc2762da5fa9",
+  "compilerReportPath": "fresh-build/entries/t_19c58dc2d3be/evidence-compile-report.json",
+  "compilerReportSha256": "84ff8773fa1dea56cfcadadc9ea02138b8cad08721398ef0dc509e47ae514787",
+  "decisionPath": "maintenance/non-iriya-v7-depth-regeneration-r74-decision-duren-c.json",
+  "decisionSha256": "cb34f46c0961cffa460b03b3b34badf4cc9e5b73a0af0b6825acdf636793e88b",
+  "sourceFirstReviewPath": "maintenance/non-iriya-v7-depth-regeneration-r74-review-duren-b.json",
+  "productRuling": {
+    "lexicalBoundary": "PASS: the explanation prominently gives 未出母胎，度人已畢 and identifies the headword as its usual second half, while the Poshan-record dialogue independently supports the shorter predicate. The public entry schema has no free Chinese redirect field, so absence of a duplicated top-level redirect coordinate is not itself a product defect.",
+    "preferredEnglish": "PASS: 'the work of liberating people was already complete' preserves both 度人 and 已畢 without converting the line into historical biography.",
+    "occurrencesAndFamilies": "PASS: six occurrences represent the six approved active families exactly once. Passive case headings and the surplus Muchen question do not leak into the product.",
+    "sourceHierarchy": "PASS: six Tier-2 active witnesses and no lamp padding.",
+    "exactActors": "FAIL IN PROSE/METADATA: occurrence-level ownership is correct for the unnamed questioner in J26nB177, but the public explanation wrongly says Poshan Haiming reapplies the shorter predicate. Wunian You's authored letter is also projected with ContextMasters role 'utterer' rather than the decision's authored/record-owner role.",
+    "aliases": "FAIL: the decision's alternate target and search aliases are not projected faithfully. The product moves the alternate target into SearchAliases and drops both decision search aliases.",
+    "readerProse": "FAIL: the first sentence merely repeats SourceTerm plus PreferredTarget, and the final clause misattributes the decisive standalone reuse to Poshan rather than the unnamed questioning monk.",
+    "compilerParity": "FAIL SEMANTIC PARITY: the compiler report binds the exact worksheet and product bytes, but a byte-bound successful render does not cure the alias/redirect/actor-role projection drift from the reviewed decision.",
+    "duplicateOpening": "PASS NARROWLY: no consecutive duplicate opening occurs. The single opening still fails the separate corpus-earned-opening rule because it is tautological."
+  },
+  "defects": [
+    {
+      "severity": "blocking",
+      "coordinate": "Senses[0].Explanation final clause; mirrored worksheet ExplanationParts/EvidenceBody",
+      "finding": "The product says 'Poshan Haiming independently reapplies the shorter predicate.' The exact headword actor is the unnamed questioning monk; Poshan only responds with a blow.",
+      "requiredRepair": "Attribute the standalone reuse to an unnamed monk questioning Poshan, while keeping Poshan as contextual respondent."
+    },
+    {
+      "severity": "blocking",
+      "coordinate": "Senses[0].Explanation first sentence; mirrored worksheet CorpusEarnedOpening",
+      "finding": "'度人已畢 means the work of liberating people was already complete' is a headword-plus-preferred-target restatement, not a corpus-earned interpretation.",
+      "requiredRepair": "Replace it with a concise synthesis that states the already-complete-before-beginning temporal reversal and the shorter predicate's independent reuse; do not duplicate the new opening in EvidenceBody."
+    },
+    {
+      "severity": "blocking",
+      "coordinate": "Senses[0].AlternateTargets and Senses[0].SearchAliases",
+      "finding": "Reviewed decision: AlternateTargets=['the work of delivering people was already complete']; SearchAliases=['finished delivering people','before leaving the womb the work was complete']. Product: AlternateTargets=[]; SearchAliases=['the work of delivering people was already complete'].",
+      "requiredRepair": "Project the reviewed alternate target and both search aliases without reclassification or loss."
+    },
+    {
+      "severity": "blocking",
+      "coordinate": "Senses[0].Occurrences[3].ContextMasters[0].Roles; mirrored worksheet occurrence",
+      "finding": "Wunian You's continuous letter was reviewed as authored material, but the product labels him 'utterer'.",
+      "requiredRepair": "Use the governed authored-text role 'record-owner' consistently in worksheet and product."
+    }
+  ],
+  "verdict": "DENY",
+  "hardPass": false,
+  "publicMutation": false
+}

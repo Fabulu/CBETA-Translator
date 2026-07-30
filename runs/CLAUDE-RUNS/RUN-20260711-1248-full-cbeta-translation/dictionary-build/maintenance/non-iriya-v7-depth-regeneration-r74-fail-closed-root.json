@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "bounded-cohort-fail-closed.v1",
+  "cohort": "R74",
+  "failedGate": "constructor",
+  "deadlineSeconds": 522,
+  "observedElapsedSeconds": 550.961608,
+  "overrunSeconds": 28.961608,
+  "reason": "The constructor start receipt was created after the artifact-zero constructor deadline; its ready state cannot authorize a late start.",
+  "productsWritten": [],
+  "settledWorkPreserved": {
+    "semanticDecisions": "3/3 complete",
+    "independentReviews": "2 pass plus one finite actor correction",
+    "correctedActorDecisionSha256": "8e2b786bf858c2176962ed8c11bd47010ab3c83286c7362a96fd735bf3af70be",
+    "adjudicatedConfigSha256": "3ff5f8e3145362371247d818dc9bde9d7aaa9a88eb573f4ebe34fcf09ce551d8"
+  },
+  "continuedBrowsingProhibited": true,
+  "carryoverPolicy": "Relaunch the exact SHA-bound evidence, decisions, reviews, removal, and config under a fresh artifact-zero; perform no new source research.",
+  "sealed": true
+}

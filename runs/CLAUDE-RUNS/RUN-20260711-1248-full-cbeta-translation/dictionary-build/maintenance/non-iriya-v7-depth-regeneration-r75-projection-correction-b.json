@@ -1,0 +1,64 @@
+{
+  "schemaVersion": "r75-focused-projection-correction.v1",
+  "cohort": "R75",
+  "createdUtc": "2026-07-30T08:48:21.995389Z",
+  "beforeSha256": {
+    "config": "3212d015825818c92e2b7d7e81e7adb1bea518e1f277847de5071a1cc74d461c",
+    "entries": {
+      "t_19c58dc2d3be": {
+        "worksheet": "fbd23ec24795ff2b8003fcb49fddb7bc3350044ffffe1a28cc35a013056aa572",
+        "product": "c592953211253f21a3a5b34cc979ed4dd0c95e6c2b17ef5b1e89ab8dbeb3fdc9"
+      },
+      "t_1a0dbf72d9b7": {
+        "worksheet": "3eb66271c00e0ad30cabd2170ab5dfba1694d1cdf2a6401574aa7ecb41800584",
+        "product": "4757d12ca8b11b273d472df98f78f5fecd425dcb9df0d5951cc47952d220391f"
+      }
+    }
+  },
+  "afterSha256": {
+    "config": "d52ed4ea354ba5ad0deb081735b6fc70d97200e0474f5fd8c77c7966b13ba9a3",
+    "entries": {
+      "t_19c58dc2d3be": {
+        "worksheet": "097511aadcf277cc7071dc0dd5834ada8170a48720e7faf738953a9df018accc",
+        "product": "37c02f14d84819820d9691270c9d54d178d4c409f2ff1ea6bcae02b5778b0060",
+        "compileReport": "9552b40148f943ff67c226183ea024ac797f28a6e25437e9003b6531aff87ede"
+      },
+      "t_1a0dbf72d9b7": {
+        "worksheet": "5e38d9e393cb59300da3e286b5e425b43dc569931845f574b5082e94c02b51c7",
+        "product": "4757d12ca8b11b273d472df98f78f5fecd425dcb9df0d5951cc47952d220391f",
+        "compileReport": "201def99461585237354a58d88b36c33d3a161bc812f65508326b783f5ac0d4c"
+      }
+    }
+  },
+  "corrections": {
+    "t_19c58dc2d3be": {
+      "AlternateTargets": [
+        "the work of delivering people was already complete"
+      ],
+      "SearchAliases": [
+        "finished delivering people",
+        "before leaving the womb the work was complete",
+        "未出母胎度人已畢",
+        "未出母胎，度人已畢"
+      ]
+    },
+    "t_1a0dbf72d9b7": {
+      "AlternateTargets": [
+        "trace a circle"
+      ],
+      "SearchAliases": [
+        "make a circular figure"
+      ]
+    }
+  },
+  "semanticRulingChanged": false,
+  "actorsFamiliesSourcesChanged": "Duren occurrence 4 restores the reviewed authored record-owner role; exact actor, family, and source are unchanged.",
+  "focusedChecks": {
+    "actorClosure": true,
+    "wholeConfigPreclosure": true,
+    "canonicalCompilePrewrite": true,
+    "canonicalCompile": true
+  },
+  "publicMutation": false,
+  "hardPass": true
+}

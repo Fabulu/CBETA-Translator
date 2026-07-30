@@ -1,0 +1,94 @@
+{
+  "schemaVersion": "r75-post-correction-release-closure.v1",
+  "cohort": "R75",
+  "constructionClosure": {
+    "path": "maintenance/non-iriya-v7-depth-regeneration-r75-closure-b.json",
+    "sha256": "06c6190f3de135cebf1016406c6133a493489a47b7faa94c10de5f7f1f6145a8",
+    "ruling": "The governed constructor completed two admitted entries in 114.819 seconds. This closure establishes construction timing; the byte authorities below supersede its initial product hashes."
+  },
+  "focusedCorrection": {
+    "path": "maintenance/non-iriya-v7-depth-regeneration-r75-projection-correction-b.json",
+    "sha256": "e119b43d9801eb9d3fafb35d9d575114c764bce54c8f320bbd262b38946c13de",
+    "configPath": "maintenance/non-iriya-v7-depth-regeneration-r75-constructor-config-b.json",
+    "configSha256": "d52ed4ea354ba5ad0deb081735b6fc70d97200e0474f5fd8c77c7966b13ba9a3",
+    "ruling": "The focused correction restored alternate-target/search-alias separation, corpus-earned prose, and reviewed actor roles without changing sources or witness families. Exact current worksheet and product bytes are bound independently below."
+  },
+  "entries": [
+    {
+      "id": "t_19c58dc2d3be",
+      "term": "度人已畢",
+      "decisionPath": "maintenance/non-iriya-v7-depth-regeneration-r74-decision-duren-c.json",
+      "decisionSha256": "cb34f46c0961cffa460b03b3b34badf4cc9e5b73a0af0b6825acdf636793e88b",
+      "worksheetPath": "fresh-build/entries/t_19c58dc2d3be/evidence.draft.json",
+      "worksheetSha256": "097511aadcf277cc7071dc0dd5834ada8170a48720e7faf738953a9df018accc",
+      "productPath": "fresh-build/entries/t_19c58dc2d3be/entry.v2.json",
+      "productSha256": "37c02f14d84819820d9691270c9d54d178d4c409f2ff1ea6bcae02b5778b0060",
+      "finalReviewPath": "maintenance/non-iriya-v7-depth-regeneration-r75-final-approval-duren-r27.json",
+      "finalReviewSha256": "2ea5a589878156cd6e3e6341abe02d02683c1e9e1e03ce8f05b2a19145c3e520",
+      "finalVerdict": "APPROVE",
+      "sourceMix": {
+        "tier1": 0,
+        "tier2": 6,
+        "tier3Lamp": 0,
+        "independentFamilies": 6
+      }
+    },
+    {
+      "id": "t_1a0dbf72d9b7",
+      "term": "打一圓相",
+      "decisionPath": "maintenance/r74-decision-yuanxiang-r27.json",
+      "decisionSha256": "8e2b786bf858c2176962ed8c11bd47010ab3c83286c7362a96fd735bf3af70be",
+      "worksheetPath": "fresh-build/entries/t_1a0dbf72d9b7/evidence.draft.json",
+      "worksheetSha256": "ed0fa3d3e93b48d12658f73d61c071895b1535392035a0fedcb305a6f297abfa",
+      "productPath": "fresh-build/entries/t_1a0dbf72d9b7/entry.v2.json",
+      "productSha256": "c997bd050b0cebf05e5a21586546ecebe2c55172dea81db51bdbb788dc0ea112",
+      "finalReviewPath": "maintenance/non-iriya-v7-depth-regeneration-r75-final-byte-review-yuanxiang-c.json",
+      "finalReviewSha256": "cbbc2d71c120a878a20b39f2b1980310d512dcc1964894fdb29ce7f5a2020e49",
+      "finalVerdict": "APPROVE",
+      "sourceMix": {
+        "tier1": 0,
+        "tier2": 6,
+        "tier3Lamp": 0,
+        "independentFamilies": 6
+      }
+    }
+  ],
+  "removal": {
+    "id": "t_19b90a49b420",
+    "term": "囑令加護",
+    "carryoverPath": "maintenance/non-iriya-v7-depth-regeneration-r75-removal-carryover-b.json",
+    "carryoverSha256": "085ffce80dd3a812a40d9892d0fa5152d8e60071d5f8fd137b1d192b5caabcdc",
+    "decisionPath": "maintenance/non-iriya-v7-depth-regeneration-r74-decision-zhuling-b.json",
+    "decisionSha256": "59ca29d4949fbc2bd660ae365a396a7beed05ffaf41300229b637fa09acc556b",
+    "reviewPath": "maintenance/non-iriya-v7-depth-regeneration-r74-review-zhuling-c.json",
+    "reviewSha256": "cf80d290940dc04658851edcefa31eab53e8b4a0a7160f4737a4658a1593f551",
+    "ruling": "APPROVE_REMOVAL",
+    "constructed": false
+  },
+  "processSafeguards": {
+    "alternateAliasProjection": {
+      "implementationPath": "construct_r11_clean_regeneration_c.py",
+      "implementationSha256": "8790266a6a94f8afc74607eca15220dc2da133f21c9efe3520310271053568dd",
+      "testPath": "maintenance/test_construct_semantic_projection.py",
+      "testSha256": "a3e77fbe18e8f690a84160167aeee2174a844c0bffd8b5cbc9caa51ab7e3660b"
+    },
+    "contextualUnnamedActor": {
+      "implementationPath": "compile_evidence_draft.py",
+      "implementationSha256": "515f882d01b7f153d71ff4c45c255afbd73e7cd6448d421e6c0f4b94ec7f3b91",
+      "ruling": "Canonical contextual-actor validation now permits reviewed-unnamed alongside identified unlinked identities, preserving an anonymous performer without promoting that person to exact headword speaker."
+    },
+    "testCommand": "python3 -m unittest maintenance.test_construct_semantic_projection maintenance.test_generic_bounded_constructor test_evidence_draft",
+    "testResult": "26 tests passed"
+  },
+  "aggregateSourceMix": {
+    "constructedTier1": 0,
+    "constructedTier2": 12,
+    "constructedTier3Lamp": 0,
+    "constructedIndependentFamilies": 12,
+    "removalSemanticFamilies": 0
+  },
+  "releaseAuthority": true,
+  "publicMutation": false,
+  "rosterMutation": false,
+  "hardPass": true
+}

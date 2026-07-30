@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "bounded-dictionary-timegate.v2",
+  "cohort": "R74",
+  "artifactZero": true,
+  "startedEpoch": 1785400042.495392,
+  "createdUtc": "2026-07-30T08:27:22.495392Z",
+  "requiredFloors": [
+    4,
+    6,
+    6
+  ],
+  "admittedRequiredOccurrences": 16,
+  "adjudicatedCaseLoad": 16,
+  "researchCandidateReserve": 3,
+  "deadlinesSeconds": {
+    "viability": 120,
+    "researchExtraction": 120,
+    "adjudicatedConfig": 512,
+    "constructor": 522,
+    "firstProduct": 542,
+    "construction": 602,
+    "review": 790,
+    "correction": 914,
+    "publication": 1004
+  },
+  "assignedLaunch": {
+    "selector": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/last1500-public-depth/final-scope/full-regeneration-selector.json",
+    "priorUnion": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r73-resolved-union-root.json",
+    "entries": [
+      {
+        "id": "t_19b90a49b420",
+        "term": "囑令加護",
+        "requiredFloor": 4
+      },
+      {
+        "id": "t_19c58dc2d3be",
+        "term": "度人已畢",
+        "requiredFloor": 6
+      },
+      {
+        "id": "t_1a0dbf72d9b7",
+        "term": "打一圓相",
+        "requiredFloor": 6
+      }
+    ],
+    "reserveIds": [],
+    "researchCandidateReserve": 3
+  },
+  "continuationOf": "R73-PUBLISHED-LEDGER-ADVANCED"
+}

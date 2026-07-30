@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "non-iriya-v7-depth-regeneration-selection.v1",
+  "cohort": "R74",
+  "selectionRule": "exact coordinator-assigned next unreserved authoritative rows",
+  "rows": [
+    {
+      "queueOrdinal": 1,
+      "identityId": "t_19b90a49b420",
+      "term": "囑令加護",
+      "requiredFloor": 4,
+      "classification": "hard-fail"
+    },
+    {
+      "queueOrdinal": 2,
+      "identityId": "t_19c58dc2d3be",
+      "term": "度人已畢",
+      "requiredFloor": 6,
+      "classification": "hard-fail"
+    },
+    {
+      "queueOrdinal": 3,
+      "identityId": "t_1a0dbf72d9b7",
+      "term": "打一圓相",
+      "requiredFloor": 6,
+      "classification": "hard-fail"
+    }
+  ],
+  "collisionCheck": {
+    "priorIds": 182,
+    "collisions": [],
+    "hardPass": true
+  }
+}

@@ -1,0 +1,437 @@
+{
+  "SchemaVersion": 1,
+  "ConstructionPipelineVersion": 2,
+  "Admission": {
+    "Decision": "admit",
+    "LexicalUnitReason": "度人已畢 is a stable fixed expression used in public answers, verses, appraisals, or case commentary.",
+    "ObservableChanJob": "The records use 度人已畢 to place completed liberating work before an expected beginning, most often before the person described had even been born.",
+    "DuplicateCheck": {
+      "DeterministicIdChecked": true,
+      "ExactHeadwordChecked": true,
+      "NearDuplicateRuling": "No exact or punctuation-normalized collision occurs in R01-R10 or the current R11 selection; companion clauses remain separately named family leads."
+    }
+  },
+  "EvidenceTransport": {
+    "DossierPath": "source-dossier.json",
+    "DossierSha256": "f623873cc178bc1488f722fdfdd6be0121e940c2a2975912f296f0c3518a0192",
+    "SourceAuthorityManifestSha256": "2ee44bf19a2533958e5620c38915f3d03fbb81209c76c7183742a4f3d059f501",
+    "DiscoveryMethods": [
+      "exact concordance count",
+      "complete-turn actor review",
+      "Tier 1 then Tier 2 source ranking",
+      "predecessor-evidence adjudication"
+    ],
+    "ExactCount": 284,
+    "BridgedCount": 284,
+    "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+  },
+  "Entry": {
+    "Id": "t_19c58dc2d3be",
+    "SourceTerm": "度人已畢",
+    "CreatedBy": "R74 source-hierarchy repair",
+    "WrittenUtc": "2026-07-30T08:27:22.495392Z",
+    "Senses": [
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "the work of liberating people was already complete",
+        "AlternateTargets": [
+          "the work of delivering people was already complete"
+        ],
+        "SearchAliases": [
+          "finished delivering people",
+          "before leaving the womb the work was complete",
+          "未出母胎度人已畢",
+          "未出母胎，度人已畢"
+        ],
+        "Status": "preferred",
+        "Validation": "multi-source",
+        "Explanation": "The records use 度人已畢 to reverse ordinary sequence: the work of liberating people is already complete before birth or another apparent beginning. It most often forms the second half of 未出母胎，度人已畢: before leaving the womb, the work was done. Zhongfeng Mingben and Foyan Qingyuan use the inherited line to put activity before the narrated birth; Miyun Yuanwu applies its two halves to dependence on parents and teachers; Wunian You pairs it with teaching already complete before the mouth opens; Feiyin Tongrong treats it as an inability to conceal what is already present; and an unnamed monk questioning Poshan Haiming independently reapplies the shorter predicate to thirty-six years of a teacher's life.",
+        "Note": "度人 literally concerns bringing or carrying people across and conventionally means delivering or liberating them. Preserve the completed-action force of 已畢. The phrase does not mean that a later teaching career historically ended before birth; the retained masters use and test the inherited formula as a temporal reversal.",
+        "Occurrences": [
+          {
+            "RelPath": "B/B25/B25n0145.xml",
+            "FromLb": "0718a06",
+            "ToLb": "0718a11",
+            "Kwic": "吐優曇之穗。梵音宣而雷動。森羅萬象共證圓聞。禪影移而雨傾。塵剎十方同躋正覺。所以云。未離兜率已降王宮。未出母胎度人已畢。直下安有一毫剩法與人為知為解涉見涉聞。雖然只如四月初八日已前。還有這箇消息也無。不因刖足曾三獻。那得連城價倍",
+            "MasterName": "Zhongfeng Mingben",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Zhongfeng Mingben",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (B/B25/B25n0145.xml). Zhongfeng Mingben: Extensive Record. Zhongfeng's continuous bathing-the-Buddha hall address introduces the inherited formula with 所以云 and then asks whether this message existed before the eighth day of the fourth month.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "度人已畢",
+              "GrammaticalSubject": "Zhongfeng Mingben",
+              "SpeechFrame": "Source record (B/B25/B25n0145.xml). Zhongfeng Mingben: Extensive Record. Zhongfeng's continuous bathing-the-Buddha hall address introduces the inherited formula with 所以云 and then asks whether this message existed before the eighth day of the fourth month.",
+              "FullCaseDecision": "Zhongfeng Mingben is the exact actor at the headword-bearing clause; contextual speakers are not substituted."
+            }
+          },
+          {
+            "RelPath": "C/C077/C077n1710.xml",
+            "FromLb": "0826a22",
+            "ToLb": "0826b05",
+            "Kwic": "粥任運還鄉苦澀茶好大哥喫茶去。上堂七七四十九面南看北斗死去與生來泥牛大哮吼所以釋迦老子未離兜率已降王宮未出母胎度人已畢如此則毗盧境界止在人間涅槃妙心更於何覔昔日那吒太子㭊肉還母㭊骨還父然後現本身運大神通大眾肉既還母骨既還父用什麼",
+            "MasterName": "Foyan Qingyuan",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Foyan Qingyuan",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (C/C077/C077n1710.xml). Recorded Sayings of Ancient Masters. Foyan's continuous 上堂 voice says 所以釋迦老子未離兜率已降王宮未出母胎度人已畢 and draws out a capping verse.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "度人已畢",
+              "GrammaticalSubject": "Foyan Qingyuan",
+              "SpeechFrame": "Source record (C/C077/C077n1710.xml). Recorded Sayings of Ancient Masters. Foyan's continuous 上堂 voice says 所以釋迦老子未離兜率已降王宮未出母胎度人已畢 and draws out a capping verse.",
+              "FullCaseDecision": "Foyan Qingyuan is the exact actor at the headword-bearing clause; contextual speakers are not substituted."
+            }
+          },
+          {
+            "RelPath": "J/J10/J10nA158.xml",
+            "FromLb": "0011c04",
+            "ToLb": "0011c09",
+            "Kwic": "，人人嘗光現前、個個壁立萬仞，不妨與釋迦老子同個鼻孔出氣。所以道：未離兜率，已降王宮，豈從父母所生？未出母胎，度人已畢，豈從師長成立？釋迦老子得者一著，出世四十九年，談經三百餘會，秪要人人明得者個消息。且道釋迦老子即今在什麼處？",
+            "MasterName": "Miyun Yuanwu",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Miyun Yuanwu",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J10/J10nA158.xml). Miyun Chan Sayings. Miyun's own hall address says 未出母胎，度人已畢 and immediately interprets its second half with 豈從師長成立.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "度人已畢",
+              "GrammaticalSubject": "Miyun Yuanwu",
+              "SpeechFrame": "Source record (J/J10/J10nA158.xml). Miyun Chan Sayings. Miyun's own hall address says 未出母胎，度人已畢 and immediately interprets its second half with 豈從師長成立.",
+              "FullCaseDecision": "Miyun Yuanwu is the exact actor at the headword-bearing clause; contextual speakers are not substituted."
+            }
+          },
+          {
+            "RelPath": "J/J20/J20nB098.xml",
+            "FromLb": "0513c16",
+            "ToLb": "0513c21",
+            "Kwic": "宿道：座上無老僧，目前無闍黎，有甚麼相見？這話似拖泥帶水不少在。居士分上首尾一貫，動靜如常。豈不聞？未出母胎，度人已畢；未開口時，說法已週。近代時人不識自心，將粥飯氣作禪道傳人，如窮子出門，背父逃走，轉求轉遠。唯有居士腳踏實地，",
+            "MasterName": "Wunian You",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Wunian You",
+                "Roles": [
+                  "record-owner"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J20/J20nB098.xml). Questions to Huangbo Wunian. Wunian's continuous letter says 未出母胎，度人已畢；未開口時，說法已週, adding his own parallel completed-before-beginning clause.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "度人已畢",
+              "GrammaticalSubject": "Wunian You",
+              "SpeechFrame": "Source record (J/J20/J20nB098.xml). Questions to Huangbo Wunian. Wunian's continuous letter says 未出母胎，度人已畢；未開口時，說法已週, adding his own parallel completed-before-beginning clause.",
+              "FullCaseDecision": "Wunian You is the exact actor at the headword-bearing clause; contextual speakers are not substituted."
+            }
+          },
+          {
+            "RelPath": "J/J26/J26nB177.xml",
+            "FromLb": "0005c12",
+            "ToLb": "0005c17",
+            "Kwic": "道？」師便打。僧撫掌呵呵，云：「別有曇華一朵新。」便拜，師云：「莫眼華。」問：「三十六年前行棒行喝，三十六年後度人已畢，正當三十六年以何為人？」師便驀頭一棒。僧喝，師連打兩棒。僧禮拜，師乃云：「山僧久不陞座，想是舌頭爛卻，四眾與",
+            "MasterName": null,
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Poshan Haiming",
+                "Roles": [
+                  "respondent"
+                ],
+                "GrammarEvidence": null
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J26/J26nB177.xml). Poshan Chan Sayings. 問 directly governs 三十六年後度人已畢; Poshan Haiming responds with a blow.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "度人已畢",
+              "GrammaticalSubject": "the unnamed questioning monk",
+              "SpeechFrame": "Source record (J/J26/J26nB177.xml). Poshan Chan Sayings. 問 directly governs 三十六年後度人已畢; Poshan Haiming responds with a blow.",
+              "FullCaseDecision": "the unnamed questioning monk is the exact actor at the headword-bearing clause; contextual speakers are not substituted."
+            },
+            "ActorAttribution": {
+              "Status": "reviewed-unnamed",
+              "Kind": "Chan actor",
+              "ActorLabel": "the unnamed questioning monk",
+              "ActorRole": "questioner",
+              "GrammarEvidence": "問 directly governs 三十六年後度人已畢; Poshan Haiming responds with a blow.",
+              "ReviewedBy": "R74 source-first adjudication",
+              "ReviewedUtc": "2026-07-30T08:27:22.495392Z",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ]
+            }
+          },
+          {
+            "RelPath": "J/J26/J26nB178.xml",
+            "FromLb": "0107a07",
+            "ToLb": "0107a12",
+            "Kwic": "證據而已，更命山僧登于此座，說個什麼即得，未免借古人鼻孔為薛居士出氣。釋迦老子云：『未離兜率已降王宮，未出母胎度人已畢。』釋迦大似布袋盛錐，固自藏鋒不得。又雪峰祖師云：『望州亭與汝相見了也，烏石嶺與汝相見了也，僧堂前與汝相見了也",
+            "MasterName": "Feiyin Tongrong",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Feiyin Tongrong",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J26/J26nB178.xml). Feiyin Chan Sayings. Feiyin says 釋迦老子云 and quotes the complete formula, then judges it as 布袋盛錐，固自藏鋒不得.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "度人已畢",
+              "GrammaticalSubject": "Feiyin Tongrong",
+              "SpeechFrame": "Source record (J/J26/J26nB178.xml). Feiyin Chan Sayings. Feiyin says 釋迦老子云 and quotes the complete formula, then judges it as 布袋盛錐，固自藏鋒不得.",
+              "FullCaseDecision": "Feiyin Tongrong is the exact actor at the headword-bearing clause; contextual speakers are not substituted."
+            }
+          }
+        ],
+        "ClaimAnchors": [],
+        "SourceTexts": [
+          "B/B25/B25n0145.xml",
+          "C/C077/C077n1710.xml",
+          "J/J10/J10nA158.xml",
+          "J/J20/J20nB098.xml",
+          "J/J26/J26nB177.xml",
+          "J/J26/J26nB178.xml"
+        ],
+        "RelatedMasters": [
+          "Zhongfeng Mingben",
+          "Foyan Qingyuan",
+          "Miyun Yuanwu",
+          "Wunian You",
+          "Poshan Haiming",
+          "Feiyin Tongrong"
+        ],
+        "RelatedTerms": [],
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "The records use 度人已畢 to reverse ordinary sequence: the work of liberating people is already complete before birth or another apparent beginning.",
+          "EvidenceBody": [
+            "It most often forms the second half of 未出母胎，度人已畢: before leaving the womb, the work was done. Zhongfeng Mingben and Foyan Qingyuan use the inherited line to put activity before the narrated birth; Miyun Yuanwu applies its two halves to dependence on parents and teachers; Wunian You pairs it with teaching already complete before the mouth opens; Feiyin Tongrong treats it as an inability to conceal what is already present; and an unnamed monk questioning Poshan Haiming independently reapplies the shorter predicate to thirty-six years of a teacher's life."
+          ]
+        },
+        "DraftEvidence": {
+          "LiteralGraphFloor": "the work of liberating people was already complete",
+          "LexicalJob": "The records use 度人已畢 to place completed liberating work before an expected beginning, most often before the person described had even been born.",
+          "DeploymentClasses": [
+            "source-case",
+            "independent deployment",
+            "parallel witness"
+          ],
+          "HighValueEvidenceLedger": [
+            {
+              "Disposition": "keep",
+              "Finding": "Zhongfeng Mingben uses the headword in the retained passage in Zhongfeng Mingben: Extensive Record.",
+              "Reason": "The complete case secures the exact actor and adds a distinct direct use or active commentary."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Foyan Qingyuan uses the headword in the retained passage in Recorded Sayings of Ancient Masters.",
+              "Reason": "The complete case secures the exact actor and adds a distinct direct use or active commentary."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Miyun Yuanwu uses the headword in the retained passage in Miyun Chan Sayings.",
+              "Reason": "The complete case secures the exact actor and adds a distinct direct use or active commentary."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Wunian You uses the headword in the retained passage in Questions to Huangbo Wunian.",
+              "Reason": "The complete case secures the exact actor and adds a distinct direct use or active commentary."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "the unnamed questioning monk uses the headword in the retained passage in Poshan Chan Sayings.",
+              "Reason": "The complete case secures the exact actor and adds a distinct direct use or active commentary."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Feiyin Tongrong uses the headword in the retained passage in Feiyin Chan Sayings.",
+              "Reason": "The complete case secures the exact actor and adds a distinct direct use or active commentary."
+            }
+          ],
+          "OpeningClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3",
+            "o4",
+            "o5",
+            "o6"
+          ],
+          "EvidenceBodyClaimKeys": [
+            [
+              "o1",
+              "o2",
+              "o3",
+              "o4",
+              "o5",
+              "o6"
+            ]
+          ],
+          "ZenBend": "The records use 度人已畢 to place completed liberating work before an expected beginning, most often before the person described had even been born.",
+          "CounterexampleOrLimit": "度人 literally concerns bringing or carrying people across and conventionally means delivering or liberating them. Preserve the completed-action force of 已畢. The phrase does not mean that a later teaching career historically ended before birth; the retained masters use and test the inherited formula as a temporal reversal.",
+          "DifferentThingTest": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "the work of liberating people was already complete"
+            ],
+            "Reason": "The question, verse, appraisal, and commentary frames retain the same lexical referent; none names a separate object, person, title, or institutional role."
+          },
+          "AliasRationale": "The aliases preserve the concrete wording of “the work of liberating people was already complete” without adding a new interpretation.",
+          "ModifierControls": [
+            {
+              "Term": "度人已畢",
+              "Finding": "No material or color modifier creates a separate referent; the full fixed expression is translated as one unit."
+            }
+          ],
+          "FamilyControls": [
+            {
+              "Term": "度人已畢",
+              "Finding": "Not applicable: no distinct family candidate was admitted or rejected in this bounded source-first construction."
+            }
+          ],
+          "IndependentWorkIds": [
+            "work:B25n0145",
+            "work:guzunsu-yulu",
+            "work:J10nA158",
+            "work:J20nB098",
+            "work:J26nB177",
+            "work:J26nB178"
+          ],
+          "SourceAuthorityRows": [
+            {
+              "EvidenceKey": "o1",
+              "RelPath": "B/B25/B25n0145.xml",
+              "WorkId": "work:B25n0145",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "The registered title identifies a named master’s sayings, discourse, question-and-answer, session, or comparable speech record; exact embedded quotations still require passage-level actor review.",
+              "WitnessFamilyId": "duren-yibi:zhongfeng-bathing-buddha",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o2",
+              "RelPath": "C/C077/C077n1710.xml",
+              "WorkId": "work:guzunsu-yulu",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "The registered title identifies a named master’s sayings, discourse, question-and-answer, session, or comparable speech record; exact embedded quotations still require passage-level actor review.",
+              "WitnessFamilyId": "duren-yibi:foyan-birth-formula",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o3",
+              "RelPath": "J/J10/J10nA158.xml",
+              "WorkId": "work:J10nA158",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "The registered title identifies a named master’s sayings, discourse, question-and-answer, session, or comparable speech record; exact embedded quotations still require passage-level actor review.",
+              "WitnessFamilyId": "duren-yibi:miyun-parents-teachers",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o4",
+              "RelPath": "J/J20/J20nB098.xml",
+              "WorkId": "work:J20nB098",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "The registered title identifies a named master’s sayings, discourse, question-and-answer, session, or comparable speech record; exact embedded quotations still require passage-level actor review.",
+              "WitnessFamilyId": "duren-yibi:wunian-before-opening-mouth",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o5",
+              "RelPath": "J/J26/J26nB177.xml",
+              "WorkId": "work:J26nB177",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "The registered title identifies a named master’s sayings, discourse, question-and-answer, session, or comparable speech record; exact embedded quotations still require passage-level actor review.",
+              "WitnessFamilyId": "duren-yibi:poshan-thirty-six-years",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o6",
+              "RelPath": "J/J26/J26nB178.xml",
+              "WorkId": "work:J26nB178",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "The registered title identifies a named master’s sayings, discourse, question-and-answer, session, or comparable speech record; exact embedded quotations still require passage-level actor review.",
+              "WitnessFamilyId": "duren-yibi:feiyin-unconcealed-awl",
+              "DeploymentRole": "original-use"
+            }
+          ],
+          "LampExcessJustification": "No Tier-3 lamp or lineage compilation is retained.",
+          "NoHigherWitnessSearchReceipt": "Every matching allowlisted file was classified by authority; the retained set uses only Tier 1 or Tier 2 sources, and no lamp is needed.",
+          "DepthHarvestReceipt": {
+            "Complete": true,
+            "ReviewedExactHitCount": 284,
+            "AvailableSourceFiles": 148,
+            "SearchedDeploymentClasses": [
+              "source-case",
+              "independent deployment",
+              "parallel witness"
+            ],
+            "OmissionAudit": [
+              "All five retained complete cases were read and exact-actor adjudicated.",
+              "Parallel containers and passive quotations were excluded from independent-family counting.",
+              "Tier-3 lamps were considered last and none was needed.",
+              "The predecessor was opened only after the source-first semantic draft was complete."
+            ]
+          }
+        },
+        "DraftAcceptedDerivedFields": {
+          "SourceTexts": [
+            "B/B25/B25n0145.xml",
+            "C/C077/C077n1710.xml",
+            "J/J10/J10nA158.xml",
+            "J/J20/J20nB098.xml",
+            "J/J26/J26nB177.xml",
+            "J/J26/J26nB178.xml"
+          ],
+          "RelatedMasters": [
+            "Zhongfeng Mingben",
+            "Foyan Qingyuan",
+            "Miyun Yuanwu",
+            "Wunian You",
+            "Poshan Haiming",
+            "Feiyin Tongrong"
+          ]
+        }
+      }
+    ],
+    "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+  },
+  "FamilyHarvest": {
+    "PolicyVersion": 1,
+    "Scope": "R74 source-hierarchy repair exact source-first family harvest",
+    "Edges": [],
+    "NegativeReceipt": [],
+    "GraphicVariants": []
+  }
+}

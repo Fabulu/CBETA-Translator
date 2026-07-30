@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "r74-construction-fail-closed.v1",
+  "cohort": "R74",
+  "timegatePath": "maintenance/non-iriya-v7-depth-regeneration-r74-timegate-root.json",
+  "timegateSha256": "112163a72ab4254def51480e49e7a0ddfa05482532a687dcc187fa3e8144bd52",
+  "startedEpoch": 1785400042.495392,
+  "deadlinesSeconds": {
+    "adjudicatedConfig": 512,
+    "constructor": 522,
+    "firstProduct": 542,
+    "construction": 602
+  },
+  "constructorCheckpointPath": "maintenance/non-iriya-v7-depth-regeneration-r74-constructor-checkpoint-b.json",
+  "constructorCheckpointSha256": "45a22de2dbfbb421528650223341324b5238688c38cffbcb8ae52dae0847b3e5",
+  "checkpointInvokedEpoch": 1785400611.9541411,
+  "checkpointElapsedSeconds": 569.4587490558624,
+  "deadlineRuling": "The constructor checkpoint was emitted after both the 522-second constructor deadline and the 542-second first-product deadline. Its ready state cannot authorize a late construction.",
+  "attemptRuling": {
+    "status": "failed-before-product",
+    "failure": "The attempted generic constructor rejected a generated contextual actor with an invalid identity status before emitting an authorized product.",
+    "semanticResearchInvalidated": false,
+    "actorDecisionsInvalidated": false,
+    "carryoverPermitted": true,
+    "repeatResearchProhibited": true
+  },
+  "boundArtifacts": {
+    "constructorConfigPath": "maintenance/non-iriya-v7-depth-regeneration-r74-constructor-config-b.json",
+    "constructorConfigSha256": "3ff5f8e3145362371247d818dc9bde9d7aaa9a88eb573f4ebe34fcf09ce551d8",
+    "commandAuditPath": "maintenance/non-iriya-v7-depth-regeneration-r74-constructor-command-audit-b.json",
+    "commandAuditSha256": "d918a5f353565fdbba8d9d2d6529a6eb2af3b2a20763e907facb501c82023dc7"
+  },
+  "cohortRulings": [
+    {
+      "id": "t_19b90a49b420",
+      "term": "囑令加護",
+      "ruling": "remove",
+      "constructionRequired": false
+    },
+    {
+      "id": "t_19c58dc2d3be",
+      "term": "度人已畢",
+      "ruling": "admitted; exact reviewed evidence may carry to R75",
+      "constructionRequired": true
+    },
+    {
+      "id": "t_1a0dbf72d9b7",
+      "term": "打一圓相",
+      "ruling": "admitted; corrected narrator/performer evidence may carry to R75",
+      "constructionRequired": true
+    }
+  ],
+  "publicMutation": false,
+  "hardPass": true
+}

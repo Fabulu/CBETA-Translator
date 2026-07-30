@@ -1992,9 +1992,11 @@ to rediscover canonical links case by case.
 
 For a **contextual** person who is explicitly identified in the case but has no canonical roster label,
 do not put a broken link in `ContextMasters`, do not erase the identity into prose, and do not edit the
-lineage roster. Use `ContextActors` on the occurrence with `Status = identified-unlinked-master` (or
-`identified-non-master` where applicable), the explicit `ActorLabel`, closed non-utterer `Roles`, and
-case-specific `GrammarEvidence`; the same public label must appear in `AttributionNote`. `ContextMasters`
+lineage roster. Use `ContextActors` on the occurrence with `Status = identified-unlinked-master`,
+`identified-non-master` for a personally named non-master, or `reviewed-unnamed` for an anonymous
+contextual participant whose action or role is established by the complete turn. Supply the explicit
+`ActorLabel`, closed non-utterer `Roles`, and case-specific `GrammarEvidence`; the same public label must
+appear in `AttributionNote`. `ContextMasters`
 remains link-only and contains exact roster `names[0]` values. A later roster reconciliation may promote
 the structured unlinked identity without re-reading the case.
 

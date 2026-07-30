@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "r74-independent-source-first-review.v1",
+  "cohort": "R74",
+  "id": "t_1a0dbf72d9b7",
+  "term": "打一圓相",
+  "decisionPath": "maintenance/r74-decision-yuanxiang-r27.json",
+  "decisionSha256": "4cdb18b4f8b81f05f08f6fb55b3933cfe64c4b74e65ce8701f30b4604e9eb025",
+  "sourceFirstRuling": {
+    "admission": "PASS: repeated encounter and ceremonial use supports a stable Chan action formula despite transparent composition.",
+    "meaning": "PASS: 'draw a circle' is the clean default; 'trace a circle' is a justified alternative. No doctrinal content should be imported into the circle.",
+    "senseCount": "PASS: one performed-action sense. Hand, finger, whisk, firebrand, dots, and occasion vary the performance, not the lexical meaning.",
+    "familyAccounting": "PASS: six retained cases are independent active families; the three reserve cases are legitimate independent variants but need not pad the floor.",
+    "sourceHierarchy": "PASS: six Tier-2 recorded-sayings families, zero lamps.",
+    "separation": "PASS: 遶一圓相 is a distinct walking-around action and must remain separate."
+  },
+  "blockingDefect": {
+    "type": "systemic exact-actor model mismatch",
+    "ruling": "All nine headword occurrences are narrator-governed descriptions of someone making a circle. Under the public actor rule, MasterName is the utterer of the headword, not the person whose action the narrator describes. The decision instead promotes each circle performer to exactActor.masterName or treats the performer as the anonymous headword actor. That would recreate the narrated-action attribution defect.",
+    "requiredModel": "For each occurrence, record the exact headword-bearing grammar as narrated/impersonal with MasterName null and a complete ActorAttribution. Store the person who draws the circle separately as ContextMasters or ContextActors with an allowed contextual role and explicit GrammarEvidence. Respondents and record owners remain contextual people.",
+    "affectedCases": [
+      "r74-o1: 有僧出打一圓相 is narrator-governed; the unnamed monk is the described performer, Langye Huijue the respondent.",
+      "r74-o2: 車打一圓相 is narrator-governed; Shiche Tongcheng is the described performer, Miyun Yuanwu the interlocutor/respondent.",
+      "r74-o3: 以拂子打一圓相 is a stage-direction description of Wuqu Rukong's action.",
+      "r74-o4: 以火把打一圓相 is a stage-direction description of Wuhuan Xingchong's action.",
+      "r74-o5: 師以拂打一圓相 is narrator-governed; Tianyin Yuanxiu is the described performer.",
+      "r74-o6: 以拂子打一圓相曰 contains narrated action followed by speech; Wuming Huijing does not utter the headword itself.",
+      "r74-o7: 僧以手打一圓相點三點 is narrator-governed; the unnamed monk is the performer and Feiyin Tongrong the respondent.",
+      "r74-o8: 僧以指打一圓相 is narrator-governed; the unnamed monk is the performer and Shiqi Tongyun the respondent.",
+      "r74-o9: 一勤宿出眾，打一圓相 is narrator-governed; Yiqin is the identified performer and Shiyu Mingfang the respondent."
+    ],
+    "secondarySchemaIssues": [
+      "Roster-linked Langye Huijue, Miyun Yuanwu, Feiyin Tongrong, Shiqi Tongyun, and Shiyu Mingfang are placed under contextActors instead of ContextMasters.",
+      "anonymous-participant is not the accepted reviewed-unnamed status and does not record the six-rung audit.",
+      "action-performer is outside the closed public role vocabulary; describe the physical action in GrammarEvidence and use an allowed contextual role."
+    ]
+  },
+  "verdict": "DENY",
+  "finiteCorrectionScope": "Actor modeling only; admission, gloss, one-sense ruling, six retained families, reserve dispositions, and source hierarchy should remain unchanged.",
+  "hardPass": false,
+  "publicMutation": false
+}

@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "r75-admitted-constructor-selection.v1",
+  "cohort": "R75",
+  "artifactZeroSelectionPath": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r75-selection-b.json",
+  "artifactZeroSelectionSha256": "68948c893898500eb8d702556c893d04917b50911ee2d5ff1b23c24772a3c38d",
+  "rows": [
+    {
+      "queueOrdinal": 2,
+      "identityId": "t_19c58dc2d3be",
+      "term": "度人已畢",
+      "requiredFloor": 6,
+      "classification": "hard-fail"
+    },
+    {
+      "queueOrdinal": 3,
+      "identityId": "t_1a0dbf72d9b7",
+      "term": "打一圓相",
+      "requiredFloor": 6,
+      "classification": "hard-fail"
+    }
+  ],
+  "excluded": [
+    {
+      "id": "t_19b90a49b420",
+      "term": "囑令加護",
+      "decisionPath": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r74-decision-zhuling-b.json",
+      "decisionSha256": "59ca29d4949fbc2bd660ae365a396a7beed05ffaf41300229b637fa09acc556b",
+      "reviewPath": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r74-review-zhuling-c.json",
+      "reviewSha256": "cf80d290940dc04658851edcefa31eab53e8b4a0a7160f4737a4658a1593f551",
+      "ruling": "REJECT_AND_REMOVE_DICTIONARY_ENTRY"
+    }
+  ],
+  "hardPass": true
+}
