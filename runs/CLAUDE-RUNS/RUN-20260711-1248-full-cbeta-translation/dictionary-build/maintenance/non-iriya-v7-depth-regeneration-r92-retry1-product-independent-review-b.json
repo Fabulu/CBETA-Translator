@@ -1,0 +1,100 @@
+{
+  "schemaVersion": "r92-retry1-product-independent-review.v1",
+  "cohort": "R92",
+  "reviewer": "Codex r92_product_review_b",
+  "reviewMode": "independent read-only review of the exact retry1 products against the frozen R92 extraction and adjudications; no rescan, product edit, or publication",
+  "bindings": {
+    "adjudicationA": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r92-adjudication-a.json",
+      "sha256": "4737c9041d840a5199c4e021fd45e4dcf8d14cfa1ecacc7b7e9b8415bdefa42c"
+    },
+    "adjudicationC": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r92-adjudication-c.json",
+      "sha256": "b2122b7347ca361ba608b93568bc062acc2b7ba12f1757de970dcfbf42b80f26"
+    },
+    "constructionManifest": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r92-retry1-construction-manifest-b.json",
+      "sha256": "6c36dca79c9f9e0fa414738ad23fd3322b5ec32cb947e906bcc57a143c415d35"
+    },
+    "products": [
+      {
+        "id": "t_219099a33daa",
+        "path": "fresh-build/entries/t_219099a33daa/entry.v2.json",
+        "sha256": "1851fa3d1be027706c496dfe2c5ba1d30449f5998fc96ba75cf4622d8b14931b"
+      },
+      {
+        "id": "t_21a3463bc0db",
+        "path": "fresh-build/entries/t_21a3463bc0db/entry.v2.json",
+        "sha256": "5a5de1f16c0659fc6c2268fe24fb9a63d4cfb4c3acf62abd3bff662cc8fc8741"
+      },
+      {
+        "id": "t_21b44f051c7a",
+        "path": "fresh-build/entries/t_21b44f051c7a/entry.v2.json",
+        "sha256": "822c2c4190c6dc819e908605607898eb66323c70abb81b2e3a30113604b5370c"
+      }
+    ]
+  },
+  "entryReviews": [
+    {
+      "id": "t_219099a33daa",
+      "term": "疾入於涅槃",
+      "semanticVerdict": "pass",
+      "quoteSupportVerdict": "pass",
+      "sourceTierVerdict": "pass",
+      "familyIndependenceVerdict": "pass",
+      "unsupportedClaimVerdict": "pass",
+      "finding": "The fixed-clause translation, counterfactual limit, four Tier-2 source classifications, and four active later deployments agree with the frozen adjudication. The quotations all preserve Shakyamuni as the represented utterer while the four record owners remain later quoters or commentators."
+    },
+    {
+      "id": "t_21a3463bc0db",
+      "term": "隨處",
+      "semanticVerdict": "pass",
+      "quoteSupportVerdict": "pass",
+      "sourceTierVerdict": "pass",
+      "familyIndependenceVerdict": "pass",
+      "unsupportedClaimVerdict": "pass",
+      "finding": "The one locative-distributive sense and its English alternates fit all seven retained complete frames. The seven authored deployments are distinct works and distinct uses rather than parallel recensions."
+    },
+    {
+      "id": "t_21b44f051c7a",
+      "term": "財法二施",
+      "semanticVerdict": "pass",
+      "quoteSupportVerdict": "pass",
+      "sourceTierVerdict": "fail",
+      "familyIndependenceVerdict": "pass",
+      "unsupportedClaimVerdict": "pass",
+      "finding": "The paired material-and-teaching sense and four-family count are supported, but occurrence 1 is Wang Kentang's lay-authored canon-engraving vow embedded in Micang's posthumous writings. The frozen adjudication expressly calls it a named lay author's contextual witness and says it is not top-tier Zen-master evidence. The product nevertheless declares it Tier 1 / master-authored."
+    }
+  ],
+  "crossProductActorStructureReview": {
+    "verdict": "fail",
+    "finding": "Six occurrences with a roster-linked MasterName omit that same actor from ContextMasters. ACTOR_AUDIT requires named positive decisions to carry the exact actor and canonical role in ContextMasters, not merely a bare MasterName.",
+    "coordinates": [
+      "t_21a3463bc0db s1 o1 Xuefeng Huikong / verse-author",
+      "t_21a3463bc0db s1 o4 Yongjia Xuanjue / utterer",
+      "t_21a3463bc0db s1 o5 Guifeng Zongmi / utterer",
+      "t_21a3463bc0db s1 o6 Yongming Yanshou / verse-author",
+      "t_21b44f051c7a s1 o3 Huangbo Xiyun / utterer",
+      "t_21b44f051c7a s1 o4 Feiyin Tongrong / utterer"
+    ]
+  },
+  "hardFailures": [
+    {
+      "kind": "source-tier-misclassification",
+      "coordinate": "t_21b44f051c7a s1 o1 J/J23/J23nB118.xml",
+      "detail": "Wang Kentang is a named lay author, not a Zen master. His vow may remain as an independent contextual witness, but it cannot be labeled Tier 1 / master-authored."
+    },
+    {
+      "kind": "positive-actor-context-role-loss",
+      "coordinate": "t_21a3463bc0db s1 o1,o4,o5,o6; t_21b44f051c7a s1 o3,o4",
+      "detail": "The products emit bare MasterName values without the required same-person ContextMasters role records."
+    }
+  ],
+  "requiredCorrection": [
+    "Reclassify the Wang Kentang witness as a named non-master contextual source rather than Tier 1 / master-authored, and ensure the generated source-authority metadata does not claim otherwise.",
+    "Emit ContextMasters records for every roster-linked exact actor using the adjudicated closed role: utterer or verse-author as applicable.",
+    "Rerun the deterministic product gates and obtain an independent rereview of the corrected exact bytes."
+  ],
+  "hardPass": false,
+  "publishAuthorized": false
+}

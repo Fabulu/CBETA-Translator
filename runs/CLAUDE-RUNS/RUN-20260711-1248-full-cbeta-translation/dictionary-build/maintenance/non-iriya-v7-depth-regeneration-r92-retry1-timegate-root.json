@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "bounded-dictionary-timegate.v3",
+  "cohort": "R92",
+  "artifactZero": true,
+  "retryOrdinal": 1,
+  "startedEpoch": 1785421261.869296,
+  "authorityPath": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r92-retry1-authority-root.json",
+  "authoritySha256": "2c373f796a8a0915d34931e5703c28963bd30acc4733f101438be232b04e1d9b",
+  "requiredFloors": [
+    4,
+    7,
+    4
+  ],
+  "admittedRequiredOccurrences": 15,
+  "adjudicatedCaseLoad": 15,
+  "deadlinesSeconds": {
+    "config": 120,
+    "constructor": 150,
+    "firstProduct": 180,
+    "construction": 220,
+    "review": 400,
+    "correction": 500,
+    "publication": 590
+  },
+  "sameScopeIds": [
+    "t_219099a33daa",
+    "t_21a3463bc0db",
+    "t_21b44f051c7a"
+  ],
+  "rescanAllowed": false,
+  "scopeExpansionAllowed": false,
+  "continuationOf": "R92 original 500-second adjudicated-config failure"
+}

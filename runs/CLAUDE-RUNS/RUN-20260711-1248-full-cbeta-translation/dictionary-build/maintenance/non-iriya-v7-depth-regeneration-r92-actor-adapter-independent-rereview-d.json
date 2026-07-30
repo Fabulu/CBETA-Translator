@@ -1,0 +1,72 @@
+{
+  "schemaVersion": "r92-actor-adapter-independent-rereview.v1",
+  "cohort": "R92",
+  "reviewer": "Codex independent actor-adapter rereview D",
+  "reviewedUtc": "2026-07-30T14:25:00Z",
+  "verdict": "PASS",
+  "boundInputs": {
+    "maintenance/adjudicated_actor_adapter.py": "35d5e2d053111401d24bbcec22471de358eb11d4c664dd13268cd26796c802ce",
+    "maintenance/build_r92_config_b.py": "98a1b4f627166688c92d338faead50282738e1c9ec1491af815d7abd12beebe1",
+    "maintenance/test_adjudicated_actor_adapter.py": "f97c44614ec5ef3e53e59326a2921f08adf7e4bae8b5f27cdaab600ad5acc736"
+  },
+  "priorAcceptanceConditions": [
+    {
+      "condition": "Make the adapter the sole constructor-input path for all R92 uses.",
+      "result": "PASS",
+      "evidence": "All 15 R92 retained uses are expressed as builder_use(adapt_actor(...)); no handwritten retained-use tuple remains. A focused test binds the expected count and verifier call."
+    },
+    {
+      "condition": "Validate use[4] against the exact canonical closed role vocabulary.",
+      "result": "PASS",
+      "evidence": "verify_builder_uses reads use[4] and rejects roles outside CLOSED_ROLES."
+    },
+    {
+      "condition": "Remove performer, action-performer, and author from accepted closed roles.",
+      "result": "PASS",
+      "evidence": "CLOSED_ROLES now exactly matches the 17-role guide vocabulary; all three forbidden additions are absent."
+    },
+    {
+      "condition": "Encode and test quoted-speaker to utterer.",
+      "result": "PASS",
+      "evidence": "quoted-nonroster-master maps quoted-speaker and quoted-case-figure to utterer; the focused test asserts the resulting role."
+    },
+    {
+      "condition": "Encode and test Wang Kentang's reviewed canonical role.",
+      "result": "PASS",
+      "evidence": "named-nonmaster-author produces identified-non-master with role utterer; R92 constructs Wang through that adapter branch and the test asserts both fields."
+    },
+    {
+      "condition": "Reject a nonlinked named identity matching any roster alias.",
+      "result": "PASS",
+      "evidence": "All named unlinked adapter branches check the case-folded complete roster alias set. The assembled-use verifier checks both identified-unlinked-master and identified-non-master. Tests reject the English canonical name and Chinese alias for Huangbo Xiyun."
+    },
+    {
+      "condition": "Distinguish quoted master from quoted non-master.",
+      "result": "PASS",
+      "evidence": "Separate quoted-nonroster-master and quoted-nonmaster branches now produce identified-unlinked-master and identified-non-master respectively."
+    },
+    {
+      "condition": "Run focused adapter tests.",
+      "result": "PASS",
+      "evidence": "PYTHONPATH=dictionary-build python3 -m unittest maintenance.test_adjudicated_actor_adapter completed 9/9 in 0.179 seconds."
+    },
+    {
+      "condition": "Run constructor whole-config actor closure before writing R92 products.",
+      "result": "PENDING_RELEASE_GATE",
+      "evidence": "This rereview was expressly prohibited from resuming R92. No adapter defect remains; the root constructor must still execute its existing whole-config actor closure before any product write."
+    }
+  ],
+  "r92MappingCheck": {
+    "疾入於涅槃": "Four Shakyamuni quoted voices map to identified-unlinked-master/utterer; later masters remain contextual later-quoters/commentators.",
+    "隨處": "Roster-linked and explicitly unlinked masters take distinct closure-valid branches; verse-author and utterer roles are canonical.",
+    "財法二施": "Wang Kentang maps to identified-non-master/utterer; the anonymous monk maps to reviewed-unnamed/questioner; Huangbo and Feiyin map to linked utterers."
+  },
+  "focusedTestResult": {
+    "testsRun": 9,
+    "failures": 0,
+    "errors": 0,
+    "elapsedSeconds": 0.179
+  },
+  "productionDataModified": false,
+  "releaseInstruction": "R92 may resume only through the normal constructor command so generic_bounded_constructor.verify_actor_closure executes before the first product write."
+}

@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "bounded-dictionary-timegate.v3",
+  "cohort": "R92",
+  "artifactZero": true,
+  "startedEpoch": 1785420101.918182,
+  "createdUtc": "2026-07-30T14:01:41.918182Z",
+  "requiredFloors": [
+    4,
+    7,
+    4
+  ],
+  "admittedRequiredOccurrences": 15,
+  "adjudicatedCaseLoad": 15,
+  "researchCandidateReserve": 3,
+  "deadlinesSeconds": {
+    "viability": 120,
+    "researchExtraction": 240,
+    "adjudicatedConfig": 500,
+    "constructor": 510,
+    "firstProduct": 530,
+    "construction": 590,
+    "review": 770,
+    "correction": 890,
+    "publication": 980
+  },
+  "assignedLaunch": {
+    "selector": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/last1500-public-depth/final-scope/full-regeneration-selector.json",
+    "priorUnion": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r91-resolved-union-root.json",
+    "entries": [
+      {
+        "id": "t_219099a33daa",
+        "term": "疾入於涅槃",
+        "requiredFloor": 4
+      },
+      {
+        "id": "t_21a3463bc0db",
+        "term": "隨處",
+        "requiredFloor": 7
+      },
+      {
+        "id": "t_21b44f051c7a",
+        "term": "財法二施",
+        "requiredFloor": 4
+      }
+    ],
+    "reserveIds": [],
+    "researchCandidateReserve": 3
+  },
+  "continuationOf": "R91"
+}

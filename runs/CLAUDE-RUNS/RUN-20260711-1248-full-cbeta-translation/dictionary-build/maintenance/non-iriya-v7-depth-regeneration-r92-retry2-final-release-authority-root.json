@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "r92-retry2-final-release-authority.v1",
+  "cohort": "R92",
+  "retryOrdinal": 2,
+  "releaseAuthorized": true,
+  "rootDecision": "Authorize only the three exact R92 retry2 products. The original attempt and retry1 remained unpublished after hard timegate or independent-review failures. Retry2 binds the frozen evidence, independently reviewed actor-process correction, corrected source classification, whole-config closure, and two independent exact-product reviews.",
+  "products": [
+    {
+      "id": "t_219099a33daa",
+      "entrySha256": "1851fa3d1be027706c496dfe2c5ba1d30449f5998fc96ba75cf4622d8b14931b"
+    },
+    {
+      "id": "t_21a3463bc0db",
+      "entrySha256": "7bc95a32e9d7dd9a99aa10dc083c0486ab9f1e973665b26f062501b9e71768fa"
+    },
+    {
+      "id": "t_21b44f051c7a",
+      "entrySha256": "2304e8a688fded4103efb27daa4de6dcb3b9bc348dbfe0e3c0663242ffebe5d3"
+    }
+  ],
+  "releaseBindings": {
+    "path": "maintenance/non-iriya-v7-depth-regeneration-r92-retry2-release-authority-bindings-root.json",
+    "sha256": "fde406db5f642963944ee945e697e97c8b81674fb7c2a9f150bfd54760f8b666"
+  },
+  "independentReviews": {
+    "sourceSemantic": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r92-retry2-product-independent-review-b.json",
+      "sha256": "80caf8d7d51f993732676b8389e80ed9154eb77e9bdc83af0e6eafa23f3880e6",
+      "hardPass": true
+    },
+    "actorCompiler": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r92-retry2-products-independent-review-d.json",
+      "sha256": "b280fa33f8822b197c933cd9bb0970b90ac44ddbc278ce067d62a660ec897d85",
+      "hardPass": true
+    }
+  },
+  "sourceHierarchy": {
+    "tier1": 7,
+    "tier2": 8,
+    "tier3Lamps": 0
+  },
+  "publicationExpectation": {
+    "replacementCount": 3,
+    "creationCount": 0,
+    "publicEntryCountBefore": 4714,
+    "publicEntryCountAfter": 4714
+  },
+  "publicMutationBeforeAuthority": false
+}

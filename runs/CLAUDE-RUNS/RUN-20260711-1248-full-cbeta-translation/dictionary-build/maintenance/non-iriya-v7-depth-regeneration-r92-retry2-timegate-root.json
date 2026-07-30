@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "bounded-dictionary-timegate.v3",
+  "cohort": "R92",
+  "artifactZero": true,
+  "retryOrdinal": 2,
+  "startedEpoch": 1785421931.7709854,
+  "authorityPath": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r92-retry2-authority-root.json",
+  "authoritySha256": "03347889139ad90db764d3f9f45d99f974ef0a860d76b282b0707342245632ee",
+  "requiredFloors": [
+    4,
+    7,
+    4
+  ],
+  "admittedRequiredOccurrences": 15,
+  "adjudicatedCaseLoad": 15,
+  "deadlinesSeconds": {
+    "config": 60,
+    "constructor": 90,
+    "firstProduct": 150,
+    "construction": 180,
+    "review": 320,
+    "correction": 410,
+    "publication": 500
+  },
+  "sameScopeIds": [
+    "t_219099a33daa",
+    "t_21a3463bc0db",
+    "t_21b44f051c7a"
+  ],
+  "rescanAllowed": false,
+  "scopeExpansionAllowed": false,
+  "continuationOf": "R92 retry1 reviewed correction"
+}

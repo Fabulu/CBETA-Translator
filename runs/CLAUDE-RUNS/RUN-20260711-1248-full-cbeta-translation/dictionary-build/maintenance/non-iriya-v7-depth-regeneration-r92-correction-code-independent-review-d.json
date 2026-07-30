@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "r92-correction-code-independent-review.v1",
+  "cohort": "R92",
+  "reviewer": "Codex independent correction-code review D",
+  "reviewedUtc": "2026-07-30T14:31:00Z",
+  "scope": "Stopped correction code only; no product construction, mutation, or publication.",
+  "verdict": "PASS",
+  "boundInputs": {
+    "maintenance/adjudicated_actor_adapter.py": "92c883460504506463c017307e1c4796e6750bcad6f465f8dd599c4501fd7ef3",
+    "maintenance/build_r84_config_b.py": "5bf4d7aa505ca884c151de3f7d3e37b2fac25446271b76ed2db280c4aef17010",
+    "maintenance/build_r92_config_b.py": "c03d3d4976413163037fdcdfc3c06dd2d69ce4d407d7db7e3d541a2258642cb6",
+    "maintenance/test_adjudicated_actor_adapter.py": "286b6302a52b1eae3d92f91c5e27f71bb6e9c6ac4a2f47d4e6703d62dfb34077"
+  },
+  "checks": [
+    {
+      "coordinate": "linked exact-actor role merge",
+      "result": "PASS",
+      "evidence": "The shared emitter seeds a linked actor row from MasterName and the exact canonical role, then calls merge_context_masters instead of replacing it with role_meta context."
+    },
+    {
+      "coordinate": "identity and role deduplication",
+      "result": "PASS",
+      "evidence": "merge_context_masters merges by canonical MasterName, preserves first-seen identity order, and deduplicates the union of roles in stable first-seen order."
+    },
+    {
+      "coordinate": "linked actor with other contextual master",
+      "result": "PASS",
+      "evidence": "Huangbo remains utterer while Juelang remains later-raiser/commentator/record-owner; the merge does not replace or conflate either identity."
+    },
+    {
+      "coordinate": "Wang Kentang replacement",
+      "result": "PASS",
+      "evidence": "R92 no longer retains the lay-authored Wang witness as Tier 1. It uses the already frozen J/J26/J26nB188.xml candidate as Ruibai Mingxue's direct Tier 2 recorded-sayings deployment, without rescan or new candidate acquisition."
+    },
+    {
+      "coordinate": "財法二施 source-family statement",
+      "result": "PASS",
+      "evidence": "The reader prose now accurately describes Ruibai, the Tianyin question, Huangbo, and Feiyin as four independent recorded-sayings families."
+    },
+    {
+      "coordinate": "Ruibai role closure",
+      "result": "PASS",
+      "evidence": "Ruibai is a roster-linked utterer with explicit utterer and record-owner context roles; merge deduplicates the repeated utterer role."
+    },
+    {
+      "coordinate": "Feiyin role closure",
+      "result": "PASS",
+      "evidence": "Feiyin is seeded as the linked utterer and explicitly supplies utterer plus record-owner; the merged result is exactly one Feiyin row with both roles."
+    },
+    {
+      "coordinate": "shared-emitter reach",
+      "result": "PASS",
+      "evidence": "R92 continues to derive its executable constructor body from build_r84_config_b.py, so the reviewed merge is on the actual R92 emission path rather than an unused helper."
+    },
+    {
+      "coordinate": "focused regressions",
+      "result": "PASS",
+      "evidence": "PYTHONPATH=dictionary-build python3 -m unittest maintenance.test_adjudicated_actor_adapter ran 10 tests with zero failures and zero errors in 0.221 seconds."
+    }
+  ],
+  "regressionResult": {
+    "testsRun": 10,
+    "failures": 0,
+    "errors": 0,
+    "elapsedSeconds": 0.221
+  },
+  "remainingReleaseGates": [
+    "Resume only through the governed constructor so whole-config actor closure runs before the first corrected product write.",
+    "Bind and independently review the corrected product bytes before publication."
+  ],
+  "productReviewPerformed": false,
+  "productionDataModified": false,
+  "publicationAuthorized": false
+}
