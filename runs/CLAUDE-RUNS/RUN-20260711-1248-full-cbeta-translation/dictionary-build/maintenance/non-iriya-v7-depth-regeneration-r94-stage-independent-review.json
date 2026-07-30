@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "r94-stage-independent-review.v1",
+  "cohort": "R94",
+  "reviewer": "independent-stage-reviewer",
+  "bindings": {
+    "manifest": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r94-generic-manifest-root.json",
+      "sha256": "fcb30f880a91a00839f401e22cd87a57c8631419bd3828ef1a4889334920e92d"
+    },
+    "stageReceipt": {
+      "path": "maintenance/r94-generic-stage-root/merge-receipt.json",
+      "sha256": "7aefa95726bfe7a973a2290e64fc9a316fa255c9345a97e4bb33b9f062832fd2"
+    }
+  },
+  "checks": {
+    "exactProductCount": 30,
+    "uniqueProductIdentities": 30,
+    "stageTermIdentityParity": true,
+    "receiptOutputHashesVerified": 256,
+    "richCount": 4715,
+    "shardCount": 4715,
+    "legacyCount": 4715,
+    "indexTermCount": 4715,
+    "exactTargetRichParity": true,
+    "fullShardRichParity": true,
+    "legacyProjectionParity": true,
+    "indexProjectionParity": true,
+    "stageTreeContained": true,
+    "rosterExpectedSha256": "bdee500537cffced1759f28f2516d8ac613f2d10e3bbdc7b4d35da6bb9bc474a",
+    "rosterActualSha256": "bdee500537cffced1759f28f2516d8ac613f2d10e3bbdc7b4d35da6bb9bc474a",
+    "rosterUnchanged": true,
+    "noExtraProductIdentities": true
+  },
+  "blockers": [],
+  "hardPass": true,
+  "releaseAuthorized": false,
+  "note": "Read-only independent review. No stage or public data was edited."
+}

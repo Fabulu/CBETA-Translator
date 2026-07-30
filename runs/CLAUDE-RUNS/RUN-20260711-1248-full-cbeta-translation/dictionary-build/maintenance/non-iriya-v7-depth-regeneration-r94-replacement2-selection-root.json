@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "r94-replacement2-selection.v1",
+  "cohort": "R94-replacement2",
+  "artifactZero": {
+    "path": "maintenance/non-iriya-v7-depth-regeneration-r94-replacement2-timegate-root.json",
+    "sha256": "fa09e14861c34c2baca6189b9bb6b04bcbb6735df12a85a618adbfbe0470bc8c"
+  },
+  "authoritativeSelector": {
+    "path": "maintenance/last1500-public-depth/final-scope/full-regeneration-selector.json",
+    "sha256": "07a2c8dac36e9b8945195b8d080222fd4be8a795b2d10d1be2807d6302ba0b15",
+    "chunks": [
+      {
+        "path": "maintenance/last1500-public-depth/final-scope/full-regeneration-selector-chunk-0001-0250.json",
+        "sha256": "ae858ed77e4c239a7506bc24611edc6015475adc20c0745a586b5e6eb60ca8bd"
+      },
+      {
+        "path": "maintenance/last1500-public-depth/final-scope/full-regeneration-selector-chunk-0251-0500.json",
+        "sha256": "6caec138ac877916a81524331f95f95bef755b15842eae89a42677d1378d935a"
+      },
+      {
+        "path": "maintenance/last1500-public-depth/final-scope/full-regeneration-selector-chunk-0501-0750.json",
+        "sha256": "4472e7f10955d2bbb32685886781baf796531b930799b7d91f9fecb78fb46744"
+      },
+      {
+        "path": "maintenance/last1500-public-depth/final-scope/full-regeneration-selector-chunk-0751-1000.json",
+        "sha256": "099b9fe2267a4f483052d4d550f271b3375f985ae7f18f10d3e3892b9c6dd4c3"
+      },
+      {
+        "path": "maintenance/last1500-public-depth/final-scope/full-regeneration-selector-chunk-1001-1025.json",
+        "sha256": "8699a4765954648939af80885f11308b2e8d5067f5d89bf5ecf3a31145f0bdd5"
+      }
+    ]
+  },
+  "exclusions": {
+    "r93UnionSha256": "bb80091e2a622d7385d5ce2d62ec920f0ca0ffa9e1d5c1e7a7a736de0ac9c1a4",
+    "originalR94SelectionSha256": "36177abe16d3218a4da284e48960786f16e35df0ce542b6e3ae7a8bfe74b70ca",
+    "replacement1SelectionSha256": "51ff59f54b9c7ee854cef26287b6ca27d606249361ddd0b1ee84a558e29b51b8",
+    "excludedCount": 252,
+    "failedReplacementIds": [
+      "t_2738431562e6",
+      "t_292ac4c33b4f"
+    ]
+  },
+  "selectionRule": "first authoritative row outside exact R93 union, all original R94 IDs, failed 無字, and failed 戒",
+  "selected": {
+    "batchOrdinal": 30,
+    "identityId": "t_296bc68f6903",
+    "term": "田庫奴",
+    "minimumExactUnitIndependentTier1Or2FamiliesPerSense": 3,
+    "selectorRequiredFloor": 4,
+    "corpusHits": 42,
+    "corpusFiles": 31,
+    "corpusWorks": 30
+  },
+  "collisionCount": 0,
+  "sourceExtractionPerformed": false,
+  "hardPass": true
+}

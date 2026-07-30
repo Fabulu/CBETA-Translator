@@ -1,0 +1,93 @@
+{
+  "schemaVersion": "r94-correction2-whole-batch-independent-review.v1",
+  "cohort": "R94-correction2",
+  "reviewer": "/root/source_tiers_b/r94_correction2_final_reviewer",
+  "reviewMode": "independent bounded product-authority-graph rereview; no semantic reread and no product edits",
+  "bindings": {
+    "constructionManifest": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r94-correction2-construction-manifest-root.json",
+      "sha256": "a490b854df9a2683c129c4e8a7eab8ca7795519640c85d91ebb5875259ae8efe"
+    },
+    "constructionClosure": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r94-correction2-closure-root.json",
+      "sha256": "489efd503ee1803a3b3c4103b0e5d229363eae0fd51b37c42f80fa1a9c147d30"
+    },
+    "finalAuthorityReview": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r94-final30-authority-review-manifest-root.json",
+      "sha256": "67dab1e226ee1f68f563300aea54c43f769660f57a4ca0d90d18b0a28ee48ee2"
+    }
+  },
+  "scope": {
+    "entryCount": 30,
+    "occurrenceCount": 92,
+    "independentFamilyCount": 92,
+    "independentWorkCount": 92,
+    "tier1Count": 33,
+    "tier2Count": 59,
+    "tier3Count": 0,
+    "lampCount": 0,
+    "threeFamilyEntries": 28,
+    "fourFamilyEntries": 2
+  },
+  "reviewedIds": [
+    "t_223c2f6ade25",
+    "t_22885135d39e",
+    "t_229d6fd2a889",
+    "t_22b4a92f2919",
+    "t_2310fbae5dc4",
+    "t_23204fbd253c",
+    "t_2325720f94cd",
+    "t_2354ad61810c",
+    "t_2385e8874684",
+    "t_23e82e80e367",
+    "t_240ea0594a5f",
+    "t_2455261d9696",
+    "t_2488565d7fba",
+    "t_24adbdf51a15",
+    "t_250794fa9636",
+    "t_255626770dcc",
+    "t_25fb43689d5e",
+    "t_26818ad3df57",
+    "t_2684c756a929",
+    "t_26a41c6b0def",
+    "t_26c4d202ba53",
+    "t_26c9a5cb0fe3",
+    "t_26d1f4bf3890",
+    "t_27e66043b271",
+    "t_280e96eb88e2",
+    "t_287ed053d37e",
+    "t_289b7e25b47c",
+    "t_28c0245cd261",
+    "t_28fac5e98308",
+    "t_296bc68f6903"
+  ],
+  "checks": {
+    "allManifestFileHashesCurrent": true,
+    "allManifestBindingsCurrent": true,
+    "allCompilerReportsHardPassAndBindCurrentWorksheetAndOutput": true,
+    "compilerWorksheetOutputParity": true,
+    "exactOccurrenceCoordinatesMatchReviewedDossiers": true,
+    "exactActorsMatchReviewedDossiers": true,
+    "allVoiceLayersPresent": true,
+    "independentFamiliesUniqueWithinEachEntry": true,
+    "independentWorksUniqueWithinEachEntry": true,
+    "perEntryFamilyCountsHonored": true,
+    "blanketExactThreeAssumptionUsed": false,
+    "tier3Zero": true,
+    "lampsAbsent": true,
+    "attributionAuditsHardPass": true,
+    "workSourceAuditsHardPass": true,
+    "deterministicIdsPass": true,
+    "uniqueIdsPass": true,
+    "uniqueTermsPass": true,
+    "failedOriginalExcluded": "t_2738431562e6",
+    "failedReplacementAttemptExcluded": "t_292ac4c33b4f",
+    "replacementPresent": "t_296bc68f6903",
+    "publicMutation": false,
+    "rosterMutation": false
+  },
+  "finiteDeltas": [],
+  "hardPass": true,
+  "releaseAuthorized": false,
+  "reviewedUtc": "2026-07-30T17:28:00Z"
+}

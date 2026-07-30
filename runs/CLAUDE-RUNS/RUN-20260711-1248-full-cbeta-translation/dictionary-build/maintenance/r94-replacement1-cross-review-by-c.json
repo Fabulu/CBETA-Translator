@@ -1,0 +1,189 @@
+{
+  "schemaVersion": "r94-replacement-cross-review.v1",
+  "cohort": "R94-replacement1",
+  "reviewer": "Codex r94_lane_c",
+  "sourceFirst": true,
+  "bindings": {
+    "authorClosure": {
+      "path": "maintenance/r94-replacement1-author-closure-root.json",
+      "sha256": "2bac1751af660580026cc8b8bce064c3fba6ce0bf77e66010a2d5185e3d5151d"
+    },
+    "refinedFrozenExtraction": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r94-replacement1-frozen-extraction-correction1-root.json",
+      "sha256": "ed4e3031901e9b90f3cdd552696ed2cb361994c90ef8da01d4345a0e98179ed2"
+    }
+  },
+  "scope": {
+    "id": "t_292ac4c33b4f",
+    "term": "戒",
+    "completeContextsRead": 6,
+    "allCoordinatesReviewed": true,
+    "productMutationPerformed": false,
+    "publicMutationPerformed": false
+  },
+  "senseReview": [
+    {
+      "sense": "precept noun",
+      "preferredTarget": "precept",
+      "semanticGlossVerdict": "PASS",
+      "differentThingSplitVerdict": "PASS",
+      "depthAndIndependenceVerdict": "FAIL",
+      "familyCountClaimed": 3,
+      "genuineStandaloneFamilyCount": 0,
+      "constituentCompoundFamilyCount": 3,
+      "validationVerdict": "FAIL",
+      "finding": "The noun meaning is lexically plausible and distinct from the verb, but none of its three rows attests standalone bare 戒. The exact lexical units are 戒品, 五戒, and 戒律. Under the governed longest-unit rule they are constituent-compound evidence only: they may test or support the component gloss, but cannot count toward bare-headword depth, source spread, or multi-source validation.",
+      "requiredDisposition": "Do not publish this sense as three-family multi-source from the supplied rows. Mark it unsupported/failed for this replacement or supply three separately frozen, exact standalone noun occurrences."
+    },
+    {
+      "sense": "guard-against verb",
+      "preferredTarget": "guard against",
+      "semanticGlossVerdict": "PASS",
+      "differentThingSplitVerdict": "PASS",
+      "depthAndIndependenceVerdict": "PASS",
+      "familyCountClaimed": 3,
+      "genuineStandaloneFamilyCount": 3,
+      "validationVerdict": "PASS",
+      "finding": "戒戒勿漏泄, 繼此猶當重戒, and 心地法門戒熱鬧 independently use 戒 as a verb governing disclosure, the ten evil actions just discussed, and bustle. The works and authorial families are distinct and Tier 1."
+    }
+  ],
+  "coordinateReviews": [
+    {
+      "index": 0,
+      "sense": "precept",
+      "coordinate": "D/D50/D50n8945.xml@0074a10",
+      "verdict": "FAIL_AS_HEADWORD_OCCURRENCE",
+      "actorVerdict": "PASS",
+      "actor": "Xuefeng Huikong",
+      "requiredVoiceLayer": "transmitted-verse",
+      "tierVerdict": "PASS_TIER1_AS_CONSTITUENT_EVIDENCE",
+      "independenceVerdict": "DOES_NOT_COUNT_FOR_BARE_HEADWORD",
+      "lexicalBoundary": "戒 occurs only inside 戒品, 'precept category.'",
+      "finding": "The verse is authored and supports the meaning of its compound, but 戒品 is the governed lexical object. Reclassify from an occurrence to constituent-compound/family evidence."
+    },
+    {
+      "index": 1,
+      "sense": "precept",
+      "coordinate": "J/J23/J23nB118.xml@0024c03",
+      "verdict": "FAIL_AS_HEADWORD_OCCURRENCE",
+      "actorVerdict": "PASS",
+      "actor": "Micang Daokai",
+      "requiredVoiceLayer": "direct-turn",
+      "tierVerdict": "PASS_TIER1_AS_CONSTITUENT_EVIDENCE",
+      "independenceVerdict": "DOES_NOT_COUNT_FOR_BARE_HEADWORD",
+      "lexicalBoundary": "戒 occurs only inside 五戒, 'five precepts.'",
+      "finding": "Micang's letter is actor-clear and work-distinct, but the exact lexical unit is 五戒. Retain only as constituent-compound evidence."
+    },
+    {
+      "index": 2,
+      "sense": "precept",
+      "coordinate": "J/J25/J25nB165.xml@0287b21",
+      "verdict": "FAIL_AS_HEADWORD_OCCURRENCE",
+      "actorVerdict": "PASS_WITH_LABEL_PRECISION",
+      "actor": "Wuzhu (無著), quoted original",
+      "contextActor": "Dawei Jinglun, active later appraiser",
+      "requiredVoiceLayer": "quoted-original",
+      "tierVerdict": "PASS_TIER1_AS_CONSTITUENT_EVIDENCE",
+      "independenceVerdict": "DOES_NOT_COUNT_FOR_BARE_HEADWORD",
+      "lexicalBoundary": "戒 occurs only inside 戒律, 'precepts/disciplinary rules.'",
+      "finding": "The quote boundary is correct, but the exact lexical unit is 戒律. Preserve the Chinese identity 無著 with the Wuzhu label and retain the row only as constituent-compound evidence."
+    },
+    {
+      "index": 3,
+      "sense": "guard",
+      "coordinate": "D/D50/D50n8945.xml@0069b07",
+      "verdict": "PASS_WITH_VOICE_AND_SPAN_DELTA",
+      "actorVerdict": "PASS",
+      "actor": "Xuefeng Huikong",
+      "requiredVoiceLayer": "transmitted-verse",
+      "tierVerdict": "PASS_TIER1",
+      "independenceVerdict": "PASS",
+      "grammar": "The doubled imperative 戒戒 governs 勿漏泄.",
+      "finding": "The broad frozen context contains unrelated 戒 in names and headings. Any public KWIC must be recut around the intended single actor/single verse clause 空也心膽麤，戒戒勿漏泄 and must not count the earlier 戒庵主 or 老戒 spans."
+    },
+    {
+      "index": 4,
+      "sense": "guard",
+      "coordinate": "J/J23/J23nB118.xml@0030c04",
+      "verdict": "PASS",
+      "actorVerdict": "PASS",
+      "actor": "Micang Daokai",
+      "requiredVoiceLayer": "direct-turn",
+      "tierVerdict": "PASS_TIER1",
+      "independenceVerdict": "PASS",
+      "grammar": "繼此猶當重戒 tells the correspondent to remain seriously on guard after listing the ten evil actions."
+    },
+    {
+      "index": 5,
+      "sense": "guard",
+      "coordinate": "J/J39/J39nB458.xml@0707c17",
+      "verdict": "PASS_WITH_VOICE_DELTA",
+      "actorVerdict": "PASS",
+      "actor": "Xixin Zhaoshui",
+      "requiredVoiceLayer": "transmitted-verse",
+      "tierVerdict": "PASS_TIER1",
+      "independenceVerdict": "PASS",
+      "grammar": "心地法門戒熱鬧 directly makes bustle the object of 戒.",
+      "finding": "The row is part of the authored 口鼓子歌 and should be classified as verse/song voice, not a direct spoken turn."
+    }
+  ],
+  "proseReview": {
+    "twoSenseOpening": "PASS",
+    "preceptBody": "FAIL_AS_VALIDATION_CLAIM",
+    "guardBody": "PASS",
+    "compoundLimitationNote": "SEMANTICALLY_CORRECT_BUT_STRUCTURALLY_NOT_APPLIED",
+    "finding": "The author note correctly admits that 戒品, 五戒, and 戒律 are constituent evidence, but the closure simultaneously counts them as three independent bare-headword occurrence families. That contradiction must be resolved in favor of the limitation note."
+  },
+  "sourceReview": {
+    "tier1Rows": 6,
+    "tier2Rows": 0,
+    "tier3Rows": 0,
+    "lampRows": 0,
+    "tierClassificationVerdict": "PASS_FOR_THEIR_ACTUAL_EVIDENCE_ROLES",
+    "lampExclusionVerdict": "PASS",
+    "contaminationVerdict": "PASS"
+  },
+  "finiteCorrectionDeltas": [
+    {
+      "kind": "constituent-compound-reclassification",
+      "coordinates": [
+        "D/D50/D50n8945.xml@0074a10",
+        "J/J23/J23nB118.xml@0024c03",
+        "J/J25/J25nB165.xml@0287b21"
+      ],
+      "change": "Remove all three from bare 戒 Occurrences and family-count validation; retain them only as labelled constituent-compound/claim evidence."
+    },
+    {
+      "kind": "sense-validation",
+      "sense": "precept noun",
+      "change": "Remove multi-source and familyCount 3. The sense fails the required standalone three-family floor unless a newly authorized frozen extraction supplies exact bare-noun uses."
+    },
+    {
+      "kind": "voice-layer",
+      "coordinates": [
+        "D/D50/D50n8945.xml@0074a10",
+        "D/D50/D50n8945.xml@0069b07",
+        "J/J39/J39nB458.xml@0707c17"
+      ],
+      "change": "Use transmitted-verse/song rather than direct-turn for the authored verse rows."
+    },
+    {
+      "kind": "single-governed-span",
+      "coordinate": "D/D50/D50n8945.xml@0069b07",
+      "change": "Recut the future public KWIC to the intended 戒戒勿漏泄 clause so unrelated name/heading spans do not create multi-actor or multi-unit ambiguity."
+    }
+  ],
+  "summary": {
+    "entryVerdict": "FAIL",
+    "semanticSenseSplit": "PASS",
+    "preceptSenseFamilies": 0,
+    "guardSenseFamilies": 3,
+    "allSensesMeetFloor": false,
+    "tier3": 0,
+    "lamps": 0,
+    "hardPass": false,
+    "releaseAuthorized": false
+  },
+  "hardPass": false,
+  "releaseAuthorized": false
+}

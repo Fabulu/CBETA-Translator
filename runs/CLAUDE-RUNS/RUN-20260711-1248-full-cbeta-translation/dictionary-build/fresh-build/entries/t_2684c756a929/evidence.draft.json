@@ -1,0 +1,269 @@
+{
+  "SchemaVersion": 1,
+  "ConstructionPipelineVersion": 2,
+  "Admission": {
+    "Decision": "admit",
+    "LexicalUnitReason": "問話 is independently used as a complete verb-object unit for putting a question.",
+    "ObservableChanJob": "It names the act of putting a question in an encounter, and by extension the questioning so performed.",
+    "DuplicateCheck": {
+      "DeterministicIdChecked": true,
+      "ExactHeadwordChecked": true,
+      "NearDuplicateRuling": "問話頭 is a longer compound and does not replace the independently deployed shorter unit."
+    }
+  },
+  "EvidenceTransport": {
+    "DossierPath": "source-dossier.json",
+    "DossierSha256": "6d8c1a72d74f5e29983ae01dee52fd508a540a26acd972a2870a2e60d2bca146",
+    "SourceAuthorityManifestSha256": "2ee44bf19a2533958e5620c38915f3d03fbb81209c76c7183742a4f3d059f501",
+    "DiscoveryMethods": [
+      "final reviewed R94 authority"
+    ],
+    "ExactCount": 3,
+    "BridgedCount": 3,
+    "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+  },
+  "Entry": {
+    "Id": "t_2684c756a929",
+    "SourceTerm": "肘後懸符",
+    "CreatedBy": "R94 source-hierarchy repair",
+    "WrittenUtc": "2026-07-30T10:38:00Z",
+    "Senses": [
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "hang the command tally behind the elbow",
+        "AlternateTargets": [
+          "the command tally hangs behind one's elbow"
+        ],
+        "SearchAliases": [
+          "elbow-hidden command tally"
+        ],
+        "Status": "preferred",
+        "Validation": "multi-source",
+        "Explanation": "A military-command image in which the authority tally is carried concealed behind the elbow, ready for use. Wuming Huijing, Juelang Daosheng, and Yinyuan Longqi use the expression independently in recorded sayings, commonly beside an eye, sword, seal, or command image.",
+        "Note": "符 is the warrant or command tally; the surrounding parallel phrases preserve authority and readiness rather than anatomical description alone.",
+        "Occurrences": [
+          {
+            "RelPath": "J/J25/J25nB173.xml",
+            "FromLb": "0673b30",
+            "ToLb": "0673c06",
+            "Kwic": "微笑，正似空花捏目；教外別傳互相授受，又是白玉增瑕。千般去就，有膽無心；無限鋪排，誑諕狂子。何必別峰相見？豈須肘後懸符？真裔出頭，不昧高鑑。還有麼？要定乾坤之智眼，除非足下有生涯。小參道人住處人難住，日日日輪從西曙；萬象雖同異樣",
+            "MasterName": "Wuming Huijing",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Wuming Huijing",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J25/J25nB173.xml). Recorded Sayings of Monk Wuming of Shouchang. Exact actor: Wuming Huijing. The complete source frame assigns the retained headword-bearing action to Wuming Huijing.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "肘後懸符",
+              "GrammaticalSubject": "Wuming Huijing",
+              "SpeechFrame": "Source record (J/J25/J25nB173.xml). Recorded Sayings of Monk Wuming of Shouchang. Exact actor: Wuming Huijing. The complete source frame assigns the retained headword-bearing action to Wuming Huijing.",
+              "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to Wuming Huijing."
+            }
+          },
+          {
+            "RelPath": "J/J25/J25nB174.xml",
+            "FromLb": "0688c28",
+            "ToLb": "0689a03",
+            "Kwic": "天緣有在，神理自交；啄啐逢時，芥針協妙。所以心空及第，選官選佛即圓通；學契無為，監世監家真自在。秪如頂門具眼，肘後懸符，寶印當空，全提向上，一句作麼生道？」居士禮拜云：「專為流通。」師乃授拄杖云：「恁麼則圓通新拄杖分付居士去也。",
+            "MasterName": "Juelang Daosheng",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Juelang Daosheng",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J25/J25nB174.xml). Recorded Sayings of Chan Master Juelangsheng of Tianjie. Exact actor: Juelang Daosheng. The complete source frame assigns the retained headword-bearing action to Juelang Daosheng.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "肘後懸符",
+              "GrammaticalSubject": "Juelang Daosheng",
+              "SpeechFrame": "Source record (J/J25/J25nB174.xml). Recorded Sayings of Chan Master Juelangsheng of Tianjie. Exact actor: Juelang Daosheng. The complete source frame assigns the retained headword-bearing action to Juelang Daosheng.",
+              "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to Juelang Daosheng."
+            }
+          },
+          {
+            "RelPath": "J/J27/J27nB193.xml",
+            "FromLb": "0246a01",
+            "ToLb": "0246a06",
+            "Kwic": "破本來無一物；心珠澄徹，大千剎境現其中。如天寶網，重重無盡；似月臨川，處處全彰。無中現有、有中現無。眉稜掛劍、肘後懸符。截斷千差萬別，直指當下迷途，令汝腳跟盡淨，更不受人糊塗。山僧與麼舉揚，因齋慶讚則不無。只如心不是佛、智不是道",
+            "MasterName": "Yinyuan Longqi",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Yinyuan Longqi",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J27/J27nB193.xml). Recorded Sayings of Chan Master Yinyuan. Exact actor: Yinyuan Longqi. The complete source frame assigns the retained headword-bearing action to Yinyuan Longqi.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "肘後懸符",
+              "GrammaticalSubject": "Yinyuan Longqi",
+              "SpeechFrame": "Source record (J/J27/J27nB193.xml). Recorded Sayings of Chan Master Yinyuan. Exact actor: Yinyuan Longqi. The complete source frame assigns the retained headword-bearing action to Yinyuan Longqi.",
+              "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to Yinyuan Longqi."
+            }
+          }
+        ],
+        "ClaimAnchors": [],
+        "SourceTexts": [
+          "J/J25/J25nB173.xml",
+          "J/J25/J25nB174.xml",
+          "J/J27/J27nB193.xml"
+        ],
+        "RelatedMasters": [
+          "Wuming Huijing",
+          "Juelang Daosheng",
+          "Yinyuan Longqi"
+        ],
+        "RelatedTerms": [],
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "A military-command image in which the authority tally is carried concealed behind the elbow, ready for use.",
+          "EvidenceBody": [
+            "Wuming Huijing, Juelang Daosheng, and Yinyuan Longqi use the expression independently in recorded sayings, commonly beside an eye, sword, seal, or command image."
+          ]
+        },
+        "DraftEvidence": {
+          "LiteralGraphFloor": "hang the command tally behind the elbow",
+          "LexicalJob": "肘後懸符 means hang the command tally behind the elbow.",
+          "DeploymentClasses": [
+            "authored verse",
+            "direct instruction"
+          ],
+          "HighValueEvidenceLedger": [
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to Wuming Huijing.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to Juelang Daosheng.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to Yinyuan Longqi.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            }
+          ],
+          "OpeningClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3"
+          ],
+          "EvidenceBodyClaimKeys": [
+            [
+              "o1",
+              "o2",
+              "o3"
+            ]
+          ],
+          "ZenBend": "A military-command image in which the authority tally is carried concealed behind the elbow, ready for use.",
+          "CounterexampleOrLimit": "符 is the warrant or command tally; the surrounding parallel phrases preserve authority and readiness rather than anatomical description alone.",
+          "DifferentThingTest": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "hang the command tally behind the elbow"
+            ],
+            "Reason": "符 is the warrant or command tally; the surrounding parallel phrases preserve authority and readiness rather than anatomical description alone."
+          },
+          "AliasRationale": "符 is the warrant or command tally; the surrounding parallel phrases preserve authority and readiness rather than anatomical description alone.",
+          "ModifierControls": [
+            {
+              "Term": "肘後懸符",
+              "Finding": "符 is the warrant or command tally; the surrounding parallel phrases preserve authority and readiness rather than anatomical description alone."
+            }
+          ],
+          "FamilyControls": [
+            {
+              "Term": "肘後懸符",
+              "Finding": "Wuming Huijing, Juelang Daosheng, and Yinyuan Longqi use the expression independently in recorded sayings, commonly beside an eye, sword, seal, or command image."
+            }
+          ],
+          "IndependentWorkIds": [
+            "work:J25nB173",
+            "work:J25nB174",
+            "work:J27nB193"
+          ],
+          "SourceAuthorityRows": [
+            {
+              "EvidenceKey": "o1",
+              "RelPath": "J/J25/J25nB173.xml",
+              "WorkId": "work:J25nB173",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "elbow-tally:wuming",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o2",
+              "RelPath": "J/J25/J25nB174.xml",
+              "WorkId": "work:J25nB174",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "elbow-tally:juelang",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o3",
+              "RelPath": "J/J27/J27nB193.xml",
+              "WorkId": "work:J27nB193",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "elbow-tally:yinyuan",
+              "DeploymentRole": "original-use"
+            }
+          ],
+          "LampExcessJustification": "No Tier-3 lamp retained.",
+          "NoHigherWitnessSearchReceipt": "Tier 1 searched first, then Tier 2; no lamp needed.",
+          "DepthHarvestReceipt": {
+            "Complete": true,
+            "ReviewedExactHitCount": 3,
+            "AvailableSourceFiles": 3,
+            "SearchedDeploymentClasses": [
+              "final-reviewed-authority"
+            ],
+            "OmissionAudit": [
+              "Mechanical normalization retains exactly the final reviewed authority families."
+            ]
+          }
+        },
+        "DraftAcceptedDerivedFields": {
+          "SourceTexts": [
+            "J/J25/J25nB173.xml",
+            "J/J25/J25nB174.xml",
+            "J/J27/J27nB193.xml"
+          ],
+          "RelatedMasters": [
+            "Wuming Huijing",
+            "Juelang Daosheng",
+            "Yinyuan Longqi"
+          ]
+        }
+      }
+    ],
+    "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+  },
+  "FamilyHarvest": {
+    "PolicyVersion": 1,
+    "Scope": "R94 source-hierarchy repair",
+    "Edges": [],
+    "NegativeReceipt": [],
+    "GraphicVariants": []
+  }
+}

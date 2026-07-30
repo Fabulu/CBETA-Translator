@@ -1,0 +1,1 @@
+# 貪瞋癡 — R94 correction2 Lane A\n\n- authority: final Lane A correction1 closure.\n- meaning: The three-item list greed, anger, and delusion.\n- limit: The alternate 'ignorance' is lexical; no doctrinal expansion is licensed.\n- retained families: 3 independent Tier 1/2; Tier 3: 0.\n- actors: Yongjia Xuanjue, Weilin Daopei, Jinul.\n

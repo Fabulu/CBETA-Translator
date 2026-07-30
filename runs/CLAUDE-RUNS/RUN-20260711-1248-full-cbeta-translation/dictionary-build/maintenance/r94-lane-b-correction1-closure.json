@@ -1,0 +1,231 @@
+{
+  "schemaVersion": "r94-lane-correction-closure.v1",
+  "cohort": "R94",
+  "lane": "B",
+  "correction": 1,
+  "reviewBinding": {
+    "path": "maintenance/r94-lane-b-cross-review-by-a.json",
+    "sha256": "7f90583e87555e74557cc9bb04e3ab8c73f3443840855f8f9a1ac71a8e6722f2"
+  },
+  "governedFloor": 3,
+  "tier3Retained": 0,
+  "lampPaddingUsed": false,
+  "finiteDeltaDisposition": [
+    {
+      "id": "t_240ea0594a5f",
+      "coordinates": [
+        "Explanation"
+      ],
+      "disposition": "corrected-general-reached-subject"
+    },
+    {
+      "id": "t_2488565d7fba",
+      "coordinates": [
+        "Explanation"
+      ],
+      "disposition": "corrected-third-master-to-Poshan-Haiming"
+    },
+    {
+      "id": "t_250794fa9636",
+      "coordinates": [
+        "o1",
+        "Explanation",
+        "Note",
+        "SearchAliases"
+      ],
+      "disposition": "replaced-Zhiyi-verse-with-frozen-J40-author-evidence-and-removed-Baizhang-claim"
+    },
+    {
+      "id": "t_255626770dcc",
+      "coordinates": [
+        "o1",
+        "o2",
+        "o3",
+        "authority-families"
+      ],
+      "disposition": "rebuilt-Tongan-Baizhang-Le-Chijue-three-family-set"
+    },
+    {
+      "id": "t_25fb43689d5e",
+      "coordinates": [
+        "o1"
+      ],
+      "disposition": "corrected-quoted-original-to-Fenzhou-Wuye-with-Guting-context"
+    },
+    {
+      "id": "t_26a41c6b0def",
+      "coordinates": [
+        "o1"
+      ],
+      "disposition": "corrected-to-reviewed-unnamed-quoted-voice-with-Xiaoyin-critic-context"
+    }
+  ],
+  "deltaCountApplied": 10,
+  "changedIds": [
+    "t_240ea0594a5f",
+    "t_2488565d7fba",
+    "t_250794fa9636",
+    "t_255626770dcc",
+    "t_25fb43689d5e",
+    "t_26a41c6b0def"
+  ],
+  "rows": [
+    {
+      "id": "t_240ea0594a5f",
+      "term": "大休大歇",
+      "changed": true,
+      "oldEntrySha256": "43ac3f10ad544908a4ca660b6f288b3cc58c4f5c4e48afb88148cdf00f084b7f",
+      "newEntrySha256": "4d999d9f765df7438809ea45137fcb34ebf48ade8201b8e2d7e39cb8eb060333",
+      "oldDraftSha256": "bab9a0a4a223858d4d2030767b72a56648ba2af27c5a7eda1d7610d051478381",
+      "newDraftSha256": "53b4f55c00b59bbd264735f7db800d8eb85060ee9f3dc321759d87ac463ea3af",
+      "oldDossierSha256": "de14dfaf883d997268116bf11d8149a8b543cb2efa08e751061069588c8f073d",
+      "newDossierSha256": "fa3b0aa1721d942ef8320cafa936834062e30ad2dafbeea7e3e5f1edcb4e55fd",
+      "compileReportSha256": "3f396bd9102eafaaa9d3452a6fe9a066813c415a96bfe363ea996436e5c8e01f"
+    },
+    {
+      "id": "t_2455261d9696",
+      "term": "快便難逢",
+      "changed": false,
+      "oldEntrySha256": "7d7d5782c413654dd555359c96b782a98291105f639bdbe08e428a54d4cca7f1",
+      "newEntrySha256": "7d7d5782c413654dd555359c96b782a98291105f639bdbe08e428a54d4cca7f1",
+      "oldDraftSha256": "6d2721a7de91bc378a81fc4a35fdd4c09e576791bc75f2eea78d1127afb23a99",
+      "newDraftSha256": "3ba2c08c3729c17fdfc5a8833954574e3dac4a9e5dd78ffefef25a5dd7162375",
+      "oldDossierSha256": "f200643330c9cddd63021f548685a1a7c614b1e937e7a2e368f3d79d769015ee",
+      "newDossierSha256": "d3daa20361d3edd5379d469e52aec883b08362d6672414e72e2dd6250e1758d4",
+      "compileReportSha256": "b8e1c34b66df7ddaae1a6125abf02d49b3a53a773c19be167d437228fd0db775"
+    },
+    {
+      "id": "t_2488565d7fba",
+      "term": "莫認定盤星",
+      "changed": true,
+      "oldEntrySha256": "c25ef3746a6507d98e7986c8eda33d8ae2248c3a35b051c13acc40e59677e543",
+      "newEntrySha256": "f747143f4692d2096c1bba01ba277c57a1f1580d0cadda0a60e19ea28f3840aa",
+      "oldDraftSha256": "891434704abdde483dafb7fece454090f37b636c3a460134d8b98d8fec576336",
+      "newDraftSha256": "aa240c897028a4207ccd28944c6b2f4bb9c1c4c95ede26f02e5d8228b60175bb",
+      "oldDossierSha256": "1ba930a745dc99ef629910c864b4a29fe094675bc23a61e9efcbfe04eacf8d10",
+      "newDossierSha256": "27ce0ba773f529815dee01385311ee9489ebd05fdc75ec8d32098bbf804d1cfb",
+      "compileReportSha256": "0c9b66b6cc2c5ab659c0945f92f44ad581627c720443638ae85bc22c892dd11c"
+    },
+    {
+      "id": "t_24adbdf51a15",
+      "term": "金佛不度爐",
+      "changed": false,
+      "oldEntrySha256": "cc3c4dc8b390b67f1c73e4bb5430445b4fd898b9c579fa15d3fbe412091d2082",
+      "newEntrySha256": "cc3c4dc8b390b67f1c73e4bb5430445b4fd898b9c579fa15d3fbe412091d2082",
+      "oldDraftSha256": "f643883de5936fb1fe03a585885ff7813fd1a99c96098eaaa85e4f6653560f00",
+      "newDraftSha256": "5f9c7b5437a20e9eb76b95f17579ccdf56eb67b787951b4769cf0cb3586565df",
+      "oldDossierSha256": "b6befdfecc682588c2f77ea2a9b053a2560fcb101e31bbd5d606a6a3e6c9ea54",
+      "newDossierSha256": "6c9c3380a87a618f1adcc0294f7bdbf45dcc8ac38c4be4aa7f80715ce8c65232",
+      "compileReportSha256": "69f7ff5b4fb661a72da91fdecda9291eaa15d25e9026e0f1bfcea2c6505380ae"
+    },
+    {
+      "id": "t_250794fa9636",
+      "term": "野狐",
+      "changed": true,
+      "oldEntrySha256": "cdd0f4b38401fbe16fd88198881cf8e0f53692ce87fd407fe30574511838e692",
+      "newEntrySha256": "a6fd32cf5c759522d658f7e371b175adfb2f5bab23476d84856747e710946f4c",
+      "oldDraftSha256": "91b8f67e5919aa47fa658d552fcb843214a26a5f3e08ffbe577e18d29a80ea9a",
+      "newDraftSha256": "2a8b7e2881e62b642e3bb2cf0486edbc6a7204edf5da55805e935f5d648d3d0d",
+      "oldDossierSha256": "93d55969f286736278e0eaf66b032ec725c7962c2c1587b886f04020eaffdf8a",
+      "newDossierSha256": "f74520cfd8960e6680ba8a4e953c6614981a00ca10c23cf7fda278d2743eb499",
+      "compileReportSha256": "fac728785ba079faa9363793d4819a987d6886f2dc68304ae310f8b84d517500"
+    },
+    {
+      "id": "t_255626770dcc",
+      "term": "劒甲未施",
+      "changed": true,
+      "oldEntrySha256": "6926f884cb4491ee8b96fbe24807b461d66a2aabbba41efa403f82482b77b80b",
+      "newEntrySha256": "b46349100137504496a3f2ad572f542fe69baaf221d00d92a435931cd8ad6844",
+      "oldDraftSha256": "a1638dc8ad52ac017c8445d93c7dcdd5bbe7a50161558e3a009515c2ee7cf116",
+      "newDraftSha256": "ce322d7fe8acbba5680c07e7c64aaf15680e805c88d1ab66ab93f251155646cf",
+      "oldDossierSha256": "ce1e229c9b541217624705dc98fc59bd73f6f1cbf9a594ceca939bd49dc1b04d",
+      "newDossierSha256": "4758e8529ab3c7317baaedef40185d7d510d141ee53189bc6e4da36bcaf76f3b",
+      "compileReportSha256": "b0544fea3ab91e9c80f2744a44d8dff55411c614f035b02b87d92fadf27922df"
+    },
+    {
+      "id": "t_25fb43689d5e",
+      "term": "折腳鐺",
+      "changed": true,
+      "oldEntrySha256": "8d1ad16b1f86b72e92de8e696ae3189172c4880839395caf91b69232423a5e7a",
+      "newEntrySha256": "a690387cf391c1fee69809bc36f4909e4d252e7465f94b1c32ad418785ee749e",
+      "oldDraftSha256": "46ab23357e8c81a4355087024b31e82e06f32463882a149ca6009dfc99e0752d",
+      "newDraftSha256": "4325083c5fef736341001343f92480d1cd5a813a0bd968d65e27950de18a2316",
+      "oldDossierSha256": "942bc9e2a3d8630a031060c33fc46ef3da2ab314b70ea6b6723a5a23a7e40156",
+      "newDossierSha256": "a6899d2113e01b0cbf678c6d1d1f70c1f2823eb245b6e37fecc1e6ee9595747a",
+      "compileReportSha256": "960c7d27592ebcc223cf777b8c7276b0479e0cf9ae9767f1a5a2ce3ad83ea8ca"
+    },
+    {
+      "id": "t_26818ad3df57",
+      "term": "盌脫丘",
+      "changed": false,
+      "oldEntrySha256": "9fd366c69ee9be11cbf17afb4168f875444c8463a10f2b025409a71d6fe59a56",
+      "newEntrySha256": "9fd366c69ee9be11cbf17afb4168f875444c8463a10f2b025409a71d6fe59a56",
+      "oldDraftSha256": "f8a87dcfa4f1539e57eeaa4a81e9a1703eb3a8f7764d795e1b45d0f542eb42e6",
+      "newDraftSha256": "4b8438e5e1d121fcbb951e3b63341edafc178bc085814558ad543487d94be485",
+      "oldDossierSha256": "b179466a7f3de852db4a2e769ebe2ea6dad67374ab1499ddbc8dcd57443edd16",
+      "newDossierSha256": "aaac9b7838e8abe53240e9f500b2871308411798124975246619691cf59d222d",
+      "compileReportSha256": "159871816054eb59eab4db994e351d9182fe013157e4d852020875b731450a89"
+    },
+    {
+      "id": "t_2684c756a929",
+      "term": "肘後懸符",
+      "changed": false,
+      "oldEntrySha256": "973d53e1b08825ca75285cbfec01d6f1dcc0088e2a6554fd399a53a85de5fcb1",
+      "newEntrySha256": "973d53e1b08825ca75285cbfec01d6f1dcc0088e2a6554fd399a53a85de5fcb1",
+      "oldDraftSha256": "2bc83a40f28f04a2c10b4efd9680e1af6c77db5390995ce1b982051f93dbfadb",
+      "newDraftSha256": "0c8f1c322aa147efed1b0c70993387854d45793a4158708a15b790838009cd55",
+      "oldDossierSha256": "f8a17ed6068d0005f5e03496bb792f0b6f554044e08fe860f0eb3cc5103d9769",
+      "newDossierSha256": "118a37473e22044428acc508d9e586721f264f346bfd0f55431417906f83f10b",
+      "compileReportSha256": "cff477e607c56fee5ae6d774c8861f37b4cba06969ba7aee644f618d94d54961"
+    },
+    {
+      "id": "t_26a41c6b0def",
+      "term": "熱則乘凉",
+      "changed": true,
+      "oldEntrySha256": "93dd022d552a2bab200826aba401fbf0826d609a852a972d44b388fd257cc73f",
+      "newEntrySha256": "936849a05aee0af87f38ba34c428ea6be65d0a38d0e1637d78559d7e8b6cd9ad",
+      "oldDraftSha256": "a68a5449431aeee31a7b3f1acf7572620b0ec83aa7567596b0cbbb16332f5c9e",
+      "newDraftSha256": "e5039523666da3e4b239b57b06c556bc085e27b5db346dc42f3c29e03888bf51",
+      "oldDossierSha256": "b669add716f9723d429dd789a7037dc0e48427ffd3aee8d90074f50b08f7863b",
+      "newDossierSha256": "7338406eb8bae35bbf5bdb9aaab4190a93f4a9b9bf15d27ce622663f628885c7",
+      "compileReportSha256": "cbb9c9425f1ff447ed3834b2a16d650f26d62a4f3930b468d536ce2c250bb3ce"
+    }
+  ],
+  "audits": {
+    "attribution": {
+      "path": "maintenance/r94-lane-b-correction1-attribution.json",
+      "sha256": "8f3b5d7e2afed52a608c6fcfcb0a963f592dd3cd8f1e5bf5b58911de680920ea"
+    },
+    "work-source": {
+      "path": "maintenance/r94-lane-b-correction1-work-source.txt",
+      "sha256": "486c51c341cf8b3cb1bba3575653586ff5b8b56a075f73f237d81c3f73352e04"
+    },
+    "semantic-templates": {
+      "path": "maintenance/r94-lane-b-correction1-semantic-templates.json",
+      "sha256": "b63b8ab36fd53e087dea82a0db287bc6fd110c52dccaba2ad0f5ea629febda32"
+    },
+    "titles": {
+      "path": "maintenance/r94-lane-b-correction1-titles.json",
+      "sha256": "e503988898a5fa02e7527b7c4b53a934a4b0168c9d469abc903832275c0b8469"
+    },
+    "deployment": {
+      "path": "maintenance/r94-lane-b-correction1-deployment.json",
+      "sha256": "51a4b5c42c07327cfe084a3f95e31ec43757f540c8c2531498f6b07e7d266ffd"
+    }
+  },
+  "mechanicalReboundIds": [
+    "t_2455261d9696",
+    "t_24adbdf51a15",
+    "t_26818ad3df57",
+    "t_2684c756a929"
+  ],
+  "mechanicalReboundReason": "Pass-entry products remain byte-identical; worksheet EvidenceTransport and dossier research bindings were deterministically rebound to the corrected shared lane manifest.",
+  "compilerParity": {
+    "allReportsHardPass": true,
+    "secondCompileByteStable": true
+  },
+  "hardPass": true,
+  "releaseAuthorized": false,
+  "pending": "changed-coordinate independent rereview",
+  "writtenUtc": "2026-07-30T16:33:17.295836+00:00"
+}

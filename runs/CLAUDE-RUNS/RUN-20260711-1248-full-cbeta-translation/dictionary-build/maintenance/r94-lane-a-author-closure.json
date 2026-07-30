@@ -1,0 +1,1119 @@
+{
+  "schemaVersion": "r94-lane-author-closure.v1",
+  "cohort": "R94",
+  "lane": "A",
+  "author": "/root/source_tiers_b",
+  "scope": {
+    "ordinalFrom": 1,
+    "ordinalTo": 10,
+    "entryCount": 10
+  },
+  "bindings": {
+    "artifactZero": {
+      "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r94-timegate-root.json",
+      "sha256": "7b2d1313d63de0e48b420129feb89f9688ededd9608a8e5a3e8b70483ff40c41"
+    },
+    "selection": {
+      "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r94-selection-root.json",
+      "sha256": "36177abe16d3218a4da284e48960786f16e35df0ce542b6e3ae7a8bfe74b70ca"
+    },
+    "frozenExtraction": {
+      "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r94-frozen-extraction-root.json",
+      "sha256": "7204625ec34769127033c57d574883e2511c1b71b2a939430fc12bc4cc1b5d67"
+    },
+    "frozenSkeleton": {
+      "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r94-frozen-research-skeleton-root.json",
+      "sha256": "1f0ea2b831db20e8b4e68a550d309aaf1f6f89cb3b601002f82887fc2c63f136"
+    }
+  },
+  "sourcePolicy": {
+    "priority": [
+      "Tier 1 authored",
+      "Tier 2 recorded sayings",
+      "Tier 3 lamps"
+    ],
+    "tier3Rule": "last-resort only",
+    "minimumIndependentProofFamilies": 3,
+    "contentRebuiltFromScratch": true
+  },
+  "entries": [
+    {
+      "ordinal": 1,
+      "id": "t_223c2f6ade25",
+      "term": "一大事因緣",
+      "preferredTarget": "the occasion of the one great matter",
+      "alternates": [
+        "the causal occasion of the one great matter"
+      ],
+      "opening": "The occasion or causal circumstance of the one great matter.",
+      "body": "Guifeng Zongmi actively quotes the Buddha's formulation while explaining why the teaching appeared; Yuanwu Keqin and Zhongfeng Mingben independently use the phrase for the matter for which buddhas and patriarchs appeared.",
+      "note": "The headword contains 因緣 as well as 一大事; translating only 'the one great matter' drops the phrase's final two graphs.",
+      "finiteUncertainty": "The phrase is inherited from the Lotus formulation; the three families are independent Chan deployments, not three claims of lexical coinage.",
+      "senseRuling": "one corpus-wide sense",
+      "retained": [
+        {
+          "relPath": "T/T48/T48n2015.xml",
+          "workId": "work:T48n2015",
+          "tier": 1,
+          "fromLb": "0408b03",
+          "toLb": "0408b03",
+          "contextSha256": "ee9776b29f8d9a582bc2d55031276030576c4f0f1f3db96251ae24cae5ddb0f7",
+          "spanSha256": "223c2f6ade2580723666146ce6b011adf9c06d636289aa576c4cc1a3bab6ae63",
+          "witnessFamilyId": "great-matter:zongmi-active-lotus-quotation",
+          "deploymentRole": "active-quotation",
+          "actorDecision": {
+            "status": "identified-unlinked-master",
+            "actor": "Shakyamuni Buddha",
+            "role": "quoted-original",
+            "rungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "outerActor": "Guifeng Zongmi",
+            "deploymentRole": "active-quotation"
+          },
+          "semanticDecision": "retain"
+        },
+        {
+          "relPath": "X/X69/X69n1357.xml",
+          "workId": "work:X69n1357",
+          "tier": 1,
+          "fromLb": "0497b14",
+          "toLb": "0497b14",
+          "contextSha256": "389b1bfd7b640e29069e3ca3114694874d43cf83c6bafa364d64ae45fc2a6a16",
+          "spanSha256": "223c2f6ade2580723666146ce6b011adf9c06d636289aa576c4cc1a3bab6ae63",
+          "witnessFamilyId": "great-matter:yuanwu-letter",
+          "deploymentRole": "original-use",
+          "actorDecision": {
+            "status": "linked",
+            "actor": "Yuanwu Keqin",
+            "role": "utterer"
+          },
+          "semanticDecision": "retain"
+        },
+        {
+          "relPath": "B/B25/B25n0145.xml",
+          "workId": "work:B25n0145",
+          "tier": 2,
+          "fromLb": "0703a18",
+          "toLb": "0703a18",
+          "contextSha256": "0de9f40a45b840b2bcca98ac5f9e24ab08027f0100c7a944f0aa37f7106321e4",
+          "spanSha256": "223c2f6ade2580723666146ce6b011adf9c06d636289aa576c4cc1a3bab6ae63",
+          "witnessFamilyId": "great-matter:zhongfeng-discourse",
+          "deploymentRole": "original-use",
+          "actorDecision": {
+            "status": "linked",
+            "actor": "Zhongfeng Mingben",
+            "role": "utterer"
+          },
+          "semanticDecision": "retain"
+        }
+      ],
+      "reserve": [
+        {
+          "relPath": "J/J40/J40nB497.xml",
+          "workId": "work:J40nB497",
+          "tier": 1,
+          "contextSha256": "7e28851611c80a8b20fc24e7bcfd7c2b42252ef882064c8ea8313fc990ba76fe",
+          "decision": "reserve-not-needed-for-three-family-floor"
+        },
+        {
+          "relPath": "T/T48/T48n2016.xml",
+          "workId": "work:T48n2016",
+          "tier": 1,
+          "contextSha256": "64e4b845ca19f48b2c0e8f58a2c4b23343ed76aa8b3ffdaef400238af656115f",
+          "decision": "reserve-not-needed-for-three-family-floor"
+        },
+        {
+          "relPath": "X/X72/X72n1442.xml",
+          "workId": "work:X72n1442",
+          "tier": 1,
+          "contextSha256": "0f8ae5910e9c642179b8f58e643ddb05e4c6be67ed5f3338cc221f782849d284",
+          "decision": "reserve-not-needed-for-three-family-floor"
+        }
+      ],
+      "tierMix": {
+        "tier1": 2,
+        "tier2": 1,
+        "tier3": 0
+      },
+      "independentProofFamilies": 3,
+      "lampFallbackRequired": false,
+      "semanticReadComplete": true
+    },
+    {
+      "ordinal": 2,
+      "id": "t_22885135d39e",
+      "term": "一塵",
+      "preferredTarget": "one speck of dust",
+      "alternates": [
+        "a single dust mote"
+      ],
+      "opening": "One speck of dust, used as the smallest named particle in a scene or comparison.",
+      "body": "Xuefeng Huikong writes of gathering the great thousand-world without one speck; Micang Daokai cites a speck entering concentration; Dawei Jinglun makes one speck encompass or equal worlds.",
+      "note": "The retained evidence does not establish a separate lexical thing called a 'thought-speck'; contextual comparisons do not change the noun.",
+      "finiteUncertainty": "Later compounds may lexicalize separately; they are not imported into 一塵.",
+      "senseRuling": "one corpus-wide sense",
+      "retained": [
+        {
+          "relPath": "D/D50/D50n8945.xml",
+          "workId": "work:D50n8945",
+          "tier": 1,
+          "fromLb": "0023b04",
+          "toLb": "0023b04",
+          "contextSha256": "600bf91dafed6a712547bf994815bc9dc9d3d54e626dcd5c6711c9132a32b8aa",
+          "spanSha256": "22885135d39e93962f9b6bee4edef266d3894cfa8f8358577f34971b90379010",
+          "witnessFamilyId": "dust:xuefeng-verse",
+          "deploymentRole": "original-use",
+          "actorDecision": {
+            "status": "linked",
+            "actor": "Xuefeng Huikong",
+            "role": "verse-author"
+          },
+          "semanticDecision": "retain"
+        },
+        {
+          "relPath": "J/J23/J23nB118.xml",
+          "workId": "work:J23nB118",
+          "tier": 1,
+          "fromLb": "0011b02",
+          "toLb": "0011b02",
+          "contextSha256": "64a28f1b7ce8a3af46809ac2115514c1df49e688b4013cda4dc162f5f0287237",
+          "spanSha256": "22885135d39e93962f9b6bee4edef266d3894cfa8f8358577f34971b90379010",
+          "witnessFamilyId": "dust:micang-writing",
+          "deploymentRole": "original-use",
+          "actorDecision": {
+            "status": "identified-unlinked-master",
+            "actor": "Micang Daokai",
+            "role": "author",
+            "rungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ]
+          },
+          "semanticDecision": "retain"
+        },
+        {
+          "relPath": "J/J25/J25nB165.xml",
+          "workId": "work:J25nB165",
+          "tier": 1,
+          "fromLb": "0289c02",
+          "toLb": "0289c02",
+          "contextSha256": "b558fdee416a8da524f94dbccd0ba42542eb27d4d160ef5a1869de8fd7aa67d0",
+          "spanSha256": "22885135d39e93962f9b6bee4edef266d3894cfa8f8358577f34971b90379010",
+          "witnessFamilyId": "dust:dawei-writing",
+          "deploymentRole": "original-use",
+          "actorDecision": {
+            "status": "identified-unlinked-master",
+            "actor": "Dawei Jinglun",
+            "role": "author",
+            "rungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ]
+          },
+          "semanticDecision": "retain"
+        }
+      ],
+      "reserve": [
+        {
+          "relPath": "J/J25/J25nB166.xml",
+          "workId": "work:J25nB166",
+          "tier": 1,
+          "contextSha256": "095c94d4b7498a1e2e9d7fa27925a2424ff079ad8ebe98e833d0db2d12de6738",
+          "decision": "reserve-not-needed-for-three-family-floor"
+        },
+        {
+          "relPath": "J/J39/J39nB439.xml",
+          "workId": "work:J39nB439",
+          "tier": 1,
+          "contextSha256": "408032b0c6312bb3d06aec88a3d528dd47a741a73f9576f0fa48635cfd44e6bb",
+          "decision": "reserve-not-needed-for-three-family-floor"
+        },
+        {
+          "relPath": "T/T48/T48n2013.xml",
+          "workId": "work:T48n2013",
+          "tier": 1,
+          "contextSha256": "97d62a25cf8c2d4f81f3f88899d9e7c4a3bfc8ceb8208e0fe3930abfe5ac5ca4",
+          "decision": "reserve-not-needed-for-three-family-floor"
+        }
+      ],
+      "tierMix": {
+        "tier1": 3,
+        "tier2": 0,
+        "tier3": 0
+      },
+      "independentProofFamilies": 3,
+      "lampFallbackRequired": false,
+      "semanticReadComplete": true
+    },
+    {
+      "ordinal": 3,
+      "id": "t_229d6fd2a889",
+      "term": "仁者見之謂之仁",
+      "preferredTarget": "the humane see it and call it humane",
+      "alternates": [
+        "the benevolent see it and call it benevolent"
+      ],
+      "opening": "The first half of the paired saying: the humane see it and call it humane, while the wise call it wise.",
+      "body": "Dahui Zonggao quotes the formula in a case later appraised by Tianyin Yuanxiu; Tian'an Sheng applies it after his own hall remarks; an unnamed layman puts its paired wording to Sanyi Mingyu as a question.",
+      "note": "仁者 and 仁 deliberately repeat the same graph; preserve that repetition in English.",
+      "finiteUncertainty": "The inherited source of the maxim is not treated as another Chan deployment family.",
+      "senseRuling": "one corpus-wide sense",
+      "retained": [
+        {
+          "relPath": "J/J25/J25nB171.xml",
+          "workId": "work:J25nB171",
+          "tier": 2,
+          "fromLb": "0545b24",
+          "toLb": "0545b24",
+          "contextSha256": "3d03175ef02b087dafe32151821fef1f03bc9a0c7d550302ca1e04c393af7565",
+          "spanSha256": "229d6fd2a889dc925bd8a92308dda9fc37d51d73de7bdd154167d6e42780bb1e",
+          "witnessFamilyId": "humane:dahui-quotation-tianyin-appraisal",
+          "deploymentRole": "active-quotation",
+          "actorDecision": {
+            "status": "linked",
+            "actor": "Dahui Zonggao",
+            "role": "quoted-original",
+            "outerActor": "Tianyin Yuanxiu",
+            "deploymentRole": "active-quotation"
+          },
+          "semanticDecision": "retain"
+        },
+        {
+          "relPath": "J/J26/J26nB187.xml",
+          "workId": "work:J26nB187",
+          "tier": 2,
+          "fromLb": "0687c26",
+          "toLb": "0687c26",
+          "contextSha256": "c1e8234c814e510a8a9273fd8f7d56661b54e0ec6326a31db89b3c639af4d177",
+          "spanSha256": "229d6fd2a889dc925bd8a92308dda9fc37d51d73de7bdd154167d6e42780bb1e",
+          "witnessFamilyId": "humane:tianan-hall-use",
+          "deploymentRole": "original-use",
+          "actorDecision": {
+            "status": "linked",
+            "actor": "Tian'an Sheng",
+            "role": "utterer"
+          },
+          "semanticDecision": "retain"
+        },
+        {
+          "relPath": "J/J27/J27nB189.xml",
+          "workId": "work:J27nB189",
+          "tier": 2,
+          "fromLb": "0037a01",
+          "toLb": "0037a01",
+          "contextSha256": "5a5caac4e58bbd69ad0767274c92729ca85f38a0eab1930f626d229b756cff2e",
+          "spanSha256": "229d6fd2a889dc925bd8a92308dda9fc37d51d73de7bdd154167d6e42780bb1e",
+          "witnessFamilyId": "humane:sanyi-lay-question",
+          "deploymentRole": "original-use",
+          "actorDecision": {
+            "status": "unresolved-anonymous",
+            "actor": "an unnamed layman",
+            "role": "questioner",
+            "outerActor": "Sanyi Mingyu",
+            "rungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ]
+          },
+          "semanticDecision": "retain"
+        }
+      ],
+      "reserve": [
+        {
+          "relPath": "C/C077/C077n1710.xml",
+          "workId": "work:guzunsu-yulu",
+          "tier": 2,
+          "contextSha256": "59ee311336743c34bcc6008555caacca3e32de7768e05e21f08953d2d5822227",
+          "decision": "reserve-not-needed-for-three-family-floor"
+        },
+        {
+          "relPath": "J/J28/J28nB203.xml",
+          "workId": "work:J28nB203",
+          "tier": 2,
+          "contextSha256": "3738d79a54f3d020897020e3493fb9e697a080bacb513fd7c4f61bf0f0b46f58",
+          "decision": "reserve-not-needed-for-three-family-floor"
+        },
+        {
+          "relPath": "J/J28/J28nB219.xml",
+          "workId": "work:J28nB219",
+          "tier": 2,
+          "contextSha256": "feb465513c41e046f53b9d21fc9851b356b3cac81468d25e8621b756aac0d633",
+          "decision": "reserve-not-needed-for-three-family-floor"
+        }
+      ],
+      "tierMix": {
+        "tier1": 0,
+        "tier2": 3,
+        "tier3": 0
+      },
+      "independentProofFamilies": 3,
+      "lampFallbackRequired": false,
+      "semanticReadComplete": true
+    },
+    {
+      "ordinal": 4,
+      "id": "t_22b4a92f2919",
+      "term": "收歸上科",
+      "preferredTarget": "refer it back to the preceding category",
+      "alternates": [
+        "collect it under the foregoing heading"
+      ],
+      "opening": "A closing verdict that gathers the just-listed alternatives back under the preceding category or heading.",
+      "body": "Feiyin Tongrong closes three different sections with it; Sanyi Mingyu applies it after 'two parts differ'; Baichi applies it after three unsuccessful answers.",
+      "note": "上科 is the foregoing category or heading, not a claim that someone passed a modern examination.",
+      "finiteUncertainty": "The examination-register wordplay remains visible but does not create a second sense.",
+      "senseRuling": "one corpus-wide sense",
+      "retained": [
+        {
+          "relPath": "J/J26/J26nB178.xml",
+          "workId": "work:J26nB178",
+          "tier": 2,
+          "fromLb": "0166a01",
+          "toLb": "0166a01",
+          "contextSha256": "17277e8a2fd393523a2e8d9c8796051185f471bd5b817ab9d30a4ead8f63e634",
+          "spanSha256": "22b4a92f2919843d316712b6d5a4ac91c29370d2677d9efef4a6a2e808e8bc44",
+          "witnessFamilyId": "upper-category:feiyin-letter",
+          "deploymentRole": "original-use",
+          "actorDecision": {
+            "status": "linked",
+            "actor": "Feiyin Tongrong",
+            "role": "utterer"
+          },
+          "semanticDecision": "retain"
+        },
+        {
+          "relPath": "J/J27/J27nB189.xml",
+          "workId": "work:J27nB189",
+          "tier": 2,
+          "fromLb": "0008b02",
+          "toLb": "0008b02",
+          "contextSha256": "2fcfb402fba723543862719982b8af9660fc62c5d9b57d84fe3106ea9a26dc4b",
+          "spanSha256": "22b4a92f2919843d316712b6d5a4ac91c29370d2677d9efef4a6a2e808e8bc44",
+          "witnessFamilyId": "upper-category:sanyi-hall",
+          "deploymentRole": "original-use",
+          "actorDecision": {
+            "status": "linked",
+            "actor": "Sanyi Mingyu",
+            "role": "utterer"
+          },
+          "semanticDecision": "retain"
+        },
+        {
+          "relPath": "J/J28/J28nB202.xml",
+          "workId": "work:J28nB202",
+          "tier": 2,
+          "fromLb": "0014b11",
+          "toLb": "0014b11",
+          "contextSha256": "3b08b835d0bc88a7c3bd897aecda37b6f9208aaafc3d69fbc2a745014aabb123",
+          "spanSha256": "22b4a92f2919843d316712b6d5a4ac91c29370d2677d9efef4a6a2e808e8bc44",
+          "witnessFamilyId": "upper-category:baichi-verdict",
+          "deploymentRole": "original-use",
+          "actorDecision": {
+            "status": "identified-unlinked-master",
+            "actor": "Baichi",
+            "role": "utterer",
+            "rungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ]
+          },
+          "semanticDecision": "retain"
+        }
+      ],
+      "reserve": [
+        {
+          "relPath": "J/J27/J27nB194.xml",
+          "workId": "work:J27nB194",
+          "tier": 2,
+          "contextSha256": "e3add621844f4da70ca4b9e03567773de9bf2d6112ca6c09658a9c905ece88b0",
+          "decision": "reserve-not-needed-for-three-family-floor"
+        },
+        {
+          "relPath": "J/J28/J28nB203.xml",
+          "workId": "work:J28nB203",
+          "tier": 2,
+          "contextSha256": "fab8737d29589b30bd1408eed291323a06a81e8459bcd0113f74ed250401ff06",
+          "decision": "reserve-not-needed-for-three-family-floor"
+        },
+        {
+          "relPath": "J/J29/J29nB233.xml",
+          "workId": "work:J29nB233",
+          "tier": 2,
+          "contextSha256": "5e1df2f9e4dd1d56f16c0e1a9b2b80d3e8296e9d09d884bf9efed7b583c57f34",
+          "decision": "reserve-not-needed-for-three-family-floor"
+        }
+      ],
+      "tierMix": {
+        "tier1": 0,
+        "tier2": 3,
+        "tier3": 0
+      },
+      "independentProofFamilies": 3,
+      "lampFallbackRequired": false,
+      "semanticReadComplete": true
+    },
+    {
+      "ordinal": 5,
+      "id": "t_2310fbae5dc4",
+      "term": "把手共行",
+      "preferredTarget": "walk together hand in hand",
+      "alternates": [
+        "join hands and walk together"
+      ],
+      "opening": "To join hands and walk together, used as a verdict of keeping company on equal footing.",
+      "body": "Jinul says a reader with trust and understanding can walk hand in hand with the ancients; Gulin Qingmao uses it in verse; Zhongfeng Mingben offers to walk hand in hand before names for staff and shout arise.",
+      "note": "The phrase names joint movement; it does not by itself establish agreement on every claim.",
+      "finiteUncertainty": "Quoted historical figures in the surrounding cases are context, not headword actors.",
+      "senseRuling": "one corpus-wide sense",
+      "retained": [
+        {
+          "relPath": "T/T48/T48n2020.xml",
+          "workId": "work:T48n2020",
+          "tier": 1,
+          "fromLb": "1006b08",
+          "toLb": "1006b08",
+          "contextSha256": "30d6096d3abaa93f2b4275178f0feb9a94cee29d512c93c717af4aa474f4fb7e",
+          "spanSha256": "2310fbae5dc4003ca61d4accba847fd29060d5c757674a83864f3e8ca4d591f1",
+          "witnessFamilyId": "hand-in-hand:jinul-writing",
+          "deploymentRole": "original-use",
+          "actorDecision": {
+            "status": "linked",
+            "actor": "Jinul",
+            "role": "author"
+          },
+          "semanticDecision": "retain"
+        },
+        {
+          "relPath": "X/X71/X71n1413.xml",
+          "workId": "work:X71n1413",
+          "tier": 1,
+          "fromLb": "0273a05",
+          "toLb": "0273a05",
+          "contextSha256": "dbf89c13a9f41ba7a680916876384a29cd112eda4a987f07a7141bafb7387903",
+          "spanSha256": "2310fbae5dc4003ca61d4accba847fd29060d5c757674a83864f3e8ca4d591f1",
+          "witnessFamilyId": "hand-in-hand:gulin-verse",
+          "deploymentRole": "original-use",
+          "actorDecision": {
+            "status": "linked",
+            "actor": "Gulin Qingmao",
+            "role": "verse-author"
+          },
+          "semanticDecision": "retain"
+        },
+        {
+          "relPath": "B/B25/B25n0145.xml",
+          "workId": "work:B25n0145",
+          "tier": 2,
+          "fromLb": "0735a10",
+          "toLb": "0735a10",
+          "contextSha256": "75f43e3a89406f04b8d29085cd368da929e9833e74854b2861ebbc65e17d2918",
+          "spanSha256": "2310fbae5dc4003ca61d4accba847fd29060d5c757674a83864f3e8ca4d591f1",
+          "witnessFamilyId": "hand-in-hand:zhongfeng-discourse",
+          "deploymentRole": "original-use",
+          "actorDecision": {
+            "status": "linked",
+            "actor": "Zhongfeng Mingben",
+            "role": "utterer"
+          },
+          "semanticDecision": "retain"
+        }
+      ],
+      "reserve": [
+        {
+          "relPath": "T/T48/T48n2021.xml",
+          "workId": "work:T48n2021",
+          "tier": 1,
+          "contextSha256": "3d07d11281a5babfb2dbd562a908f06421f54fdc9977a222fe16d2f3548dc22b",
+          "decision": "reserve-not-needed-for-three-family-floor"
+        },
+        {
+          "relPath": "B/B27/B27n0152.xml",
+          "workId": "work:B27n0152",
+          "tier": 2,
+          "contextSha256": "91566bbb54f6f12dea22e41064c526c2505ff055f26365ff901b142d9b497d62",
+          "decision": "reserve-not-needed-for-three-family-floor"
+        },
+        {
+          "relPath": "C/C077/C077n1710.xml",
+          "workId": "work:guzunsu-yulu",
+          "tier": 2,
+          "contextSha256": "5af3ae3c3231743abb5819aafa0d13ed6b9181fefeaee1557642fcbca7eabffc",
+          "decision": "reserve-not-needed-for-three-family-floor"
+        }
+      ],
+      "tierMix": {
+        "tier1": 2,
+        "tier2": 1,
+        "tier3": 0
+      },
+      "independentProofFamilies": 3,
+      "lampFallbackRequired": false,
+      "semanticReadComplete": true
+    },
+    {
+      "ordinal": 6,
+      "id": "t_23204fbd253c",
+      "term": "玄旨",
+      "preferredTarget": "profound purport",
+      "alternates": [
+        "subtle purport"
+      ],
+      "opening": "A profound or subtle purport that the surrounding speaker says must be recognized or penetrated.",
+      "body": "Fushan Benzhi writes of opening the profound purport; Yeyun Ying says Fengxue thoroughly penetrated it; Sengcan's attributed inscription warns that failing to recognize it makes quieting thoughts futile.",
+      "note": "玄 marks depth or subtlety here; it does not supply a separate occult doctrine.",
+      "finiteUncertainty": "The traditional attribution of the Inscription on Faith in Mind remains historically cautious.",
+      "senseRuling": "one corpus-wide sense",
+      "retained": [
+        {
+          "relPath": "J/J25/J25nB166.xml",
+          "workId": "work:J25nB166",
+          "tier": 1,
+          "fromLb": "0301a01",
+          "toLb": "0301a01",
+          "contextSha256": "7fcae71ba4b60fe92e05c1fde7ada1af056abed8883cc85481149dc9c1c54093",
+          "spanSha256": "23204fbd253c00f44e5862435442e16fc982b7453385cd650b0cc18bce64e0be",
+          "witnessFamilyId": "profound-purport:fushan-verse",
+          "deploymentRole": "original-use",
+          "actorDecision": {
+            "status": "identified-unlinked-master",
+            "actor": "Fushan Benzhi",
+            "role": "verse-author",
+            "rungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ]
+          },
+          "semanticDecision": "retain"
+        },
+        {
+          "relPath": "J/J40/J40nB484.xml",
+          "workId": "work:J40nB484",
+          "tier": 1,
+          "fromLb": "0273c20",
+          "toLb": "0273c20",
+          "contextSha256": "38f9daa1b53f68c963fec9f1ea0e60c89719c6026104bd2b5a2984aadb2d5680",
+          "spanSha256": "23204fbd253c00f44e5862435442e16fc982b7453385cd650b0cc18bce64e0be",
+          "witnessFamilyId": "profound-purport:yeyun-lineage-verse",
+          "deploymentRole": "original-use",
+          "actorDecision": {
+            "status": "identified-unlinked-master",
+            "actor": "Yeyun Ying",
+            "role": "verse-author",
+            "rungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ]
+          },
+          "semanticDecision": "retain"
+        },
+        {
+          "relPath": "T/T48/T48n2010.xml",
+          "workId": "work:T48n2010",
+          "tier": 1,
+          "fromLb": "0376b23",
+          "toLb": "0376b23",
+          "contextSha256": "3bc0ef3e2abfac51e7261c6cf16c249239312b19f0929a349636d8f6cd659dfa",
+          "spanSha256": "23204fbd253c00f44e5862435442e16fc982b7453385cd650b0cc18bce64e0be",
+          "witnessFamilyId": "profound-purport:sengcan-inscription",
+          "deploymentRole": "original-use",
+          "actorDecision": {
+            "status": "linked",
+            "actor": "Sengcan",
+            "role": "attributed-author"
+          },
+          "semanticDecision": "retain"
+        }
+      ],
+      "reserve": [
+        {
+          "relPath": "J/J25/J25nB165.xml",
+          "workId": "work:J25nB165",
+          "tier": 1,
+          "contextSha256": "8e99834420e1b79e2ce0c60eadfe21166844e105c43363ce7120f3d6ed535fcb",
+          "decision": "reserve-not-needed-for-three-family-floor"
+        },
+        {
+          "relPath": "T/T48/T48n2016.xml",
+          "workId": "work:T48n2016",
+          "tier": 1,
+          "contextSha256": "0a2596dbd15064fd55775826fd9dfcda300ddcd758710fcfd5a362587283f7de",
+          "decision": "reserve-not-needed-for-three-family-floor"
+        },
+        {
+          "relPath": "T/T48/T48n2017.xml",
+          "workId": "work:T48n2017",
+          "tier": 1,
+          "contextSha256": "55b1853dbf549f9f205ae014a78135db9479b3fba7396997839b96616b4fd30c",
+          "decision": "reserve-not-needed-for-three-family-floor"
+        }
+      ],
+      "tierMix": {
+        "tier1": 3,
+        "tier2": 0,
+        "tier3": 0
+      },
+      "independentProofFamilies": 3,
+      "lampFallbackRequired": false,
+      "semanticReadComplete": true
+    },
+    {
+      "ordinal": 7,
+      "id": "t_2325720f94cd",
+      "term": "強作主宰",
+      "preferredTarget": "force oneself to act as master",
+      "alternates": [
+        "forcibly make oneself the one in control"
+      ],
+      "opening": "To force or contrive oneself into the role of master or controller.",
+      "body": "Wuyi Yuanlai, Zhongfeng Mingben, and Yulin Tongxiu independently criticize this contrived control when it is manufactured in stillness, imposed on circumstances, or mistaken for direct command.",
+      "note": "The phrase is pejorative in all three retained deployments; 強 marks the forcing.",
+      "finiteUncertainty": "Other occurrences may contrast genuine command, but that contrast does not neutralize 強.",
+      "senseRuling": "one corpus-wide sense",
+      "retained": [
+        {
+          "relPath": "X/X63/X63n1257.xml",
+          "workId": "work:X63n1257",
+          "tier": 1,
+          "fromLb": "0763a02",
+          "toLb": "0763a02",
+          "contextSha256": "30595e3c57bcca1b3657849cd1907d977e36e6f1dec0bcb251ee13af9b44ca76",
+          "spanSha256": "2325720f94cd870c4d55f7cce4c3941ae9075336f04b1307f1991f1df791bd07",
+          "witnessFamilyId": "forced-master:wuyi-admonition",
+          "deploymentRole": "original-use",
+          "actorDecision": {
+            "status": "linked",
+            "actor": "Wuyi Yuanlai",
+            "role": "author"
+          },
+          "semanticDecision": "retain"
+        },
+        {
+          "relPath": "B/B25/B25n0145.xml",
+          "workId": "work:B25n0145",
+          "tier": 2,
+          "fromLb": "0729b19",
+          "toLb": "0729b19",
+          "contextSha256": "ef07e13399196dfcbb1d1bcb65f32c69233ef157ac30e1cc790a3736d0edf72d",
+          "spanSha256": "2325720f94cd870c4d55f7cce4c3941ae9075336f04b1307f1991f1df791bd07",
+          "witnessFamilyId": "forced-master:zhongfeng-warning",
+          "deploymentRole": "original-use",
+          "actorDecision": {
+            "status": "linked",
+            "actor": "Zhongfeng Mingben",
+            "role": "utterer"
+          },
+          "semanticDecision": "retain"
+        },
+        {
+          "relPath": "B/B27/B27n0152.xml",
+          "workId": "work:B27n0152",
+          "tier": 2,
+          "fromLb": "0520b16",
+          "toLb": "0520b16",
+          "contextSha256": "10cd3982ddcf072b45a4238ca2fe12e98254d2e83a8c3ddec08b97b528c4bb4e",
+          "spanSha256": "2325720f94cd870c4d55f7cce4c3941ae9075336f04b1307f1991f1df791bd07",
+          "witnessFamilyId": "forced-master:yulin-critique",
+          "deploymentRole": "original-use",
+          "actorDecision": {
+            "status": "linked",
+            "actor": "Yulin Tongxiu",
+            "role": "utterer"
+          },
+          "semanticDecision": "retain"
+        }
+      ],
+      "reserve": [
+        {
+          "relPath": "C/C077/C077n1710.xml",
+          "workId": "work:guzunsu-yulu",
+          "tier": 2,
+          "contextSha256": "7502ab5167e702d48adf41e1b32c014c7d0bb1c51dec219b95c8a67107f845b3",
+          "decision": "reserve-not-needed-for-three-family-floor"
+        },
+        {
+          "relPath": "J/J10/J10nA158.xml",
+          "workId": "work:J10nA158",
+          "tier": 2,
+          "contextSha256": "032911be51a18d1d8a7144826d03c70eab67de09db852b6c8f95ee914ea983db",
+          "decision": "reserve-not-needed-for-three-family-floor"
+        },
+        {
+          "relPath": "J/J20/J20nB098.xml",
+          "workId": "work:J20nB098",
+          "tier": 2,
+          "contextSha256": "ed55308d1a0bd7a9f2eb83a1923eaa00f841366b3f4eb2ecee605c452218edad",
+          "decision": "reserve-not-needed-for-three-family-floor"
+        }
+      ],
+      "tierMix": {
+        "tier1": 1,
+        "tier2": 2,
+        "tier3": 0
+      },
+      "independentProofFamilies": 3,
+      "lampFallbackRequired": false,
+      "semanticReadComplete": true
+    },
+    {
+      "ordinal": 8,
+      "id": "t_2354ad61810c",
+      "term": "貪瞋癡",
+      "preferredTarget": "greed, anger, and delusion",
+      "alternates": [
+        "greed, anger, and ignorance"
+      ],
+      "opening": "The three-item list greed, anger, and delusion.",
+      "body": "Yongjia Xuanjue places the triad among states to be absent; Yongming Yanshou contrasts it with the roots of good and calls it the source of evil classes; the attributed Straight Talk on the True Mind uses it for reactions to agreeable, adverse, and neutral circumstances.",
+      "note": "The entry names the three words as used; it does not import an Abhidharma system as their definition.",
+      "finiteUncertainty": "The alternate 'ignorance' is lexical; no doctrinal expansion is licensed.",
+      "senseRuling": "one corpus-wide sense",
+      "retained": [
+        {
+          "relPath": "T/T48/T48n2013.xml",
+          "workId": "work:T48n2013",
+          "tier": 1,
+          "fromLb": "0395a10",
+          "toLb": "0395a10",
+          "contextSha256": "90cfa21e02372bbe6f453eb797ea5ddcf5aef1aaa6a8ced13de33b11c9e856bd",
+          "spanSha256": "2354ad61810cefdbe10fe286c6350330047a7e6e195e075bd22559ef0873d47d",
+          "witnessFamilyId": "three-poisons:yongjia-vow",
+          "deploymentRole": "original-use",
+          "actorDecision": {
+            "status": "linked",
+            "actor": "Yongjia Xuanjue",
+            "role": "author"
+          },
+          "semanticDecision": "retain"
+        },
+        {
+          "relPath": "T/T48/T48n2016.xml",
+          "workId": "work:T48n2016",
+          "tier": 1,
+          "fromLb": "0415a22",
+          "toLb": "0415a22",
+          "contextSha256": "f5f76af7e4c9d2f63e2eb38ce09d0c90d9d5351e69b63ab260920d68bebe1d8e",
+          "spanSha256": "2354ad61810cefdbe10fe286c6350330047a7e6e195e075bd22559ef0873d47d",
+          "witnessFamilyId": "three-poisons:yongming-mirror",
+          "deploymentRole": "original-use",
+          "actorDecision": {
+            "status": "linked",
+            "actor": "Yongming Yanshou",
+            "role": "author"
+          },
+          "semanticDecision": "retain"
+        },
+        {
+          "relPath": "T/T48/T48n2019A.xml",
+          "workId": "work:T48n2019A",
+          "tier": 1,
+          "fromLb": "1003b10",
+          "toLb": "1003b10",
+          "contextSha256": "d2bad28d7f4edcce0e55d2d89b7da346349992340643f7c379a4620c39fa21da",
+          "spanSha256": "2354ad61810cefdbe10fe286c6350330047a7e6e195e075bd22559ef0873d47d",
+          "witnessFamilyId": "three-poisons:true-mind-treatise",
+          "deploymentRole": "original-use",
+          "actorDecision": {
+            "status": "linked",
+            "actor": "Jinul",
+            "role": "attributed-author"
+          },
+          "semanticDecision": "retain"
+        }
+      ],
+      "reserve": [
+        {
+          "relPath": "T/T48/T48n2017.xml",
+          "workId": "work:T48n2017",
+          "tier": 1,
+          "contextSha256": "b57e11f0abe8b914a9a74a8cce61c16e84c88d8f3ada07f16c6755244b9d6628",
+          "decision": "reserve-not-needed-for-three-family-floor"
+        },
+        {
+          "relPath": "T/T48/T48n2021.xml",
+          "workId": "work:T48n2021",
+          "tier": 1,
+          "contextSha256": "cb2ebe464ba838d7a15fd956a6ca46959327acdb94b064fff38b75d22454b006",
+          "decision": "reserve-not-needed-for-three-family-floor"
+        },
+        {
+          "relPath": "X/X72/X72n1442.xml",
+          "workId": "work:X72n1442",
+          "tier": 1,
+          "contextSha256": "b1e100c94a2ceb8bb68c2e3192eec6894ce324f9a77304a11e74cde5497cee20",
+          "decision": "reserve-not-needed-for-three-family-floor"
+        }
+      ],
+      "tierMix": {
+        "tier1": 3,
+        "tier2": 0,
+        "tier3": 0
+      },
+      "independentProofFamilies": 3,
+      "lampFallbackRequired": false,
+      "semanticReadComplete": true
+    },
+    {
+      "ordinal": 9,
+      "id": "t_2385e8874684",
+      "term": "遞相鈍置",
+      "preferredTarget": "take turns making fools of one another",
+      "alternates": [
+        "successively put one another at a disadvantage"
+      ],
+      "opening": "To pass the disadvantage back and forth, taking turns making fools of one another.",
+      "body": "Zhongfeng Mingben applies it to the inherited succession; Tianyin Yuanxiu uses it for guest and host repeatedly constraining one another; Poshan Haiming uses it while criticizing Yunmen's response to the Buddha.",
+      "note": "鈍置 is an interpersonal putting-down or disadvantaging here, not literal loss of sharpness.",
+      "finiteUncertainty": "The sharper 'make fools of' rendering is contextual; the alternate preserves the broader floor.",
+      "senseRuling": "one corpus-wide sense",
+      "retained": [
+        {
+          "relPath": "B/B25/B25n0145.xml",
+          "workId": "work:B25n0145",
+          "tier": 2,
+          "fromLb": "0743a13",
+          "toLb": "0743a13",
+          "contextSha256": "f67457c9bc3f5f0eed5aa97bc1bf518342552df6d656d70428ae76dbdf4739e4",
+          "spanSha256": "2385e88746849fec36475a754e37af93b37678b417c794d5a73f03c380ef5f7e",
+          "witnessFamilyId": "mutual-disadvantage:zhongfeng-succession",
+          "deploymentRole": "original-use",
+          "actorDecision": {
+            "status": "linked",
+            "actor": "Zhongfeng Mingben",
+            "role": "utterer"
+          },
+          "semanticDecision": "retain"
+        },
+        {
+          "relPath": "J/J25/J25nB171.xml",
+          "workId": "work:J25nB171",
+          "tier": 2,
+          "fromLb": "0514b20",
+          "toLb": "0514b20",
+          "contextSha256": "912bc427d6464043f1ccdab5fb9238fc3d4946040e0cf64da33fa07c0e3e762f",
+          "spanSha256": "2385e88746849fec36475a754e37af93b37678b417c794d5a73f03c380ef5f7e",
+          "witnessFamilyId": "mutual-disadvantage:tianyin-host-guest",
+          "deploymentRole": "original-use",
+          "actorDecision": {
+            "status": "linked",
+            "actor": "Tianyin Yuanxiu",
+            "role": "utterer"
+          },
+          "semanticDecision": "retain"
+        },
+        {
+          "relPath": "J/J26/J26nB177.xml",
+          "workId": "work:J26nB177",
+          "tier": 2,
+          "fromLb": "0004b06",
+          "toLb": "0004b06",
+          "contextSha256": "4ddc800107daa7b3a478cf6bbfd655fc419c72316bb4d296bc3410dd1827ddbb",
+          "spanSha256": "2385e88746849fec36475a754e37af93b37678b417c794d5a73f03c380ef5f7e",
+          "witnessFamilyId": "mutual-disadvantage:poshan-yunmen",
+          "deploymentRole": "original-use",
+          "actorDecision": {
+            "status": "linked",
+            "actor": "Poshan Haiming",
+            "role": "utterer"
+          },
+          "semanticDecision": "retain"
+        }
+      ],
+      "reserve": [
+        {
+          "relPath": "J/J23/J23nB134.xml",
+          "workId": "work:wujia-yulu",
+          "tier": 2,
+          "contextSha256": "5644f56f064c2fc6c35b48172870c93142fcc24c48fbe93c1c1d36871ece34d1",
+          "decision": "reserve-not-needed-for-three-family-floor"
+        },
+        {
+          "relPath": "J/J24/J24nB138.xml",
+          "workId": "work:J24nB138",
+          "tier": 2,
+          "contextSha256": "06a42b3ec7b2861f2efdfbfc52f44dfd6a8de236e63601bb0711a19e9d252788",
+          "decision": "reserve-not-needed-for-three-family-floor"
+        },
+        {
+          "relPath": "J/J26/J26nB187.xml",
+          "workId": "work:J26nB187",
+          "tier": 2,
+          "contextSha256": "9dcb0cdb03c30e45b5b44adf9b42e2e1931b9188890d18cbed85af3167e59590",
+          "decision": "reserve-not-needed-for-three-family-floor"
+        }
+      ],
+      "tierMix": {
+        "tier1": 0,
+        "tier2": 3,
+        "tier3": 0
+      },
+      "independentProofFamilies": 3,
+      "lampFallbackRequired": false,
+      "semanticReadComplete": true
+    },
+    {
+      "ordinal": 10,
+      "id": "t_23e82e80e367",
+      "term": "渴飲饑餐",
+      "preferredTarget": "drink when thirsty, eat when hungry",
+      "alternates": [
+        "thirsty, drink; hungry, eat"
+      ],
+      "opening": "To drink when thirsty and eat when hungry.",
+      "body": "Puming places the pair in an oxherding verse; Huangbo Wunian uses it while describing his return to the mountains; Shiqi Tongyun calls it part of ordinary conduct.",
+      "note": "The phrase states two ordinary responses in parallel; no added meditation or present-moment gloss is needed.",
+      "finiteUncertainty": "The composite oxherding collection requires the local verse heading for authorship, which is retained.",
+      "senseRuling": "one corpus-wide sense",
+      "retained": [
+        {
+          "relPath": "J/J23/J23nB128.xml",
+          "workId": "work:J23nB128",
+          "tier": 1,
+          "fromLb": "0354b21",
+          "toLb": "0354b21",
+          "contextSha256": "16e612619531b6bc14ee6adab15d7936d7c1f2c93f2280388c23ef798f6e77e9",
+          "spanSha256": "23e82e80e367a02f017ab88b27cc25933021a28dd1a908aca1d20662ea7f5eed",
+          "witnessFamilyId": "thirst-hunger:puming-verse",
+          "deploymentRole": "original-use",
+          "actorDecision": {
+            "status": "identified-unlinked-master",
+            "actor": "Puming",
+            "role": "verse-author",
+            "rungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ]
+          },
+          "semanticDecision": "retain"
+        },
+        {
+          "relPath": "J/J20/J20nB098.xml",
+          "workId": "work:J20nB098",
+          "tier": 2,
+          "fromLb": "0504b20",
+          "toLb": "0504b20",
+          "contextSha256": "8533cf156efe8c7fde725a13df7d82bc9150bdca9838b02746a73f5a680856a4",
+          "spanSha256": "23e82e80e367a02f017ab88b27cc25933021a28dd1a908aca1d20662ea7f5eed",
+          "witnessFamilyId": "thirst-hunger:wunian-letter",
+          "deploymentRole": "original-use",
+          "actorDecision": {
+            "status": "identified-unlinked-master",
+            "actor": "Huangbo Wunian",
+            "role": "letter-writer",
+            "rungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ]
+          },
+          "semanticDecision": "retain"
+        },
+        {
+          "relPath": "J/J26/J26nB183.xml",
+          "workId": "work:J26nB183",
+          "tier": 2,
+          "fromLb": "0519b14",
+          "toLb": "0519b14",
+          "contextSha256": "77eaee08a0eecb56268533503e24cdea70e127cd95ddab7b645e05a4ec9c4556",
+          "spanSha256": "23e82e80e367a02f017ab88b27cc25933021a28dd1a908aca1d20662ea7f5eed",
+          "witnessFamilyId": "thirst-hunger:shiqi-verse",
+          "deploymentRole": "original-use",
+          "actorDecision": {
+            "status": "linked",
+            "actor": "Shiqi Tongyun",
+            "role": "utterer"
+          },
+          "semanticDecision": "retain"
+        }
+      ],
+      "reserve": [
+        {
+          "relPath": "X/X64/X64n1271.xml",
+          "workId": "work:X64n1271",
+          "tier": 1,
+          "contextSha256": "ab075e8f503c741db7fe873553189ce04949f4cf62f40fd8cc03a39275e625fc",
+          "decision": "reserve-not-needed-for-three-family-floor"
+        },
+        {
+          "relPath": "J/J26/J26nB185.xml",
+          "workId": "work:J26nB185",
+          "tier": 2,
+          "contextSha256": "7b578247fd2dd60f73617e3bdb754323604cb80c631962e352e48769d102fc9f",
+          "decision": "reserve-not-needed-for-three-family-floor"
+        },
+        {
+          "relPath": "J/J27/J27nB197.xml",
+          "workId": "work:J27nB197",
+          "tier": 2,
+          "contextSha256": "d47ee8d32b142111418cf7a31e2d02b627777990bdf658b3f51362a28c451996",
+          "decision": "reserve-not-needed-for-three-family-floor"
+        }
+      ],
+      "tierMix": {
+        "tier1": 1,
+        "tier2": 2,
+        "tier3": 0
+      },
+      "independentProofFamilies": 3,
+      "lampFallbackRequired": false,
+      "semanticReadComplete": true
+    }
+  ],
+  "summary": {
+    "entriesAdjudicated": 10,
+    "occurrencesRetained": 30,
+    "tier1": 15,
+    "tier2": 15,
+    "tier3": 0,
+    "lampFallbackEntries": [],
+    "fewerThanThreeFamilies": [],
+    "semanticBlockers": []
+  },
+  "crossReviewAssignment": {
+    "reviewer": "/root/source_tiers_b/r94_lane_c",
+    "reviewScope": "all ten entries and all thirty retained coordinates",
+    "selfReview": false
+  },
+  "elapsedSeconds": 915.9935278892517,
+  "deadlineSeconds": 2800,
+  "withinDeadline": true,
+  "publicMutationPerformed": false,
+  "productMutationPerformed": false,
+  "hardPass": true
+}

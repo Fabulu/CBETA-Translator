@@ -1,0 +1,76 @@
+{
+  "schemaVersion": "r94-changed-coordinate-rereview.v1",
+  "cohort": "R94",
+  "reviewedLane": "C",
+  "reviewerLane": "B",
+  "correction": 2,
+  "bindings": {
+    "correctionClosure": {
+      "path": "maintenance/r94-lane-c-correction2-closure.json",
+      "sha256": "fe08d527e8b27ca433b8f9c665ad0061082bf75c1a06300fdd2854af7fd8907a"
+    },
+    "correctedAuthority": {
+      "path": "maintenance/r94-lane-c-correction2-authority.json",
+      "sha256": "00a08a9f13e242a9c1b2234bfa582b34b8f2d5df172759f722528d21a08956d0"
+    },
+    "priorRereview": {
+      "path": "maintenance/r94-lane-c-correction1-rereview-by-b.json",
+      "sha256": "c69a6e218de837789aa8e3a0047b98716af6e535ae27524cfca5825475057439"
+    },
+    "readOnlyRoster": {
+      "path": "Assets/Data/lineage-masters.json",
+      "canonicalName": "Ruilu Benxian",
+      "canonicalChineseName": "瑞鹿本先"
+    }
+  },
+  "scope": {
+    "changedCoordinatesExpected": 1,
+    "changedCoordinatesReread": 1,
+    "entryId": "t_28fac5e98308",
+    "term": "問話",
+    "row": 3,
+    "productsReviewed": 0,
+    "publicFilesReviewed": 0
+  },
+  "ruling": {
+    "verdict": "PASS",
+    "sourceLabel": "瑞鹿禪師",
+    "canonicalActor": "Ruilu Benxian",
+    "actorStatus": "linked-canonical",
+    "voiceLayer": "quoted-original",
+    "family": "Boshan authorial evaluation of Ruilu Benxian's saying",
+    "detail": "The corrected coordinate deterministically resolves the source title 瑞鹿禪師 to roster-canonical Ruilu Benxian (瑞鹿本先). The dependent occurrence and family wording use the canonical actor while preserving the quoted-original layer.",
+    "meaningChanged": false,
+    "familyCountChanged": false,
+    "sourceSelectionChanged": false
+  },
+  "preservation": {
+    "otherPassingSemanticEntriesPreserved": 8,
+    "questioningPreferredTargetPreserved": true,
+    "questioningRetainedRowsPreserved": [
+      2,
+      3,
+      4
+    ],
+    "questioningFamilyCount": 3,
+    "passingSemanticEntriesTotal": 9,
+    "failedIds": [
+      "t_2738431562e6"
+    ],
+    "immutableWuFailurePreserved": true,
+    "replacementHandoffRequired": true,
+    "tier3Retained": 0,
+    "lampPaddingUsed": false
+  },
+  "summary": {
+    "changedCoordinatePass": true,
+    "additionalSemanticDefects": 0,
+    "nineSemanticEntriesConfirmed": true,
+    "immutableWuFailureConfirmed": true,
+    "hardPass": false,
+    "releaseAuthorized": false,
+    "reason": "The corrected actor coordinate passes, but lane C remains unreleasable until the separately frozen replacement for 無字 is supplied."
+  },
+  "hardPass": false,
+  "releaseAuthorized": false
+}

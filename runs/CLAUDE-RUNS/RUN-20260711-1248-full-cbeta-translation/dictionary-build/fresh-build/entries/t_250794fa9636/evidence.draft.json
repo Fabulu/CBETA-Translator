@@ -1,0 +1,279 @@
+{
+  "SchemaVersion": 1,
+  "ConstructionPipelineVersion": 2,
+  "Admission": {
+    "Decision": "admit",
+    "LexicalUnitReason": "問話 is independently used as a complete verb-object unit for putting a question.",
+    "ObservableChanJob": "It names the act of putting a question in an encounter, and by extension the questioning so performed.",
+    "DuplicateCheck": {
+      "DeterministicIdChecked": true,
+      "ExactHeadwordChecked": true,
+      "NearDuplicateRuling": "問話頭 is a longer compound and does not replace the independently deployed shorter unit."
+    }
+  },
+  "EvidenceTransport": {
+    "DossierPath": "source-dossier.json",
+    "DossierSha256": "76902674034fc550964c17fcec7bfd10f6890944ab3a80c036f58bec8e27e89f",
+    "SourceAuthorityManifestSha256": "2ee44bf19a2533958e5620c38915f3d03fbb81209c76c7183742a4f3d059f501",
+    "DiscoveryMethods": [
+      "final reviewed R94 authority"
+    ],
+    "ExactCount": 3,
+    "BridgedCount": 3,
+    "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+  },
+  "Entry": {
+    "Id": "t_250794fa9636",
+    "SourceTerm": "野狐",
+    "CreatedBy": "R94 source-hierarchy repair",
+    "WrittenUtc": "2026-07-30T10:38:00Z",
+    "Senses": [
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "wild fox",
+        "AlternateTargets": [
+          "a wild fox"
+        ],
+        "SearchAliases": [
+          "wild-fox den",
+          "wild-fox traces"
+        ],
+        "Status": "preferred",
+        "Validation": "multi-source",
+        "Explanation": "In Chan records, the wild fox supplies a sharp animal image for a den, a fall into the fox's condition, and traces that should disappear. Yuanwu Keqin warns against falling into a wild-fox den; Xixin Zhaoshui uses the fox as a rebuking comparison in an authored song; Heshan calls for wild-fox traces to vanish in an invitation.",
+        "Note": "The retained evidence supports the wild-fox image and epithet; it does not itself narrate the Baizhang fox case.",
+        "Occurrences": [
+          {
+            "RelPath": "X/X69/X69n1357.xml",
+            "FromLb": "0461c08",
+            "ToLb": "0461c13",
+            "Kwic": "與人。趙州道：佛之一字，吾不喜聞。看他早是摋土塗糊人了也。若更於棒頭求玄，喝下覔妙，瞠眉努眼，舉手動足，展轉落野狐窠窟去也。此宗惟貴悟明，到銀山鐵壁，萬仞孤峭，擊石火，閃電光，擬不擬便墮坑落穽。所以從上護惜箇一著子，同到同證",
+            "MasterName": "Yuanwu Keqin",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Yuanwu Keqin",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (X/X69/X69n1357.xml). Essentials of the Mind by Chan Master Foguо Keqin. Exact actor: Yuanwu Keqin. The complete source frame assigns the retained headword-bearing action to Yuanwu Keqin.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "野狐",
+              "GrammaticalSubject": "Yuanwu Keqin",
+              "SpeechFrame": "Source record (X/X69/X69n1357.xml). Essentials of the Mind by Chan Master Foguо Keqin. Exact actor: Yuanwu Keqin. The complete source frame assigns the retained headword-bearing action to Yuanwu Keqin.",
+              "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to Yuanwu Keqin."
+            }
+          },
+          {
+            "RelPath": "J/J39/J39nB458.xml",
+            "FromLb": "0707c18",
+            "ToLb": "0707c23",
+            "Kwic": "殺天下人，百丈投機解哭笑。實實公案最現成，妄生卜度與計較。若有實法繫綴人，尸佛留心皆不妙。直教人悟不教疑，墮在野狐何而貌？十二時中作麼生？晝喫粥飯夜睡覺。任他蝗蟲蝦蟆禪，僅去亂飛於亂跳。幻化之中罪福空，天堂地獄由人造。妄言狂",
+            "MasterName": "Xixin Zhaoshui",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Xixin Zhaoshui",
+                "Roles": [
+                  "verse-author"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J39/J39nB458.xml). Bathing in Snow Collection of Chan Master Runguangze (Zhengjue). Exact actor: Xixin Zhaoshui. The complete source frame assigns the retained authored verse to Xixin Zhaoshui.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "野狐",
+              "GrammaticalSubject": "Xixin Zhaoshui",
+              "SpeechFrame": "Source record (J/J39/J39nB458.xml). Bathing in Snow Collection of Chan Master Runguangze (Zhengjue). Exact actor: Xixin Zhaoshui. The complete source frame assigns the retained authored verse to Xixin Zhaoshui.",
+              "FullCaseDecision": "The complete source frame assigns the retained authored verse to Xixin Zhaoshui."
+            }
+          },
+          {
+            "RelPath": "J/J40/J40nB497.xml",
+            "FromLb": "0865c25",
+            "ToLb": "0865c30",
+            "Kwic": "？某忝竊同源，叨陪末座，用是敢布誠心，肅箋上懇，惟冀劍挂眉端，雷轟舌上，開人天之眼目，群籟皆清；秉正令之莫邪，野狐絕跡。弟某臨啟，不勝虔切之至。請堯封過菴和尚補住靈巖啟請堯封過菴和尚補住靈巖啟乾遇乎巽，令節方屆天中；斗轉乎箕",
+            "MasterName": null,
+            "Curated": true,
+            "ContextMasters": [],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J40/J40nB497.xml). Broom-in-Hand Collection of Chan Master Heshan. Invitation writer: Heshan. Authored invitation. Heshan writes the retained headword clause in his authored invitation requesting that the lineage seat be filled.",
+            "ActorAttribution": {
+              "Status": "identified-unlinked-master",
+              "Kind": "Chan master",
+              "ActorLabel": "Heshan",
+              "ActorRole": "invitation-writer",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "Heshan writes the retained headword clause in his authored invitation requesting that the lineage seat be filled.",
+              "ReviewedBy": "R94 lane A independent review",
+              "ReviewedUtc": "2026-07-30T16:23:26Z",
+              "AuthoredVoiceRiskReviewed": true
+            },
+            "DraftActorProof": {
+              "ExactHeadwordClause": "野狐",
+              "GrammaticalSubject": "Heshan",
+              "SpeechFrame": "Source record (J/J40/J40nB497.xml). Broom-in-Hand Collection of Chan Master Heshan. Invitation writer: Heshan. Authored invitation. Heshan writes the retained headword clause in his authored invitation requesting that the lineage seat be filled.",
+              "FullCaseDecision": "Heshan writes the retained headword clause in his authored invitation requesting that the lineage seat be filled."
+            }
+          }
+        ],
+        "ClaimAnchors": [],
+        "SourceTexts": [
+          "X/X69/X69n1357.xml",
+          "J/J39/J39nB458.xml",
+          "J/J40/J40nB497.xml"
+        ],
+        "RelatedMasters": [
+          "Yuanwu Keqin",
+          "Xixin Zhaoshui"
+        ],
+        "RelatedTerms": [],
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "In Chan records, the wild fox supplies a sharp animal image for a den, a fall into the fox's condition, and traces that should disappear.",
+          "EvidenceBody": [
+            "Yuanwu Keqin warns against falling into a wild-fox den; Xixin Zhaoshui uses the fox as a rebuking comparison in an authored song; Heshan calls for wild-fox traces to vanish in an invitation."
+          ]
+        },
+        "DraftEvidence": {
+          "LiteralGraphFloor": "wild fox",
+          "LexicalJob": "野狐 means wild fox.",
+          "DeploymentClasses": [
+            "authored verse",
+            "direct instruction"
+          ],
+          "HighValueEvidenceLedger": [
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to Yuanwu Keqin.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained authored verse to Xixin Zhaoshui.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Heshan writes the retained headword clause in his authored invitation requesting that the lineage seat be filled.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            }
+          ],
+          "OpeningClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3"
+          ],
+          "EvidenceBodyClaimKeys": [
+            [
+              "o1",
+              "o2",
+              "o3"
+            ]
+          ],
+          "ZenBend": "In Chan records, the wild fox supplies a sharp animal image for a den, a fall into the fox's condition, and traces that should disappear.",
+          "CounterexampleOrLimit": "The retained evidence supports the wild-fox image and epithet; it does not itself narrate the Baizhang fox case.",
+          "DifferentThingTest": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "wild fox"
+            ],
+            "Reason": "The retained evidence supports the wild-fox image and epithet; it does not itself narrate the Baizhang fox case."
+          },
+          "AliasRationale": "The retained evidence supports the wild-fox image and epithet; it does not itself narrate the Baizhang fox case.",
+          "ModifierControls": [
+            {
+              "Term": "野狐",
+              "Finding": "The retained evidence supports the wild-fox image and epithet; it does not itself narrate the Baizhang fox case."
+            }
+          ],
+          "FamilyControls": [
+            {
+              "Term": "野狐",
+              "Finding": "Yuanwu Keqin warns against falling into a wild-fox den; Xixin Zhaoshui uses the fox as a rebuking comparison in an authored song; Heshan calls for wild-fox traces to vanish in an invitation."
+            }
+          ],
+          "IndependentWorkIds": [
+            "work:X69n1357",
+            "work:J39nB458",
+            "work:J40nB497"
+          ],
+          "SourceAuthorityRows": [
+            {
+              "EvidenceKey": "o1",
+              "RelPath": "X/X69/X69n1357.xml",
+              "WorkId": "work:X69n1357",
+              "Tier": 1,
+              "SourceClass": "master-authored",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "wild-fox:yuanwu",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o2",
+              "RelPath": "J/J39/J39nB458.xml",
+              "WorkId": "work:J39nB458",
+              "Tier": 1,
+              "SourceClass": "master-authored",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "wild-fox:xixin",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o3",
+              "RelPath": "J/J40/J40nB497.xml",
+              "WorkId": "work:J40nB497",
+              "Tier": 1,
+              "SourceClass": "master-authored",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "wild-fox:heshan-invitation",
+              "DeploymentRole": "original-use"
+            }
+          ],
+          "LampExcessJustification": "No Tier-3 lamp retained.",
+          "NoHigherWitnessSearchReceipt": "Tier 1 searched first, then Tier 2; no lamp needed.",
+          "DepthHarvestReceipt": {
+            "Complete": true,
+            "ReviewedExactHitCount": 3,
+            "AvailableSourceFiles": 3,
+            "SearchedDeploymentClasses": [
+              "final-reviewed-authority"
+            ],
+            "OmissionAudit": [
+              "Mechanical normalization retains exactly the final reviewed authority families."
+            ]
+          }
+        },
+        "DraftAcceptedDerivedFields": {
+          "SourceTexts": [
+            "X/X69/X69n1357.xml",
+            "J/J39/J39nB458.xml",
+            "J/J40/J40nB497.xml"
+          ],
+          "RelatedMasters": [
+            "Yuanwu Keqin",
+            "Xixin Zhaoshui"
+          ]
+        }
+      }
+    ],
+    "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+  },
+  "FamilyHarvest": {
+    "PolicyVersion": 1,
+    "Scope": "R94 source-hierarchy repair",
+    "Edges": [],
+    "NegativeReceipt": [],
+    "GraphicVariants": []
+  }
+}

@@ -1,0 +1,443 @@
+{
+  "schemaVersion": "r94-lane-cross-review.v1",
+  "cohort": "R94",
+  "reviewedLane": "A",
+  "reviewerLane": "C",
+  "reviewer": "Codex r94_lane_c",
+  "reviewMethod": "source-first complete frozen-context review before comparison with the author closure",
+  "bindings": {
+    "authorClosure": {
+      "path": "maintenance/r94-lane-a-author-closure.json",
+      "sha256": "716291859e533aab22b27d63abebb1a7ac0525286ad533bf3def316c4d258d69"
+    },
+    "frozenExtraction": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r94-frozen-extraction-root.json",
+      "sha256": "7204625ec34769127033c57d574883e2511c1b71b2a939430fc12bc4cc1b5d67"
+    },
+    "frozenSkeleton": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r94-frozen-research-skeleton-root.json",
+      "sha256": "1f0ea2b831db20e8b4e68a550d309aaf1f6f89cb3b601002f82887fc2c63f136"
+    }
+  },
+  "scope": {
+    "entryCount": 10,
+    "retainedOccurrenceCount": 30,
+    "allRetainedOccurrencesRead": true,
+    "frozenCandidatesOnly": true,
+    "rescanPerformed": false,
+    "productMutationPerformed": false,
+    "publicMutationPerformed": false,
+    "lineageMutationPerformed": false
+  },
+  "entryReviews": [
+    {
+      "ordinal": 1,
+      "id": "t_223c2f6ade25",
+      "term": "一大事因緣",
+      "verdict": "PASS",
+      "semanticGloss": "PASS",
+      "senseStructure": "PASS",
+      "tierAndIndependence": "PASS",
+      "contamination": "none",
+      "lampExclusion": "PASS",
+      "finding": "The target preserves all four graphs: the one great matter plus its occasion or causal circumstance. Zongmi's explicit 世尊自云 quotation, Yuanwu's authored letter, and Zhongfeng's discourse are three work-distinct Chan deployments. The first is correctly treated as an active quotation rather than lexical coinage.",
+      "occurrences": [
+        {
+          "coordinate": "T/T48/T48n2015.xml@0408b03",
+          "verdict": "PASS",
+          "actor": "Shakyamuni Buddha, quoted original; Guifeng Zongmi is the active outer quoter",
+          "tier": 1,
+          "family": "great-matter:zongmi-active-lotus-quotation"
+        },
+        {
+          "coordinate": "X/X69/X69n1357.xml@0497b14",
+          "verdict": "PASS",
+          "actor": "Yuanwu Keqin",
+          "tier": 1,
+          "family": "great-matter:yuanwu-letter"
+        },
+        {
+          "coordinate": "B/B25/B25n0145.xml@0703a18",
+          "verdict": "PASS",
+          "actor": "Zhongfeng Mingben",
+          "tier": 2,
+          "family": "great-matter:zhongfeng-discourse"
+        }
+      ]
+    },
+    {
+      "ordinal": 2,
+      "id": "t_22885135d39e",
+      "term": "一塵",
+      "verdict": "FAIL",
+      "semanticGloss": "PASS",
+      "senseStructure": "PASS",
+      "tierAndIndependence": "PASS_AFTER_ACTOR_CORRECTION",
+      "contamination": "none",
+      "lampExclusion": "PASS",
+      "finding": "The three passages use 一塵 as one minute dust particle, including negative 無一塵 and the quoted formula 一塵入正受. The second actor is wrong: Micang introduces the formula with 永嘉云, so Yongjia owns the exact headword-bearing quoted clause and Micang is the active outer quoter.",
+      "occurrences": [
+        {
+          "coordinate": "D/D50/D50n8945.xml@0023b04",
+          "verdict": "PASS",
+          "actor": "Xuefeng Huikong",
+          "tier": 1,
+          "family": "dust:xuefeng-verse"
+        },
+        {
+          "coordinate": "J/J23/J23nB118.xml@0011b02",
+          "verdict": "FAIL",
+          "authorValue": "Micang Daokai as author",
+          "requiredValue": "Yongjia Xuanjue as quoted-original actor; Micang Daokai as outer active quoter/commentator",
+          "grammarProof": "The complete context explicitly opens the inherited passage with 永嘉云 before 一塵入正受.",
+          "tier": 1,
+          "family": "dust:micang-active-yongjia-quotation"
+        },
+        {
+          "coordinate": "J/J25/J25nB165.xml@0289c02",
+          "verdict": "PASS",
+          "actor": "Dawei Jinglun",
+          "tier": 1,
+          "family": "dust:dawei-writing"
+        }
+      ]
+    },
+    {
+      "ordinal": 3,
+      "id": "t_229d6fd2a889",
+      "term": "仁者見之謂之仁",
+      "verdict": "FAIL",
+      "semanticGloss": "PASS",
+      "senseStructure": "PASS",
+      "tierAndIndependence": "PASS_AFTER_STATUS_CORRECTION",
+      "contamination": "none",
+      "lampExclusion": "PASS",
+      "finding": "The gloss correctly retains the first half of the paired saying and does not split the paired continuation into another sense. Dahui's quoted use, Tian'an's hall use, and an unnamed layman's question to Sanyi are independent deployments. The layman is source-anonymous but grammatically identified as 居士, so the closed status is reviewed-unnamed non-master, not unresolved-anonymous.",
+      "occurrences": [
+        {
+          "coordinate": "J/J25/J25nB171.xml@0545b24",
+          "verdict": "PASS",
+          "actor": "Dahui Zonggao, quoted original; Tianyin Yuanxiu is outer appraiser",
+          "tier": 2,
+          "family": "humane:dahui-quotation-tianyin-appraisal"
+        },
+        {
+          "coordinate": "J/J26/J26nB187.xml@0687c26",
+          "verdict": "PASS",
+          "actor": "Tian'an Sheng",
+          "tier": 2,
+          "family": "humane:tianan-hall-use"
+        },
+        {
+          "coordinate": "J/J27/J27nB189.xml@0037a01",
+          "verdict": "FAIL",
+          "authorValue": "unresolved-anonymous / an unnamed layman",
+          "requiredValue": "reviewed-unnamed non-master / an unnamed layman / questioner, with all six rungs retained",
+          "grammarProof": "居士問 introduces the headword-bearing quotation; Sanyi Mingyu answers afterward and is not the headword utterer.",
+          "tier": 2,
+          "family": "humane:sanyi-lay-question"
+        }
+      ]
+    },
+    {
+      "ordinal": 4,
+      "id": "t_22b4a92f2919",
+      "term": "收歸上科",
+      "verdict": "FAIL",
+      "semanticGloss": "PASS",
+      "senseStructure": "PASS",
+      "tierAndIndependence": "PASS_AFTER_ROSTER_CORRECTION",
+      "contamination": "none",
+      "lampExclusion": "PASS",
+      "finding": "The phrase is consistently a closing verdict that returns listed alternatives to the preceding category. Feiyin, Sanyi, and Baichi supply independent Tier-2 uses. The third source title and roster aliases resolve its actor to canonical Baichi Xingyuan; the unlinked short label 'Baichi' would create avoidable link debt.",
+      "occurrences": [
+        {
+          "coordinate": "J/J26/J26nB178.xml@0166a01",
+          "verdict": "PASS",
+          "actor": "Feiyin Tongrong",
+          "tier": 2,
+          "family": "preceding-category:feiyin-letter"
+        },
+        {
+          "coordinate": "J/J27/J27nB189.xml@0008b02",
+          "verdict": "PASS",
+          "actor": "Sanyi Mingyu",
+          "tier": 2,
+          "family": "preceding-category:sanyi-hall"
+        },
+        {
+          "coordinate": "J/J28/J28nB202.xml@0014b11",
+          "verdict": "FAIL",
+          "authorValue": "identified-unlinked-master / Baichi",
+          "requiredValue": "linked / Baichi Xingyuan",
+          "grammarProof": "The line is governed by 師云 in the Recorded Sayings of Chan Master Baichi, and 百癡行元 is an alias of roster-canonical Baichi Xingyuan.",
+          "tier": 2,
+          "family": "preceding-category:baichi-three-answers"
+        }
+      ]
+    },
+    {
+      "ordinal": 5,
+      "id": "t_2310fbae5dc4",
+      "term": "把手共行",
+      "verdict": "PASS",
+      "semanticGloss": "PASS",
+      "senseStructure": "PASS",
+      "tierAndIndependence": "PASS",
+      "contamination": "none",
+      "lampExclusion": "PASS",
+      "finding": "All three contexts support joining hands and walking together as companionship on equal footing. Jinul's prose, Gulin's verse, and Zhongfeng's instruction are work-distinct and actor-clear.",
+      "occurrences": [
+        {
+          "coordinate": "T/T48/T48n2020.xml@1006b08",
+          "verdict": "PASS",
+          "actor": "Jinul",
+          "tier": 1,
+          "family": "hand-in-hand:jinul-treatise"
+        },
+        {
+          "coordinate": "X/X71/X71n1413.xml@0273a05",
+          "verdict": "PASS",
+          "actor": "Gulin Qingmao",
+          "tier": 1,
+          "family": "hand-in-hand:gulin-verse"
+        },
+        {
+          "coordinate": "B/B25/B25n0145.xml@0735a10",
+          "verdict": "PASS",
+          "actor": "Zhongfeng Mingben",
+          "tier": 2,
+          "family": "hand-in-hand:zhongfeng-before-names"
+        }
+      ]
+    },
+    {
+      "ordinal": 6,
+      "id": "t_23204fbd253c",
+      "term": "玄旨",
+      "verdict": "PASS",
+      "semanticGloss": "PASS",
+      "senseStructure": "PASS",
+      "tierAndIndependence": "PASS",
+      "contamination": "none",
+      "lampExclusion": "PASS",
+      "finding": "The clean target 'profound purport' fits opening, penetrating, and failing to recognize the same subtle purport. The Fushan and Yeyun authored verses and Sengcan's attributed inscription are independent Tier-1 witnesses; no lamp support is used.",
+      "occurrences": [
+        {
+          "coordinate": "J/J25/J25nB166.xml@0301a01",
+          "verdict": "PASS",
+          "actor": "Fushan Benzhi",
+          "tier": 1,
+          "family": "profound-purport:fushan-verse"
+        },
+        {
+          "coordinate": "J/J40/J40nB484.xml@0273c20",
+          "verdict": "PASS",
+          "actor": "Yeyun Ying",
+          "tier": 1,
+          "family": "profound-purport:yeyun-verse"
+        },
+        {
+          "coordinate": "T/T48/T48n2010.xml@0376b23",
+          "verdict": "PASS",
+          "actor": "Sengcan, attributed author",
+          "tier": 1,
+          "family": "profound-purport:faith-in-mind"
+        }
+      ]
+    },
+    {
+      "ordinal": 7,
+      "id": "t_2325720f94cd",
+      "term": "強作主宰",
+      "verdict": "PASS",
+      "semanticGloss": "PASS",
+      "senseStructure": "PASS",
+      "tierAndIndependence": "PASS",
+      "contamination": "none",
+      "lampExclusion": "PASS",
+      "finding": "The target correctly captures contrived self-command rather than ordinary leadership. Wuyi criticizes manufacturing it in quiet, Zhongfeng criticizes forcing it amid circumstances, and Yulin rejects mistaking discriminating consciousness for such control.",
+      "occurrences": [
+        {
+          "coordinate": "X/X63/X63n1257.xml@0763a02",
+          "verdict": "PASS",
+          "actor": "Wuyi Yuanlai",
+          "tier": 1,
+          "family": "forced-master:wuyi-quiet"
+        },
+        {
+          "coordinate": "B/B25/B25n0145.xml@0729b19",
+          "verdict": "PASS",
+          "actor": "Zhongfeng Mingben",
+          "tier": 2,
+          "family": "forced-master:zhongfeng-circumstances"
+        },
+        {
+          "coordinate": "B/B27/B27n0152.xml@0520b16",
+          "verdict": "PASS",
+          "actor": "Yulin Tongxiu",
+          "tier": 2,
+          "family": "forced-master:yulin-consciousness"
+        }
+      ]
+    },
+    {
+      "ordinal": 8,
+      "id": "t_2354ad61810c",
+      "term": "貪瞋癡",
+      "verdict": "FAIL",
+      "semanticGloss": "PASS",
+      "senseStructure": "PASS",
+      "tierAndIndependence": "FAIL_ONE_RETAINED_SOURCE",
+      "contamination": "preface voice misclassified as master-authored occurrence",
+      "lampExclusion": "PASS",
+      "finding": "The triad's gloss is correct, and Yongjia plus Jinul independently support it. The T48n2016 occurrence lies in prefatory prose describing and introducing Yongming's Record of the Mirror of the Source, before the work's own title; its exact voice is not Yongming Yanshou. It therefore cannot count as a Tier-1 master-authored Yongming family. Frozen row X/X72/X72n1442@0709a23 supplies a clean authored Weilin Daopei replacement and preserves a three-family Tier-1 floor.",
+      "occurrences": [
+        {
+          "coordinate": "T/T48/T48n2013.xml@0395a10",
+          "verdict": "PASS",
+          "actor": "Yongjia Xuanjue",
+          "tier": 1,
+          "family": "three-poisons:yongjia-vow"
+        },
+        {
+          "coordinate": "T/T48/T48n2016.xml@0415a22",
+          "verdict": "FAIL",
+          "authorValue": "Yongming Yanshou / Tier 1 / three-poisons:yongming-mirror",
+          "requiredValue": "exclude retained occurrence; the exact line is prefatory narration by a non-Yongming voice",
+          "grammarProof": "The passage speaks about 智覺禪師 and his composition in the third person and only afterward reaches the 宗鏡錄序 title boundary.",
+          "tier": "not Tier-1 master-authored evidence for this exact occurrence",
+          "family": "excluded-preface"
+        },
+        {
+          "coordinate": "T/T48/T48n2019A.xml@1003b10",
+          "verdict": "PASS",
+          "actor": "Jinul, attributed author",
+          "tier": 1,
+          "family": "three-poisons:true-mind-treatise"
+        }
+      ],
+      "replacement": {
+        "coordinate": "X/X72/X72n1442.xml@0709a23",
+        "frozenCandidateRow": 6,
+        "actor": "Weilin Daopei",
+        "tier": 1,
+        "deployment": "authored vow naming greed, anger, and delusion as the three actions allowed to run loose",
+        "requiredFamilyId": "three-poisons:weilin-vow"
+      }
+    },
+    {
+      "ordinal": 9,
+      "id": "t_2385e8874684",
+      "term": "遞相鈍置",
+      "verdict": "PASS",
+      "semanticGloss": "PASS",
+      "senseStructure": "PASS",
+      "tierAndIndependence": "PASS",
+      "contamination": "none",
+      "lampExclusion": "PASS",
+      "finding": "The gloss captures the reciprocal grammar 遞相 and the repeated Chan use of 鈍置 for putting another at a disadvantage or making a fool of him. Zhongfeng, Tianyin, and Poshan apply the phrase independently.",
+      "occurrences": [
+        {
+          "coordinate": "B/B25/B25n0145.xml@0743a13",
+          "verdict": "PASS",
+          "actor": "Zhongfeng Mingben",
+          "tier": 2,
+          "family": "mutual-disadvantage:zhongfeng-succession"
+        },
+        {
+          "coordinate": "J/J25/J25nB171.xml@0514b20",
+          "verdict": "PASS",
+          "actor": "Tianyin Yuanxiu",
+          "tier": 2,
+          "family": "mutual-disadvantage:tianyin-host-guest"
+        },
+        {
+          "coordinate": "J/J26/J26nB177.xml@0004b06",
+          "verdict": "PASS",
+          "actor": "Poshan Haiming",
+          "tier": 2,
+          "family": "mutual-disadvantage:poshan-yunmen"
+        }
+      ]
+    },
+    {
+      "ordinal": 10,
+      "id": "t_23e82e80e367",
+      "term": "渴飲饑餐",
+      "verdict": "PASS",
+      "semanticGloss": "PASS",
+      "senseStructure": "PASS",
+      "tierAndIndependence": "PASS",
+      "contamination": "none",
+      "lampExclusion": "PASS",
+      "finding": "All three passages preserve the ordinary paired acts, drinking when thirsty and eating when hungry. Puming's oxherding verse, Huangbo Wunian's letter, and Shiqi's send-off verse are distinct deployments; the phrase does not warrant a second sense.",
+      "occurrences": [
+        {
+          "coordinate": "J/J23/J23nB128.xml@0354b21",
+          "verdict": "PASS",
+          "actor": "Puming, identified unlinked verse author",
+          "tier": 1,
+          "family": "thirst-hunger:puming-verse"
+        },
+        {
+          "coordinate": "J/J20/J20nB098.xml@0504b20",
+          "verdict": "PASS",
+          "actor": "Huangbo Wunian",
+          "tier": 2,
+          "family": "thirst-hunger:wunian-letter"
+        },
+        {
+          "coordinate": "J/J26/J26nB183.xml@0519b14",
+          "verdict": "PASS",
+          "actor": "Shiqi Tongyun",
+          "tier": 2,
+          "family": "thirst-hunger:shiqi-verse"
+        }
+      ]
+    }
+  ],
+  "finiteCorrectionDeltas": [
+    {
+      "entryId": "t_22885135d39e",
+      "coordinate": "J/J23/J23nB118.xml@0011b02",
+      "kind": "quoted-original-actor",
+      "change": "Replace Micang Daokai as exact actor with Yongjia Xuanjue; preserve Micang as outer active quoter/commentator and update the family label accordingly."
+    },
+    {
+      "entryId": "t_229d6fd2a889",
+      "coordinate": "J/J27/J27nB189.xml@0037a01",
+      "kind": "closed-actor-status",
+      "change": "Replace unresolved-anonymous with reviewed-unnamed non-master; retain actor label 'an unnamed layman', role questioner, and all six rungs."
+    },
+    {
+      "entryId": "t_22b4a92f2919",
+      "coordinate": "J/J28/J28nB202.xml@0014b11",
+      "kind": "roster-canonicalization",
+      "change": "Replace identified-unlinked 'Baichi' with roster-linked canonical Baichi Xingyuan."
+    },
+    {
+      "entryId": "t_2354ad61810c",
+      "coordinate": "T/T48/T48n2016.xml@0415a22",
+      "kind": "source-voice-and-tier",
+      "change": "Remove the prefatory non-Yongming occurrence from retained evidence and replace it with frozen candidate row 6, X/X72/X72n1442.xml@0709a23, actor Weilin Daopei, Tier 1, family three-poisons:weilin-vow."
+    }
+  ],
+  "summary": {
+    "passEntries": 6,
+    "failEntries": 4,
+    "passOccurrences": 26,
+    "failOccurrences": 4,
+    "semanticGlossFailures": 0,
+    "senseStructureFailures": 0,
+    "tier3Retained": 0,
+    "lampPaddingFound": false,
+    "contaminationFindings": 1,
+    "finiteCorrectionCount": 4,
+    "researchRedoRequired": false,
+    "frozenReplacementRequired": true,
+    "publicationAuthorized": false
+  },
+  "hardPass": false,
+  "verdict": "REVISE"
+}

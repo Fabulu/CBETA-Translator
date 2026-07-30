@@ -1,0 +1,72 @@
+{
+  "schemaVersion": "r94-lane-c-correction-closure.v2",
+  "cohort": "R94",
+  "lane": "C",
+  "correction": 2,
+  "bindings": {
+    "priorCorrectionClosure": {
+      "path": "maintenance/r94-lane-c-correction1-closure.json",
+      "sha256": "5a395517b3a386b5fdcd168d9c6a8daabae8d196b29f4765fe53e6cccf69432e"
+    },
+    "requiringRereview": {
+      "path": "maintenance/r94-lane-c-correction1-rereview-by-b.json",
+      "sha256": "c69a6e218de837789aa8e3a0047b98716af6e535ae27524cfca5825475057439"
+    },
+    "correctedAuthority": {
+      "path": "maintenance/r94-lane-c-correction2-authority.json",
+      "sha256": "00a08a9f13e242a9c1b2234bfa582b34b8f2d5df172759f722528d21a08956d0"
+    },
+    "frozenExtraction": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r94-frozen-extraction-root.json",
+      "sha256": "7204625ec34769127033c57d574883e2511c1b71b2a939430fc12bc4cc1b5d67"
+    }
+  },
+  "deltaDisposition": {
+    "entryId": "t_28fac5e98308",
+    "term": "問話",
+    "row": 3,
+    "disposition": "REPAIRED_DETERMINISTIC_ROSTER_NORMALIZATION",
+    "detail": "The source label 瑞鹿禪師 is now linked to roster-canonical Ruilu Benxian. The prior identified-unlinked label is retired from the corrected authority and its dependent occurrence and family claims.",
+    "semanticMeaningChanged": false,
+    "familyCountChanged": false,
+    "sourceSelectionChanged": false
+  },
+  "preservedAdjudication": {
+    "passingEntries": 9,
+    "passingSemanticsPreserved": true,
+    "failedEntries": 1,
+    "failedIds": ["t_2738431562e6"],
+    "failureTerm": "無字",
+    "failureStillImmutableUnderFrozenEvidence": true,
+    "replacementHandoffRequired": true,
+    "tier3Retained": 0,
+    "lampPaddingUsed": false
+  },
+  "construction": {
+    "expectedEntryCount": 10,
+    "constructibleEntryCount": 9,
+    "failedEntryCount": 1,
+    "draftsWritten": 0,
+    "productsWritten": 0,
+    "publicFilesWritten": 0,
+    "compilerRun": false,
+    "reason": "This closure applies only the deterministic actor-link normalization. The governed lane remains unreleasable because 無字 fails the frozen three-family floor and requires the existing replacement handoff."
+  },
+  "audits": {
+    "jsonParse": "PASS",
+    "changedCoordinateCount": 1,
+    "semanticDeltaCount": 0,
+    "tier3Count": 0,
+    "lampPadding": false,
+    "compilerParity": "NOT_RUN_NO_PRODUCTS"
+  },
+  "summary": {
+    "deterministicCorrectionsApplied": 1,
+    "additionalSemanticDefects": 0,
+    "hardPass": false,
+    "releaseAuthorized": false,
+    "changedCoordinateRereviewRequired": true
+  },
+  "hardPass": false,
+  "releaseAuthorized": false
+}

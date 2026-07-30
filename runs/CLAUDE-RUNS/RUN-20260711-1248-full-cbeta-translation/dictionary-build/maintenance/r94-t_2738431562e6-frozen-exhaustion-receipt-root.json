@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "r94-frozen-exhaustion-receipt.v1",
+  "cohort": "R94",
+  "id": "t_2738431562e6",
+  "term": "無字",
+  "disposition": "unresolved-returned-to-authoritative-backlog",
+  "countedRepaired": false,
+  "bindings": {
+    "correctionClosure": {
+      "path": "maintenance/r94-lane-c-correction1-closure.json",
+      "sha256": "5a395517b3a386b5fdcd168d9c6a8daabae8d196b29f4765fe53e6cccf69432e"
+    },
+    "correctedAuthority": {
+      "path": "maintenance/r94-lane-c-correction1-authority.json",
+      "sha256": "a80f2d37b4d5f0ceb11df429c6d9db348791ba56520fd0157ddb7a267bca56e0"
+    },
+    "independentReview": {
+      "path": "maintenance/r94-lane-c-cross-review-by-b.json",
+      "sha256": "571a608065ae975ceefc7cb53da437ef5318ca5f2d52620fef953b20cfd5246b"
+    },
+    "frozenExtraction": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r94-frozen-extraction-root.json",
+      "sha256": "7204625ec34769127033c57d574883e2511c1b71b2a939430fc12bc4cc1b5d67"
+    }
+  },
+  "frozenCandidateCount": 6,
+  "excludedRows": [
+    {
+      "row": 1,
+      "reason": "The match occurs only inside the longer lexical unit 趙州無字話."
+    },
+    {
+      "row": 2,
+      "reason": "The match is the title 無字寶篋經, a named scripture rather than the lexical object 'the word no'."
+    },
+    {
+      "row": 3,
+      "reason": "T48n2019B is prescriptive investigation instruction and the match is within 無字 instruction."
+    },
+    {
+      "row": 4,
+      "reason": "T48n2021 is a prescriptive investigation manual; its 無字/無字話 instructions are quarantined."
+    },
+    {
+      "row": 5,
+      "reason": "無名無字 means without name and without writing/characters, a different sense."
+    },
+    {
+      "row": 6,
+      "reason": "X63n1257 is an excluded prescriptive investigation manual."
+    }
+  ],
+  "survivingExactSenseFamilies": 0,
+  "requiredIndependentFamilies": 3,
+  "lampPaddingUsed": false,
+  "newSearchUsed": false,
+  "finding": "No three exact, non-contaminated frozen lexical-object families survive. Support was not manufactured.",
+  "replacementAuthorized": true,
+  "writtenUtc": "2026-07-30T16:27:19.846539+00:00",
+  "hardPass": true
+}

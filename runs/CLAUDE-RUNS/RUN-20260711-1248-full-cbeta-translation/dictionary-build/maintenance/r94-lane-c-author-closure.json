@@ -1,0 +1,269 @@
+{
+  "schemaVersion": "r94-lane-author-closure.v1",
+  "cohort": "R94",
+  "lane": "C",
+  "author": "Codex r94_lane_c",
+  "ordinalFrom": 21,
+  "ordinalTo": 30,
+  "bindings": {
+    "artifactZero": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r94-timegate-root.json",
+      "sha256": "7b2d1313d63de0e48b420129feb89f9688ededd9608a8e5a3e8b70483ff40c41"
+    },
+    "frozenExtraction": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r94-frozen-extraction-root.json",
+      "sha256": "7204625ec34769127033c57d574883e2511c1b71b2a939430fc12bc4cc1b5d67"
+    },
+    "frozenSkeleton": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r94-frozen-research-skeleton-root.json",
+      "sha256": "1f0ea2b831db20e8b4e68a550d309aaf1f6f89cb3b601002f82887fc2c63f136"
+    },
+    "selection": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r94-selection-root.json",
+      "sha256": "36177abe16d3218a4da284e48960786f16e35df0ce542b6e3ae7a8bfe74b70ca"
+    }
+  },
+  "scopeControl": {
+    "ids": [
+      "t_26c4d202ba53",
+      "t_26c9a5cb0fe3",
+      "t_26d1f4bf3890",
+      "t_2738431562e6",
+      "t_27e66043b271",
+      "t_280e96eb88e2",
+      "t_287ed053d37e",
+      "t_289b7e25b47c",
+      "t_28c0245cd261",
+      "t_28fac5e98308"
+    ],
+    "frozenCandidatesOnly": true,
+    "rescanPerformed": false,
+    "candidateAdded": false,
+    "tier3Retained": 0,
+    "lineageTouched": false,
+    "publicMutationPerformed": false
+  },
+  "entries": [
+    {
+      "ordinal": 21,
+      "id": "t_26c4d202ba53",
+      "term": "奪食驅耕",
+      "requiredFloor": 3,
+      "preferredTarget": "snatch away the food and drive off the ploughing",
+      "alternateTargets": ["take the food and drive away the ploughman"],
+      "senseRuling": "One figurative action-pair. The records contrast ordinary 'farming for a meal' with taking away that meal and driving the student from the plough; authored verses and direct discourse use it for a teacher's severe, dispossessing handling. The two coordinated verbs do not name separate things.",
+      "opening": "To “snatch away the food and drive off the ploughing” is to deny a student both the expected result and the activity used to obtain it. Chan authors use the farming image for severe handling that leaves no prepared livelihood to rely on.",
+      "retainedCandidateRows": [1, 2, 3],
+      "familyRulings": [
+        "row 1 is an authored institutional explanation of forceful Chan-hall handling",
+        "row 2 is Gulin Qingmao's independently authored verse deployment",
+        "row 3 is Juelang Daosheng's first-person appraisal in a recorded exchange"
+      ],
+      "reserveCandidateRows": [4, 5, 6],
+      "validation": "multi-source",
+      "sourceMix": {"tier1": 2, "tier2": 1, "tier3": 0, "families": 3},
+      "finiteUncertainty": "Row 3's first-person narrator must be roster-resolved from the complete record before compilation; do not assign the addressed old master as utterer."
+    },
+    {
+      "ordinal": 22,
+      "id": "t_26c9a5cb0fe3",
+      "term": "和泥合水",
+      "requiredFloor": 3,
+      "preferredTarget": "mix mud and blend water",
+      "alternateTargets": ["mix in with mud and water"],
+      "senseRuling": "One figurative image of entering and accommodating the mixed conditions at hand. The authored cases use mud and water together for responsive involvement; the phrase is not a claim that a material object is made from mud.",
+      "opening": "“Mix mud and blend water” pictures joining the muddied conditions instead of remaining separate from them. In Chan records it describes accommodating contact with people and circumstances, and it can also be posed as an answer about the source of the great road.",
+      "retainedCandidateRows": [1, 2, 3],
+      "familyRulings": [
+        "row 1 is Xuefeng Kong's authored verse about entering the beings' world",
+        "row 2 is Yuanwu Keqin's authored contrast with constrained, measuring activity",
+        "row 3 preserves an independently raised question-and-answer in Xisou Shaotan's authored praise"
+      ],
+      "reserveCandidateRows": [4, 5, 6],
+      "validation": "multi-source",
+      "sourceMix": {"tier1": 3, "tier2": 0, "tier3": 0, "families": 3},
+      "finiteUncertainty": "Row 3's exact headword utterer belongs to the raised exchange, not automatically to Xisou; compile the quoted-original actor and Xisou's commentator role separately."
+    },
+    {
+      "ordinal": 23,
+      "id": "t_26d1f4bf3890",
+      "term": "殺活",
+      "requiredFloor": 3,
+      "preferredTarget": "killing and bringing to life",
+      "alternateTargets": ["kill and revive"],
+      "senseRuling": "One coordinated power or handling, not two senses. The authored witnesses repeatedly place 殺 and 活 together as paired capacities of a sword, command, or teacher; nominal and verbal packaging preserves the same pair.",
+      "opening": "“Killing and bringing to life” names the paired capacities to cut off and to restore. Chan authors place the pair in swords, commands, and a teacher's handling, often asking whether both sides are present.",
+      "retainedCandidateRows": [1, 2, 4],
+      "familyRulings": [
+        "row 1 is Xuefeng Kong's authored verse use",
+        "row 2 is Micang Daokai's authored use",
+        "row 4 is an authored discussion in the Discourse on Chan Training"
+      ],
+      "reserveCandidateRows": [3, 5, 6],
+      "validation": "multi-source",
+      "sourceMix": {"tier1": 3, "tier2": 0, "tier3": 0, "families": 3},
+      "finiteUncertainty": "The exact local headings of rows 1 and 2 must determine verse-author versus prose-utterer role; neither uncertainty affects the single paired sense."
+    },
+    {
+      "ordinal": 24,
+      "id": "t_2738431562e6",
+      "term": "無字",
+      "requiredFloor": 3,
+      "preferredTarget": "the word “no”",
+      "alternateTargets": ["the “no” word"],
+      "senseRuling": "One lexical-object sense: the written/spoken word 無, translated 'no'. The retained authored records explicitly tell a reader to look at or raise that word. This is not the ordinary adjective 'wordless' in these selected contexts and is not an imported technique.",
+      "opening": "The “word ‘no’” is the lexical item 無 singled out in instructions and comments on Zhaozhou's dog exchange. The records tell readers to look at or raise this word while continuing to identify it simply as a word.",
+      "retainedCandidateRows": [1, 5, 6],
+      "familyRulings": [
+        "row 1 is Micang Daokai's authored instruction",
+        "row 5 is an authored Chan admonition using 無 as a named word",
+        "row 6 is an authored Chan warning using the same lexical object"
+      ],
+      "reserveCandidateRows": [2, 3, 4],
+      "validation": "multi-source",
+      "sourceMix": {"tier1": 3, "tier2": 0, "tier3": 0, "families": 3},
+      "finiteUncertainty": "The compiler must keep the lexical-object reading distinct from unrelated occurrences where 無字 could mean 'without writing'; no second such sense is supported by the frozen retained set."
+    },
+    {
+      "ordinal": 25,
+      "id": "t_27e66043b271",
+      "term": "聲前一句",
+      "requiredFloor": 3,
+      "preferredTarget": "the phrase before sound",
+      "alternateTargets": ["a phrase prior to sound"],
+      "senseRuling": "One recurring question-object: a phrase located 'before sound'. The records ask for it, answer it, or appraise it; they do not define an additional metaphysical referent.",
+      "opening": "“The phrase before sound” is a requested saying placed prior to audible expression. Recorded masters ask for it and answer or appraise that request without supplying a separate doctrinal definition.",
+      "retainedCandidateRows": [1, 2, 3],
+      "familyRulings": [
+        "row 1 is a direct question-and-answer family in the Recorded Sayings of Foguo",
+        "row 2 is Miyun Yuanwu's independent recorded deployment",
+        "row 3 is Tianyin Yuanxiu's independent recorded deployment"
+      ],
+      "reserveCandidateRows": [4, 5, 6],
+      "validation": "multi-source",
+      "sourceMix": {"tier1": 0, "tier2": 3, "tier3": 0, "families": 3},
+      "finiteUncertainty": "Each stored occurrence must bind the headword-bearing questioner or answerer, not the record owner by title; the complete frozen contexts provide the needed turn markers."
+    },
+    {
+      "ordinal": 26,
+      "id": "t_280e96eb88e2",
+      "term": "狗䑛熱油鐺",
+      "requiredFloor": 3,
+      "preferredTarget": "a dog licking a hot oil cauldron",
+      "alternateTargets": ["like a dog licking a hot oil pan"],
+      "senseRuling": "One simile. A dog tries to lick a vessel of hot oil but cannot get its tongue in safely; later recorded uses repeat and actively apply this inherited image. The vessel wording does not establish a second referent.",
+      "opening": "A “dog licking a hot oil cauldron” is an image of eager contact with something the tongue cannot safely enter. Chan comments apply the comparison to speech or investigation that circles a case without getting a usable mouthful.",
+      "retainedCandidateRows": [1, 2, 4],
+      "familyRulings": [
+        "row 1 is Xisou Shaotan's authored praise/commentary deployment",
+        "row 2 is Yulin Tongxiu's active recorded redeployment",
+        "row 4 is Yuan Zhao's independent recorded redeployment"
+      ],
+      "reserveCandidateRows": [3, 5, 6],
+      "validation": "multi-source",
+      "sourceMix": {"tier1": 1, "tier2": 2, "tier3": 0, "families": 3},
+      "finiteUncertainty": "The inherited original speaker in any quoted form must remain the exact actor, with Xisou, Yulin, or Yuan recorded as commentator/later raiser where appropriate."
+    },
+    {
+      "ordinal": 27,
+      "id": "t_287ed053d37e",
+      "term": "就路還家",
+      "requiredFloor": 3,
+      "preferredTarget": "take the road home",
+      "alternateTargets": ["return home by the road at hand"],
+      "senseRuling": "One journey image. 就路 makes use of the road already reached and 還家 returns home; direct records use the phrase for an immediately available return rather than for a named physical route.",
+      "opening": "To “take the road home” is to use the road already underfoot for the return. Chan records employ the journey image in instructions and appraisals that contrast direct return with further detours.",
+      "retainedCandidateRows": [1, 2, 3],
+      "familyRulings": [
+        "row 1 is an authored deployment in Yunmen Mailang Huai's Questions on the Chan School",
+        "row 2 is Yulin Tongxiu's independent recorded deployment",
+        "row 3 is Juelang Daosheng's independent recorded deployment"
+      ],
+      "reserveCandidateRows": [4, 5, 6],
+      "validation": "multi-source",
+      "sourceMix": {"tier1": 1, "tier2": 2, "tier3": 0, "families": 3},
+      "finiteUncertainty": "Row 3's dialogue actor must be taken from the immediate 曰/云 sequence rather than the memoir's surrounding first-person record owner."
+    },
+    {
+      "ordinal": 28,
+      "id": "t_289b7e25b47c",
+      "term": "高著眼看",
+      "requiredFloor": 3,
+      "preferredTarget": "look with your eye held high",
+      "alternateTargets": ["raise your sights and look", "take a higher look"],
+      "senseRuling": "One imperative idiom. 高 modifies how the eye is set while 看 commands looking; recorded masters use it as a direct admonition to look sharply or from a higher vantage. It is not an anatomical second sense.",
+      "opening": "“Look with your eye held high” is a direct admonition to raise one's sights and inspect closely. Recorded masters use the imperative at turns where a listener is told not to settle for the immediately presented formulation.",
+      "retainedCandidateRows": [1, 2, 3],
+      "familyRulings": [
+        "row 1 is Tianyin Yuanxiu's recorded imperative",
+        "row 2 is Feiyin Tongrong's independent recorded imperative",
+        "row 3 is Shiqi Tongyun's independent recorded imperative"
+      ],
+      "reserveCandidateRows": [4, 5, 6],
+      "validation": "multi-source",
+      "sourceMix": {"tier1": 0, "tier2": 3, "tier3": 0, "families": 3},
+      "finiteUncertainty": "Where the phrase occurs inside a quoted saying, the quoted original owns the words and the section master is context only."
+    },
+    {
+      "ordinal": 29,
+      "id": "t_28c0245cd261",
+      "term": "是吾曾轉法輪耶",
+      "requiredFloor": 3,
+      "preferredTarget": "did I ever turn the teaching wheel?",
+      "alternateTargets": ["was it I who ever turned the wheel of teaching?"],
+      "senseRuling": "One inherited full-sentence question attributed to Shakyamuni in the raised encounter with Manjushri. Later masters quote, verse, and comment on that same saying; those are active later deployments but not new original utterances.",
+      "opening": "“Did I ever turn the teaching wheel?” is Shakyamuni's recorded challenge when Manjushri asks him to turn it again. Later Chan masters repeatedly raise the sentence and answer, verse, or appraise it while preserving Shakyamuni as the quoted speaker.",
+      "retainedCandidateRows": [1, 3, 4],
+      "familyRulings": [
+        "row 1 is Yulin Tongxiu's active later raising/comment",
+        "row 3 is Baichi Xingyuan's active verse redeployment",
+        "row 4 is Qiran Zhixian's active later raising with an added verdict"
+      ],
+      "reserveCandidateRows": [2, 5, 6],
+      "validation": "multi-source",
+      "sourceMix": {"tier1": 0, "tier2": 3, "tier3": 0, "families": 3},
+      "actorRule": "For every public occurrence, Shakyamuni is the quoted-original headword utterer. The local record owner is later-raiser, commentator, or verse author in ContextMasters and never replaces him.",
+      "finiteUncertainty": "Roster resolution must use the exact canonical label for Shakyamuni; if no roster node exists, use identified-unlinked-master without changing the roster."
+    },
+    {
+      "ordinal": 30,
+      "id": "t_28fac5e98308",
+      "term": "問話",
+      "requiredFloor": 3,
+      "preferredTarget": "ask a question",
+      "alternateTargets": ["questioning exchange", "question put to a master"],
+      "senseRuling": "One question event, realized as both the act of asking and the question/exchange produced. Noun and verb packaging do not create different things. The retained authored witnesses show an instruction to ask, a prohibition or penalty attached to questioning, and narration of Linji being urged to question Huangbo.",
+      "opening": "問話 is the act of putting a question in a Chan encounter, and by ordinary grammar it can also name the question or questioning exchange. The records use it for formal questioning of a master, for prohibiting questions, and for urging a monk to present one.",
+      "retainedCandidateRows": [2, 3, 4],
+      "familyRulings": [
+        "row 2 is Dawei Xingxiu's authored active raising and comment on Deshan's 'questioners get thirty blows' case",
+        "row 3 is Wuyi Yuanlai's authored quotation/comment distinguishing asking questions from investigation",
+        "row 4 is Xisou Shaotan's authored narration/commentary on Linji being urged to question Huangbo"
+      ],
+      "excludedCandidateRows": [
+        {"row": 1, "reason": "The span falls inside 話頭 in the frozen window and does not visibly preserve 問話 as the intended independent lexical unit; exclude rather than use a substring."},
+        {"row": 5, "reason": "Modern editorial/historical narration, not a Chan-master deployment; it cannot control the meaning."},
+        {"row": 6, "reason": "Reserve Tier-2 institutional narration; unnecessary after three stronger authored families fill the floor."}
+      ],
+      "validation": "multi-source",
+      "sourceMix": {"tier1": 3, "tier2": 0, "tier3": 0, "families": 3},
+      "finiteUncertainty": "Rows 2-4 contain embedded old cases; each exact occurrence must preserve the original headword actor where the selected KWIC quotes him, while the author remains commentator."
+    }
+  ],
+  "laneSummary": {
+    "entryCount": 10,
+    "requiredOccurrences": 30,
+    "retainedOccurrences": 30,
+    "tier1Retained": 19,
+    "tier2Retained": 11,
+    "tier3Retained": 0,
+    "allFloorsMet": true,
+    "allEntriesHaveThreeIndependentFamilies": true,
+    "lampPaddingUsed": false,
+    "semanticUncertaintiesFinite": true,
+    "constructionProductsWritten": false,
+    "constructionProductReason": "This lane closure records source-first semantic, family, and actor-layer decisions for the root-governed generic constructor. Public entry products require the shared constructor configuration and canonical compiler; they were not hand-authored."
+  },
+  "hardPass": true,
+  "releaseAuthorized": false
+}

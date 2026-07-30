@@ -1,0 +1,191 @@
+{
+  "schemaVersion": "r94-lane-c-correction-authority.v1",
+  "cohort": "R94",
+  "lane": "C",
+  "correction": 1,
+  "bindings": {
+    "authorClosure": {
+      "path": "maintenance/r94-lane-c-author-closure.json",
+      "sha256": "e91fc3a1dce4bbcf206c24078a55d18027645a65f79afae6f6b50bb43c82ddf7"
+    },
+    "crossReview": {
+      "path": "maintenance/r94-lane-c-cross-review-by-b.json",
+      "sha256": "571a608065ae975ceefc7cb53da437ef5318ca5f2d52620fef953b20cfd5246b"
+    },
+    "frozenExtraction": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r94-frozen-extraction-root.json",
+      "sha256": "7204625ec34769127033c57d574883e2511c1b71b2a939430fc12bc4cc1b5d67"
+    },
+    "frozenSkeleton": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r94-frozen-research-skeleton-root.json",
+      "sha256": "1f0ea2b831db20e8b4e68a550d309aaf1f6f89cb3b601002f82887fc2c63f136"
+    }
+  },
+  "entries": [
+    {
+      "id": "t_26c4d202ba53",
+      "term": "奪食驅耕",
+      "status": "corrected",
+      "preferredTarget": "snatch away the food and drive off the ploughing",
+      "retainedRows": [2, 3, 4],
+      "occurrenceDecisions": [
+        {"row": 2, "actor": "Gulin Qingmao", "voiceLayer": "transmitted-verse", "tier": 1, "family": "Gulin authored verse"},
+        {"row": 3, "actor": "Juelang Daosheng", "voiceLayer": "direct-turn", "tier": 2, "family": "Juelang first-person appraisal"},
+        {"row": 4, "actor": "Feiyin Tongrong", "voiceLayer": "transmitted-verse", "tier": 2, "family": "Feiyin authored reply verse to layman Gu"}
+      ],
+      "excludedRows": [
+        {"row": 1, "reason": "X63n1259 is an excluded prescriptive training manual."}
+      ],
+      "familyCount": 3,
+      "tier3": 0
+    },
+    {
+      "id": "t_26c9a5cb0fe3",
+      "term": "和泥合水",
+      "status": "corrected",
+      "preferredTarget": "mix mud and blend water",
+      "retainedRows": [1, 2, 3],
+      "occurrenceDecisions": [
+        {"row": 1, "actor": "Xuefeng Huikong", "voiceLayer": "transmitted-verse", "tier": 1, "family": "Xuefeng authored verse"},
+        {"row": 2, "actor": "Yuanwu Keqin", "voiceLayer": "direct-turn", "tier": 1, "family": "Yuanwu authored instruction"},
+        {"row": 3, "actor": "Huxiu Shaolong", "voiceLayer": "quoted-original", "tier": 1, "family": "Huxiu great-road exchange actively appraised by Xisou Shaotan", "contextActor": "Xisou Shaotan", "contextRole": "commentator"}
+      ],
+      "familyCount": 3,
+      "tier3": 0
+    },
+    {
+      "id": "t_26d1f4bf3890",
+      "term": "殺活",
+      "status": "corrected",
+      "preferredTarget": "killing and bringing to life",
+      "retainedRows": [1, 2, 5],
+      "occurrenceDecisions": [
+        {"row": 1, "actor": "Xuefeng Huikong", "voiceLayer": "transmitted-verse", "tier": 1, "family": "Xuefeng authored verse"},
+        {"row": 2, "actor": "Juelang Daosheng", "voiceLayer": "compiler-narration", "tier": 1, "family": "Juelang authored preface appraisal of Micang Daokai"},
+        {"row": 5, "actor": "Yuanwu Keqin", "voiceLayer": "direct-turn", "tier": 1, "family": "Yuanwu authored letter on wielding the killing-and-living staff"}
+      ],
+      "excludedRows": [
+        {"row": 4, "reason": "X63n1259 is an excluded prescriptive training manual."}
+      ],
+      "familyCount": 3,
+      "tier3": 0
+    },
+    {
+      "id": "t_2738431562e6",
+      "term": "無字",
+      "status": "failed",
+      "preferredTarget": null,
+      "retainedRows": [],
+      "excludedRows": [
+        {"row": 1, "reason": "The match occurs only inside the longer lexical unit 趙州無字話."},
+        {"row": 2, "reason": "The match is the title 無字寶篋經, a named scripture rather than the lexical object 'the word no'."},
+        {"row": 3, "reason": "T48n2019B is prescriptive investigation instruction and the match is within 無字 instruction."},
+        {"row": 4, "reason": "T48n2021 is a prescriptive investigation manual; its 無字/無字話 instructions are quarantined."},
+        {"row": 5, "reason": "無名無字 means without name and without writing/characters, a different sense."},
+        {"row": 6, "reason": "X63n1257 is an excluded prescriptive investigation manual."}
+      ],
+      "familyCount": 0,
+      "requiredFloor": 3,
+      "failureReason": "No three exact, non-contaminated frozen lexical-object families survive. Support was not manufactured.",
+      "tier3": 0
+    },
+    {
+      "id": "t_27e66043b271",
+      "term": "聲前一句",
+      "status": "corrected",
+      "preferredTarget": "the phrase before sound",
+      "retainedRows": [1, 2, 3],
+      "occurrenceDecisions": [
+        {"row": 1, "actor": "Foguo Weize", "voiceLayer": "direct-turn", "tier": 2, "family": "Foguo direct hall declaration"},
+        {"row": 2, "actor": "Miyun Yuanwu", "voiceLayer": "direct-turn", "tier": 2, "family": "Miyun hall discourse"},
+        {"row": 3, "actor": "Tianyin Yuanxiu", "voiceLayer": "direct-turn", "tier": 2, "family": "Tianyin hall discourse"}
+      ],
+      "familyCount": 3,
+      "tier3": 0
+    },
+    {
+      "id": "t_280e96eb88e2",
+      "term": "狗䑛熱油鐺",
+      "status": "corrected",
+      "preferredTarget": "a dog licking a hot oil cauldron",
+      "opening": "A “dog licking a hot oil cauldron” is a concrete image of licking at a vessel of hot oil. Chan authors apply the simile while appraising or describing a speaker's handling of a case.",
+      "retainedRows": [1, 2, 4],
+      "occurrenceDecisions": [
+        {"row": 1, "actor": "Xisou Shaotan", "voiceLayer": "transmitted-verse", "tier": 1, "family": "Xisou authored praise"},
+        {"row": 2, "actor": "Gaofeng Yuanmiao", "voiceLayer": "quoted-original", "tier": 2, "family": "Gaofeng-Wanshan exchange actively discussed by Yulin Tongxiu", "contextActor": "Yulin Tongxiu", "contextRole": "commentator"},
+        {"row": 4, "actor": "Huaihai Yuanzhao", "voiceLayer": "direct-turn", "tier": 2, "family": "Yuanzhao hall discourse"}
+      ],
+      "familyCount": 3,
+      "tier3": 0
+    },
+    {
+      "id": "t_287ed053d37e",
+      "term": "就路還家",
+      "status": "corrected",
+      "preferredTarget": "take the road home",
+      "retainedRows": [1, 2, 3],
+      "occurrenceDecisions": [
+        {"row": 1, "actor": "Yunmen Mailanghuai", "voiceLayer": "direct-turn", "tier": 1, "family": "Yunmen Mailanghuai authored challenge"},
+        {"row": 2, "actor": "Yulin Tongxiu", "voiceLayer": "direct-turn", "tier": 2, "family": "Yulin evening instruction"},
+        {"row": 3, "actor": "Juelang Daosheng", "voiceLayer": "direct-turn", "tier": 2, "family": "Juelang hall discourse"}
+      ],
+      "familyCount": 3,
+      "tier3": 0
+    },
+    {
+      "id": "t_289b7e25b47c",
+      "term": "高著眼看",
+      "status": "corrected",
+      "preferredTarget": "look with your eye held high",
+      "retainedRows": [1, 2, 3],
+      "occurrenceDecisions": [
+        {"row": 1, "actor": "Tianyin Yuanxiu", "voiceLayer": "direct-turn", "tier": 2, "family": "Tianyin direct admonition"},
+        {"row": 2, "actor": "Feiyin Tongrong", "voiceLayer": "direct-turn", "tier": 2, "family": "Feiyin direct answer"},
+        {"row": 3, "actor": "Shiqi Tongyun", "voiceLayer": "direct-turn", "tier": 2, "family": "Shiqi direct admonition"}
+      ],
+      "familyCount": 3,
+      "tier3": 0
+    },
+    {
+      "id": "t_28c0245cd261",
+      "term": "是吾曾轉法輪耶",
+      "status": "corrected",
+      "preferredTarget": "did I ever turn the teaching wheel?",
+      "retainedRows": [1, 3, 4],
+      "occurrenceDecisions": [
+        {"row": 1, "actor": "Shakyamuni", "voiceLayer": "quoted-original", "tier": 2, "family": "Yulin active raising and comment", "contextActor": "Yulin Tongxiu", "contextRole": "commentator"},
+        {"row": 3, "actor": "Shakyamuni", "voiceLayer": "quoted-original", "tier": 2, "family": "Baichi Xingyuan active verse", "contextActor": "Baichi Xingyuan", "contextRole": "verse-author"},
+        {"row": 4, "actor": "Shakyamuni", "voiceLayer": "quoted-original", "tier": 2, "family": "Qiran Zhixian active intervention", "contextActor": "Qiran Zhixian", "contextRole": "commentator"}
+      ],
+      "actorStatus": "identified-unlinked-master unless roster-exact canonical resolution succeeds",
+      "familyCount": 3,
+      "tier3": 0
+    },
+    {
+      "id": "t_28fac5e98308",
+      "term": "問話",
+      "status": "corrected",
+      "preferredTarget": "questioning",
+      "alternateTargets": ["ask a question", "a question put to a master"],
+      "retainedRows": [2, 3, 4],
+      "occurrenceDecisions": [
+        {"row": 2, "actor": "Deshan Xuanjian", "voiceLayer": "quoted-original", "tier": 1, "family": "Dawei Xingxiu active appraisal of Deshan's case", "contextActor": "Dawei Xingxiu", "contextRole": "commentator"},
+        {"row": 3, "actor": "Ruilu master", "voiceLayer": "quoted-original", "tier": 1, "family": "Boshan authorial evaluation of Ruilu's saying", "actorStatus": "identified-unlinked-master pending exact alias resolution"},
+        {"row": 4, "actor": "Xisou Shaotan", "voiceLayer": "compiler-narration", "tier": 1, "family": "Xisou authored Linji biography"}
+      ],
+      "familyCount": 3,
+      "tier3": 0
+    }
+  ],
+  "summary": {
+    "correctedEntries": 9,
+    "failedEntries": 1,
+    "failedIds": ["t_2738431562e6"],
+    "passingRequiredOccurrences": 27,
+    "tier3Retained": 0,
+    "paddingUsed": false,
+    "allReviewDeltasDisposed": true
+  },
+  "hardPass": false,
+  "releaseAuthorized": false
+}

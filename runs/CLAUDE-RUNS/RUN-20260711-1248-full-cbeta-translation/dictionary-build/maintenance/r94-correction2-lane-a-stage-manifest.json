@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "r94-correction2-lane-stage-manifest.v1",
+  "cohort": "R94",
+  "lane": "A",
+  "entryCount": 10,
+  "stageRoot": "fresh-build/r94-correction2-stage/entries",
+  "bindings": {
+    "final30AuthorityReview": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r94-final30-authority-review-manifest-root.json",
+      "sha256": "67dab1e226ee1f68f563300aea54c43f769660f57a4ca0d90d18b0a28ee48ee2"
+    },
+    "laneAFinalAuthority": {
+      "path": "maintenance/r94-lane-a-correction1-closure.json",
+      "sha256": "7252e542c6bc7cfcd93681626841ba2136c093bc338910aa0f4850dfca60fb10"
+    },
+    "laneAFinalReview": {
+      "path": "maintenance/r94-lane-a-correction1-rereview-by-c.json",
+      "sha256": "78fa732d4af33dfac77cac5569e62d2d4482a7ea2f2146ea63eb3517387e8118"
+    },
+    "attributionAudit": {
+      "path": "maintenance/r94-correction2-lane-a-attribution-audit.json",
+      "sha256": "9700fa8ef25608fa5390222e3e193f0228aa4486ee229e86e94c9ccb7b8095e5"
+    },
+    "sourceAudit": {
+      "path": "maintenance/r94-correction2-lane-a-source-audit.json",
+      "sha256": "486c51c341cf8b3cb1bba3575653586ff5b8b56a075f73f237d81c3f73352e04"
+    }
+  },
+  "rows": [
+    {
+      "id": "t_223c2f6ade25",
+      "term": "一大事因緣",
+      "files": {
+        "source-dossier.json": "f2ddcb27f79b9f7a9902e3d2f4ea0721ee7b7bbef632bbfcfaf447b1c49fcbb0",
+        "evidence.draft.json": "2d7beb3c9cb5ae2fdca219a1cb96a08f0be53fc8a05170e90bbec460eeee196a",
+        "entry.v2.json": "252f1ce5e52b0dd732bc1713c0a4c6d53789f6fa0a29d108f00facd519112d5a",
+        "evidence-compile-report.json": "80b6601215e29c0ba6ce1976c4ee9c1ae48e1d2bb6aa08b312a25efd43a4e808",
+        "WORK.md": "b6fc864c835bd975267a0b590d56de2a95a80c3fb42a62d7f909ed4772fc9386"
+      },
+      "compilerHardPass": true,
+      "retainedOccurrenceCount": 3,
+      "tier3Count": 0
+    },
+    {
+      "id": "t_22885135d39e",
+      "term": "一塵",
+      "files": {
+        "source-dossier.json": "a9ad67f292274ff9158e4978012492c8d23005b8e36098e2064b8f0ba0849b3e",
+        "evidence.draft.json": "64921490cf3544d5d46deb448ea024b84a5d3dcb589c90ffc290c4e75f711bc4",
+        "entry.v2.json": "8b8480c99720b28da71aa598bd9fee84d47f7021bb85e891094a96d959809ce3",
+        "evidence-compile-report.json": "32f34492e076b968a9bc055716dea67eedecaa7ecda155e458f8b425499e5568",
+        "WORK.md": "5b16f84e1724b40efe63a4dd81649749aaadb8317015cec42c5145a441e51cb0"
+      },
+      "compilerHardPass": true,
+      "retainedOccurrenceCount": 3,
+      "tier3Count": 0
+    },
+    {
+      "id": "t_229d6fd2a889",
+      "term": "仁者見之謂之仁",
+      "files": {
+        "source-dossier.json": "bbb921d2a58461702e52f0e6556d9fc7e26da5a41dfe016b40c67b42203cb505",
+        "evidence.draft.json": "a89a0166e5717d0f955d05f54d1cd53b6716c8b8960a91d9019dbc547bff614e",
+        "entry.v2.json": "16d848a7393614ff6ef2a953932a5666fee2273b649b34c3a6a36dfbc345a0e8",
+        "evidence-compile-report.json": "149fb348bc31fec398c31dce06ca250a23676253f4c8f697e4eb55de71298a90",
+        "WORK.md": "76e8cbd3d0529e010f8c2275961768f6b485d1ae6fa69bc0fee6c463659f0b32"
+      },
+      "compilerHardPass": true,
+      "retainedOccurrenceCount": 3,
+      "tier3Count": 0
+    },
+    {
+      "id": "t_22b4a92f2919",
+      "term": "收歸上科",
+      "files": {
+        "source-dossier.json": "3216617870bb89eae17c0678e79db56a5048ce52c19869e75c42164458db9c01",
+        "evidence.draft.json": "e573a34442e2848bdc9b2cb31120d3c7c1b1c6ae5d90aac0895327f796a912ac",
+        "entry.v2.json": "049ae2075288a88b508856dbb41422002a74933d541524e35faf3ab4e05f63f9",
+        "evidence-compile-report.json": "f7b5d2ba47599d1ec1c7b5ef6f53e98083b46ad4e6cd15b2fa3d4c8585fecb51",
+        "WORK.md": "f7f69d444c9085b92d355e1746118f2bf90dee421e31e7ddda2cfc53487b35c3"
+      },
+      "compilerHardPass": true,
+      "retainedOccurrenceCount": 3,
+      "tier3Count": 0
+    },
+    {
+      "id": "t_2310fbae5dc4",
+      "term": "把手共行",
+      "files": {
+        "source-dossier.json": "79d440f372449b0a3a30c5525b426219310bcb0af4871a3bceba9b5e81b386fd",
+        "evidence.draft.json": "559e4d5a21a60359f46eaa3d38cc6eb79f037f70388b24eadabe233a924257af",
+        "entry.v2.json": "35d6f0974d69e1d774f869bc78b425a997afc8bbebda26d0a956e19db7e60e62",
+        "evidence-compile-report.json": "0378484eeabe01e49c7839a108f144a9e619fd25d1cb6f67d462c050bf42270c",
+        "WORK.md": "f805e88d41b735a5c39059e0289d7d690d44cd4f61adad407acae16e9250216a"
+      },
+      "compilerHardPass": true,
+      "retainedOccurrenceCount": 3,
+      "tier3Count": 0
+    },
+    {
+      "id": "t_23204fbd253c",
+      "term": "玄旨",
+      "files": {
+        "source-dossier.json": "d48b319edb1298f3a1ae86bbef1d6904f005116982959d8693c9b2136030f493",
+        "evidence.draft.json": "6428e74e444c7eb3039ffc04263ac6ed91dff38099964270bd12e310d6445af5",
+        "entry.v2.json": "5f224d2d1a8fe1ba9e97fa4e9a429ef1fd9966382354e3edd0e5c15165d0e552",
+        "evidence-compile-report.json": "bb186f9517e3fe20010743064e5e6d0be279f95bd3126212ba0950512d039256",
+        "WORK.md": "6a8bbfeda04d28f0a49765de2d5a7b39b52f8c07f150335315c9782c72aafbbc"
+      },
+      "compilerHardPass": true,
+      "retainedOccurrenceCount": 3,
+      "tier3Count": 0
+    },
+    {
+      "id": "t_2325720f94cd",
+      "term": "強作主宰",
+      "files": {
+        "source-dossier.json": "ffb39786641c44122031505bb09ceaae42230463b95667f6894af3d0da30dab6",
+        "evidence.draft.json": "c847e09527f7efa5b23c88b5bb1637f1382f89249987512125e5adaec229e0dc",
+        "entry.v2.json": "9b0999536a037f96e060bd9f9d4130a94beec46b451d319a5beb737ebf029ee8",
+        "evidence-compile-report.json": "f3c528ef593030543fafbd5c1141d710c6bea516824fb5736756c3d906d29128",
+        "WORK.md": "5a98f6113a944d04e6443b7e4a7668bbb0692c0b4e200a3ab22647d80c6cb53d"
+      },
+      "compilerHardPass": true,
+      "retainedOccurrenceCount": 3,
+      "tier3Count": 0
+    },
+    {
+      "id": "t_2354ad61810c",
+      "term": "貪瞋癡",
+      "files": {
+        "source-dossier.json": "b4331b5e986b1f05659c0ff67f5eba4dac2943636bf6bdc090ae3ad5e82da94f",
+        "evidence.draft.json": "ae8d8a59ee5d9e4e6d34f81323ec84dbb3aa969418876dc9cb2211355b358502",
+        "entry.v2.json": "0e6533063a5e108f205504164df1cc1536dff4a79e9b85395c60e8b87e127125",
+        "evidence-compile-report.json": "e3a712ddf84d3910c272f468d415215ebc5551826d2c642da3e8feb3878f47b3",
+        "WORK.md": "1d3daed9c8aa2e315dc975caa7894dea69e3398f1aced048e4a352925798b7dc"
+      },
+      "compilerHardPass": true,
+      "retainedOccurrenceCount": 3,
+      "tier3Count": 0
+    },
+    {
+      "id": "t_2385e8874684",
+      "term": "遞相鈍置",
+      "files": {
+        "source-dossier.json": "61f77ace5647dcd5ab18399eafc0ebbea84bd00eb0cba786870864128fa99b5c",
+        "evidence.draft.json": "87cd82ec8a41a8d52a9009f31f7168166e674295c5a35ae3c69832e92a1d50d9",
+        "entry.v2.json": "88b244d8952ee90ec501db833ed2d460a31dcac8c9aba54f86da2731230b918c",
+        "evidence-compile-report.json": "56d3539e1b4ecab8a2e2833efddaac52b2154e7ff3856e0b5d0714c1acd8cc82",
+        "WORK.md": "816b2d5a5ee599e72974223a88b358025e7272465dcd8cf847ed704a335ac5c2"
+      },
+      "compilerHardPass": true,
+      "retainedOccurrenceCount": 3,
+      "tier3Count": 0
+    },
+    {
+      "id": "t_23e82e80e367",
+      "term": "渴飲饑餐",
+      "files": {
+        "source-dossier.json": "eca23f80408745388332f7ce36510a1c6839d94691738ac44d522af390f03f05",
+        "evidence.draft.json": "dbca3f39858014d1227f75f92b7341e62ea502181c876ed8e02c935bd83fd6f4",
+        "entry.v2.json": "df41d07a8b9c21c20ca763e886ea3fc8d3fe3d62637bda82b21076723ee02917",
+        "evidence-compile-report.json": "f9c591ca862fe1eddf056655ce2a2244b87fd934480f4b41141abef0aa36b3b1",
+        "WORK.md": "1249a57be92301984ccf44df4bea02f787ffd6dbd1c283782bd6e309beb50523"
+      },
+      "compilerHardPass": true,
+      "retainedOccurrenceCount": 3,
+      "tier3Count": 0
+    }
+  ],
+  "summary": {
+    "compilerHardPassCount": 10,
+    "attributionHardFailures": 0,
+    "sourceHardFailures": 0,
+    "tier3Retained": 0,
+    "publicWrites": 0,
+    "freshEntryReplacementWrites": 0,
+    "hardPass": true
+  },
+  "releaseAuthorized": false
+}

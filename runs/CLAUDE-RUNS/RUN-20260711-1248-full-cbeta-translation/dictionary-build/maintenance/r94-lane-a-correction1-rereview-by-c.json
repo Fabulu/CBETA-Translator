@@ -1,0 +1,125 @@
+{
+  "schemaVersion": "r94-changed-coordinate-rereview.v1",
+  "cohort": "R94",
+  "lane": "A",
+  "reviewerLane": "C",
+  "reviewer": "Codex r94_lane_c",
+  "bindings": {
+    "correctionClosure": {
+      "path": "maintenance/r94-lane-a-correction1-closure.json",
+      "sha256": "7252e542c6bc7cfcd93681626841ba2136c093bc338910aa0f4850dfca60fb10"
+    },
+    "originalReview": {
+      "path": "maintenance/r94-lane-a-cross-review-by-c.json",
+      "sha256": "27e35286bfbb7877164ebce530aa6353a200c19883f5a7121417c07ee059c820"
+    },
+    "frozenExtraction": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r94-frozen-extraction-root.json",
+      "sha256": "7204625ec34769127033c57d574883e2511c1b71b2a939430fc12bc4cc1b5d67"
+    },
+    "frozenSkeleton": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r94-frozen-research-skeleton-root.json",
+      "sha256": "1f0ea2b831db20e8b4e68a550d309aaf1f6f89cb3b601002f82887fc2c63f136"
+    }
+  },
+  "scope": {
+    "expectedChangedEntries": 4,
+    "observedChangedEntries": 4,
+    "changedEntryIds": [
+      "t_22885135d39e",
+      "t_229d6fd2a889",
+      "t_22b4a92f2919",
+      "t_2354ad61810c"
+    ],
+    "retainedOccurrences": 30,
+    "independentFamiliesPerEntry": 3,
+    "tier3Retained": 0,
+    "publicOrProductMutationPerformed": false
+  },
+  "changedCoordinateReviews": [
+    {
+      "entryId": "t_22885135d39e",
+      "term": "一塵",
+      "coordinate": "J/J23/J23nB118.xml@0011b02",
+      "verdict": "PASS",
+      "finding": "The corrected actor layer matches 永嘉云: Yongjia Xuanjue is the quoted-original actor, Micang Daokai is the active outer quoter, and the work-distinct family remains valid Tier 1.",
+      "semanticInheritance": "The one-speck-of-dust gloss and one-sense ruling remain unchanged and valid."
+    },
+    {
+      "entryId": "t_229d6fd2a889",
+      "term": "仁者見之謂之仁",
+      "coordinate": "J/J27/J27nB189.xml@0037a01",
+      "verdict": "PASS",
+      "finding": "The corrected reviewed-unnamed non-master branch matches 居士問. The unnamed layman owns the quoted maxim as questioner; Sanyi Mingyu remains the respondent/outer record master. All six rungs remain recorded.",
+      "semanticInheritance": "The paired-maxim gloss and independent-family ruling remain unchanged and valid."
+    },
+    {
+      "entryId": "t_22b4a92f2919",
+      "term": "收歸上科",
+      "coordinate": "J/J28/J28nB202.xml@0014b11",
+      "verdict": "PASS",
+      "finding": "The corrected linked actor Baichi Xingyuan is roster-canonical and matches the 百癡禪師 record's 師云 turn. No unlinked identity remains.",
+      "semanticInheritance": "The preceding-category verdict and three Tier-2 family ruling remain unchanged and valid."
+    },
+    {
+      "entryId": "t_2354ad61810c",
+      "term": "貪瞋癡",
+      "removedCoordinate": "T/T48/T48n2016.xml@0415a22",
+      "replacementCoordinate": "X/X72/X72n1442.xml@0709a23",
+      "verdict": "PASS",
+      "finding": "The prefatory non-Yongming row is no longer retained. The frozen replacement is Weilin Daopei's authored vow, where 縱貪瞋癡 is governed by his first-person confession. It is Tier 1, work-distinct from Yongjia and Jinul, and supports the same three-item lexical sense.",
+      "semanticInheritance": "The gloss 'greed, anger, and delusion' remains valid; the body now accurately names Weilin's vow."
+    }
+  ],
+  "unchangedCoordinateInheritance": {
+    "verdict": "PASS",
+    "unchangedEntries": [
+      {
+        "id": "t_223c2f6ade25",
+        "canonicalObjectSha256": "6581044a499824c2d0d72c444c818f46a2e065df58923a3525268488d24e8d08"
+      },
+      {
+        "id": "t_2310fbae5dc4",
+        "canonicalObjectSha256": "28827b2fe4f4cd06ad99f845ada89e3aeedacd1615dd1e9b78bd5dcf7f64717a"
+      },
+      {
+        "id": "t_23204fbd253c",
+        "canonicalObjectSha256": "e93e9a12ade8ad8b313684148bc44c35e4a7eca1b58147518d9e8f8d8ceacbec"
+      },
+      {
+        "id": "t_2325720f94cd",
+        "canonicalObjectSha256": "dabe99e09c1f7287c45ebb17bf0ea1a78686d0ffe33e38d5f6d7f64d8ca8fba7"
+      },
+      {
+        "id": "t_2385e8874684",
+        "canonicalObjectSha256": "260a2079f3e41a44b967b93f44d66c2e64f5ec9e1b8c6857cb258b7b364b9fc9"
+      },
+      {
+        "id": "t_23e82e80e367",
+        "canonicalObjectSha256": "a3b71be2c360333600b68c18f7ca503550a1b954b3e52554354bd9ff852f6f28"
+      }
+    ],
+    "proof": "Each of the six unchanged entry objects is canonical-JSON byte-equivalent between the original author closure and correction closure. The remaining unchanged coordinates inside the four repaired entries preserve their frozen paths, line anchors, context hashes, span hashes, tiers, families, and semantic decisions."
+  },
+  "cohortChecks": {
+    "exactChangedSet": "PASS",
+    "exactOccurrenceCount30": "PASS",
+    "threeFamiliesEach": "PASS",
+    "tier3Zero": "PASS",
+    "lampPaddingAbsent": "PASS",
+    "semanticGlosses": "PASS",
+    "actorVoiceLayers": "PASS",
+    "unchangedInheritance": "PASS"
+  },
+  "remainingDeltas": [],
+  "summary": {
+    "changedCoordinatesReviewed": 4,
+    "changedCoordinatesPass": 4,
+    "changedCoordinatesFail": 0,
+    "unresolvedCorrections": 0,
+    "hardPass": true,
+    "releaseAuthorized": false
+  },
+  "hardPass": true,
+  "releaseAuthorized": false
+}

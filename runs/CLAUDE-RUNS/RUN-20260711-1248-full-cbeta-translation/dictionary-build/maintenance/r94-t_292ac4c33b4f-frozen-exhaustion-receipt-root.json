@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "r94-frozen-exhaustion-receipt.v1",
+  "cohort": "R94-replacement1",
+  "id": "t_292ac4c33b4f",
+  "term": "戒",
+  "disposition": "unresolved-returned-to-authoritative-backlog",
+  "countedRepaired": false,
+  "bindings": {
+    "authorClosure": {
+      "path": "maintenance/r94-replacement1-author-closure-root.json",
+      "sha256": "2bac1751af660580026cc8b8bce064c3fba6ce0bf77e66010a2d5185e3d5151d"
+    },
+    "independentReview": {
+      "path": "maintenance/r94-replacement1-cross-review-by-c.json",
+      "sha256": "c1212f5684f6d727bbb1d4f9eee2ddece27e305ffea3f58c643cbe02c3887ebe"
+    },
+    "refinedFrozenExtraction": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r94-replacement1-frozen-extraction-correction1-root.json",
+      "sha256": "ed4e3031901e9b90f3cdd552696ed2cb361994c90ef8da01d4345a0e98179ed2"
+    }
+  },
+  "senseExhaustion": [
+    {
+      "sense": "guard against",
+      "exactUnitIndependentTier1Or2Families": 3,
+      "result": "valid-but-insufficient-for-complete-polysemous-entry"
+    },
+    {
+      "sense": "precept",
+      "exactUnitIndependentTier1Or2Families": 0,
+      "result": "failed; all evidence only constituent compounds 戒品/五戒/戒律"
+    }
+  ],
+  "reason": "Valid verb families do not justify publishing an incomplete article while the proposed noun sense has only constituent-compound evidence.",
+  "lampPaddingUsed": false,
+  "productWritten": false,
+  "hardPass": true,
+  "writtenUtc": "2026-07-30T16:35:52.781814+00:00"
+}

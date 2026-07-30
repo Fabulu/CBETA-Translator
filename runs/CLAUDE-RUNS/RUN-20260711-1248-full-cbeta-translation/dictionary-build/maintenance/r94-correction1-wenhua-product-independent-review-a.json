@@ -1,0 +1,136 @@
+{
+  "schemaVersion": "r94-single-product-independent-review.v1",
+  "cohort": "R94",
+  "reviewerLane": "A",
+  "id": "t_28fac5e98308",
+  "term": "問話",
+  "bindings": {
+    "laneCCorrection1Authority": {
+      "path": "maintenance/r94-lane-c-correction1-authority.json",
+      "sha256": "a80f2d37b4d5f0ceb11df429c6d9db348791ba56520fd0157ddb7a267bca56e0"
+    },
+    "laneCCorrection2Authority": {
+      "path": "maintenance/r94-lane-c-correction2-authority.json",
+      "sha256": "00a08a9f13e242a9c1b2234bfa582b34b8f2d5df172759f722528d21a08956d0"
+    },
+    "final30Manifest": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r94-final30-authority-review-manifest-root.json",
+      "sha256": "67dab1e226ee1f68f563300aea54c43f769660f57a4ca0d90d18b0a28ee48ee2"
+    }
+  },
+  "productHashes": {
+    "entry": {
+      "path": "fresh-build/entries/t_28fac5e98308/entry.v2.json",
+      "sha256": "e9bdeac017762c6c1186e926162ac5982e54fca5e9c55f80269893fb4a13baf4"
+    },
+    "draft": {
+      "path": "fresh-build/entries/t_28fac5e98308/evidence.draft.json",
+      "sha256": "361fa7e386cae198a29a460613945c886c3e6cd7a9494db2cb25113d20eb5539"
+    },
+    "dossier": {
+      "path": "fresh-build/entries/t_28fac5e98308/source-dossier.json",
+      "sha256": "150ea84ff1c53c8aec365d9862b78e7a7e37715615fe78e6f585a515abad633f"
+    },
+    "compileReport": {
+      "path": "fresh-build/entries/t_28fac5e98308/evidence-compile-report.json",
+      "sha256": "a0e2fdcdf78c2d49c80811a7bab567bc2144e5711aabc3b5ce00a65090e0aeac"
+    },
+    "work": {
+      "path": "fresh-build/entries/t_28fac5e98308/WORK.md",
+      "sha256": "60654d358b8a910187c726a756e7bc2ef3062c74a83fce97a76e950c8a05a510"
+    },
+    "attributionAudit": {
+      "path": "fresh-build/entries/t_28fac5e98308/attribution-audit.json",
+      "sha256": "d100964a25c048fd63d4358335684429da26363afaa41ee68d115b2bf076f9ef"
+    },
+    "workSourceAudit": {
+      "path": "fresh-build/entries/t_28fac5e98308/work-source-audit.txt",
+      "sha256": "0fb78fde6f900f92ef217737f6830ac7589e5c17247dd0f81e253d578fcafb14"
+    }
+  },
+  "authorityParity": {
+    "preferredTarget": "questioning",
+    "retainedRows": [
+      2,
+      3,
+      4
+    ],
+    "retainedFamilyCount": 3,
+    "allRetainedTier": 1,
+    "families": [
+      {
+        "actor": "Deshan Xuanjian",
+        "voiceLayer": "quoted-original",
+        "family": "Dawei Xingxiu active appraisal of Deshan's case",
+        "workId": "work:J25nB165",
+        "verdict": "KEEP"
+      },
+      {
+        "actor": "Ruilu Benxian",
+        "voiceLayer": "quoted-original",
+        "family": "Boshan authorial evaluation of Ruilu Benxian's saying",
+        "workId": "work:X63n1257",
+        "verdict": "KEEP"
+      },
+      {
+        "actor": "Xisou Shaotan",
+        "voiceLayer": "compiler-narration",
+        "family": "Xisou authored Linji biography",
+        "workId": "chan:wujia-zhengzong-zan",
+        "verdict": "KEEP"
+      }
+    ],
+    "ruiluActorNormalizedToCanonical": true,
+    "meaningChangedFromAuthority": false,
+    "familyCountChangedFromAuthority": false,
+    "sourceSelectionChangedFromAuthority": false
+  },
+  "compilerParity": {
+    "hardPass": true,
+    "errors": [],
+    "worksheetHashMatchesCurrentDraft": true,
+    "outputHashMatchesCurrentEntry": true,
+    "constructionPipelineVersion": 2,
+    "canonicalRender": true
+  },
+  "sourcePolicy": {
+    "governedFloor": 3,
+    "independentFamilies": 3,
+    "tier3Retained": 0,
+    "lampPadding": false,
+    "noLampStatementPresent": true
+  },
+  "audits": {
+    "workSource": {
+      "entries": 1,
+      "senses": 1,
+      "multiSourceSenses": 1,
+      "hardFailures": 0,
+      "hardPass": true
+    },
+    "attribution": {
+      "entries": 1,
+      "occurrences": 3,
+      "hardFailures": 1,
+      "hardPass": false
+    }
+  },
+  "mutationControl": {
+    "productEditedByReviewer": false,
+    "final30ManifestPublicMutationPerformed": false,
+    "publicMutationPerformedByReviewer": false,
+    "releaseAuthorized": false
+  },
+  "remainingDeltas": [
+    {
+      "coordinate": "Senses[0].Occurrences[2].AttributionNote",
+      "class": "missing-authoritative-english-source-label",
+      "finding": "The focused attribution audit hard-fails the note because \"Xisou Shaotan's authored lineage praises\" is not the registered English source label between the RelPath prefix and actor sentence.",
+      "requiredCorrection": "Replace only the improvised source description with the authoritative registered English title for X/X78/X78n1554.xml, preserve Xisou Shaotan's compiler-narration actor and family ruling, recompile, and rerun the focused attribution audit."
+    }
+  ],
+  "remainingDeltaCount": 1,
+  "hardPass": false,
+  "releaseAuthorized": false,
+  "writtenUtc": "2026-07-30T17:34:00Z"
+}

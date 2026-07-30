@@ -1,0 +1,65 @@
+{
+  "schemaVersion": "r94-lane-c-correction-closure.v1",
+  "cohort": "R94",
+  "lane": "C",
+  "correction": 1,
+  "bindings": {
+    "rejectedAuthorClosure": {
+      "path": "maintenance/r94-lane-c-author-closure.json",
+      "sha256": "e91fc3a1dce4bbcf206c24078a55d18027645a65f79afae6f6b50bb43c82ddf7"
+    },
+    "rejectingReview": {
+      "path": "maintenance/r94-lane-c-cross-review-by-b.json",
+      "sha256": "571a608065ae975ceefc7cb53da437ef5318ca5f2d52620fef953b20cfd5246b"
+    },
+    "correctedAuthority": {
+      "path": "maintenance/r94-lane-c-correction1-authority.json",
+      "sha256": "a80f2d37b4d5f0ceb11df429c6d9db348791ba56520fd0157ddb7a267bca56e0"
+    },
+    "frozenExtraction": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r94-frozen-extraction-root.json",
+      "sha256": "7204625ec34769127033c57d574883e2511c1b71b2a939430fc12bc4cc1b5d67"
+    }
+  },
+  "deltaDispositions": [
+    {"entryId": "t_26c4d202ba53", "disposition": "REPAIRED", "detail": "Dropped contaminated X63n1259 row 1; added frozen Feiyin Tongrong row 4. Three independent Tier-1/2 families survive."},
+    {"entryId": "t_26c9a5cb0fe3", "disposition": "REPAIRED", "detail": "Row 3 now binds Huxiu Shaolong as quoted-original actor and Xisou Shaotan as commentator."},
+    {"entryId": "t_26d1f4bf3890", "disposition": "REPAIRED", "detail": "Row 2 now binds Juelang Daosheng's preface appraisal; contaminated X63n1259 row 4 dropped; frozen Yuanwu row 5 added."},
+    {"entryId": "t_2738431562e6", "disposition": "FAILED_HONESTLY", "detail": "Every frozen candidate is a longer compound/title, a different 'without writing' sense, or a quarantined prescriptive manual. Zero valid lexical-object families survive; no support manufactured."},
+    {"entryId": "t_27e66043b271", "disposition": "REPAIRED", "detail": "Row 1 family corrected to Foguo's direct hall declaration."},
+    {"entryId": "t_280e96eb88e2", "disposition": "REPAIRED", "detail": "Row 2 binds Gaofeng Yuanmiao with Yulin as commentator; opening narrowed to the observable hot-oil licking image."},
+    {"entryId": "t_287ed053d37e", "disposition": "CONFIRMED", "detail": "All exact actors and families recorded."},
+    {"entryId": "t_289b7e25b47c", "disposition": "CONFIRMED", "detail": "All exact direct-turn actors and families recorded."},
+    {"entryId": "t_28c0245cd261", "disposition": "REPAIRED", "detail": "All three occurrences bind Shakyamuni as quoted-original actor and local masters as later raiser/commentator/verse author."},
+    {"entryId": "t_28fac5e98308", "disposition": "REPAIRED", "detail": "Preferred target changed to noun-compatible 'questioning'; rows bind Deshan quoted-original, Ruilu quoted-original, and Xisou narrator respectively."}
+  ],
+  "construction": {
+    "expectedEntryCount": 10,
+    "constructibleEntryCount": 9,
+    "failedEntryCount": 1,
+    "draftsWritten": 0,
+    "productsWritten": 0,
+    "compilerRun": false,
+    "reason": "The governed ten-entry constructor must not materialize a closure claiming full scope when 無字 fails the frozen three-family floor. The corrected keyed authority is complete for root integration; a replacement selection or explicit nine-entry constructor authority is required before canonical compilation. Hand-authoring products would violate the one-authority/compiler rule."
+  },
+  "audits": {
+    "jsonParse": "PASS",
+    "exactIdScope": "PASS",
+    "reviewDeltaClosure": "PASS",
+    "tier3Count": 0,
+    "lampPadding": false,
+    "floorResult": "9 entries meet 3; 無字 fails with 0",
+    "compilerParity": "NOT_RUN_NO_PRODUCTS"
+  },
+  "summary": {
+    "repaired": 8,
+    "confirmed": 2,
+    "passingEntries": 9,
+    "failedEntries": 1,
+    "failedIds": ["t_2738431562e6"],
+    "releaseAuthorized": false,
+    "rereviewRequired": true
+  },
+  "hardPass": false,
+  "releaseAuthorized": false
+}

@@ -1,0 +1,83 @@
+{
+  "schemaVersion": "r94-changed-coordinate-rereview.v1",
+  "cohort": "R94",
+  "reviewedLane": "B",
+  "reviewerLane": "A",
+  "correction": 3,
+  "bindings": {
+    "correctionClosure": {
+      "path": "maintenance/r94-lane-b-correction3-closure.json",
+      "sha256": "9e95911155358daa1da98604649b98c59abcfda8107720557805125d21678e3b"
+    },
+    "priorRereview": {
+      "path": "maintenance/r94-lane-b-correction2-rereview-by-a.json",
+      "sha256": "a58d23bb09819c2d87bcf30de2ddd3e0e15f29a68bb72beaaa0bbd2ace9ce2a0"
+    }
+  },
+  "scope": {
+    "changedEntriesExpected": 1,
+    "changedEntriesReread": 1,
+    "changedCoordinateGroupsExpected": 1,
+    "changedCoordinateGroupsReread": 1,
+    "exactChangedEntryIds": [
+      "t_250794fa9636"
+    ],
+    "otherAcceptedCoordinatesInherited": true,
+    "otherCoordinatesReopened": false
+  },
+  "coordinateVerdict": {
+    "id": "t_250794fa9636",
+    "term": "野狐",
+    "coordinate": "o3.ActorAttribution.ActorRole/o3.AttributionNote",
+    "sourceIdentity": {
+      "relPath": "J/J40/J40nB497.xml",
+      "fromLb": "0865c25",
+      "actor": "Heshan",
+      "voice": "authored invitation writer"
+    },
+    "observedActorRole": "invitation-writer",
+    "requiredActorRole": "invitation-writer",
+    "observedPublicNoteText": "Invitation writer: Heshan. Authored invitation.",
+    "requiredPublicNoteText": "Invitation writer: Heshan. Authored invitation.",
+    "worksheetDossierProductConsistent": true,
+    "verdict": "KEEP",
+    "remainingDelta": false
+  },
+  "hashAndParityVerification": {
+    "entryPath": "fresh-build/r94/lane-b/entries/t_250794fa9636/entry.v2.json",
+    "entrySha256": "56db45b5008c401cb82536e3bd43083538f2861b4c312bff00b48e887ce21db3",
+    "draftPath": "fresh-build/r94/lane-b/entries/t_250794fa9636/evidence.draft.json",
+    "draftSha256": "87ed015d2f17b2a279d60171df4e8075d7ba6fd6274f867f632691399bc9f61b",
+    "dossierPath": "fresh-build/r94/lane-b/entries/t_250794fa9636/source-dossier.json",
+    "dossierSha256": "97778949d44a7949552a81c0563ba5b29810b4096a63f5f78a10ca7e05b5aec0",
+    "compileReportPath": "fresh-build/r94/lane-b/entries/t_250794fa9636/compile-report.json",
+    "compileReportSha256": "44e154b2edcef5fa9f676471bea8af848f75fa6bca27ebb7e73983fad693244c",
+    "allCurrentHashesMatchClosure": true,
+    "compilerHardPass": true,
+    "compilerWorksheetHashMatches": true,
+    "compilerOutputHashMatches": true,
+    "semanticParityWithExistingOutput": true,
+    "preservedExistingBytes": true
+  },
+  "focusedAttributionAudit": {
+    "path": "maintenance/r94-lane-b-correction3-attribution-audit.json",
+    "sha256": "c2eb81863470739307030edc888e26da22c8249a3f54fa6ba440d284e88cb3a6",
+    "entries": 1,
+    "hardFailures": 0,
+    "hardPass": true
+  },
+  "scopeControl": {
+    "exactOneEntryChanged": true,
+    "exactOneCoordinateGroupChanged": true,
+    "otherEntryDraftsDossiersProductsTouched": 0,
+    "publicFilesWritten": 0
+  },
+  "governedFloor": 3,
+  "tier3Retained": 0,
+  "lampPadding": false,
+  "remainingDeltas": [],
+  "remainingDeltaCount": 0,
+  "hardPass": true,
+  "releaseAuthorized": false,
+  "writtenUtc": "2026-07-30T16:46:00Z"
+}

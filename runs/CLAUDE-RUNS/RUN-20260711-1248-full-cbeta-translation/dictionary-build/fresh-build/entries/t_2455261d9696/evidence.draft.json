@@ -1,0 +1,270 @@
+{
+  "SchemaVersion": 1,
+  "ConstructionPipelineVersion": 2,
+  "Admission": {
+    "Decision": "admit",
+    "LexicalUnitReason": "問話 is independently used as a complete verb-object unit for putting a question.",
+    "ObservableChanJob": "It names the act of putting a question in an encounter, and by extension the questioning so performed.",
+    "DuplicateCheck": {
+      "DeterministicIdChecked": true,
+      "ExactHeadwordChecked": true,
+      "NearDuplicateRuling": "問話頭 is a longer compound and does not replace the independently deployed shorter unit."
+    }
+  },
+  "EvidenceTransport": {
+    "DossierPath": "source-dossier.json",
+    "DossierSha256": "6f2e17f5b849c61b2855d341ad4dd5f6e37134b1a21c42d1affc6e40f7c31a4b",
+    "SourceAuthorityManifestSha256": "2ee44bf19a2533958e5620c38915f3d03fbb81209c76c7183742a4f3d059f501",
+    "DiscoveryMethods": [
+      "final reviewed R94 authority"
+    ],
+    "ExactCount": 3,
+    "BridgedCount": 3,
+    "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+  },
+  "Entry": {
+    "Id": "t_2455261d9696",
+    "SourceTerm": "快便難逢",
+    "CreatedBy": "R94 source-hierarchy repair",
+    "WrittenUtc": "2026-07-30T10:38:00Z",
+    "Senses": [
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "a quick opportunity is hard to meet",
+        "AlternateTargets": [
+          "a ready chance is hard to find"
+        ],
+        "SearchAliases": [
+          "quick chance",
+          "hard-to-find opportunity"
+        ],
+        "Status": "preferred",
+        "Validation": "multi-source",
+        "Explanation": "A warning that a favorable, quickly usable opportunity is difficult to encounter. Zhongfeng Mingben sets the phrase after the image of being separated by an iron wall; Fengxue Yanzhao answers with the downhill proverb; Miyun Yuanwu repeats the same downhill wording as a closing injunction.",
+        "Note": "快便 is the timely advantage or ready chance in the proverb, not a claim that haste itself is rare.",
+        "Occurrences": [
+          {
+            "RelPath": "B/B25/B25n0145.xml",
+            "FromLb": "0731b17",
+            "ToLb": "0732a03",
+            "Kwic": "不減悟時不加。難時不遠易時不近。得時不有失時不無。乃至窮古亘今緫無許多差別。渾侖只是箇自己。纖毫不透如隔鐵圍。快便難逢。切忌當面諱却。示高麗收樞空昭聰五長老示高麗收樞空昭聰五長老叅禪是叅自己禪。非叅佛祖善知識禪也。所謂禪者。蓋遠",
+            "MasterName": "Zhongfeng Mingben",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Zhongfeng Mingben",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (B/B25/B25n0145.xml). Extensive Record of Zhongfeng Mingben of Tianmu. Exact actor: Zhongfeng Mingben. The complete source frame assigns the retained headword-bearing action to Zhongfeng Mingben.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "快便難逢",
+              "GrammaticalSubject": "Zhongfeng Mingben",
+              "SpeechFrame": "Source record (B/B25/B25n0145.xml). Extensive Record of Zhongfeng Mingben of Tianmu. Exact actor: Zhongfeng Mingben. The complete source frame assigns the retained headword-bearing action to Zhongfeng Mingben.",
+              "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to Zhongfeng Mingben."
+            }
+          },
+          {
+            "RelPath": "C/C077/C077n1710.xml",
+            "FromLb": "0664a24",
+            "ToLb": "0664b07",
+            "Kwic": "道師曰五鳳樓前曰如何是道中人師曰問取皇城使問不傷物義請師便道師曰劈腹開心猶未性燥問未定渾濁如何得照師曰下坡不走快便難逢問如何是衲僧行履處師曰頭上喫棒口裏喃喃問靈山話月曹谿指月去此二途請師直指師曰無言不當瘂曰請師定當師曰先度汨羅江",
+            "MasterName": "Fengxue Yanzhao",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Fengxue Yanzhao",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (C/C077/C077n1710.xml). Recorded Sayings of Ancient Venerable Masters. Exact actor: Fengxue Yanzhao. The complete source frame assigns the retained headword-bearing action to Fengxue Yanzhao.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "快便難逢",
+              "GrammaticalSubject": "Fengxue Yanzhao",
+              "SpeechFrame": "Source record (C/C077/C077n1710.xml). Recorded Sayings of Ancient Venerable Masters. Exact actor: Fengxue Yanzhao. The complete source frame assigns the retained headword-bearing action to Fengxue Yanzhao.",
+              "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to Fengxue Yanzhao."
+            }
+          },
+          {
+            "RelPath": "J/J10/J10nA158.xml",
+            "FromLb": "0021a18",
+            "ToLb": "0021a24",
+            "Kwic": "制。勸諸人，莫兒戲，急須猛省個中意。個裡本無有去來，那來結解以為計？且作麼生是諸人個中意？」乃云：「下坡不走，快便難逢。」下座。請上堂。「老僧年邁秪可自適，故久拒一切檀越之命，今因根心唐居士為薦父母，并自四旬發心，增造三世佛一尊",
+            "MasterName": "Miyun Yuanwu",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Miyun Yuanwu",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J10/J10nA158.xml). Recorded Sayings of Chan Master Miyun. Exact actor: Miyun Yuanwu. The complete source frame assigns the retained headword-bearing action to Miyun Yuanwu.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "快便難逢",
+              "GrammaticalSubject": "Miyun Yuanwu",
+              "SpeechFrame": "Source record (J/J10/J10nA158.xml). Recorded Sayings of Chan Master Miyun. Exact actor: Miyun Yuanwu. The complete source frame assigns the retained headword-bearing action to Miyun Yuanwu.",
+              "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to Miyun Yuanwu."
+            }
+          }
+        ],
+        "ClaimAnchors": [],
+        "SourceTexts": [
+          "B/B25/B25n0145.xml",
+          "C/C077/C077n1710.xml",
+          "J/J10/J10nA158.xml"
+        ],
+        "RelatedMasters": [
+          "Zhongfeng Mingben",
+          "Fengxue Yanzhao",
+          "Miyun Yuanwu"
+        ],
+        "RelatedTerms": [],
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "A warning that a favorable, quickly usable opportunity is difficult to encounter.",
+          "EvidenceBody": [
+            "Zhongfeng Mingben sets the phrase after the image of being separated by an iron wall; Fengxue Yanzhao answers with the downhill proverb; Miyun Yuanwu repeats the same downhill wording as a closing injunction."
+          ]
+        },
+        "DraftEvidence": {
+          "LiteralGraphFloor": "a quick opportunity is hard to meet",
+          "LexicalJob": "快便難逢 means a quick opportunity is hard to meet.",
+          "DeploymentClasses": [
+            "authored verse",
+            "direct instruction"
+          ],
+          "HighValueEvidenceLedger": [
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to Zhongfeng Mingben.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to Fengxue Yanzhao.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to Miyun Yuanwu.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            }
+          ],
+          "OpeningClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3"
+          ],
+          "EvidenceBodyClaimKeys": [
+            [
+              "o1",
+              "o2",
+              "o3"
+            ]
+          ],
+          "ZenBend": "A warning that a favorable, quickly usable opportunity is difficult to encounter.",
+          "CounterexampleOrLimit": "快便 is the timely advantage or ready chance in the proverb, not a claim that haste itself is rare.",
+          "DifferentThingTest": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "a quick opportunity is hard to meet"
+            ],
+            "Reason": "快便 is the timely advantage or ready chance in the proverb, not a claim that haste itself is rare."
+          },
+          "AliasRationale": "快便 is the timely advantage or ready chance in the proverb, not a claim that haste itself is rare.",
+          "ModifierControls": [
+            {
+              "Term": "快便難逢",
+              "Finding": "快便 is the timely advantage or ready chance in the proverb, not a claim that haste itself is rare."
+            }
+          ],
+          "FamilyControls": [
+            {
+              "Term": "快便難逢",
+              "Finding": "Zhongfeng Mingben sets the phrase after the image of being separated by an iron wall; Fengxue Yanzhao answers with the downhill proverb; Miyun Yuanwu repeats the same downhill wording as a closing injunction."
+            }
+          ],
+          "IndependentWorkIds": [
+            "work:B25n0145",
+            "work:guzunsu-yulu",
+            "work:J10nA158"
+          ],
+          "SourceAuthorityRows": [
+            {
+              "EvidenceKey": "o1",
+              "RelPath": "B/B25/B25n0145.xml",
+              "WorkId": "work:B25n0145",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "quick-chance:zhongfeng",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o2",
+              "RelPath": "C/C077/C077n1710.xml",
+              "WorkId": "work:guzunsu-yulu",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "quick-chance:fengxue",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o3",
+              "RelPath": "J/J10/J10nA158.xml",
+              "WorkId": "work:J10nA158",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "quick-chance:miyun",
+              "DeploymentRole": "original-use"
+            }
+          ],
+          "LampExcessJustification": "No Tier-3 lamp retained.",
+          "NoHigherWitnessSearchReceipt": "Tier 1 searched first, then Tier 2; no lamp needed.",
+          "DepthHarvestReceipt": {
+            "Complete": true,
+            "ReviewedExactHitCount": 3,
+            "AvailableSourceFiles": 3,
+            "SearchedDeploymentClasses": [
+              "final-reviewed-authority"
+            ],
+            "OmissionAudit": [
+              "Mechanical normalization retains exactly the final reviewed authority families."
+            ]
+          }
+        },
+        "DraftAcceptedDerivedFields": {
+          "SourceTexts": [
+            "B/B25/B25n0145.xml",
+            "C/C077/C077n1710.xml",
+            "J/J10/J10nA158.xml"
+          ],
+          "RelatedMasters": [
+            "Zhongfeng Mingben",
+            "Fengxue Yanzhao",
+            "Miyun Yuanwu"
+          ]
+        }
+      }
+    ],
+    "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+  },
+  "FamilyHarvest": {
+    "PolicyVersion": 1,
+    "Scope": "R94 source-hierarchy repair",
+    "Edges": [],
+    "NegativeReceipt": [],
+    "GraphicVariants": []
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "generic-bounded-preclosure.v1",
+  "cohort": "R94-correction1",
+  "ids": [
+    "t_223c2f6ade25",
+    "t_22885135d39e",
+    "t_229d6fd2a889",
+    "t_22b4a92f2919",
+    "t_2310fbae5dc4",
+    "t_23204fbd253c",
+    "t_2325720f94cd",
+    "t_2354ad61810c",
+    "t_2385e8874684",
+    "t_23e82e80e367",
+    "t_240ea0594a5f",
+    "t_2455261d9696",
+    "t_2488565d7fba",
+    "t_24adbdf51a15",
+    "t_250794fa9636",
+    "t_255626770dcc",
+    "t_25fb43689d5e",
+    "t_26818ad3df57",
+    "t_2684c756a929",
+    "t_26a41c6b0def",
+    "t_26c4d202ba53",
+    "t_26c9a5cb0fe3",
+    "t_26d1f4bf3890",
+    "t_27e66043b271",
+    "t_280e96eb88e2",
+    "t_287ed053d37e",
+    "t_289b7e25b47c",
+    "t_28c0245cd261",
+    "t_28fac5e98308",
+    "t_296bc68f6903"
+  ],
+  "bindings": {
+    "artifactZero": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r94-correction1-artifact-zero-root.json",
+      "sha256": "bb90d5ef8e48a8ef3a868773d86d328118b589f4dff1ef0a8dc77363788c2dca"
+    },
+    "authority": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r94-final30-authority-review-manifest-root.json",
+      "sha256": "67dab1e226ee1f68f563300aea54c43f769660f57a4ca0d90d18b0a28ee48ee2"
+    },
+    "priorFailClosedConstruction": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r94-closure-root.json",
+      "sha256": "8217313fd8d31cedd2ca9e18cf1dce1ce305cb3f1da2e3b005cd69b557c26b87"
+    },
+    "independentProductRereview": {
+      "path": "maintenance/r94-correction1-wenhua-product-correction2-rereview-a.json",
+      "sha256": "a5ecc85a83eeeb08c558cce2e7a2f9ac72ef9e15782e318a469be3404ddeac30"
+    }
+  },
+  "hardPass": true,
+  "errors": []
+}

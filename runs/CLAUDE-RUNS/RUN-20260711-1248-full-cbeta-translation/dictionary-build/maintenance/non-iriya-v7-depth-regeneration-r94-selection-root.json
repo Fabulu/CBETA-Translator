@@ -1,0 +1,433 @@
+{
+  "schemaVersion": "r94-production30-selection.v1",
+  "cohort": "R94",
+  "mode": "from-scratch existing-entry repair",
+  "artifactZero": {
+    "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r94-timegate-root.json",
+    "sha256": "7b2d1313d63de0e48b420129feb89f9688ededd9608a8e5a3e8b70483ff40c41"
+  },
+  "authoritativeSelector": {
+    "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/last1500-public-depth/final-scope/full-regeneration-selector.json",
+    "sha256": "07a2c8dac36e9b8945195b8d080222fd4be8a795b2d10d1be2807d6302ba0b15",
+    "chunks": [
+      {
+        "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/last1500-public-depth/final-scope/full-regeneration-selector-chunk-0001-0250.json",
+        "sha256": "ae858ed77e4c239a7506bc24611edc6015475adc20c0745a586b5e6eb60ca8bd",
+        "from": 1,
+        "to": 250
+      },
+      {
+        "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/last1500-public-depth/final-scope/full-regeneration-selector-chunk-0251-0500.json",
+        "sha256": "6caec138ac877916a81524331f95f95bef755b15842eae89a42677d1378d935a",
+        "from": 251,
+        "to": 500
+      },
+      {
+        "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/last1500-public-depth/final-scope/full-regeneration-selector-chunk-0501-0750.json",
+        "sha256": "4472e7f10955d2bbb32685886781baf796531b930799b7d91f9fecb78fb46744",
+        "from": 501,
+        "to": 750
+      },
+      {
+        "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/last1500-public-depth/final-scope/full-regeneration-selector-chunk-0751-1000.json",
+        "sha256": "099b9fe2267a4f483052d4d550f271b3375f985ae7f18f10d3e3892b9c6dd4c3",
+        "from": 751,
+        "to": 1000
+      },
+      {
+        "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/last1500-public-depth/final-scope/full-regeneration-selector-chunk-1001-1025.json",
+        "sha256": "8699a4765954648939af80885f11308b2e8d5067f5d89bf5ecf3a31145f0bdd5",
+        "from": 1001,
+        "to": 1025
+      }
+    ]
+  },
+  "priorResolvedUnion": {
+    "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r93-resolved-union-root.json",
+    "sha256": "bb80091e2a622d7385d5ce2d62ec920f0ca0ffa9e1d5c1e7a7a736de0ac9c1a4",
+    "uniqueIdCount": 221
+  },
+  "selectionRule": "first 30 selector rows absent from the exact R93 resolved union",
+  "selectedCount": 30,
+  "selectedIds": [
+    "t_223c2f6ade25",
+    "t_22885135d39e",
+    "t_229d6fd2a889",
+    "t_22b4a92f2919",
+    "t_2310fbae5dc4",
+    "t_23204fbd253c",
+    "t_2325720f94cd",
+    "t_2354ad61810c",
+    "t_2385e8874684",
+    "t_23e82e80e367",
+    "t_240ea0594a5f",
+    "t_2455261d9696",
+    "t_2488565d7fba",
+    "t_24adbdf51a15",
+    "t_250794fa9636",
+    "t_255626770dcc",
+    "t_25fb43689d5e",
+    "t_26818ad3df57",
+    "t_2684c756a929",
+    "t_26a41c6b0def",
+    "t_26c4d202ba53",
+    "t_26c9a5cb0fe3",
+    "t_26d1f4bf3890",
+    "t_2738431562e6",
+    "t_27e66043b271",
+    "t_280e96eb88e2",
+    "t_287ed053d37e",
+    "t_289b7e25b47c",
+    "t_28c0245cd261",
+    "t_28fac5e98308"
+  ],
+  "collisionCount": 0,
+  "lanes": [
+    {
+      "lane": "A",
+      "author": "/root/source_tiers_b",
+      "fullCrossReviewer": "/root/source_tiers_b/r94_lane_c",
+      "ordinalFrom": 1,
+      "ordinalTo": 10,
+      "rows": [
+        {
+          "batchOrdinal": 1,
+          "identityId": "t_223c2f6ade25",
+          "term": "一大事因緣",
+          "selectorRequiredFloor": 6,
+          "minimumIndependentProofFamilies": 3,
+          "corpusHits": 450,
+          "corpusWorks": 162,
+          "classification": "legacy-selected-depth-repair"
+        },
+        {
+          "batchOrdinal": 2,
+          "identityId": "t_22885135d39e",
+          "term": "一塵",
+          "selectorRequiredFloor": 7,
+          "minimumIndependentProofFamilies": 3,
+          "corpusHits": 1986,
+          "corpusWorks": 312,
+          "classification": "legacy-selected-depth-repair"
+        },
+        {
+          "batchOrdinal": 3,
+          "identityId": "t_229d6fd2a889",
+          "term": "仁者見之謂之仁",
+          "selectorRequiredFloor": 4,
+          "minimumIndependentProofFamilies": 3,
+          "corpusHits": 64,
+          "corpusWorks": 51,
+          "classification": "hard-fail"
+        },
+        {
+          "batchOrdinal": 4,
+          "identityId": "t_22b4a92f2919",
+          "term": "收歸上科",
+          "selectorRequiredFloor": 4,
+          "minimumIndependentProofFamilies": 3,
+          "corpusHits": 60,
+          "corpusWorks": 40,
+          "classification": "hard-fail"
+        },
+        {
+          "batchOrdinal": 5,
+          "identityId": "t_2310fbae5dc4",
+          "term": "把手共行",
+          "selectorRequiredFloor": 6,
+          "minimumIndependentProofFamilies": 3,
+          "corpusHits": 229,
+          "corpusWorks": 110,
+          "classification": "legacy-selected-depth-repair"
+        },
+        {
+          "batchOrdinal": 6,
+          "identityId": "t_23204fbd253c",
+          "term": "玄旨",
+          "selectorRequiredFloor": 7,
+          "minimumIndependentProofFamilies": 3,
+          "corpusHits": 661,
+          "corpusWorks": 177,
+          "classification": "legacy-selected-depth-repair"
+        },
+        {
+          "batchOrdinal": 7,
+          "identityId": "t_2325720f94cd",
+          "term": "強作主宰",
+          "selectorRequiredFloor": 4,
+          "minimumIndependentProofFamilies": 3,
+          "corpusHits": 90,
+          "corpusWorks": 54,
+          "classification": "hard-fail"
+        },
+        {
+          "batchOrdinal": 8,
+          "identityId": "t_2354ad61810c",
+          "term": "貪瞋癡",
+          "selectorRequiredFloor": 6,
+          "minimumIndependentProofFamilies": 3,
+          "corpusHits": 123,
+          "corpusWorks": 47,
+          "classification": "hard-fail"
+        },
+        {
+          "batchOrdinal": 9,
+          "identityId": "t_2385e8874684",
+          "term": "遞相鈍置",
+          "selectorRequiredFloor": 4,
+          "minimumIndependentProofFamilies": 3,
+          "corpusHits": 96,
+          "corpusWorks": 60,
+          "classification": "hard-fail"
+        },
+        {
+          "batchOrdinal": 10,
+          "identityId": "t_23e82e80e367",
+          "term": "渴飲饑餐",
+          "selectorRequiredFloor": 4,
+          "minimumIndependentProofFamilies": 3,
+          "corpusHits": 53,
+          "corpusWorks": 39,
+          "classification": "hard-fail"
+        }
+      ]
+    },
+    {
+      "lane": "B",
+      "author": "/root/source_tiers_b/r94_lane_b",
+      "fullCrossReviewer": "/root/source_tiers_b",
+      "ordinalFrom": 11,
+      "ordinalTo": 20,
+      "rows": [
+        {
+          "batchOrdinal": 11,
+          "identityId": "t_240ea0594a5f",
+          "term": "大休大歇",
+          "selectorRequiredFloor": 6,
+          "minimumIndependentProofFamilies": 3,
+          "corpusHits": 105,
+          "corpusWorks": 64,
+          "classification": "legacy-selected-depth-repair"
+        },
+        {
+          "batchOrdinal": 12,
+          "identityId": "t_2455261d9696",
+          "term": "快便難逢",
+          "selectorRequiredFloor": 6,
+          "minimumIndependentProofFamilies": 3,
+          "corpusHits": 206,
+          "corpusWorks": 108,
+          "classification": "hard-fail"
+        },
+        {
+          "batchOrdinal": 13,
+          "identityId": "t_2488565d7fba",
+          "term": "莫認定盤星",
+          "selectorRequiredFloor": 6,
+          "minimumIndependentProofFamilies": 3,
+          "corpusHits": 117,
+          "corpusWorks": 70,
+          "classification": "hard-fail"
+        },
+        {
+          "batchOrdinal": 14,
+          "identityId": "t_24adbdf51a15",
+          "term": "金佛不度爐",
+          "selectorRequiredFloor": 6,
+          "minimumIndependentProofFamilies": 3,
+          "corpusHits": 137,
+          "corpusWorks": 86,
+          "classification": "legacy-selected-depth-repair"
+        },
+        {
+          "batchOrdinal": 15,
+          "identityId": "t_250794fa9636",
+          "term": "野狐",
+          "selectorRequiredFloor": 8,
+          "minimumIndependentProofFamilies": 3,
+          "corpusHits": 2022,
+          "corpusWorks": 284,
+          "classification": "legacy-selected-depth-repair"
+        },
+        {
+          "batchOrdinal": 16,
+          "identityId": "t_255626770dcc",
+          "term": "劒甲未施",
+          "selectorRequiredFloor": 4,
+          "minimumIndependentProofFamilies": 3,
+          "corpusHits": 21,
+          "corpusWorks": 12,
+          "classification": "hard-fail"
+        },
+        {
+          "batchOrdinal": 17,
+          "identityId": "t_25fb43689d5e",
+          "term": "折腳鐺",
+          "selectorRequiredFloor": 6,
+          "minimumIndependentProofFamilies": 3,
+          "corpusHits": 117,
+          "corpusWorks": 71,
+          "classification": "legacy-selected-depth-repair"
+        },
+        {
+          "batchOrdinal": 18,
+          "identityId": "t_26818ad3df57",
+          "term": "盌脫丘",
+          "selectorRequiredFloor": 4,
+          "minimumIndependentProofFamilies": 3,
+          "corpusHits": 25,
+          "corpusWorks": 16,
+          "classification": "hard-fail"
+        },
+        {
+          "batchOrdinal": 19,
+          "identityId": "t_2684c756a929",
+          "term": "肘後懸符",
+          "selectorRequiredFloor": 4,
+          "minimumIndependentProofFamilies": 3,
+          "corpusHits": 35,
+          "corpusWorks": 23,
+          "classification": "hard-fail"
+        },
+        {
+          "batchOrdinal": 20,
+          "identityId": "t_26a41c6b0def",
+          "term": "熱則乘凉",
+          "selectorRequiredFloor": 4,
+          "minimumIndependentProofFamilies": 3,
+          "corpusHits": 24,
+          "corpusWorks": 15,
+          "classification": "hard-fail"
+        }
+      ]
+    },
+    {
+      "lane": "C",
+      "author": "/root/source_tiers_b/r94_lane_c",
+      "fullCrossReviewer": "/root/source_tiers_b/r94_lane_b",
+      "ordinalFrom": 21,
+      "ordinalTo": 30,
+      "rows": [
+        {
+          "batchOrdinal": 21,
+          "identityId": "t_26c4d202ba53",
+          "term": "奪食驅耕",
+          "selectorRequiredFloor": 4,
+          "minimumIndependentProofFamilies": 3,
+          "corpusHits": 62,
+          "corpusWorks": 47,
+          "classification": "hard-fail"
+        },
+        {
+          "batchOrdinal": 22,
+          "identityId": "t_26c9a5cb0fe3",
+          "term": "和泥合水",
+          "selectorRequiredFloor": 6,
+          "minimumIndependentProofFamilies": 3,
+          "corpusHits": 385,
+          "corpusWorks": 124,
+          "classification": "legacy-selected-depth-repair"
+        },
+        {
+          "batchOrdinal": 23,
+          "identityId": "t_26d1f4bf3890",
+          "term": "殺活",
+          "selectorRequiredFloor": 7,
+          "minimumIndependentProofFamilies": 3,
+          "corpusHits": 1441,
+          "corpusWorks": 296,
+          "classification": "legacy-selected-depth-repair"
+        },
+        {
+          "batchOrdinal": 24,
+          "identityId": "t_2738431562e6",
+          "term": "無字",
+          "selectorRequiredFloor": 7,
+          "minimumIndependentProofFamilies": 3,
+          "corpusHits": 913,
+          "corpusWorks": 184,
+          "classification": "legacy-selected-depth-repair"
+        },
+        {
+          "batchOrdinal": 25,
+          "identityId": "t_27e66043b271",
+          "term": "聲前一句",
+          "selectorRequiredFloor": 6,
+          "minimumIndependentProofFamilies": 3,
+          "corpusHits": 100,
+          "corpusWorks": 60,
+          "classification": "legacy-selected-depth-repair"
+        },
+        {
+          "batchOrdinal": 26,
+          "identityId": "t_280e96eb88e2",
+          "term": "狗䑛熱油鐺",
+          "selectorRequiredFloor": 4,
+          "minimumIndependentProofFamilies": 3,
+          "corpusHits": 21,
+          "corpusWorks": 16,
+          "classification": "hard-fail"
+        },
+        {
+          "batchOrdinal": 27,
+          "identityId": "t_287ed053d37e",
+          "term": "就路還家",
+          "selectorRequiredFloor": 6,
+          "minimumIndependentProofFamilies": 3,
+          "corpusHits": 112,
+          "corpusWorks": 60,
+          "classification": "legacy-selected-depth-repair"
+        },
+        {
+          "batchOrdinal": 28,
+          "identityId": "t_289b7e25b47c",
+          "term": "高著眼看",
+          "selectorRequiredFloor": 4,
+          "minimumIndependentProofFamilies": 3,
+          "corpusHits": 29,
+          "corpusWorks": 21,
+          "classification": "hard-fail"
+        },
+        {
+          "batchOrdinal": 29,
+          "identityId": "t_28c0245cd261",
+          "term": "是吾曾轉法輪耶",
+          "selectorRequiredFloor": 4,
+          "minimumIndependentProofFamilies": 3,
+          "corpusHits": 30,
+          "corpusWorks": 26,
+          "classification": "hard-fail"
+        },
+        {
+          "batchOrdinal": 30,
+          "identityId": "t_28fac5e98308",
+          "term": "問話",
+          "selectorRequiredFloor": null,
+          "minimumIndependentProofFamilies": 3,
+          "corpusHits": null,
+          "corpusWorks": null,
+          "classification": "legacy-selected-depth-repair"
+        }
+      ]
+    }
+  ],
+  "reviewRotation": {
+    "A": "reviewed in full by C author",
+    "B": "reviewed in full by A author",
+    "C": "reviewed in full by B author",
+    "selfReviewCount": 0
+  },
+  "sourcePolicy": {
+    "priority": [
+      "Tier 1 authored",
+      "Tier 2 recorded sayings",
+      "Tier 3 lamps"
+    ],
+    "lampRule": "last-resort corroboration only; no lamp-volume padding",
+    "minimumIndependentProofFamiliesPerEntry": 3,
+    "rebuildContentFromScratch": true
+  },
+  "publicMutationPerformed": false,
+  "sourceExtractionPerformed": false,
+  "hardPass": true
+}

@@ -1,0 +1,342 @@
+{
+  "SchemaVersion": 1,
+  "ConstructionPipelineVersion": 2,
+  "Admission": {
+    "Decision": "admit",
+    "LexicalUnitReason": "仁者見之謂之仁 is the exact reviewed lexical unit across three independent Chan families.",
+    "ObservableChanJob": "The first half of the paired saying: the humane see it and call it humane, while the wise call it wise.",
+    "DuplicateCheck": {
+      "DeterministicIdChecked": true,
+      "ExactHeadwordChecked": true,
+      "NearDuplicateRuling": "The inherited source of the maxim is not treated as another Chan deployment family."
+    }
+  },
+  "EvidenceTransport": {
+    "DossierPath": "source-dossier.json",
+    "DossierSha256": "bbb921d2a58461702e52f0e6556d9fc7e26da5a41dfe016b40c67b42203cb505",
+    "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff",
+    "SourceAuthorityManifestSha256": "2ee44bf19a2533958e5620c38915f3d03fbb81209c76c7183742a4f3d059f501",
+    "DiscoveryMethods": [
+      "R94 frozen extraction",
+      "final Lane A authority",
+      "independent correction rereview"
+    ],
+    "ExactCount": 64,
+    "BridgedCount": 64
+  },
+  "Entry": {
+    "Id": "t_229d6fd2a889",
+    "SourceTerm": "仁者見之謂之仁",
+    "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff",
+    "CreatedBy": "R94 correction2 Lane A mechanical regenerator",
+    "WrittenUtc": "2026-07-30T17:45:00Z",
+    "Senses": [
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "the humane see it and call it humane",
+        "AlternateTargets": [
+          "the benevolent see it and call it benevolent"
+        ],
+        "SearchAliases": [
+          "the benevolent see it and call it benevolent"
+        ],
+        "Status": "preferred",
+        "Validation": "multi-source",
+        "Note": "仁者 and 仁 deliberately repeat the same graph; preserve that repetition in English.",
+        "Occurrences": [
+          {
+            "RelPath": "J/J25/J25nB171.xml",
+            "FromLb": "0545b24",
+            "ToLb": "0545b24",
+            "Kwic": "多少賢良』，何不道：『某甲罪過。』且不失方情。今時人要參，方須具這眼目始得。若不如是，都是依草附木。」舉：「溈山問仰山：『甚處來？』仰云：『田中來。』溈云：『田中有多少人？』仰插鍬叉手而立。溈云：『今日南山大有人刈茅。』仰拽鍬而去。雪竇云：『諸方咸謂插鍬話奇特，大似隨邪逐惡。據雪竇見處，仰山被溈山一問，直得草繩自縛，去死十分。』妙喜云：『仁者見之謂之仁，智者見之謂之智，百姓日用而不知，故君子之道鮮矣。』」師拈云：「妙喜老人出言吐氣，忒殺風流儒雅；雪竇龜鑑宗乘，恰似壓良為賤。今日磬山合作麼生商量？不得顢頇放過。還知麼？幾度黑風吹大海，未曾聞道釣舟傾。」舉：「龍濟問僧：『甚處來？』云：『翠巖來。』曰：『翠巖有何言句示徒？』云：『嘗道：「出門逢彌勒，入門見釋迦。」』曰：『與麼道又爭得？』僧便問：『和尚又如何？』曰：『出門逢阿誰？入門見什麼？』僧於言下有省。」師拈云：「這僧雖然有省，只會得龍濟底，未會得翠巖底；",
+            "Curated": true,
+            "MasterName": "Dahui Zonggao",
+            "ContextMasters": [
+              {
+                "MasterName": "Dahui Zonggao",
+                "Roles": [
+                  "utterer"
+                ]
+              },
+              {
+                "MasterName": "Tianyin Yuanxiu",
+                "Roles": [
+                  "commentator"
+                ]
+              }
+            ],
+            "AttributionNote": "Source record (J/J25/J25nB171.xml). Recorded Sayings of Monk Tianyin. Dahui Zonggao is the reviewed actor of the headword-bearing layer. Tianyin Yuanxiu is the reviewed outer quoter or commentator.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "仁者見之謂之仁",
+              "GrammaticalSubject": "Dahui Zonggao",
+              "SpeechFrame": "The final R94 authority assigns the exact 仁者見之謂之仁-bearing layer to Dahui Zonggao.",
+              "FullCaseDecision": "Dahui Zonggao owns the retained layer; adjacent and outer voices are excluded."
+            }
+          },
+          {
+            "RelPath": "J/J26/J26nB187.xml",
+            "FromLb": "0687c26",
+            "ToLb": "0687c26",
+            "Kwic": "拄杖子道：『長老！強盜如何也與它說道理？』」自云：「是，是。如今禪和子總是一班不識道理的強盜。」晚參。「天何言哉？四時行焉。地何言哉？萬物成焉。山何言哉？艸木生焉。江何言哉？龍蛇宅焉。海何言哉？寶藏興焉。予何言哉？拄杖子𨁝跳上三十三天，築著帝釋鼻孔，東海鯉魚打一棒，雨似盆傾。設有道：『前面說的都出典章，此話是何章句？』」乃呵呵笑云：「可謂仁者見之謂之仁、智者見之謂之智，百姓日用而不知。」上堂。「本是淨琉璃缾，注卻一器清水，應用無不具足，無端著鹽、著醬，攪為酥酪醍醐，雖然美之至也，已失水性之自然矣。佛祖者，眾生之罪人也。」靠拄杖，下座。晚參。舉：「僧問趙州：『狗子還有佛性也無？』州云：『無。』又，僧問：『狗子還有佛性也無？』州云：『有。』」師云：「合將五百斤鐵枷枷卻趙州驢項，押向酆都獄中，與善星、調達同受三禪天樂。因甚如此？謗斯經故，獲罪如是。」晚參。「煮豆然豆萁，豆在釜中泣，本是同根生，相煎何太急？曹子",
+            "Curated": true,
+            "MasterName": "Tian'an Sheng",
+            "ContextMasters": [
+              {
+                "MasterName": "Tian'an Sheng",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "AttributionNote": "Source record (J/J26/J26nB187.xml). Recorded Sayings of Chan Master Tian’an Sheng. Tian'an Sheng is the reviewed actor of the headword-bearing layer.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "仁者見之謂之仁",
+              "GrammaticalSubject": "Tian'an Sheng",
+              "SpeechFrame": "The final R94 authority assigns the exact 仁者見之謂之仁-bearing layer to Tian'an Sheng.",
+              "FullCaseDecision": "Tian'an Sheng owns the retained layer; adjacent and outer voices are excluded."
+            }
+          },
+          {
+            "RelPath": "J/J27/J27nB189.xml",
+            "FromLb": "0037a01",
+            "ToLb": "0037a01",
+            "Kwic": "麼打碎常住碗一箇不賠錢？」僧無語，師便打。僧問：「如何是生死透脫處？」師云：「翠竹黃華有甚麼孤負汝？」僧無語，師便打。僧問：「和尚還許商量麼？」師豎拳云：「商量看。」僧擬議，師打出。僧復入云：「看破了也。」師云：「那裏是看破處？」僧亦豎拳。師云：「拄杖為題，試一頌看。」僧擬議。師云：「弄虛頭漢。」亦打。居士問：「儒家道：『智者見之謂之智，仁者見之謂之仁。』未審和尚見之如何？」師云：「居士今日從那裏來？」士云：「無立地處。」師云：「畢竟居士向那裏安身？」士沈思久之。師云：「學來底，且坐。」士又曰：「如何是聖人心？」師云：「九月菊華。」黃士云：「弟子未到秋底田地。」師笑云：「又在秋邊著腳。」士作禮而去。一僧入室云：「求和尚解制。」師曰：「金鍼入眼事如何？」僧無語，師打出。一僧云：「趙州狗子被某甲打死了也。」師云：「趙州道：『我在青州做領布衫重七斤。』是甚麼意？」僧擬議，師云：「打死狗子，還我骨頭來。」僧無語",
+            "Curated": true,
+            "MasterName": null,
+            "ActorAttribution": {
+              "Status": "reviewed-unnamed",
+              "Kind": "full-case exact-turn adjudication",
+              "ActorLabel": "an unnamed layman",
+              "ActorRole": "questioner",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "an unnamed layman is the reviewed actor of the exact 仁者見之謂之仁-bearing layer.",
+              "ReviewedBy": "R94 Lane A final authority",
+              "ReviewedUtc": "2026-07-30T17:45:00Z"
+            },
+            "ContextMasters": [
+              {
+                "MasterName": "Sanyi Mingyu",
+                "Roles": [
+                  "commentator"
+                ]
+              }
+            ],
+            "AttributionNote": "Source record (J/J27/J27nB189.xml). Recorded Sayings of Chan Master Sanyi Yu. an unnamed layman is the reviewed actor of the headword-bearing layer. Sanyi Mingyu is the reviewed outer quoter or commentator.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "仁者見之謂之仁",
+              "GrammaticalSubject": "an unnamed layman",
+              "SpeechFrame": "The final R94 authority assigns the exact 仁者見之謂之仁-bearing layer to an unnamed layman.",
+              "FullCaseDecision": "an unnamed layman owns the retained layer; adjacent and outer voices are excluded."
+            }
+          }
+        ],
+        "SourceTexts": [
+          "J/J25/J25nB171.xml",
+          "J/J26/J26nB187.xml",
+          "J/J27/J27nB189.xml"
+        ],
+        "RelatedMasters": [
+          "Dahui Zonggao",
+          "Tianyin Yuanxiu",
+          "Tian'an Sheng",
+          "Sanyi Mingyu"
+        ],
+        "RelatedTerms": [],
+        "ClaimAnchors": [],
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "The first half of the paired saying: the humane see it and call it humane, while the wise call it wise.",
+          "EvidenceBody": [
+            "Dahui Zonggao quotes the formula in a case later appraised by Tianyin Yuanxiu; Tian'an Sheng applies it after his own hall remarks; an unnamed layman puts its paired wording to Sanyi Mingyu as a question."
+          ]
+        },
+        "DraftEvidence": {
+          "OpeningClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3"
+          ],
+          "EvidenceBodyClaimKeys": [
+            [
+              "o1",
+              "o2",
+              "o3"
+            ]
+          ],
+          "LiteralGraphFloor": "the humane see it and call it humane",
+          "LexicalJob": "The first half of the paired saying: the humane see it and call it humane, while the wise call it wise.",
+          "DeploymentClasses": [
+            "humane:dahui-quotation-tianyin-appraisal",
+            "humane:tianan-hall-use",
+            "humane:sanyi-lay-question"
+          ],
+          "HighValueEvidenceLedger": [
+            {
+              "Disposition": "keep",
+              "Finding": "humane:dahui-quotation-tianyin-appraisal",
+              "Reason": "Final reviewed R94 family."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "humane:tianan-hall-use",
+              "Reason": "Final reviewed R94 family."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "humane:sanyi-lay-question",
+              "Reason": "Final reviewed R94 family."
+            }
+          ],
+          "ZenBend": "Dahui Zonggao quotes the formula in a case later appraised by Tianyin Yuanxiu; Tian'an Sheng applies it after his own hall remarks; an unnamed layman puts its paired wording to Sanyi Mingyu as a question.",
+          "CounterexampleOrLimit": "The inherited source of the maxim is not treated as another Chan deployment family.",
+          "DifferentThingTest": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "the humane see it and call it humane"
+            ],
+            "Reason": "one corpus-wide sense"
+          },
+          "AliasRationale": "Alternates preserve the reviewed English wording without adding another sense.",
+          "ModifierControls": [
+            {
+              "Term": "仁者見之謂之仁",
+              "Finding": "The inherited source of the maxim is not treated as another Chan deployment family."
+            }
+          ],
+          "FamilyControls": [
+            {
+              "Term": "仁者見之謂之仁",
+              "Finding": "The inherited source of the maxim is not treated as another Chan deployment family."
+            }
+          ],
+          "IndependentWorkIds": [
+            "work:J25nB171",
+            "work:J26nB187",
+            "work:J27nB189"
+          ],
+          "SourceAuthorityRows": [
+            {
+              "EvidenceKey": "o1",
+              "RelPath": "J/J25/J25nB171.xml",
+              "WorkId": "work:J25nB171",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "The registered title identifies a named master’s sayings, discourse, question-and-answer, session, or comparable speech record; exact embedded quotations still require passage-level actor review.",
+              "WitnessFamilyId": "humane:dahui-quotation-tianyin-appraisal",
+              "DeploymentRole": "active-quotation"
+            },
+            {
+              "EvidenceKey": "o2",
+              "RelPath": "J/J26/J26nB187.xml",
+              "WorkId": "work:J26nB187",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "The registered title identifies a named master’s sayings, discourse, question-and-answer, session, or comparable speech record; exact embedded quotations still require passage-level actor review.",
+              "WitnessFamilyId": "humane:tianan-hall-use",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o3",
+              "RelPath": "J/J27/J27nB189.xml",
+              "WorkId": "work:J27nB189",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "The registered title identifies a named master’s sayings, discourse, question-and-answer, session, or comparable speech record; exact embedded quotations still require passage-level actor review.",
+              "WitnessFamilyId": "humane:sanyi-lay-question",
+              "DeploymentRole": "original-use"
+            }
+          ],
+          "DepthHarvestReceipt": {
+            "Complete": true,
+            "ReviewedExactHitCount": 64,
+            "AvailableSourceFiles": 3,
+            "SearchedDeploymentClasses": [
+              "Tier 1 authored",
+              "Tier 2 recorded sayings",
+              "Tier 3 last-resort"
+            ],
+            "OmissionAudit": [
+              "C/C077/C077n1710.xml: reserve-not-needed-for-three-family-floor",
+              "J/J28/J28nB203.xml: reserve-not-needed-for-three-family-floor",
+              "J/J28/J28nB219.xml: reserve-not-needed-for-three-family-floor"
+            ],
+            "AuthorizedFloorException": {
+              "Decision": "FROZEN_CANDIDATE_EXHAUSTION",
+              "AuthorizedBy": "root",
+              "FrozenCandidateExhausted": true,
+              "RetainedIndependentFamilies": 3,
+              "ExcludedReserve": [
+                {
+                  "relPath": "C/C077/C077n1710.xml",
+                  "reason": "reserve-not-needed-for-three-family-floor"
+                },
+                {
+                  "relPath": "J/J28/J28nB203.xml",
+                  "reason": "reserve-not-needed-for-three-family-floor"
+                },
+                {
+                  "relPath": "J/J28/J28nB219.xml",
+                  "reason": "reserve-not-needed-for-three-family-floor"
+                }
+              ]
+            }
+          },
+          "NoHigherWitnessSearchReceipt": "Final Lane A authority selected the strongest frozen three-family set.",
+          "LampExcessJustification": "No lamp is retained."
+        },
+        "DraftAcceptedDerivedFields": {
+          "SourceTexts": [
+            "J/J25/J25nB171.xml",
+            "J/J26/J26nB187.xml",
+            "J/J27/J27nB189.xml"
+          ],
+          "RelatedMasters": [
+            "Dahui Zonggao",
+            "Tianyin Yuanxiu",
+            "Tian'an Sheng",
+            "Sanyi Mingyu"
+          ]
+        }
+      }
+    ]
+  },
+  "FamilyHarvest": {
+    "PolicyVersion": 1,
+    "Scope": "R94 correction2 Lane A mechanical regeneration",
+    "Edges": [],
+    "NegativeReceipt": [
+      {
+        "SourceSenseIndex": 0,
+        "SourceSenseKey": null,
+        "queries": [
+          "仁者見之謂之仁"
+        ],
+        "QueryEvidence": [
+          {
+            "tool": "R94 frozen authority",
+            "query": "仁者見之謂之仁",
+            "hits": 64,
+            "files": 6,
+            "works": 6
+          }
+        ],
+        "CandidateAvailability": {
+          "availableCandidateCount": 0,
+          "exhaustive": true,
+          "method": "final reviewed family ruling"
+        },
+        "SingleCandidateJustification": "No separate public relation was authorized.",
+        "dispositions": [],
+        "reason": "The inherited source of the maxim is not treated as another Chan deployment family."
+      }
+    ],
+    "GraphicVariants": []
+  }
+}

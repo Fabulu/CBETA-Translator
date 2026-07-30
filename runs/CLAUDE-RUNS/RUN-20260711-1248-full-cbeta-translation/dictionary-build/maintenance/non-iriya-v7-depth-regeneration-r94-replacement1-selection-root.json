@@ -1,0 +1,76 @@
+{
+  "schemaVersion": "r94-replacement1-selection.v1",
+  "cohort": "R94-replacement1",
+  "artifactZero": {
+    "path": "maintenance/non-iriya-v7-depth-regeneration-r94-replacement1-timegate-root.json",
+    "sha256": "b365a0b681fbb276b04a3b097762abfd830b4640e01cd59ed95ebd4a1881de1c"
+  },
+  "authoritativeSelector": {
+    "path": "maintenance/last1500-public-depth/final-scope/full-regeneration-selector.json",
+    "sha256": "07a2c8dac36e9b8945195b8d080222fd4be8a795b2d10d1be2807d6302ba0b15",
+    "chunks": [
+      {
+        "path": "maintenance/last1500-public-depth/final-scope/full-regeneration-selector-chunk-0001-0250.json",
+        "sha256": "ae858ed77e4c239a7506bc24611edc6015475adc20c0745a586b5e6eb60ca8bd"
+      },
+      {
+        "path": "maintenance/last1500-public-depth/final-scope/full-regeneration-selector-chunk-0251-0500.json",
+        "sha256": "6caec138ac877916a81524331f95f95bef755b15842eae89a42677d1378d935a"
+      },
+      {
+        "path": "maintenance/last1500-public-depth/final-scope/full-regeneration-selector-chunk-0501-0750.json",
+        "sha256": "4472e7f10955d2bbb32685886781baf796531b930799b7d91f9fecb78fb46744"
+      },
+      {
+        "path": "maintenance/last1500-public-depth/final-scope/full-regeneration-selector-chunk-0751-1000.json",
+        "sha256": "099b9fe2267a4f483052d4d550f271b3375f985ae7f18f10d3e3892b9c6dd4c3"
+      },
+      {
+        "path": "maintenance/last1500-public-depth/final-scope/full-regeneration-selector-chunk-1001-1025.json",
+        "sha256": "8699a4765954648939af80885f11308b2e8d5067f5d89bf5ecf3a31145f0bdd5"
+      }
+    ]
+  },
+  "priorResolvedUnion": {
+    "path": "maintenance/non-iriya-v7-depth-regeneration-r93-resolved-union-root.json",
+    "sha256": "bb80091e2a622d7385d5ce2d62ec920f0ca0ffa9e1d5c1e7a7a736de0ac9c1a4",
+    "uniqueIdCount": 221
+  },
+  "originalR94Selection": {
+    "path": "maintenance/non-iriya-v7-depth-regeneration-r94-selection-root.json",
+    "sha256": "36177abe16d3218a4da284e48960786f16e35df0ce542b6e3ae7a8bfe74b70ca",
+    "excludedIdCount": 30
+  },
+  "selectionRule": "first authoritative selector row absent from exact R93 union and all 30 original R94 IDs",
+  "replacementFor": {
+    "id": "t_2738431562e6",
+    "term": "無字"
+  },
+  "selected": {
+    "batchOrdinal": 30,
+    "identityId": "t_292ac4c33b4f",
+    "term": "戒",
+    "selectorRequiredFloor": 10,
+    "minimumIndependentProofFamilies": 3,
+    "corpusHits": 10266,
+    "corpusFiles": 439,
+    "corpusWorks": 433
+  },
+  "collisionCount": 0,
+  "mechanicalPlausibilityCount": 433,
+  "viabilityDeadlineSeconds": 240,
+  "elapsedSeconds": 30.396507501602173,
+  "withinViabilityDeadline": true,
+  "sourcePolicy": {
+    "priority": [
+      "Tier 1 authored",
+      "Tier 2 recorded sayings",
+      "Tier 3 lamps"
+    ],
+    "lampRule": "last-resort only; no padding",
+    "minimumIndependentProofFamilies": 3
+  },
+  "sourceExtractionPerformed": false,
+  "publicMutationPerformed": false,
+  "hardPass": true
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "generic-bounded-closure.v1",
+  "cohort": "R94-correction2",
+  "manifestSha256": "a490b854df9a2683c129c4e8a7eab8ca7795519640c85d91ebb5875259ae8efe",
+  "preclosureSha256": "ef92f28ec643dc969bd0ba8645a4d6cd75bb8d3a1fde313e47240487a3a1e2b8",
+  "bindings": {
+    "artifactZero": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r94-correction2-artifact-zero-root.json",
+      "sha256": "e13d618e72be38935cb786e8669a6905376967efd9cc7b0e6e98d587492f76e5"
+    },
+    "authority": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r94-final30-authority-review-manifest-root.json",
+      "sha256": "67dab1e226ee1f68f563300aea54c43f769660f57a4ca0d90d18b0a28ee48ee2"
+    },
+    "failureReview": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r94-correction1-whole-batch-independent-review-a.json",
+      "sha256": "220bfc5fdc4e0a9b495edb258cff10b9bdccb218dfcd196fc8679d677a088bcb"
+    },
+    "laneA": {
+      "path": "maintenance/r94-correction2-lane-a-stage-manifest.json",
+      "sha256": "de79acad198753f789789644e067ee63019495479bfbad3ce143909f4e1a0a18"
+    },
+    "laneB": {
+      "path": "maintenance/r94-lane-b-correction3-input-assembly-manifest.json",
+      "sha256": "99fdafb16ae71e1a900853cac429a347fdd01034c5f332b33f26bb997d3edd67"
+    },
+    "laneC": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r94-correction2-lane-c-input-manifest-root.json",
+      "sha256": "b8e956744fb3e7395abd85bdb2b40fba134a9be290162193fd53a0b335db8d76"
+    },
+    "compileInstall": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r94-correction2-compile-install-root.json",
+      "sha256": "b94574c0711cad7a603cdeb9f6d7dabaa46d5df3fc269dde8c08dc809968d32a"
+    }
+  },
+  "entryCount": 30,
+  "elapsedSeconds": 4365.515473365784,
+  "deadlineSeconds": 5380,
+  "withinDeadline": true,
+  "hardPass": true,
+  "errors": [],
+  "publicMutation": false,
+  "rosterMutation": false,
+  "releaseAuthorized": false,
+  "closedUtc": "2026-07-30T17:15:00.626889+00:00"
+}

@@ -1,0 +1,167 @@
+{
+  "schemaVersion": "r94-cross-review.v1",
+  "cohort": "R94",
+  "reviewedLane": "C",
+  "reviewerLane": "B",
+  "sourceFirst": true,
+  "authorClosure": {
+    "path": "maintenance/r94-lane-c-author-closure.json",
+    "sha256": "e91fc3a1dce4bbcf206c24078a55d18027645a65f79afae6f6b50bb43c82ddf7"
+  },
+  "frozenBindings": {
+    "extractionSha256": "7204625ec34769127033c57d574883e2511c1b71b2a939430fc12bc4cc1b5d67",
+    "skeletonSha256": "1f0ea2b831db20e8b4e68a550d309aaf1f6f89cb3b601002f82887fc2c63f136",
+    "selectionSha256": "36177abe16d3218a4da284e48960786f16e35df0ce542b6e3ae7a8bfe74b70ca"
+  },
+  "scope": {
+    "entries": 10,
+    "retainedOccurrencesReviewed": 30,
+    "productsPresent": 0,
+    "worksheetsPresent": 0,
+    "worksheetProductHashVerdict": "not-applicable-author-closure-explicitly-records-no-products",
+    "publicOrInstallEdits": false
+  },
+  "floorAdjudication": {
+    "governedFloor": 3,
+    "verdict": "accept-governed-floor-without-padding",
+    "legacyHigherFloorAudit": "The legacy raw-hit floors do not control this frozen R94 source-tier regeneration. Three genuinely independent deployment families remain mandatory. A failed or contaminated retained row must be replaced from the frozen reserve or the entry must fail; no lamp, recension, or raw-hit padding is permitted."
+  },
+  "entries": [
+    {
+      "id": "t_26c4d202ba53",
+      "term": "奪食驅耕",
+      "meaningVerdict": "pass",
+      "entryVerdict": "fail",
+      "coordinates": [
+        {"row": 1, "verdict": "fail", "actor": "authorial institutional narration", "voiceLayer": "compiler-narration", "tier": 1, "family": "training-manual exposition", "reason": "X63n1259 is explicitly a prescriptive Chan training manual. The corpus boundary excludes meditation/training manuals even when the registry supplies Tier 1. This row is contamination and cannot count toward the three-family floor."},
+        {"row": 2, "verdict": "pass", "actor": "Gulin Qingmao", "voiceLayer": "transmitted-verse", "tier": 1, "family": "Gulin authored verse", "reason": "The headword is in Gulin's complete authored verse and supports the severe farming image."},
+        {"row": 3, "verdict": "pass-with-actor-resolution", "actor": "Juelang Daosheng", "voiceLayer": "direct-turn", "tier": 2, "family": "Juelang first-person appraisal", "reason": "The first-person 予 says 種田博飯則不無，奪食驅耕猶未在 to his old teacher. Juelang, not the addressed elder, owns the headword."}
+      ],
+      "correction": "Drop row 1 and adjudicate one frozen reserve row as a genuinely independent Tier 1/2 family. Retain the sense and target if the replacement agrees. Do not use a lamp."
+    },
+    {
+      "id": "t_26c9a5cb0fe3",
+      "term": "和泥合水",
+      "meaningVerdict": "pass",
+      "entryVerdict": "pass-with-finite-actor-delta",
+      "coordinates": [
+        {"row": 1, "verdict": "pass", "actor": "Xuefeng Kong", "voiceLayer": "transmitted-verse", "tier": 1, "family": "Xuefeng authored verse", "reason": "The author describes mixing mud and water while entering the beings' world."},
+        {"row": 2, "verdict": "pass", "actor": "Yuanwu Keqin", "voiceLayer": "direct-turn", "tier": 1, "family": "Yuanwu authored instruction", "reason": "Yuanwu uses the phrase in his own contrastive question."},
+        {"row": 3, "verdict": "pass-with-actor-resolution", "actor": "Huxiu Shaolong", "voiceLayer": "quoted-original", "tier": 1, "family": "Huxiu great-road exchange actively appraised by Xisou Shaotan", "reason": "The embedded answer 曰和泥合水 belongs to Huxiu Shaolong. Xisou is later biographer/commentator and must remain contextual."}
+      ],
+      "correction": "Compile row 3 with Huxiu Shaolong as exact quoted-original actor and Xisou Shaotan as commentator/later quoter."
+    },
+    {
+      "id": "t_26d1f4bf3890",
+      "term": "殺活",
+      "meaningVerdict": "pass",
+      "entryVerdict": "fail",
+      "coordinates": [
+        {"row": 1, "verdict": "pass", "actor": "Xuefeng Kong", "voiceLayer": "transmitted-verse", "tier": 1, "family": "Xuefeng authored verse", "reason": "應機殺活 is the author's paired capacity within the verse."},
+        {"row": 2, "verdict": "fail-as-described-pass-as-different-family", "actor": "Juelang Daosheng", "voiceLayer": "compiler-narration", "tier": 1, "family": "Juelang's preface appraisal of Micang", "reason": "The headword occurs in Juelang's preface sentence 刀刀見血，殺活有神. It is not Micang Daokai's authored use. It may count as Juelang's independent authored appraisal only after the actor and family description are corrected."},
+        {"row": 4, "verdict": "fail", "actor": "training-manual authorial narration", "voiceLayer": "compiler-narration", "tier": 1, "family": "training-manual exposition", "reason": "X63n1259 is an excluded prescriptive training manual and cannot serve as Zen-record evidence."}
+      ],
+      "correction": "Correct row 2 to Juelang Daosheng's preface family; drop row 4; select one non-contaminated frozen reserve family. Do not use a lamp."
+    },
+    {
+      "id": "t_2738431562e6",
+      "term": "無字",
+      "meaningVerdict": "fail-retained-set-does-not-support-claimed-uniform-sense",
+      "entryVerdict": "fail",
+      "coordinates": [
+        {"row": 1, "verdict": "fail-exact-unit", "actor": "Juelang Daosheng as biographical narrator", "voiceLayer": "compiler-narration", "tier": 1, "family": "biography of Liaoran", "reason": "The exact span is embedded in 趙州無字話, a longer lexical compound. It cannot count as an exact standalone 無字 occurrence or independent depth family."},
+        {"row": 5, "verdict": "fail-wrong-sense", "actor": "anonymous quoted Sixth Patriarch within the treatise", "voiceLayer": "quoted-original", "tier": 1, "family": "Chan Household's Tortoise Mirror quotation", "reason": "無名無字 means 'without name and without writing/characters.' It is explicitly the unrelated adjectival sense the closure says was excluded."},
+        {"row": 6, "verdict": "fail-contamination", "actor": "Boshan admonition author", "voiceLayer": "direct-turn", "tier": 1, "family": "prescriptive investigation manual", "reason": "看無字 does identify the lexical item 'no', but X63n1257 is an excluded prescriptive Chan-admonition/training text and cannot control a Zen-record entry."}
+      ],
+      "correction": "Re-adjudicate the frozen reserve from scratch for exact standalone lexical-object uses. Longer 無字話 compounds are family evidence only; 無名無字 belongs to a distinct sense; prescriptive training/manual sources are quarantined. If three genuine non-contaminated families do not survive, the entry cannot pass this R94 floor."
+    },
+    {
+      "id": "t_27e66043b271",
+      "term": "聲前一句",
+      "meaningVerdict": "pass",
+      "entryVerdict": "pass-with-family-description-delta",
+      "coordinates": [
+        {"row": 1, "verdict": "pass", "actor": "Foguo Weize", "voiceLayer": "direct-turn", "tier": 2, "family": "Foguo hall discourse", "reason": "The headword appears in the master's declaration 祗有聲前一句, not in a question-and-answer as the closure states."},
+        {"row": 2, "verdict": "pass", "actor": "Miyun Yuanwu", "voiceLayer": "direct-turn", "tier": 2, "family": "Miyun hall discourse", "reason": "Miyun directly predicates that the phrase before sound has no place to breathe."},
+        {"row": 3, "verdict": "pass", "actor": "Tianyin Yuanxiu", "voiceLayer": "direct-turn", "tier": 2, "family": "Tianyin hall discourse", "reason": "Tianyin directly says the phrase before sound is not transmitted by the thousand sages."}
+      ],
+      "correction": "Change row 1's family characterization from direct Q&A to Foguo's direct hall declaration; preserve the three independent Tier-2 families."
+    },
+    {
+      "id": "t_280e96eb88e2",
+      "term": "狗䑛熱油鐺",
+      "meaningVerdict": "pass-with-prose-narrowing",
+      "entryVerdict": "pass-with-finite-deltas",
+      "coordinates": [
+        {"row": 1, "verdict": "pass", "actor": "Xisou Shaotan", "voiceLayer": "transmitted-verse", "tier": 1, "family": "Xisou authored praise", "reason": "Xisou directly applies the simile while appraising inherited materials."},
+        {"row": 2, "verdict": "pass-with-actor-resolution", "actor": "Gaofeng Yuanmiao", "voiceLayer": "quoted-original", "tier": 2, "family": "Gaofeng-Wanshan exchange actively discussed by Yulin Tongxiu", "reason": "The headword is Gaofeng's answer to Wanshan. Yulin is later commentator, not the exact actor."},
+        {"row": 4, "verdict": "pass", "actor": "Huaihai Yuanzhao", "voiceLayer": "direct-turn", "tier": 2, "family": "Yuanzhao hall discourse", "reason": "Yuanzhao directly uses the simile in his own description."}
+      ],
+      "correction": "Bind row 2 to Gaofeng Yuanmiao with Yulin as commentator. Narrow the opening's unanchored physical claim 'cannot safely enter/get a mouthful' to the directly observable hot-oil licking image unless a retained passage states that consequence."
+    },
+    {
+      "id": "t_287ed053d37e",
+      "term": "就路還家",
+      "meaningVerdict": "pass",
+      "entryVerdict": "pass",
+      "coordinates": [
+        {"row": 1, "verdict": "pass", "actor": "Yunmen Mailanghuai", "voiceLayer": "direct-turn", "tier": 1, "family": "Yunmen Mailanghuai authored challenge", "reason": "The author explicitly uses the journey phrase for an available return. The work is a Chan-school challenge text, not a generic meditation manual."},
+        {"row": 2, "verdict": "pass", "actor": "Yulin Tongxiu", "voiceLayer": "direct-turn", "tier": 2, "family": "Yulin evening instruction", "reason": "Yulin directly contrasts hearsay with taking the road home."},
+        {"row": 3, "verdict": "pass", "actor": "Juelang Daosheng", "voiceLayer": "direct-turn", "tier": 2, "family": "Juelang hall discourse", "reason": "Juelang directly says everyone can take the road home."}
+      ],
+      "correction": "None beyond compiling the exact actors already resolved here."
+    },
+    {
+      "id": "t_289b7e25b47c",
+      "term": "高著眼看",
+      "meaningVerdict": "pass",
+      "entryVerdict": "pass",
+      "coordinates": [
+        {"row": 1, "verdict": "pass", "actor": "Tianyin Yuanxiu", "voiceLayer": "direct-turn", "tier": 2, "family": "Tianyin direct admonition", "reason": "The master directly tells the assembly to raise their eye and look."},
+        {"row": 2, "verdict": "pass", "actor": "Feiyin Tongrong", "voiceLayer": "direct-turn", "tier": 2, "family": "Feiyin direct answer", "reason": "Feiyin answers the question with the imperative."},
+        {"row": 3, "verdict": "pass", "actor": "Shiqi Tongyun", "voiceLayer": "direct-turn", "tier": 2, "family": "Shiqi direct admonition", "reason": "Shiqi casts down the staff and directly commands the assembly to look."}
+      ],
+      "correction": "None."
+    },
+    {
+      "id": "t_28c0245cd261",
+      "term": "是吾曾轉法輪耶",
+      "meaningVerdict": "pass",
+      "entryVerdict": "pass-with-exact-actor-deltas",
+      "coordinates": [
+        {"row": 1, "verdict": "pass", "actor": "Shakyamuni", "voiceLayer": "quoted-original", "tier": 2, "family": "Yulin active raising and comment", "reason": "Shakyamuni owns the quoted sentence; Yulin immediately comments and creates the later deployment."},
+        {"row": 3, "verdict": "pass", "actor": "Shakyamuni", "voiceLayer": "quoted-original", "tier": 2, "family": "Baichi Xingyuan active verse", "reason": "Baichi raises the complete exchange and adds an authored verse."},
+        {"row": 4, "verdict": "pass", "actor": "Shakyamuni", "voiceLayer": "quoted-original", "tier": 2, "family": "Qiran Zhixian active intervention", "reason": "Qiran raises the sentence, proposes a blow and verdict, and thus actively redeploys it."}
+      ],
+      "correction": "All public occurrences must keep Shakyamuni as exact quoted-original actor; local masters belong in commentator/later-raiser context. Use the roster-exact canonical label if present, otherwise the governed identified-unlinked-master branch."
+    },
+    {
+      "id": "t_28fac5e98308",
+      "term": "問話",
+      "meaningVerdict": "pass-with-target-preference-review",
+      "entryVerdict": "pass-with-exact-voice-deltas",
+      "coordinates": [
+        {"row": 2, "verdict": "pass", "actor": "Deshan Xuanjian", "voiceLayer": "quoted-original", "tier": 1, "family": "Dawei Xingxiu active appraisal of Deshan's case", "reason": "問話者 occurs in Deshan's quoted proclamation. Dawei is the active later appraiser."},
+        {"row": 3, "verdict": "pass", "actor": "Ruilu master", "voiceLayer": "quoted-original", "tier": 1, "family": "Boshan authorial evaluation of Ruilu's saying", "reason": "The source quotes 瑞鹿禪師云 and then adds its own evaluation. Resolve the roster-exact Ruilu identity or use identified-unlinked-master; do not assign the author as quoted utterer."},
+        {"row": 4, "verdict": "pass", "actor": "Xisou Shaotan as biographical narrator", "voiceLayer": "compiler-narration", "tier": 1, "family": "Xisou authored Linji biography", "reason": "勉令問話 and 問話僧 are narrator-governed biographical descriptions. Linji and the head monk are contextual case figures, not utterers of this span."}
+      ],
+      "correction": "Represent rows 2-4 with their distinct voice layers. Review whether corpus-wide PreferredTarget should be the noun-compatible 'questioning' rather than only the finite verb 'ask a question'; the explanation correctly preserves both grammatical packages."
+    }
+  ],
+  "summary": {
+    "hardPass": false,
+    "releaseAuthorized": false,
+    "entryPass": 2,
+    "entryPassWithFiniteDelta": 5,
+    "entryFail": 3,
+    "failedIds": ["t_26c4d202ba53", "t_26d1f4bf3890", "t_2738431562e6"],
+    "finiteCorrectionIds": ["t_26c9a5cb0fe3", "t_27e66043b271", "t_280e96eb88e2", "t_28c0245cd261", "t_28fac5e98308"],
+    "tier3Retained": 0,
+    "lampPaddingAuthorized": false,
+    "semanticBlockers": [
+      "X63n1259 training-manual contamination in 奪食驅耕 and 殺活.",
+      "無字 retained rows do not establish three exact, non-contaminated lexical-object families: one is a longer compound, one is the opposite sense, and one is a prescriptive manual.",
+      "Several embedded quotations require exact quoted-original actors rather than record owners."
+    ]
+  }
+}

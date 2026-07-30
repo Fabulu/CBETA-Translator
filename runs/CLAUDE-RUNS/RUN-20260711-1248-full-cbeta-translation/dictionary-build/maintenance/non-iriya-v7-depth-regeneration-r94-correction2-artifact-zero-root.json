@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "r94-correction-artifact-zero.v1",
+  "cohort": "R94-correction2",
+  "scope": {
+    "entryCount": 30,
+    "repair": "mechanical-full-product-regeneration-from-final-authority"
+  },
+  "clockPolicy": "inherits-original-r94-clock-no-reset",
+  "correctionDeadlineSeconds": 5380,
+  "bindings": {
+    "timegate": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r94-timegate-root.json",
+      "sha256": "7b2d1313d63de0e48b420129feb89f9688ededd9608a8e5a3e8b70483ff40c41"
+    },
+    "authority": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r94-final30-authority-review-manifest-root.json",
+      "sha256": "67dab1e226ee1f68f563300aea54c43f769660f57a4ca0d90d18b0a28ee48ee2"
+    },
+    "correction1Closure": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r94-correction1-closure-root.json",
+      "sha256": "7ecc01fb56af12d0fc5b89a801ffa41e8464bb01ef3cf23be2f04e162949623c"
+    },
+    "failureReview": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r94-correction1-whole-batch-independent-review-a.json",
+      "sha256": "220bfc5fdc4e0a9b495edb258cff10b9bdccb218dfcd196fc8679d677a088bcb"
+    }
+  },
+  "semanticResearchAuthorized": false,
+  "publicMutationAuthorized": false,
+  "createdUtc": "2026-07-30T17:07:19.014955+00:00"
+}

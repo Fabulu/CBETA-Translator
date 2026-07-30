@@ -1,0 +1,149 @@
+{
+  "schemaVersion": "r94-lane-b-author-closure.v1",
+  "cohort": "R94",
+  "lane": "B",
+  "ordinalRange": [
+    11,
+    20
+  ],
+  "authorComplete": true,
+  "entryCount": 10,
+  "frozenBindings": {
+    "timegate": "7b2d1313d63de0e48b420129feb89f9688ededd9608a8e5a3e8b70483ff40c41",
+    "extraction": "7204625ec34769127033c57d574883e2511c1b71b2a939430fc12bc4cc1b5d67",
+    "skeleton": "1f0ea2b831db20e8b4e68a550d309aaf1f6f89cb3b601002f82887fc2c63f136",
+    "selection": "36177abe16d3218a4da284e48960786f16e35df0ce542b6e3ae7a8bfe74b70ca"
+  },
+  "checks": {
+    "canonicalCompilerAllHardPass": true,
+    "attribution": "c375eba880ed265efc5afc9ba393cb75d9e7e3d63493ecc317c2965ff84a13c1",
+    "workSource": "486c51c341cf8b3cb1bba3575653586ff5b8b56a075f73f237d81c3f73352e04",
+    "semanticTemplates": "b63b8ab36fd53e087dea82a0db287bc6fd110c52dccaba2ad0f5ea629febda32"
+  },
+  "finiteUncertainties": [
+    {
+      "coordinate": "cohort depth accounting",
+      "status": "root-reconciliation-required",
+      "detail": "The frozen R94 selector assigns requiredFloor=3 to every lane-B row, while the legacy raw-hit depth audit recomputes higher historical floors for nine rows. Products preserve the governed three-family author scope; no lamp or parallel-recension padding was added."
+    },
+    {
+      "coordinate": "independent semantic review",
+      "status": "pending",
+      "detail": "Author closure intentionally does not self-review; lane C is the assigned later cross-review."
+    }
+  ],
+  "releaseAuthorized": false,
+  "rows": [
+    {
+      "id": "t_240ea0594a5f",
+      "term": "大休大歇",
+      "entryPath": "fresh-build/r94/lane-b/entries/t_240ea0594a5f/entry.v2.json",
+      "entrySha256": "43ac3f10ad544908a4ca660b6f288b3cc58c4f5c4e48afb88148cdf00f084b7f",
+      "draftPath": "fresh-build/r94/lane-b/entries/t_240ea0594a5f/evidence.draft.json",
+      "draftSha256": "bab9a0a4a223858d4d2030767b72a56648ba2af27c5a7eda1d7610d051478381",
+      "dossierSha256": "de14dfaf883d997268116bf11d8149a8b543cb2efa08e751061069588c8f073d",
+      "compilerHardPass": true,
+      "compilerReportSha256": "cbb4cb4078de715ed43b811cb5b084fcddfcb25a1a71f04fe7708d94db0dfd02"
+    },
+    {
+      "id": "t_2455261d9696",
+      "term": "快便難逢",
+      "entryPath": "fresh-build/r94/lane-b/entries/t_2455261d9696/entry.v2.json",
+      "entrySha256": "7d7d5782c413654dd555359c96b782a98291105f639bdbe08e428a54d4cca7f1",
+      "draftPath": "fresh-build/r94/lane-b/entries/t_2455261d9696/evidence.draft.json",
+      "draftSha256": "6d2721a7de91bc378a81fc4a35fdd4c09e576791bc75f2eea78d1127afb23a99",
+      "dossierSha256": "f200643330c9cddd63021f548685a1a7c614b1e937e7a2e368f3d79d769015ee",
+      "compilerHardPass": true,
+      "compilerReportSha256": "b031a6b201ab73dcf3bb0aeb7fd315912f25a05b90dff589e90d3d7c8972ab1e"
+    },
+    {
+      "id": "t_2488565d7fba",
+      "term": "莫認定盤星",
+      "entryPath": "fresh-build/r94/lane-b/entries/t_2488565d7fba/entry.v2.json",
+      "entrySha256": "c25ef3746a6507d98e7986c8eda33d8ae2248c3a35b051c13acc40e59677e543",
+      "draftPath": "fresh-build/r94/lane-b/entries/t_2488565d7fba/evidence.draft.json",
+      "draftSha256": "891434704abdde483dafb7fece454090f37b636c3a460134d8b98d8fec576336",
+      "dossierSha256": "1ba930a745dc99ef629910c864b4a29fe094675bc23a61e9efcbfe04eacf8d10",
+      "compilerHardPass": true,
+      "compilerReportSha256": "34ff6b7c2c4462a3b4d61d86d7cc2df34d40bda394fb3be0d163d3b1a16b60b2"
+    },
+    {
+      "id": "t_24adbdf51a15",
+      "term": "金佛不度爐",
+      "entryPath": "fresh-build/r94/lane-b/entries/t_24adbdf51a15/entry.v2.json",
+      "entrySha256": "cc3c4dc8b390b67f1c73e4bb5430445b4fd898b9c579fa15d3fbe412091d2082",
+      "draftPath": "fresh-build/r94/lane-b/entries/t_24adbdf51a15/evidence.draft.json",
+      "draftSha256": "f643883de5936fb1fe03a585885ff7813fd1a99c96098eaaa85e4f6653560f00",
+      "dossierSha256": "b6befdfecc682588c2f77ea2a9b053a2560fcb101e31bbd5d606a6a3e6c9ea54",
+      "compilerHardPass": true,
+      "compilerReportSha256": "7fb35120abfce53d111db8ce6be85dcd072f516e82f4d1a1b6a2bb7f65889a72"
+    },
+    {
+      "id": "t_250794fa9636",
+      "term": "野狐",
+      "entryPath": "fresh-build/r94/lane-b/entries/t_250794fa9636/entry.v2.json",
+      "entrySha256": "cdd0f4b38401fbe16fd88198881cf8e0f53692ce87fd407fe30574511838e692",
+      "draftPath": "fresh-build/r94/lane-b/entries/t_250794fa9636/evidence.draft.json",
+      "draftSha256": "91b8f67e5919aa47fa658d552fcb843214a26a5f3e08ffbe577e18d29a80ea9a",
+      "dossierSha256": "93d55969f286736278e0eaf66b032ec725c7962c2c1587b886f04020eaffdf8a",
+      "compilerHardPass": true,
+      "compilerReportSha256": "8302092b77cd9d800b971717ddbb6dd8137ccb7cc9209d775c0fb6dadd9b7af3"
+    },
+    {
+      "id": "t_255626770dcc",
+      "term": "劒甲未施",
+      "entryPath": "fresh-build/r94/lane-b/entries/t_255626770dcc/entry.v2.json",
+      "entrySha256": "6926f884cb4491ee8b96fbe24807b461d66a2aabbba41efa403f82482b77b80b",
+      "draftPath": "fresh-build/r94/lane-b/entries/t_255626770dcc/evidence.draft.json",
+      "draftSha256": "a1638dc8ad52ac017c8445d93c7dcdd5bbe7a50161558e3a009515c2ee7cf116",
+      "dossierSha256": "ce1e229c9b541217624705dc98fc59bd73f6f1cbf9a594ceca939bd49dc1b04d",
+      "compilerHardPass": true,
+      "compilerReportSha256": "c956910b6137ffe4708a72a607893358be068b299824869b1fde6a584f318422"
+    },
+    {
+      "id": "t_25fb43689d5e",
+      "term": "折腳鐺",
+      "entryPath": "fresh-build/r94/lane-b/entries/t_25fb43689d5e/entry.v2.json",
+      "entrySha256": "8d1ad16b1f86b72e92de8e696ae3189172c4880839395caf91b69232423a5e7a",
+      "draftPath": "fresh-build/r94/lane-b/entries/t_25fb43689d5e/evidence.draft.json",
+      "draftSha256": "46ab23357e8c81a4355087024b31e82e06f32463882a149ca6009dfc99e0752d",
+      "dossierSha256": "942bc9e2a3d8630a031060c33fc46ef3da2ab314b70ea6b6723a5a23a7e40156",
+      "compilerHardPass": true,
+      "compilerReportSha256": "da1578a89e3aa12d1424022f8fc866479355939257fe1b4262ce50bf5fc5e4c4"
+    },
+    {
+      "id": "t_26818ad3df57",
+      "term": "盌脫丘",
+      "entryPath": "fresh-build/r94/lane-b/entries/t_26818ad3df57/entry.v2.json",
+      "entrySha256": "9fd366c69ee9be11cbf17afb4168f875444c8463a10f2b025409a71d6fe59a56",
+      "draftPath": "fresh-build/r94/lane-b/entries/t_26818ad3df57/evidence.draft.json",
+      "draftSha256": "f8a87dcfa4f1539e57eeaa4a81e9a1703eb3a8f7764d795e1b45d0f542eb42e6",
+      "dossierSha256": "b179466a7f3de852db4a2e769ebe2ea6dad67374ab1499ddbc8dcd57443edd16",
+      "compilerHardPass": true,
+      "compilerReportSha256": "7682503058325f536b1d6d47d2611214cf65faba76328ae7b71f8fbbd096af06"
+    },
+    {
+      "id": "t_2684c756a929",
+      "term": "肘後懸符",
+      "entryPath": "fresh-build/r94/lane-b/entries/t_2684c756a929/entry.v2.json",
+      "entrySha256": "973d53e1b08825ca75285cbfec01d6f1dcc0088e2a6554fd399a53a85de5fcb1",
+      "draftPath": "fresh-build/r94/lane-b/entries/t_2684c756a929/evidence.draft.json",
+      "draftSha256": "2bc83a40f28f04a2c10b4efd9680e1af6c77db5390995ce1b982051f93dbfadb",
+      "dossierSha256": "f8a17ed6068d0005f5e03496bb792f0b6f554044e08fe860f0eb3cc5103d9769",
+      "compilerHardPass": true,
+      "compilerReportSha256": "da50fc74fcee3064babbde9e5b7bc565dbca9fedcf27344f954703414841ee8b"
+    },
+    {
+      "id": "t_26a41c6b0def",
+      "term": "熱則乘凉",
+      "entryPath": "fresh-build/r94/lane-b/entries/t_26a41c6b0def/entry.v2.json",
+      "entrySha256": "93dd022d552a2bab200826aba401fbf0826d609a852a972d44b388fd257cc73f",
+      "draftPath": "fresh-build/r94/lane-b/entries/t_26a41c6b0def/evidence.draft.json",
+      "draftSha256": "a68a5449431aeee31a7b3f1acf7572620b0ec83aa7567596b0cbbb16332f5c9e",
+      "dossierSha256": "b669add716f9723d429dd789a7037dc0e48427ffd3aee8d90074f50b08f7863b",
+      "compilerHardPass": true,
+      "compilerReportSha256": "bf9e3b0e8fd76b6bceebb244b46bc1a7cba129c3279945fa07ecaba6f1afbbde"
+    }
+  ],
+  "writtenUtc": "2026-07-30T16:19:33.845789+00:00"
+}

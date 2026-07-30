@@ -1,0 +1,215 @@
+{
+  "schemaVersion": "r94-lane-correction-closure.v1",
+  "cohort": "R94",
+  "lane": "B",
+  "correction": 2,
+  "reviewBinding": {
+    "path": "maintenance/r94-lane-b-correction1-rereview-by-a.json",
+    "sha256": "9332572fb7d10a57eb3981ba757667d8c992c6172bf449667592c25c4de9bcfd"
+  },
+  "governedFloor": 3,
+  "tier3Retained": 0,
+  "lampPaddingUsed": false,
+  "finiteDeltaDisposition": [
+    {
+      "id": "t_250794fa9636",
+      "coordinates": [
+        "Explanation",
+        "SearchAliases"
+      ],
+      "disposition": "removed-tainted-breath-and-fox-spirit-residuals-and-named-Heshan"
+    },
+    {
+      "id": "t_250794fa9636",
+      "coordinates": [
+        "o2",
+        "o3",
+        "actor-voice"
+      ],
+      "disposition": "typed-Xixin-as-verse-author-and-Heshan-as-authored-invitation-writer"
+    },
+    {
+      "id": "t_255626770dcc",
+      "coordinates": [
+        "o1",
+        "deployment",
+        "context-roles"
+      ],
+      "disposition": "typed-Tongan-as-passive-quoted-original-and-Xisou-only-as-record-owner-later-quoter-compiler"
+    },
+    {
+      "id": "t_25fb43689d5e",
+      "coordinates": [
+        "o2",
+        "o3",
+        "Explanation"
+      ],
+      "disposition": "typed-Juelang-and-Shiqi-as-verse-authors-and-described-lineage-praise-and-send-off-poem"
+    }
+  ],
+  "deltaCountApplied": 4,
+  "changedIds": [
+    "t_250794fa9636",
+    "t_255626770dcc",
+    "t_25fb43689d5e"
+  ],
+  "rows": [
+    {
+      "id": "t_240ea0594a5f",
+      "term": "大休大歇",
+      "changed": false,
+      "oldEntrySha256": "4d999d9f765df7438809ea45137fcb34ebf48ade8201b8e2d7e39cb8eb060333",
+      "newEntrySha256": "4d999d9f765df7438809ea45137fcb34ebf48ade8201b8e2d7e39cb8eb060333",
+      "oldDraftSha256": "53b4f55c00b59bbd264735f7db800d8eb85060ee9f3dc321759d87ac463ea3af",
+      "newDraftSha256": "53b4f55c00b59bbd264735f7db800d8eb85060ee9f3dc321759d87ac463ea3af",
+      "oldDossierSha256": "fa3b0aa1721d942ef8320cafa936834062e30ad2dafbeea7e3e5f1edcb4e55fd",
+      "newDossierSha256": "fa3b0aa1721d942ef8320cafa936834062e30ad2dafbeea7e3e5f1edcb4e55fd",
+      "compileReportSha256": "3f396bd9102eafaaa9d3452a6fe9a066813c415a96bfe363ea996436e5c8e01f"
+    },
+    {
+      "id": "t_2455261d9696",
+      "term": "快便難逢",
+      "changed": false,
+      "oldEntrySha256": "7d7d5782c413654dd555359c96b782a98291105f639bdbe08e428a54d4cca7f1",
+      "newEntrySha256": "7d7d5782c413654dd555359c96b782a98291105f639bdbe08e428a54d4cca7f1",
+      "oldDraftSha256": "3ba2c08c3729c17fdfc5a8833954574e3dac4a9e5dd78ffefef25a5dd7162375",
+      "newDraftSha256": "3ba2c08c3729c17fdfc5a8833954574e3dac4a9e5dd78ffefef25a5dd7162375",
+      "oldDossierSha256": "d3daa20361d3edd5379d469e52aec883b08362d6672414e72e2dd6250e1758d4",
+      "newDossierSha256": "d3daa20361d3edd5379d469e52aec883b08362d6672414e72e2dd6250e1758d4",
+      "compileReportSha256": "b8e1c34b66df7ddaae1a6125abf02d49b3a53a773c19be167d437228fd0db775"
+    },
+    {
+      "id": "t_2488565d7fba",
+      "term": "莫認定盤星",
+      "changed": false,
+      "oldEntrySha256": "f747143f4692d2096c1bba01ba277c57a1f1580d0cadda0a60e19ea28f3840aa",
+      "newEntrySha256": "f747143f4692d2096c1bba01ba277c57a1f1580d0cadda0a60e19ea28f3840aa",
+      "oldDraftSha256": "aa240c897028a4207ccd28944c6b2f4bb9c1c4c95ede26f02e5d8228b60175bb",
+      "newDraftSha256": "aa240c897028a4207ccd28944c6b2f4bb9c1c4c95ede26f02e5d8228b60175bb",
+      "oldDossierSha256": "27ce0ba773f529815dee01385311ee9489ebd05fdc75ec8d32098bbf804d1cfb",
+      "newDossierSha256": "27ce0ba773f529815dee01385311ee9489ebd05fdc75ec8d32098bbf804d1cfb",
+      "compileReportSha256": "0c9b66b6cc2c5ab659c0945f92f44ad581627c720443638ae85bc22c892dd11c"
+    },
+    {
+      "id": "t_24adbdf51a15",
+      "term": "金佛不度爐",
+      "changed": false,
+      "oldEntrySha256": "cc3c4dc8b390b67f1c73e4bb5430445b4fd898b9c579fa15d3fbe412091d2082",
+      "newEntrySha256": "cc3c4dc8b390b67f1c73e4bb5430445b4fd898b9c579fa15d3fbe412091d2082",
+      "oldDraftSha256": "5f9c7b5437a20e9eb76b95f17579ccdf56eb67b787951b4769cf0cb3586565df",
+      "newDraftSha256": "5f9c7b5437a20e9eb76b95f17579ccdf56eb67b787951b4769cf0cb3586565df",
+      "oldDossierSha256": "6c9c3380a87a618f1adcc0294f7bdbf45dcc8ac38c4be4aa7f80715ce8c65232",
+      "newDossierSha256": "6c9c3380a87a618f1adcc0294f7bdbf45dcc8ac38c4be4aa7f80715ce8c65232",
+      "compileReportSha256": "69f7ff5b4fb661a72da91fdecda9291eaa15d25e9026e0f1bfcea2c6505380ae"
+    },
+    {
+      "id": "t_250794fa9636",
+      "term": "野狐",
+      "changed": true,
+      "oldEntrySha256": "a6fd32cf5c759522d658f7e371b175adfb2f5bab23476d84856747e710946f4c",
+      "newEntrySha256": "26ac84a9f3fee32c6f552116e292b5cf2f9801d0e519694e5499b4a3a1b48be1",
+      "oldDraftSha256": "2a8b7e2881e62b642e3bb2cf0486edbc6a7204edf5da55805e935f5d648d3d0d",
+      "newDraftSha256": "1d8ded6ce434ac01d9299e4bb8aeb4ca40bb636f66b039f64a2c467fe496f7ea",
+      "oldDossierSha256": "f74520cfd8960e6680ba8a4e953c6614981a00ca10c23cf7fda278d2743eb499",
+      "newDossierSha256": "847da07cb93fe42c6d350a31807a7f7db0f0fcfde28713f50957ad06e166c758",
+      "compileReportSha256": "835b351a77e50b65f25e977e428670fe581413d8fa0d64c3aefdfc2e36a95527"
+    },
+    {
+      "id": "t_255626770dcc",
+      "term": "劒甲未施",
+      "changed": true,
+      "oldEntrySha256": "b46349100137504496a3f2ad572f542fe69baaf221d00d92a435931cd8ad6844",
+      "newEntrySha256": "68b038dcb9ff4d9f1660ef4052f518865978b3d36a4efdab15428351ff609410",
+      "oldDraftSha256": "ce322d7fe8acbba5680c07e7c64aaf15680e805c88d1ab66ab93f251155646cf",
+      "newDraftSha256": "a65386bfa9168f89548d38c6f6aa13e7865a0c6cfab41bdb87088366b9715964",
+      "oldDossierSha256": "4758e8529ab3c7317baaedef40185d7d510d141ee53189bc6e4da36bcaf76f3b",
+      "newDossierSha256": "114f47e02dc1f54404976d6f05759012d386680b1bf35332d2f99c7eac860b8b",
+      "compileReportSha256": "f386f196de5937b6d537ac7e787cefde66eee6b47263ef954296858dea7a484f"
+    },
+    {
+      "id": "t_25fb43689d5e",
+      "term": "折腳鐺",
+      "changed": true,
+      "oldEntrySha256": "a690387cf391c1fee69809bc36f4909e4d252e7465f94b1c32ad418785ee749e",
+      "newEntrySha256": "20b3937c75e25ab9f28253c15ed8474ca6a7c85245d10238f79da21915716851",
+      "oldDraftSha256": "4325083c5fef736341001343f92480d1cd5a813a0bd968d65e27950de18a2316",
+      "newDraftSha256": "98190875c0a917e6c5ff9862623354746fa2cd0445fd240efd416973d6e9c00c",
+      "oldDossierSha256": "a6899d2113e01b0cbf678c6d1d1f70c1f2823eb245b6e37fecc1e6ee9595747a",
+      "newDossierSha256": "de3d307bb3ba4a71f5bb899f0cee7c019510a7df1ba687546f9a2e0ac507710d",
+      "compileReportSha256": "f2435d10ce22df5dd112b3e369211b63d5ae6041d32ef391cb94a2d40c593abd"
+    },
+    {
+      "id": "t_26818ad3df57",
+      "term": "盌脫丘",
+      "changed": false,
+      "oldEntrySha256": "9fd366c69ee9be11cbf17afb4168f875444c8463a10f2b025409a71d6fe59a56",
+      "newEntrySha256": "9fd366c69ee9be11cbf17afb4168f875444c8463a10f2b025409a71d6fe59a56",
+      "oldDraftSha256": "4b8438e5e1d121fcbb951e3b63341edafc178bc085814558ad543487d94be485",
+      "newDraftSha256": "4b8438e5e1d121fcbb951e3b63341edafc178bc085814558ad543487d94be485",
+      "oldDossierSha256": "aaac9b7838e8abe53240e9f500b2871308411798124975246619691cf59d222d",
+      "newDossierSha256": "aaac9b7838e8abe53240e9f500b2871308411798124975246619691cf59d222d",
+      "compileReportSha256": "159871816054eb59eab4db994e351d9182fe013157e4d852020875b731450a89"
+    },
+    {
+      "id": "t_2684c756a929",
+      "term": "肘後懸符",
+      "changed": false,
+      "oldEntrySha256": "973d53e1b08825ca75285cbfec01d6f1dcc0088e2a6554fd399a53a85de5fcb1",
+      "newEntrySha256": "973d53e1b08825ca75285cbfec01d6f1dcc0088e2a6554fd399a53a85de5fcb1",
+      "oldDraftSha256": "0c8f1c322aa147efed1b0c70993387854d45793a4158708a15b790838009cd55",
+      "newDraftSha256": "0c8f1c322aa147efed1b0c70993387854d45793a4158708a15b790838009cd55",
+      "oldDossierSha256": "118a37473e22044428acc508d9e586721f264f346bfd0f55431417906f83f10b",
+      "newDossierSha256": "118a37473e22044428acc508d9e586721f264f346bfd0f55431417906f83f10b",
+      "compileReportSha256": "cff477e607c56fee5ae6d774c8861f37b4cba06969ba7aee644f618d94d54961"
+    },
+    {
+      "id": "t_26a41c6b0def",
+      "term": "熱則乘凉",
+      "changed": false,
+      "oldEntrySha256": "936849a05aee0af87f38ba34c428ea6be65d0a38d0e1637d78559d7e8b6cd9ad",
+      "newEntrySha256": "936849a05aee0af87f38ba34c428ea6be65d0a38d0e1637d78559d7e8b6cd9ad",
+      "oldDraftSha256": "e5039523666da3e4b239b57b06c556bc085e27b5db346dc42f3c29e03888bf51",
+      "newDraftSha256": "e5039523666da3e4b239b57b06c556bc085e27b5db346dc42f3c29e03888bf51",
+      "oldDossierSha256": "7338406eb8bae35bbf5bdb9aaab4190a93f4a9b9bf15d27ce622663f628885c7",
+      "newDossierSha256": "7338406eb8bae35bbf5bdb9aaab4190a93f4a9b9bf15d27ce622663f628885c7",
+      "compileReportSha256": "cbb9c9425f1ff447ed3834b2a16d650f26d62a4f3930b468d536ce2c250bb3ce"
+    }
+  ],
+  "unchangedSevenDraftDossierProductByteIdentical": true,
+  "audits": {
+    "attribution-audit": {
+      "path": "maintenance/r94-lane-b-correction2-attribution-audit.json",
+      "sha256": "8f3b5d7e2afed52a608c6fcfcb0a963f592dd3cd8f1e5bf5b58911de680920ea",
+      "hardPass": true
+    },
+    "work-source-audit": {
+      "path": "maintenance/r94-lane-b-correction2-work-source-audit.json",
+      "sha256": "486c51c341cf8b3cb1bba3575653586ff5b8b56a075f73f237d81c3f73352e04",
+      "hardPass": true
+    },
+    "semantic-template-audit": {
+      "path": "maintenance/r94-lane-b-correction2-semantic-template-audit.json",
+      "sha256": "b63b8ab36fd53e087dea82a0db287bc6fd110c52dccaba2ad0f5ea629febda32",
+      "hardPass": true
+    },
+    "authoritative-title-audit": {
+      "path": "maintenance/r94-lane-b-correction2-authoritative-title-audit.json",
+      "sha256": "e503988898a5fa02e7527b7c4b53a934a4b0168c9d469abc903832275c0b8469",
+      "hardPass": true
+    },
+    "deployment-duplication-audit": {
+      "path": "maintenance/r94-lane-b-correction2-deployment-duplication-audit.json",
+      "sha256": "51a4b5c42c07327cfe084a3f95e31ec43757f540c8c2531498f6b07e7d266ffd",
+      "hardPass": true
+    }
+  },
+  "compilerParity": {
+    "entriesChecked": 3,
+    "semanticParity": true,
+    "preservedExistingBytes": true
+  },
+  "hardPass": true,
+  "releaseAuthorized": false,
+  "pending": "final changed-coordinate rereview",
+  "writtenUtc": "2026-07-30T16:39:09.197577+00:00"
+}

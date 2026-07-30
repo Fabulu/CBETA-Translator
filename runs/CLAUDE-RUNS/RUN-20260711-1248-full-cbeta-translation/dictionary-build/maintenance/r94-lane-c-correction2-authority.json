@@ -1,0 +1,85 @@
+{
+  "schemaVersion": "r94-lane-c-correction-authority.v2",
+  "cohort": "R94",
+  "lane": "C",
+  "correction": 2,
+  "bindings": {
+    "priorCorrectedAuthority": {
+      "path": "maintenance/r94-lane-c-correction1-authority.json",
+      "sha256": "a80f2d37b4d5f0ceb11df429c6d9db348791ba56520fd0157ddb7a267bca56e0"
+    },
+    "changedCoordinateRereview": {
+      "path": "maintenance/r94-lane-c-correction1-rereview-by-b.json",
+      "sha256": "c69a6e218de837789aa8e3a0047b98716af6e535ae27524cfca5825475057439"
+    },
+    "frozenExtraction": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r94-frozen-extraction-root.json",
+      "sha256": "7204625ec34769127033c57d574883e2511c1b71b2a939430fc12bc4cc1b5d67"
+    }
+  },
+  "authorityMode": "deterministic-overlay-on-prior-corrected-authority",
+  "changedCoordinates": [
+    {
+      "id": "t_28fac5e98308",
+      "term": "問話",
+      "row": 3,
+      "field": "actor",
+      "priorValue": "Ruilu master",
+      "correctedValue": "Ruilu Benxian",
+      "sourceLabel": "瑞鹿禪師",
+      "actorStatus": "linked-canonical",
+      "voiceLayer": "quoted-original",
+      "tier": 1,
+      "family": "Boshan authorial evaluation of Ruilu Benxian's saying",
+      "meaningChanged": false,
+      "familyCountChanged": false,
+      "sourceSelectionChanged": false
+    }
+  ],
+  "dependentClaims": {
+    "t_28fac5e98308": {
+      "status": "corrected",
+      "preferredTarget": "questioning",
+      "retainedRows": [2, 3, 4],
+      "occurrenceDecisions": [
+        {
+          "row": 2,
+          "actor": "Deshan Xuanjian",
+          "voiceLayer": "quoted-original",
+          "tier": 1,
+          "family": "Dawei Xingxiu active appraisal of Deshan's case",
+          "contextActor": "Dawei Xingxiu",
+          "contextRole": "commentator"
+        },
+        {
+          "row": 3,
+          "actor": "Ruilu Benxian",
+          "sourceLabel": "瑞鹿禪師",
+          "actorStatus": "linked-canonical",
+          "voiceLayer": "quoted-original",
+          "tier": 1,
+          "family": "Boshan authorial evaluation of Ruilu Benxian's saying"
+        },
+        {
+          "row": 4,
+          "actor": "Xisou Shaotan",
+          "voiceLayer": "compiler-narration",
+          "tier": 1,
+          "family": "Xisou authored Linji biography"
+        }
+      ],
+      "familyCount": 3,
+      "tier3": 0
+    }
+  },
+  "preservedAdjudication": {
+    "passingSemanticEntries": 9,
+    "failedIds": ["t_2738431562e6"],
+    "failureTerm": "無字",
+    "replacementHandoffRequired": true,
+    "tier3Retained": 0,
+    "lampPaddingUsed": false
+  },
+  "hardPass": false,
+  "releaseAuthorized": false
+}

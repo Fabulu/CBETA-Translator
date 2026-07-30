@@ -1,0 +1,88 @@
+{
+  "schemaVersion": "r94-single-coordinate-product-rereview.v1",
+  "cohort": "R94",
+  "reviewerLane": "A",
+  "id": "t_28fac5e98308",
+  "term": "問話",
+  "correction": 2,
+  "bindings": {
+    "rejectingReview": {
+      "path": "maintenance/r94-correction1-wenhua-product-independent-review-a.json",
+      "sha256": "4483bd314ca932a8fd2d49f444092d23eb2a21495af48688b2bf974197791abf"
+    },
+    "laneCCorrection2Authority": {
+      "path": "maintenance/r94-lane-c-correction2-authority.json",
+      "sha256": "00a08a9f13e242a9c1b2234bfa582b34b8f2d5df172759f722528d21a08956d0"
+    }
+  },
+  "scope": {
+    "changedEntriesExpected": 1,
+    "changedEntriesReread": 1,
+    "changedCoordinateGroupsExpected": 1,
+    "changedCoordinateGroupsReread": 1,
+    "coordinate": "Senses[0].Occurrences[2].AttributionNote",
+    "acceptedSemanticsAndFamiliesInherited": true,
+    "otherCoordinatesReopened": false,
+    "productEditedByReviewer": false
+  },
+  "coordinateVerdict": {
+    "relPath": "X/X78/X78n1554.xml",
+    "requiredEnglishSourceLabel": "Five Houses Correct Lineage Praises",
+    "entryNotePrefix": "Source record (X/X78/X78n1554.xml). Five Houses Correct Lineage Praises.",
+    "draftNotePrefix": "Source record (X/X78/X78n1554.xml). Five Houses Correct Lineage Praises.",
+    "entryDraftParity": true,
+    "actorPreserved": "Xisou Shaotan",
+    "voiceLayerPreserved": "compiler-narration",
+    "verdict": "KEEP",
+    "remainingDelta": false
+  },
+  "hashAndCompilerVerification": {
+    "entry": {
+      "path": "fresh-build/entries/t_28fac5e98308/entry.v2.json",
+      "sha256": "0782741339cff2e6d6732b0da6acbbd528c95551a8dfad403042198af1c49234"
+    },
+    "draft": {
+      "path": "fresh-build/entries/t_28fac5e98308/evidence.draft.json",
+      "sha256": "b927eedbffd432964b22d00e0a21acd4ac124937fe0a160c99d38b412370d8ad"
+    },
+    "dossier": {
+      "path": "fresh-build/entries/t_28fac5e98308/source-dossier.json",
+      "sha256": "150ea84ff1c53c8aec365d9862b78e7a7e37715615fe78e6f585a515abad633f",
+      "unchangedFromRejectingReview": true
+    },
+    "compileReport": {
+      "path": "fresh-build/entries/t_28fac5e98308/evidence-compile-report.json",
+      "sha256": "a18a4623299bf3aa64c84d96c9bb1aa195d850b9947522c81247fb03162935a5",
+      "hardPass": true,
+      "errors": [],
+      "worksheetHashMatchesDraft": true,
+      "outputHashMatchesEntry": true,
+      "constructionPipelineVersion": 2
+    },
+    "workSourceAudit": {
+      "path": "fresh-build/entries/t_28fac5e98308/work-source-audit.txt",
+      "sha256": "0fb78fde6f900f92ef217737f6830ac7589e5c17247dd0f81e253d578fcafb14",
+      "unchangedFromRejectingReview": true
+    }
+  },
+  "focusedAttributionAudit": {
+    "path": "fresh-build/entries/t_28fac5e98308/attribution-audit.json",
+    "sha256": "a0c234862d6d7d91414b93d7b0454b110268fec887bc8be29e86f924db87c1e9",
+    "entries": 1,
+    "occurrences": 3,
+    "hardFailures": 0,
+    "failures": [],
+    "hardPass": true
+  },
+  "sourcePolicyInherited": {
+    "independentTier1Families": 3,
+    "tier3Retained": 0,
+    "lampPadding": false
+  },
+  "publicMutationPerformed": false,
+  "remainingDeltas": [],
+  "remainingDeltaCount": 0,
+  "hardPass": true,
+  "releaseAuthorized": false,
+  "writtenUtc": "2026-07-30T17:38:00Z"
+}

@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "bounded-dictionary-timegate.v4",
+  "cohort": "R94-replacement2",
+  "purpose": "authorized second one-slot replacement preserving 29 settled R94 entries",
+  "startedEpoch": 1785429352.7902153,
+  "startedUtc": "2026-07-30T16:35:52.790223+00:00",
+  "scope": {
+    "replacementSlots": 1,
+    "preservedOriginalR94Entries": 29,
+    "failedIdsReturnedToBacklog": [
+      "t_2738431562e6",
+      "t_292ac4c33b4f"
+    ]
+  },
+  "mandatoryPreauthorGate": {
+    "minimumExactUnitIndependentTier1Or2FamiliesPerProposedSense": 3,
+    "constituentOnlyCompoundHitsEstablishBareHeadwordSense": false,
+    "mustPassBeforeAuthoring": true
+  },
+  "deadlinesSeconds": {
+    "selection": 120,
+    "exactUnitSenseViability": 420,
+    "author": 720,
+    "review": 1080,
+    "construction": 1320,
+    "publication": 1500
+  },
+  "sourcePolicy": {
+    "priority": [
+      "Tier 1 authored",
+      "Tier 2 recorded sayings",
+      "Tier 3 lamps"
+    ],
+    "tier3Rule": "last-resort only; no padding"
+  },
+  "exhaustionReceipt": {
+    "path": "maintenance/r94-t_292ac4c33b4f-frozen-exhaustion-receipt-root.json",
+    "sha256": "2c47655c43b20b4947c79e119b9c4ff645816aab8f41eb5535298c4201e384cd"
+  },
+  "hardPass": true
+}

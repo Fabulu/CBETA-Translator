@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "r94-production30-viability-final.v1",
+  "cohort": "R94",
+  "supersedes": {
+    "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r94-viability-root.json",
+    "sha256": "fc16ba4d28460390f49047bec99c953210d50c2b569a4e24370c6448a4d131b7",
+    "reason": "authoritative selector cached null counts for 問話; exact batch count supplies current corpus counts"
+  },
+  "artifactZero": {
+    "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r94-timegate-root.json",
+    "sha256": "7b2d1313d63de0e48b420129feb89f9688ededd9608a8e5a3e8b70483ff40c41"
+  },
+  "selection": {
+    "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r94-selection-root.json",
+    "sha256": "36177abe16d3218a4da284e48960786f16e35df0ce542b6e3ae7a8bfe74b70ca",
+    "selectedCount": 30,
+    "collisionCount": 0
+  },
+  "batchCount": {
+    "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r94-batch-count-root.json",
+    "sha256": "df81430f32d6f9fe986dd7c0856e1ebec704cdfc77725a77dd0ccec54f767918",
+    "command": "python3 zc_batch.py count <exact 30 terms>",
+    "singleTraversal": true,
+    "countedTerms": 30,
+    "minimumWorks": 12,
+    "maximumWorks": 312,
+    "問話": {
+      "op": "count",
+      "term": "問話",
+      "hits": 1008,
+      "files": 229,
+      "works": 224
+    }
+  },
+  "minimumIndependentProofFamilies": 3,
+  "mechanicallyPlausibleRows": 30,
+  "mechanicallyWeakRows": [],
+  "sourcePolicy": {
+    "priority": [
+      "Tier 1 authored",
+      "Tier 2 recorded sayings",
+      "Tier 3 lamps"
+    ],
+    "lampRule": "last-resort corroboration only; no lamp-volume padding",
+    "minimumIndependentProofFamiliesPerEntry": 3,
+    "rebuildContentFromScratch": true
+  },
+  "elapsedSeconds": 172.34472942352295,
+  "deadlineSeconds": 240,
+  "withinDeadline": true,
+  "sourceExtractionPerformed": false,
+  "hardPass": true
+}

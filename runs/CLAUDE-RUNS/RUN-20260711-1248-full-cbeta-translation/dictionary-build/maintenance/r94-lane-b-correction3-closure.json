@@ -1,0 +1,59 @@
+{
+  "schemaVersion": "r94-lane-correction-closure.v1",
+  "cohort": "R94",
+  "lane": "B",
+  "correction": 3,
+  "reviewBinding": {
+    "path": "maintenance/r94-lane-b-correction2-rereview-by-a.json",
+    "sha256": "a58d23bb09819c2d87bcf30de2ddd3e0e15f29a68bb72beaaa0bbd2ace9ce2a0"
+  },
+  "governedFloor": 3,
+  "tier3Retained": 0,
+  "lampPaddingUsed": false,
+  "finiteDeltaDisposition": [
+    {
+      "id": "t_250794fa9636",
+      "term": "野狐",
+      "coordinates": [
+        "o3.ActorAttribution.ActorRole",
+        "o3.AttributionNote"
+      ],
+      "disposition": "Heshan now emits invitation-writer and the public note identifies him as Invitation writer with Authored invitation wording."
+    }
+  ],
+  "deltaCountApplied": 1,
+  "changedIds": [
+    "t_250794fa9636"
+  ],
+  "row": {
+    "id": "t_250794fa9636",
+    "term": "野狐",
+    "oldEntrySha256": "26ac84a9f3fee32c6f552116e292b5cf2f9801d0e519694e5499b4a3a1b48be1",
+    "newEntrySha256": "56db45b5008c401cb82536e3bd43083538f2861b4c312bff00b48e887ce21db3",
+    "oldDraftSha256": "1d8ded6ce434ac01d9299e4bb8aeb4ca40bb636f66b039f64a2c467fe496f7ea",
+    "newDraftSha256": "87ed015d2f17b2a279d60171df4e8075d7ba6fd6274f867f632691399bc9f61b",
+    "oldDossierSha256": "847da07cb93fe42c6d350a31807a7f7db0f0fcfde28713f50957ad06e166c758",
+    "newDossierSha256": "97778949d44a7949552a81c0563ba5b29810b4096a63f5f78a10ca7e05b5aec0",
+    "compileReportSha256": "44e154b2edcef5fa9f676471bea8af848f75fa6bca27ebb7e73983fad693244c"
+  },
+  "focusedAttributionAudit": {
+    "path": "maintenance/r94-lane-b-correction3-attribution-audit.json",
+    "sha256": "c2eb81863470739307030edc888e26da22c8249a3f54fa6ba440d284e88cb3a6",
+    "entries": 1,
+    "hardFailures": 0,
+    "hardPass": true
+  },
+  "compilerParity": {
+    "entriesChecked": 1,
+    "semanticParity": true,
+    "preservedExistingBytes": true
+  },
+  "scopeControl": {
+    "otherEntryDraftsDossiersProductsTouched": 0,
+    "publicFilesWritten": 0,
+    "unrelatedAuditsRerun": 0
+  },
+  "hardPass": true,
+  "releaseAuthorized": false,
+  "pending": "final changed-coordinate rereview"
+}

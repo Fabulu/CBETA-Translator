@@ -1,0 +1,111 @@
+{
+  "schemaVersion": "r94-changed-coordinate-rereview.v1",
+  "cohort": "R94",
+  "reviewedLane": "C",
+  "reviewerLane": "B",
+  "correction": 1,
+  "bindings": {
+    "correctionClosure": {
+      "path": "maintenance/r94-lane-c-correction1-closure.json",
+      "sha256": "5a395517b3a386b5fdcd168d9c6a8daabae8d196b29f4765fe53e6cccf69432e"
+    },
+    "correctedAuthority": {
+      "path": "maintenance/r94-lane-c-correction1-authority.json",
+      "sha256": "a80f2d37b4d5f0ceb11df429c6d9db348791ba56520fd0157ddb7a267bca56e0"
+    },
+    "originalCrossReview": {
+      "path": "maintenance/r94-lane-c-cross-review-by-b.json",
+      "sha256": "571a608065ae975ceefc7cb53da437ef5318ca5f2d52620fef953b20cfd5246b"
+    },
+    "frozenExtractionSha256": "7204625ec34769127033c57d574883e2511c1b71b2a939430fc12bc4cc1b5d67"
+  },
+  "scope": {
+    "changedCoordinatesReread": 10,
+    "entriesChecked": 10,
+    "passingIds": [
+      "t_26c4d202ba53",
+      "t_26c9a5cb0fe3",
+      "t_26d1f4bf3890",
+      "t_27e66043b271",
+      "t_280e96eb88e2",
+      "t_287ed053d37e",
+      "t_289b7e25b47c",
+      "t_28c0245cd261",
+      "t_28fac5e98308"
+    ],
+    "failedIds": ["t_2738431562e6"],
+    "tier3Retained": 0,
+    "lampPaddingUsed": false
+  },
+  "rulings": [
+    {
+      "id": "t_26c4d202ba53",
+      "verdict": "PASS",
+      "detail": "Contaminated X63n1259 is removed. Frozen row 4 is Feiyin Tongrong's authored reply verse to layman Gu; together with Gulin's verse and Juelang's first-person appraisal it restores three independent Tier-1/2 families."
+    },
+    {
+      "id": "t_26c9a5cb0fe3",
+      "verdict": "PASS",
+      "detail": "Huxiu Shaolong owns the quoted answer 和泥合水; Xisou Shaotan is correctly separated as active commentator."
+    },
+    {
+      "id": "t_26d1f4bf3890",
+      "verdict": "PASS",
+      "detail": "Juelang Daosheng now owns the preface appraisal, X63n1259 is removed, and frozen Yuanwu row 5 is an independent authored use of the killing-and-living staff."
+    },
+    {
+      "id": "t_2738431562e6",
+      "verdict": "FAILURE_CONFIRMED_IMMUTABLE",
+      "detail": "The six frozen candidates exhaust to a longer 無字話 compound, a scripture title, three quarantined prescriptive instruction/manual witnesses, and the different sense 'without writing.' Zero valid lexical-object families survive; the three-family floor cannot be met.",
+      "handoff": "Keep this ID failed and unconstructed. Root must supply a separately frozen replacement candidate/selection; do not rescan, use lamps, retain longer-compound rows as depth, or weaken the floor."
+    },
+    {
+      "id": "t_27e66043b271",
+      "verdict": "PASS",
+      "detail": "Row 1 is correctly reclassified as Foguo Weize's direct hall declaration. Miyun and Tianyin remain independent direct families."
+    },
+    {
+      "id": "t_280e96eb88e2",
+      "verdict": "PASS",
+      "detail": "Gaofeng Yuanmiao is the quoted-original actor with Yulin as commentator, and the opening is narrowed to the observable hot-oil licking image."
+    },
+    {
+      "id": "t_287ed053d37e",
+      "verdict": "PASS",
+      "detail": "The three prior actors and families remain correct and independent."
+    },
+    {
+      "id": "t_289b7e25b47c",
+      "verdict": "PASS",
+      "detail": "The three direct-turn actor rulings remain correct and independent."
+    },
+    {
+      "id": "t_28c0245cd261",
+      "verdict": "PASS",
+      "detail": "All exact headword turns correctly remain Shakyamuni's quoted sentence; Yulin, Baichi and Qiran are distinct active later deployments in context."
+    },
+    {
+      "id": "t_28fac5e98308",
+      "verdict": "PASS_WITH_REQUIRED_ROSTER_NORMALIZATION",
+      "detail": "The noun-compatible target and three voice layers are correct. The authority's 'Ruilu master' is not genuinely unlinked: the read-only roster resolves 瑞鹿禪師 to Ruilu Benxian.",
+      "requiredCorrection": "Before construction, bind row 3 MasterName to roster-canonical Ruilu Benxian rather than identified-unlinked-master. This is a deterministic actor-link normalization and does not alter meaning, family count, or source selection."
+    }
+  ],
+  "floorAdjudication": {
+    "requiredIndependentFamilies": 3,
+    "passingEntriesMeetingFloor": 9,
+    "failedEntryMeetingFloor": false,
+    "legacyHigherFloorControls": false,
+    "verdict": "The frozen three-family contract remains controlling; no padding is permitted."
+  },
+  "summary": {
+    "nineSemanticEntriesConfirmed": true,
+    "immutableWuFailureConfirmed": true,
+    "replacementHandoffRequired": true,
+    "additionalSemanticDefects": 0,
+    "finiteMechanicalCorrection": "Resolve Ruilu master to Ruilu Benxian before construction.",
+    "hardPass": false,
+    "releaseAuthorized": false,
+    "reason": "The ten-entry lane cannot release while 無字 remains failed; products were correctly not constructed."
+  }
+}

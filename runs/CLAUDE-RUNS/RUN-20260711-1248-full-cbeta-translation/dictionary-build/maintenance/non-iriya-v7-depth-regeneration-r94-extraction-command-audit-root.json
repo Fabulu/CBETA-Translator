@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "r94-extraction-command-audit.v1",
+  "cohort": "R94",
+  "artifactZeroStartedEpoch": 1785427335.059591,
+  "commands": [
+    {
+      "kind": "aggregate-count-with-per-file",
+      "scope": 30,
+      "noPerEntryRescans": true,
+      "outputSha256": "2b3d802c2a67abb9062c8b3339f997c178f7c47fd80f1a2f22166545f518641f"
+    },
+    {
+      "kind": "aggregate-source-first-extraction",
+      "scope": 30,
+      "noPerEntryRescans": true,
+      "rawOutputSha256": "a5946d21abb0f4c8954c3d511484cd78d54a57f4fe73b4421c12802500d5c611"
+    },
+    {
+      "kind": "deterministic-tier-filter",
+      "scope": 30,
+      "inputSha256": "a5946d21abb0f4c8954c3d511484cd78d54a57f4fe73b4421c12802500d5c611",
+      "outputSha256": "7204625ec34769127033c57d574883e2511c1b71b2a939430fc12bc4cc1b5d67"
+    }
+  ],
+  "outputs": {
+    "frozenExtractionSha256": "7204625ec34769127033c57d574883e2511c1b71b2a939430fc12bc4cc1b5d67",
+    "researchSkeletonSha256": "1f0ea2b831db20e8b4e68a550d309aaf1f6f89cb3b601002f82887fc2c63f136",
+    "sourceTierViabilitySha256": "d3b01d695bb0501b5bb16b1e6bb9dbd475b728259ac5cf6ea1a6ba1f0ff1a882"
+  },
+  "finishedEpoch": 1785427677.9538708,
+  "hardPass": true
+}

@@ -1,0 +1,236 @@
+{
+  "schemaVersion": "r94-replacement2-source-first-cross-review.v1",
+  "cohort": "R94-replacement2",
+  "reviewerLane": "C",
+  "id": "t_296bc68f6903",
+  "term": "田庫奴",
+  "bindings": {
+    "authorClosure": {
+      "path": "maintenance/r94-replacement2-author-closure-root.json",
+      "sha256": "b5b1e56c35a15b452d9b94384802e689eb32238db15daf6b034359db3d5a2508"
+    },
+    "frozenExtraction": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r94-replacement2-frozen-extraction-root.json",
+      "sha256": "bfd2e2a3a3373fb5356bbe3eda4e677df96f3294bcb6988e2059580af4d29415"
+    },
+    "exactUnitPreauthorGate": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r94-replacement2-exact-unit-preauthor-gate-root.json",
+      "sha256": "634b96229c59c25dc857e47ea643e0eb867ffd6c88754d5a6dd61d24a102ccc2"
+    }
+  },
+  "sourceFirst": {
+    "completeRetainedContextsReadBeforeComparison": 4,
+    "comparisonPerformedAfterSourceRead": true,
+    "retainedCoordinates": [
+      "J/J24/J24nB137.xml@0367b07",
+      "J/J25/J25nB174.xml@0741b09",
+      "J/J26/J26nB187.xml@0698b30",
+      "J/J27/J27nB191.xml@0168c04"
+    ]
+  },
+  "senseReview": {
+    "senseCount": 1,
+    "oneThingRuling": "PASS",
+    "preferredTarget": {
+      "value": "estate slave",
+      "verdict": "PASS",
+      "detail": "The four retained contexts use one social image: a slave attached to an estate's fields and stores, deployed as a cutting epithet."
+    },
+    "alternateTarget": {
+      "value": "farm-and-storehouse slave",
+      "verdict": "PASS"
+    },
+    "differentThingSplitRequired": false
+  },
+  "coordinateReviews": [
+    {
+      "coordinate": "J/J24/J24nB137.xml@0367b07",
+      "contextSha256": "3606fdc14b25f92156ff9ea5dbd7c593e02326832c32b5c6094fdf53fdeffea3",
+      "exactUnit": "PASS",
+      "boundaryDetail": "田庫奴 stands as the complete nominal epithet before the following punctuation; it is not a constituent-only match.",
+      "actor": {
+        "verdict": "PASS",
+        "value": "Zhaozhou Congshen"
+      },
+      "voiceLayer": {
+        "verdict": "PASS",
+        "value": "direct-turn"
+      },
+      "tier": {
+        "verdict": "PASS",
+        "value": 2
+      },
+      "family": {
+        "verdict": "PASS",
+        "value": "estate-slave:zhaozhou",
+        "independent": true
+      },
+      "parallelControl": {
+        "coordinate": "C/C077/C077n1710.xml@0703a12",
+        "counted": false,
+        "verdict": "PASS",
+        "detail": "The Zhaozhou parallel is excluded and supplies no second family."
+      },
+      "authorClaimReview": {
+        "actorAndVoice": "PASS",
+        "grammarEvidence": "FAIL",
+        "detail": "The retained J24 occurrence answers an objection in the 至道無難/揀擇 exchange. It is not an answer to a question about what is highest, nor to a question about the master of Zhaozhou."
+      }
+    },
+    {
+      "coordinate": "J/J25/J25nB174.xml@0741b09",
+      "contextSha256": "94a6764ae6fdbb45135e670790c79d40517c93030f8511cff59f03fdec8a0dda",
+      "exactUnit": "PASS",
+      "boundaryDetail": "田庫奴 is the complete predicative epithet applied to 諸佛.",
+      "actor": {
+        "verdict": "PASS",
+        "value": "Juelang Daosheng",
+        "role": "verse-author"
+      },
+      "voiceLayer": {
+        "verdict": "PASS",
+        "value": "transmitted-verse"
+      },
+      "tier": {
+        "verdict": "PASS",
+        "value": 2
+      },
+      "family": {
+        "verdict": "PASS",
+        "value": "estate-slave:juelang-verse",
+        "independent": true
+      },
+      "authorClaimReview": {
+        "verdict": "PASS",
+        "detail": "Juelang's lineage verse applies the epithet to the buddhas."
+      }
+    },
+    {
+      "coordinate": "J/J26/J26nB187.xml@0698b30",
+      "contextSha256": "327bcdf5270f1f440be36422d4a12bf76a7e7d5035700ce0be6d99200dc576fb",
+      "exactUnit": "PASS",
+      "boundaryDetail": "田庫奴 is a complete predicate after 甘作, not a longer lexical compound.",
+      "actor": {
+        "verdict": "PASS",
+        "value": "Tian'an Sheng"
+      },
+      "voiceLayer": {
+        "verdict": "PASS",
+        "value": "direct-turn",
+        "setting": "hall discourse"
+      },
+      "tier": {
+        "verdict": "PASS",
+        "value": 2
+      },
+      "family": {
+        "verdict": "PASS",
+        "value": "estate-slave:tianan-hall",
+        "independent": true
+      },
+      "authorClaimReview": {
+        "verdict": "PASS",
+        "detail": "Tian'an depicts a wealthy man guarding his holdings yet willingly ending life as their slave."
+      }
+    },
+    {
+      "coordinate": "J/J27/J27nB191.xml@0168c04",
+      "contextSha256": "daa28ef18be1e22ff6430b4f4e08de42cbcf92ae72524d03f31a9bde71df874a",
+      "exactUnit": "PASS",
+      "boundaryDetail": "Both 者田庫奴 tokens contain the complete nominal unit with 者 functioning as a demonstrative; neither is constituent-only evidence.",
+      "exactOccurrencesInRetainedContext": 2,
+      "actor": {
+        "verdict": "PASS",
+        "value": "Sanyi Mingyu",
+        "appliesToBothOccurrences": true
+      },
+      "voiceLayers": [
+        {
+          "text": "答：者田庫奴",
+          "value": "direct-turn",
+          "verdict": "PASS"
+        },
+        {
+          "text": "頌：者田庫奴，一刀兩斷",
+          "value": "authored-capping-verse",
+          "verdict": "MISSING_FROM_AUTHOR_CLOSURE"
+        }
+      ],
+      "tier": {
+        "verdict": "PASS",
+        "value": 2
+      },
+      "family": {
+        "verdict": "PASS",
+        "value": "estate-slave:sanyi-answer",
+        "independent": true,
+        "familyCountForTwoOccurrences": 1
+      },
+      "authorClaimReview": {
+        "verdict": "PASS_WITH_FINITE_VOICE_DELTA",
+        "detail": "The body correctly says Sanyi uses the epithet as an answer and capping line, but the occurrence authority records only direct-turn and must also expose the immediately following authored capping-verse layer."
+      }
+    }
+  ],
+  "independenceReview": {
+    "retainedFamilies": 4,
+    "requiredFamilies": 3,
+    "exactUnitFamiliesMeetingTier1Or2Rule": 4,
+    "zhaozhouParallelCountedTwice": false,
+    "constituentOnlyFamiliesCounted": 0,
+    "verdict": "PASS"
+  },
+  "tierReview": {
+    "tier1": 0,
+    "tier2": 4,
+    "tier3": 0,
+    "allRetainedTierClassificationsValid": true,
+    "lampFallbackUsed": false,
+    "verdict": "PASS"
+  },
+  "proseReview": {
+    "opening": "PASS",
+    "preferredGloss": "PASS",
+    "body": "FAIL_FINITE_CORRECTION",
+    "note": "PASS_WITH_WORDING_CORRECTION",
+    "detail": "The social image and insulting deployment are supported. The body imports the excluded C077 Zhaozhou setting into the retained J24 witness, and the note should say 田 and 庫 denote fields and stores rather than that the characters preserve them."
+  },
+  "finiteCorrectionDeltas": [
+    {
+      "scope": "J/J24/J24nB137.xml@0367b07 grammarEvidence",
+      "replace": "Zhaozhou directly gives 田庫奴 as his answer to a question about what is highest.",
+      "with": "In the 至道無難 exchange, Zhaozhou directly retorts 田庫奴 when the questioner says his preceding answer still involves discrimination."
+    },
+    {
+      "scope": "body first sentence",
+      "replace": "Zhaozhou Congshen gives the phrase as an answer about the master of Zhaozhou.",
+      "with": "Zhaozhou Congshen gives the phrase as a retort in an exchange about avoiding discrimination.",
+      "reason": "The original wording belongs to the excluded C077 parallel setting, not the retained J24 context."
+    },
+    {
+      "scope": "J/J27/J27nB191.xml@0168c04 voice authority",
+      "action": "Record two exact occurrences under the same Sanyi family: the direct answer and Sanyi's immediately following authored capping verse. Do not increment the family count."
+    },
+    {
+      "scope": "note first sentence",
+      "replace": "田 and 庫 preserve the estate's fields and stores",
+      "with": "田 and 庫 denote the estate's fields and stores"
+    }
+  ],
+  "summary": {
+    "entrySemanticVerdict": "PASS_WITH_FINITE_CORRECTIONS",
+    "exactUnitBoundary": "PASS",
+    "oneSenseMeaningAndGloss": "PASS",
+    "actorAttribution": "PASS",
+    "voiceAttribution": "PASS_AFTER_FINITE_SANYI_LAYER_CORRECTION",
+    "independentExactUnitFamilies": 4,
+    "minimumFamiliesMet": true,
+    "tier3": 0,
+    "lampPadding": false,
+    "authorClosureAsWritten": "FAIL_FINITE_CORRECTIONS_REQUIRED",
+    "productsWritten": 0,
+    "publicFilesWritten": 0
+  },
+  "hardPass": false,
+  "releaseAuthorized": false
+}

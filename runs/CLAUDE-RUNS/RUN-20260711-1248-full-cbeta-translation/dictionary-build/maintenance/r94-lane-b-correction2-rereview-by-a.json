@@ -1,0 +1,209 @@
+{
+  "schemaVersion": "r94-changed-coordinate-rereview.v1",
+  "cohort": "R94",
+  "reviewedLane": "B",
+  "reviewerLane": "A",
+  "correction": 2,
+  "bindings": {
+    "correctionClosure": {
+      "path": "maintenance/r94-lane-b-correction2-closure.json",
+      "sha256": "9be2b115f7878710b8e771ed3151797dbf3a70e4608b411b1e5f3fee1f4df8bc"
+    },
+    "priorRereview": {
+      "path": "maintenance/r94-lane-b-correction1-rereview-by-a.json",
+      "sha256": "9332572fb7d10a57eb3981ba757667d8c992c6172bf449667592c25c4de9bcfd"
+    }
+  },
+  "scope": {
+    "changedEntriesExpected": 3,
+    "changedEntriesReread": 3,
+    "correctedCoordinateGroupsExpected": 4,
+    "correctedCoordinateGroupsReread": 4,
+    "sourceFirstBeforeComparison": true,
+    "allLaneEntryDraftDossierCompilerHashesChecked": true,
+    "unchangedEntryProductsByteIdentical": 7,
+    "acceptedUnchangedCoordinatesInherited": true
+  },
+  "sourceFirstRulings": [
+    {
+      "id": "t_250794fa9636",
+      "term": "野狐",
+      "coordinate": "Explanation/SearchAliases",
+      "sourcesRead": [
+        {
+          "relPath": "X/X69/X69n1357.xml",
+          "fromLb": "0461c08",
+          "ruling": "Yuanwu Keqin warns that continued seeking at staff and shout turns falls into a wild-fox den."
+        },
+        {
+          "relPath": "J/J39/J39nB458.xml",
+          "fromLb": "0707c18",
+          "ruling": "The headword occurs in Xixin Zhaoshui's authored Mouth-Drum Song as falling into the wild fox's condition."
+        },
+        {
+          "relPath": "J/J40/J40nB497.xml",
+          "fromLb": "0865c25",
+          "ruling": "Heshan's authored invitation asks that wild-fox traces disappear."
+        }
+      ],
+      "independentVerdict": "The retained sources license den, fall or condition, and traces. They do not license the removed 'tainted breath' prose or a 'fox spirit' alias, and the invitation voice is Heshan.",
+      "comparisonVerdict": "KEEP",
+      "closureSatisfied": true
+    },
+    {
+      "id": "t_250794fa9636",
+      "term": "野狐",
+      "coordinate": "o2/o3 actor voice",
+      "sourcesRead": [
+        {
+          "relPath": "J/J39/J39nB458.xml",
+          "fromLb": "0707c18",
+          "ruling": "口鼓子歌 is an authored song; Xixin Zhaoshui is its verse-author."
+        },
+        {
+          "relPath": "J/J40/J40nB497.xml",
+          "fromLb": "0865c25",
+          "ruling": "The headword clause belongs to Heshan's authored invitation requesting succession to the lineage seat."
+        }
+      ],
+      "independentVerdict": "Xixin Zhaoshui must carry verse-author, while Heshan must be typed as the authored invitation writer rather than a generic collection voice.",
+      "comparisonVerdict": "REVISE",
+      "closureSatisfied": false,
+      "remainingFinding": "Xixin is correctly represented as verse-author, but Heshan o3 still serializes ActorAttribution.ActorRole as 'utterer' and the public AttributionNote calls him only 'Action performer'. The authored-invitation-writer voice is present in GrammarEvidence but has not reached the structured and public actor surfaces required by the correction."
+    },
+    {
+      "id": "t_255626770dcc",
+      "term": "劒甲未施",
+      "coordinate": "o1 voice/deployment/context roles",
+      "sourcesRead": [
+        {
+          "relPath": "X/X78/X78n1554.xml",
+          "fromLb": "0602b03",
+          "ruling": "The headword is inside the copied Tong'an Daopi encounter and precedes the compiler's following 贊曰; it is Tong'an's quoted-original turn."
+        }
+      ],
+      "independentVerdict": "This row is an embedded passive copy of Tong'an Daopi's original use. Xisou Shaotan is only record-owner, later-quoter, and compiler here, not a later-raiser or commentator on this span.",
+      "comparisonVerdict": "KEEP",
+      "closureSatisfied": true
+    },
+    {
+      "id": "t_25fb43689d5e",
+      "term": "折腳鐺",
+      "coordinate": "o2/o3 actor voice and Explanation",
+      "sourcesRead": [
+        {
+          "relPath": "J/J25/J25nB174.xml",
+          "fromLb": "0741a20",
+          "ruling": "The Yunyan lineage-praise section is authored verse by Juelang Daosheng."
+        },
+        {
+          "relPath": "J/J26/J26nB183.xml",
+          "fromLb": "0529a03",
+          "ruling": "制維那還靜室 is a send-off poem authored by Shiqi Tongyun."
+        }
+      ],
+      "independentVerdict": "Juelang Daosheng and Shiqi Tongyun are verse-authors, and the explanation correctly describes the first as lineage praise and the second as a send-off poem.",
+      "comparisonVerdict": "KEEP",
+      "closureSatisfied": true
+    }
+  ],
+  "coordinateVerdicts": [
+    {
+      "id": "t_250794fa9636",
+      "coordinates": [
+        "Explanation",
+        "SearchAliases"
+      ],
+      "verdict": "REVISE",
+      "remainingDelta": true,
+      "finding": "野狐 o3 retains ActorRole 'utterer' and a generic 'Action performer: Heshan' public note instead of exposing Heshan as the authored invitation writer."
+    },
+    {
+      "id": "t_250794fa9636",
+      "coordinates": [
+        "o2",
+        "o3",
+        "actor-voice"
+      ],
+      "verdict": "KEEP",
+      "remainingDelta": false
+    },
+    {
+      "id": "t_255626770dcc",
+      "coordinates": [
+        "o1",
+        "deployment",
+        "context-roles"
+      ],
+      "verdict": "KEEP",
+      "remainingDelta": false
+    },
+    {
+      "id": "t_25fb43689d5e",
+      "coordinates": [
+        "o2",
+        "o3",
+        "Explanation"
+      ],
+      "verdict": "KEEP",
+      "remainingDelta": false
+    }
+  ],
+  "hashAndParityVerification": {
+    "closureRowsChecked": 10,
+    "currentEntryDraftDossierCompilerBundlesMatchClosure": true,
+    "compilerReportsHardPass": true,
+    "compilerOutputHashesMatchCurrentProducts": true,
+    "changedProductHashes": [
+      {
+        "id": "t_250794fa9636",
+        "entrySha256": "26ac84a9f3fee32c6f552116e292b5cf2f9801d0e519694e5499b4a3a1b48be1",
+        "draftSha256": "1d8ded6ce434ac01d9299e4bb8aeb4ca40bb636f66b039f64a2c467fe496f7ea",
+        "dossierSha256": "847da07cb93fe42c6d350a31807a7f7db0f0fcfde28713f50957ad06e166c758",
+        "compileReportSha256": "835b351a77e50b65f25e977e428670fe581413d8fa0d64c3aefdfc2e36a95527"
+      },
+      {
+        "id": "t_255626770dcc",
+        "entrySha256": "68b038dcb9ff4d9f1660ef4052f518865978b3d36a4efdab15428351ff609410",
+        "draftSha256": "a65386bfa9168f89548d38c6f6aa13e7865a0c6cfab41bdb87088366b9715964",
+        "dossierSha256": "114f47e02dc1f54404976d6f05759012d386680b1bf35332d2f99c7eac860b8b",
+        "compileReportSha256": "f386f196de5937b6d537ac7e787cefde66eee6b47263ef954296858dea7a484f"
+      },
+      {
+        "id": "t_25fb43689d5e",
+        "entrySha256": "20b3937c75e25ab9f28253c15ed8474ca6a7c85245d10238f79da21915716851",
+        "draftSha256": "98190875c0a917e6c5ff9862623354746fa2cd0445fd240efd416973d6e9c00c",
+        "dossierSha256": "de3d307bb3ba4a71f5bb899f0cee7c019510a7df1ba687546f9a2e0ac507710d",
+        "compileReportSha256": "f2435d10ce22df5dd112b3e369211b63d5ae6041d32ef391cb94a2d40c593abd"
+      }
+    ],
+    "unchangedProductIds": [
+      "t_240ea0594a5f",
+      "t_2455261d9696",
+      "t_2488565d7fba",
+      "t_24adbdf51a15",
+      "t_26818ad3df57",
+      "t_2684c756a929",
+      "t_26a41c6b0def"
+    ],
+    "unchangedSevenProductsByteIdentical": true
+  },
+  "governedFloor": 3,
+  "retainedIndependentHigherTierFamiliesPerChangedEntry": 3,
+  "tier3Retained": 0,
+  "lampPadding": false,
+  "remainingDeltas": [
+    {
+      "id": "t_250794fa9636",
+      "term": "野狐",
+      "coordinate": "o3 actor voice",
+      "class": "authored-invitation-voice-not-fully-emitted",
+      "finding": "The source and GrammarEvidence identify Heshan as the writer of the invitation, but the compiled structured role remains 'utterer' and the public AttributionNote says only 'Action performer'.",
+      "requiredCorrection": "Emit the governed authored-invitation writer voice consistently on the worksheet, dossier, structured actor surface, and natural public AttributionNote. If the closed role vocabulary requires ActorRole 'utterer', add an explicit governed voice field or other schema-valid surface and make the public note say that Heshan writes the invitation; do not leave generic action-performer prose."
+    }
+  ],
+  "remainingDeltaCount": 1,
+  "hardPass": false,
+  "releaseAuthorized": false,
+  "writtenUtc": "2026-07-30T16:43:55Z"
+}

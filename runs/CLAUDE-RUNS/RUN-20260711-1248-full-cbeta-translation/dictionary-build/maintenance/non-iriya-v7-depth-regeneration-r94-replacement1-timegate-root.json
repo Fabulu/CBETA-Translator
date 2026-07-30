@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "bounded-dictionary-timegate.v4",
+  "cohort": "R94-replacement1",
+  "purpose": "authorized one-slot replacement for honestly failed 無字 only",
+  "startedEpoch": 1785428839.870757,
+  "startedUtc": "2026-07-30T16:27:19.870766+00:00",
+  "scope": {
+    "replacementSlots": 1,
+    "preservedOriginalR94Entries": 29,
+    "failedIdReturnedToBacklog": "t_2738431562e6",
+    "minimumIndependentProofFamilies": 3
+  },
+  "deadlinesSeconds": {
+    "viability": 240,
+    "extraction": 480,
+    "adjudicatedConfig": 900,
+    "construction": 1200,
+    "review": 1680,
+    "publication": 1860
+  },
+  "sourcePolicy": {
+    "priority": [
+      "Tier 1 authored",
+      "Tier 2 recorded sayings",
+      "Tier 3 lamps"
+    ],
+    "tier3Rule": "last-resort only; no volume padding"
+  },
+  "authorization": "root bounded replacement authorization",
+  "exhaustionReceipt": {
+    "path": "maintenance/r94-t_2738431562e6-frozen-exhaustion-receipt-root.json",
+    "sha256": "0e0543077db5621b8b3451ffeb70c91d0e9c8099990d5c783380874629bf4a8e"
+  },
+  "hardPass": true
+}

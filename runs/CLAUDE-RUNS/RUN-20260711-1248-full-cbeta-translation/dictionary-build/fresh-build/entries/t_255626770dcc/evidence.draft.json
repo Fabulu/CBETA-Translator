@@ -1,0 +1,288 @@
+{
+  "SchemaVersion": 1,
+  "ConstructionPipelineVersion": 2,
+  "Admission": {
+    "Decision": "admit",
+    "LexicalUnitReason": "問話 is independently used as a complete verb-object unit for putting a question.",
+    "ObservableChanJob": "It names the act of putting a question in an encounter, and by extension the questioning so performed.",
+    "DuplicateCheck": {
+      "DeterministicIdChecked": true,
+      "ExactHeadwordChecked": true,
+      "NearDuplicateRuling": "問話頭 is a longer compound and does not replace the independently deployed shorter unit."
+    }
+  },
+  "EvidenceTransport": {
+    "DossierPath": "source-dossier.json",
+    "DossierSha256": "aa501ddfe4e92e8ef31fe6ad12dfdf3fadfbf9782396a1b906b4154a08bc9da3",
+    "SourceAuthorityManifestSha256": "2ee44bf19a2533958e5620c38915f3d03fbb81209c76c7183742a4f3d059f501",
+    "DiscoveryMethods": [
+      "final reviewed R94 authority"
+    ],
+    "ExactCount": 3,
+    "BridgedCount": 3,
+    "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+  },
+  "Entry": {
+    "Id": "t_255626770dcc",
+    "SourceTerm": "劒甲未施",
+    "CreatedBy": "R94 source-hierarchy repair",
+    "WrittenUtc": "2026-07-30T10:38:00Z",
+    "Senses": [
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "before sword and armor are deployed",
+        "AlternateTargets": [
+          "sword and armor not yet deployed"
+        ],
+        "SearchAliases": [
+          "before weapons are deployed"
+        ],
+        "Status": "preferred",
+        "Validation": "multi-source",
+        "Explanation": "A before-the-engagement formula: sword and armor have not yet been brought into use. Tongan Daopi supplies the inherited answer; Baizhang Le actively recasts it in his own reply; Chijue Daochong repeats it in his direct reply after the questioner's challenge.",
+        "Note": "劒 and 甲 retain their military scene; 未施 marks the moment before their deployment.",
+        "Occurrences": [
+          {
+            "RelPath": "X/X78/X78n1554.xml",
+            "FromLb": "0602b03",
+            "ToLb": "0602b07",
+            "Kwic": "：還知同安者裏，風雲體道，花檻璇璣麼？曰：知。曰：非公境界。僧便喝。師曰：短販樵人，徒誇書劒。僧擬進語，師曰：劒甲未施，賊身已敗。僧問：纔有言詮，盡落今時。不落言詮，請師直說。曰：木人解語非干舌，石女拋梭豈亂絲。僧問：依經解義，",
+            "MasterName": "Tongan Daopi",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Tongan Daopi",
+                "Roles": [
+                  "utterer"
+                ]
+              },
+              {
+                "MasterName": "Xisou Shaotan",
+                "Roles": [
+                  "record-owner",
+                  "later-quoter",
+                  "compiler"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (X/X78/X78n1554.xml). Praise of the Orthodox Lineage of the Five Houses. Exact actor: Tongan Daopi. The complete source frame assigns the retained headword-bearing action to Tongan Daopi.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "劒甲未施",
+              "GrammaticalSubject": "Tongan Daopi",
+              "SpeechFrame": "Source record (X/X78/X78n1554.xml). Praise of the Orthodox Lineage of the Five Houses. Exact actor: Tongan Daopi. The complete source frame assigns the retained headword-bearing action to Tongan Daopi.",
+              "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to Tongan Daopi."
+            }
+          },
+          {
+            "RelPath": "X/X66/X66n1296.xml",
+            "FromLb": "0215b08",
+            "ToLb": "0215b14",
+            "Kwic": "已露。百丈泐云：者僧祇知貪程，不覺錯路。同安善於接機，却費許多周折。百丈則不然，問他：甚處來？曰：湖南。便云：劒甲未施，賊身已露。不特令者僧慶快平生，亦免使諸人話墮。同安看經次，見僧來參，遂以衣袖葢却頭。僧近前作弔慰勢，安放下衣",
+            "MasterName": null,
+            "Curated": true,
+            "ContextMasters": [],
+            "ContextActors": [],
+            "AttributionNote": "Source record (X/X66/X66n1296.xml). Compilation of the School Gate’s “Raising Old Cases”. Action performer: Baizhang Le. The complete source frame assigns the retained headword-bearing action to Baizhang Le.",
+            "ActorAttribution": {
+              "Status": "identified-unlinked-master",
+              "Kind": "Chan master",
+              "ActorLabel": "Baizhang Le",
+              "ActorRole": "utterer",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "The complete source frame assigns the retained headword-bearing action to Baizhang Le.",
+              "ReviewedBy": "R94 lane A independent review",
+              "ReviewedUtc": "2026-07-30T16:23:26Z",
+              "AuthoredVoiceRiskReviewed": true
+            },
+            "DraftActorProof": {
+              "ExactHeadwordClause": "劒甲未施",
+              "GrammaticalSubject": "Baizhang Le",
+              "SpeechFrame": "Source record (X/X66/X66n1296.xml). Compilation of the School Gate’s “Raising Old Cases”. Action performer: Baizhang Le. The complete source frame assigns the retained headword-bearing action to Baizhang Le.",
+              "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to Baizhang Le."
+            }
+          },
+          {
+            "RelPath": "X/X70/X70n1376.xml",
+            "FromLb": "0039c09",
+            "ToLb": "0039c13",
+            "Kwic": "，賊身已露。師云：上座敗闕愈甚。進云：學人今日未問答已前與和尚相見，還相契麼？師云：劒甲未施，賊身已露。進云：作家宗師。師云：不要茶糊人好。進云：和尚未見曹源時如何？師云：遂寧出鉢盂。進云：見後如何？師",
+            "MasterName": "Chijue Daochong",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Chijue Daochong",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (X/X70/X70n1376.xml). Recorded Sayings of Chan Master Chijue Daochong. Exact actor: Chijue Daochong. The complete source frame assigns the retained headword-bearing action to Chijue Daochong.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "劒甲未施",
+              "GrammaticalSubject": "Chijue Daochong",
+              "SpeechFrame": "Source record (X/X70/X70n1376.xml). Recorded Sayings of Chan Master Chijue Daochong. Exact actor: Chijue Daochong. The complete source frame assigns the retained headword-bearing action to Chijue Daochong.",
+              "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to Chijue Daochong."
+            }
+          }
+        ],
+        "ClaimAnchors": [],
+        "SourceTexts": [
+          "X/X78/X78n1554.xml",
+          "X/X66/X66n1296.xml",
+          "X/X70/X70n1376.xml"
+        ],
+        "RelatedMasters": [
+          "Tongan Daopi",
+          "Xisou Shaotan",
+          "Chijue Daochong"
+        ],
+        "RelatedTerms": [],
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "A before-the-engagement formula: sword and armor have not yet been brought into use.",
+          "EvidenceBody": [
+            "Tongan Daopi supplies the inherited answer; Baizhang Le actively recasts it in his own reply; Chijue Daochong repeats it in his direct reply after the questioner's challenge."
+          ]
+        },
+        "DraftEvidence": {
+          "LiteralGraphFloor": "before sword and armor are deployed",
+          "LexicalJob": "劒甲未施 means before sword and armor are deployed.",
+          "DeploymentClasses": [
+            "authored verse",
+            "direct instruction"
+          ],
+          "HighValueEvidenceLedger": [
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to Tongan Daopi.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to Baizhang Le.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to Chijue Daochong.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            }
+          ],
+          "OpeningClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3"
+          ],
+          "EvidenceBodyClaimKeys": [
+            [
+              "o1",
+              "o2",
+              "o3"
+            ]
+          ],
+          "ZenBend": "A before-the-engagement formula: sword and armor have not yet been brought into use.",
+          "CounterexampleOrLimit": "劒 and 甲 retain their military scene; 未施 marks the moment before their deployment.",
+          "DifferentThingTest": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "before sword and armor are deployed"
+            ],
+            "Reason": "劒 and 甲 retain their military scene; 未施 marks the moment before their deployment."
+          },
+          "AliasRationale": "劒 and 甲 retain their military scene; 未施 marks the moment before their deployment.",
+          "ModifierControls": [
+            {
+              "Term": "劒甲未施",
+              "Finding": "劒 and 甲 retain their military scene; 未施 marks the moment before their deployment."
+            }
+          ],
+          "FamilyControls": [
+            {
+              "Term": "劒甲未施",
+              "Finding": "Tongan Daopi supplies the inherited answer; Baizhang Le actively recasts it in his own reply; Chijue Daochong repeats it in his direct reply after the questioner's challenge."
+            }
+          ],
+          "IndependentWorkIds": [
+            "chan:wujia-zhengzong-zan",
+            "work:X66n1296",
+            "work:X70n1376"
+          ],
+          "SourceAuthorityRows": [
+            {
+              "EvidenceKey": "o1",
+              "RelPath": "X/X78/X78n1554.xml",
+              "WorkId": "chan:wujia-zhengzong-zan",
+              "Tier": 1,
+              "SourceClass": "master-authored",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "sword-armor:tongan-original",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o2",
+              "RelPath": "X/X66/X66n1296.xml",
+              "WorkId": "work:X66n1296",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "sword-armor:baizhang-le",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o3",
+              "RelPath": "X/X70/X70n1376.xml",
+              "WorkId": "work:X70n1376",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "sword-armor:chijue-direct",
+              "DeploymentRole": "original-use"
+            }
+          ],
+          "LampExcessJustification": "No Tier-3 lamp retained.",
+          "NoHigherWitnessSearchReceipt": "Tier 1 searched first, then Tier 2; no lamp needed.",
+          "DepthHarvestReceipt": {
+            "Complete": true,
+            "ReviewedExactHitCount": 3,
+            "AvailableSourceFiles": 3,
+            "SearchedDeploymentClasses": [
+              "final-reviewed-authority"
+            ],
+            "OmissionAudit": [
+              "Mechanical normalization retains exactly the final reviewed authority families."
+            ]
+          }
+        },
+        "DraftAcceptedDerivedFields": {
+          "SourceTexts": [
+            "X/X78/X78n1554.xml",
+            "X/X66/X66n1296.xml",
+            "X/X70/X70n1376.xml"
+          ],
+          "RelatedMasters": [
+            "Tongan Daopi",
+            "Xisou Shaotan",
+            "Chijue Daochong"
+          ]
+        }
+      }
+    ],
+    "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+  },
+  "FamilyHarvest": {
+    "PolicyVersion": 1,
+    "Scope": "R94 source-hierarchy repair",
+    "Edges": [],
+    "NegativeReceipt": [],
+    "GraphicVariants": []
+  }
+}

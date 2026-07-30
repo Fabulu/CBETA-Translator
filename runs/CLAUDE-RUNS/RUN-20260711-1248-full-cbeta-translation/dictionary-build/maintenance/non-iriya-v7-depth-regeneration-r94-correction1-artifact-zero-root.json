@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "r94-correction-artifact-zero.v1",
+  "cohort": "R94-correction1",
+  "scope": {
+    "ids": [
+      "t_28fac5e98308"
+    ],
+    "term": "問話",
+    "repair": "construct-missing-product"
+  },
+  "clockPolicy": "inherits-original-r94-clock-no-reset",
+  "bindings": {
+    "originalTimegate": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r94-timegate-root.json",
+      "sha256": "7b2d1313d63de0e48b420129feb89f9688ededd9608a8e5a3e8b70483ff40c41"
+    },
+    "failClosedConstruction": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r94-closure-root.json",
+      "sha256": "8217313fd8d31cedd2ca9e18cf1dce1ce305cb3f1da2e3b005cd69b557c26b87"
+    },
+    "final30Authority": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r94-final30-authority-review-manifest-root.json",
+      "sha256": "67dab1e226ee1f68f563300aea54c43f769660f57a4ca0d90d18b0a28ee48ee2"
+    }
+  },
+  "correctionDeadlineSeconds": 5380,
+  "publicMutationAuthorized": false,
+  "createdUtc": "2026-07-30T16:53:17.294449+00:00"
+}

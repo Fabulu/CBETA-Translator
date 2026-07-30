@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "r94-replacement2-changed-coordinate-rereview.v1",
+  "cohort": "R94-replacement2",
+  "reviewerLane": "C",
+  "id": "t_296bc68f6903",
+  "term": "田庫奴",
+  "correction": 1,
+  "bindings": {
+    "correctionClosure": {
+      "path": "maintenance/r94-replacement2-correction1-closure-root.json",
+      "sha256": "bbaffb0b78023ea26acc3c0cfc3c69150dab4e3898f39747e487631086d35148"
+    },
+    "independentReview": {
+      "path": "maintenance/r94-replacement2-cross-review-by-c.json",
+      "sha256": "a73b6b2c75b9a3b0023844556be148798f95e7c08dcf2f7f33dddfae4d7658e3"
+    },
+    "frozenExtractionSha256": "bfd2e2a3a3373fb5356bbe3eda4e677df96f3294bcb6988e2059580af4d29415",
+    "exactUnitPreauthorGateSha256": "634b96229c59c25dc857e47ea643e0eb867ffd6c88754d5a6dd61d24a102ccc2"
+  },
+  "scope": {
+    "finiteDeltasExpected": 4,
+    "finiteDeltasReread": 4,
+    "newSearchPerformed": false,
+    "productFilesReviewedOrWritten": 0,
+    "publicFilesReviewedOrWritten": 0
+  },
+  "deltaRulings": [
+    {
+      "delta": 1,
+      "scope": "J/J24/J24nB137.xml@0367b07 grammarEvidence",
+      "verdict": "PASS",
+      "correctedValue": "In the 至道無難 exchange, Zhaozhou directly retorts 田庫奴 when the questioner says his preceding answer still involves discrimination.",
+      "detail": "This exactly closes the requested coordinate correction and matches the retained J24 context."
+    },
+    {
+      "delta": 2,
+      "scope": "sense body first sentence",
+      "verdict": "PASS",
+      "correctedValue": "Zhaozhou Congshen gives the phrase as a retort in an exchange about avoiding discrimination.",
+      "detail": "The excluded C077 setting about the master of Zhaozhou is no longer imported into the retained J24 claim."
+    },
+    {
+      "delta": 3,
+      "scope": "J/J27/J27nB191.xml@0168c04 voice authority",
+      "verdict": "PASS",
+      "detail": "The authority now records both exact occurrences: Sanyi's direct answer and authored capping verse. Both remain one Sanyi witness family and do not inflate the family count.",
+      "voiceLayers": [
+        "direct-turn",
+        "authored-capping-verse"
+      ],
+      "exactOccurrences": 2,
+      "familyCount": 1
+    },
+    {
+      "delta": 4,
+      "scope": "sense note first sentence",
+      "verdict": "PASS",
+      "correctedValue": "田 and 庫 denote the estate's fields and stores; 奴 is the person reduced to serving them.",
+      "detail": "The requested lexical wording correction is exact."
+    }
+  ],
+  "unchangedAdjudication": {
+    "oneSenseMeaning": "PASS",
+    "preferredTarget": "estate slave",
+    "exactUnitBoundary": "PASS",
+    "independentExactUnitFamilies": 4,
+    "requiredMinimumFamilies": 3,
+    "tierMix": {
+      "tier1": 0,
+      "tier2": 4,
+      "tier3": 0
+    },
+    "zhaozhouC077ParallelCounted": false,
+    "constituentOnlyFamiliesCounted": 0,
+    "lampFallbackUsed": false,
+    "meaningChangedByCorrections": false,
+    "familyCountChangedByCorrections": false,
+    "sourceSelectionChangedByCorrections": false
+  },
+  "summary": {
+    "allFiniteDeltasClosed": true,
+    "remainingDeltas": 0,
+    "entryVerdict": "PASS",
+    "hardPass": true,
+    "releaseAuthorized": false,
+    "releaseReason": "This artifact is a changed-coordinate rereview only; it does not authorize product construction or public installation."
+  },
+  "hardPass": true,
+  "releaseAuthorized": false
+}

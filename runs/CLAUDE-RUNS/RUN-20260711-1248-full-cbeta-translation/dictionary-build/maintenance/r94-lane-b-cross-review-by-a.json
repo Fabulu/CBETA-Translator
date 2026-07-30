@@ -1,0 +1,258 @@
+{
+  "schemaVersion": "r94-cross-review.v1",
+  "cohort": "R94",
+  "reviewedLane": "B",
+  "reviewerLane": "A",
+  "authorClosurePath": "maintenance/r94-lane-b-author-closure.json",
+  "authorClosureSha256": "3f31915b83204c0a4fca34c805570064fcbf515f5b1801cc6a919bcc31c61ce5",
+  "reviewScope": {
+    "entriesExpected": 10,
+    "entriesReviewed": 10,
+    "occurrencesReviewed": 31,
+    "reviewDimensions": [
+      "semantic gloss and sense",
+      "complete-case exact actor and voice layer",
+      "source tier and corpus contamination",
+      "deployment-family independence",
+      "exact headword span",
+      "reader-prose claim anchoring",
+      "worksheet/product/dossier hash binding",
+      "lamp exclusion"
+    ]
+  },
+  "governedFloorAdjudication": {
+    "requiredIndependentFamilies": 3,
+    "legacyHigherRawHitFloorControlsThisCohort": false,
+    "ruling": "R94's SHA-bound selection governs a three-family floor. The legacy raw-hit audit is not allowed to raise that frozen contract or induce lamp/parallel-recension padding. Every corrected entry must still prove three genuine independent families."
+  },
+  "hardPass": false,
+  "releaseAuthorized": false,
+  "correctionRequiredEntryIds": [
+    "t_240ea0594a5f",
+    "t_2488565d7fba",
+    "t_250794fa9636",
+    "t_255626770dcc",
+    "t_25fb43689d5e",
+    "t_26a41c6b0def"
+  ],
+  "finiteDeltaCount": 10,
+  "rows": [
+    {
+      "id": "t_240ea0594a5f",
+      "term": "大休大歇",
+      "status": "correction-required",
+      "entryPath": "fresh-build/r94/lane-b/entries/t_240ea0594a5f/entry.v2.json",
+      "entrySha256": "43ac3f10ad544908a4ca660b6f288b3cc58c4f5c4e48afb88148cdf00f084b7f",
+      "draftPath": "fresh-build/r94/lane-b/entries/t_240ea0594a5f/evidence.draft.json",
+      "draftSha256": "bab9a0a4a223858d4d2030767b72a56648ba2af27c5a7eda1d7610d051478381",
+      "dossierPath": "fresh-build/r94/lane-b/entries/t_240ea0594a5f/source-dossier.json",
+      "dossierSha256": "de14dfaf883d997268116bf11d8149a8b543cb2efa08e751061069588c8f073d",
+      "occurrencesReviewed": 3,
+      "sourceFirstCompleteCaseRead": true,
+      "tier3LampCount": 0,
+      "deltas": [
+        {
+          "coordinate": "Entry.Senses[0].Explanation",
+          "class": "claim-precision",
+          "finding": "The final clause says long and short spans no longer govern Miyun, but the retained passage speaks generally of those who have personally reached complete rest; it does not make Miyun the grammatical patient.",
+          "requiredCorrection": "Rewrite the clause without inserting Miyun as the person governed by temporal spans."
+        }
+      ]
+    },
+    {
+      "id": "t_2455261d9696",
+      "term": "快便難逢",
+      "status": "pass",
+      "entryPath": "fresh-build/r94/lane-b/entries/t_2455261d9696/entry.v2.json",
+      "entrySha256": "7d7d5782c413654dd555359c96b782a98291105f639bdbe08e428a54d4cca7f1",
+      "draftPath": "fresh-build/r94/lane-b/entries/t_2455261d9696/evidence.draft.json",
+      "draftSha256": "6d2721a7de91bc378a81fc4a35fdd4c09e576791bc75f2eea78d1127afb23a99",
+      "dossierPath": "fresh-build/r94/lane-b/entries/t_2455261d9696/source-dossier.json",
+      "dossierSha256": "f200643330c9cddd63021f548685a1a7c614b1e937e7a2e368f3d79d769015ee",
+      "occurrencesReviewed": 3,
+      "sourceFirstCompleteCaseRead": true,
+      "tier3LampCount": 0,
+      "deltas": []
+    },
+    {
+      "id": "t_2488565d7fba",
+      "term": "莫認定盤星",
+      "status": "correction-required",
+      "entryPath": "fresh-build/r94/lane-b/entries/t_2488565d7fba/entry.v2.json",
+      "entrySha256": "c25ef3746a6507d98e7986c8eda33d8ae2248c3a35b051c13acc40e59677e543",
+      "draftPath": "fresh-build/r94/lane-b/entries/t_2488565d7fba/evidence.draft.json",
+      "draftSha256": "891434704abdde483dafb7fece454090f37b636c3a460134d8b98d8fec576336",
+      "dossierPath": "fresh-build/r94/lane-b/entries/t_2488565d7fba/source-dossier.json",
+      "dossierSha256": "1ba930a745dc99ef629910c864b4a29fe094675bc23a61e9efcbfe04eacf8d10",
+      "occurrencesReviewed": 3,
+      "sourceFirstCompleteCaseRead": true,
+      "tier3LampCount": 0,
+      "deltas": [
+        {
+          "coordinate": "Entry.Senses[0].Explanation",
+          "class": "evidence-name-mismatch",
+          "finding": "The explanation names Yulin Tongxiu, but the third retained source and occurrence are Poshan Haiming.",
+          "requiredCorrection": "Replace Yulin Tongxiu with Poshan Haiming and preserve the three actual evidence anchors."
+        }
+      ]
+    },
+    {
+      "id": "t_24adbdf51a15",
+      "term": "金佛不度爐",
+      "status": "pass",
+      "entryPath": "fresh-build/r94/lane-b/entries/t_24adbdf51a15/entry.v2.json",
+      "entrySha256": "cc3c4dc8b390b67f1c73e4bb5430445b4fd898b9c579fa15d3fbe412091d2082",
+      "draftPath": "fresh-build/r94/lane-b/entries/t_24adbdf51a15/evidence.draft.json",
+      "draftSha256": "f643883de5936fb1fe03a585885ff7813fd1a99c96098eaaa85e4f6653560f00",
+      "dossierPath": "fresh-build/r94/lane-b/entries/t_24adbdf51a15/source-dossier.json",
+      "dossierSha256": "b6befdfecc682588c2f77ea2a9b053a2560fcb101e31bbd5d606a6a3e6c9ea54",
+      "occurrencesReviewed": 3,
+      "sourceFirstCompleteCaseRead": true,
+      "tier3LampCount": 0,
+      "deltas": []
+    },
+    {
+      "id": "t_250794fa9636",
+      "term": "野狐",
+      "status": "correction-required",
+      "entryPath": "fresh-build/r94/lane-b/entries/t_250794fa9636/entry.v2.json",
+      "entrySha256": "cdd0f4b38401fbe16fd88198881cf8e0f53692ce87fd407fe30574511838e692",
+      "draftPath": "fresh-build/r94/lane-b/entries/t_250794fa9636/evidence.draft.json",
+      "draftSha256": "91b8f67e5919aa47fa658d552fcb843214a26a5f3e08ffbe577e18d29a80ea9a",
+      "dossierPath": "fresh-build/r94/lane-b/entries/t_250794fa9636/source-dossier.json",
+      "dossierSha256": "93d55969f286736278e0eaf66b032ec725c7962c2c1587b886f04020eaffdf8a",
+      "occurrencesReviewed": 3,
+      "sourceFirstCompleteCaseRead": true,
+      "tier3LampCount": 0,
+      "deltas": [
+        {
+          "coordinate": "o1 T/T48/T48n2016.xml@0589c29-0590a05",
+          "class": "quoted-non-zen-actor-and-tier",
+          "finding": "The complete XML explicitly introduces this as 智者觀心論偈云. The words are a Zhiyi/Tiantai verse quoted by Yongming, not Yongming's authored headword turn and not a Tier-1 Zen-master-authored deployment.",
+          "requiredCorrection": "Drop o1. Replace it from the frozen higher-tier reserve with J/J40/J40nB497.xml (野狐絕跡 in the author's invitation text), actor-review that exact turn, and keep lamps at zero."
+        },
+        {
+          "coordinate": "Entry.Senses[0].Explanation/Note/SearchAliases",
+          "class": "unsupported-case-claim",
+          "finding": "The retained evidence does not present a literal fox in the Baizhang case. It presents wild-fox breath, den, traces, or falling into a wild fox. The article's claim that its evidence covers the animal in the Baizhang case and alias 'Baizhang's wild fox' is unanchored.",
+          "requiredCorrection": "Describe the evidenced wild-fox image/epithet only; remove the unsupported Baizhang-case claim and alias unless a governed case witness is actually retained."
+        }
+      ]
+    },
+    {
+      "id": "t_255626770dcc",
+      "term": "劒甲未施",
+      "status": "correction-required",
+      "entryPath": "fresh-build/r94/lane-b/entries/t_255626770dcc/entry.v2.json",
+      "entrySha256": "6926f884cb4491ee8b96fbe24807b461d66a2aabbba41efa403f82482b77b80b",
+      "draftPath": "fresh-build/r94/lane-b/entries/t_255626770dcc/evidence.draft.json",
+      "draftSha256": "a1638dc8ad52ac017c8445d93c7dcdd5bbe7a50161558e3a009515c2ee7cf116",
+      "dossierPath": "fresh-build/r94/lane-b/entries/t_255626770dcc/source-dossier.json",
+      "dossierSha256": "ce1e229c9b541217624705dc98fc59bd73f6f1cbf9a594ceca939bd49dc1b04d",
+      "occurrencesReviewed": 3,
+      "sourceFirstCompleteCaseRead": true,
+      "tier3LampCount": 0,
+      "deltas": [
+        {
+          "coordinate": "o1 X/X78/X78n1554.xml@0602b03-0602b07",
+          "class": "quoted-original-misattributed-as-author-verse",
+          "finding": "The headword is inside the embedded 同安 dialogue (師曰), before Xisou's 贊曰. Xisou is not the headword actor and the phrase is not in his authored praise.",
+          "requiredCorrection": "Record the embedded Tong'an speaker as quoted-original (with Xisou only as outer authored container if materially needed) and identify this as the inherited Tong'an deployment family."
+        },
+        {
+          "coordinate": "o2 X/X69/X69n1371.xml@0803a22-0803b03",
+          "class": "quoted-original-misattributed-as-raiser",
+          "finding": "The bounded headword is 察云 inside Jieshi's raised Tong'an case. Jieshi comments after the quoted case but does not utter this headword span. This duplicates o1's inherited family.",
+          "requiredCorrection": "Replace o2 with the frozen X/X66/X66n1296.xml active Baizhang Le redeployment, recut to 百丈泐云…便云：劒甲未施，賊身已露, with Baizhang Le as exact actor."
+        },
+        {
+          "coordinate": "o3 X/X70/X70n1376.xml@0039c06-0039c10",
+          "class": "questioner-turn-misattributed",
+          "finding": "The bounded headword is introduced by 進云 and belongs to the unnamed monk; Chijue answers only after it.",
+          "requiredCorrection": "Recut within the same complete case to Chijue's following direct reply 師云：劒甲未施，賊身已露 and bind the exact second span, or preserve the first span with reviewed unnamed-questioner attribution. Use the direct second span to maintain three independent deployment families."
+        },
+        {
+          "coordinate": "sourceAuthorityManifest/researchNotes/Explanation",
+          "class": "false-family-independence",
+          "finding": "The current X78 and X69 rows are parallel retellings of one Tong'an case, not independent Xisou and Jieshi uses. The current three family IDs manufacture independence from container names.",
+          "requiredCorrection": "Rebuild the three families as Tong'an quoted-original, Baizhang Le active redeployment, and Chijue direct redeployment; then regenerate all actor, tier, family, prose, draft, entry, dossier, and compiler hashes."
+        }
+      ]
+    },
+    {
+      "id": "t_25fb43689d5e",
+      "term": "折腳鐺",
+      "status": "correction-required",
+      "entryPath": "fresh-build/r94/lane-b/entries/t_25fb43689d5e/entry.v2.json",
+      "entrySha256": "8d1ad16b1f86b72e92de8e696ae3189172c4880839395caf91b69232423a5e7a",
+      "draftPath": "fresh-build/r94/lane-b/entries/t_25fb43689d5e/evidence.draft.json",
+      "draftSha256": "46ab23357e8c81a4355087024b31e82e06f32463882a149ca6009dfc99e0752d",
+      "dossierPath": "fresh-build/r94/lane-b/entries/t_25fb43689d5e/source-dossier.json",
+      "dossierSha256": "942bc9e2a3d8630a031060c33fc46ef3da2ab314b70ea6b6723a5a23a7e40156",
+      "occurrencesReviewed": 3,
+      "sourceFirstCompleteCaseRead": true,
+      "tier3LampCount": 0,
+      "deltas": [
+        {
+          "coordinate": "o1 J/J25/J25nB163.xml@0229b19-0229b23",
+          "class": "quoted-original-actor",
+          "finding": "The retained headword is explicitly inside 汾陽無業禪師云. Guting is the outer active quoter/appraiser, not the exact headword utterer.",
+          "requiredCorrection": "Assign the headword turn to Fenyang Wuye as quoted-original, retain Guting Shanjian as outer active quoter/context, and revise the explanation from 'Guting independently uses' to the actual quoted deployment."
+        }
+      ]
+    },
+    {
+      "id": "t_26818ad3df57",
+      "term": "盌脫丘",
+      "status": "pass",
+      "entryPath": "fresh-build/r94/lane-b/entries/t_26818ad3df57/entry.v2.json",
+      "entrySha256": "9fd366c69ee9be11cbf17afb4168f875444c8463a10f2b025409a71d6fe59a56",
+      "draftPath": "fresh-build/r94/lane-b/entries/t_26818ad3df57/evidence.draft.json",
+      "draftSha256": "f8a87dcfa4f1539e57eeaa4a81e9a1703eb3a8f7764d795e1b45d0f542eb42e6",
+      "dossierPath": "fresh-build/r94/lane-b/entries/t_26818ad3df57/source-dossier.json",
+      "dossierSha256": "b179466a7f3de852db4a2e769ebe2ea6dad67374ab1499ddbc8dcd57443edd16",
+      "occurrencesReviewed": 3,
+      "sourceFirstCompleteCaseRead": true,
+      "tier3LampCount": 0,
+      "deltas": []
+    },
+    {
+      "id": "t_2684c756a929",
+      "term": "肘後懸符",
+      "status": "pass",
+      "entryPath": "fresh-build/r94/lane-b/entries/t_2684c756a929/entry.v2.json",
+      "entrySha256": "973d53e1b08825ca75285cbfec01d6f1dcc0088e2a6554fd399a53a85de5fcb1",
+      "draftPath": "fresh-build/r94/lane-b/entries/t_2684c756a929/evidence.draft.json",
+      "draftSha256": "2bc83a40f28f04a2c10b4efd9680e1af6c77db5390995ce1b982051f93dbfadb",
+      "dossierPath": "fresh-build/r94/lane-b/entries/t_2684c756a929/source-dossier.json",
+      "dossierSha256": "f8a17ed6068d0005f5e03496bb792f0b6f554044e08fe860f0eb3cc5103d9769",
+      "occurrencesReviewed": 3,
+      "sourceFirstCompleteCaseRead": true,
+      "tier3LampCount": 0,
+      "deltas": []
+    },
+    {
+      "id": "t_26a41c6b0def",
+      "term": "熱則乘凉",
+      "status": "correction-required",
+      "entryPath": "fresh-build/r94/lane-b/entries/t_26a41c6b0def/entry.v2.json",
+      "entrySha256": "93dd022d552a2bab200826aba401fbf0826d609a852a972d44b388fd257cc73f",
+      "draftPath": "fresh-build/r94/lane-b/entries/t_26a41c6b0def/evidence.draft.json",
+      "draftSha256": "a68a5449431aeee31a7b3f1acf7572620b0ec83aa7567596b0cbbb16332f5c9e",
+      "dossierPath": "fresh-build/r94/lane-b/entries/t_26a41c6b0def/source-dossier.json",
+      "dossierSha256": "b669add716f9723d429dd789a7037dc0e48427ffd3aee8d90074f50b08f7863b",
+      "occurrencesReviewed": 4,
+      "sourceFirstCompleteCaseRead": true,
+      "tier3LampCount": 0,
+      "deltas": [
+        {
+          "coordinate": "o1 X/X69/X69n1367.xml@0703a13-0703a18",
+          "class": "unnamed-quotation-misattributed",
+          "finding": "Xiaoyin introduces the formulation with 又有道 and then rejects 如斯之輩. The exact headword actor is an unnamed quoted voice; Xiaoyin is the outer critic, not the utterer of the quoted span.",
+          "requiredCorrection": "Use reviewed unnamed quoted-original attribution for the headword and Xiaoyin Daxin as outer active critic/context; update the explanation accordingly."
+        }
+      ]
+    }
+  ],
+  "writtenUtc": "2026-07-30T16:23:26.276027+00:00"
+}

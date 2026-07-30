@@ -1,0 +1,79 @@
+{
+  "schemaVersion": "r94-replacement1-author-closure.v1",
+  "cohort": "R94-replacement1",
+  "id": "t_292ac4c33b4f",
+  "term": "戒",
+  "replacesFailedId": "t_2738431562e6",
+  "bindings": {
+    "artifactZero": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r94-replacement1-timegate-root.json",
+      "sha256": "b365a0b681fbb276b04a3b097762abfd830b4640e01cd59ed95ebd4a1881de1c"
+    },
+    "selection": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r94-replacement1-selection-root.json",
+      "sha256": "51ff59f54b9c7ee854cef26287b6ca27d606249361ddd0b1ee84a558e29b51b8"
+    },
+    "refinedFrozenExtraction": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r94-replacement1-frozen-extraction-correction1-root.json",
+      "sha256": "ed4e3031901e9b90f3cdd552696ed2cb361994c90ef8da01d4345a0e98179ed2"
+    }
+  },
+  "admission": {
+    "decision": "admit",
+    "reason": "戒 is independently deployed as a noun for a precept/restraint and as a verb meaning to guard against or avoid.",
+    "senseSplit": "different things: an instituted restraint versus the act of guarding against something"
+  },
+  "senses": [
+    {
+      "senseKey": null,
+      "preferredTarget": "precept",
+      "alternateTargets": [
+        "rule of restraint",
+        "disciplinary precept"
+      ],
+      "opening": "A precept or rule of restraint.",
+      "body": "Xuefeng Huikong makes the precept category incense; Micang Daokai places the five precepts beside the five constants; Dawei Jinglun actively raises Wuzhu's statement that late-age monks seldom observe the precepts.",
+      "note": "Compounds such as 戒品, 五戒, and 戒律 make the nominal restraint explicit; they are evidence for this constituent sense, not separate independent headwords counted as standalone 戒 occurrences.",
+      "validation": "multi-source",
+      "familyCount": 3,
+      "occurrenceIndexes": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "senseKey": null,
+      "preferredTarget": "guard against",
+      "alternateTargets": [
+        "beware",
+        "avoid"
+      ],
+      "opening": "To be on guard against something or deliberately avoid it.",
+      "body": "Xuefeng Huikong warns not to disclose it; Micang Daokai tells a correspondent to remain seriously on guard; Xixin Zhaoshui warns against bustle in the mind-ground teaching.",
+      "note": "The object or following prohibition supplies what is to be avoided; this verbal use is not the name of an additional precept.",
+      "validation": "multi-source",
+      "familyCount": 3,
+      "occurrenceIndexes": [
+        3,
+        4,
+        5
+      ]
+    }
+  ],
+  "sourcePolicy": {
+    "tier1": 6,
+    "tier2": 0,
+    "tier3": 0,
+    "lampFallbackRequired": false,
+    "minimumIndependentFamiliesPerSense": 3
+  },
+  "semanticReadComplete": true,
+  "publicMutationPerformed": false,
+  "productMutationPerformed": false,
+  "releaseAuthorized": false,
+  "pending": "independent source-first cross-review",
+  "elapsedSeconds": 215.68800330162048,
+  "writtenUtc": "2026-07-30T16:30:55.562298+00:00",
+  "hardPass": false
+}

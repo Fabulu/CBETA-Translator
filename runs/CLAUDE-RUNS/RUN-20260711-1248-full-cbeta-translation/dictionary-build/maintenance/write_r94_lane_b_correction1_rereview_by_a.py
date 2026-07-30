@@ -1,0 +1,91 @@
+#!/usr/bin/env python3
+"""Write lane A's changed-coordinate rereview of R94 lane B correction1."""
+from __future__ import annotations
+
+import hashlib
+import json
+from datetime import datetime, timezone
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+CLOSURE = ROOT / "maintenance/r94-lane-b-correction1-closure.json"
+ORIGINAL_REVIEW = ROOT / "maintenance/r94-lane-b-cross-review-by-a.json"
+
+
+def sha(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+expected = "d0e170971a736ffd17de5da420ae8c39256b1c1c1e00fea590996e545f46875c"
+assert sha(CLOSURE) == expected
+c = json.loads(CLOSURE.read_text())
+assert c["deltaCountApplied"] == 10 and c["tier3Retained"] == 0
+assert len(c["rows"]) == 10 and len(c["changedIds"]) == 6
+
+deltas = [
+    {
+        "id": "t_250794fa9636",
+        "term": "野狐",
+        "coordinate": "Explanation/SearchAliases",
+        "class": "residual-unanchored-prose",
+        "finding": "The replacement evidence no longer contains 野狐氣, yet the opening still claims 'tainted breath'. The retained rows support den, fall/condition, and traces. The alias 'fox spirit' is likewise not anchored by these rows.",
+        "requiredCorrection": "Remove 'tainted breath' and the unanchored 'fox spirit' alias; name Heshan for the invitation-text deployment rather than using a generic collection-author phrase.",
+    },
+    {
+        "id": "t_250794fa9636",
+        "term": "野狐",
+        "coordinate": "o2/o3 actor voice",
+        "class": "voice-layer-precision",
+        "finding": "Xixin's retained row is in 口鼓子歌 and is authored verse; Heshan's retained row is an authored invitation. Both are currently emitted with generic utterer roles.",
+        "requiredCorrection": "Use Xixin Zhaoshui=verse-author and Heshan=letter/invitation-writer in worksheet, dossier, and compiled actor surfaces.",
+    },
+    {
+        "id": "t_255626770dcc",
+        "term": "劒甲未施",
+        "coordinate": "o1 voice/deployment/context roles",
+        "class": "embedded-copy-not-active-quotation",
+        "finding": "The headword is the Tong'an quoted-original inside Xisou's compiled lineage section, before Xisou's 贊曰. Xisou does not actively raise or comment on this headword span.",
+        "requiredCorrection": "Mark Tong'an as quoted-original and the deployment as embedded-copy/passive quotation; retain Xisou only as record owner/later compiler-quoter, not later-raiser/commentator.",
+    },
+    {
+        "id": "t_25fb43689d5e",
+        "term": "折腳鐺",
+        "coordinate": "o2/o3 actor voice and Explanation",
+        "class": "verse-voice-precision",
+        "finding": "Juelang's lineage praise and Shiqi's send-off poem are authored verses, not generic recorded speech/utterer turns.",
+        "requiredCorrection": "Use verse-author roles for Juelang Daosheng and Shiqi Tongyun and describe them as verses without changing the valid three families.",
+    },
+]
+
+review = {
+    "schemaVersion": "r94-changed-coordinate-rereview.v1",
+    "cohort": "R94",
+    "reviewedLane": "B",
+    "reviewerLane": "A",
+    "bindings": {
+        "correctionClosure": {"path": str(CLOSURE.relative_to(ROOT)), "sha256": expected},
+        "originalReview": {"path": str(ORIGINAL_REVIEW.relative_to(ROOT)), "sha256": sha(ORIGINAL_REVIEW)},
+    },
+    "scope": {
+        "changedEntriesExpected": 6,
+        "changedEntriesReread": 6,
+        "allChangedDossiersDraftsProductsHashChecked": True,
+        "unchangedEntryProductsByteIdentical": 4,
+        "metadataOnlyDraftDossierRebindingReviewed": True,
+    },
+    "acceptedOriginalDeltaCount": 10,
+    "acceptedOriginalDeltas": True,
+    "processFinding": "The original review correctly forced all ten listed repairs. Changed-coordinate rereview found residual voice/prose defects in three changed entries; these are finite and do not alter meanings or the three-family floor. Finding an untouched voice defect in a changed entry records an incomplete original-review coordinate rather than silently inheriting it.",
+    "remainingDeltas": deltas,
+    "remainingDeltaCount": len(deltas),
+    "remainingCorrectionEntryIds": sorted({d["id"] for d in deltas}),
+    "governedFloor": 3,
+    "tier3Retained": 0,
+    "lampPadding": False,
+    "hardPass": False,
+    "releaseAuthorized": False,
+    "writtenUtc": datetime.now(timezone.utc).isoformat(),
+}
+out = ROOT / "maintenance/r94-lane-b-correction1-rereview-by-a.json"
+out.write_text(json.dumps(review, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+print(json.dumps({"path": str(out), "sha256": sha(out), "remainingDeltas": len(deltas)}, ensure_ascii=False))

@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "generic-bounded-preclosure.v1",
+  "cohort": "R94-correction2",
+  "ids": [
+    "t_223c2f6ade25",
+    "t_22885135d39e",
+    "t_229d6fd2a889",
+    "t_22b4a92f2919",
+    "t_2310fbae5dc4",
+    "t_23204fbd253c",
+    "t_2325720f94cd",
+    "t_2354ad61810c",
+    "t_2385e8874684",
+    "t_23e82e80e367",
+    "t_240ea0594a5f",
+    "t_2455261d9696",
+    "t_2488565d7fba",
+    "t_24adbdf51a15",
+    "t_250794fa9636",
+    "t_255626770dcc",
+    "t_25fb43689d5e",
+    "t_26818ad3df57",
+    "t_2684c756a929",
+    "t_26a41c6b0def",
+    "t_26c4d202ba53",
+    "t_26c9a5cb0fe3",
+    "t_26d1f4bf3890",
+    "t_27e66043b271",
+    "t_280e96eb88e2",
+    "t_287ed053d37e",
+    "t_289b7e25b47c",
+    "t_28c0245cd261",
+    "t_28fac5e98308",
+    "t_296bc68f6903"
+  ],
+  "bindings": {
+    "artifactZero": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r94-correction2-artifact-zero-root.json",
+      "sha256": "e13d618e72be38935cb786e8669a6905376967efd9cc7b0e6e98d587492f76e5"
+    },
+    "authority": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r94-final30-authority-review-manifest-root.json",
+      "sha256": "67dab1e226ee1f68f563300aea54c43f769660f57a4ca0d90d18b0a28ee48ee2"
+    },
+    "failureReview": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r94-correction1-whole-batch-independent-review-a.json",
+      "sha256": "220bfc5fdc4e0a9b495edb258cff10b9bdccb218dfcd196fc8679d677a088bcb"
+    },
+    "laneA": {
+      "path": "maintenance/r94-correction2-lane-a-stage-manifest.json",
+      "sha256": "de79acad198753f789789644e067ee63019495479bfbad3ce143909f4e1a0a18"
+    },
+    "laneB": {
+      "path": "maintenance/r94-lane-b-correction3-input-assembly-manifest.json",
+      "sha256": "99fdafb16ae71e1a900853cac429a347fdd01034c5f332b33f26bb997d3edd67"
+    },
+    "laneC": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r94-correction2-lane-c-input-manifest-root.json",
+      "sha256": "b8e956744fb3e7395abd85bdb2b40fba134a9be290162193fd53a0b335db8d76"
+    },
+    "compileInstall": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r94-correction2-compile-install-root.json",
+      "sha256": "b94574c0711cad7a603cdeb9f6d7dabaa46d5df3fc269dde8c08dc809968d32a"
+    }
+  },
+  "hardPass": true,
+  "errors": []
+}

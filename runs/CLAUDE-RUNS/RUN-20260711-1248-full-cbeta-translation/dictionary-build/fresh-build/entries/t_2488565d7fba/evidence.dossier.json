@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "batch22-bounded-dossier.v1",
+  "sourceEntryId": "t_2488565d7fba",
+  "sourceTerm": "莫認定盤星",
+  "selectionReceipt": "maintenance/non-iriya-v4-frequency-batch22-crossreview-c.json",
+  "selectionReceiptSha256": "cc59e3710527a03c78019ed20979deb0d4939a4257047804480681cd855e0d31",
+  "corpusBaselineSha256": "aa125d97f0eb402daef67596f649888e27f51e20e5bddf96189344b406ef3bf1",
+  "retainedEvidence": [
+    {
+      "evidenceKey": "o1",
+      "relPath": "J/J37/J37nB388.xml",
+      "workId": "work:J37nB388",
+      "tier": 2,
+      "sourceClass": "recorded-sayings",
+      "fromLb": "0447a30",
+      "toLb": "0447b14",
+      "actor": "Zhiyuan",
+      "actorRole": "quoted-original",
+      "contextActor": "Yikui Yuankui",
+      "ruling": "Yikui raises founder Zhiyuan's exchange and quotes the complete warning, then replaces the old response with his own replies."
+    }
+  ],
+  "omittedEvidence": [
+    {
+      "relPath": "X/X82/X82n1571.xml",
+      "tier": 3,
+      "reason": "The lamp witness is unnecessary because the governed Tier-2 recorded sayings preserve the complete inherited exchange."
+    }
+  ],
+  "researchLimit": "Construction reused the independently cross-reviewed semantic row and its supplied full KWIC; no broad corpus research was performed."
+}

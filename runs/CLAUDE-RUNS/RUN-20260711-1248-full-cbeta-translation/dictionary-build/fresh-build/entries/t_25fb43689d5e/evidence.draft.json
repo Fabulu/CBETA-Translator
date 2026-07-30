@@ -1,0 +1,280 @@
+{
+  "SchemaVersion": 1,
+  "ConstructionPipelineVersion": 2,
+  "Admission": {
+    "Decision": "admit",
+    "LexicalUnitReason": "問話 is independently used as a complete verb-object unit for putting a question.",
+    "ObservableChanJob": "It names the act of putting a question in an encounter, and by extension the questioning so performed.",
+    "DuplicateCheck": {
+      "DeterministicIdChecked": true,
+      "ExactHeadwordChecked": true,
+      "NearDuplicateRuling": "問話頭 is a longer compound and does not replace the independently deployed shorter unit."
+    }
+  },
+  "EvidenceTransport": {
+    "DossierPath": "source-dossier.json",
+    "DossierSha256": "cff289d8a5a8bd8a1bf1727a17594d80e544583c71ea0559359eb4a2a073570d",
+    "SourceAuthorityManifestSha256": "2ee44bf19a2533958e5620c38915f3d03fbb81209c76c7183742a4f3d059f501",
+    "DiscoveryMethods": [
+      "final reviewed R94 authority"
+    ],
+    "ExactCount": 3,
+    "BridgedCount": 3,
+    "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+  },
+  "Entry": {
+    "Id": "t_25fb43689d5e",
+    "SourceTerm": "折腳鐺",
+    "CreatedBy": "R94 source-hierarchy repair",
+    "WrittenUtc": "2026-07-30T10:38:00Z",
+    "Senses": [
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "broken-legged cauldron",
+        "AlternateTargets": [
+          "a cauldron with a broken leg"
+        ],
+        "SearchAliases": [
+          "broken tripod cauldron"
+        ],
+        "Status": "preferred",
+        "Validation": "multi-source",
+        "Explanation": "A cooking cauldron with one of its supporting legs broken, repeatedly appearing in descriptions of austere monastery life. Fenzhou Wuye supplies the vessel in a saying actively quoted by Guting Shanjian; Juelang Daosheng uses it in a lineage praise, and Shiqi Tongyun uses it in a send-off poem.",
+        "Note": "The cauldron is a concrete utensil in these passages; the surrounding poverty or endurance belongs to each source scene.",
+        "Occurrences": [
+          {
+            "RelPath": "J/J25/J25nB163.xml",
+            "FromLb": "0229b19",
+            "ToLb": "0229b23",
+            "Kwic": "惡報，四大分散打入黑漫漫。大眾！生死事大，無常迅速，不可不謹。汾陽無業禪師云：「古德、道人得意後，茅茨石室，向折腳鐺煮飯喫。過三二十年，名利不干儴，財寶不為念，大忘人世，隱跡巖叢，君王命而不來，諸侯請而不赴。豈同我輩貪利愛名，",
+            "MasterName": "Fenzhou Wuye",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Fenzhou Wuye",
+                "Roles": [
+                  "utterer"
+                ]
+              },
+              {
+                "MasterName": "Guting Shanjian",
+                "Roles": [
+                  "later-raiser",
+                  "commentator",
+                  "record-owner",
+                  "later-quoter"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J25/J25nB163.xml). Selected Record of Chan Master Guting’s Sayings. Exact actor: Fenzhou Wuye. The complete source frame assigns the retained headword-bearing action to Fenzhou Wuye.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "折腳鐺",
+              "GrammaticalSubject": "Fenzhou Wuye",
+              "SpeechFrame": "Source record (J/J25/J25nB163.xml). Selected Record of Chan Master Guting’s Sayings. Exact actor: Fenzhou Wuye. The complete source frame assigns the retained headword-bearing action to Fenzhou Wuye.",
+              "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to Fenzhou Wuye."
+            }
+          },
+          {
+            "RelPath": "J/J25/J25nB174.xml",
+            "FromLb": "0741a20",
+            "ToLb": "0741a25",
+            "Kwic": "迥出。第十代潭州雲巖曇晟禪師第十代潭州雲巖曇晟禪師大雄虎子，忽追風來；俗氣不除，一訝眼開。乃驚藥山，別有長處；折腳鐺兒，出手提去。百丈廿年，心燈不續；頂上花冠，輪王最獨。禪之深旨，女不繫裙；日夜未眠，不字成文。默笑同條，生死何",
+            "MasterName": "Juelang Daosheng",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Juelang Daosheng",
+                "Roles": [
+                  "verse-author"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J25/J25nB174.xml). Recorded Sayings of Chan Master Juelangsheng of Tianjie. Exact actor: Juelang Daosheng. The complete source frame assigns the retained authored verse to Juelang Daosheng.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "折腳鐺",
+              "GrammaticalSubject": "Juelang Daosheng",
+              "SpeechFrame": "Source record (J/J25/J25nB174.xml). Recorded Sayings of Chan Master Juelangsheng of Tianjie. Exact actor: Juelang Daosheng. The complete source frame assigns the retained authored verse to Juelang Daosheng.",
+              "FullCaseDecision": "The complete source frame assigns the retained authored verse to Juelang Daosheng."
+            }
+          },
+          {
+            "RelPath": "J/J26/J26nB183.xml",
+            "FromLb": "0529a03",
+            "ToLb": "0529a10",
+            "Kwic": "凝虛，兩手扶笻未甚舒，舊路歸家知不問，秋風來棹莫躊躇。制維那還靜室制維那還靜室多年隨我時長病，此去山廬獨自居，折腳鐺煨無米飯，也須得個共栽蔬。紹維那還觀海紹維那還觀海相隨老朽歷多年，今日辭行為病纏，歸去只消兩服藥，饑來喫飯困來",
+            "MasterName": "Shiqi Tongyun",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Shiqi Tongyun",
+                "Roles": [
+                  "verse-author"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J26/J26nB183.xml). Recorded Sayings of Chan Master Shiqi of Xuedou. Exact actor: Shiqi Tongyun. The complete source frame assigns the retained authored verse to Shiqi Tongyun.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "折腳鐺",
+              "GrammaticalSubject": "Shiqi Tongyun",
+              "SpeechFrame": "Source record (J/J26/J26nB183.xml). Recorded Sayings of Chan Master Shiqi of Xuedou. Exact actor: Shiqi Tongyun. The complete source frame assigns the retained authored verse to Shiqi Tongyun.",
+              "FullCaseDecision": "The complete source frame assigns the retained authored verse to Shiqi Tongyun."
+            }
+          }
+        ],
+        "ClaimAnchors": [],
+        "SourceTexts": [
+          "J/J25/J25nB163.xml",
+          "J/J25/J25nB174.xml",
+          "J/J26/J26nB183.xml"
+        ],
+        "RelatedMasters": [
+          "Fenzhou Wuye",
+          "Guting Shanjian",
+          "Juelang Daosheng",
+          "Shiqi Tongyun"
+        ],
+        "RelatedTerms": [],
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "A cooking cauldron with one of its supporting legs broken, repeatedly appearing in descriptions of austere monastery life.",
+          "EvidenceBody": [
+            "Fenzhou Wuye supplies the vessel in a saying actively quoted by Guting Shanjian; Juelang Daosheng uses it in a lineage praise, and Shiqi Tongyun uses it in a send-off poem."
+          ]
+        },
+        "DraftEvidence": {
+          "LiteralGraphFloor": "broken-legged cauldron",
+          "LexicalJob": "折腳鐺 means broken-legged cauldron.",
+          "DeploymentClasses": [
+            "authored verse",
+            "direct instruction"
+          ],
+          "HighValueEvidenceLedger": [
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to Fenzhou Wuye.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained authored verse to Juelang Daosheng.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained authored verse to Shiqi Tongyun.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            }
+          ],
+          "OpeningClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3"
+          ],
+          "EvidenceBodyClaimKeys": [
+            [
+              "o1",
+              "o2",
+              "o3"
+            ]
+          ],
+          "ZenBend": "A cooking cauldron with one of its supporting legs broken, repeatedly appearing in descriptions of austere monastery life.",
+          "CounterexampleOrLimit": "The cauldron is a concrete utensil in these passages; the surrounding poverty or endurance belongs to each source scene.",
+          "DifferentThingTest": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "broken-legged cauldron"
+            ],
+            "Reason": "The cauldron is a concrete utensil in these passages; the surrounding poverty or endurance belongs to each source scene."
+          },
+          "AliasRationale": "The cauldron is a concrete utensil in these passages; the surrounding poverty or endurance belongs to each source scene.",
+          "ModifierControls": [
+            {
+              "Term": "折腳鐺",
+              "Finding": "The cauldron is a concrete utensil in these passages; the surrounding poverty or endurance belongs to each source scene."
+            }
+          ],
+          "FamilyControls": [
+            {
+              "Term": "折腳鐺",
+              "Finding": "Fenzhou Wuye supplies the vessel in a saying actively quoted by Guting Shanjian; Juelang Daosheng uses it in a lineage praise, and Shiqi Tongyun uses it in a send-off poem."
+            }
+          ],
+          "IndependentWorkIds": [
+            "work:J25nB163",
+            "work:J25nB174",
+            "work:J26nB183"
+          ],
+          "SourceAuthorityRows": [
+            {
+              "EvidenceKey": "o1",
+              "RelPath": "J/J25/J25nB163.xml",
+              "WorkId": "work:J25nB163",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "broken-cauldron:fenzhou-original",
+              "DeploymentRole": "active-quotation"
+            },
+            {
+              "EvidenceKey": "o2",
+              "RelPath": "J/J25/J25nB174.xml",
+              "WorkId": "work:J25nB174",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "broken-cauldron:juelang",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o3",
+              "RelPath": "J/J26/J26nB183.xml",
+              "WorkId": "work:J26nB183",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "broken-cauldron:shiqi",
+              "DeploymentRole": "original-use"
+            }
+          ],
+          "LampExcessJustification": "No Tier-3 lamp retained.",
+          "NoHigherWitnessSearchReceipt": "Tier 1 searched first, then Tier 2; no lamp needed.",
+          "DepthHarvestReceipt": {
+            "Complete": true,
+            "ReviewedExactHitCount": 3,
+            "AvailableSourceFiles": 3,
+            "SearchedDeploymentClasses": [
+              "final-reviewed-authority"
+            ],
+            "OmissionAudit": [
+              "Mechanical normalization retains exactly the final reviewed authority families."
+            ]
+          }
+        },
+        "DraftAcceptedDerivedFields": {
+          "SourceTexts": [
+            "J/J25/J25nB163.xml",
+            "J/J25/J25nB174.xml",
+            "J/J26/J26nB183.xml"
+          ],
+          "RelatedMasters": [
+            "Fenzhou Wuye",
+            "Guting Shanjian",
+            "Juelang Daosheng",
+            "Shiqi Tongyun"
+          ]
+        }
+      }
+    ],
+    "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+  },
+  "FamilyHarvest": {
+    "PolicyVersion": 1,
+    "Scope": "R94 source-hierarchy repair",
+    "Edges": [],
+    "NegativeReceipt": [],
+    "GraphicVariants": []
+  }
+}
