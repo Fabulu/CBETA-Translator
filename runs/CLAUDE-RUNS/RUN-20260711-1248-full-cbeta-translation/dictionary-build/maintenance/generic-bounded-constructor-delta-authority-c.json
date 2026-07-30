@@ -1,0 +1,64 @@
+{
+  "schemaVersion": "generic-constructor-delta-authority.v1",
+  "reviewer": "/root/source_tiers_c",
+  "supersedesReview": {
+    "path": "maintenance/generic-bounded-constructor-independent-review-c.json",
+    "sha256": "7b242d7168a256e1b7998124569c38bfe7b653d5698c6b355bbef90d0f6cc5fc"
+  },
+  "correctedEngine": {
+    "path": "maintenance/generic_bounded_constructor.py",
+    "sha256": "ac909982fb23f5f556a4de9e0b2330385a6a6541cdde33146c3aaef42a655aba"
+  },
+  "integrationTest": {
+    "path": "maintenance/test_generic_bounded_constructor.py",
+    "sha256": "b2cced346e4363e1750a3c4f894d4a18ab7f3da59fcc907bea2a8dff3a249a3e",
+    "independentResult": "1/1 pass in 2.230 seconds",
+    "pythonCompilePass": true
+  },
+  "closedDefects": [
+    {
+      "defect": "R11-specific production coupling",
+      "resolution": "The engine imports no cohort constructor and contains no R11 cleanup, cohort ID, headword, cohort path, or fixed /tmp alias.",
+      "pass": true
+    },
+    {
+      "defect": "missing receipt-first authority",
+      "resolution": "Schema v2 binds startedEpoch, timegate, watchdog receipt, command audit, engine SHA, config, selection and research; artifact paths, hashes and mtimes are checked before output.",
+      "pass": true
+    },
+    {
+      "defect": "unbounded config and paths",
+      "resolution": "Unknown top/path/entry keys are rejected; ordinary size is 1-3; deterministic IDs are recomputed; selection, research, config and watchdog IDs must match exactly and in order; every governed path is contained in the authorized build root.",
+      "pass": true
+    },
+    {
+      "defect": "production compiler path unproved",
+      "resolution": "The engine invokes the real compile_evidence_draft.py with --new-entry; the integration test executes that branch through the watchdog CLI.",
+      "pass": true
+    },
+    {
+      "defect": "first product not deadline-bound",
+      "resolution": "The first product is compiled entry-by-entry, hashed, receipt-bound to startedEpoch, and rejected after elapsed 270 seconds.",
+      "pass": true
+    },
+    {
+      "defect": "construction closure not deadline-bound",
+      "resolution": "Real preclosure validation runs, errors block closure, and manifest/closure are rejected after elapsed 330 seconds.",
+      "pass": true
+    },
+    {
+      "defect": "shared compiler global leakage",
+      "resolution": "The corrected engine no longer imports or mutates the shared cohort constructor module; compilation is subprocess-isolated.",
+      "pass": true
+    },
+    {
+      "defect": "fake-only test",
+      "resolution": "The integration test starts the receipt first, creates all fixture artifacts afterward, invokes the engine through the real watchdog command, runs real compilation and preclosure for three entries, and proves first-product, manifest and closure outputs.",
+      "pass": true
+    }
+  ],
+  "dictionaryEntriesEditedByReviewer": false,
+  "publicMutation": false,
+  "remainingDefectCount": 0,
+  "decision": "PASS_ENGINE_AUTHORITY"
+}

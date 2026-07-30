@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "generic-constructor-independent-review.v1",
+  "reviewer": "/root/source_tiers_c",
+  "engine": {
+    "path": "maintenance/generic_bounded_constructor.py",
+    "sha256": "5b0afd97ab4330f30dbbca93e1da743be8ee015c495264d08007859566df10cf"
+  },
+  "test": {
+    "path": "maintenance/test_generic_bounded_constructor.py",
+    "sha256": "6d1c624f3a3b8d8012c752030879860943721dfa006f834b772d360598c1b7f8",
+    "reportedResult": "1/1 pass",
+    "independentResult": "1/1 pass"
+  },
+  "checks": {
+    "cohortIdsOrHeadwordsEmbedded": "pass: no dictionary identity or headword is embedded",
+    "fixedTmpAliases": "pass: no /tmp path is embedded",
+    "cohortSpecificCleanup": "fail: production path contains an R11-specific WORK.md replacement and imports an R11-named constructor module as the shared engine",
+    "receiptFirstConfigBinding": "fail: config has no timegate, watchdog receipt, startedEpoch, command-audit, or artifact-order bindings; run() can execute directly on entirely pre-receipt artifacts",
+    "boundedConfigSchema": "fail: schema has no maximum cohort size, rejects no unknown fields, does not recompute deterministic IDs, does not require selection rows to equal entry IDs, and permits output paths to escape the config base",
+    "realProductionCompilerPath": "present but unproved: production calls compile_evidence_draft.py twice only when compiler is the imported shared module",
+    "entryByEntryOutput": "pass in orchestration: compile_one is called serially and a receipt is emitted after ordinal one",
+    "firstProductTimingCheckpoint": "fail: receipt records only emittedUtc; it does not bind cohort startedEpoch or prove/enforce elapsed <=270 seconds",
+    "constructionTimingCheckpoint": "fail: manifest/preclosure/closure are emitted, but no timegate binding or <=330-second enforcement exists",
+    "manifestPreclosureClosure": "partial pass: artifacts are emitted and preclosure errors block closure, but timing and receipt-first authority are absent",
+    "sharedCompilerIsolation": "fail: run() mutates module-global FRESH, paths, CONFIG and explicit_worksheet without restoring them, making repeated in-process runs stateful",
+    "meaningfulRealInvocationTest": "fail: the sole test injects FakeCompiler, monkeypatches both preclosure functions to automatic success, never invokes compile_evidence_draft.py, never exercises the production shared-module branch, and calls run() directly rather than through watchdog/CLI"
+  },
+  "requiredCorrections": [
+    "Remove the R11-specific WORK.md cleanup and place any legacy normalization behind generic configured transformations or the shared compiler itself.",
+    "Require and verify timegate/watchdog/config/command-audit bindings before run() performs work; reject every cohort artifact predating startedEpoch.",
+    "Bound ordinary entry count, recompute deterministic IDs, require selection/research/config ID equality, reject unknown schema keys, and constrain configured outputs to an authorized root.",
+    "Bind first-product receipt to startedEpoch and fail after 270 seconds; bind manifest/preclosure/closure to the timegate and fail after 330 seconds.",
+    "Restore all mutated shared compiler globals in a finally block.",
+    "Add an integration test that invokes the engine through the watchdog/CLI and exercises the real compile_evidence_draft.py production branch, real preclosure validation, first-product receipt, manifest, and closure."
+  ],
+  "entryEditsPerformed": false,
+  "publicMutation": false,
+  "decision": "AUTHORITY_WITHHELD"
+}
