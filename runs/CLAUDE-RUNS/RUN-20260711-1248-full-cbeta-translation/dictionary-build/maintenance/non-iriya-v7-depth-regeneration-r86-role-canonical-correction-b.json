@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "r86-authorized-late-construction-correction.v1",
+  "cohort": "R86",
+  "ids": [
+    "t_1d3473614976",
+    "t_1d37de9c7cfd",
+    "t_1d9203b2005e"
+  ],
+  "authorization": "Root authorized a bounded transparent late-construction correction for the same frozen R86 config and IDs.",
+  "watchdogFailure": "canonical constructor failed closed after a governed tier mismatch; root authorized corrected same-scope late construction",
+  "configPath": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r86-constructor-config-b.json",
+  "configSha256": "55627ab7f7a6c84905f00f4f17c4d2fef8fa15e23f9584adc17a04a5b68e5a32",
+  "rows": [
+    {
+      "id": "t_1d3473614976",
+      "term": "禮拜",
+      "dossierSha256": "18f02586ff4e42dffb8a18316b94264993e19422a527510bf89f637c7cb3bcb0",
+      "worksheetSha256": "f22a7665239c70c92382996ad13cac17a6f8a7d77ab12aebf9ed6f93470aafa0",
+      "productSha256": "e80b6c54003847d05149111468410248d9e8d4553f513a24ba2a405f903a80a0",
+      "compileReportSha256": "30a99f1c6e641aaf0515e3d636fa156b6854f73ef1bf5ebed54385cb32891815",
+      "workSha256": "f74b0df7d32f9e2f4389073db13870a615ac635956a89c2a5df98f1f962a076d"
+    },
+    {
+      "id": "t_1d37de9c7cfd",
+      "term": "獅子窟中無異獸",
+      "dossierSha256": "601f786224dd6e78ef6f1bc987fa296b3989bc0ce4c1eceee5d8619e20949d9f",
+      "worksheetSha256": "eaffb54340a5dda3bd93bd3fa8aa19ceed1011b1eaa2e4f2bb94f125cf2adab8",
+      "productSha256": "4c82fda3d593c355c958dd81394d8044c49686f63632625ef6421b16fbb71821",
+      "compileReportSha256": "390726b7b45b50f55d8645228b676951d80e37e2eae56825d808c83ea5cefcee",
+      "workSha256": "4b153b9eecd23d81bde129b1d154cc38e68c837fb6343c1c76656fd57d10b140"
+    },
+    {
+      "id": "t_1d9203b2005e",
+      "term": "覓心了不可得",
+      "dossierSha256": "76d711340ce158ad5ff329b8c68dd00e0f9f9541b5d009b0e71523e17ee47069",
+      "worksheetSha256": "781031135330ff1816d139cb0ff9a7afaad51db172ce0cfb0e9c95d2841e85ab",
+      "productSha256": "ac9dba116aaef2addcb0438d68c80143daa2aa6f73c53f95a333e9ac92a99915",
+      "compileReportSha256": "c7e4db84cf65385292cc073cd9771610b435dbeb83af01bd5a10bb3dc3273f8b",
+      "workSha256": "8ea9702d50dd74ac4caa35f320bf1da76ba7c3f9a8f0606f1040c2238ed9d1f8"
+    }
+  ],
+  "manifestSha256": "7c3ab34d812f3a5517c27924ac1fe52cb93ca64e18618955ff3b29524d9cc8f2",
+  "preclosureSha256": "7dcc457f324b1249ea4d19f3255fd4cacddb88bb5f439c97d440a46fcd30af2e",
+  "closureSha256": "c71f5a5cfd4e040f42eedbf28cb62c5ed312e9499d0265b9fbcbc690a91d9a34",
+  "elapsedSeconds": 989.4823141098022,
+  "deadlineExceeded": true,
+  "hardPass": true,
+  "publicMutation": false
+}

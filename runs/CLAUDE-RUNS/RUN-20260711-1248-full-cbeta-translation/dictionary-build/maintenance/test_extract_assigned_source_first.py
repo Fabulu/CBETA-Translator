@@ -7,13 +7,30 @@ import sys
 import tempfile
 import unittest
 
-from extract_assigned_source_first import build_documents, extract_rows
+from extract_assigned_source_first import (
+    assigned_cohort_from_output_name, build_documents, extract_rows,
+)
 
 HERE = Path(__file__).resolve().parent
 ENV = HERE / "dictionary_python_env.py"
 EXTRACTOR = HERE / "extract_assigned_source_first.py"
 
 class AssignedSourceFirstTests(unittest.TestCase):
+    def test_cohort_parser_accepts_ordinary_and_corrected_labels(self):
+        self.assertEqual(
+            ("non-iriya-v7-depth-regeneration-r86", "R86"),
+            assigned_cohort_from_output_name(
+                "non-iriya-v7-depth-regeneration-r86-extraction-output-b.json"),
+        )
+        self.assertEqual(
+            ("non-iriya-v7-depth-regeneration-r85r", "R85R"),
+            assigned_cohort_from_output_name(
+                "non-iriya-v7-depth-regeneration-r85r-extraction-output-b.json"),
+        )
+        with self.assertRaisesRegex(ValueError, "does not encode"):
+            assigned_cohort_from_output_name(
+                "non-iriya-v7-depth-regeneration-r85-r-extraction-output-b.json")
+
     def fixtures(self, floor, paths, tiers, duplicate=None):
         selection = [{"identityId": "id", "term": "詞", "requiredFloor": floor}]
         counts = {"id": {"per_file": [[path, 1] for path in paths]}}

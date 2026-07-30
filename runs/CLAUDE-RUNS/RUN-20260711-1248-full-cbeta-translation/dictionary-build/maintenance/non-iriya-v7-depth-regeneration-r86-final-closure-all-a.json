@@ -1,0 +1,197 @@
+{
+  "schemaVersion": "r86-independent-final-all-occurrence-closure.v1",
+  "cohort": "R86",
+  "reviewer": "r86_review_a",
+  "reviewType": "read-only changed-coordinate and complete semantic all-occurrence rereview",
+  "mutationPerformed": false,
+  "bindings": {
+    "sourceFirstRootReview": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r86-source-first-review-root.json",
+      "sha256": "91a6210fa59f5f23e79b3dc9c2298a54699ecef3fe05c24a8d4e63750fb17b45"
+    },
+    "constructorConfig": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r86-constructor-config-b.json",
+      "sha256": "55627ab7f7a6c84905f00f4f17c4d2fef8fa15e23f9584adc17a04a5b68e5a32"
+    },
+    "lineageRoster": {
+      "path": "../../../../Assets/Data/lineage-masters.json",
+      "sha256": "bdee500537cffced1759f28f2516d8ac613f2d10e3bbdc7b4d35da6bb9bc474a"
+    },
+    "liveDepthAudit": {
+      "path": "maintenance/depth-sense-gate.json",
+      "sha256": "d75bd886bb52dbad90acb6cb682969c30547d33b3363cb3cc34ebd7579d7b334"
+    }
+  },
+  "entries": [
+    {
+      "id": "t_1d3473614976",
+      "term": "禮拜",
+      "product": {
+        "path": "fresh-build/entries/t_1d3473614976/entry.v2.json",
+        "sha256": "d6ad1cda85dc8515aab3e727aeedb32b3abee57a50124f4c67878704121f776f"
+      },
+      "worksheet": {
+        "path": "fresh-build/entries/t_1d3473614976/evidence.draft.json",
+        "sha256": "dc027b0e44111d18476b5f7045ea9bd47e9fb37a64a6c7afadbaf08a74a9c457"
+      },
+      "sourceDossier": {
+        "path": "fresh-build/entries/t_1d3473614976/source-dossier.json",
+        "sha256": "6795dbfaf453c4428b524278d640273e3b280460ecb54c257636d0069cb41bfc"
+      },
+      "compileReport": {
+        "path": "fresh-build/entries/t_1d3473614976/evidence-compile-report.json",
+        "sha256": "dd5f8be5faaa31bf39f4194e02ea8de5b244736c42905c69510013a8968672f3"
+      },
+      "occurrences": 10,
+      "sourceTiers": {
+        "tier1": 4,
+        "tier2": 6,
+        "tier3Lamp": 0
+      },
+      "preferredTarget": "bow in respect",
+      "semanticVerdict": "PASS: all ten frames denote a respectful bow or an explicit rejection/discussion of that act; pragmatic use does not create a second lexical sense.",
+      "actorFrameVerdict": {
+        "hardPass": true,
+        "details": [
+          "Lan'an Dingxu performs the bow; Dahui Zonggao is teacher/interlocutor; Yeyun Ying is the structured unlinked verse-author and record owner.",
+          "The unnamed person performs the J10 bow; Miyun Yuanwu is utterer, teacher, and record owner.",
+          "Huike performs the bow discussed by Yuanwu Keqin, who later raises and comments on the case in his Tier-1 authored work.",
+          "Yuzhu Buhua performs the bow in Gulin Qingmao's verse; Gulin is verse-author and record owner.",
+          "An unnamed monk performs the bow in Weilin Daopei's exchange; Weilin is utterer, teacher, and record owner.",
+          "The negated B25 action has a generic implicit practitioner; Zhongfeng Mingben is verse-author and record owner.",
+          "Yulin Tongxiu directly utters the hypothetical contrast; its worshipper is generic and unnamed.",
+          "Linji Yixuan, Mazu Daoyi, and Huineng respectively own the three remaining named bowing actions."
+        ]
+      },
+      "liveAttributionAudit": {
+        "command": "python3 audit_attribution.py --json fresh-build/entries/t_1d3473614976/entry.v2.json",
+        "occurrences": 10,
+        "namedOccurrences": 5,
+        "contextMasterLinks": 13,
+        "contextActorIdentities": 1,
+        "reviewedUnnamed": 4,
+        "identifiedUnlinkedMaster": 1,
+        "hardFailures": 0
+      },
+      "worksheetProductParity": {
+        "comparisonRule": "Worksheet Entry equals compiled product after removing DraftActorProof, DraftAcceptedDerivedFields, DraftEvidence, and ExplanationParts.",
+        "semanticOrEvidenceMismatchCount": 0,
+        "hardPass": true
+      },
+      "hardPass": true
+    },
+    {
+      "id": "t_1d37de9c7cfd",
+      "term": "獅子窟中無異獸",
+      "product": {
+        "path": "fresh-build/entries/t_1d37de9c7cfd/entry.v2.json",
+        "sha256": "4c82fda3d593c355c958dd81394d8044c49686f63632625ef6421b16fbb71821"
+      },
+      "worksheet": {
+        "path": "fresh-build/entries/t_1d37de9c7cfd/evidence.draft.json",
+        "sha256": "eaffb54340a5dda3bd93bd3fa8aa19ceed1011b1eaa2e4f2bb94f125cf2adab8"
+      },
+      "sourceDossier": {
+        "path": "fresh-build/entries/t_1d37de9c7cfd/source-dossier.json",
+        "sha256": "601f786224dd6e78ef6f1bc987fa296b3989bc0ce4c1eceee5d8619e20949d9f"
+      },
+      "compileReport": {
+        "path": "fresh-build/entries/t_1d37de9c7cfd/evidence-compile-report.json",
+        "sha256": "390726b7b45b50f55d8645228b676951d80e37e2eae56825d808c83ea5cefcee"
+      },
+      "occurrences": 4,
+      "sourceTiers": {
+        "tier1": 0,
+        "tier2": 4,
+        "tier3Lamp": 0
+      },
+      "preferredTarget": "there is no other beast in a lion's den",
+      "semanticVerdict": "PASS: all four independent direct-master uses deploy one proverbial lion-den image; assertion, challenge, and capping use are rhetorical polarities, not different senses.",
+      "actorFrameVerdict": {
+        "hardPass": true,
+        "details": [
+          "Tianyin Yuanxiu, Shiyu Mingfang, and Shengke Deyu directly utter their retained lines.",
+          "The fourth direct utterer is roster-canonical Baiyu Jingsi, matching 百愚淨斯 and 百愚斯; no false unlinked Baiyu Xing identity remains.",
+          "Repeated versions of the inherited Baoci-Wolong encounter are absent."
+        ]
+      },
+      "liveAttributionAudit": {
+        "command": "python3 audit_attribution.py --json fresh-build/entries/t_1d37de9c7cfd/entry.v2.json",
+        "occurrences": 4,
+        "namedOccurrences": 4,
+        "contextMasterLinks": 4,
+        "hardFailures": 0
+      },
+      "worksheetProductParity": {
+        "comparisonRule": "Worksheet Entry equals compiled product after removing DraftActorProof, DraftAcceptedDerivedFields, DraftEvidence, and ExplanationParts.",
+        "semanticOrEvidenceMismatchCount": 0,
+        "hardPass": true
+      },
+      "hardPass": true
+    },
+    {
+      "id": "t_1d9203b2005e",
+      "term": "覓心了不可得",
+      "product": {
+        "path": "fresh-build/entries/t_1d9203b2005e/entry.v2.json",
+        "sha256": "f3343b4fd60c32dbbc3c0d636cc96be5bb1dc97aa696eab7a32b571511d88d97"
+      },
+      "worksheet": {
+        "path": "fresh-build/entries/t_1d9203b2005e/evidence.draft.json",
+        "sha256": "23fb0aee718098aba8e949656f7f896207b485b79f0ca4895f2df98650ec6d89"
+      },
+      "sourceDossier": {
+        "path": "fresh-build/entries/t_1d9203b2005e/source-dossier.json",
+        "sha256": "534f1cca5f384f57017e8407dfc49276a1730a146b0cf230c9fa51970bf5a567"
+      },
+      "compileReport": {
+        "path": "fresh-build/entries/t_1d9203b2005e/evidence-compile-report.json",
+        "sha256": "be88f1c5f744e09c487e80fbcc93f6aa054de5cf2cfcf1706e99a62dfe125e9c"
+      },
+      "occurrences": 6,
+      "sourceTiers": {
+        "tier1": 0,
+        "tier2": 6,
+        "tier3Lamp": 0
+      },
+      "preferredTarget": "on searching for the mind, it is wholly unobtainable",
+      "semanticVerdict": "PASS: all six frames concern searching for mind and finding it wholly unobtainable; inherited Huike cases and present-tense deployments share the same phrase-level sense.",
+      "actorFrameVerdict": {
+        "hardPass": true,
+        "details": [
+          "Huike owns the headword-bearing search/action in J20nB098, J25nB174, J26nB182, and J28nB208; Wunian You, Juelang Daosheng, Wanru Tongwei, and Guxue Zhenzhe remain contextual later voices only.",
+          "Daxiu Zhu directly owns the autobiographical J27nB192 utterance.",
+          "The J27nB197 action belongs to the implicit generic practitioner represented as reviewed unnamed; Wuyi Yuanlai is contextual utterer, teacher, and record owner."
+        ]
+      },
+      "liveAttributionAudit": {
+        "command": "python3 audit_attribution.py --json fresh-build/entries/t_1d9203b2005e/entry.v2.json",
+        "occurrences": 6,
+        "namedOccurrences": 5,
+        "contextMasterLinks": 10,
+        "reviewedUnnamed": 1,
+        "hardFailures": 0
+      },
+      "worksheetProductParity": {
+        "comparisonRule": "Worksheet Entry equals compiled product after removing DraftActorProof, DraftAcceptedDerivedFields, DraftEvidence, and ExplanationParts.",
+        "semanticOrEvidenceMismatchCount": 0,
+        "hardPass": true
+      },
+      "hardPass": true
+    }
+  ],
+  "combinedDepthAudit": {
+    "command": "python3 audit_depth_sense.py --paths fresh-build/entries/t_1d3473614976/entry.v2.json fresh-build/entries/t_1d37de9c7cfd/entry.v2.json fresh-build/entries/t_1d9203b2005e/entry.v2.json",
+    "audited": 3,
+    "hardFailed": 0,
+    "reviewFlagged": 1,
+    "expectedReviewFlag": "禮拜 broad-concordance-single-sense-review",
+    "singleSense": 3,
+    "tenOrMoreOccurrences": 1,
+    "hardPass": true
+  },
+  "sourceHierarchyVerdict": "PASS: the three products retain four Tier-1 authored witnesses and sixteen Tier-2 recorded-sayings witnesses in total. Tier-3 lamp count is zero; neither lamp volume nor passive recension duplication controls the evidence.",
+  "parityVerdict": "PASS: every current compiled product has exact semantic, occurrence, attribution, source-text, and related-master parity with its worksheet after excluding documented constructor-only draft fields.",
+  "overallVerdict": "APPROVE_FROZEN_R86_PRODUCTS",
+  "hardPass": true
+}

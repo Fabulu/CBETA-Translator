@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "source-first-semantic-review.v1",
+  "cohort": "R86",
+  "reviewer": "root",
+  "reviewMode": "source-first-before-product",
+  "extractionArtifact": "maintenance/non-iriya-v7-depth-regeneration-r86-extraction-output-b.json",
+  "extractionSha256": "1fbcff20ab72aaba2c63d5852e6de3d1517e83dbc0efa6df98b52c870e820e7b",
+  "productSeenBeforeRuling": false,
+  "rulings": [
+    {
+      "id": "t_1d3473614976",
+      "term": "禮拜",
+      "admitted": true,
+      "senseCount": 1,
+      "preferredTarget": "bow in respect",
+      "semanticRuling": "A bodily act of respectful salutation or homage, commonly performed before a teacher. Context may package it as 'bows', 'made obeisance', or 'paid respects', but those are English readings of one action rather than separate senses.",
+      "evidenceRuling": "Meet the ten-family floor from authored Zen material and recorded sayings. Exclude generic Buddhist cultivation, repentance, Pure Land, or doctrinal passages even if the raw authority table currently labels their containers Tier 1. Do not count repeated passive recensions of the same inherited encounter as independent deployments.",
+      "actorRuling": "The person who performs the bow owns the action, not the teacher receiving it and not the record owner. Narration must name the acting person when locally recoverable; otherwise use the reviewed unnamed participant branch.",
+      "reviewStatus": "provisional-pass-pending-product-comparison"
+    },
+    {
+      "id": "t_1d37de9c7cfd",
+      "term": "獅子窟中無異獸",
+      "admitted": true,
+      "senseCount": 1,
+      "preferredTarget": "there is no other beast in a lion's den",
+      "semanticRuling": "A verdict that a lion's den contains no alien kind: those truly belonging there are lions rather than lesser or foreign beasts. Masters deploy it as assertion, challenge, answer, approval, or rebuke. Those speech jobs do not create separate senses.",
+      "evidenceRuling": "Retain at least four active Tier-2 deployment families. Prefer direct questions, answers, and appraisals; collapse repeated versions of the Baoci-Wolong encounter into one family. No lamp padding is needed.",
+      "actorRuling": "When a monk states the line in a question, the monk is the exact actor and the master is respondent/context. When a master raises an earlier line and comments, preserve quoted-original and outer-raiser layers separately.",
+      "reviewStatus": "provisional-pass-pending-product-comparison"
+    },
+    {
+      "id": "t_1d9203b2005e",
+      "term": "覓心了不可得",
+      "admitted": true,
+      "senseCount": 1,
+      "preferredTarget": "search for the mind and find it wholly unobtainable",
+      "semanticRuling": "The fixed finding from Huike's exchange with Bodhidharma: on searching for the unsettled mind, it cannot be obtained or produced. Later masters quote, interrogate, and extend that finding. It is not a generic claim that no mental activity exists.",
+      "evidenceRuling": "Meet the six-family floor with active Tier-2 interpretations or redeployments, not six passive copies of the Huike-Bodhidharma case. Miyun, later instructional uses, explicit questions, and direct extensions can form distinct families.",
+      "actorRuling": "In the inherited dialogue Huike or Shenguang is the quoted original speaker and Bodhidharma the respondent; the later master is raiser/commentator. A later master who directly reformulates the line in current instruction owns that new utterance.",
+      "reviewStatus": "provisional-pass-pending-product-comparison"
+    }
+  ],
+  "hardPass": false,
+  "releaseAuthorized": false,
+  "reason": "Source-first semantic rulings are closed; comparison with emitted worksheet and product bytes remains required."
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "r86-final-release-authority.v1",
+  "cohort": "R86",
+  "verdict": "RELEASE_AUTHORIZED_AND_PUBLISHED",
+  "replacements": [
+    {"id":"t_1d3473614976","term":"禮拜","productSha256":"d6ad1cda85dc8515aab3e727aeedb32b3abee57a50124f4c67878704121f776f"},
+    {"id":"t_1d37de9c7cfd","term":"獅子窟中無異獸","productSha256":"4c82fda3d593c355c958dd81394d8044c49686f63632625ef6421b16fbb71821"},
+    {"id":"t_1d9203b2005e","term":"覓心了不可得","productSha256":"f3343b4fd60c32dbbc3c0d636cc96be5bb1dc97aa696eab7a32b571511d88d97"}
+  ],
+  "review": {
+    "closureSha256": "79ea86ca4d33a073c74927d70f3f94bd6ff225c735a7e1507a29f5f448a55130",
+    "retainedEvidence": "20 quotations across 20 independently reviewed deployment families",
+    "tierMix": "4 Tier-1 authored witnesses and 16 Tier-2 recorded-sayings witnesses; zero lamps",
+    "attributionAudit": "zero hard failures",
+    "depthSenseAudit": "three audited; zero hard failures; the frequent 禮拜 single-sense flag was explicitly adjudicated",
+    "allOccurrenceSemanticReread": true
+  },
+  "publicIntegrity": {
+    "entryCount": 4714,
+    "exactProductParity": "3/3",
+    "publicCommit": "1c432b098af76082cc7436b666670fbbf3df86ce",
+    "headEqualsOriginMain": true,
+    "hardPass": true
+  },
+  "publicationTiming": {
+    "publicationDeadlineEpoch": 1785410268.706218,
+    "atomicInstallEpoch": 1785410600,
+    "atomicInstallLatenessSeconds": 331.293782,
+    "publicCommitEpoch": 1785410618,
+    "publicCommitLatenessSeconds": 349.293782,
+    "deadlineHardPass": false,
+    "latePublicationDisclosed": true,
+    "cause": "Fail-closed command binding, source-tier adjudication, concurrent-write detection, and independent semantic rereview exposed and corrected performer/outer-speaker inversions before release."
+  },
+  "releaseAuthorized": true,
+  "published": true,
+  "hardPass": true
+}

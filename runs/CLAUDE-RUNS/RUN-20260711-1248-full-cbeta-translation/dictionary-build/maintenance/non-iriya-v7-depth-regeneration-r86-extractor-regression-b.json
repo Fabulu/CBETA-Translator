@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "r86-extractor-regression.v1",
+  "cohort": "R86",
+  "extractorPath": "maintenance/extract_assigned_source_first.py",
+  "extractorSha256": "ea903eeafc9f35552477fd9e82e0b099521897b35dfb8bc83c809931513a6d32",
+  "testPath": "maintenance/test_extract_assigned_source_first.py",
+  "testSha256": "3f5868d70ff7e9360c3d9a09baa8146d99976756b5b957f6ba9a227645c09ec6",
+  "command": "PYTHONPATH=maintenance:. python3 -m unittest maintenance.test_extract_assigned_source_first",
+  "testsRun": 6,
+  "ordinaryCohortCase": "R86",
+  "correctedSuffixCase": "R85R",
+  "invalidHyphenatedSuffixRejected": true,
+  "result": "OK",
+  "hardPass": true
+}

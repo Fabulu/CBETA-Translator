@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "authoritative-catastrophe-ledger-advancement.v1",
+  "cohort": "R86",
+  "publicCommit": "1c432b098af76082cc7436b666670fbbf3df86ce",
+  "publishedIds": [
+    "t_1d3473614976",
+    "t_1d37de9c7cfd",
+    "t_1d9203b2005e"
+  ],
+  "authoritativeRepairedBefore": 146,
+  "authoritativeRepairedAfter": 149,
+  "authoritativeRemainderBefore": 879,
+  "resolvedThisAdvancement": 3,
+  "authoritativeRemainderAfter": 876,
+  "arithmeticHardPass": true,
+  "publicIntegrity": {
+    "entryCount": 4714,
+    "aggregateCount": 4714,
+    "legacyCount": 4714,
+    "indexCount": 4714,
+    "shardCount": 4714,
+    "exactProductParity": "3/3",
+    "replacementParity": "3/3",
+    "headEqualsOriginMain": true,
+    "hardPass": true
+  },
+  "timegate": {
+    "publicationDeadlineEpoch": 1785410268.706218,
+    "atomicInstallEpoch": 1785410600,
+    "atomicInstallLatenessSeconds": 331.293782,
+    "publicCommitEpoch": 1785410618,
+    "publicCommitLatenessSeconds": 349.293782,
+    "deadlineHardPass": false,
+    "latePublicationDisclosed": true
+  },
+  "finalReleaseAuthoritySha256": "5ca3952185456a9c51fa133e8c5c4e30dc894d670b295f62559cdf48885ca848",
+  "sourceHierarchy": "20 retained higher-tier witnesses; zero Tier-3 lamps.",
+  "windowsNodeMerge": true,
+  "windowsGitPush": true,
+  "sealed": true
+}

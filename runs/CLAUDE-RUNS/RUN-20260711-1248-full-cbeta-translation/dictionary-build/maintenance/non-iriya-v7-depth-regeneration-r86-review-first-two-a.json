@@ -1,0 +1,361 @@
+{
+  "schemaVersion": "r86-independent-source-first-review.v1",
+  "cohort": "R86",
+  "reviewedIds": [
+    "t_1d3473614976",
+    "t_1d37de9c7cfd"
+  ],
+  "bindings": {
+    "timegateSha256": "f01e72e722d303d0d128ac89c9e053f258f5324460884906930e47789da5fd82",
+    "selectionSha256": "90fed892024259ae869b36eba66875f4f5334288ad501a0ee79beee99d4393ec",
+    "countSha256": "121919a7df3fef19fd044de736944a208e111b353225272d46a1a93b26beb54d",
+    "viabilitySha256": "2a73154a24fa94663f4b2a25cebeb74a7e0b56e841ce4e3ad69b371b4989db34",
+    "checkpointSha256": "d33e13542a866ad873e012dfc95ed0522bff95a60fba79a946608be423176987",
+    "extractionSha256": "1fbcff20ab72aaba2c63d5852e6de3d1517e83dbc0efa6df98b52c870e820e7b",
+    "skeletonSha256": "80afc2e2e3f6cd9b8d3efdbbab640bc33265306450e6b3d392dfdea4dcdb0171"
+  },
+  "reviews": [
+    {
+      "id": "t_1d3473614976",
+      "term": "禮拜",
+      "requiredFloor": 10,
+      "candidateCount": 22,
+      "admission": "ADMIT",
+      "senseCount": 1,
+      "preferredTarget": "bow in reverence",
+      "alternateTargets": [
+        "make obeisance",
+        "bow"
+      ],
+      "semanticRuling": "禮拜 ordinarily names a bodily act of reverence: bowing to a teacher, monk, Buddha, or the Three Jewels. It can close an exchange, thank a teacher, mark acceptance, or appear as a devotional practice. Those pragmatic differences do not create separate lexical senses.",
+      "interpretiveControl": "Hyujeong's compact gloss 禮拜者，敬也，伏也—reverence and submission—then interprets the action inwardly as revering true nature and subduing ignorance. Preserve this as an explicit Chan exegesis of the act, not as proof that every occurrence is disembodied or that 禮拜 itself means realization.",
+      "retainedFamilies": [
+        {
+          "relPath": "X/X63/X63n1255.xml",
+          "fromLb": "0741a23",
+          "tier": 1,
+          "contextSha256": "54fdf8f90a34a35f49f190b85a8ec8f5aa649374401ca6ca191e28abbbf539ac",
+          "masterName": "Hyujeong",
+          "actorRole": "handbook-author",
+          "performer": "generic practitioner",
+          "familyId": "libai:hyujeong-explicit-gloss",
+          "deployment": "Hyujeong explicitly glosses the act as reverence and submission, then gives it an inward Chan interpretation.",
+          "decision": "RETAIN"
+        },
+        {
+          "relPath": "T/T48/T48n2021.xml",
+          "fromLb": "1015a11",
+          "tier": 1,
+          "contextSha256": "ca6b153e3c46ff0feecb6cbc01ec3d170af9f34f58fd5e98f07913be5f91d0c3",
+          "masterName": null,
+          "actorLabel": "Zhiche",
+          "actorStatus": "identified-unlinked-master",
+          "actorRole": "autobiographical-author-and-performer",
+          "performer": "Zhiche",
+          "familyId": "libai:zhiche-distant-thanks",
+          "deployment": "Zhiche says in first person that he joined his palms, bowed from afar in thanks, remembered the instruction, and departed.",
+          "decision": "RETAIN"
+        },
+        {
+          "relPath": "X/X69/X69n1357.xml",
+          "fromLb": "0453a06",
+          "tier": 1,
+          "contextSha256": "8d133157a2102c9eb1a783feaab962d2856a7e77b495703534d6448ef46dbdc2",
+          "masterName": "Yuanwu Keqin",
+          "actorRole": "author-commentator",
+          "performer": "Huike",
+          "contextMasters": [
+            "Huike"
+          ],
+          "familyId": "libai:yuanwu-huike-three-bows",
+          "deployment": "Yuanwu discusses Huike's three bows and standing in place, while warning against mechanically treating silent bowing as the reason Huike received the marrow.",
+          "decision": "RETAIN"
+        },
+        {
+          "relPath": "X/X71/X71n1413.xml",
+          "fromLb": "0288a16",
+          "tier": 1,
+          "contextSha256": "214ffe28376d3a8af768a29d1e0af630edc8bcdc44ead66578d545a3cc66c3d1",
+          "masterName": "Gulin Qingmao",
+          "actorRole": "verse-author",
+          "performer": "Yuzhu Buhua",
+          "familyId": "libai:gulin-yuzhu-verse",
+          "deployment": "Gulin's sendoff verse depicts Yuzhu Buhua kowtowing and bowing to a bhiksu.",
+          "decision": "RETAIN"
+        },
+        {
+          "relPath": "X/X72/X72n1442.xml",
+          "fromLb": "0688c22",
+          "tier": 1,
+          "contextSha256": "c2b4f603faeb7667da8c6ed7bd1d713ffcbea1e20d261c49d22f3d2f163ae120",
+          "masterName": "Weilin Daopei",
+          "actorRole": "author-narrator",
+          "performer": "reviewed unnamed questioning monk",
+          "familyId": "libai:weilin-exchange-closure",
+          "deployment": "In Weilin's authored hall record, a monk bows after Weilin's response; the performer is the unnamed monk, not Weilin.",
+          "decision": "RETAIN"
+        },
+        {
+          "relPath": "J/J25/J25nB165.xml",
+          "fromLb": "0289c09",
+          "tier": 1,
+          "contextSha256": "1bf67a4108fba915eb1a0359a2de21a398292aa3d345d80d80d667b83d32b44c",
+          "masterName": null,
+          "actorLabel": "Jinglun",
+          "actorStatus": "identified-unlinked-master",
+          "actorRole": "author-commentator",
+          "performer": "Nanquan Puyuan, Guizong Zhichang, and Mayu Baoche",
+          "contextMasters": [
+            "Nanquan Puyuan",
+            "Guizong Zhichang",
+            "Mayu Baoche"
+          ],
+          "familyId": "libai:jinglun-national-teacher-case",
+          "deployment": "Jinglun raises and comments on the inherited case in which Nanquan, Guizong, and Mayu set out to bow to the National Teacher.",
+          "decision": "RETAIN"
+        },
+        {
+          "relPath": "B/B25/B25n0145.xml",
+          "fromLb": "0951a03",
+          "tier": 2,
+          "contextSha256": "3b0bf6615340e18e3e20d5b828bf3caf845832341caf5d508539243bcb7bd4fb",
+          "masterName": "Zhongfeng Mingben",
+          "actorRole": "verse-author",
+          "performer": "generic practitioner",
+          "familyId": "libai:zhongfeng-no-ritual-needed",
+          "deployment": "Zhongfeng's direct verse says that bowing and scattering flowers are unnecessary and identifies the present instruction as true repentance.",
+          "decision": "RETAIN"
+        },
+        {
+          "relPath": "B/B27/B27n0152.xml",
+          "fromLb": "0491b18",
+          "tier": 2,
+          "contextSha256": "9b2806345386d8003918e4f848563274cdbaf6a04c601b27f2bbb21e96a8d033",
+          "masterName": "Yulin Tongxiu",
+          "actorRole": "utterer",
+          "performer": "generic contrasted worshipper",
+          "familyId": "libai:yulin-buddha-devotion-contrast",
+          "deployment": "Yulin contrasts one who refuses even to hear Buddha named with one who sees Buddha and joyfully bows, praises, and makes offerings.",
+          "decision": "RETAIN"
+        },
+        {
+          "relPath": "C/C077/C077n1710.xml",
+          "fromLb": "0615c03",
+          "tier": 2,
+          "contextSha256": "f7a24648352b61902607ef0bc5f26ee31821059150c92bb4f04de5f1035ebf78",
+          "masterName": "Mazu Daoyi",
+          "actorRole": "nested-historical-performer",
+          "performer": "Mazu Daoyi",
+          "contextMasters": [
+            "Nanyue Huairang"
+          ],
+          "familyId": "libai:mazu-post-awakening-question",
+          "deployment": "In the Mazu-Huairang narrative, Mazu awakens, bows, and asks how to apply the mind in accord with signless samadhi.",
+          "decision": "RETAIN"
+        },
+        {
+          "relPath": "J/J23/J23nB134.xml",
+          "fromLb": "0518c15",
+          "tier": 2,
+          "contextSha256": "1b14ccdf8eb12a15beab576dc7afff702f4c32874cadd0b7663c202cb50b9bb6",
+          "masterName": "Linji Yixuan",
+          "actorRole": "record-participant-and-performer",
+          "performer": "Linji Yixuan",
+          "familyId": "libai:linji-bows-and-withdraws",
+          "deployment": "Before departing Huangbo, Linji bows and withdraws after the head monk tells him to take leave formally.",
+          "decision": "RETAIN"
+        }
+      ],
+      "excludedOrReserve": [
+        {
+          "relPath": "J/J40/J40nB484.xml",
+          "fromLb": "0274c19",
+          "reason": "Lineage-compendium biography rather than a direct master voice; unnecessary after the floor is met."
+        },
+        {
+          "relPath": "T/T48/T48n2013.xml",
+          "fromLb": "0388c14",
+          "reason": "Generic cultivation list; semantically valid but lower-information than the retained explicit gloss and acted examples."
+        },
+        {
+          "relPath": "T/T48/T48n2016.xml",
+          "fromLb": "0489c07",
+          "reason": "Yongming retells the inherited Subhuti and lotus-colored nun narrative; reserve rather than count quotation volume."
+        },
+        {
+          "relPath": "T/T48/T48n2017.xml",
+          "fromLb": "0959c04",
+          "reason": "The headword belongs to a nested quotation of the Awakening of Faith, not the outer master."
+        },
+        {
+          "relPath": "X/X63/X63n1257.xml",
+          "fromLb": "0765b14",
+          "reason": "The local wording and actor boundary around 禮拜云 are uncertain; exclude when ten clearer families suffice."
+        },
+        {
+          "relPath": "X/X64/X64n1276.xml",
+          "fromLb": "0810c01",
+          "reason": "Explicitly cites Transmission of the Lamp and repeats inherited Liangsu material; lamp-derived evidence is unnecessary."
+        },
+        {
+          "relPath": "X/X87/X87n1624.xml",
+          "fromLb": "0264a09",
+          "reason": "Juefan reports a Tiantai tradition about Zhiyi; not an independent Chan-master use."
+        },
+        {
+          "relPath": "B/B25/B25n0143.xml",
+          "fromLb": "0228a08",
+          "reason": "Li Jun reports two unnamed monks bowing to Songshan An while Shenhui merely interprets the report; actor authority is weaker than the retained cases."
+        },
+        {
+          "relPath": "D/D51/D51n8948.xml",
+          "fromLb": "0020a04",
+          "reason": "Routine anonymous-monk stage direction; reserve."
+        },
+        {
+          "relPath": "J/J10/J10nA158.xml",
+          "fromLb": "0001b11",
+          "reason": "Prefatory writer describes a teacher's reciprocal conduct; the headword is not Miyun's direct utterance."
+        },
+        {
+          "relPath": "J/J20/J20nB098.xml",
+          "fromLb": "0516b01",
+          "reason": "Later exposition embeds Huineng's biography; redundant historical family."
+        }
+      ],
+      "sourceHierarchy": "Six Tier-1 authored families and four Tier-2 recorded-sayings families meet the ten-case floor. The sole explicitly lamp-derived candidate is excluded, as are passive anthology and lineage-compendium duplicates.",
+      "actorGate": "Keep source author, grammatical performer, and nested historical participant distinct. Zhiche and Jinglun require structured identified-unlinked attribution rather than invented roster links. The unnamed monk in Weilin's record and the generic worshipper in Yulin's contrast must not be promoted to the record owner.",
+      "verdict": "APPROVE_CONSTRUCTION",
+      "hardPass": true
+    },
+    {
+      "id": "t_1d37de9c7cfd",
+      "term": "獅子窟中無異獸",
+      "requiredFloor": 4,
+      "candidateCount": 16,
+      "admission": "ADMIT",
+      "senseCount": 1,
+      "preferredTarget": "in a lion's den there are no other beasts",
+      "alternateTargets": [
+        "a lion's lair contains no alien beast"
+      ],
+      "semanticRuling": "The line asserts that within a true lion's lair there is no creature of another kind. Chan speakers apply it to a lineage, assembly, act, or transmission to claim unalloyed lion-kind, authentic family resemblance, or no inferior outsider. The applications share one proverbial image rather than separate zoological and doctrinal senses.",
+      "polarityControl": "The formula is not self-validating. Masters sometimes deploy it approvingly, but monks also offer it as a stock claim and are rebuked for a mistaken acceptance. Translate the image without silently certifying the speaker's attainment or lineage claim.",
+      "retainedFamilies": [
+        {
+          "relPath": "J/J25/J25nB171.xml",
+          "fromLb": "0543a18",
+          "tier": 2,
+          "contextSha256": "ca48cb7d66530c1f272ec0a03470d8fc3986435c9e73723972d358eec5307eac",
+          "masterName": "Tianyin Yuanxiu",
+          "actorRole": "capping-commentator",
+          "familyId": "shiziku:tianyin-nondual-cap",
+          "deployment": "After challenging conventional guest-host and illumination-function parsing, Tianyin caps his own shout with the lion-den line and its elephant-king parallel.",
+          "decision": "RETAIN"
+        },
+        {
+          "relPath": "J/J27/J27nB190.xml",
+          "fromLb": "0093a18",
+          "tier": 2,
+          "contextSha256": "b5b785832bcaf21f568f3bc88980afee3597ffa10c49dfd6b406008a1608fb9a",
+          "masterName": "Shiyu Mingfang",
+          "actorRole": "hall-commentator",
+          "familyId": "shiziku:shiyu-daruma-inclusivity",
+          "deployment": "Shiyu uses the formula while challenging hierarchical readings of Bodhidharma's skin, flesh, bones, and marrow, then says no one present lacks what is complete.",
+          "decision": "RETAIN"
+        },
+        {
+          "relPath": "J/J35/J35nB342.xml",
+          "fromLb": "0791c27",
+          "tier": 2,
+          "contextSha256": "45cdf27d9122c742a096929f4fbe30f5b66cdcced768d185e5b8867e3a2f8147",
+          "masterName": "Shengke Deyu",
+          "actorRole": "capping-commentator",
+          "familyId": "shiziku:shengke-deshan-cap",
+          "deployment": "Shengke inserts the lion-den formula as his own cap in the Deshan bowl case.",
+          "decision": "RETAIN"
+        },
+        {
+          "relPath": "J/J36/J36nB359.xml",
+          "fromLb": "0618c07",
+          "tier": 2,
+          "contextSha256": "077706c6817175e9ff45299eb71b7797f21830d13aa410564fec6a1170cfadfc",
+          "masterName": "Baiyu Jingsi",
+          "actorRole": "entry-address-utterer",
+          "familyId": "shiziku:baiyu-entry-address",
+          "deployment": "At the monastery gate Baiyu declares the liberation gate open and pairs the lion-den line with the elephant-king formula.",
+          "decision": "RETAIN"
+        }
+      ],
+      "excludedOrReserve": [
+        {
+          "relPath": "J/J26/J26nB178.xml",
+          "fromLb": "0136b28",
+          "reason": "The phrase is offered by a questioning monk and the master immediately says the monk has accepted wrongly."
+        },
+        {
+          "relPath": "J/J26/J26nB185.xml",
+          "fromLb": "0601a15",
+          "reason": "The phrase belongs to a questioner asking how the den can contain outsiders; valid reception evidence but weaker than direct master use."
+        },
+        {
+          "relPath": "J/J27/J27nB193.xml",
+          "fromLb": "0278b18",
+          "reason": "A monk offers the stock line and is answered 'jackal cry'; retain as polarity evidence only, not depth."
+        },
+        {
+          "relPath": "J/J28/J28nB202.xml",
+          "fromLb": "0067a19",
+          "reason": "The headword is in a monk's question; the master's answer and discourse unpack it, but four direct master utterances already meet the floor."
+        },
+        {
+          "relPath": "J/J27/J27nB198.xml",
+          "fromLb": "0480c27",
+          "reason": "Inherited Baozi-Wolong case family, repeated in J34nB304 and J37nB371; exclude all three rather than count recension volume."
+        },
+        {
+          "relPath": "J/J34/J34nB304.xml",
+          "fromLb": "0389a27",
+          "reason": "Parallel of the inherited Baozi-Wolong case already represented in the candidate pool; passive duplicate."
+        },
+        {
+          "relPath": "J/J37/J37nB371.xml",
+          "fromLb": "0039c07",
+          "reason": "Parallel of the inherited Baozi-Wolong case already represented in the candidate pool; passive duplicate."
+        },
+        {
+          "relPath": "J/J33/J33nB286.xml",
+          "fromLb": "0506a10",
+          "reason": "Later capping commentary on an inherited patriarchal biography; reserve."
+        },
+        {
+          "relPath": "J/J37/J37nB386.xml",
+          "fromLb": "0342a22",
+          "reason": "Valid direct answer held as reserve because four more explanatory direct-master families meet the floor."
+        },
+        {
+          "relPath": "J/J37/J37nB392.xml",
+          "fromLb": "0575a12",
+          "reason": "Valid direct answer but formulaically paired with the same elephant-king line; reserve."
+        },
+        {
+          "relPath": "J/J38/J38nB417.xml",
+          "fromLb": "0492a07",
+          "reason": "The phrase is assigned to a secondary respondent in a many-voice substitution exercise; exact actor is not the record owner."
+        },
+        {
+          "relPath": "J/J38/J38nB425.xml",
+          "fromLb": "0652a30",
+          "reason": "Later substitute answer to the inherited Changqing case; weaker than direct contemporary deployment."
+        }
+      ],
+      "sourceHierarchy": "The extraction supplies no Tier-1 authored witness. Four independent Tier-2 direct-master uses meet the floor. No lamp is needed, and the three repeated versions of the Baozi-Wolong case are excluded as one passive inherited family.",
+      "actorGate": "Retained MasterName values belong only to the direct master who speaks or writes the headword. Do not assign monks' formulaic questions to responding record owners, and do not count the Baozi-Wolong recensions as independent actors or families.",
+      "verdict": "APPROVE_CONSTRUCTION",
+      "hardPass": true
+    }
+  ],
+  "reviewer": "r86_review_a",
+  "reviewType": "independent source-first semantic, voice, actor, and family adjudication",
+  "hardPass": true
+}

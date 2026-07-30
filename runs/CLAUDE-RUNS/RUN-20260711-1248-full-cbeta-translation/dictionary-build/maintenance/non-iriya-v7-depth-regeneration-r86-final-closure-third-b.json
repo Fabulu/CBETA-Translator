@@ -1,0 +1,127 @@
+{
+  "schemaVersion": "r86-independent-final-product-closure.v1",
+  "cohort": "R86",
+  "entryId": "t_1d9203b2005e",
+  "term": "覓心了不可得",
+  "reviewer": "independent-third-review-lane-b",
+  "mutationPerformed": false,
+  "bindings": {
+    "frozenConstructorConfig": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r86-constructor-config-b.json",
+      "sha256": "2a6fe8efd033808ac0e930fe05d12fc0a9923373015324c98b3102e870458936"
+    },
+    "authorizedLateConstructionRoot": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r86-late-construction-correction-b.json",
+      "sha256": "f28a9d0dbe0ec7fbef040098398c016f18b0db7548af58fa8275e360fe45cd69"
+    },
+    "independentReview": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r86-review-third-b.json",
+      "sha256": "e78bf38ad148d0a0b5ea3f2ddeea84fa51fb7dd591f42b95edc91605bd4a53b8"
+    },
+    "product": {
+      "path": "fresh-build/entries/t_1d9203b2005e/entry.v2.json",
+      "sha256": "ac9dba116aaef2addcb0438d68c80143daa2aa6f73c53f95a333e9ac92a99915"
+    },
+    "worksheet": {
+      "path": "fresh-build/entries/t_1d9203b2005e/evidence.draft.json",
+      "sha256": "781031135330ff1816d139cb0ff9a7afaad51db172ce0cfb0e9c95d2841e85ab"
+    },
+    "sourceDossier": {
+      "path": "fresh-build/entries/t_1d9203b2005e/source-dossier.json",
+      "sha256": "76d711340ce158ad5ff329b8c68dd00e0f9f9541b5d009b0e71523e17ee47069"
+    },
+    "compileReport": {
+      "path": "fresh-build/entries/t_1d9203b2005e/evidence-compile-report.json",
+      "sha256": "c7e4db84cf65385292cc073cd9771610b435dbeb83af01bd5a10bb3dc3273f8b"
+    },
+    "workLedger": {
+      "path": "fresh-build/entries/t_1d9203b2005e/WORK.md",
+      "sha256": "8ea9702d50dd74ac4caa35f320bf1da76ba7c3f9a8f0606f1040c2238ed9d1f8"
+    },
+    "finalAttributionAudit": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r86-attribution-t_1d9203b2005e-final-b.json",
+      "sha256": "9ba8146e163f8a7d5d5e50d623936e49a1ebc44f879bf90948d7a62151878db4"
+    },
+    "finalDepthAudit": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r86-depth-sense-final-b.json",
+      "sha256": "4b68f868dd3322c2ddc26b16d70b05e6a3f09d4035ab9756d26bf1e14696136f"
+    }
+  },
+  "comparison": {
+    "reviewedFloor": 6,
+    "productOccurrenceCount": 6,
+    "worksheetOccurrenceCount": 6,
+    "dossierRetainedCaseCount": 6,
+    "activeDeploymentActors": [
+      {
+        "relPath": "J/J20/J20nB098.xml",
+        "masterName": "Wunian You",
+        "tier": 2
+      },
+      {
+        "relPath": "J/J25/J25nB174.xml",
+        "masterName": "Juelang Daosheng",
+        "tier": 2
+      },
+      {
+        "relPath": "J/J26/J26nB182.xml",
+        "masterName": "Wanru Tongwei",
+        "tier": 2
+      },
+      {
+        "relPath": "J/J27/J27nB192.xml",
+        "masterName": "Daxiu Zhu",
+        "tier": 2
+      },
+      {
+        "relPath": "J/J27/J27nB197.xml",
+        "masterName": "Wuyi Yuanlai",
+        "tier": 2
+      },
+      {
+        "relPath": "J/J28/J28nB208.xml",
+        "masterName": "Guxue Zhenzhe",
+        "tier": 2
+      }
+    ],
+    "pathActorSetMatchesIndependentReview": true,
+    "pathActorSetMatchesWorksheet": true,
+    "pathActorSetMatchesDossier": true,
+    "allRetainedSourcesTier2": true,
+    "tier3LampCount": 0,
+    "tier3ExceptionalJustification": "",
+    "preferredTarget": "on searching for the mind, it is wholly unobtainable",
+    "preferredTargetMatchesReview": true,
+    "senseMasterNameIsNull": true,
+    "sourceTextSetMatchesOccurrences": true,
+    "worksheetProductParity": {
+      "hardPass": true,
+      "comparisonRule": "The compiled product equals worksheet Entry after removing constructor-only DraftActorProof, DraftAcceptedDerivedFields, DraftEvidence, and ExplanationParts fields.",
+      "semanticOrEvidenceMismatchCount": 0
+    }
+  },
+  "auditResults": {
+    "attribution": {
+      "entries": 1,
+      "senses": 1,
+      "occurrences": 6,
+      "namedOccurrences": 6,
+      "hardFailures": 0
+    },
+    "depth": {
+      "entrySha256MatchesProduct": true,
+      "evidenceFloor": 6,
+      "occurrences": 6,
+      "sourceTexts": 6,
+      "senseCount": 1,
+      "hardPass": true,
+      "hardFlags": [],
+      "reviewFlags": []
+    }
+  },
+  "sourceHierarchyVerdict": "PASS: the product retains six independently reviewed active deployments from Tier-2 recorded sayings, admits no lamp record, and matches the frozen independent adjudication.",
+  "parityVerdict": "PASS: worksheet and compiled product have exact semantic, occurrence, attribution, source-text, and related-master parity after excluding documented constructor-only draft fields.",
+  "overallVerdict": "APPROVE_FROZEN_PRODUCT",
+  "hardPass": true,
+  "publicMutation": false
+}

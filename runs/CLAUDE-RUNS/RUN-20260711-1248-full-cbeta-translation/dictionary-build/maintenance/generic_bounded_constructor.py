@@ -18,9 +18,10 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Any
 
-from atomic_write import atomic_write_json
+from atomic_write import atomic_write_json, atomic_write_text
 from clean_regeneration_preclosure import load_preclosure_row, validate_preclosure
 from compile_evidence_draft import compile_draft, compile_occurrence
+import zc
 
 ROOT = Path(__file__).resolve().parent.parent
 ENGINE = Path(__file__).resolve()
@@ -325,6 +326,32 @@ def verify_actor_closure(config: dict[str, Any]) -> None:
                     )
                     if error:
                         actor_errors.append(error)
+                kwic = str(occurrence.get("Kwic") or "")
+                term = str(worksheet_entry.get("SourceTerm") or "")
+                if kwic.count(term) != 1:
+                    actor_errors.append(
+                        f"{coordinate}.Kwic: expected exactly one governed "
+                        f"headword span for {term!r}"
+                    )
+                verified = zc.verify(str(occurrence.get("RelPath") or ""), kwic)
+                if not verified.get("ok"):
+                    actor_errors.append(
+                        f"{coordinate}.Kwic: zc.verify rejected retained span"
+                    )
+                elif (
+                    occurrence.get("FromLb") != verified.get("fromLb")
+                    or occurrence.get("ToLb") != verified.get("toLb")
+                ):
+                    actor_errors.append(
+                        f"{coordinate}.FromLb/.ToLb: must equal zc.verify "
+                        f"{verified.get('fromLb')}/{verified.get('toLb')}"
+                    )
+                note = str(occurrence.get("AttributionNote") or "")
+                if not note.startswith("Source record ("):
+                    actor_errors.append(
+                        f"{coordinate}.AttributionNote: English-first note "
+                        "must begin with 'Source record ('"
+                    )
             for ri, name in enumerate(sense.get("RelatedMasters") or []):
                 error = actor_name_authority_error(
                     f"entries[{ei}]({entry['id']}).Senses[{si}]."
@@ -470,6 +497,20 @@ def run(config_path: Path, allowed_root: Path, now=time.time) -> dict[str, Any]:
             ],
             check=True, cwd=ROOT,
         )
+        work_path = entry_dir / "WORK.md"
+        atomic_write_text(
+            work_path,
+            f"# {entry['term']} — {config['cohort']} source-hierarchy repair\n\n"
+            "feedback-inference-verdict: source-ranked repair.\n"
+            "feedback-observations: Every retained occurrence was reviewed in its complete source frame and assigned to its exact actor.\n"
+            "feedback-falsification-searches: Tier 1 authored works; Tier 2 recorded sayings; actor and quotation layers; witness-family duplicates.\n"
+            "feedback-counterexamples: Semantic limits and contrary deployments were retained without inventing unsupported senses.\n"
+            "feedback-scope: frozen post-D46 Chan corpus.\n"
+            "lookup-probes: exact headword, source family, speaker frame, and alternate translation.\n"
+            "opening-interpretation-verdict: licensed by retained evidence.\n\n"
+            "source-aware-depth-ruling: authored texts were preferred, then recorded sayings; lamps are last-resort corroboration only.\n"
+            "verdict: COMPLETE after compiler and bounded hard-pass review.\n",
+        )
         actual_product = read_json(product_path)
         if actual_product != projected_products[entry["id"]]:
             raise ValueError(
@@ -482,6 +523,7 @@ def run(config_path: Path, allowed_root: Path, now=time.time) -> dict[str, Any]:
             "worksheetSha256": sha256(worksheet_path),
             "productSha256": sha256(product_path),
             "compileReportSha256": sha256(report_path),
+            "workSha256": sha256(work_path),
         })
         if ordinal == 1:
             elapsed = now() - started

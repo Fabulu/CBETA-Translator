@@ -110,6 +110,18 @@ def build_documents(cohort, extracted):
     })
 
 
+def assigned_cohort_from_output_name(name: str) -> tuple[str, str]:
+    """Parse ordinary and explicitly corrected cohort labels fail-closed."""
+    match = re.search(
+        r"(non-iriya-v7-depth-regeneration-(r\d+[a-z]*))-extraction-output-b\.json$",
+        name,
+    )
+    if not match:
+        raise ValueError("extraction output does not encode an assigned cohort")
+    prefix, cohort_lower = match.groups()
+    return prefix, cohort_lower.upper()
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--extraction-output", required=True, type=Path)
@@ -119,13 +131,10 @@ def main() -> None:
     parser.add_argument("--count", type=Path)
     parser.add_argument("--viability-receipt", type=Path)
     args = parser.parse_args()
-    match = re.search(
-        r"(non-iriya-v7-depth-regeneration-(r\d+))-extraction-output-b\.json$",
-        args.extraction_output.name)
-    if not match:
-        raise SystemExit("extraction output does not encode an assigned cohort")
-    prefix, cohort_lower = match.groups()
-    cohort = cohort_lower.upper()
+    try:
+        prefix, cohort = assigned_cohort_from_output_name(args.extraction_output.name)
+    except ValueError as exc:
+        raise SystemExit(str(exc)) from exc
     maintenance = args.extraction_output.resolve().parent
     bindings = (args.timegate, args.selection, args.count, args.viability_receipt)
     if not all(bindings):
