@@ -19,6 +19,7 @@ import time
 
 SCHEMA = "construction-start-receipt.v1"
 DEADLINE_SECONDS = 120.0
+REQUIRED_COHORT_ARTIFACTS = {"union", "selection", "count", "preflight", "research"}
 
 
 def sha256(path: Path) -> str:
@@ -69,6 +70,53 @@ def validate_preflight(path: Path) -> None:
         raise ValueError(f"{path}: schema/template preflight is not hardPass=true")
 
 
+def parse_artifacts(values: list[str]) -> dict[str, Path]:
+    result = {}
+    for value in values:
+        if "=" not in value:
+            raise ValueError(f"cohort artifact must be KIND=PATH: {value}")
+        kind, raw_path = value.split("=", 1)
+        if not kind or not raw_path or kind in result:
+            raise ValueError(f"invalid or duplicate cohort artifact: {value}")
+        result[kind] = Path(raw_path)
+    missing = sorted(REQUIRED_COHORT_ARTIFACTS - result.keys())
+    if missing:
+        raise ValueError(f"required cohort artifacts missing: {', '.join(missing)}")
+    return result
+
+
+def verify_receipt_first(started, constructor, preflight, artifact_args, command_audit_path):
+    artifacts = parse_artifacts(artifact_args)
+    artifacts["constructor"] = constructor
+    artifacts["preflight"] = preflight
+    rows = []
+    for kind, path in artifacts.items():
+        if not path.is_file():
+            raise ValueError(f"{kind} artifact does not exist: {path}")
+        modified = path.stat().st_mtime
+        if modified < started:
+            raise ValueError(
+                f"pre-receipt artifact rejected: {kind} mtime {modified:.6f} "
+                f"< startedEpoch {started:.6f}"
+            )
+        rows.append({"kind": kind, "path": str(path), "mtimeEpoch": modified, "sha256": sha256(path)})
+    audit = read_json(command_audit_path)
+    if audit.get("complete") is not True or not isinstance(audit.get("commands"), list):
+        raise ValueError("command audit must declare complete=true and contain commands[]")
+    for index, command in enumerate(audit["commands"]):
+        epoch = float(command["epoch"])
+        if epoch < started:
+            raise ValueError(
+                f"pre-receipt command rejected: commands[{index}] epoch {epoch:.6f} "
+                f"< startedEpoch {started:.6f}"
+            )
+        if not command.get("command"):
+            raise ValueError(f"commands[{index}] has no command")
+    if command_audit_path.stat().st_mtime < started:
+        raise ValueError("command-audit artifact predates the cohort receipt")
+    return rows, audit
+
+
 def invoke(args: argparse.Namespace) -> int:
     receipt = Path(args.receipt)
     if receipt.exists():
@@ -87,10 +135,14 @@ def invoke(args: argparse.Namespace) -> int:
     constructor = Path(args.constructor).resolve()
     if not constructor.is_file():
         return fail_closed(receipt, f"constructor does not exist: {constructor}")
+    preflight = Path(args.preflight_receipt)
     try:
-        validate_preflight(Path(args.preflight_receipt))
+        validate_preflight(preflight)
+        artifact_rows, command_audit = verify_receipt_first(
+            started, constructor, preflight, args.cohort_artifact, Path(args.command_audit)
+        )
     except (OSError, ValueError, KeyError, json.JSONDecodeError) as exc:
-        return fail_closed(receipt, f"schema/template preflight failed: {exc}")
+        return fail_closed(receipt, f"receipt-first/preflight verification failed: {exc}")
     command = list(args.command)
     if command and command[0] == "--":
         command = command[1:]
@@ -117,6 +169,11 @@ def invoke(args: argparse.Namespace) -> int:
         "constructorSha256": sha256(constructor),
         "preflightReceiptPath": str(Path(args.preflight_receipt)),
         "preflightPassed": True,
+        "receiptFirstVerified": True,
+        "cohortArtifacts": artifact_rows,
+        "commandAuditPath": str(Path(args.command_audit)),
+        "commandAuditSha256": sha256(Path(args.command_audit)),
+        "auditedCommandCount": len(command_audit["commands"]),
         "command": command,
         "invocationAttempted": True,
         "processState": "starting",
@@ -152,6 +209,9 @@ def check(args: argparse.Namespace) -> int:
             "invocationAttempted",
             "processState",
             "preflightPassed",
+            "receiptFirstVerified",
+            "cohortArtifacts",
+            "commandAuditSha256",
         }
         missing = sorted(required - data.keys())
         if missing:
@@ -160,6 +220,8 @@ def check(args: argparse.Namespace) -> int:
             raise ValueError("receipt was not emitted by an actual invocation")
         if data["preflightPassed"] is not True:
             raise ValueError("preflight did not pass")
+        if data["receiptFirstVerified"] is not True:
+            raise ValueError("receipt-first ordering was not verified")
         elapsed = float(data["invokedEpoch"]) - float(data["startedEpoch"])
         if elapsed > DEADLINE_SECONDS:
             raise ValueError(f"invocation marker is late ({elapsed:.3f}s)")
@@ -184,6 +246,8 @@ def parser() -> argparse.ArgumentParser:
     start.add_argument("--receipt", required=True)
     start.add_argument("--constructor", required=True)
     start.add_argument("--preflight-receipt", required=True)
+    start.add_argument("--cohort-artifact", action="append", default=[], metavar="KIND=PATH")
+    start.add_argument("--command-audit", required=True)
     start.add_argument("--ids", nargs="+", required=True)
     start.add_argument("--now-epoch", type=float, help=argparse.SUPPRESS)
     start.add_argument("command", nargs=argparse.REMAINDER)

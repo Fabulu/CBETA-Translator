@@ -292,6 +292,15 @@ terminal for that cohort and is permitted only after publication succeeds or whe
 stopped/deferred at a deadline. A sealed receipt cannot authorize a later phase and must never be replaced
 with a fresh same-cohort timer.
 
+**The timegate receipt is artifact zero.** Start it before loading or building the prior union, selecting
+IDs, counting hits, running schema/template preflight, reading sources, preparing research, or creating or
+editing a cohort constructor. No setup command may be performed “off clock.” Maintain a complete timestamped
+command audit from receipt creation onward. The construction-start watchdog must receive the union,
+selection, count, preflight, research, constructor, and command-audit artifacts and prove that every artifact
+modification time and every audited command epoch is at or after `startedEpoch`. Any pre-receipt artifact or
+command is a hard failure: stop continued browsing and reschedule rather than wrapping prepared work in a
+fresh timer.
+
 **Ordinary cohort size is three entries.** The measured end-to-end repair path for three entries—including
 16-context independent review, one finite correction transaction, aggregate regeneration, integrity audit,
 Windows-Git commit/push, and terminal sealing—completed in 584 seconds. Five-entry construction repeatedly
@@ -330,7 +339,8 @@ construction and a green `pre_review_decile.py --timegate <receipt>` before the 
 preflight once and save its `hardPass: true` receipt. Perform one bounded context extraction for the whole
 three-entry cohort; do not browse witness-by-witness after that packet is available. Invoke the constructor
 through `maintenance/construction_start_watchdog.py invoke`, binding the cohort timegate, exact selected IDs,
-constructor SHA-256, preflight receipt, epoch, and literal command. This invocation must occur by elapsed
+constructor SHA-256, preflight receipt, receipt-first cohort artifacts, complete command audit, epoch, and
+literal command. This invocation must occur by elapsed
 120 seconds. A source note, an unexecuted constructor draft, or a hand-written marker is not a start. If the
 receipt is missing or late, the watchdog exits 124, writes a fail-closed marker with
 `continuedBrowsingProhibited: true`, and all further discovery/browsing stops; seal or explicitly reschedule
