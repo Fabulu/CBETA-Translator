@@ -36,6 +36,23 @@ class CheckpointTests(unittest.TestCase):
         return {"relPath":"J/J01.xml","fromLb":"0001a01","toLb":"0001a04",
                 "workId":"work:J01","tier":2,"context":context,"spanText":span,
                 "matchedTerm":term,"contextSha256":h(context),"spanSha256":h(span)}
+
+    def test_configured_entry_rejects_provisional_family_transport(self):
+        ident,term=self.ids[0],self.terms[0]
+        entry={"id":ident,"term":term,
+          "sourceDossier":{"id":ident,"term":term,"sourceCandidates":[{
+            "provisionalWorkKey":"work:x","familyAdjudicationRequired":True}]},
+          "evidenceDraft":{"Entry":{"Id":ident,"SourceTerm":term}}}
+        with self.assertRaisesRegex(ValueError,"unadjudicated provisional"):
+            watchdog.configured_entry(entry,ident,term)
+
+    def test_configured_entry_accepts_final_witness_family(self):
+        ident,term=self.ids[0],self.terms[0]
+        entry={"id":ident,"term":term,
+          "sourceDossier":{"id":ident,"term":term},
+          "evidenceDraft":{"Entry":{"Id":ident,"SourceTerm":term,
+            "Senses":[{"Occurrences":[{"WitnessFamilyId":"family:reviewed"}]}]}}}
+        watchdog.configured_entry(entry,ident,term)
     def extraction(self, shallow=False, pre_epoch=False):
         out=self.r/"extract.json"; research=self.r/"research.json"; script=self.r/"extract.py"
         rows=[]; skeleton=[]
@@ -130,6 +147,74 @@ class CheckpointTests(unittest.TestCase):
         self.assertEqual(sh(self.r/"audit.json"),receipt["commandAuditSha256"])
         self.assertEqual(str((self.r/"extract.py").resolve()),receipt["extractorPath"])
         self.assertEqual(sh(self.r/"extract.py"),receipt["extractorSha256"])
+
+    def v2_bound_research(self, tamper=None):
+        gate=json.loads(self.tg.read_text()); gate["schemaVersion"]="bounded-dictionary-timegate.v2"
+        self.tg.write_text(json.dumps(gate)); os.utime(self.tg,(1000,1000))
+        selection=self.r/"selection.json"; count=self.r/"count.json"; viability=self.r/"viability.json"
+        selection.write_text(json.dumps({"rows":[
+          {"identityId":i,"term":t,"requiredFloor":f}
+          for i,t,f in zip(self.ids,self.terms,self.floors)]}))
+        count.write_text(json.dumps({"results":[
+          {"id":i,"term":t,"hits":f,"per_file":[[f"J/{n}.xml",1] for n in range(f)]}
+          for i,t,f in zip(self.ids,self.terms,self.floors)]}))
+        viability.write_text(json.dumps({"hardPass":True,"ids":self.ids,"terms":self.terms,
+          "requiredFloors":self.floors,"selectionSha256":sh(selection),"countSha256":sh(count)}))
+        out=self.r/"v2-extract.json"; research=self.r/"v2-research.json"; script=self.r/"v2-extract.py"
+        rows=[]; skeleton=[]
+        for ident,term,floor in zip(self.ids,self.terms,self.floors):
+            candidates=[dict(self.candidate(term),relPath=f"J/{n}.xml",workId=f"work:{n}")
+                        for n in range(floor)]
+            rows.append({"id":ident,"term":term,"sourceCandidates":candidates})
+            skeleton.append({"id":ident,"term":term,"candidateHashes":[
+              hashlib.sha256(json.dumps(x,ensure_ascii=False,sort_keys=True).encode()).hexdigest()
+              for x in candidates]})
+        script.write_text(
+          "import argparse,json\np=argparse.ArgumentParser()\n"+
+          "".join(f"p.add_argument('{arg}',required=True)\n" for arg in
+            ["--extraction-output","--research-skeleton","--timegate","--selection",
+             "--count","--viability-receipt"])+
+          "a=p.parse_args()\n"+
+          f"json.dump({{'rows':{rows!r}}},open(a.extraction_output,'w'))\n"+
+          f"json.dump({{'rows':{skeleton!r}}},open(a.research_skeleton,'w'))\n")
+        audit=self.r/"v2-audit.json"
+        written=subprocess.run([
+          sys.executable,str(AUDIT_WRITER),"--output",str(audit),
+          "--wrapper",str(WRAPPER),"--extractor",str(script),
+          "--extraction-output",str(out),"--research-skeleton",str(research),
+          "--timegate",str(self.tg),"--selection",str(selection),"--count",str(count),
+          "--viability-receipt",str(viability)],capture_output=True,text=True)
+        self.assertEqual(0,written.returncode,written.stderr)
+        if tamper=="floor":
+            data=json.loads(selection.read_text()); data["rows"][0]["requiredFloor"]+=1
+            selection.write_text(json.dumps(data))
+        if tamper=="count":
+            count.write_text(count.read_text()+" ")
+        result=self.call("research","--timegate",self.tg,"--receipt",self.r/"v2-rr.json",
+          "--now-epoch","1100","--command-audit",audit,
+          "--extraction-output",out,"--research-skeleton",research,
+          "--selection",selection,"--count",count,"--viability-receipt",viability,
+          "--ids",*self.ids,"--terms",*self.terms,
+          "--extractor",script,"--wrapper",WRAPPER,
+          "--authorized-extractor-sha",sh(script),"--authorized-wrapper-sha",sh(WRAPPER))
+        return result,out,research
+
+    def test_v2_research_binds_floor_count_and_exact_candidate_lengths(self):
+        result,out,research=self.v2_bound_research()
+        self.assertEqual(0,result.returncode,result.stderr)
+        receipt=json.loads((self.r/"v2-rr.json").read_text())
+        self.assertEqual(sh(self.r/"selection.json"),receipt["selectionSha256"])
+        self.assertEqual(sh(self.r/"count.json"),receipt["countSha256"])
+
+    def test_v2_research_rejects_stale_floor_before_extractor_launch(self):
+        result,out,research=self.v2_bound_research("floor")
+        self.assertEqual(124,result.returncode)
+        self.assertFalse(out.exists()); self.assertFalse(research.exists())
+
+    def test_v2_research_rejects_tampered_count_before_extractor_launch(self):
+        result,out,research=self.v2_bound_research("count")
+        self.assertEqual(124,result.returncode)
+        self.assertFalse(out.exists()); self.assertFalse(research.exists())
 
     def test_audit_writer_launches_from_its_script_directory(self):
         out,res,argv,audit=self.extraction()

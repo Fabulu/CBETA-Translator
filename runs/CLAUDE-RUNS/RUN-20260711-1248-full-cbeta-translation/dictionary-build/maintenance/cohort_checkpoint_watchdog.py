@@ -164,7 +164,8 @@ def governed_constructor_command(wrapper, engine, config, allowed_root):
     ]
 
 
-def governed_research_command(wrapper, extractor, extraction_output, research_skeleton):
+def governed_research_command(wrapper, extractor, extraction_output, research_skeleton,
+                                timegate=None, selection=None, count=None, viability=None):
     """Build the sole authorized wrapper-to-extractor invocation.
 
     Research extractors receive their two output paths from the watchdog.  This
@@ -172,11 +173,22 @@ def governed_research_command(wrapper, extractor, extraction_output, research_sk
     environment boundary, or writing evidence to paths other than the ones the
     checkpoint subsequently verifies.
     """
-    return [
+    command = [
         str(Path(sys.executable).resolve()), str(wrapper), "--script", str(extractor), "--",
         "--extraction-output", str(extraction_output.resolve()),
         "--research-skeleton", str(research_skeleton.resolve()),
     ]
+    bindings = (timegate, selection, count, viability)
+    if any(bindings):
+        if not all(bindings):
+            raise ValueError("research input bindings are all-or-none")
+        command += [
+            "--timegate", str(Path(timegate).resolve()),
+            "--selection", str(Path(selection).resolve()),
+            "--count", str(Path(count).resolve()),
+            "--viability-receipt", str(Path(viability).resolve()),
+        ]
+    return command
 
 
 def configured_entry(entry, ident, term):
@@ -188,6 +200,26 @@ def configured_entry(entry, ident, term):
         raise ValueError("config dossier/worksheet payload is empty")
     if dossier.get("id") != ident or dossier.get("term") != term:
         raise ValueError("dossier identity/term mismatch")
+    def walk(value):
+        if isinstance(value, dict):
+            yield value
+            for child in value.values():
+                yield from walk(child)
+        elif isinstance(value, list):
+            for child in value:
+                yield from walk(child)
+    occurrence_rows = [
+        value for root in (dossier, worksheet) for value in walk(root)
+        if isinstance(value, dict) and
+        ("WitnessFamilyId" in value or "provisionalWorkKey" in value or
+         value.get("familyAdjudicationRequired") is True)
+    ]
+    if any(value.get("familyAdjudicationRequired") is True or
+           value.get("provisionalWorkKey") for value in occurrence_rows):
+        raise ValueError("construction contains unadjudicated provisional witness family")
+    if occurrence_rows and any(not str(value.get("WitnessFamilyId", "")).strip()
+                               for value in occurrence_rows):
+        raise ValueError("construction occurrence lacks final WitnessFamilyId")
     public = worksheet.get("Entry", {})
     if public.get("Id") != ident or public.get("SourceTerm") != term:
         raise ValueError("worksheet identity/term mismatch")
@@ -269,8 +301,34 @@ def research(args):
         extractor = stable_tool(args.extractor, args.authorized_extractor_sha, "research extractor")
         output_target = Path(args.extraction_output).resolve()
         skeleton_target = Path(args.research_skeleton).resolve()
+        bound = gate.get("schemaVersion") == "bounded-dictionary-timegate.v2"
+        selection = count = viability_receipt = None
+        if bound:
+            if not args.selection or not args.count or not args.viability_receipt:
+                raise ValueError("v2 research requires selection/count/viability bindings")
+            selection = post_receipt(args.selection, receipt_mtime, "selection")
+            count = post_receipt(args.count, receipt_mtime, "count")
+            viability_receipt = post_receipt(
+                args.viability_receipt, receipt_mtime, "viability receipt")
+            selected = exact_rows(selection, args.ids, args.terms)
+            if [row.get("requiredFloor") for row in selected] != floors:
+                raise ValueError("research selection floors mismatch artifact zero")
+            count_rows = read(count).get("results")
+            if not isinstance(count_rows, list) or \
+               [row.get("id") for row in count_rows] != args.ids or \
+               [row.get("term") for row in count_rows] != args.terms:
+                raise ValueError("research count rows mismatch ordered scope")
+            viability_data = read(viability_receipt)
+            if viability_data.get("hardPass") is not True or \
+               viability_data.get("ids") != args.ids or \
+               viability_data.get("terms") != args.terms or \
+               viability_data.get("requiredFloors") != floors or \
+               viability_data.get("selectionSha256") != sha(selection) or \
+               viability_data.get("countSha256") != sha(count):
+                raise ValueError("stale or tampered viability/selection/count binding")
         command = governed_research_command(
-            wrapper, extractor, output_target, skeleton_target)
+            wrapper, extractor, output_target, skeleton_target,
+            args.timegate if bound else None, selection, count, viability_receipt)
         audit_data = audit_commands(audit, started, command)
         write(receipt, {"schemaVersion": "cohort-research-checkpoint.v1",
                         "startedEpoch": started, "invokedEpoch": now,
@@ -283,10 +341,14 @@ def research(args):
         skeleton = post_receipt(args.research_skeleton, receipt_mtime, "research skeleton")
         output_rows = exact_rows(output, args.ids, args.terms)
         research_rows = exact_rows(skeleton, args.ids, args.terms)
-        for row, term in zip(output_rows, args.terms):
+        for row, term, floor in zip(output_rows, args.terms, floors):
             candidates = row.get("sourceCandidates")
-            if not isinstance(candidates, list) or not candidates:
-                raise ValueError(f"{row.get('id')}: extraction has no source candidates")
+            if not isinstance(candidates, list) or \
+               (bound and len(candidates) != floor) or \
+               (not bound and not candidates):
+                raise ValueError(
+                    f"{row.get('id')}: sourceCandidates length must equal requiredFloor {floor}"
+                    if bound else f"{row.get('id')}: extraction has no source candidates")
             for candidate in candidates:
                 validate_candidate(candidate, term)
         for row, extracted in zip(research_rows, output_rows):
@@ -312,6 +374,12 @@ def research(args):
                     "researchSkeletonPath": str(skeleton.resolve()),
                     "researchSkeletonSha256": sha(skeleton),
                     "candidateCounts": [len(row["sourceCandidates"]) for row in output_rows],
+                    "selectionPath": str(selection.resolve()) if bound else None,
+                    "selectionSha256": sha(selection) if bound else None,
+                    "countPath": str(count.resolve()) if bound else None,
+                    "countSha256": sha(count) if bound else None,
+                    "viabilityReceiptPath": str(viability_receipt.resolve()) if bound else None,
+                    "viabilityReceiptSha256": sha(viability_receipt) if bound else None,
                     "processState": "completed", "returnCode": 0, "hardPass": True})
     return 0
 
@@ -485,6 +553,8 @@ def cli():
     r.add_argument("--command-audit", required=True); r.add_argument("--extraction-output", required=True)
     r.add_argument("--research-skeleton", required=True); r.add_argument("--ids", nargs="+", required=True)
     r.add_argument("--terms", nargs="+", required=True)
+    r.add_argument("--selection"); r.add_argument("--count")
+    r.add_argument("--viability-receipt")
     r.add_argument("--extractor", required=True); r.add_argument("--wrapper", required=True)
     r.add_argument("--authorized-extractor-sha", required=True)
     r.add_argument("--authorized-wrapper-sha", required=True)
