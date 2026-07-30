@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "bounded-dictionary-timegate.v2",
+  "cohort": "R86",
+  "artifactZero": true,
+  "startedEpoch": 1785409168.706218,
+  "createdUtc": "2026-07-30T10:59:28.706218Z",
+  "requiredFloors": [
+    10,
+    4,
+    6
+  ],
+  "admittedRequiredOccurrences": 20,
+  "adjudicatedCaseLoad": 20,
+  "researchCandidateReserve": 12,
+  "deadlinesSeconds": {
+    "viability": 120,
+    "researchExtraction": 120,
+    "adjudicatedConfig": 560,
+    "constructor": 570,
+    "firstProduct": 590,
+    "construction": 650,
+    "review": 870,
+    "correction": 1010,
+    "publication": 1100
+  },
+  "assignedLaunch": {
+    "selector": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/last1500-public-depth/final-scope/full-regeneration-selector.json",
+    "priorUnion": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r84-resolved-union-root.json",
+    "entries": [
+      {
+        "id": "t_1d3473614976",
+        "term": "禮拜",
+        "requiredFloor": 10
+      },
+      {
+        "id": "t_1d37de9c7cfd",
+        "term": "獅子窟中無異獸",
+        "requiredFloor": 4
+      },
+      {
+        "id": "t_1d9203b2005e",
+        "term": "覓心了不可得",
+        "requiredFloor": 6
+      }
+    ],
+    "reserveIds": [],
+    "researchCandidateReserve": 12
+  },
+  "continuationOf": "R84"
+}

@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "bounded-dictionary-timegate.v2",
+  "cohort": "R85",
+  "artifactZero": true,
+  "startedEpoch": 1785408956.707989,
+  "createdUtc": "2026-07-30T10:55:56.707989Z",
+  "requiredFloors": [
+    4,
+    4,
+    4
+  ],
+  "admittedRequiredOccurrences": 12,
+  "adjudicatedCaseLoad": 12,
+  "researchCandidateReserve": 12,
+  "deadlinesSeconds": {
+    "viability": 120,
+    "researchExtraction": 120,
+    "adjudicatedConfig": 464,
+    "constructor": 474,
+    "firstProduct": 494,
+    "construction": 554,
+    "review": 710,
+    "correction": 818,
+    "publication": 908
+  },
+  "assignedLaunch": {
+    "selector": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/last1500-public-depth/final-scope/full-regeneration-selector.json",
+    "priorUnion": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r84-resolved-union-root.json",
+    "entries": [
+      {
+        "id": "t_1d37de9c7cfd",
+        "term": "獅子窟中無異獸",
+        "requiredFloor": 4
+      },
+      {
+        "id": "t_1db401e441ec",
+        "term": "百丈直得三日耳聾",
+        "requiredFloor": 4
+      },
+      {
+        "id": "t_1dbdbd1d4e72",
+        "term": "劫火洞然毫末盡",
+        "requiredFloor": 4
+      }
+    ],
+    "reserveIds": [],
+    "researchCandidateReserve": 12
+  },
+  "continuationOf": "R84"
+}
