@@ -1,0 +1,47 @@
+{
+  "counts": {
+    "entries": 3,
+    "senses": 3,
+    "occurrences": 12,
+    "named_occurrences": 12,
+    "context_master_links": 22,
+    "missing_utterer_context": 3,
+    "attribution_notes": 12,
+    "vague_attributor": 1,
+    "context_actor_identities": 2,
+    "context_actor_missing_from_note": 2
+  },
+  "hardFailures": 6,
+  "failures": [
+    {
+      "kind": "missing_utterer_context",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_1db401e441ec/entry.v2.json",
+      "detail": "百丈直得三日耳聾 s1 o1: Yulin Tongxiu"
+    },
+    {
+      "kind": "missing_utterer_context",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_1db401e441ec/entry.v2.json",
+      "detail": "百丈直得三日耳聾 s1 o4: Xuedou Chongxian"
+    },
+    {
+      "kind": "vague_attributor",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_1db401e441ec/entry.v2.json",
+      "detail": "百丈直得三日耳聾 s1: 'the speaker'"
+    },
+    {
+      "kind": "missing_utterer_context",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_1dbdbd1d4e72/entry.v2.json",
+      "detail": "劫火洞然毫末盡 s1 o3: Hansong Zhicao"
+    },
+    {
+      "kind": "context_actor_missing_from_note",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_1dfe52dc92d6/entry.v2.json",
+      "detail": "刻刻提撕 s1 o1 a1: 'the Shunzhi emperor' must appear in AttributionNote"
+    },
+    {
+      "kind": "context_actor_missing_from_note",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_1dfe52dc92d6/entry.v2.json",
+      "detail": "刻刻提撕 s1 o4 a1: 'attendant Daomei' must appear in AttributionNote"
+    }
+  ]
+}

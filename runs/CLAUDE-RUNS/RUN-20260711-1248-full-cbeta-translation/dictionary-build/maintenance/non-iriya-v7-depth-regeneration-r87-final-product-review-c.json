@@ -1,0 +1,86 @@
+{
+  "schemaVersion": "r87-changed-coordinate-final-product-review.v1",
+  "cohort": "R87",
+  "reviewMode": "changed-coordinate-only",
+  "products": [
+    {
+      "id": "t_1db401e441ec",
+      "term": "百丈直得三日耳聾",
+      "entrySha256": "087c71abee2697aade7ace604fdda82833f0e5e88d4d11f76e1f6f22bf3940dd",
+      "worksheetSha256": "8b672ad0b56e3d7ee67730f668af9dda64e2df2e1e084edfdc7e6b40024537a8",
+      "compilerParity": true,
+      "duplicateCheck": "term-specific; no cohort or lane boilerplate",
+      "actorChecks": {
+        "Yulin Tongxiu": [
+          "utterer",
+          "later-raiser",
+          "commentator",
+          "record-owner"
+        ],
+        "Xuedou Chongxian": [
+          "utterer",
+          "later-raiser",
+          "commentator",
+          "record-owner"
+        ],
+        "vagueSpeakerLanguage": false
+      },
+      "lampCount": 0,
+      "verdict": "KEEP"
+    },
+    {
+      "id": "t_1dbdbd1d4e72",
+      "term": "劫火洞然毫末盡",
+      "entrySha256": "ab067a92756bbfe8751c4b500033a378ad3d45891c80680a0c64f0ea83aeee2c",
+      "worksheetSha256": "e4a4fedeafbf9dad712afb8037c6f44f8bca25e4f7d6f54a6df45b4e27475df1",
+      "compilerParity": true,
+      "duplicateCheck": "term-specific; no cohort or lane boilerplate",
+      "actorChecks": {
+        "Hansong Zhicao": [
+          "utterer",
+          "respondent",
+          "record-owner"
+        ],
+        "vagueSpeakerLanguage": false
+      },
+      "lampCount": 0,
+      "verdict": "KEEP"
+    },
+    {
+      "id": "t_1dfe52dc92d6",
+      "term": "刻刻提撕",
+      "entrySha256": "7fa7ec72a8f16315646abff50ce20762ed6ae3cd677ca67418f2a0e079b6a155",
+      "worksheetSha256": "45c12e8317ab3cb116368a8a922801b0e7f44a4c1efba0e7dc05d66090f9664f",
+      "compilerParity": true,
+      "duplicateCheck": "term-specific; no cohort or lane boilerplate",
+      "contextActorChecks": [
+        {
+          "actor": "the Shunzhi emperor",
+          "role": "interlocutor",
+          "namedInAttributionNote": true
+        },
+        {
+          "actor": "attendant Daomei",
+          "role": "addressee",
+          "namedInAttributionNote": true
+        }
+      ],
+      "semanticLimiter": {
+        "bannedTechniqueFraming": false,
+        "note": "Context supplies the object. The phrase does not itself name a posture or undifferentiated awareness."
+      },
+      "lampCount": 0,
+      "verdict": "KEEP"
+    }
+  ],
+  "sharedChecks": {
+    "frozenProductHashesMatch": true,
+    "termSpecificAdmissionMetadata": true,
+    "exactCompilerParity": true,
+    "lampCount": 0,
+    "unresolvedCoordinates": []
+  },
+  "overallVerdict": "APPROVE_FINAL_PRODUCT",
+  "hardPass": true,
+  "publicMutation": false
+}

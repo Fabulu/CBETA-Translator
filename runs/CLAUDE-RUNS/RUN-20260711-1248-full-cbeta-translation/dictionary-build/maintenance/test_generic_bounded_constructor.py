@@ -75,6 +75,25 @@ class GenericBoundedConstructorIntegrationTest(unittest.TestCase):
                 "collision preflight must not mutate the preexisting directory",
             )
 
+    def test_prewrite_rejects_stale_cohort_boilerplate_in_duplicate_ruling(self):
+        identity = FIXTURE_IDS[0]
+        source = ROOT / "fresh-build/entries" / identity
+        worksheet = json.loads((source / "evidence.draft.json").read_text())
+        dossier = json.loads((source / "source-dossier.json").read_text())
+        worksheet["Admission"]["DuplicateCheck"]["NearDuplicateRuling"] = (
+            "No collision occurs in R01-R10 or the current R11 selection."
+        )
+        entry = {
+            "id": identity,
+            "term": worksheet["Entry"]["SourceTerm"],
+            "sourceDossier": dossier,
+            "evidenceDraft": worksheet,
+        }
+        with self.assertRaisesRegex(
+            ValueError, "NearDuplicateRuling contains stale cohort-number boilerplate"
+        ):
+            verify_whole_config_preclosure({"entries": [entry]})
+
     def test_fully_adjudicated_evidence_may_exceed_minimum_floor(self):
         identity = FIXTURE_IDS[0]
         source = ROOT / "fresh-build/entries" / identity

@@ -10,6 +10,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
 import subprocess
 import sys
 import time
@@ -408,6 +409,14 @@ def verify_whole_config_preclosure(config: dict[str, Any]) -> None:
     rows = []
     floor_errors = []
     for entry in config["entries"]:
+        duplicate = (
+            entry["evidenceDraft"].get("Admission", {}).get("DuplicateCheck", {})
+        )
+        near_duplicate = str(duplicate.get("NearDuplicateRuling") or "")
+        if re.search(r"\bR\d+\b", near_duplicate):
+            floor_errors.append(
+                f"{entry['id']}: NearDuplicateRuling contains stale cohort-number boilerplate"
+            )
         try:
             verify_semantic_floor(entry)
         except ValueError as exc:

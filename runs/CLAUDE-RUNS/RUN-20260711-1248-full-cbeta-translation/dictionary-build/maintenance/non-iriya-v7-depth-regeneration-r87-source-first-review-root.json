@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "source-first-semantic-review.v1",
+  "cohort": "R87",
+  "reviewer": "root",
+  "reviewMode": "source-first-before-product",
+  "extractionArtifact": "maintenance/non-iriya-v7-depth-regeneration-r87-extraction-output-b.json",
+  "extractionSha256": "04e38b56e279352bc71d0d660a1fb623ac849eb12372a1f3c210a30ad3f5719d",
+  "productSeenBeforeRuling": false,
+  "rulings": [
+    {
+      "id": "t_1db401e441ec",
+      "term": "百丈直得三日耳聾",
+      "admitted": true,
+      "senseCount": 1,
+      "preferredTarget": "Baizhang was left deaf for three days",
+      "semanticRuling": "A fixed narrative result from the Mazu-Baizhang whisk case: after Mazu's shout, Baizhang was left deaf for three days. Later questions and comments test or interpret the result, but do not create additional lexical senses.",
+      "evidenceRuling": "Retain at least four active Tier-2 deployment families. Parallel copies of the base case count once; distinct later answers, appraisals, or instructional uses may count as active redeployments. No lamp padding is needed.",
+      "actorRuling": "Baizhang is the represented experiencer in the clause, not its speaker. A monk who cites the line in a question owns that question-turn; a later master who actively narrates or raises it owns the outer turn, with Mazu and Baizhang kept as case figures. Do not assign the narrated clause to Baizhang as utterer.",
+      "reviewStatus": "provisional-pass-pending-product-comparison"
+    },
+    {
+      "id": "t_1dbdbd1d4e72",
+      "term": "劫火洞然毫末盡",
+      "admitted": true,
+      "senseCount": 1,
+      "preferredTarget": "when the kalpa fire blazes, not a hair-tip remains",
+      "semanticRuling": "The first half of a recurrent paired line: the world-ending fire blazes and consumes everything down to the slightest hair-tip, while the following green-mountains line supplies its deliberate counterpoint. Funeral addresses, verses, and direct answers reuse the same image.",
+      "evidenceRuling": "Retain at least four independent active Tier-2 families, prioritizing direct funeral addresses, authored verse within a sayings record, and a direct answer. Preserve the paired line in KWIC and explanation, but do not let parallel recensions manufacture depth.",
+      "actorRuling": "The funeral officiant, verse author, direct respondent, or questioning monk who utters the line owns the occurrence. A deceased person discussed in a fire address is context, not the headword actor.",
+      "reviewStatus": "provisional-pass-pending-product-comparison"
+    },
+    {
+      "id": "t_1dfe52dc92d6",
+      "term": "刻刻提撕",
+      "admitted": true,
+      "senseCount": 1,
+      "preferredTarget": "keep bringing it to attention, moment after moment",
+      "semanticRuling": "A continuous instruction to bring the matter, saying, or raised saying back to attention and examine it at every moment. Uses with 念念不捨, 時時參究, and 究明己躬下事 show sustained recollection and investigation rather than a momentary reminder.",
+      "evidenceRuling": "Retain at least four distinct direct Tier-2 instructions from separate records. Prefer cases that identify what is being kept present or investigated. No lamps are required.",
+      "actorRuling": "The instructing master owns the direct utterance; the emperor, monk, or lay recipient remains interlocutor/context unless that person speaks the headword-bearing clause.",
+      "reviewStatus": "provisional-pass-pending-product-comparison"
+    }
+  ],
+  "hardPass": false,
+  "releaseAuthorized": false,
+  "reason": "Source-first semantic rulings are closed; comparison with emitted worksheet and product bytes remains required."
+}

@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "r87-preexisting-canonical-path-collision.v1",
+  "cohort": "R87",
+  "auditedUtc": "2026-07-30T11:37:54Z",
+  "artifactZeroStartedEpoch": 1785410781.170698,
+  "constructorInvokedByThisWorkerBeforeAudit": false,
+  "collisionRoot": "fresh-build/entries",
+  "rows": [
+    {
+      "id": "t_1db401e441ec",
+      "productSha256": "1e7401676bfbf07e735947a69425b511fb635476fba53bba35769c9f49fe4a14",
+      "productMtimeEpoch": 1785293289,
+      "worksheetSha256": "810a0b55625d6767e6c036ade9e419432a475a6be5322684a49eb6966764a1c2",
+      "worksheetMtimeEpoch": 1785292995,
+      "sourceDossierPresent": false,
+      "predatesArtifactZero": true
+    },
+    {
+      "id": "t_1dbdbd1d4e72",
+      "productSha256": "b79e7e54287425ecef521871134ffeb3e2d6edad58e38a995c2b829098d6835d",
+      "productMtimeEpoch": 1785292269,
+      "worksheetSha256": "c72123d062989842525f1c09eff8538e4b95a14b0dd126d84a78d581ccf66487",
+      "worksheetMtimeEpoch": 1785292256,
+      "sourceDossierPresent": false,
+      "predatesArtifactZero": true
+    },
+    {
+      "id": "t_1dfe52dc92d6",
+      "productSha256": "2a7ecf2e508c464fca39230b558fcc40ae2bb4d2e9b0e63e9275d7f99b78f9bb",
+      "productMtimeEpoch": 1785305031,
+      "worksheetSha256": "910e81469274053fa86efb01074fc126f3e79f361509042747dc7353c077837b",
+      "worksheetMtimeEpoch": 1785305024,
+      "sourceDossierPresent": false,
+      "predatesArtifactZero": true
+    }
+  ],
+  "rootCause": "All three canonical target directories were nonempty before R87 artifact-zero and contain legacy products without the governed source-dossier file. Reusing them would expose stale evidence and violate clean regeneration.",
+  "requiredAction": "Recoverably quarantine all three complete directories, then emit all three products atomically from the frozen R87 config. Constructor must reject every preexisting target path before creating any cohort output.",
+  "hardPass": false,
+  "publicMutation": false
+}
