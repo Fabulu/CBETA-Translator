@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "r89-preexisting-quarantine-manifest.v1",
+  "cohort": "R89",
+  "authority": {
+    "matrixPath": "maintenance/non-iriya-v7-depth-regeneration-r89-corrected-source-matrix-b.json",
+    "matrixSha256": "0d973aac5191338435d843c0f62b122690824d7076e4ca7410c4e463c561f885",
+    "collisionAuditPath": "maintenance/non-iriya-v7-depth-regeneration-r89-process-and-collision-audit-b.json",
+    "collisionAuditSha256": "f854aa7a019040011ef4b5d7eebeaa39c8c3a764c8b281df168c4ccc7b439cf4"
+  },
+  "quarantineRoot": "maintenance/r89-preexisting-staging-quarantine-b",
+  "recoverable": true,
+  "entries": [
+    {
+      "id": "t_1e41b014d80e",
+      "files": {
+        "entry.v2.json": "a3d10eafbd9ddb5cc0e3c62b185803e68ab526806f9402dfef7d0c5ed43c4357",
+        "WORK.md": "3a2f667b492b1be7a2fe072538badc9263428910d8ba3aae72914619579b4c7c",
+        "evidence.draft.json": "7fa7dc928d6c1bee176e7742351c470a49278825eb825d5e2736a8feda85f346"
+      }
+    },
+    {
+      "id": "t_1f3653f30389",
+      "files": {
+        "entry.v2.json": "d2664036e81408d933bd3f49ab6951c4a81ac548a9ccceb17bf87c69716a0ae0",
+        "WORK.md": "ce88471b535293f5a5bd2fb2d88f279fdc17d9bb5c9ab629daefac3d72947d40",
+        "evidence.draft.json": "d520b53c523e60fc010fcd2e8b63ba95f55c9d14e52abf8056a439ac65a2fd89",
+        "source-dossier.json": "62c160d0c3d09208c167237c83d8b286a2fb4034b13f8c31418db97a4bc7cc81"
+      }
+    },
+    {
+      "id": "t_1fe4eac13d6e",
+      "files": {
+        "entry.v2.json": "37a2a5bcd0a6bdf2b5e8bc3b614a792aae6a686446bbd995cc13708c2c6e38c9",
+        "WORK.md": "4e5bda272a07c2243ef61038fe6fef333976fea7158143249fcbec929d69a9a0",
+        "evidence.draft.json": "9288931aedbcecb0753aaaa803095b2bb00425dc9c31706afef6120dd9361b43"
+      }
+    }
+  ],
+  "canonicalPathsAbsentAfterMove": true,
+  "lineageTouched": false,
+  "hardPass": true
+}

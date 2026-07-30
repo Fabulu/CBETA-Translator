@@ -14,7 +14,7 @@ from atomic_write import atomic_write_json
 from maintenance.generic_bounded_constructor import (
     ActorClosureError, CompilerPrewriteError, enforce_governed_deadline, run,
     verify_actor_closure, verify_output_collision_policy,
-    verify_whole_config_preclosure,
+    verify_late_research_continuation, verify_whole_config_preclosure,
 )
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -28,6 +28,72 @@ def sha(path):
 
 
 class GenericBoundedConstructorIntegrationTest(unittest.TestCase):
+    def test_authorized_late_research_accepts_exact_scope_and_hashes(self):
+        with tempfile.TemporaryDirectory(dir=ROOT / "maintenance") as raw:
+            base = Path(raw).resolve()
+            extraction = base / "extraction.json"
+            failed = base / "failed.json"
+            matrix = base / "matrix.json"
+            for path, value in (
+                (extraction, {"rows": []}),
+                (failed, {"hardPass": False}),
+                (matrix, {"rows": []}),
+            ):
+                atomic_write_json(path, value)
+            receipt = base / "late.json"
+            ids = ["a", "b", "c"]
+            atomic_write_json(receipt, {
+                "schemaVersion": "r89-late-research-continuation.v1",
+                "cohort": "R89", "hardPass": False,
+                "lateContinuationAuthorized": True,
+                "scopeExpansionForbidden": True, "ids": ids,
+                "extractionPath": str(extraction), "extractionSha256": sha(extraction),
+                "failClosedCheckpointPath": str(failed),
+                "failClosedCheckpointSha256": sha(failed),
+                "acceptedMatrixPath": str(matrix),
+                "acceptedMatrixSha256": sha(matrix),
+            })
+            research = {
+                "governedExtractionSha256": sha(extraction),
+                "rows": [{"retainedReviewSha256": sha(matrix)} for _ in ids],
+            }
+            verify_late_research_continuation(
+                receipt, allowed_root=base, cohort="R89",
+                entry_ids=ids, research=research)
+
+    def test_authorized_late_research_rejects_scope_and_hash_drift(self):
+        with tempfile.TemporaryDirectory(dir=ROOT / "maintenance") as raw:
+            base = Path(raw).resolve()
+            files = [base / name for name in ("extraction.json", "failed.json", "matrix.json")]
+            for path in files:
+                atomic_write_json(path, {"name": path.name})
+            extraction, failed, matrix = files
+            receipt = base / "late.json"
+            atomic_write_json(receipt, {
+                "schemaVersion": "r89-late-research-continuation.v1",
+                "cohort": "R89", "hardPass": False,
+                "lateContinuationAuthorized": True,
+                "scopeExpansionForbidden": True, "ids": ["a", "b", "c"],
+                "extractionPath": str(extraction), "extractionSha256": sha(extraction),
+                "failClosedCheckpointPath": str(failed),
+                "failClosedCheckpointSha256": sha(failed),
+                "acceptedMatrixPath": str(matrix),
+                "acceptedMatrixSha256": sha(matrix),
+            })
+            research = {
+                "governedExtractionSha256": sha(extraction),
+                "rows": [{"retainedReviewSha256": sha(matrix)}] * 3,
+            }
+            with self.assertRaisesRegex(ValueError, "scope or decision drift"):
+                verify_late_research_continuation(
+                    receipt, allowed_root=base, cohort="R89",
+                    entry_ids=["a", "b", "drift"], research=research)
+            research["governedExtractionSha256"] = "0" * 64
+            with self.assertRaisesRegex(ValueError, "extraction/research binding drift"):
+                verify_late_research_continuation(
+                    receipt, allowed_root=base, cohort="R89",
+                    entry_ids=["a", "b", "c"], research=research)
+
     def test_actor_prewrite_rejects_roster_alias_and_unlinked_name(self):
         identity = FIXTURE_IDS[0]
         source = ROOT / "fresh-build/entries" / identity

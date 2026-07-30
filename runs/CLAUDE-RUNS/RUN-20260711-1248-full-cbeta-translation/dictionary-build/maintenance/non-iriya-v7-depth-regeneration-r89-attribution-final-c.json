@@ -1,0 +1,22 @@
+{
+  "counts": {
+    "entries": 3,
+    "senses": 3,
+    "occurrences": 19,
+    "named_occurrences": 15,
+    "context_master_links": 30,
+    "attribution_notes": 19,
+    "actor_identified_unlinked_master": 1,
+    "actor_reviewed_unnamed": 2,
+    "actor_identified_non_master": 1,
+    "unnamed_master_forbidden": 1
+  },
+  "hardFailures": 1,
+  "failures": [
+    {
+      "kind": "unnamed_master_forbidden",
+      "entry": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries/t_1fe4eac13d6e/entry.v2.json",
+      "detail": "入門便喝 s1 o8: every master must be named"
+    }
+  ]
+}

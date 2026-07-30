@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "r89-admitted-constructor-selection.v1",
+  "cohort": "R89",
+  "artifactZeroSelectionPath": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r89-selection-b.json",
+  "artifactZeroSelectionSha256": "4321d5b2d6676ff53f113dd687b3bcb5bbb6fe77b9a18bc1fbc8428422a1f46e",
+  "rows": [
+    {
+      "queueOrdinal": 1,
+      "identityId": "t_1e41b014d80e",
+      "term": "向上一路",
+      "requiredFloor": 7,
+      "classification": "legacy-selected-depth-repair"
+    },
+    {
+      "queueOrdinal": 2,
+      "identityId": "t_1f3653f30389",
+      "term": "抱子弄孫",
+      "requiredFloor": 4,
+      "classification": "hard-fail"
+    },
+    {
+      "queueOrdinal": 3,
+      "identityId": "t_1fe4eac13d6e",
+      "term": "入門便喝",
+      "requiredFloor": 6,
+      "classification": "hard-fail"
+    }
+  ],
+  "excluded": [],
+  "hardPass": true
+}

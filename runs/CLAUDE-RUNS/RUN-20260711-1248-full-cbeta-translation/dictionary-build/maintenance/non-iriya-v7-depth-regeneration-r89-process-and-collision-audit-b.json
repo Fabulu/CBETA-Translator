@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "r89-process-and-collision-audit.v1",
+  "cohort": "R89",
+  "originalClockPreserved": true,
+  "researchCheckpoint": {
+    "elapsedSeconds": 132.681,
+    "deadlineSeconds": 120,
+    "hardPass": false,
+    "lateContinuationAuthorized": true,
+    "scope": "read-only adjudication of the already-frozen extraction only",
+    "disclosure": "The first canonical-launcher invocation failed immediately because the launcher did not add the dictionary root containing zc.py to sys.path. It succeeded with PYTHONPATH=. without resetting the clock. The launcher was then repaired to add that root itself."
+  },
+  "extraction": {
+    "path": "maintenance/non-iriya-v7-depth-regeneration-r89-extraction-output-b.json",
+    "sha256": "56911d368e7900bb89e7482b2f10adc2924bf9ec8d7e312da834920a578c39ab",
+    "candidateCounts": [10, 7, 9],
+    "tierMix": [
+      {"id":"t_1e41b014d80e","tier1":6,"tier2":4,"tier3":0},
+      {"id":"t_1f3653f30389","tier1":0,"tier2":7,"tier3":0},
+      {"id":"t_1fe4eac13d6e","tier1":3,"tier2":6,"tier3":0}
+    ]
+  },
+  "preConstructionCollisionAudit": {
+    "canonicalPathsChecked": 3,
+    "preexistingNonemptyPaths": 3,
+    "hardPass": false,
+    "constructionHold": true,
+    "entries": [
+      {"id":"t_1e41b014d80e","entrySha256":"a3d10eafbd9ddb5cc0e3c62b185803e68ab526806f9402dfef7d0c5ed43c4357","workSha256":"3a2f667b492b1be7a2fe072538badc9263428910d8ba3aae72914619579b4c7c"},
+      {"id":"t_1f3653f30389","entrySha256":"d2664036e81408d933bd3f49ab6951c4a81ac548a9ccceb17bf87c69716a0ae0","workSha256":"ce88471b535293f5a5bd2fb2d88f279fdc17d9bb5c9ab629daefac3d72947d40"},
+      {"id":"t_1fe4eac13d6e","entrySha256":"37a2a5bcd0a6bdf2b5e8bc3b614a792aae6a686446bbd995cc13708c2c6e38c9","workSha256":"4e5bda272a07c2243ef61038fe6fef333976fea7158143249fcbec929d69a9a0"}
+    ],
+    "requiredDisposition": "Root must approve a hash-bound recoverable quarantine or explicit baseline replacement before construction."
+  },
+  "lineageTouched": false
+}

@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "non-iriya-v7-depth-regeneration-selection.v1",
+  "cohort": "R89",
+  "selectionRule": "exact coordinator-assigned next unreserved authoritative rows",
+  "rows": [
+    {
+      "queueOrdinal": 1,
+      "identityId": "t_1e41b014d80e",
+      "term": "向上一路",
+      "requiredFloor": 7,
+      "classification": "legacy-selected-depth-repair"
+    },
+    {
+      "queueOrdinal": 2,
+      "identityId": "t_1f3653f30389",
+      "term": "抱子弄孫",
+      "requiredFloor": 4,
+      "classification": "hard-fail"
+    },
+    {
+      "queueOrdinal": 3,
+      "identityId": "t_1fe4eac13d6e",
+      "term": "入門便喝",
+      "requiredFloor": 6,
+      "classification": "hard-fail"
+    }
+  ],
+  "collisionCheck": {
+    "priorIds": 206,
+    "collisions": [],
+    "hardPass": true
+  }
+}

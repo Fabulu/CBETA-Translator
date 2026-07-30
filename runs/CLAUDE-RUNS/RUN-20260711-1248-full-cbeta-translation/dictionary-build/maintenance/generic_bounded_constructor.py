@@ -118,6 +118,44 @@ def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def verify_late_research_continuation(
+    receipt_path: Path,
+    *,
+    allowed_root: Path,
+    cohort: str,
+    entry_ids: list[str],
+    research: dict[str, Any],
+) -> None:
+    """Accept a failed research clock only through an exact, immutable same-scope receipt."""
+    receipt = read_json(receipt_path)
+    if receipt.get("schemaVersion") != "r89-late-research-continuation.v1":
+        return
+    if (
+        receipt.get("cohort") != cohort
+        or receipt.get("hardPass") is not False
+        or receipt.get("lateContinuationAuthorized") is not True
+        or receipt.get("scopeExpansionForbidden") is not True
+        or receipt.get("ids") != entry_ids
+    ):
+        raise ValueError("authorized-late research receipt scope or decision drift")
+    bindings = (
+        ("extractionPath", "extractionSha256"),
+        ("failClosedCheckpointPath", "failClosedCheckpointSha256"),
+        ("acceptedMatrixPath", "acceptedMatrixSha256"),
+    )
+    for path_key, sha_key in bindings:
+        bound = contained(allowed_root, receipt[path_key])
+        if not bound.is_file() or sha256(bound) != receipt[sha_key]:
+            raise ValueError(f"authorized-late research receipt hash drift: {path_key}")
+    if research.get("governedExtractionSha256") != receipt["extractionSha256"]:
+        raise ValueError("authorized-late extraction/research binding drift")
+    review_hashes = {
+        row.get("retainedReviewSha256") for row in research.get("rows", [])
+    }
+    if review_hashes != {receipt["acceptedMatrixSha256"]}:
+        raise ValueError("authorized-late accepted-matrix binding drift")
+
+
 def deterministic_id(term: str) -> str:
     return "t_" + hashlib.sha256(term.encode("utf-8")).hexdigest()[:12]
 
@@ -196,6 +234,18 @@ def verify_authority(config_path: Path, config: dict[str, Any], allowed_root: Pa
     command_audit_path = contained(allowed_root, config["commandAuditPath"])
     timegate = read_json(timegate_path)
     receipt = read_json(receipt_path)
+    research_document = read_json(paths["research"])
+    research_checkpoint = contained(
+        allowed_root, research_document["researchCheckpointPath"])
+    if sha256(research_checkpoint) != research_document["researchCheckpointSha256"]:
+        raise ValueError("research checkpoint SHA mismatch")
+    verify_late_research_continuation(
+        research_checkpoint,
+        allowed_root=allowed_root,
+        cohort=config["cohort"],
+        entry_ids=[row["id"] for row in config["entries"]],
+        research=research_document,
+    )
     started = float(config["startedEpoch"])
     if float(timegate["startedEpoch"]) != started or float(receipt["startedEpoch"]) != started:
         raise ValueError("startedEpoch does not match timegate/watchdog receipt")

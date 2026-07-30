@@ -1,0 +1,320 @@
+{
+  "SchemaVersion": 1,
+  "ConstructionPipelineVersion": 2,
+  "Admission": {
+    "Decision": "admit",
+    "LexicalUnitReason": "抱子弄孫 is a stable expression with repeated active Chan deployments.",
+    "ObservableChanJob": "抱子弄孫 means hold one's children and amuse one's grandchildren.",
+    "DuplicateCheck": {
+      "DeterministicIdChecked": true,
+      "ExactHeadwordChecked": true,
+      "NearDuplicateRuling": "抱子弄孫 was checked against the installed dictionary; no exact or punctuation-normalized collision is admitted."
+    }
+  },
+  "EvidenceTransport": {
+    "DossierPath": "source-dossier.json",
+    "DossierSha256": "01a5d046d51fc705c1ca1002227f13ada01664c054c0cb56b42498c63431a85b",
+    "SourceAuthorityManifestSha256": "2ee44bf19a2533958e5620c38915f3d03fbb81209c76c7183742a4f3d059f501",
+    "DiscoveryMethods": [
+      "exact concordance count",
+      "complete-turn actor review",
+      "Tier 1 then Tier 2 source ranking",
+      "predecessor-evidence adjudication"
+    ],
+    "ExactCount": 25,
+    "BridgedCount": 25,
+    "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+  },
+  "Entry": {
+    "Id": "t_1f3653f30389",
+    "SourceTerm": "抱子弄孫",
+    "CreatedBy": "R89 source-hierarchy repair",
+    "WrittenUtc": "2026-07-30T10:38:00Z",
+    "Senses": [
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "hold one's children and amuse one's grandchildren",
+        "AlternateTargets": [
+          "family life with children and grandchildren"
+        ],
+        "SearchAliases": [
+          "tend children and grandchildren"
+        ],
+        "Status": "preferred",
+        "Validation": "multi-source",
+        "Explanation": "Ordinary family life: holding one's children and amusing or tending one's grandchildren. Four recorded masters place this household activity among receiving guests, serving a household, and moving through daily life, making ordinary lay activity the immediate road or Buddha-work rather than an obstruction outside it.",
+        "Note": "The phrase keeps its ordinary family sense; its Zen job comes from where the masters place that activity.",
+        "Occurrences": [
+          {
+            "RelPath": "J/J26/J26nB188.xml",
+            "FromLb": "0807c30",
+            "ToLb": "0808a05",
+            "Kwic": "龍華，隨眾坐香，話頭頗馴習，尚多起倒漏逗，更以初學指南長途截徑為問。若論指南截徑，二六時中折旋俯仰，迎賓待客，抱子弄孫，一一無非截徑處，一一無非指南處，只為老居士自不知耳。雖然不知，與他歷代祖師有何差別乎？古人云：「佛法不離穿衣",
+            "MasterName": "Ruibai Mingxue",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Ruibai Mingxue",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J26/J26nB188.xml). Recorded Sayings of Chan Master Rujiu Ruibai. Exact actor: Ruibai Mingxue. The complete source frame assigns the retained headword-bearing action to Ruibai Mingxue.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "抱子弄孫",
+              "GrammaticalSubject": "Ruibai Mingxue",
+              "SpeechFrame": "Source record (J/J26/J26nB188.xml). Recorded Sayings of Chan Master Rujiu Ruibai. Exact actor: Ruibai Mingxue. The complete source frame assigns the retained headword-bearing action to Ruibai Mingxue.",
+              "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to Ruibai Mingxue."
+            }
+          },
+          {
+            "RelPath": "J/J27/J27nB190.xml",
+            "FromLb": "0104a07",
+            "ToLb": "0104a11",
+            "Kwic": "蟠桃一會儼然猶在。若論佛日家風，直須扶起法座，喚回大眾，整理山門，接起溪橋，依舊陸行車馬、水渡舟航，穩到家庭，抱子弄孫、呼奴使婢，看取靈山一會儼然未散。如或不然，下壽六十歲、中壽八十歲、上壽一百歲。忽有個長老出來道：『今日遠思曹",
+            "MasterName": "Shiyu Mingfang",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Shiyu Mingfang",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J27/J27nB190.xml). Dharma Platform of Chan Master Shiyu. Exact actor: Shiyu Mingfang. The complete source frame assigns the retained headword-bearing action to Shiyu Mingfang.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "抱子弄孫",
+              "GrammaticalSubject": "Shiyu Mingfang",
+              "SpeechFrame": "Source record (J/J27/J27nB190.xml). Dharma Platform of Chan Master Shiyu. Exact actor: Shiyu Mingfang. The complete source frame assigns the retained headword-bearing action to Shiyu Mingfang.",
+              "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to Shiyu Mingfang."
+            }
+          },
+          {
+            "RelPath": "J/J27/J27nB196.xml",
+            "FromLb": "0382a15",
+            "ToLb": "0382a21",
+            "Kwic": "隆三寶，備作佛事，獨于本來事，亦可理會一上。本來事既理會得，則十字街頭茶歌酒喚，無非不是自家本來事也。那時不妨抱子弄孫無非佛事，即以本來理求福則福無不崇，祈壽則壽無不永，莊嚴法界無非成就本來事也。答朱其梁居士答朱其梁居士接翰閱之",
+            "MasterName": "Yuanhu Miaoyong",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Yuanhu Miaoyong",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J27/J27nB196.xml). Recorded Sayings of Chan Master Yuanhu Yong. Exact actor: Yuanhu Miaoyong. The complete source frame assigns the retained headword-bearing action to Yuanhu Miaoyong.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "抱子弄孫",
+              "GrammaticalSubject": "Yuanhu Miaoyong",
+              "SpeechFrame": "Source record (J/J27/J27nB196.xml). Recorded Sayings of Chan Master Yuanhu Yong. Exact actor: Yuanhu Miaoyong. The complete source frame assigns the retained headword-bearing action to Yuanhu Miaoyong.",
+              "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to Yuanhu Miaoyong."
+            }
+          },
+          {
+            "RelPath": "J/J28/J28nB211.xml",
+            "FromLb": "0469b14",
+            "ToLb": "0469b18",
+            "Kwic": "，安敢不信？」宗云：「即汝便是。」僧云：「如何保任？」宗云：「一翳在眼，空華亂墜。」請看是何道理。盍迎賓送客、抱子弄孫，至於折旋俯仰之間，若能直下薦得，即佛法尚不可得，況世法耶？山僧書至此，不覺擲筆大笑。且道笑箇甚麼？言多去道轉",
+            "MasterName": "Jizong Che",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Jizong Che",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J28/J28nB211.xml). Recorded Sayings of Chan Master Ji Zongche. Exact actor: Jizong Che. The complete source frame assigns the retained headword-bearing action to Jizong Che.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "抱子弄孫",
+              "GrammaticalSubject": "Jizong Che",
+              "SpeechFrame": "Source record (J/J28/J28nB211.xml). Recorded Sayings of Chan Master Ji Zongche. Exact actor: Jizong Che. The complete source frame assigns the retained headword-bearing action to Jizong Che.",
+              "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to Jizong Che."
+            }
+          }
+        ],
+        "ClaimAnchors": [],
+        "SourceTexts": [
+          "J/J26/J26nB188.xml",
+          "J/J27/J27nB190.xml",
+          "J/J27/J27nB196.xml",
+          "J/J28/J28nB211.xml"
+        ],
+        "RelatedMasters": [
+          "Ruibai Mingxue",
+          "Shiyu Mingfang",
+          "Yuanhu Miaoyong",
+          "Jizong Che"
+        ],
+        "RelatedTerms": [],
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "Ordinary family life: holding one's children and amusing or tending one's grandchildren.",
+          "EvidenceBody": [
+            "Four recorded masters place this household activity among receiving guests, serving a household, and moving through daily life, making ordinary lay activity the immediate road or Buddha-work rather than an obstruction outside it."
+          ]
+        },
+        "DraftEvidence": {
+          "LiteralGraphFloor": "hold one's children and amuse one's grandchildren",
+          "LexicalJob": "抱子弄孫 means hold one's children and amuse one's grandchildren.",
+          "DeploymentClasses": [
+            "authored verse",
+            "direct instruction"
+          ],
+          "HighValueEvidenceLedger": [
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to Ruibai Mingxue.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to Shiyu Mingfang.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to Yuanhu Miaoyong.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to Jizong Che.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            }
+          ],
+          "OpeningClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3",
+            "o4"
+          ],
+          "EvidenceBodyClaimKeys": [
+            [
+              "o1",
+              "o2",
+              "o3",
+              "o4"
+            ]
+          ],
+          "ZenBend": "Ordinary family life: holding one's children and amusing or tending one's grandchildren.",
+          "CounterexampleOrLimit": "The phrase keeps its ordinary family sense; its Zen job comes from where the masters place that activity.",
+          "DifferentThingTest": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "hold one's children and amuse one's grandchildren"
+            ],
+            "Reason": "One lexical job."
+          },
+          "AliasRationale": "Alternates preserve the same lexical job.",
+          "ModifierControls": [
+            {
+              "Term": "抱子弄孫",
+              "Finding": "No modifier creates a second referent."
+            }
+          ],
+          "FamilyControls": [
+            {
+              "Term": "抱子弄孫",
+              "Finding": "4 independent higher-tier families meet the floor."
+            }
+          ],
+          "IndependentWorkIds": [
+            "work:J26nB188",
+            "work:J27nB190",
+            "work:J27nB196",
+            "work:J28nB211"
+          ],
+          "SourceAuthorityRows": [
+            {
+              "EvidenceKey": "o1",
+              "RelPath": "J/J26/J26nB188.xml",
+              "WorkId": "work:J26nB188",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "family-life:ruibai-letter",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o2",
+              "RelPath": "J/J27/J27nB190.xml",
+              "WorkId": "work:J27nB190",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "family-life:shiyu-hall",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o3",
+              "RelPath": "J/J27/J27nB196.xml",
+              "WorkId": "work:J27nB196",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "family-life:yuanhu-letter",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o4",
+              "RelPath": "J/J28/J28nB211.xml",
+              "WorkId": "work:J28nB211",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "family-life:jizong-letter",
+              "DeploymentRole": "original-use"
+            }
+          ],
+          "LampExcessJustification": "No Tier-3 lamp retained.",
+          "NoHigherWitnessSearchReceipt": "Tier 1 searched first, then Tier 2; no lamp needed.",
+          "DepthHarvestReceipt": {
+            "Complete": true,
+            "ReviewedExactHitCount": 25,
+            "AvailableSourceFiles": 23,
+            "SearchedDeploymentClasses": [
+              "authored verse",
+              "direct instruction"
+            ],
+            "OmissionAudit": [
+              "4 retained cases actor-adjudicated.",
+              "No lamp retained."
+            ]
+          }
+        },
+        "DraftAcceptedDerivedFields": {
+          "SourceTexts": [
+            "J/J26/J26nB188.xml",
+            "J/J27/J27nB190.xml",
+            "J/J27/J27nB196.xml",
+            "J/J28/J28nB211.xml"
+          ],
+          "RelatedMasters": [
+            "Ruibai Mingxue",
+            "Shiyu Mingfang",
+            "Yuanhu Miaoyong",
+            "Jizong Che"
+          ]
+        }
+      }
+    ],
+    "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+  },
+  "FamilyHarvest": {
+    "PolicyVersion": 1,
+    "Scope": "R89 source-hierarchy repair",
+    "Edges": [],
+    "NegativeReceipt": [],
+    "GraphicVariants": []
+  }
+}

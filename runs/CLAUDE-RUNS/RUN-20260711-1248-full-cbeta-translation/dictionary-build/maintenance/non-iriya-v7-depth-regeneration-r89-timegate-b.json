@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "bounded-dictionary-timegate.v2",
+  "cohort": "R89",
+  "artifactZero": true,
+  "startedEpoch": 1785413989.049684,
+  "createdUtc": "2026-07-30T12:19:49.049684Z",
+  "requiredFloors": [
+    7,
+    4,
+    6
+  ],
+  "admittedRequiredOccurrences": 17,
+  "adjudicatedCaseLoad": 17,
+  "researchCandidateReserve": 3,
+  "deadlinesSeconds": {
+    "viability": 120,
+    "researchExtraction": 120,
+    "adjudicatedConfig": 524,
+    "constructor": 534,
+    "firstProduct": 554,
+    "construction": 614,
+    "review": 810,
+    "correction": 938,
+    "publication": 1028
+  },
+  "assignedLaunch": {
+    "selector": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/last1500-public-depth/final-scope/full-regeneration-selector.json",
+    "priorUnion": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r88-resolved-union-root.json",
+    "entries": [
+      {
+        "id": "t_1e41b014d80e",
+        "term": "向上一路",
+        "requiredFloor": 7
+      },
+      {
+        "id": "t_1f3653f30389",
+        "term": "抱子弄孫",
+        "requiredFloor": 4
+      },
+      {
+        "id": "t_1fe4eac13d6e",
+        "term": "入門便喝",
+        "requiredFloor": 6
+      }
+    ],
+    "reserveIds": [],
+    "researchCandidateReserve": 3
+  },
+  "continuationOf": "R88"
+}

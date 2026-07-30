@@ -81,6 +81,7 @@ def _generic_template_key(reason: str) -> str:
         r"\b(?:[A-Z]/)?[A-Z]\d+(?:/[A-Z]\d+n[A-Za-z0-9]+)?\.xml\b",
         "<source>",
         reason.lower(),
+        flags=re.I,
     )
 
 

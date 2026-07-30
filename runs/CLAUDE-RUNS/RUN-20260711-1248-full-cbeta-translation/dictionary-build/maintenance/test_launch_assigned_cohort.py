@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 import json
+import os
+import subprocess
+import sys
 import tempfile
 import time
 import unittest
@@ -12,6 +15,21 @@ from cohort_checkpoint_watchdog import evidence_schedule
 
 
 class AssignedCohortLauncherTest(unittest.TestCase):
+    def test_cli_imports_root_zc_without_external_pythonpath(self):
+        script = Path(__file__).with_name("launch_assigned_cohort.py").resolve()
+        environment = os.environ.copy()
+        environment.pop("PYTHONPATH", None)
+        with tempfile.TemporaryDirectory() as raw:
+            result = subprocess.run(
+                [sys.executable, str(script), "--help"],
+                cwd=raw,
+                env=environment,
+                text=True,
+                capture_output=True,
+            )
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertNotIn("ModuleNotFoundError", result.stderr)
+
     def test_exact_next_unreserved_and_single_batch_count(self):
         with tempfile.TemporaryDirectory() as raw:
             root = Path(raw)
