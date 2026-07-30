@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "generic-engine-path-lifecycle-independent-review.v1",
+  "reviewer": "/root/source_tiers_c",
+  "r51Seal": {
+    "path": "maintenance/non-iriya-v7-r51-finite-partial-b.json",
+    "sha256": "3ccd8f4bf60893295577cfddddb6feb66bbe669260aa0b46f9a68b42435b43c7",
+    "resetAuthorized": false,
+    "productsCreated": 0
+  },
+  "contractOwner": "maintenance/generic_bounded_constructor.py path lifecycle validation",
+  "pathRoleRuling": {
+    "postReceiptInputs": ["config", "timegate", "watchdogReceipt", "commandAudit", "selection", "research"],
+    "sharedContainer": "outputRoot may preexist and its directory mtime is not cohort evidence; when present it must be a directory",
+    "mustBeAbsentBeforeLaunch": ["firstProductReceipt", "preclosure", "manifest", "closure"],
+    "mountedFilesystemToleranceSeconds": 1,
+    "hardPass": true
+  },
+  "reviewedFix": {
+    "enginePath": "maintenance/generic_bounded_constructor.py",
+    "engineSha256": "06b40d33d5e1585da8881eeb657005d50d5cdc3d0ed309618cb1c02f2361e247",
+    "testPath": "maintenance/test_cohort_checkpoint_watchdog.py",
+    "testSha256": "ba8da17dbfbf15a80d1944e63c37fde1e2b37bc95cb0df335ecd3cdbda4fe6da",
+    "repairPath": "maintenance/generic-engine-path-lifecycle-repair-b.json",
+    "repairSha256": "9c09812dfa7bbc708937227dd778f96ebac87cfb3e7751d1ad7721f9e58f2280"
+  },
+  "independentExecution": {
+    "focusedRealEngineTest": "pass",
+    "fullSuite": "26/26 pass",
+    "pyCompile": "pass",
+    "observed": "Exact watchdog -> stable wrapper -> real generic engine returned 0 with an old pre-existing outputRoot and emitted product, first-product receipt, preclosure, manifest and closure."
+  },
+  "inheritedConfigFinding": {
+    "sourcePath": "maintenance/non-iriya-v7-depth-regeneration-r50-constructor-config-b.json",
+    "classification": "BOUNDED_MECHANICAL_METADATA_NORMALIZATION_REQUIRED",
+    "semanticResearchReopeningRequired": false,
+    "affectedIds": ["t_143e2b0e2893", "t_1459058101b7", "t_15026800437e"],
+    "normalizationPlan": [
+      "Set sourceDossier.requiredFloor from the sealed ordered floors [4,8,8].",
+      "Set sourceDossier.semanticReadComplete=true because the inherited complete-case dossiers are already sealed.",
+      "Set sourceDossier.tier3Lamp=0 from the sealed 20 higher-tier / 0 lamp evidence summary.",
+      "Set sourceDossier.predecessorEvidenceAudit=[] to record that no predecessor occurrence is being substituted.",
+      "Replace evidenceDraft.FamilyHarvest.Scope value 'R11 exact source-first family harvest' with a continuation-specific label; preserve every Edge, NegativeReceipt query/count/decision/reason, and GraphicVariant byte-for-byte.",
+      "Update Entry.CreatedBy only to the exact continuation label required by preclosure; do not alter semantic entry fields."
+    ],
+    "prohibited": [
+      "corpus rebrowse",
+      "new family queries",
+      "changed candidate counts",
+      "changed occurrence selection",
+      "changed meanings, translations, actors or attribution",
+      "entry or public mutation before successful construction and independent semantic review"
+    ]
+  },
+  "continuationAuthorization": {
+    "authorized": true,
+    "condition": "Apply only the bounded normalization plan to a fresh continuation config, bind the unchanged inherited extraction/dossiers, then run the governed engine under the evidence-scaled schedule.",
+    "semanticReviewAfterConstruction": "one exhaustive source-first review and one finite delta"
+  },
+  "entryEditsPerformed": false,
+  "publicMutation": false,
+  "decision": "PATH_LIFECYCLE_PASS_CONTINUATION_AUTHORIZED_WITH_BOUNDED_NORMALIZATION"
+}

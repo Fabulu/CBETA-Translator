@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "generic-engine-path-lifecycle-repair.v1",
+  "engine": {
+    "path": "maintenance/generic_bounded_constructor.py",
+    "sha256": "06b40d33d5e1585da8881eeb657005d50d5cdc3d0ed309618cb1c02f2361e247"
+  },
+  "pathRoleAudit": {
+    "postReceiptInputs": ["config", "timegate", "watchdogReceipt", "commandAudit", "selection", "research"],
+    "sharedContainer": {
+      "role": "outputRoot",
+      "mayPreexist": true,
+      "mustBeDirectoryWhenPresent": true,
+      "containerMtimeIsNotCohortEvidence": true
+    },
+    "mustBeAbsentBeforeConstructor": ["firstProductReceipt", "preclosure", "manifest", "closure"],
+    "mountedFilesystemToleranceSeconds": 1,
+    "derivedEntryProducts": "Children below outputRoot are derived outputs rather than config path roles; production continuation still requires its existing collision/stale-product gate before writing them."
+  },
+  "tests": {
+    "path": "maintenance/test_cohort_checkpoint_watchdog.py",
+    "sha256": "ba8da17dbfbf15a80d1944e63c37fde1e2b37bc95cb0df335ecd3cdbda4fe6da",
+    "run": 26,
+    "passed": 26,
+    "failed": 0,
+    "fullRealRc0": "A real cohort_checkpoint_watchdog -> dictionary_python_env -> generic_bounded_constructor run uses valid ordered payload, a deliberately pre-existing outputRoot, and fresh bound inputs; it returns RC0 and asserts product, first-product receipt, preclosure, manifest, and closure."
+  },
+  "additionalNonPathFinding": "The inherited R50 dossier lacks current preclosure metadata and carries a stale FamilyHarvest scope. A later continuation must repair those adjudicated-config metadata fields before launch; the RC0 fixture normalizes them explicitly and does not mutate R50/R51 entries.",
+  "r51ProductsCreated": 0,
+  "entryMutation": false,
+  "publicMutation": false,
+  "hardPass": true,
+  "requiresIndependentReviewBeforeReuse": true
+}

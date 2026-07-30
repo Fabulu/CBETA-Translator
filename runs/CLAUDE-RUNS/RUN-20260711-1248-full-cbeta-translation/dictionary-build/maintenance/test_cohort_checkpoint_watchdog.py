@@ -2,7 +2,7 @@
 import hashlib, json, os, shutil
 from datetime import datetime, timezone
 from pathlib import Path
-import subprocess, sys, tempfile, unittest
+import subprocess, sys, tempfile, time, unittest
 from maintenance import cohort_checkpoint_watchdog as watchdog
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -168,6 +168,61 @@ class CheckpointTests(unittest.TestCase):
         self.assertNotIn("invalid watchdog receipt schema",result.stderr)
         start=json.loads(receipt.read_text())
         self.assertEqual("construction-start-receipt.v1",start["schemaVersion"])
+
+    def test_real_watchdog_wrapper_engine_rc0_with_preexisting_output_root(self):
+        started=time.time()
+        term="弟子身纏風恙"
+        ident="t_"+hashlib.sha256(term.encode()).hexdigest()[:12]
+        floors=[4]; total,deadlines=watchdog.evidence_schedule(floors)
+        tg=self.r/"real-timegate.json"
+        tg.write_text(json.dumps({"startedEpoch":started,"artifactZero":True,
+          "createdUtc":datetime.fromtimestamp(started,timezone.utc).isoformat(),
+          "requiredFloors":floors,"admittedRequiredOccurrences":total,
+          "deadlinesSeconds":deadlines}))
+        os.utime(tg,(started,started))
+        selection=self.r/"real-selection.json"
+        selection.write_text(json.dumps({"rows":[{"id":ident,"term":term,"requiredFloor":4}]}))
+        research=self.r/"real-research.json"
+        research.write_text(json.dumps({"rows":[{"id":ident,"term":term}]}))
+        output=self.r/"pre-existing-output-root"; output.mkdir()
+        os.utime(output,(started-100,started-100))
+        first=self.r/"real-first.json"; pre=self.r/"real-pre.json"
+        manifest=self.r/"real-manifest.json"; closure=self.r/"real-closure.json"
+        receipt=self.r/"real-constructor-receipt.json"
+        rr=self.r/"real-research-receipt.json"
+        rr.write_text(json.dumps({"hardPass":True,"ids":[ident],"terms":[term],
+          "requiredFloors":floors,"admittedRequiredOccurrences":total,
+          "deadlinesSeconds":deadlines}))
+        engine=ROOT/"maintenance/generic_bounded_constructor.py"; wrapper=WRAPPER
+        source=json.loads((ROOT/"maintenance/non-iriya-v7-depth-regeneration-r50-constructor-config-b.json").read_text())
+        entry=json.loads(json.dumps(next(row for row in source["entries"] if row["id"]==ident)))
+        entry["sourceDossier"].update({"requiredFloor":4,"semanticReadComplete":True,
+          "tier3Lamp":0,"predecessorEvidenceAudit":[]})
+        entry["evidenceDraft"]["Entry"]["CreatedBy"]="R50 real lifecycle test"
+        entry["evidenceDraft"]["FamilyHarvest"]["Scope"]="R50 exact source-first family harvest"
+        config=self.r/"real-config.json"; audit=self.r/"real-audit.json"
+        paths={"selection":str(selection),"research":str(research),"outputRoot":str(output),
+          "firstProductReceipt":str(first),"preclosure":str(pre),
+          "manifest":str(manifest),"closure":str(closure)}
+        config.write_text(json.dumps({"schemaVersion":"generic-bounded-constructor-config.v2",
+          "cohort":"REAL","startedEpoch":started,"timegatePath":str(tg),
+          "watchdogReceiptPath":str(receipt),"commandAuditPath":str(audit),
+          "engineSha256":sh(engine),"paths":paths,"entries":[entry]}))
+        argv=[str(Path(sys.executable).resolve()),str(wrapper),"--script",str(engine),"--",
+          "--config",str(config.resolve()),"--allowed-build-root",str(self.r.resolve())]
+        audit.write_text(json.dumps({"complete":True,"commands":[{"epoch":started+0.1,"argv":argv}]}))
+        result=self.call("constructor","--timegate",tg,"--receipt",receipt,
+          "--now-epoch",str(started+1),"--config",config,"--research-receipt",rr,
+          "--ids",ident,"--terms",term,"--command-audit",audit,
+          "--engine",engine,"--wrapper",wrapper,"--allowed-root",self.r,
+          "--authorized-engine-sha",sh(engine),"--authorized-wrapper-sha",sh(wrapper))
+        self.assertEqual(0,result.returncode,result.stderr)
+        self.assertTrue(json.loads(receipt.read_text())["hardPass"])
+        product=output/ident/"entry.v2.json"
+        self.assertTrue(product.is_file())
+        for path in (first,pre,manifest,closure):
+            self.assertTrue(path.is_file(),path)
+        self.assertEqual([ident],[row["id"] for row in json.loads(manifest.read_text())["rows"]])
     def test_late_config_and_constructor_rejected(self):
         self.assertEqual(124,self.constructor_call(now="1250.1").returncode)
     def test_receipt_overwrite_rejected(self): self.assertEqual(124,self.constructor_call(overwrite=True).returncode)

@@ -106,9 +106,26 @@ def verify_authority(config_path: Path, config: dict[str, Any], allowed_root: Pa
             raise ValueError(f"watchdog artifact binding mismatch: {kind}")
     if receipt.get("commandAuditSha256") != sha256(command_audit_path):
         raise ValueError("command-audit SHA mismatch")
-    for path in [config_path, timegate_path, receipt_path, command_audit_path, *paths.values()]:
-        if path.exists() and path.stat().st_mtime < started:
+    # Cohort inputs must be born at or after artifact zero.  The output root is
+    # a shared container across cohorts, so its directory mtime is not cohort
+    # evidence.  Conversely, the four cohort output files must not exist when
+    # this constructor starts; accepting a post-receipt placeholder would still
+    # permit another writer to collide with this engine.
+    input_paths = [
+        config_path, timegate_path, receipt_path, command_audit_path,
+        paths["selection"], paths["research"],
+    ]
+    for path in input_paths:
+        # Match the artifact-zero clock's one-second mounted-filesystem
+        # tolerance; /mnt/c may quantize an exact fractional epoch downward.
+        if path.exists() and path.stat().st_mtime + 1 < started:
             raise ValueError(f"pre-receipt artifact rejected: {path}")
+    output_root = paths["outputRoot"]
+    if output_root.exists() and not output_root.is_dir():
+        raise ValueError("outputRoot exists but is not a directory")
+    for key in ("firstProductReceipt", "preclosure", "manifest", "closure"):
+        if paths[key].exists():
+            raise ValueError(f"cohort output already exists before constructor: {key}")
 
     ids = [row["id"] for row in config["entries"]]
     selection = read_json(paths["selection"])
