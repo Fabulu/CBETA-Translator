@@ -1,0 +1,314 @@
+{
+  "schemaVersion": "r84-independent-source-first-review.v1",
+  "cohort": "R84",
+  "reviewedIds": [
+    "t_1cec9c4c3c40",
+    "t_1cfa8b8aa2a3"
+  ],
+  "bindings": {
+    "timegateSha256": "04e8ed0b7cdfd84f4a62a087f52c59f2ffcc3d8e607c09d999bae487ad07c215",
+    "selectionSha256": "60056596c7b5c81a5421b22b900d1495fea6cada6774e96d0f60648e15b06b44",
+    "countSha256": "4ea7c0bd3caaffa4a95b5539cc83d9962eff31282b1627fa0b3cfa0b4900503f",
+    "viabilitySha256": "8a6ee2a4378536fa489dccccf34c8fb7472b59c5f5f8fbf73cc5b8cbab6da8ef",
+    "checkpointSha256": "62f470619812106c2f2cc987cba30b1c88e80f7e3124b55c98fe8b32fbee4907",
+    "extractionSha256": "df2366a75a7c3f7d2292930226aa489571310ab80b5a2dfbce46aaef0bb59847",
+    "skeletonSha256": "3e5933b00b3451e13b43ebe2dd2161ee05a1871a802fb8b5d5c309d08c26a875"
+  },
+  "reviews": [
+    {
+      "id": "t_1cec9c4c3c40",
+      "term": "破虗空",
+      "requiredFloor": 6,
+      "candidateCount": 18,
+      "admission": "ADMIT",
+      "senseCount": 1,
+      "preferredTarget": "break open empty space",
+      "alternateTargets": [
+        "shatter empty space"
+      ],
+      "semanticRuling": "破虗空 is a verb-object image in which a blow, tool, body, or act breaks open what ordinarily offers no bounded surface to break. The retained masters use the impossible physical action to mark an unrestricted or decisive action, but the phrase does not itself name a separate doctrine, mental state, or cosmological event.",
+      "translationControl": "Preserve the concrete impossibility of breaking empty space. Do not replace it with an ungrounded abstraction such as enlightenment, emptiness-realization, transcendence, or breaking the ego. Prefixes in the full lines, including 打, 塞, and 頂, specify how the breaking is staged; they do not create new senses of the headword.",
+      "retainedFamilies": [
+        {
+          "relPath": "X/X64/X64n1271.xml",
+          "fromLb": "0780b02",
+          "tier": 1,
+          "contextSha256": "567f4e03d8b6b8265a0dc7a1f92fbac4bb49f5e4f28091fef758c5fb8c9b58a4",
+          "masterName": "Yulin Tongxiu",
+          "actorRole": "verse-author",
+          "familyId": "poxukong:yulin-oxherding-verse",
+          "deployment": "Yulin's 獨照 oxherding verse makes the body's crown break open empty space and its feet tread the ground to pieces.",
+          "decision": "RETAIN"
+        },
+        {
+          "relPath": "X/X71/X71n1413.xml",
+          "fromLb": "0272c11",
+          "tier": 1,
+          "contextSha256": "1c2c07cac68b2619b323a7867c2a6744a7f0e28e923e74264b9ce33e34c7e9ff",
+          "masterName": "Gulin Qingmao",
+          "actorRole": "verse-author",
+          "familyId": "poxukong:gulin-sendoff-verse",
+          "deployment": "In his sendoff verse for the storekeeper Zhen, Gulin says empty space is blocked or stopped up until it breaks, leaving not one cavity.",
+          "decision": "RETAIN"
+        },
+        {
+          "relPath": "X/X72/X72n1442.xml",
+          "fromLb": "0691b13",
+          "tier": 1,
+          "contextSha256": "3215868b46d35f5b380c00e449a2f0bcb31ffd1d7aa9c9359ebefde22b9a2eb8",
+          "masterName": "Weilin Daopei",
+          "actorRole": "utterer",
+          "familyId": "poxukong:weilin-memorial-address",
+          "deployment": "In a memorial address for his teacher, Weilin says to break open empty space while seeking a bird's tracks, extending the impossible-action image into the question of where the teacher is now.",
+          "decision": "RETAIN"
+        },
+        {
+          "relPath": "M/M59/M59n1540.xml",
+          "fromLb": "0873a03",
+          "tier": 2,
+          "contextSha256": "c184f4a210aafdf9da97c6f0e3243f93f240a190a59ba9104182b0018b395c62",
+          "masterName": "Dahui Zonggao",
+          "actorRole": "utterer",
+          "familyId": "poxukong:dahui-jianyuan-comment",
+          "deployment": "Dahui caps the Jianyuan case with one hammer-blow that breaks open empty space, immediately followed by its bursting into pieces.",
+          "decision": "RETAIN"
+        },
+        {
+          "relPath": "X/X69/X69n1352.xml",
+          "fromLb": "0305a12",
+          "tier": 2,
+          "contextSha256": "b0cb1e9870f214fe7b2a36440869e97f71b1cf0da822ef335ad301fe471705d8",
+          "masterName": "Baiyun Shouduan",
+          "actorRole": "utterer",
+          "familyId": "poxukong:baiyun-arrival-address",
+          "deployment": "Baiyun describes the former master of Luohan as possessing tongs or hammer-work capable of breaking open empty space.",
+          "decision": "RETAIN"
+        },
+        {
+          "relPath": "X/X69/X69n1355.xml",
+          "fromLb": "0356a15",
+          "tier": 2,
+          "contextSha256": "8d38ec5a523cda94579ddb558f3b89b04a5e9cedc17161e27862c89f8017f374",
+          "masterName": "Wumen Huikai",
+          "actorRole": "utterer",
+          "familyId": "poxukong:wumen-hall-address",
+          "deployment": "Wumen opens a hall address by overturning the earth and breaking open empty space before challenging the audience with his own lack of contrivance.",
+          "decision": "RETAIN"
+        }
+      ],
+      "excludedOrReserve": [
+        {
+          "relPath": "X/X65/X65n1277.xml",
+          "fromLb": "0010b03",
+          "reason": "A ritual invitation's generic description of a monk's equipment, not an attributable master deployment; exclude despite Tier-2 container classification."
+        },
+        {
+          "relPath": "X/X66/X66n1296.xml",
+          "fromLb": "0031b22",
+          "reason": "Later anthology quotation/commentary; unnecessary once six direct Tier-1/2 families meet the floor."
+        },
+        {
+          "relPath": "X/X67/X67n1299.xml",
+          "fromLb": "0117a21",
+          "reason": "Anthology of inherited comments; useful for discovery but weaker than retained direct witnesses."
+        },
+        {
+          "relPath": "X/X67/X67n1307.xml",
+          "fromLb": "0463a08",
+          "reason": "Commentarial collection; reserve only because its semantic work is already established by direct authored and recorded-sayings families."
+        },
+        {
+          "relPath": "X/X68/X68n1318.xml",
+          "fromLb": "0430b09",
+          "reason": "Later anthology container; exclude rather than add volume after the floor is met."
+        },
+        {
+          "relPath": "X/X68/X68n1319.xml",
+          "fromLb": "0561b18",
+          "reason": "Imperial anthology dialogue and a 踏破 variant; not needed to define 破虗空."
+        },
+        {
+          "relPath": "X/X69/X69n1348.xml",
+          "fromLb": "0273b01",
+          "exactActor": "Xuean Congjin",
+          "reason": "Valid independent authored verse use, held as reserve because the six retained higher-information families meet the floor."
+        },
+        {
+          "relPath": "X/X69/X69n1353.xml",
+          "fromLb": "0329b21",
+          "exactActor": "questioning monk",
+          "reason": "The headword occurs in an unnamed monk's formula; the named master answers. Valid evidence but weaker in exact-actor authority than the retained direct master uses."
+        },
+        {
+          "relPath": "X/X69/X69n1356.xml",
+          "fromLb": "0416c06",
+          "exactActor": "Puan Yinsu",
+          "reason": "Valid direct verse use held as reserve."
+        },
+        {
+          "relPath": "X/X69/X69n1358.xml",
+          "fromLb": "0501c20",
+          "exactActor": "Huqiu Shaolong",
+          "reason": "Valid direct hall-address variant 拶破 held as reserve."
+        },
+        {
+          "relPath": "X/X69/X69n1364.xml",
+          "fromLb": "0652c08",
+          "exactActor": "Shuian Fancong",
+          "reason": "Valid direct small-address use held as reserve."
+        },
+        {
+          "relPath": "X/X69/X69n1366.xml",
+          "fromLb": "0687a05",
+          "exactActor": "Wuchu Daguan",
+          "reason": "Valid direct hall-address variant 撞破 held as reserve."
+        }
+      ],
+      "sourceHierarchy": "Three Tier-1 authored families and three independent Tier-2 recorded-sayings families meet the six-case floor. No lamp is present or needed; anthology and imperial-compilation volume is excluded rather than allowed to dominate.",
+      "actorGate": "Sense MasterName must be null. Each retained occurrence belongs to its exact direct author or utterer. Do not attribute the X69n1353 questioner's phrase to the responding section master.",
+      "verdict": "APPROVE_CONSTRUCTION",
+      "hardPass": true
+    },
+    {
+      "id": "t_1cfa8b8aa2a3",
+      "term": "覿體全彰",
+      "requiredFloor": 4,
+      "candidateCount": 16,
+      "admission": "ADMIT",
+      "senseCount": 1,
+      "preferredTarget": "directly manifest in full",
+      "alternateTargets": [
+        "fully displayed right before one"
+      ],
+      "semanticRuling": "覿體全彰 says that the matter under discussion is wholly and directly displayed, rather than concealed or reached only through inference. Its grammatical subject varies—sound, color and speech; ordinary activity; an offered object; enduring mind—but those are things declared directly manifest, not separate meanings of the phrase.",
+      "translationControl": "Render 覿體 adverbially as direct, face-to-face presence and 全彰 as complete manifestation. Do not turn the compound into the anatomical claim 'the whole body appears,' and do not import realization, essence, Buddha-nature, or a meditation state where the source has not named one.",
+      "retainedFamilies": [
+        {
+          "relPath": "B/B25/B25n0145.xml",
+          "fromLb": "0718b19",
+          "tier": 2,
+          "contextSha256": "bf06c604d44fe8eeefc5b15a98c0fef28b75215cacb89c9a15e60d487a223322",
+          "masterName": "Zhongfeng Mingben",
+          "actorRole": "utterer",
+          "familyId": "ditiquanzhang:zhongfeng-memorial-address",
+          "deployment": "Zhongfeng says sound, color, and speech directly manifest the great way in full, then refuses to identify any one of them separately as the way.",
+          "decision": "RETAIN"
+        },
+        {
+          "relPath": "J/J10/J10nA158.xml",
+          "fromLb": "0012c15",
+          "tier": 2,
+          "contextSha256": "47ee7688bc53bc84ac7a3c72934281524a389357bca9b07b4faffaeb3dcc73c2",
+          "masterName": "Miyun Yuanwu",
+          "actorRole": "utterer",
+          "familyId": "ditiquanzhang:miyun-hall-address",
+          "deployment": "Miyun says it is directly manifest in full throughout the twelve two-hour periods, in bending, turning, looking up, and looking down.",
+          "decision": "RETAIN"
+        },
+        {
+          "relPath": "J/J25/J25nB154.xml",
+          "fromLb": "0032c24",
+          "tier": 2,
+          "contextSha256": "8df152f90c6b118056d12922fe32b7d95979b8657a0d9e71fc0917667f3c7447",
+          "masterName": "Wei'an Deran",
+          "actorRole": "utterer",
+          "familyId": "ditiquanzhang:weian-tower-address",
+          "deployment": "In an address concerning a tower's linked chains, Wei'an declares the construction directly manifest in full and makes its horizontal and vertical reach explicit.",
+          "decision": "RETAIN"
+        },
+        {
+          "relPath": "J/J28/J28nB211.xml",
+          "fromLb": "0452b13",
+          "tier": 2,
+          "contextSha256": "b1d5089af63534ae549e541dcffd7b7be8b781874f107a534feffa4aeeb04825",
+          "masterName": "Jizong Che",
+          "actorRole": "teacher",
+          "familyId": "ditiquanzhang:jizong-lay-instruction",
+          "deployment": "In instruction to Madam Ye Suzhan, Jizong says the enduring true mind is directly manifest in full and that attempted thought immediately misses it.",
+          "decision": "RETAIN"
+        }
+      ],
+      "excludedOrReserve": [
+        {
+          "relPath": "J/J25/J25nB156.xml",
+          "fromLb": "0061b21",
+          "exactActor": "Wuhuan Xingchong",
+          "reason": "Valid independent authored verse use, held as reserve because four clearer expository families meet the floor."
+        },
+        {
+          "relPath": "J/J25/J25nB163.xml",
+          "fromLb": "0229c11",
+          "exactActor": "Guting Shanjian",
+          "reason": "Valid direct discourse use with repeated inversion 覿體壁立全彰; reserve to avoid repetitive evidence."
+        },
+        {
+          "relPath": "J/J26/J26nB178.xml",
+          "fromLb": "0114c01",
+          "exactActor": "Feiyin Tongrong",
+          "reason": "Valid direct commentary on a quoted sutra passage, held as reserve."
+        },
+        {
+          "relPath": "J/J26/J26nB183.xml",
+          "fromLb": "0496c19",
+          "exactActor": "questioning monk",
+          "reason": "The unnamed monk, not Shiqi Tongyun, utters the headword; exclude from the defining set because direct named-master uses already meet the floor."
+        },
+        {
+          "relPath": "J/J26/J26nB187.xml",
+          "fromLb": "0697a10",
+          "exactActor": "Tian'an Sheng",
+          "reason": "Valid short response to a question about Bodhidharma, held as reserve."
+        },
+        {
+          "relPath": "J/J26/J26nB188.xml",
+          "fromLb": "0755a09",
+          "exactActor": "Ruibai Mingxue",
+          "reason": "Valid direct contrast between constriction and release, held as reserve."
+        },
+        {
+          "relPath": "J/J27/J27nB189.xml",
+          "fromLb": "0001a03",
+          "exactActor": "preface author",
+          "reason": "The headword belongs to an outer preface, not Sanyi Mingyu's recorded speech; exclude from master evidence."
+        },
+        {
+          "relPath": "J/J27/J27nB193.xml",
+          "fromLb": "0244b08",
+          "exactActor": "Yinyuan Longqi",
+          "reason": "Valid direct hall address held as reserve."
+        },
+        {
+          "relPath": "J/J27/J27nB197.xml",
+          "fromLb": "0404b08",
+          "exactActor": "Wuyi Yuanlai",
+          "reason": "Valid independent direct redeployment held as reserve."
+        },
+        {
+          "relPath": "J/J28/J28nB202.xml",
+          "fromLb": "0115a05",
+          "exactActor": "Baichi Xingyuan",
+          "reason": "Valid direct verse use held as reserve."
+        },
+        {
+          "relPath": "J/J28/J28nB206.xml",
+          "fromLb": "0277b19",
+          "exactActor": "record owner",
+          "reason": "Valid direct New Year hall address held as reserve; canonical roster resolution must precede any use."
+        },
+        {
+          "relPath": "J/J28/J28nB208.xml",
+          "fromLb": "0367a27",
+          "exactActor": "Guxue Zhenzhe",
+          "reason": "Valid direct verse-comment use held as reserve."
+        }
+      ],
+      "sourceHierarchy": "Four independent Tier-2 direct recorded-sayings families meet the floor. The governed extraction contains no Tier-1 witness and consulted no lamp; later-record abundance is controlled by retaining only four semantically informative direct deployments.",
+      "actorGate": "Sense MasterName must be null. Retained occurrence MasterName values are the direct named speakers. The J26nB183 question belongs to the unnamed monk, and the J27nB189 occurrence belongs to a preface author; neither may be assigned to the responding or record-owning master.",
+      "verdict": "APPROVE_CONSTRUCTION",
+      "hardPass": true
+    }
+  ],
+  "overallVerdict": "APPROVE_BOTH_FOR_CONSTRUCTION",
+  "hardPass": true,
+  "publicMutation": false
+}

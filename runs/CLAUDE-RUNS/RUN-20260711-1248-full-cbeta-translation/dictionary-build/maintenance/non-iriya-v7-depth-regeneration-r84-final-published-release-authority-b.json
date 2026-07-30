@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "r84-final-published-release-authority.v1",
+  "cohort": "R84",
+  "verdict": "RELEASE_AUTHORIZED_AND_PUBLISHED",
+  "ids": [
+    "t_1cec9c4c3c40",
+    "t_1cfa8b8aa2a3",
+    "t_1d0056511f4d"
+  ],
+  "replacements": [
+    {
+      "id": "t_1cec9c4c3c40",
+      "term": "破虗空",
+      "productSha256": "0ecbac9499c7d8e90d67bdb8e0ff92651486296f5f37919f50cf99d0fa9d71e6"
+    },
+    {
+      "id": "t_1cfa8b8aa2a3",
+      "term": "覿體全彰",
+      "productSha256": "e5880063bb97d6dcc4d52b9dc51ea527ef30642c009ace4218b1f6b1ee374ee3"
+    },
+    {
+      "id": "t_1d0056511f4d",
+      "term": "集雲峰下四藤條",
+      "productSha256": "ad5a701713658c213dd52f8cefa1adc916d50b3d90cdbf9ef575c7bfe4124923"
+    }
+  ],
+  "reviewClosures": {
+    "firstTwoPath": "maintenance/non-iriya-v7-depth-regeneration-r84-final-closure-first-two-release2-a.json",
+    "firstTwoSha256": "e704fd0d0608ba4d37b588cb5fcf19e8798b5fbd8d2024c8c43bf217d9316efc",
+    "thirdPath": "maintenance/non-iriya-v7-depth-regeneration-r84-final-closure-third-b.json",
+    "thirdSha256": "3fc939db9c03af33dc2d824928680a5730276e5f7ec0677241a683104b6695d9"
+  },
+  "review": {
+    "retainedOccurrences": 14,
+    "sourceHierarchy": "Tier 1 authored texts first, then Tier 2 recorded sayings",
+    "tier3LampOccurrences": 0,
+    "attributionHardFailures": 0,
+    "depthHardFailures": 0,
+    "depthReviewFlags": 0
+  },
+  "publicIntegrity": {
+    "entryCount": 4714,
+    "exactProductParity": "3/3",
+    "integrityAudit": "PASS",
+    "publicCommit": "f149d6d2f064939a46d91f54ed82fd21e31a9b60",
+    "pushed": true,
+    "hardPass": true
+  },
+  "timing": {
+    "deadlineHardPass": false,
+    "lateConstructionDisclosed": true,
+    "cause": "The canonical constructor failed closed after the corrected adjudicated config exceeded its time gate; root authorized the same frozen three-ID scope as a transparent bounded late correction."
+  },
+  "releaseAuthorized": true,
+  "published": true,
+  "hardPass": true
+}

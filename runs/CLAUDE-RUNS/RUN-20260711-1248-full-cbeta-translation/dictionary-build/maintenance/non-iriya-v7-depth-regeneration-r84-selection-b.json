@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "non-iriya-v7-depth-regeneration-selection.v1",
+  "cohort": "R84",
+  "selectionRule": "exact coordinator-assigned next unreserved authoritative rows",
+  "rows": [
+    {
+      "queueOrdinal": 1,
+      "identityId": "t_1cec9c4c3c40",
+      "term": "破虗空",
+      "requiredFloor": 6,
+      "classification": "hard-fail"
+    },
+    {
+      "queueOrdinal": 2,
+      "identityId": "t_1cfa8b8aa2a3",
+      "term": "覿體全彰",
+      "requiredFloor": 4,
+      "classification": "hard-fail"
+    },
+    {
+      "queueOrdinal": 3,
+      "identityId": "t_1d0056511f4d",
+      "term": "集雲峰下四藤條",
+      "requiredFloor": 4,
+      "classification": "hard-fail"
+    }
+  ],
+  "collisionCheck": {
+    "priorIds": 194,
+    "collisions": [],
+    "hardPass": true
+  }
+}

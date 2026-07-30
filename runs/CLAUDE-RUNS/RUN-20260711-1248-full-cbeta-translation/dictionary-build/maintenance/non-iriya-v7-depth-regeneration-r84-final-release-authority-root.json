@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "r84-final-release-authority.v1",
+  "cohort": "R84",
+  "verdict": "RELEASE_AUTHORIZED_AND_PUBLISHED",
+  "replacements": [
+    {
+      "id": "t_1cec9c4c3c40",
+      "term": "破虗空",
+      "productSha256": "0ecbac9499c7d8e90d67bdb8e0ff92651486296f5f37919f50cf99d0fa9d71e6",
+      "reviewSha256": "e704fd0d0608ba4d37b588cb5fcf19e8798b5fbd8d2024c8c43bf217d9316efc"
+    },
+    {
+      "id": "t_1cfa8b8aa2a3",
+      "term": "覿體全彰",
+      "productSha256": "e5880063bb97d6dcc4d52b9dc51ea527ef30642c009ace4218b1f6b1ee374ee3",
+      "reviewSha256": "e704fd0d0608ba4d37b588cb5fcf19e8798b5fbd8d2024c8c43bf217d9316efc"
+    },
+    {
+      "id": "t_1d0056511f4d",
+      "term": "集雲峰下四藤條",
+      "productSha256": "ad5a701713658c213dd52f8cefa1adc916d50b3d90cdbf9ef575c7bfe4124923",
+      "reviewSha256": "3fc939db9c03af33dc2d824928680a5730276e5f7ec0677241a683104b6695d9"
+    }
+  ],
+  "review": {
+    "retainedEvidence": "14 quotations across 14 reviewed deployment families",
+    "tierMix": "higher-tier evidence only; zero Tier-3 lamps",
+    "attributionAudit": "zero hard failures",
+    "depthSenseAudit": "three audited; zero hard failures and zero review flags",
+    "sourceFirstReview": "independent semantic rulings were frozen before product comparison"
+  },
+  "publicIntegrity": {
+    "entryCount": 4714,
+    "exactProductParity": "3/3",
+    "publicCommit": "f149d6d2f064939a46d91f54ed82fd21e31a9b60",
+    "headEqualsOriginMain": true,
+    "hardPass": true
+  },
+  "publicationTiming": {
+    "publicationDeadlineEpoch": 1785408649.3386776,
+    "atomicInstallEpoch": 1785408785,
+    "atomicInstallLatenessSeconds": 135.6613224,
+    "publicCommitEpoch": 1785408814,
+    "publicCommitLatenessSeconds": 164.6613224,
+    "deadlineHardPass": false,
+    "latePublicationDisclosed": true,
+    "cause": "Pre-product review caught copied admission metadata and an incorrect actor name; mandatory gates then caught two bounded prose defects. The corrected cohort was preserved and published through the transparent late path instead of being discarded."
+  },
+  "releaseAuthorized": true,
+  "published": true,
+  "hardPass": true
+}

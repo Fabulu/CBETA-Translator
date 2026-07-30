@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "bounded-dictionary-timegate.v2",
+  "cohort": "R84",
+  "artifactZero": true,
+  "startedEpoch": 1785407693.3386776,
+  "createdUtc": "2026-07-30T10:34:53.338678Z",
+  "requiredFloors": [
+    6,
+    4,
+    4
+  ],
+  "admittedRequiredOccurrences": 14,
+  "adjudicatedCaseLoad": 14,
+  "researchCandidateReserve": 12,
+  "deadlinesSeconds": {
+    "viability": 120,
+    "researchExtraction": 120,
+    "adjudicatedConfig": 488,
+    "constructor": 498,
+    "firstProduct": 518,
+    "construction": 578,
+    "review": 750,
+    "correction": 866,
+    "publication": 956
+  },
+  "assignedLaunch": {
+    "selector": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/last1500-public-depth/final-scope/full-regeneration-selector.json",
+    "priorUnion": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r83-resolved-union-root.json",
+    "entries": [
+      {
+        "id": "t_1cec9c4c3c40",
+        "term": "破虗空",
+        "requiredFloor": 6
+      },
+      {
+        "id": "t_1cfa8b8aa2a3",
+        "term": "覿體全彰",
+        "requiredFloor": 4
+      },
+      {
+        "id": "t_1d0056511f4d",
+        "term": "集雲峰下四藤條",
+        "requiredFloor": 4
+      }
+    ],
+    "reserveIds": [],
+    "researchCandidateReserve": 12
+  },
+  "continuationOf": "R83"
+}

@@ -1,0 +1,127 @@
+{
+  "schemaVersion": "r84-changed-coordinate-final-closure.v2",
+  "cohort": "R84",
+  "reviewer": "independent reviewer a",
+  "reviewMode": "changed-coordinate release-2 rereview",
+  "supersedes": {
+    "path": "maintenance/non-iriya-v7-depth-regeneration-r84-final-closure-first-two-a.json",
+    "sha256": "0d3e1267e32e9a956a6f72e23eeebdb8dde4132336830b70629a574a9517a150",
+    "reason": "The earlier artifact correctly rejected the pre-correction bytes. This release-2 closure binds replacement bytes in which that sole mismatch is corrected."
+  },
+  "reviewScope": [
+    "t_1cec9c4c3c40",
+    "t_1cfa8b8aa2a3"
+  ],
+  "sourceFirstBindings": {
+    "independentReview": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r84-review-first-two-a.json",
+      "sha256": "f95936673bd63ba8490a9ae8dd403cf76d49542d8a4b81fb60ca6838f4299265"
+    },
+    "rootReview": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r84-source-first-review-root.json",
+      "sha256": "092e6beec6c5632eb2fe528a269d0728abd48da7a82b4f088bb5d1e120ff05fc"
+    }
+  },
+  "productBindings": [
+    {
+      "id": "t_1cec9c4c3c40",
+      "term": "破虗空",
+      "entry": {
+        "path": "fresh-build/entries/t_1cec9c4c3c40/entry.v2.json",
+        "sha256": "0ecbac9499c7d8e90d67bdb8e0ff92651486296f5f37919f50cf99d0fa9d71e6"
+      },
+      "worksheet": {
+        "path": "fresh-build/entries/t_1cec9c4c3c40/evidence.draft.json",
+        "sha256": "d2f56fe3f7e6fde97e7b64830be1a4d73f6a3b7c0b2252c4a93c12f0a1cc26db"
+      },
+      "dossier": {
+        "path": "fresh-build/entries/t_1cec9c4c3c40/source-dossier.json",
+        "sha256": "4d692f480e303b28aabfe37ed67022e32962e6c3c1c0544ee11840115c2d3de7"
+      },
+      "workLedger": {
+        "path": "fresh-build/entries/t_1cec9c4c3c40/WORK.md",
+        "sha256": "d7c2a5d91f51c5fe4ef0744d48c4e17ec38fdd1b2b2db5d66bfd1a42ab980d5a"
+      }
+    },
+    {
+      "id": "t_1cfa8b8aa2a3",
+      "term": "覿體全彰",
+      "entry": {
+        "path": "fresh-build/entries/t_1cfa8b8aa2a3/entry.v2.json",
+        "sha256": "e5880063bb97d6dcc4d52b9dc51ea527ef30642c009ace4218b1f6b1ee374ee3"
+      },
+      "worksheet": {
+        "path": "fresh-build/entries/t_1cfa8b8aa2a3/evidence.draft.json",
+        "sha256": "90b1398dc02c92f87495ba603f1e63acad31c301371f9ff92f21c5aea2fb0e53"
+      },
+      "dossier": {
+        "path": "fresh-build/entries/t_1cfa8b8aa2a3/source-dossier.json",
+        "sha256": "f66e78a5ef37f909ed9c8b7e01dc48279cd64011dd9cc75eae08ef462a9a7a99"
+      },
+      "workLedger": {
+        "path": "fresh-build/entries/t_1cfa8b8aa2a3/WORK.md",
+        "sha256": "aed8c7d331cfa465f54a9e645befa36198adcb376058a85150021d9c27877244"
+      }
+    }
+  ],
+  "auditBindings": {
+    "attribution": [
+      {
+        "id": "t_1cec9c4c3c40",
+        "path": "maintenance/non-iriya-v7-depth-regeneration-r84-attribution-t_1cec9c4c3c40-release2-b.json",
+        "sha256": "9ba8146e163f8a7d5d5e50d623936e49a1ebc44f879bf90948d7a62151878db4",
+        "hardFailures": 0
+      },
+      {
+        "id": "t_1cfa8b8aa2a3",
+        "path": "maintenance/non-iriya-v7-depth-regeneration-r84-attribution-t_1cfa8b8aa2a3-release2-b.json",
+        "sha256": "9e640bf908a46493bb3dff044f1b9d76bd09ed55678a0c47bea9e65489799bbe",
+        "hardFailures": 0
+      }
+    ],
+    "depth": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r84-depth-sense-release2-b.json",
+      "sha256": "26eb08b06986317107bca8a6712279159719af8e1e24fb66c411479a6a0d3347",
+      "audited": 3,
+      "hardFailed": 0,
+      "reviewFlagged": 0,
+      "reviewedEntryShasMatch": true
+    }
+  },
+  "coordinateRulings": [
+    {
+      "id": "t_1cec9c4c3c40",
+      "meaning": "PASS: one sense, preferred 'break through empty space'; the independent renderings 'break open' and 'shatter' remain explicit alternates.",
+      "retainedFamilies": "PASS: exactly the reviewed six independent families, comprising three Tier-1 and three Tier-2 witnesses.",
+      "actors": "PASS: all six exact actors match both source-first rulings.",
+      "roles": "PASS: Yulin Tongxiu and Gulin Qingmao are verse-authors; Weilin Daopei is now correctly the utterer in a memorial address; Dahui Zonggao, Baiyun Shouduan, and Wumen Huikai are utterers.",
+      "prose": "PASS: the Explanation now distinguishes the two authored verses from Weilin's memorial address and the three recorded instructions.",
+      "worksheetProductParity": "PASS",
+      "zeroLamps": true,
+      "evidenceFloor": {
+        "required": 6,
+        "retained": 6,
+        "pass": true
+      }
+    },
+    {
+      "id": "t_1cfa8b8aa2a3",
+      "meaning": "PASS: one sense, preferred 'fully manifest in its very substance'; 'directly manifest in full' remains an explicit alternate.",
+      "retainedFamilies": "PASS: exactly the reviewed four independent Tier-2 direct recorded-sayings families.",
+      "actors": "PASS: Zhongfeng Mingben, Miyun Yuanwu, Wei'an Deran, and Jizong Che are the exact utterers.",
+      "roles": "PASS: all four public roles are the closed grammatical role utterer; this is compatible with the independent review's description of Jizong's instructional deployment.",
+      "worksheetProductParity": "PASS",
+      "zeroLamps": true,
+      "evidenceFloor": {
+        "required": 4,
+        "retained": 4,
+        "pass": true
+      }
+    }
+  ],
+  "sourceHierarchyRuling": "PASS: the first entry is controlled by Tier-1 authored witnesses and supplemented by Tier-2 direct records; the second uses the smallest sufficient set of Tier-2 direct records. No Tier-3 lamp witness is retained in either entry.",
+  "overallVerdict": "APPROVE_RELEASE2_FIRST_TWO",
+  "hardPass": true,
+  "releaseAuthorized": true,
+  "publicMutation": false
+}
