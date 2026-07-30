@@ -56,12 +56,15 @@ def main() -> None:
     parser.add_argument("--continuation-of")
     parser.add_argument("--floors", nargs="+", type=int, required=True)
     parser.add_argument("--case-load", type=int, required=True)
+    parser.add_argument("--research-candidate-reserve", type=int, default=3)
     parser.add_argument("--selector")
     parser.add_argument("--prior-union")
     parser.add_argument("--entry", action="append", nargs=3,
                         metavar=("ID", "TERM", "FLOOR"))
     parser.add_argument("--reserve-id", action="append", default=[])
     args = parser.parse_args()
+    if args.research_candidate_reserve < 0:
+        raise SystemExit("research-candidate-reserve must be nonnegative")
     output = Path(args.output).resolve()
     if output.exists():
         raise SystemExit(f"refusing to overwrite artifact zero: {output}")
@@ -79,6 +82,7 @@ def main() -> None:
         "requiredFloors": args.floors,
         "admittedRequiredOccurrences": total,
         "adjudicatedCaseLoad": case_load,
+        "researchCandidateReserve": args.research_candidate_reserve,
         "deadlinesSeconds": deadlines,
     }
     launch_fields = (args.selector, args.prior_union, args.entry, args.reserve_id)
@@ -97,6 +101,7 @@ def main() -> None:
             "priorUnion": str(Path(args.prior_union).resolve()),
             "entries": entries,
             "reserveIds": sorted(set(args.reserve_id)),
+            "researchCandidateReserve": args.research_candidate_reserve,
         }
     if args.continuation_of:
         payload["continuationOf"] = args.continuation_of

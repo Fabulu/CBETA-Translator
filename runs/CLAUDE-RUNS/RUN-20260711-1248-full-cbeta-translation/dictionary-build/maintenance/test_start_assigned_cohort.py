@@ -89,6 +89,8 @@ class CanonicalAssignedStarterTests(unittest.TestCase):
             self.assertTrue(doc["artifactZero"])
             self.assertEqual([7, 6, 4], doc["requiredFloors"])
             self.assertEqual(17, doc["adjudicatedCaseLoad"])
+            self.assertEqual(3, doc["researchCandidateReserve"])
+            self.assertEqual(3, doc["assignedLaunch"]["researchCandidateReserve"])
             self.assertEqual(
                 [row[0] for row in ENTRIES],
                 [row["id"] for row in doc["assignedLaunch"]["entries"]])

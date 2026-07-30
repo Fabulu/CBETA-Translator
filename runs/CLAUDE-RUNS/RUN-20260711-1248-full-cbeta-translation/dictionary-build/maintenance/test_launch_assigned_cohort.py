@@ -40,6 +40,7 @@ class AssignedCohortLauncherTest(unittest.TestCase):
                 "requiredFloors": [8, 4, 7],
                 "admittedRequiredOccurrences": 19,
                 "adjudicatedCaseLoad": 19,
+                "researchCandidateReserve": 3,
                 "deadlinesSeconds": evidence_schedule([8, 4, 7], 19)[1],
                 "assignedLaunch": {
                     "selector": str(selector.resolve()),
@@ -50,6 +51,7 @@ class AssignedCohortLauncherTest(unittest.TestCase):
                         {"id": "c", "term": "丙", "requiredFloor": 7},
                     ],
                     "reserveIds": ["reserved"],
+                    "researchCandidateReserve": 3,
                 },
             }), encoding="utf-8")
             calls = []

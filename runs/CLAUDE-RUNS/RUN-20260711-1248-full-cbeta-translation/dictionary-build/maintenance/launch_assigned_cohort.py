@@ -36,6 +36,7 @@ def prepare(
     reserve_ids: list[str],
     output_dir: Path,
     count_fn=zc.batch_count,
+    research_candidate_reserve: int = 3,
 ) -> dict[str, Path]:
     stamp, _, _, _, _ = clock(timegate, None)
     if stamp.get("schemaVersion") != "bounded-dictionary-timegate.v2":
@@ -43,6 +44,8 @@ def prepare(
     if stamp.get("cohort") != cohort or stamp.get("artifactZero") is not True:
         raise RuntimeError("artifact-zero receipt/cohort mismatch")
     governed_schedule(stamp, [identity for identity, _, _ in entries])
+    if stamp.get("researchCandidateReserve") != research_candidate_reserve:
+        raise RuntimeError("artifact-zero research-candidate-reserve mismatch")
     expected_binding = {
         "selector": str(selector.resolve()),
         "priorUnion": str(prior_union.resolve()),
@@ -51,6 +54,7 @@ def prepare(
             for identity, term, floor in entries
         ],
         "reserveIds": sorted(set(reserve_ids)),
+        "researchCandidateReserve": research_candidate_reserve,
     }
     if stamp.get("assignedLaunch") != expected_binding:
         raise RuntimeError("artifact-zero assigned-launch binding mismatch")
@@ -120,9 +124,12 @@ def main() -> None:
     parser.add_argument("--selector", required=True, type=Path)
     parser.add_argument("--entry", action="append", nargs=3, metavar=("ID", "TERM", "FLOOR"), required=True)
     parser.add_argument("--reserve-id", action="append", default=[])
+    parser.add_argument("--research-candidate-reserve", type=int, default=3)
     parser.add_argument("--output-dir", type=Path, default=ROOT / "maintenance")
     args = parser.parse_args()
     entries = [(identity, term, int(floor)) for identity, term, floor in args.entry]
+    if args.research_candidate_reserve < 0:
+        raise SystemExit("research-candidate-reserve must be nonnegative")
     paths = prepare(
         cohort=args.cohort,
         timegate=args.timegate,
@@ -130,6 +137,7 @@ def main() -> None:
         selector=args.selector,
         entries=entries,
         reserve_ids=args.reserve_id,
+        research_candidate_reserve=args.research_candidate_reserve,
         output_dir=args.output_dir,
     )
     command = [

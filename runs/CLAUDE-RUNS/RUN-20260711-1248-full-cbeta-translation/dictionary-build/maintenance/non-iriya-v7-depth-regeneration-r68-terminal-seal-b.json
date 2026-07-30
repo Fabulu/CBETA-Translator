@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "r68-terminal-seal.v1",
+  "cohort": "R68",
+  "terminalStatus": "CANONICAL_DEPTH_PREFLIGHT_FAIL_CLOSED",
+  "continuedWorkAuthorized": false,
+  "artifactZeroSha256": "5deb2c64b27b89493c2fb757f5c45a8346f00d21cbda4a336326f6921b3abfd9",
+  "configSha256": "85946b7ffb0bec1e4b004ec8bdf96f397c83ae29f8b1414b58b59b124f1ee2d3",
+  "failClosedMarkerSha256": "2b4a7ea8a1e2d0d82d566cc4ee81fe66ad604009ad7039c191de4f0cd3b5e6ad",
+  "retainedSubsetSha256": "ee47ae21c4e115dc23ecb1d2d5c32a7f3e844589c35848271fda884b15cb68b8",
+  "researchSha256": "902b863609f198f7cf04704cf38170d77d4d1732bd38962cdd3d09492f788c55",
+  "failure": {
+    "phase": "whole-config canonical compiler prewrite",
+    "reason": "post-adjudication defining evidence fell below dynamic depth floor for 劫外 (5/7) and 呈漆器 (3/4)",
+    "semanticResearchComplete": true,
+    "canonicalPrewriteCompleted": false
+  },
+  "postFailureArtifacts": {
+    "firstProductReceipt": false,
+    "preclosure": false,
+    "constructionManifest": false,
+    "closure": false,
+    "publicMutation": false
+  },
+  "productsCreatedOrModifiedByR68": 0,
+  "publicArtifactsCreatedOrModifiedByR68": 0,
+  "hardPass": true,
+  "sealed": true
+}

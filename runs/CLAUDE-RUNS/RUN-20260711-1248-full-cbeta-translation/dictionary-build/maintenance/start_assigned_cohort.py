@@ -33,6 +33,7 @@ def expected_binding(args, entries):
             for identity, term, floor in entries
         ],
         "reserveIds": sorted(set(args.reserve_id)),
+        "researchCandidateReserve": args.research_candidate_reserve,
     }
 
 
@@ -44,6 +45,7 @@ def verify_resumable_gate(args, entries):
        gate.get("artifactZero") is not True or gate.get("cohort") != args.cohort or \
        gate.get("requiredFloors") != [floor for _, _, floor in entries] or \
        gate.get("adjudicatedCaseLoad") != args.case_load or \
+       gate.get("researchCandidateReserve") != args.research_candidate_reserve or \
        gate.get("assignedLaunch") != expected_binding(args, entries) or \
        actual_continuation != expected_continuation:
         raise SystemExit("existing artifact zero does not exactly match requested resume")
@@ -67,6 +69,7 @@ def run(args: argparse.Namespace) -> None:
             "--cohort", args.cohort,
             "--floors", *map(str, floors),
             "--case-load", str(args.case_load),
+            "--research-candidate-reserve", str(args.research_candidate_reserve),
             "--selector", str(args.selector),
             "--prior-union", str(args.prior_union),
         ]
@@ -87,6 +90,7 @@ def run(args: argparse.Namespace) -> None:
         "--prior-union", str(args.prior_union),
         "--selector", str(args.selector),
         "--output-dir", str(args.output_dir),
+        "--research-candidate-reserve", str(args.research_candidate_reserve),
     ]
     for identity, term, floor in entries:
         launch += ["--entry", identity, term, str(floor)]
@@ -105,10 +109,13 @@ def main() -> None:
                         metavar=("ID", "TERM", "FLOOR"), required=True)
     parser.add_argument("--reserve-id", action="append", default=[])
     parser.add_argument("--case-load", required=True, type=int)
+    parser.add_argument("--research-candidate-reserve", type=int, default=3)
     parser.add_argument("--continuation-of")
     parser.add_argument("--resume-artifact-zero", action="store_true")
     parser.add_argument("--output-dir", type=Path, default=ROOT / "maintenance")
     args = parser.parse_args()
+    if args.research_candidate_reserve < 0:
+        raise SystemExit("research-candidate-reserve must be nonnegative")
     run(args)
 
 

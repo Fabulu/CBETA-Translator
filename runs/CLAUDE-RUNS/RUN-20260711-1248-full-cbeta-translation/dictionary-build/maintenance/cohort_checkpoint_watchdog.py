@@ -52,6 +52,16 @@ def governed_schedule(gate, ids):
     return floors, total, case_load, deadlines
 
 
+def governed_candidate_reserve(gate):
+    reserve = gate.get("researchCandidateReserve")
+    if isinstance(reserve, bool) or not isinstance(reserve, int) or reserve < 0:
+        raise ValueError("timegate researchCandidateReserve must be a nonnegative integer")
+    assigned = gate.get("assignedLaunch")
+    if isinstance(assigned, dict) and assigned.get("researchCandidateReserve") != reserve:
+        raise ValueError("assigned-launch researchCandidateReserve mismatch")
+    return reserve
+
+
 def read(path):
     value = json.loads(Path(path).read_text(encoding="utf-8"))
     if not isinstance(value, dict):
@@ -257,6 +267,7 @@ def viability(args):
         immutable(args.receipt)
         gate, started, _, elapsed, receipt_mtime = clock(args.timegate, args.now_epoch)
         floors, total, case_load, deadlines = governed_schedule(gate, args.ids)
+        candidate_reserve = governed_candidate_reserve(gate)
         if elapsed > deadlines["viability"]:
             raise ValueError(f"{elapsed:.3f}s > {deadlines['viability']}s")
         selection = post_receipt(args.selection, receipt_mtime, "selection")
@@ -282,6 +293,7 @@ def viability(args):
                          "ids": args.ids, "terms": args.terms, "selectionSha256": sha(selection),
                          "requiredFloors": floors, "admittedRequiredOccurrences": total,
                          "adjudicatedCaseLoad": case_load,
+                         "researchCandidateReserve": candidate_reserve,
                          "deadlinesSeconds": deadlines,
                          "unionSha256": sha(union), "countSha256": sha(count),
                          "hardPass": True})
@@ -294,6 +306,7 @@ def research(args):
         immutable(receipt)
         gate, started, now, elapsed, receipt_mtime = clock(args.timegate, args.now_epoch)
         floors, total, case_load, deadlines = governed_schedule(gate, args.ids)
+        candidate_reserve = governed_candidate_reserve(gate)
         if elapsed > deadlines["researchExtraction"]:
             raise ValueError(f"{elapsed:.3f}s > {deadlines['researchExtraction']}s")
         audit = post_receipt(args.command_audit, receipt_mtime, "command audit")
@@ -323,6 +336,7 @@ def research(args):
                viability_data.get("ids") != args.ids or \
                viability_data.get("terms") != args.terms or \
                viability_data.get("requiredFloors") != floors or \
+               viability_data.get("researchCandidateReserve") != candidate_reserve or \
                viability_data.get("selectionSha256") != sha(selection) or \
                viability_data.get("countSha256") != sha(count):
                 raise ValueError("stale or tampered viability/selection/count binding")
@@ -343,12 +357,20 @@ def research(args):
         research_rows = exact_rows(skeleton, args.ids, args.terms)
         for row, term, floor in zip(output_rows, args.terms, floors):
             candidates = row.get("sourceCandidates")
+            target = floor + candidate_reserve
             if not isinstance(candidates, list) or \
-               (bound and len(candidates) != floor) or \
+               (bound and not (floor <= len(candidates) <= target)) or \
                (not bound and not candidates):
                 raise ValueError(
-                    f"{row.get('id')}: sourceCandidates length must equal requiredFloor {floor}"
+                    f"{row.get('id')}: sourceCandidates length must be floor {floor} through governed target {target}"
                     if bound else f"{row.get('id')}: extraction has no source candidates")
+            if bound and (
+                row.get("requiredFloor") != floor
+                or row.get("researchCandidateReserve") != candidate_reserve
+                or row.get("candidateTarget") != target
+                or row.get("candidateSupplyExhausted") is not (len(candidates) < target)
+            ):
+                raise ValueError(f"{row.get('id')}: governed candidate reserve metadata mismatch")
             for candidate in candidates:
                 validate_candidate(candidate, term)
         for row, extracted in zip(research_rows, output_rows):
@@ -363,6 +385,7 @@ def research(args):
                     "elapsedSeconds": elapsed, "deadlineSeconds": deadlines["researchExtraction"],
                     "requiredFloors": floors, "admittedRequiredOccurrences": total,
                     "adjudicatedCaseLoad": case_load,
+                    "researchCandidateReserve": candidate_reserve,
                     "deadlinesSeconds": deadlines,
                     "ids": args.ids, "terms": args.terms, "command": command,
                     "wrapperPath": str(wrapper), "wrapperSha256": sha(wrapper),

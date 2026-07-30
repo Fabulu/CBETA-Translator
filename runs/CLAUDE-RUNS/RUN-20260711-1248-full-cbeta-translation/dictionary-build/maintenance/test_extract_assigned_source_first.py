@@ -28,7 +28,7 @@ class AssignedSourceFirstTests(unittest.TestCase):
                            {"z2": 2, "a1": 1, "b2": 2, "lamp3": 3})
         rows = extract_rows(
             fx[0], fx[1], tiers=fx[2], find_fn=fx[4],
-            work_id_fn=lambda path: fx[3][path])
+            work_id_fn=lambda path: fx[3][path], candidate_reserve=0)
         self.assertEqual(["a1", "b2", "z2"],
                          [c["relPath"] for c in rows[0]["sourceCandidates"]])
         self.assertEqual(0, rows[0]["lampFallbackCount"])
@@ -44,7 +44,7 @@ class AssignedSourceFirstTests(unittest.TestCase):
                            {"b2": 2, "lamp_b": 3, "lamp_a": 3, "lamp_c": 3})
         rows = extract_rows(
             fx[0], fx[1], tiers=fx[2], find_fn=fx[4],
-            work_id_fn=lambda path: fx[3][path])
+            work_id_fn=lambda path: fx[3][path], candidate_reserve=0)
         self.assertEqual(["b2", "lamp_a", "lamp_b"],
                          [c["relPath"] for c in rows[0]["sourceCandidates"]])
         self.assertEqual(2, rows[0]["lampFallbackCount"])
@@ -58,9 +58,9 @@ class AssignedSourceFirstTests(unittest.TestCase):
         def find(path, term, **_):
             return [{"window": f"{term}:{path}", "fromLb": "1"}]
         rows1 = extract_rows(selection, counts, tiers=tiers, find_fn=find,
-                             work_id_fn=lambda path: works[path])
+                             work_id_fn=lambda path: works[path], candidate_reserve=0)
         rows2 = extract_rows(selection, counts, tiers=tiers, find_fn=find,
-                             work_id_fn=lambda path: works[path])
+                             work_id_fn=lambda path: works[path], candidate_reserve=0)
         self.assertEqual(["a", "b"], [c["relPath"] for c in rows1[0]["sourceCandidates"]])
         self.assertEqual(rows1, rows2)
         out1 = build_documents("TEST", rows1)
@@ -87,10 +87,11 @@ class AssignedSourceFirstTests(unittest.TestCase):
             }]}), encoding="utf-8")
             gate.write_text(json.dumps({
                 "schemaVersion": "bounded-dictionary-timegate.v2",
-                "requiredFloors": [2]}), encoding="utf-8")
+                "requiredFloors": [2], "researchCandidateReserve": 3}), encoding="utf-8")
             viability.write_text(json.dumps({
                 "hardPass": True, "ids": ["id"], "terms": ["詞"],
                 "requiredFloors": [2],
+                "researchCandidateReserve": 3,
                 "selectionSha256": hashlib.sha256(selection.read_bytes()).hexdigest(),
                 "countSha256": hashlib.sha256(count.read_bytes()).hexdigest(),
             }), encoding="utf-8")
@@ -117,6 +118,20 @@ class AssignedSourceFirstTests(unittest.TestCase):
             self.assertNotEqual(0, stale_count.returncode)
             self.assertIn("stale/tampered", stale_count.stderr)
             self.assertFalse(output.exists())
+
+    def test_reserve_survives_two_adjudication_rejections_without_counting_as_depth(self):
+        paths = ["a", "b", "c", "d", "e"]
+        fx = self.fixtures(3, paths, {path: 1 for path in paths})
+        row = extract_rows(
+            fx[0], fx[1], tiers=fx[2], find_fn=fx[4],
+            work_id_fn=lambda path: fx[3][path], candidate_reserve=2)[0]
+        self.assertEqual(5, len(row["sourceCandidates"]))
+        self.assertEqual(3, row["requiredFloor"])
+        self.assertEqual(2, row["researchCandidateReserve"])
+        self.assertEqual(5, row["candidateTarget"])
+        self.assertFalse(row["candidateSupplyExhausted"])
+        retained_after_review = row["sourceCandidates"][2:]
+        self.assertEqual(row["requiredFloor"], len(retained_after_review))
 
 
 if __name__ == "__main__":

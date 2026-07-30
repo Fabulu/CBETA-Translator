@@ -27,12 +27,13 @@ def write(path: Path, value: dict) -> None:
 def file_sha(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
-def extract_rows(selection, counts, *, tiers, find_fn, work_id_fn):
+def extract_rows(selection, counts, *, tiers, find_fn, work_id_fn, candidate_reserve=3):
     extracted = []
     for row in selection:
         identity = row.get("identityId") or row["id"]
         term = row["term"]
         floor = int(row["requiredFloor"])
+        target = floor + candidate_reserve
         ranked = sorted(
             counts[identity]["per_file"],
             key=lambda item: (tiers.get(item[0], 3), item[0]))
@@ -66,7 +67,7 @@ def extract_rows(selection, counts, *, tiers, find_fn, work_id_fn):
             })
             seen_works.add(work_id)
             seen_families.add(provisional_key)
-            if len(candidates) == floor:
+            if len(candidates) == target:
                 break
         if len(candidates) < floor:
             raise RuntimeError(
@@ -76,6 +77,9 @@ def extract_rows(selection, counts, *, tiers, find_fn, work_id_fn):
             "id": identity,
             "term": term,
             "requiredFloor": floor,
+            "researchCandidateReserve": candidate_reserve,
+            "candidateTarget": target,
+            "candidateSupplyExhausted": len(candidates) < target,
             "sourceCandidates": candidates,
             "tier3Consulted": lamp_count > 0,
             "lampFallbackCount": lamp_count,
@@ -144,14 +148,19 @@ def main() -> None:
     ids = [row.get("identityId") or row["id"] for row in selection]
     terms = [row["term"] for row in selection]
     floors = [int(row["requiredFloor"]) for row in selection]
+    candidate_reserve = gate.get("researchCandidateReserve")
+    if isinstance(candidate_reserve, bool) or not isinstance(candidate_reserve, int) or candidate_reserve < 0:
+        raise SystemExit("artifact zero has invalid researchCandidateReserve")
     if floors != gate.get("requiredFloors") or viability.get("ids") != ids or \
        viability.get("terms") != terms or viability.get("requiredFloors") != floors or \
+       viability.get("researchCandidateReserve") != candidate_reserve or \
        viability.get("selectionSha256") != file_sha(selection_path) or \
        viability.get("countSha256") != file_sha(count_path) or \
        viability.get("hardPass") is not True:
         raise SystemExit("stale/tampered gate-selection-count-viability binding")
     extracted = extract_rows(
-        selection, counts, tiers=TIERS, find_fn=zc.find, work_id_fn=zc.work_id)
+        selection, counts, tiers=TIERS, find_fn=zc.find, work_id_fn=zc.work_id,
+        candidate_reserve=candidate_reserve)
     output, skeleton = build_documents(cohort, extracted)
     write(args.extraction_output, output)
     write(args.research_skeleton, skeleton)

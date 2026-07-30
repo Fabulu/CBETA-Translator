@@ -27,6 +27,50 @@ def sha(path):
 
 
 class GenericBoundedConstructorIntegrationTest(unittest.TestCase):
+    def test_fully_adjudicated_evidence_may_exceed_minimum_floor(self):
+        identity = FIXTURE_IDS[0]
+        source = ROOT / "fresh-build/entries" / identity
+        worksheet = json.loads((source / "evidence.draft.json").read_text())
+        dossier = json.loads((source / "source-dossier.json").read_text())
+        floor = dossier["requiredFloor"]
+        self.assertEqual(floor, len(dossier["retainedCompleteCases"]))
+        self.assertEqual(
+            floor,
+            sum(len(sense["Occurrences"]) for sense in worksheet["Entry"]["Senses"]),
+        )
+        dossier["retainedCompleteCases"].append(
+            json.loads(json.dumps(dossier["retainedCompleteCases"][-1]))
+        )
+        worksheet["Entry"]["Senses"][0]["Occurrences"].append(
+            json.loads(json.dumps(worksheet["Entry"]["Senses"][0]["Occurrences"][-1]))
+        )
+        entry = {
+            "id": identity,
+            "term": worksheet["Entry"]["SourceTerm"],
+            "sourceDossier": dossier,
+            "evidenceDraft": worksheet,
+        }
+        verify_whole_config_preclosure({"entries": [entry]})
+
+    def test_finalized_evidence_below_minimum_floor_is_rejected(self):
+        identity = FIXTURE_IDS[0]
+        source = ROOT / "fresh-build/entries" / identity
+        worksheet = json.loads((source / "evidence.draft.json").read_text())
+        dossier = json.loads((source / "source-dossier.json").read_text())
+        floor = dossier["requiredFloor"]
+        dossier["retainedCompleteCases"] = dossier["retainedCompleteCases"][:floor - 1]
+        entry = {
+            "id": identity,
+            "term": worksheet["Entry"]["SourceTerm"],
+            "sourceDossier": dossier,
+            "evidenceDraft": worksheet,
+        }
+        with self.assertRaisesRegex(
+            ValueError,
+            rf"retained semantic evidence {floor - 1} is below requiredFloor {floor}",
+        ):
+            verify_whole_config_preclosure({"entries": [entry]})
+
     def test_injected_now_governed_deadline_boundaries(self):
         deadlines={"firstProduct":518,"construction":578}
         enforce_governed_deadline(300,deadlines,"firstProduct")

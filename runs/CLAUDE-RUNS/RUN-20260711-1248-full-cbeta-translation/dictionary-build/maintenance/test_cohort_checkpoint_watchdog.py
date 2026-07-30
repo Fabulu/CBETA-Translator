@@ -27,6 +27,7 @@ class CheckpointTests(unittest.TestCase):
           "createdUtc":datetime.fromtimestamp(1000,timezone.utc).isoformat(),
           "requiredFloors":self.floors,"admittedRequiredOccurrences":10,
           "adjudicatedCaseLoad":10,
+          "researchCandidateReserve":0,
           "deadlinesSeconds":self.deadlines}))
         os.utime(self.tg,(1000,1000))
     def tearDown(self): self.temp.cleanup()
@@ -159,13 +160,16 @@ class CheckpointTests(unittest.TestCase):
           {"id":i,"term":t,"hits":f,"per_file":[[f"J/{n}.xml",1] for n in range(f)]}
           for i,t,f in zip(self.ids,self.terms,self.floors)]}))
         viability.write_text(json.dumps({"hardPass":True,"ids":self.ids,"terms":self.terms,
-          "requiredFloors":self.floors,"selectionSha256":sh(selection),"countSha256":sh(count)}))
+          "requiredFloors":self.floors,"researchCandidateReserve":0,
+          "selectionSha256":sh(selection),"countSha256":sh(count)}))
         out=self.r/"v2-extract.json"; research=self.r/"v2-research.json"; script=self.r/"v2-extract.py"
         rows=[]; skeleton=[]
         for ident,term,floor in zip(self.ids,self.terms,self.floors):
             candidates=[dict(self.candidate(term),relPath=f"J/{n}.xml",workId=f"work:{n}")
                         for n in range(floor)]
-            rows.append({"id":ident,"term":term,"sourceCandidates":candidates})
+            rows.append({"id":ident,"term":term,"requiredFloor":floor,
+              "researchCandidateReserve":0,"candidateTarget":floor,
+              "candidateSupplyExhausted":False,"sourceCandidates":candidates})
             skeleton.append({"id":ident,"term":term,"candidateHashes":[
               hashlib.sha256(json.dumps(x,ensure_ascii=False,sort_keys=True).encode()).hexdigest()
               for x in candidates]})
@@ -190,6 +194,10 @@ class CheckpointTests(unittest.TestCase):
             selection.write_text(json.dumps(data))
         if tamper=="count":
             count.write_text(count.read_text()+" ")
+        if tamper=="reserve":
+            data=json.loads(viability.read_text())
+            data["researchCandidateReserve"]=1
+            viability.write_text(json.dumps(data))
         result=self.call("research","--timegate",self.tg,"--receipt",self.r/"v2-rr.json",
           "--now-epoch","1100","--command-audit",audit,
           "--extraction-output",out,"--research-skeleton",research,
@@ -213,6 +221,11 @@ class CheckpointTests(unittest.TestCase):
 
     def test_v2_research_rejects_tampered_count_before_extractor_launch(self):
         result,out,research=self.v2_bound_research("count")
+        self.assertEqual(124,result.returncode)
+        self.assertFalse(out.exists()); self.assertFalse(research.exists())
+
+    def test_v2_research_rejects_stale_reserve_before_extractor_launch(self):
+        result,out,research=self.v2_bound_research("reserve")
         self.assertEqual(124,result.returncode)
         self.assertFalse(out.exists()); self.assertFalse(research.exists())
 

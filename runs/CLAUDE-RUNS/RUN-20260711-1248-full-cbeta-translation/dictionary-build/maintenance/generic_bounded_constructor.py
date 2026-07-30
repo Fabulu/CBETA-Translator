@@ -187,6 +187,33 @@ def verify_source_hierarchy(entry: dict[str, Any]) -> None:
         raise ValueError(f"{entry['id']}: Tier-3 evidence lacks exceptional justification")
 
 
+def verify_semantic_floor(entry: dict[str, Any]) -> None:
+    """Require minimum depth without discarding fully adjudicated evidence."""
+    dossier = entry["sourceDossier"]
+    floor = dossier.get("requiredFloor")
+    if isinstance(floor, bool) or not isinstance(floor, int) or floor <= 0:
+        raise ValueError(f"{entry['id']}: requiredFloor must be a positive integer")
+    retained = dossier.get("retainedCompleteCases")
+    if not isinstance(retained, list) or len(retained) < floor:
+        count = len(retained) if isinstance(retained, list) else "missing"
+        raise ValueError(
+            f"{entry['id']}: retained semantic evidence {count} is below requiredFloor {floor}"
+        )
+    senses = entry["evidenceDraft"]["Entry"].get("Senses")
+    if not isinstance(senses, list) or not senses:
+        raise ValueError(f"{entry['id']}: finalized senses are missing")
+    occurrences = [
+        occurrence
+        for sense in senses
+        for occurrence in (sense.get("Occurrences") or [])
+    ]
+    if len(occurrences) < floor:
+        raise ValueError(
+            f"{entry['id']}: finalized occurrence count {len(occurrences)} "
+            f"is below requiredFloor {floor}"
+        )
+
+
 def verify_actor_closure(config: dict[str, Any]) -> None:
     """Apply the compiler's actor schema to every occurrence before any write.
 
@@ -216,7 +243,12 @@ def verify_actor_closure(config: dict[str, Any]) -> None:
 def verify_whole_config_preclosure(config: dict[str, Any]) -> None:
     """Reject every payload-level closure defect before the first mkdir/write."""
     rows = []
+    floor_errors = []
     for entry in config["entries"]:
+        try:
+            verify_semantic_floor(entry)
+        except ValueError as exc:
+            floor_errors.append(str(exc))
         verify_source_hierarchy(entry)
         worksheet = entry["evidenceDraft"]
         rows.append({
@@ -225,7 +257,7 @@ def verify_whole_config_preclosure(config: dict[str, Any]) -> None:
             "worksheet": worksheet,
             "dossier": entry["sourceDossier"],
         })
-    errors = validate_preclosure(rows)
+    errors = validate_preclosure(rows) + floor_errors
     if errors:
         raise ValueError(f"whole-config prewrite preclosure failed: {errors}")
 
