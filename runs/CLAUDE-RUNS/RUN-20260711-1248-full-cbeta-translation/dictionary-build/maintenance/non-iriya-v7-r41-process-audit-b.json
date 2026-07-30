@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "bounded-cohort-process-audit.v1",
+  "cohort": "R41",
+  "verdict": "PROCESS_FAILURE_BEFORE_FIRST_COMPILE",
+  "summary": "R41 was described as beginning construction when only source research had begun. After viability, semantic and actor adjudication was kept on the critical path for nearly the entire construction window. The constructor draft was not completed until 17.529 seconds after the 330-second construction cutoff, and it was therefore never executed.",
+  "authoritativeTimes": {
+    "receiptStartedEpoch": 1785373742.849431,
+    "viabilityCountWrittenEpoch": 1785373769.670226,
+    "viabilityRecordedElapsedSeconds": 26.958,
+    "selectionWrittenEpoch": 1785373801.494157,
+    "selectionElapsedSeconds": 58.645,
+    "constructionCutoffEpoch": 1785374072.849431,
+    "constructorDraftWrittenEpoch": 1785374090.377859,
+    "constructorDraftElapsedSeconds": 347.528,
+    "constructorDraftLateBySeconds": 17.529,
+    "stopAuditEpoch": 1785374113.705818,
+    "stopAuditElapsedSeconds": 370.856
+  },
+  "postViabilityAllocation": {
+    "countToSelectionSeconds": 31.824,
+    "selectionToConstructorDraftSeconds": 288.884,
+    "constructorDraftToStopAuditSeconds": 23.328,
+    "firstCompileStarted": false,
+    "compileCount": 0
+  },
+  "commandsAndArtifactsAfterViability": [
+    "Wrote the R41 selection and viability check, then hashed and reported the union, selection, and receipt.",
+    "Ran a three-term Tier-1/Tier-2 context-display command; it failed immediately because the script requested a nonexistent zc result key named text.",
+    "Inspected one zc hit to discover the correct window key.",
+    "Reran a large context display across up to ten sources per term; the output was large and truncated.",
+    "Listed up to twenty-five Tier-1/Tier-2 candidate source files for 鱉鼻蛇 and 青青翠竹.",
+    "Inspected the compiler's closed ContextMasters role vocabulary and the actor-audit rules.",
+    "Inspected the inherited constructor's make_occurrence and explicit_worksheet implementation.",
+    "Queried the public aggregate for existing master labels across sixteen proposed source files.",
+    "Authored construct_r41_b.py, SHA-256 a688abbed997f101b92e228b487d3a719866387b0a3d85dc2cc20d3060879cc1, at elapsed 347.528 seconds.",
+    "Received and obeyed the hard stop without invoking the constructor."
+  ],
+  "artifacts": {
+    "priorUnion": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r41-prior-union-b.json",
+      "sha256": "caf69bdb21cd6c2aea215fcf9291840426a47231f12a0d0d7e1b51b1b3f15ea7"
+    },
+    "selection": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r41-selection-b.json",
+      "sha256": "d202c65018a26999c307be20724acd50fff6301655a68d6ee231b6daf8da3fcc"
+    },
+    "oneBatchCount": {
+      "path": "/tmp/r41-count.json",
+      "sha256": "4b23baf4b7f06be0466a6db719e4710c5dfe936f4a9d0202bab88594256cd8e1"
+    },
+    "constructorDraft": {
+      "path": "construct_r41_b.py",
+      "sha256": "a688abbed997f101b92e228b487d3a719866387b0a3d85dc2cc20d3060879cc1",
+      "executed": false
+    }
+  },
+  "rootCauses": [
+    "The status vocabulary was wrong: source research was reported as construction beginning even though no compile process or construction-start receipt existed.",
+    "There was no hard construction-start deadline distinct from the final construction-complete deadline.",
+    "Actor-schema discovery and constructor-template inspection were performed inside the live cohort instead of being process-level preflight.",
+    "The context scan was too broad and was rerun after a trivial output-key failure; neither command had its own timestamp receipt.",
+    "The workflow optimized for a fully adjudicated first compile rather than obtaining a bounded compiled draft early and reserving the remaining window for one review/correction cycle."
+  ],
+  "mandatoryPrevention": {
+    "constructionStartDeadlineSeconds": 120,
+    "hardTrigger": "By receipt elapsed 120 seconds, a construction-start marker must bind the exact constructor SHA, invocation epoch, selected IDs, and compile command. If it does not exist, stop the cohort immediately as CONSTRUCTION_NOT_STARTED; prohibit further source browsing and prohibit late drafting.",
+    "statusRule": "Do not say construction has begun until the constructor process has actually been invoked and the construction-start marker exists.",
+    "researchLimit": "After viability, allow one bounded complete-context extraction only. No repeated broad context display, candidate listing, schema discovery, or template inspection is permitted in the live cohort.",
+    "preflightRule": "Before opening a cohort receipt, verify the constructor template, closed actor-role vocabulary, and output schema once at process level.",
+    "compileStrategy": "Prepare the exact source rows and compact semantic leads, invoke the constructor by elapsed 120 seconds, then use the remaining construction window for a single bounded correction and preclosure.",
+    "instrumentation": "Every live-cohort command must append start/end epoch, purpose, and return code to a cohort command ledger so later allocation is exact rather than reconstructed from file mtimes."
+  },
+  "productsCreated": 0,
+  "publicMutation": false
+}

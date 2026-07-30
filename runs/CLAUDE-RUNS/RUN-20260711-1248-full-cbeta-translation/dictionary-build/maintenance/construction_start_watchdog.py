@@ -1,0 +1,199 @@
+#!/usr/bin/env python3
+"""Fail-closed early construction-start watchdog.
+
+Only ``invoke`` can create a valid receipt: it validates the cohort clock,
+records the exact constructor and command, and actually starts that command.
+An unexecuted draft or a hand-written marker is not construction start.
+"""
+
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import os
+from pathlib import Path
+import subprocess
+import sys
+import time
+
+SCHEMA = "construction-start-receipt.v1"
+DEADLINE_SECONDS = 120.0
+
+
+def sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as stream:
+        for block in iter(lambda: stream.read(1024 * 1024), b""):
+            digest.update(block)
+    return digest.hexdigest()
+
+
+def read_json(path: Path) -> dict:
+    with path.open(encoding="utf-8") as stream:
+        value = json.load(stream)
+    if not isinstance(value, dict):
+        raise ValueError(f"{path}: expected JSON object")
+    return value
+
+
+def atomic_json(path: Path, value: dict) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_name(f".{path.name}.{os.getpid()}.tmp")
+    temporary.write_text(
+        json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
+    os.replace(temporary, path)
+
+
+def fail_closed(receipt: Path, reason: str) -> int:
+    marker = receipt.with_name(receipt.name + ".fail-closed.json")
+    atomic_json(
+        marker,
+        {
+            "schemaVersion": "construction-start-fail-closed.v1",
+            "receiptPath": str(receipt),
+            "failedEpoch": time.time(),
+            "reason": reason,
+            "continuedBrowsingProhibited": True,
+            "requiredAction": "Stop discovery/browsing and seal or explicitly reschedule the cohort.",
+        },
+    )
+    print(f"FAIL_CLOSED: {reason}", file=sys.stderr)
+    return 124
+
+
+def validate_preflight(path: Path) -> None:
+    data = read_json(path)
+    if data.get("hardPass") is not True:
+        raise ValueError(f"{path}: schema/template preflight is not hardPass=true")
+
+
+def invoke(args: argparse.Namespace) -> int:
+    receipt = Path(args.receipt)
+    if receipt.exists():
+        return fail_closed(receipt, "start receipt already exists and is immutable")
+    timegate = read_json(Path(args.timegate))
+    started = float(timegate["startedEpoch"])
+    now = args.now_epoch if args.now_epoch is not None else time.time()
+    elapsed = now - started
+    if elapsed < 0:
+        return fail_closed(receipt, "current epoch precedes cohort start")
+    if elapsed > DEADLINE_SECONDS:
+        return fail_closed(
+            receipt,
+            f"constructor invocation is late ({elapsed:.3f}s > {DEADLINE_SECONDS:.0f}s)",
+        )
+    constructor = Path(args.constructor).resolve()
+    if not constructor.is_file():
+        return fail_closed(receipt, f"constructor does not exist: {constructor}")
+    try:
+        validate_preflight(Path(args.preflight_receipt))
+    except (OSError, ValueError, KeyError, json.JSONDecodeError) as exc:
+        return fail_closed(receipt, f"schema/template preflight failed: {exc}")
+    command = list(args.command)
+    if command and command[0] == "--":
+        command = command[1:]
+    if not command:
+        return fail_closed(receipt, "no constructor command supplied")
+    resolved_constructor = str(constructor)
+    command_paths = {
+        str(Path(item).resolve())
+        for item in command
+        if item and not item.startswith("-")
+    }
+    if resolved_constructor not in command_paths:
+        return fail_closed(receipt, "command does not invoke the bound constructor path")
+
+    record = {
+        "schemaVersion": SCHEMA,
+        "cohort": timegate.get("cohort"),
+        "startedEpoch": started,
+        "invokedEpoch": now,
+        "elapsedSeconds": round(elapsed, 6),
+        "deadlineSeconds": DEADLINE_SECONDS,
+        "ids": args.ids,
+        "constructorPath": str(constructor),
+        "constructorSha256": sha256(constructor),
+        "preflightReceiptPath": str(Path(args.preflight_receipt)),
+        "preflightPassed": True,
+        "command": command,
+        "invocationAttempted": True,
+        "processState": "starting",
+    }
+    atomic_json(receipt, record)
+    try:
+        completed = subprocess.run(command, check=False)
+    except OSError as exc:
+        record["processState"] = "start-error"
+        record["startError"] = str(exc)
+        atomic_json(receipt, record)
+        return fail_closed(receipt, f"constructor process could not start: {exc}")
+    record["processState"] = "completed"
+    record["returnCode"] = completed.returncode
+    atomic_json(receipt, record)
+    return completed.returncode
+
+
+def check(args: argparse.Namespace) -> int:
+    receipt = Path(args.receipt)
+    if not receipt.is_file():
+        return fail_closed(receipt, "invoked-constructor receipt is missing")
+    try:
+        data = read_json(receipt)
+        required = {
+            "schemaVersion",
+            "startedEpoch",
+            "invokedEpoch",
+            "ids",
+            "constructorPath",
+            "constructorSha256",
+            "command",
+            "invocationAttempted",
+            "processState",
+            "preflightPassed",
+        }
+        missing = sorted(required - data.keys())
+        if missing:
+            raise ValueError(f"receipt fields missing: {', '.join(missing)}")
+        if data["schemaVersion"] != SCHEMA or data["invocationAttempted"] is not True:
+            raise ValueError("receipt was not emitted by an actual invocation")
+        if data["preflightPassed"] is not True:
+            raise ValueError("preflight did not pass")
+        elapsed = float(data["invokedEpoch"]) - float(data["startedEpoch"])
+        if elapsed > DEADLINE_SECONDS:
+            raise ValueError(f"invocation marker is late ({elapsed:.3f}s)")
+        constructor = Path(data["constructorPath"])
+        if sha256(constructor) != data["constructorSha256"]:
+            raise ValueError("constructor SHA no longer matches the invoked bytes")
+        if not data["command"] or not data["ids"]:
+            raise ValueError("command and IDs must be nonempty")
+        if data["processState"] not in {"starting", "completed"}:
+            raise ValueError("constructor process was not successfully started")
+    except (OSError, ValueError, KeyError, TypeError, json.JSONDecodeError) as exc:
+        return fail_closed(receipt, str(exc))
+    print(f"PASS: invoked constructor at {elapsed:.3f}s for {len(data['ids'])} IDs")
+    return 0
+
+
+def parser() -> argparse.ArgumentParser:
+    root = argparse.ArgumentParser()
+    sub = root.add_subparsers(dest="action", required=True)
+    start = sub.add_parser("invoke")
+    start.add_argument("--timegate", required=True)
+    start.add_argument("--receipt", required=True)
+    start.add_argument("--constructor", required=True)
+    start.add_argument("--preflight-receipt", required=True)
+    start.add_argument("--ids", nargs="+", required=True)
+    start.add_argument("--now-epoch", type=float, help=argparse.SUPPRESS)
+    start.add_argument("command", nargs=argparse.REMAINDER)
+    start.set_defaults(func=invoke)
+    verify = sub.add_parser("check")
+    verify.add_argument("--receipt", required=True)
+    verify.set_defaults(func=check)
+    return root
+
+
+if __name__ == "__main__":
+    arguments = parser().parse_args()
+    raise SystemExit(arguments.func(arguments))

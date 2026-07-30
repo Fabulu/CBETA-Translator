@@ -325,6 +325,23 @@ An empty or incomplete discovery set, a filename-pattern mismatch, or any select
 union is a hard failure; code must never construct `hardPass: true` independently of those checks. Independent
 collision review must finish before construction begins. A fresh entry must reach canonical
 construction and a green `pre_review_decile.py --timegate <receipt>` before the construction deadline.
+
+**Early construction-start watchdog.** Before reading construction contexts, run the canonical schema/template
+preflight once and save its `hardPass: true` receipt. Perform one bounded context extraction for the whole
+three-entry cohort; do not browse witness-by-witness after that packet is available. Invoke the constructor
+through `maintenance/construction_start_watchdog.py invoke`, binding the cohort timegate, exact selected IDs,
+constructor SHA-256, preflight receipt, epoch, and literal command. This invocation must occur by elapsed
+120 seconds. A source note, an unexecuted constructor draft, or a hand-written marker is not a start. If the
+receipt is missing or late, the watchdog exits 124, writes a fail-closed marker with
+`continuedBrowsingProhibited: true`, and all further discovery/browsing stops; seal or explicitly reschedule
+the cohort.
+
+Compile entry by entry as soon as each bounded dossier and worksheet is complete instead of holding the
+whole cohort as one late commit. At least one canonical fresh product must exist by elapsed 270 seconds.
+If not, terminate fail-closed before the 330-second construction deadline and preserve the bounded partial
+artifacts. This first-product checkpoint does not relax the requirement that all cohort products and the
+construction manifest pass the normal construction gate by 330 seconds.
+
 Independent source-first review ends at 510 seconds; unread candidates are deferred. Corrections end at
 630 seconds; unresolved disagreements move to the complex queue. The merged checkpoint and Windows Git push
 must finish by 720 seconds. New-entry depth targets are also minimum-defensible: first seek two independent

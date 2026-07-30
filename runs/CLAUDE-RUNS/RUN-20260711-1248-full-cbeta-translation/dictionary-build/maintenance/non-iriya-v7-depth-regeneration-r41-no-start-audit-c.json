@@ -1,0 +1,107 @@
+{
+  "schemaVersion": "construction-no-start-audit.v1",
+  "cohort": "R41",
+  "reviewer": "/root/source_tiers_c",
+  "finding": "WORK_OCCURRED_AFTER_VIABILITY_BUT_CONSTRUCTION_NEVER_STARTED",
+  "timeline": [
+    {
+      "event": "cohort start",
+      "utc": "2026-07-30T01:09:02.849431+00:00",
+      "elapsedSeconds": 0
+    },
+    {
+      "event": "batched count and viability pass",
+      "utc": "2026-07-30T01:09:29.806978+00:00",
+      "elapsedSeconds": 26.958
+    },
+    {
+      "event": "selection artifact written",
+      "utc": "2026-07-30T01:10:01.494156+00:00",
+      "elapsedSeconds": 58.645
+    },
+    {
+      "event": "independent presemantic collision gate upgraded",
+      "utc": "2026-07-30T01:11:17.373635+00:00",
+      "elapsedSeconds": 134.524
+    },
+    {
+      "event": "hard construction deadline",
+      "utc": "2026-07-30T01:14:32.849431+00:00",
+      "elapsedSeconds": 330
+    },
+    {
+      "event": "constructor draft written but not executed",
+      "utc": "2026-07-30T01:14:50.377859+00:00",
+      "elapsedSeconds": 347.528
+    },
+    {
+      "event": "construction failure checked and sealed",
+      "utc": "2026-07-30T01:15:13.705818+00:00",
+      "elapsedSeconds": 370.856
+    }
+  ],
+  "postViabilityWork": {
+    "occurred": true,
+    "evidence": [
+      "The selection artifact was emitted after viability.",
+      "The independent collision gate was upgraded and passed.",
+      "Source reading and a 5,572-byte constructor script were completed.",
+      "The constructor script contains proposed sources, semantics, families, and configuration for all three entries."
+    ],
+    "constructionExecution": {
+      "constructorDraftPath": "construct_r41_b.py",
+      "constructorDraftSha256": "a688abbed997f101b92e228b487d3a719866387b0a3d85dc2cc20d3060879cc1",
+      "executed": false,
+      "compileCount": 0,
+      "productsCreated": 0,
+      "manifestCreated": false,
+      "preclosureCreated": false
+    }
+  },
+  "cause": {
+    "primary": "The lane treated construction as a single late commit: it completed source selection and drafted the entire three-entry constructor before executing any compile. The draft itself landed 17.528 seconds after the construction deadline.",
+    "controlFailure": "No early-start checkpoint required observable construction execution while sufficient construction budget remained. The first construction-phase gate evaluation occurred only 40.856 seconds after its deadline.",
+    "contributingFactors": [
+      "The upgraded collision gate completed at elapsed 134.524 seconds, leaving 195.476 seconds to the construction cutoff.",
+      "The remaining interval was spent serially reading sources and composing a full constructor rather than emitting an early execution receipt.",
+      "The review gate correctly waited for a construction manifest; it did not prevent construction. The missing artifact was caused upstream because the constructor never ran."
+    ],
+    "notCauses": [
+      "viability failure",
+      "selected-ID collision",
+      "complex-queue collision",
+      "compiler rejection",
+      "entry-edit rollback",
+      "public mutation"
+    ]
+  },
+  "watchdogProposal": {
+    "name": "fail-closed early construction-start watchdog",
+    "requiredCheckpoints": [
+      {
+        "elapsedSeconds": 150,
+        "requirement": "Selection and collision gate sealed; exact constructor ownership assigned."
+      },
+      {
+        "elapsedSeconds": 210,
+        "requirement": "At least one real constructor execution or dry compile has started and emitted a timestamped receipt tied to the selected IDs."
+      },
+      {
+        "elapsedSeconds": 270,
+        "requirement": "At least one compiled fresh product exists, or the cohort terminates immediately as NO_START with its partial work quarantined."
+      }
+    ],
+    "failClosedRules": [
+      "A source-reading note or unexecuted script does not count as construction start.",
+      "Construction start requires an observable process/receipt: command start UTC, selected IDs, input hashes, and output target.",
+      "If the 210-second receipt is absent, stop expanding the draft and execute the smallest valid compile slice immediately.",
+      "If no product exists at 270 seconds, seal the terminal before the 330-second cutoff; do not spend the remaining minute polishing an unexecuted batch.",
+      "Review and correction clocks may not borrow time to rescue a missed construction start."
+    ],
+    "recommendedBatchBehavior": "Compile one entry as soon as its bounded dossier is complete, then continue the remaining entries. The manifest may be finalized after all products, but construction-start evidence must exist early."
+  },
+  "entryEditsPerformed": false,
+  "newResearchPerformed": false,
+  "publicMutation": false,
+  "decision": "NO_START_CONFIRMED_EARLY_WATCHDOG_REQUIRED"
+}
