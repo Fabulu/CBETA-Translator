@@ -13,13 +13,14 @@ from unittest.mock import patch
 from atomic_write import atomic_write_json
 from maintenance.generic_bounded_constructor import (
     ActorClosureError, CompilerPrewriteError, enforce_governed_deadline, run,
-    verify_output_collision_policy, verify_whole_config_preclosure,
+    verify_actor_closure, verify_output_collision_policy,
+    verify_whole_config_preclosure,
 )
 
 ROOT = Path(__file__).resolve().parent.parent
 WATCHDOG = ROOT / "maintenance/construction_start_watchdog.py"
 ENGINE = ROOT / "maintenance/generic_bounded_constructor.py"
-FIXTURE_IDS = ["t_0f8df3105c35", "t_0f97bfab265c", "t_0fb97dffe2bc"]
+FIXTURE_IDS = ["t_1c2e34e1abb7", "t_1c3869bb802d", "t_1c7d25824f85"]
 
 
 def sha(path):
@@ -27,6 +28,34 @@ def sha(path):
 
 
 class GenericBoundedConstructorIntegrationTest(unittest.TestCase):
+    def test_actor_prewrite_rejects_roster_alias_and_unlinked_name(self):
+        identity = FIXTURE_IDS[0]
+        source = ROOT / "fresh-build/entries" / identity
+        worksheet = json.loads((source / "evidence.draft.json").read_text())
+        dossier = json.loads((source / "source-dossier.json").read_text())
+        config = {"entries": [{
+            "id": identity,
+            "term": worksheet["Entry"]["SourceTerm"],
+            "sourceDossier": dossier,
+            "evidenceDraft": worksheet,
+        }]}
+        occurrence = worksheet["Entry"]["Senses"][0]["Occurrences"][0]
+        occurrence["MasterName"] = "石霜楚圓"
+        with self.assertRaises(ActorClosureError) as alias_failure:
+            verify_actor_closure(config)
+        self.assertIn(
+            "use canonical names[0] 'Shishuang Chuyuan'",
+            str(alias_failure.exception),
+        )
+
+        occurrence["MasterName"] = "Juefan Huihong"
+        with self.assertRaises(ActorClosureError) as unlinked_failure:
+            verify_actor_closure(config)
+        self.assertIn(
+            "structured identified-unlinked-master ActorAttribution",
+            str(unlinked_failure.exception),
+        )
+
     def test_preexisting_per_id_output_requires_bound_replacement_authority(self):
         with tempfile.TemporaryDirectory(dir=ROOT / "maintenance") as raw:
             base = Path(raw).resolve()

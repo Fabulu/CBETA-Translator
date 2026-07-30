@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "non-iriya-v7-depth-regeneration-selection.v1",
+  "cohort": "R83",
+  "selectionRule": "exact coordinator-assigned next unreserved authoritative rows",
+  "rows": [
+    {
+      "queueOrdinal": 1,
+      "identityId": "t_1c2e34e1abb7",
+      "term": "雞鳴丑",
+      "requiredFloor": 4,
+      "classification": "hard-fail"
+    },
+    {
+      "queueOrdinal": 2,
+      "identityId": "t_1c3869bb802d",
+      "term": "返本還源",
+      "requiredFloor": 6,
+      "classification": "hard-fail"
+    },
+    {
+      "queueOrdinal": 3,
+      "identityId": "t_1c7d25824f85",
+      "term": "本來面目",
+      "requiredFloor": 7,
+      "classification": "legacy-selected-depth-repair"
+    }
+  ],
+  "collisionCheck": {
+    "priorIds": 191,
+    "collisions": [],
+    "hardPass": true
+  }
+}

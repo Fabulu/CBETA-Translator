@@ -1,0 +1,78 @@
+{
+  "schemaVersion": "r83-exact-product-closure.v1",
+  "cohort": "R83",
+  "sourceFirstReviewPath": "maintenance/non-iriya-v7-depth-regeneration-r83-review-first-two-c.json",
+  "sourceFirstReviewSha256": "e7f4dddb6caff30c99397147278b596394b3acbe270460b89c463512b83393db",
+  "combinedAttributionHardFailures": 0,
+  "products": [
+    {
+      "id": "t_1c2e34e1abb7",
+      "term": "雞鳴丑",
+      "productPath": "fresh-build/entries/t_1c2e34e1abb7/entry.v2.json",
+      "productSha256": "2ea10d48a2e5a5c1c88b8b4fe42a86e22fa7f2a3d05c3502331c6c1f4a735b42",
+      "worksheetSha256": "be9763f14890cdb95516c56dc8641bb1e47c2bf976e552a89369852300188ae8",
+      "compilerReportSha256": "4dc3b98fe5bcee4836d9ec624c75fcaaf9aa74171b9288c8945ade509590ef1c",
+      "ruling": {
+        "semantics": "PASS: the product treats the phrase as the conventional Twelve-Hours Song heading 'cockcrow—the Chou hour', not as an isolated proposition or a rendering of 丑 as ugly.",
+        "targetsAndProse": "PASS: preferred, alternate, aliases, explanation, and limit note preserve the single genre sense.",
+        "families": "PASS: Zhongfeng, Ciming/Shishuang, Zhaozhou, and Huihong project the four approved independent families; Baozhi parallels and the Songyin reserve are absent.",
+        "actors": "PASS: the three linked record speakers are exact. Juefan Huihong correctly remains MasterName null because he is not a standalone roster node, while ActorAttribution identifies him as the verse-author from 予作…偈曰.",
+        "sourceHierarchy": "PASS: the authored Huihong witness is retained alongside three Tier-2 recorded-sayings families; no lamp evidence.",
+        "attribution": "PASS: four English source labels and passage-specific grammar; zero hard attribution failures.",
+        "worksheetAndCompiler": "PASS: worksheet/product parity and canonical compiler hardPass with exact bytes."
+      },
+      "defects": [],
+      "verdict": "APPROVE_RELEASE",
+      "hardPass": true,
+      "releaseAuthorized": true
+    },
+    {
+      "id": "t_1c3869bb802d",
+      "term": "返本還源",
+      "productPath": "fresh-build/entries/t_1c3869bb802d/entry.v2.json",
+      "productSha256": "6a3eaf4b1dcdf0b46bbb352f6566055db175583395b626f136b83ae67ba49cc9",
+      "worksheetSha256": "14fb1c3ba3e918463fa4e7dcefe739b05782fc9b9edd413ec46e1c9a61307a37",
+      "compilerReportSha256": "c72211ba9ad95c300c2a3126573a0fdd5b8503a0977f8bdf39e71b9b3afd88a8",
+      "ruling": {
+        "semantics": "PASS: one sense is preserved, and the prose correctly distinguishes prescriptive from critical judgments without turning evaluation into separate senses.",
+        "targets": "PASS: 'return to the root and source' and 'return to the original source' preserve the reviewed lexical job.",
+        "families": "PASS: six approved coordinates project exactly once; the J23 oxherding recension, Ruibai reserve, and documentary relic-return use are absent.",
+        "actorIdentity": "PASS: all six headword-bearing actors are identified; the canonical roster key Liangshan Kuoan Ze points to the roster node whose Chinese form is 梁山廓庵師遠.",
+        "sourceHierarchy": "PASS: two Tier-1 authored witnesses plus four Tier-2 master records; no lamp padding.",
+        "attributionAudit": "PASS MECHANICALLY: English source labels are present and combined hard attribution failures are zero.",
+        "worksheetAndCompiler": "PASS MECHANICALLY: worksheet matches product and compiler hardPass binds exact bytes."
+      },
+      "defects": [
+        {
+          "severity": "blocking",
+          "coordinate": "Senses[0].Explanation final clause",
+          "finding": "The explanation says 'Ruibai Mingxue places it in a poetic contrast', but the Ruibai occurrence was deliberately held as reserve and is absent from Occurrences, SourceTexts, and RelatedMasters.",
+          "requiredRepair": "Delete the Ruibai clause. Do not add the reserve occurrence merely to justify stale prose."
+        },
+        {
+          "severity": "blocking",
+          "coordinate": "Occurrences X/X72/X72n1442 and X/X64/X64n1269 ContextMasters roles; mirrored worksheet actor decisions",
+          "finding": "Both Tier-1 witnesses are authored poems, reviewed with exact role verse-author, but the product projects generic role utterer. This erases the authored-source layer the hierarchy is meant to preserve.",
+          "requiredRepair": "Set Weilin Daopei and Liangshan Kuoan Ze/Kuoan Shiyuan ContextMasters roles to verse-author and mirror that role in worksheet actor decisions/proofs."
+        },
+        {
+          "severity": "blocking",
+          "coordinate": "X/X64/X64n1269 AttributionNote",
+          "finding": "The note says 'Exact actor: Liangshan Kuoan Ze' and then says the verse belongs to 'Kuoan Shiyuan' without explaining that the former is the roster key and the latter is the source-correct name 梁山廓庵師遠. It reads as an actor contradiction.",
+          "requiredRepair": "Keep the read-only roster-linked MasterName, but write one unambiguous note such as: 'Exact actor: Liangshan Kuoan Ze, the roster label for Kuoan Shiyuan (梁山廓庵師遠); the ninth oxherding section assigns him the verse.'"
+        }
+      ],
+      "verdict": "DENY_BOUNDED_REPAIR",
+      "hardPass": false,
+      "releaseAuthorized": false
+    }
+  ],
+  "overallVerdict": "PARTIAL_RELEASE_ONLY",
+  "releaseAuthorizedIds": [
+    "t_1c2e34e1abb7"
+  ],
+  "deniedIds": [
+    "t_1c3869bb802d"
+  ],
+  "publicMutation": false
+}

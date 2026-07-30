@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "r83-reviewed-correction.v1",
+  "cohort": "R83",
+  "ids": [
+    "t_1c2e34e1abb7",
+    "t_1c3869bb802d",
+    "t_1c7d25824f85"
+  ],
+  "reviewFinding": [
+    "All occurrence bounds derive from zc.verify over the complete public KWIC.",
+    "Public attribution notes use English-first actor proof.",
+    "Each entry has a source-ranked WORK.md review ledger."
+  ],
+  "configPath": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r83-constructor-config-b.json",
+  "configSha256": "7304471894b7bb6d8e0c6eaec14b5e3bc8e866338b96b5fd6b9a37c62fb5e8fa",
+  "before": {
+    "t_1c2e34e1abb7": {
+      "dossier": "b0b2e58469f955db9dfa1e797c2fbd2484e77c6649332863e262f83e8c6778c1",
+      "draft": "be9763f14890cdb95516c56dc8641bb1e47c2bf976e552a89369852300188ae8",
+      "entry": "2ea10d48a2e5a5c1c88b8b4fe42a86e22fa7f2a3d05c3502331c6c1f4a735b42",
+      "report": "4dc3b98fe5bcee4836d9ec624c75fcaaf9aa74171b9288c8945ade509590ef1c",
+      "work": "missing"
+    },
+    "t_1c3869bb802d": {
+      "dossier": "20055c3035b6cbc81979d5294ba32a488e54d11dea7e8bf1958f90bd6ba365ba",
+      "draft": "14fb1c3ba3e918463fa4e7dcefe739b05782fc9b9edd413ec46e1c9a61307a37",
+      "entry": "6a3eaf4b1dcdf0b46bbb352f6566055db175583395b626f136b83ae67ba49cc9",
+      "report": "c72211ba9ad95c300c2a3126573a0fdd5b8503a0977f8bdf39e71b9b3afd88a8",
+      "work": "missing"
+    },
+    "t_1c7d25824f85": {
+      "dossier": "992e45a304ad9d875fe6bdd6cf63fffab915cc2be8f827fef924968b2283511b",
+      "draft": "f7c48fdb25f4dbffc4e74b4aab19130d2295a9b580511d19080daf928fdcb3c5",
+      "entry": "2ff511215a0c019de59b090f1a11b92a17f6fdece474f666efd8e3c8199ec230",
+      "report": "9b56acd71c8d6c09af4237656118cde509eb14442e17688efc6e161251fadd5e",
+      "work": "missing"
+    }
+  },
+  "after": {
+    "t_1c2e34e1abb7": {
+      "dossier": "f1690187e8492a70d20a4d99d57862c898f0924345c5ba336993ea695dd6236e",
+      "draft": "4de614bddc791507d2d2659f133745626c085c5d64c09c2ea905c9d218d2666c",
+      "entry": "1b7aab4ff6a3a6ec04e80a5a00175950301a342260e87f98fd5fe0be7ee19164",
+      "report": "40ac32797e4ca434eed758547a85638fcc9cfa9492d6a2f83a47670ec22ae75c",
+      "work": "60e131b6fab0bc37827ed3718248c6dd64fb78627d41db10d4da0cc2f2887136"
+    },
+    "t_1c3869bb802d": {
+      "dossier": "050fe13a587f9a42a2251cd1b54f1ba87c76b652f46773a07f154cd2e592d33c",
+      "draft": "08d07ad8c4da4c80d01ce019f19d1e493398f50c5d4b468d3c07cc40d20de426",
+      "entry": "c0fd4856d3ecb81b6f021f45ecac0e5417e94614e3d450bedf805118caa7caa2",
+      "report": "325963f1fb287bb201bf0a7e73974c992de108914d8a92e6588fec5f6b044567",
+      "work": "9621d19ebefc51f29d4eb0c2b6e0fa0ee13c80962952b9cf0cdf0b680ae1ee79"
+    },
+    "t_1c7d25824f85": {
+      "dossier": "8909ad5120f2469c0c9327ffae93c70e7fd34c1ae351dbd4ca49f4470f32083b",
+      "draft": "5053460ae5c80f3726384109e17c5526a4f18000b5042b6d9d9b3e164cd854ed",
+      "entry": "856bc57ea516076cd7e3c91a5687bf5e04dc921f7c522532f32c3ac1ab9da861",
+      "report": "f24c85ca21e44bb33c983c12e573cbad0dc3f05c427f0c1faa1f060874da5d19",
+      "work": "974dfe882b763a505ae36947018899fa3ef4d1d407ba06b562573bc922e039f7"
+    }
+  },
+  "manifestSha256": "cd7236ad73a24f391141456efd317e7fcaa7ccee99f641f6d566770ec4fcd23e",
+  "preclosureSha256": "ad729252e6796214abea7de3a751c5047df3604487c626ee15fba5433d0562c1",
+  "closureSha256": "c3541840599963e90f40e576d6a05002f2359a26de7ec14338a5485fe27dcc5a",
+  "elapsedSeconds": 881.0281546115875,
+  "hardPass": true,
+  "publicMutation": false
+}

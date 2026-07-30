@@ -1,0 +1,589 @@
+{
+  "SchemaVersion": 1,
+  "ConstructionPipelineVersion": 2,
+  "Admission": {
+    "Decision": "admit",
+    "LexicalUnitReason": "本來面目 is a stable expression with repeated active Chan deployments.",
+    "ObservableChanJob": "本來面目 means what one originally is.",
+    "DuplicateCheck": {
+      "DeterministicIdChecked": true,
+      "ExactHeadwordChecked": true,
+      "NearDuplicateRuling": "No exact or punctuation-normalized collision occurs in R01-R10 or the current R11 selection; companion clauses remain separately named family leads."
+    }
+  },
+  "EvidenceTransport": {
+    "DossierPath": "source-dossier.json",
+    "DossierSha256": "8909ad5120f2469c0c9327ffae93c70e7fd34c1ae351dbd4ca49f4470f32083b",
+    "SourceAuthorityManifestSha256": "2ee44bf19a2533958e5620c38915f3d03fbb81209c76c7183742a4f3d059f501",
+    "DiscoveryMethods": [
+      "exact concordance count",
+      "complete-turn actor review",
+      "Tier 1 then Tier 2 source ranking",
+      "predecessor-evidence adjudication"
+    ],
+    "ExactCount": 1490,
+    "BridgedCount": 1490,
+    "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+  },
+  "Entry": {
+    "Id": "t_1c7d25824f85",
+    "SourceTerm": "本來面目",
+    "CreatedBy": "R83 source-hierarchy repair",
+    "WrittenUtc": "2026-07-30T09:10:00Z",
+    "Senses": [
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "what one originally is",
+        "AlternateTargets": [
+          "what you originally are",
+          "what I originally am",
+          "what all beings originally are",
+          "original face (literal/traditional calque)"
+        ],
+        "SearchAliases": [
+          "what you originally are",
+          "before your parents were born"
+        ],
+        "Status": "preferred",
+        "Validation": "multi-source",
+        "Explanation": "The phrase asks someone to recognize, investigate, or show what that person originally is. Yantou Quanhuo urges recognition of what one originally is; Jinul gives a contextual equation with lucid mind; Zhiche lists it as an object of investigation; Huishan Jiexian criticizes the vague question; Dafang Xinghai asks what I originally am; Yuanwu Keqin urges clear recognition; Mailang Minghuai speaks of what all beings originally are; Huineng's received question adds a parents-before-birth frame; and Zhongfeng Mingben urges recognition after describing a mirror cleared of images and dust.",
+        "Note": "The traditional literal calque is opaque as unglossed English and no retained passage requires it. Contextual equations with mind or nature belong to individual speakers. Do not add essence, and do not promote parentage or visual imagery into the lexical meaning.",
+        "Occurrences": [
+          {
+            "RelPath": "T/T48/T48n2016.xml",
+            "FromLb": "0945a09",
+            "ToLb": "0945a23",
+            "Kwic": "騰。不復一心本源。故令泯絕。若入心體。雖云湛然。不落斷滅。自然從體起用。周遍恒沙。又大梅云。此心法門。真如妙理。不增不減。種種方便。善能應用。當知總是此性本來具足。不生不滅。能知三世一切作用。所以云。我觀久遠。猶若今日。常在於其中。經行及坐臥。巖頭和尚云。於三界中。有無。唯自己知。更無餘事。但識自己本來面目。喚作無依。神蕩蕩地。若道別有法有祖。賺汝到底。但向方寸中看。逈逈明朗。但無欲無依。便得決了。高城和尚歌云。無相心。能運耀。應聲應色隨方照。雖在方而不在方。任運高低總能妙。尋無頭。復無尾。焰光運運從何起。只者如今全是心。心用明心心復爾。不居方。何處覓。運用無蹤復無跡。識取如今明覓人。終朝莫謾別求的。",
+            "MasterName": "Yantou Quanhuo",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Yantou Quanhuo",
+                "Roles": [
+                  "utterer"
+                ]
+              },
+              {
+                "MasterName": "Yongming Yanshou",
+                "Roles": [
+                  "later-quoter",
+                  "commentator",
+                  "record-owner"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (T/T48/T48n2016.xml). Record of the Mirror of the School. Exact actor: Yantou Quanhuo. The complete source frame explicitly assigns the retained headword-bearing use to this actor.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "本來面目",
+              "GrammaticalSubject": "Yantou Quanhuo",
+              "SpeechFrame": "Source record (T/T48/T48n2016.xml). Record of the Mirror of the School. Exact actor: Yantou Quanhuo. The complete source frame explicitly assigns the retained headword-bearing use to this actor.",
+              "FullCaseDecision": "Yantou Quanhuo is the exact actor at the headword-bearing clause."
+            }
+          },
+          {
+            "RelPath": "T/T48/T48n2020.xml",
+            "FromLb": "1006c24",
+            "ToLb": "1007a09",
+            "Kwic": "有不見之想？自己靈知，亦復如是。既是自心，何更求會？若欲求會，便會不得。但知不會，是即見性。」問：「上上之人，聞即易會。中下之人，不無疑惑。更說方便，令迷者趣入。」答：「道不屬知不知。汝除却將迷待悟之心，聽我言說。諸法如夢，亦如幻化，故妄念本寂，塵境本空。諸法皆空之處靈知不昧，即此空寂靈知之心，是汝本來面目，亦是三世諸佛、歷代祖師、天下善知識，密密相傳底法印也。若悟此心，真所謂不踐階梯徑登佛地。步步超三界，歸家頓絕疑，便與人天為師，悲智相資，具足二利，堪受人天供養，日消萬兩黃金。汝若如是，真大丈夫，一生能事已畢矣！」問：「據吾分上，何者是空寂靈知之心耶？」答：「汝今問我者，是汝空寂靈知之心。何不返照，",
+            "MasterName": "Jinul",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Jinul",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (T/T48/T48n2020.xml). Cultivating the Mind Instructions by Chan Master Pujŏ of Goryeo. Exact actor: Jinul. The complete source frame explicitly assigns the retained headword-bearing use to this actor.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "本來面目",
+              "GrammaticalSubject": "Jinul",
+              "SpeechFrame": "Source record (T/T48/T48n2020.xml). Cultivating the Mind Instructions by Chan Master Pujŏ of Goryeo. Exact actor: Jinul. The complete source frame explicitly assigns the retained headword-bearing use to this actor.",
+              "FullCaseDecision": "Jinul is the exact actor at the headword-bearing clause."
+            }
+          },
+          {
+            "RelPath": "T/T48/T48n2021.xml",
+            "FromLb": "1015c15",
+            "ToLb": "1016a02",
+            "Kwic": "此念應時消散。或有不信此說。反引楞嚴經中五十種魔以為實有。豈不聞世尊為阿難言。此五十種魔。皆是色受想行識五妄想成客塵所覆。主人若迷客得其便。向下文長且止。到這裏坐斷凡聖路頭。與學人掃蹤滅跡去也。且道那箇是主。萬法歸一一歸何處。是那箇是客。汝暫舉心塵勞先起。是至此心無二用究竟非一。或有參無字者。或有參本來面目者。或有參究念佛者。公案雖異疑究是同。故經云。歸元性無二方便有多門。於此學人各將本參話頭。自重自保勇猛挨拶將去。至拶不入處。驀地和身透過。直向那邊孤峯頂上。盤結草菴呵佛罵祖。若到這般田地裏。把佛境界作魔境界說亦得。把魔境界作佛境界說亦得。所以道。逆行順化。鬼神莫能測其機。其或未然切忌切忌。欲得不招無",
+            "MasterName": null,
+            "Curated": true,
+            "ContextMasters": [],
+            "ContextActors": [],
+            "AttributionNote": "Source record (T/T48/T48n2021.xml). Chan School Collection for Resolving Doubts. Action performer: Zhiche (identified-unlinked-master). The complete source frame explicitly assigns the retained headword-bearing use to this actor.",
+            "ActorAttribution": {
+              "Status": "identified-unlinked-master",
+              "Kind": "Chan master",
+              "ActorLabel": "Zhiche",
+              "ActorRole": "utterer",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "The authored instruction directly lists the phrase as an investigation case; the source explicitly identifies Zhiche as the headword-bearing actor.",
+              "ReviewedBy": "R83 independent source-first review",
+              "ReviewedUtc": "2026-07-30T10:12:00Z",
+              "AuthoredVoiceRiskReviewed": true
+            },
+            "DraftActorProof": {
+              "ExactHeadwordClause": "本來面目",
+              "GrammaticalSubject": "Zhiche",
+              "SpeechFrame": "Source record (T/T48/T48n2021.xml). Chan School Collection for Resolving Doubts. Action performer: Zhiche (identified-unlinked-master). The complete source frame explicitly assigns the retained headword-bearing use to this actor.",
+              "FullCaseDecision": "Zhiche is the exact actor at the headword-bearing clause."
+            }
+          },
+          {
+            "RelPath": "X/X63/X63n1259.xml",
+            "FromLb": "0776b05",
+            "ToLb": "0776b18",
+            "Kwic": "，則擴悟機也必徹。東山立盜父鎖櫃，令子潰圍之喻，非不傳之祕乎？然亦有機器宜參荅語者，如麻三觔，乾矢橛，青州布衫，庭前柏樹子，乃至狗子無佛性等。亦有機器宜參機用者，如入門便棒，進門便喝，睦州接雲門，汾陽接慈明等，往往發大悟門，亦視師家用處何如耳，無死法也。閒有時師不知關棙，止教人參如何是西來意，如何是本來面目，如何是學人自己者，此則上無關鎖，望空啟告，師家下刀不緊，學家發疑無力，死水浮沈，白首不悟，坐病在此，豈不惜哉！最悞人者，有初進禪門，根本未悟，遂令參南泉斬猫，百丈野狐，丹霞燒佛，女子出定等話，此真方木逗圓孔，唐喪人光陰，而天地懸隔者矣。謂之杜撰，不亦宜乎？是故欲鍛鍊禪眾者，審辨機器，簡別話頭，俾高",
+            "MasterName": "Huishan Jiexian",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Huishan Jiexian",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (X/X63/X63n1259.xml). Discourse on Training in the Chan Gate. Exact actor: Huishan Jiexian. The complete source frame explicitly assigns the retained headword-bearing use to this actor.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "本來面目",
+              "GrammaticalSubject": "Huishan Jiexian",
+              "SpeechFrame": "Source record (X/X63/X63n1259.xml). Discourse on Training in the Chan Gate. Exact actor: Huishan Jiexian. The complete source frame explicitly assigns the retained headword-bearing use to this actor.",
+              "FullCaseDecision": "Huishan Jiexian is the exact actor at the headword-bearing clause."
+            }
+          },
+          {
+            "RelPath": "X/X65/X65n1289.xml",
+            "FromLb": "0425c02",
+            "ToLb": "0425c15",
+            "Kwic": "認一念不生為真實者，若一念不生，則與木石何異？若與木石無異是真實者，則一切木石應可成佛，豈有此理乎？又者，認著一念不生為真實者，即是執著，執著即是生念，豈是無念乎？又汝若言一念不生，亦不執著為真實者，則與無知愚人無異，又何名為知禪知道者乎？思之思之，不可鹵莽。如何是善巧用心處耶？謂纔舉一念，如何是我本來面目？只看這舉念的是誰，須知此舉念的元即是我，自己舉也，豈他人乎？雖是我自己，而要無我可得，無我可見，方是真我也。何也？我不得我故，我不見我故，如眼不自見，刀不自割。思之！我若得我，有二我之過。故謂若認著這舉念的即是我者，知舉念的是我，又是那一個？若二俱是我，豈非有二我耶？又若舉念的不是我者，則落斷空，",
+            "MasterName": "Dafang Xinghai",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Dafang Xinghai",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (X/X65/X65n1289.xml). The Chan School at Your Fingertips. Exact actor: Dafang Xinghai. The complete source frame explicitly assigns the retained headword-bearing use to this actor.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "本來面目",
+              "GrammaticalSubject": "Dafang Xinghai",
+              "SpeechFrame": "Source record (X/X65/X65n1289.xml). The Chan School at Your Fingertips. Exact actor: Dafang Xinghai. The complete source frame explicitly assigns the retained headword-bearing use to this actor.",
+              "FullCaseDecision": "Dafang Xinghai is the exact actor at the headword-bearing clause."
+            }
+          },
+          {
+            "RelPath": "X/X69/X69n1357.xml",
+            "FromLb": "0462a20",
+            "ToLb": "0462b10",
+            "Kwic": "。今秋適會大稔，請覺民禪客覰收刈。臨行乞言，因示以前段因緣，貴崇本及末，乃為兼利並照，圜悟通達之人本分事也，勉行之乃善。大凡學道探玄，須以大信根深信此事不在言語文字一切萬境之上，確實惟於自己根脚放下從前作知作解狂妄之心，直令絲毫不掛念，向本淨無垢寂滅圓妙本性之中徹底承當，能所雙忘，言思路絕，廓然明見本來面目，使一得永得，堅固不動，然後換步移身，出言吐氣，並不落陰魔境界，則一切佛法端坐現前，遂契行坐皆禪，脫去生死根本，永離一切蓋纏，成箇灑灑無事道人，何須向紙上尋他死語。百草頭上有祖師，夾山指出令人薦。寬平田中有大義，百丈展手要人知。若能顆粒圓成，即是單傳心印。更或彌望，但然使證第一聖諦。且出草一句作麼生",
+            "MasterName": "Yuanwu Keqin",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Yuanwu Keqin",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (X/X69/X69n1357.xml). Essentials of the Mind by Chan Master Foguо Keqin. Exact actor: Yuanwu Keqin. The complete source frame explicitly assigns the retained headword-bearing use to this actor.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "本來面目",
+              "GrammaticalSubject": "Yuanwu Keqin",
+              "SpeechFrame": "Source record (X/X69/X69n1357.xml). Essentials of the Mind by Chan Master Foguо Keqin. Exact actor: Yuanwu Keqin. The complete source frame explicitly assigns the retained headword-bearing use to this actor.",
+              "FullCaseDecision": "Yuanwu Keqin is the exact actor at the headword-bearing clause."
+            }
+          },
+          {
+            "RelPath": "X/X73/X73n1457.xml",
+            "FromLb": "0863a13",
+            "ToLb": "0863b02",
+            "Kwic": "道邪見眾生，以妄想識情，迷謬妄執者也。故華嚴云：奇哉眾生，具有如來智慧德相，乃因妄想執著，而不證得。楞嚴亦云：一切眾生，從無始來，生死相續，皆由不知常住真心，性淨明體，用諸妄想，此想不真，故受輪轉。所言真知者，即常住真心，亦名實相般若。是諸法自性，聖凡本具，非中外而徹十方，無去來而通三際，為一切眾生本來面目，一而不二者也。其體絕相絕稱，纖塵不立。易曰：寂然不動，感而遂通天下之故。感而遂通者，真知之用也。故曰：聖心無知，而無所不知。是以聖人虗其心而實其照，終日知而未嘗知，良有以也。先德云：智有窮幽之鑒，而無知焉；神有應會之用，而無慮焉。神無慮，故能獨王於世表；智無知，故能玄照於事外。知雖事外，未始無事；",
+            "MasterName": null,
+            "Curated": true,
+            "ContextMasters": [],
+            "ContextActors": [],
+            "AttributionNote": "Source record (X/X73/X73n1457.xml). Zongmen Challenges by Chan Master Yunmen Mailanghuai. Action performer: Mailang Minghuai (identified-unlinked-master). The complete source frame explicitly assigns the retained headword-bearing use to this actor.",
+            "ActorAttribution": {
+              "Status": "identified-unlinked-master",
+              "Kind": "Chan master",
+              "ActorLabel": "Mailang Minghuai",
+              "ActorRole": "utterer",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "The authored answer states what all beings originally are; the source explicitly identifies Mailang Minghuai as the headword-bearing actor.",
+              "ReviewedBy": "R83 independent source-first review",
+              "ReviewedUtc": "2026-07-30T10:12:00Z",
+              "AuthoredVoiceRiskReviewed": true
+            },
+            "DraftActorProof": {
+              "ExactHeadwordClause": "本來面目",
+              "GrammaticalSubject": "Mailang Minghuai",
+              "SpeechFrame": "Source record (X/X73/X73n1457.xml). Zongmen Challenges by Chan Master Yunmen Mailanghuai. Action performer: Mailang Minghuai (identified-unlinked-master). The complete source frame explicitly assigns the retained headword-bearing use to this actor.",
+              "FullCaseDecision": "Mailang Minghuai is the exact actor at the headword-bearing clause."
+            }
+          },
+          {
+            "RelPath": "X/X78/X78n1554.xml",
+            "FromLb": "0576c24",
+            "ToLb": "0577a13",
+            "Kwic": "石舂米。後聞人舉北秀頌曰：身似菩提樹，心如明鏡臺，時時勤拂拭，莫使惹塵埃。師即倩人書偈其傍曰：菩提本無樹，明鏡亦非臺。本來無一物，何處惹塵埃。祖因付衣鉢，潛至大庾嶺。明上座逐之，師以衣置於石上，曰：此衣表信，可力爭耶？明曰：我來求法，非為衣也。師曰：不思善，不思惡，正恁麼時，如何是明上座父母未生以前本來面目？明大悟。師於儀鳳元年丙子正月八日屆南海，遇印宗法師於法性寺講經，聞二僧辨風幡，一云風動，一云幡動，爭之不已。師曰：可容俗流輙預高論否？直以風幡非動，動自心耳。印宗聞之，遂與披剃。韶州刺史韋據請於大梵寺轉法輪，并受無相心地戒，門人紀錄，目為壇經。南嶽讓和尚因嵩山安和尚啟發之，乃直詣參師。師問曰：什麼",
+            "MasterName": "Huineng",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Huineng",
+                "Roles": [
+                  "utterer"
+                ]
+              },
+              {
+                "MasterName": "Xisou Shaotan",
+                "Roles": [
+                  "later-quoter",
+                  "record-owner"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (X/X78/X78n1554.xml). Praise of the Orthodox Lineage of the Five Houses. Exact actor: Huineng. The complete source frame explicitly assigns the retained headword-bearing use to this actor.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "本來面目",
+              "GrammaticalSubject": "Huineng",
+              "SpeechFrame": "Source record (X/X78/X78n1554.xml). Praise of the Orthodox Lineage of the Five Houses. Exact actor: Huineng. The complete source frame explicitly assigns the retained headword-bearing use to this actor.",
+              "FullCaseDecision": "Huineng is the exact actor at the headword-bearing clause."
+            }
+          },
+          {
+            "RelPath": "B/B25/B25n0145.xml",
+            "FromLb": "0743a03",
+            "ToLb": "0743a17",
+            "Kwic": "縱逆則思避。動時似有覔時還無。皆識蘊生死也。此五蘊法障在目前自古至今。任儞才過李杜氣奪項劉。直得拱手以聽其處分。十二時中千重百帀。直是無儞轉身處。所以釋迦老漢知有此一𫨻大事迷滯眾生。於是興大願心開大法施。四十九年五千餘卷偏圓頓漸大小半滿。如長伸隻臂。向大圓鏡上推開影象拂去浮塵。但要箇箇向潔白光中識取本來面目。然後靈山會上拈出一華。迦葉不覺破顏微笑。直得光吞萬象體遍大千。已而四七二三向此光影裏。眼見空華遞相鈍置。流傳既久逗到老趙州面前。僧問。萬法歸一一歸何處。州云。我在青州做一領布衫重七斤。覿面拈來照天爍地。自非具大眼目之士。莫能窺其彷彿。要見趙州光明麼。也莫問五蘊六蘊六根七根。但將平生見解。世間出世間",
+            "MasterName": "Zhongfeng Mingben",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Zhongfeng Mingben",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (B/B25/B25n0145.xml). Extensive Record of Zhongfeng Mingben of Tianmu. Exact actor: Zhongfeng Mingben. The complete source frame explicitly assigns the retained headword-bearing use to this actor.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "本來面目",
+              "GrammaticalSubject": "Zhongfeng Mingben",
+              "SpeechFrame": "Source record (B/B25/B25n0145.xml). Extensive Record of Zhongfeng Mingben of Tianmu. Exact actor: Zhongfeng Mingben. The complete source frame explicitly assigns the retained headword-bearing use to this actor.",
+              "FullCaseDecision": "Zhongfeng Mingben is the exact actor at the headword-bearing clause."
+            }
+          }
+        ],
+        "ClaimAnchors": [],
+        "SourceTexts": [
+          "T/T48/T48n2016.xml",
+          "T/T48/T48n2020.xml",
+          "T/T48/T48n2021.xml",
+          "X/X63/X63n1259.xml",
+          "X/X65/X65n1289.xml",
+          "X/X69/X69n1357.xml",
+          "X/X73/X73n1457.xml",
+          "X/X78/X78n1554.xml",
+          "B/B25/B25n0145.xml"
+        ],
+        "RelatedMasters": [
+          "Yantou Quanhuo",
+          "Yongming Yanshou",
+          "Jinul",
+          "Huishan Jiexian",
+          "Dafang Xinghai",
+          "Yuanwu Keqin",
+          "Huineng",
+          "Xisou Shaotan",
+          "Zhongfeng Mingben"
+        ],
+        "RelatedTerms": [],
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "The phrase asks someone to recognize, investigate, or show what that person originally is.",
+          "EvidenceBody": [
+            "Yantou Quanhuo urges recognition of what one originally is; Jinul gives a contextual equation with lucid mind; Zhiche lists it as an object of investigation; Huishan Jiexian criticizes the vague question; Dafang Xinghai asks what I originally am; Yuanwu Keqin urges clear recognition; Mailang Minghuai speaks of what all beings originally are; Huineng's received question adds a parents-before-birth frame; and Zhongfeng Mingben urges recognition after describing a mirror cleared of images and dust."
+          ]
+        },
+        "DraftEvidence": {
+          "LiteralGraphFloor": "what one originally is",
+          "LexicalJob": "本來面目 means what one originally is.",
+          "DeploymentClasses": [
+            "direct answer",
+            "active capping line",
+            "active case raising"
+          ],
+          "HighValueEvidenceLedger": [
+            {
+              "Disposition": "keep",
+              "Finding": "Yantou Quanhuo actively uses the headword in Record of the Mirror of the School.",
+              "Reason": "The complete case secures an exact actor and an independent recorded-sayings deployment."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Jinul actively uses the headword in Cultivating the Mind Instructions by Chan Master Pujŏ of Goryeo.",
+              "Reason": "The complete case secures an exact actor and an independent recorded-sayings deployment."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Zhiche actively uses the headword in Chan School Collection for Resolving Doubts.",
+              "Reason": "The complete case secures an exact actor and an independent recorded-sayings deployment."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Huishan Jiexian actively uses the headword in Discourse on Training in the Chan Gate.",
+              "Reason": "The complete case secures an exact actor and an independent recorded-sayings deployment."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Dafang Xinghai actively uses the headword in The Chan School at Your Fingertips.",
+              "Reason": "The complete case secures an exact actor and an independent recorded-sayings deployment."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Yuanwu Keqin actively uses the headword in Essentials of the Mind by Chan Master Foguо Keqin.",
+              "Reason": "The complete case secures an exact actor and an independent recorded-sayings deployment."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Mailang Minghuai actively uses the headword in Zongmen Challenges by Chan Master Yunmen Mailanghuai.",
+              "Reason": "The complete case secures an exact actor and an independent recorded-sayings deployment."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Huineng actively uses the headword in Praise of the Orthodox Lineage of the Five Houses.",
+              "Reason": "The complete case secures an exact actor and an independent recorded-sayings deployment."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Zhongfeng Mingben actively uses the headword in Extensive Record of Zhongfeng Mingben of Tianmu.",
+              "Reason": "The complete case secures an exact actor and an independent recorded-sayings deployment."
+            }
+          ],
+          "OpeningClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3",
+            "o4",
+            "o5",
+            "o6",
+            "o7"
+          ],
+          "EvidenceBodyClaimKeys": [
+            [
+              "o1",
+              "o2",
+              "o3",
+              "o4",
+              "o5",
+              "o6",
+              "o7"
+            ]
+          ],
+          "ZenBend": "The phrase asks someone to recognize, investigate, or show what that person originally is.",
+          "CounterexampleOrLimit": "The traditional literal calque is opaque as unglossed English and no retained passage requires it. Contextual equations with mind or nature belong to individual speakers. Do not add essence, and do not promote parentage or visual imagery into the lexical meaning.",
+          "DifferentThingTest": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "what one originally is"
+            ],
+            "Reason": "All retained uses preserve one lexical job."
+          },
+          "AliasRationale": "Alternates preserve the same concrete expression.",
+          "ModifierControls": [
+            {
+              "Term": "本來面目",
+              "Finding": "No modifier creates a second referent."
+            }
+          ],
+          "FamilyControls": [
+            {
+              "Term": "本來面目",
+              "Finding": "7 independent higher-authority families meet the floor."
+            }
+          ],
+          "IndependentWorkIds": [
+            "work:T48n2016",
+            "work:T48n2020",
+            "work:T48n2021",
+            "work:X63n1259",
+            "work:X65n1289",
+            "work:X69n1357",
+            "work:X73n1457",
+            "chan:wujia-zhengzong-zan",
+            "work:B25n0145"
+          ],
+          "SourceAuthorityRows": [
+            {
+              "EvidenceKey": "o1",
+              "RelPath": "T/T48/T48n2016.xml",
+              "WorkId": "work:T48n2016",
+              "Tier": 1,
+              "SourceClass": "master-authored",
+              "AuthorityReason": "A named master's recorded sayings; the complete turn was independently actor-reviewed.",
+              "WitnessFamilyId": "yanshou-quotes-yantou",
+              "DeploymentRole": "active-quotation"
+            },
+            {
+              "EvidenceKey": "o2",
+              "RelPath": "T/T48/T48n2020.xml",
+              "WorkId": "work:T48n2020",
+              "Tier": 1,
+              "SourceClass": "master-authored",
+              "AuthorityReason": "A named master's recorded sayings; the complete turn was independently actor-reviewed.",
+              "WitnessFamilyId": "jinul-mind-instruction",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o3",
+              "RelPath": "T/T48/T48n2021.xml",
+              "WorkId": "work:T48n2021",
+              "Tier": 1,
+              "SourceClass": "master-authored",
+              "AuthorityReason": "A named master's recorded sayings; the complete turn was independently actor-reviewed.",
+              "WitnessFamilyId": "zhiche-investigation-instruction",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o4",
+              "RelPath": "X/X63/X63n1259.xml",
+              "WorkId": "work:X63n1259",
+              "Tier": 1,
+              "SourceClass": "master-authored",
+              "AuthorityReason": "A named master's recorded sayings; the complete turn was independently actor-reviewed.",
+              "WitnessFamilyId": "huishan-training-critique",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o5",
+              "RelPath": "X/X65/X65n1289.xml",
+              "WorkId": "work:X65n1289",
+              "Tier": 1,
+              "SourceClass": "master-authored",
+              "AuthorityReason": "A named master's recorded sayings; the complete turn was independently actor-reviewed.",
+              "WitnessFamilyId": "xinghai-self-inquiry",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o6",
+              "RelPath": "X/X69/X69n1357.xml",
+              "WorkId": "work:X69n1357",
+              "Tier": 1,
+              "SourceClass": "master-authored",
+              "AuthorityReason": "A named master's recorded sayings; the complete turn was independently actor-reviewed.",
+              "WitnessFamilyId": "yuanwu-direct-instruction",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o7",
+              "RelPath": "X/X73/X73n1457.xml",
+              "WorkId": "work:X73n1457",
+              "Tier": 1,
+              "SourceClass": "master-authored",
+              "AuthorityReason": "A named master's recorded sayings; the complete turn was independently actor-reviewed.",
+              "WitnessFamilyId": "minghuai-all-beings",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o8",
+              "RelPath": "X/X78/X78n1554.xml",
+              "WorkId": "chan:wujia-zhengzong-zan",
+              "Tier": 1,
+              "SourceClass": "master-authored",
+              "AuthorityReason": "A named master's recorded sayings; the complete turn was independently actor-reviewed.",
+              "WitnessFamilyId": "xisou-huineng-question",
+              "DeploymentRole": "active-quotation"
+            },
+            {
+              "EvidenceKey": "o9",
+              "RelPath": "B/B25/B25n0145.xml",
+              "WorkId": "work:B25n0145",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "A named master's recorded sayings; the complete turn was independently actor-reviewed.",
+              "WitnessFamilyId": "zhongfeng-mirror-instruction",
+              "DeploymentRole": "original-use"
+            }
+          ],
+          "LampExcessJustification": "No Tier-3 lamp or lineage compilation is retained.",
+          "NoHigherWitnessSearchReceipt": "Tier 1 was searched first; Tier 2 met the floor; no lamp was consulted.",
+          "DepthHarvestReceipt": {
+            "Complete": true,
+            "ReviewedExactHitCount": 1490,
+            "AvailableSourceFiles": 283,
+            "SearchedDeploymentClasses": [
+              "direct answer",
+              "active capping line",
+              "active case raising"
+            ],
+            "OmissionAudit": [
+              "7 retained complete cases were actor-adjudicated.",
+              "Tier-3 lamps were not needed."
+            ]
+          }
+        },
+        "DraftAcceptedDerivedFields": {
+          "SourceTexts": [
+            "T/T48/T48n2016.xml",
+            "T/T48/T48n2020.xml",
+            "T/T48/T48n2021.xml",
+            "X/X63/X63n1259.xml",
+            "X/X65/X65n1289.xml",
+            "X/X69/X69n1357.xml",
+            "X/X73/X73n1457.xml",
+            "X/X78/X78n1554.xml",
+            "B/B25/B25n0145.xml"
+          ],
+          "RelatedMasters": [
+            "Yantou Quanhuo",
+            "Yongming Yanshou",
+            "Jinul",
+            "Huishan Jiexian",
+            "Dafang Xinghai",
+            "Yuanwu Keqin",
+            "Huineng",
+            "Xisou Shaotan",
+            "Zhongfeng Mingben"
+          ]
+        }
+      }
+    ],
+    "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+  },
+  "FamilyHarvest": {
+    "PolicyVersion": 1,
+    "Scope": "R83 source-hierarchy repair",
+    "Edges": [],
+    "NegativeReceipt": [],
+    "GraphicVariants": []
+  }
+}

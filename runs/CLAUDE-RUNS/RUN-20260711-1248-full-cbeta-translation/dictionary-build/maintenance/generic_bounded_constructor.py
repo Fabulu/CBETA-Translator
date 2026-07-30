@@ -14,6 +14,7 @@ import subprocess
 import sys
 import time
 from datetime import datetime, timezone
+from functools import lru_cache
 from pathlib import Path
 from typing import Any
 
@@ -62,6 +63,46 @@ class CompilerPrewriteError(ValueError):
             "whole-config canonical compiler prewrite failed: "
             + json.dumps(errors, ensure_ascii=False)
         )
+
+
+@lru_cache(maxsize=1)
+def lineage_name_authority() -> tuple[frozenset[str], dict[str, str]]:
+    """Return names[0] authorities and a complete alias-to-authority map."""
+    roster_path = ROOT.resolve().parents[3] / "Assets/Data/lineage-masters.json"
+    rows = json.loads(roster_path.read_text(encoding="utf-8"))
+    canonical: set[str] = set()
+    aliases: dict[str, str] = {}
+    for row in rows:
+        names = row.get("names") or []
+        if not names or not isinstance(names[0], str) or not names[0].strip():
+            continue
+        authority = names[0].strip()
+        canonical.add(authority)
+        for name in names:
+            if isinstance(name, str) and name.strip():
+                aliases[name.strip()] = authority
+    return frozenset(canonical), aliases
+
+
+def actor_name_authority_error(coordinate: str, value: Any) -> str | None:
+    """Require linked master names to use the roster's exact names[0] value."""
+    if value is None:
+        return None
+    if not isinstance(value, str) or not value.strip():
+        return f"{coordinate}: MasterName must be null or a nonempty canonical name"
+    canonical, aliases = lineage_name_authority()
+    name = value.strip()
+    if name in canonical:
+        return None
+    if name in aliases:
+        return (
+            f"{coordinate}: roster alias {name!r} rejected; "
+            f"use canonical names[0] {aliases[name]!r}"
+        )
+    return (
+        f"{coordinate}: {name!r} is absent from the lineage roster; use null "
+        "MasterName plus structured identified-unlinked-master ActorAttribution"
+    )
 
 
 def read_json(path: Path) -> dict[str, Any]:
@@ -273,6 +314,64 @@ def verify_actor_closure(config: dict[str, Any]) -> None:
                     error for error in occurrence_errors
                     if any(marker in error for marker in ACTOR_ERROR_MARKERS)
                 )
+                error = actor_name_authority_error(
+                    f"{coordinate}.MasterName", occurrence.get("MasterName"))
+                if error:
+                    actor_errors.append(error)
+                for ci, context in enumerate(occurrence.get("ContextMasters") or []):
+                    error = actor_name_authority_error(
+                        f"{coordinate}.ContextMasters[{ci}].MasterName",
+                        context.get("MasterName"),
+                    )
+                    if error:
+                        actor_errors.append(error)
+            for ri, name in enumerate(sense.get("RelatedMasters") or []):
+                error = actor_name_authority_error(
+                    f"entries[{ei}]({entry['id']}).Senses[{si}]."
+                    f"RelatedMasters[{ri}]",
+                    name,
+                )
+                if error:
+                    actor_errors.append(error)
+        derived = (
+            entry["evidenceDraft"].get("DraftAcceptedDerivedFields") or {}
+        ).get("RelatedMasters") or []
+        for ri, name in enumerate(derived):
+            error = actor_name_authority_error(
+                f"entries[{ei}]({entry['id']})."
+                f"DraftAcceptedDerivedFields.RelatedMasters[{ri}]",
+                name,
+            )
+            if error:
+                actor_errors.append(error)
+        for ci, case in enumerate(entry["sourceDossier"].get("retainedCompleteCases") or []):
+            decision = case.get("actorDecision")
+            if isinstance(decision, str):
+                error = actor_name_authority_error(
+                    f"entries[{ei}]({entry['id']}).sourceDossier."
+                    f"retainedCompleteCases[{ci}].actorDecision",
+                    decision,
+                )
+                if error:
+                    actor_errors.append(error)
+                continue
+            decision = decision or {}
+            error = actor_name_authority_error(
+                f"entries[{ei}]({entry['id']}).sourceDossier."
+                f"retainedCompleteCases[{ci}].actorDecision.masterName",
+                decision.get("masterName"),
+            )
+            if error:
+                actor_errors.append(error)
+            for mi, context in enumerate(decision.get("contextMasters") or []):
+                error = actor_name_authority_error(
+                    f"entries[{ei}]({entry['id']}).sourceDossier."
+                    f"retainedCompleteCases[{ci}].actorDecision."
+                    f"contextMasters[{mi}].MasterName",
+                    context.get("MasterName"),
+                )
+                if error:
+                    actor_errors.append(error)
     if actor_errors:
         raise ActorClosureError(actor_errors)
 

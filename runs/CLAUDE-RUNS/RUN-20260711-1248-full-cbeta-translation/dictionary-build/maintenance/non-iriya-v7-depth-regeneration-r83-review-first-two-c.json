@@ -1,0 +1,212 @@
+{
+  "schemaVersion": "r83-independent-source-first-review.v1",
+  "cohort": "R83",
+  "reviewedIds": [
+    "t_1c2e34e1abb7",
+    "t_1c3869bb802d"
+  ],
+  "bindings": {
+    "timegateSha256": "12af698b7784a95b14bb32148856f4e76358125ecc371560770f019fd3fc813c",
+    "selectionSha256": "ffe403fc818c64d20f445780bfc5492342da6cef761db2ba036919654b43f452",
+    "checkpointSha256": "b519faa560e550319712d9bbf9652874769fdecbd4d2a67bc4d5e1823f9ab2fe",
+    "extractionSha256": "0f8ca0cef7acd1736d882c02d592ef2721c598231d291ce9fc568edd626b997f",
+    "skeletonSha256": "b300a82a75bb5bad6420e3cecd8cac01b7d1ae2d8326ea17d94532beb68fa06a"
+  },
+  "reviews": [
+    {
+      "id": "t_1c2e34e1abb7",
+      "term": "雞鳴丑",
+      "requiredFloor": 4,
+      "candidateCount": 7,
+      "admission": "ADMIT",
+      "senseCount": 1,
+      "preferredTarget": "cockcrow—the Chou hour",
+      "alternateTargets": [
+        "at cockcrow, in the Chou period"
+      ],
+      "semanticRuling": "雞鳴 is the conventional name for the 丑 time period in Twelve-Hours Songs. The phrase functions as a stanza heading before the content assigned to that watch; it is not an independent proposition whose novel point is that a chicken crows.",
+      "genreControl": "The neighboring headings 夜半子, 平旦寅, 日出卯, 食時辰 and the rest establish the time-heading construction. Preserve Chou as the sexagenary-branch hour label and explain it rather than translating 丑 as 'ugly'.",
+      "retainedFamilies": [
+        {
+          "relPath": "X/X87/X87n1624.xml",
+          "fromLb": "0254c13",
+          "tier": 1,
+          "contextSha256": "16c30492d5b0109953d91de5a25d9413f5845a29890f4573b94c7bb9a8f25c56",
+          "masterName": "Juefan Huihong",
+          "actorRole": "verse-author",
+          "familyId": "jimingchou:huihong-twelve-hours",
+          "actorEvidence": "Huihong says 予初居黃龍山時，作禪和子十二時偈曰 and then gives the headword stanza.",
+          "decision": "RETAIN"
+        },
+        {
+          "relPath": "B/B25/B25n0145.xml",
+          "fromLb": "0850b04",
+          "tier": 2,
+          "contextSha256": "2831d36cf58c5b8768fb1918ed109bb8721a01251bf38799ec8548cbc0f4b765",
+          "masterName": "Zhongfeng Mingben",
+          "actorRole": "verse-author",
+          "familyId": "jimingchou:zhongfeng-twelve-hours",
+          "actorEvidence": "The headword occurs in Zhongfeng's own continuous twelve-period verse in his authored extensive record.",
+          "decision": "RETAIN"
+        },
+        {
+          "relPath": "C/C077/C077n1710.xml",
+          "fromLb": "0693b19",
+          "tier": 2,
+          "contextSha256": "25a58dbd241fc8ce1b3275654bb5623634edf05440ffd35e2678167629b85538",
+          "masterName": "Ciming Chuyuan",
+          "actorRole": "verse-author",
+          "familyId": "jimingchou:ciming-monk-request",
+          "actorEvidence": "Inside Ciming's 偈頌 section, 僧請益古人十二時謌乃頌之 assigns the ensuing headword stanza to Ciming.",
+          "decision": "RETAIN"
+        },
+        {
+          "relPath": "J/J24/J24nB137.xml",
+          "fromLb": "0371a01",
+          "tier": 2,
+          "contextSha256": "e8e3a53e0ed97d1de7a4c93169470081d035b10c0195e90c7439cd89a7c66977",
+          "masterName": "Zhaozhou Congshen",
+          "actorRole": "verse-author",
+          "familyId": "jimingchou:zhaozhou-twelve-hours",
+          "actorEvidence": "The headword opens the 十二時歌 preserved in Zhaozhou's recorded sayings and is source-attributed to the record speaker.",
+          "decision": "RETAIN"
+        }
+      ],
+      "excludedOrReserve": [
+        {
+          "relPath": "J/J23/J23nB134.xml",
+          "fromLb": "0549b06",
+          "exactActor": "Baozhi",
+          "outerVoice": "later record speaker raises and comments",
+          "reason": "Same inherited Baozhi line as J/J24/J24nB138.xml; one family, not independent depth."
+        },
+        {
+          "relPath": "J/J24/J24nB138.xml",
+          "fromLb": "0386a06",
+          "exactActor": "Baozhi",
+          "outerVoice": "later record speaker raises and comments",
+          "reason": "Parallel recension of the inherited Baozhi line; exclude rather than double-count."
+        },
+        {
+          "relPath": "J/J25/J25nB154.xml",
+          "fromLb": "0040a23",
+          "exactActor": "Songyin Weian Deran",
+          "reason": "Valid independent direct Twelve-Hours Song family, held as reserve because four higher-priority/earlier independent families meet the floor."
+        }
+      ],
+      "sourceHierarchy": "One Tier-1 authored witness plus three independent Tier-2 recorded-sayings families meet the floor. No lamp evidence is present or needed.",
+      "actorGate": "Sense MasterName must be null. Retained occurrence MasterName values are the four direct verse owners. The Baozhi quotation must never be assigned to its later raiser.",
+      "verdict": "APPROVE_CONSTRUCTION",
+      "hardPass": true
+    },
+    {
+      "id": "t_1c3869bb802d",
+      "term": "返本還源",
+      "requiredFloor": 6,
+      "candidateCount": 9,
+      "admission": "ADMIT",
+      "senseCount": 1,
+      "preferredTarget": "return to the root and source",
+      "alternateTargets": [
+        "return to the original source"
+      ],
+      "semanticRuling": "The Chan uses name a return to what is treated as root, origin, or source. Some speakers prescribe it; Nanquan rejects having once been told to do it; oxherding verses call even this return effort or error. Those changes of evaluation are rhetorical polarity within one sense, not separate referents.",
+      "scopeLimit": "Do not make the phrase an automatically approved attainment. The strongest sources explicitly criticize 返本還源 as already expending effort or as itself mistaken.",
+      "retainedFamilies": [
+        {
+          "relPath": "X/X64/X64n1269.xml",
+          "fromLb": "0774c19",
+          "tier": 1,
+          "contextSha256": "a30aad0f3ae946670847b7c797f5406a236c26f728d4251b3af218b06cd9a434",
+          "masterName": "Kuoan Shiyuan",
+          "actorRole": "verse-author",
+          "familyId": "fanben:kuoan-oxherding-nine",
+          "deployment": "The ninth oxherding section says that returning to root and source has already expended effort.",
+          "decision": "RETAIN"
+        },
+        {
+          "relPath": "X/X72/X72n1442.xml",
+          "fromLb": "0694b08",
+          "tier": 1,
+          "contextSha256": "76f2c812ac721494e91e00164ca8fbf2e01e797238c91bec149745ddf486f191",
+          "masterName": "Weilin Daopei",
+          "actorRole": "verse-author",
+          "familyId": "fanben:weilin-return-home-critique",
+          "deployment": "Weilin's verse says that the business of returning to root and source is itself amiss.",
+          "decision": "RETAIN"
+        },
+        {
+          "relPath": "C/C077/C077n1710.xml",
+          "fromLb": "0694c08",
+          "tier": 2,
+          "contextSha256": "a6fef1d205d8ed26904bffd1695017b609187689a02b4e79aad54086d9b19341",
+          "masterName": "Nanquan Puyuan",
+          "actorRole": "utterer",
+          "familyId": "fanben:nanquan-rejected-instruction",
+          "deployment": "Nanquan recalls that being taught to return to root and source nearly led him into a disastrous understanding.",
+          "decision": "RETAIN"
+        },
+        {
+          "relPath": "J/J10/J10nA158.xml",
+          "fromLb": "0038a09",
+          "tier": 2,
+          "contextSha256": "f0d8448dd38e0e0e05a6157597754fa3b15b203d17069c65273fdadf0d326f84",
+          "masterName": "Miyun Yuanwu",
+          "actorRole": "teacher",
+          "familyId": "fanben:miyun-instruction",
+          "deployment": "In an instruction to Lin, Miyun says the ancestral coming from the west directly causes people to return to root and source.",
+          "decision": "RETAIN"
+        },
+        {
+          "relPath": "J/J25/J25nB171.xml",
+          "fromLb": "0580c14",
+          "tier": 2,
+          "contextSha256": "5e87deffbb6f01afac0226bff504791bba169403c590b1c04dc8faa5798e0e7f",
+          "masterName": "Tianyin Yuanxiu",
+          "actorRole": "teacher",
+          "familyId": "fanben:tianyin-lay-instruction",
+          "deployment": "Tianyin tells a lay recipient that the awakened one opened a direct path so people may return to root and source.",
+          "decision": "RETAIN"
+        },
+        {
+          "relPath": "J/J26/J26nB182.xml",
+          "fromLb": "0460a30",
+          "tier": 2,
+          "contextSha256": "a912553a007e3020253835f2f93c9b7f647451b50164d8ee752c3dfd7afa2b36",
+          "masterName": "Wanru Tongwei",
+          "actorRole": "utterer",
+          "familyId": "fanben:wanru-funeral-address",
+          "deployment": "Wanru says his direct indication lets one return to root and source and dispel illusory appearances.",
+          "decision": "RETAIN"
+        }
+      ],
+      "excludedOrReserve": [
+        {
+          "relPath": "J/J23/J23nB129.xml",
+          "fromLb": "0364b21",
+          "reason": "Recension of the ninth oxherding 返本還源 verse already represented by the Tier-1 Kuoan witness; same inherited family."
+        },
+        {
+          "relPath": "J/J26/J26nB188.xml",
+          "fromLb": "0779c26",
+          "exactActor": "Rujiu Ruibai Mingxue",
+          "reason": "Valid independent direct capping-verse use, retained only as reserve because six stronger families already meet the floor."
+        },
+        {
+          "relPath": "J/J27/J27nB196.xml",
+          "fromLb": "0389b11",
+          "exactActor": "inscription author in outer documentary prose",
+          "reason": "Here returning relics home is summarized as 返本還源. This is ordinary biographical/resultative prose, not evidence for a second Chan lexical job; exclude rather than create a singleton sense."
+        }
+      ],
+      "sourceHierarchy": "Two Tier-1 authored verse witnesses and four independent Tier-2 master-record families meet the floor. No lamp evidence is present or needed.",
+      "familyGate": "The X64 oxherding witness and J23 oxherding recension are one inherited family. Prescriptive and critical redeployments elsewhere are independent active families because each speaker applies the phrase in a new discourse.",
+      "actorGate": "Sense MasterName must be null. Every retained occurrence belongs to the named direct author or speaker. The J27 inscription voice must not be projected as the record master's Chan instruction.",
+      "verdict": "APPROVE_CONSTRUCTION",
+      "hardPass": true
+    }
+  ],
+  "overallVerdict": "APPROVE_BOTH_FOR_CONSTRUCTION",
+  "hardPass": true,
+  "publicMutation": false
+}

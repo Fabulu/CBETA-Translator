@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "r83-final-changed-coordinate-release.v1",
+  "cohort": "R83",
+  "id": "t_1c3869bb802d",
+  "term": "返本還源",
+  "priorClosurePath": "maintenance/non-iriya-v7-depth-regeneration-r83-final-release-closure-first-two-c.json",
+  "priorClosureSha256": "f7660821cbdf152c0c65f4588acee72f2366dea2e8708e21024c26330291db5f",
+  "productPath": "fresh-build/entries/t_1c3869bb802d/entry.v2.json",
+  "productSha256": "61ddda8521b35c4bd3083e41d96bff71c60b0314cccbb610f2737e8c5e5d5484",
+  "worksheetPath": "fresh-build/entries/t_1c3869bb802d/evidence.draft.json",
+  "worksheetSha256": "0494d2ee767afdb3c5204583a8f713c393b2541dc3043a445e84ef5e5824059c",
+  "compilerReportPath": "fresh-build/entries/t_1c3869bb802d/evidence-compile-report.json",
+  "compilerReportSha256": "57bed4ba1144508169473792f26bbdca58c46bb4a3d83c9eec1ced518809d262",
+  "workLedgerPath": "fresh-build/entries/t_1c3869bb802d/WORK.md",
+  "workLedgerSha256": "9621d19ebefc51f29d4eb0c2b6e0fa0ee13c80962952b9cf0cdf0b680ae1ee79",
+  "attributionAuditPath": "maintenance/non-iriya-v7-depth-regeneration-r83-attribution-t_1c3869bb802d-b.json",
+  "attributionAuditSha256": "9ba8146e163f8a7d5d5e50d623936e49a1ebc44f879bf90948d7a62151878db4",
+  "coordinateClosure": [
+    {
+      "coordinate": "Senses[0].Explanation",
+      "decision": "PASS",
+      "finding": "The stale Ruibai Mingxue clause is removed. Prose now names exactly the six retained actors and does not promote reserve evidence."
+    },
+    {
+      "coordinate": "X/X72/X72n1442 ContextMasters role",
+      "value": "verse-author",
+      "decision": "PASS"
+    },
+    {
+      "coordinate": "X/X64/X64n1269 ContextMasters role",
+      "value": "verse-author",
+      "decision": "PASS"
+    },
+    {
+      "coordinate": "Kuoan alias bridge",
+      "decision": "PASS",
+      "finding": "The Note and X64 AttributionNote explicitly state that roster label Liangshan Kuoan Ze corresponds to Kuoan Shiyuan, author of the retained oxherding verse, without adding unanchored Chinese."
+    }
+  ],
+  "worksheetParity": "PASS: Explanation, Note, both verse-author roles, and Kuoan alias bridge are mirrored in the worksheet.",
+  "compilerParity": "PASS: canonical compiler hardPass, zero errors, and exact worksheet/product hashes bound.",
+  "attributionGate": "PASS: 6 occurrences, 6 named occurrences, 6 English-first notes, 0 hard failures.",
+  "depthGate": "PASS: hardFailed=0; corrected complete-case bounds remain unchanged.",
+  "unrelatedDrift": "No unauthorized or release-blocking drift identified.",
+  "verdict": "APPROVE_RELEASE",
+  "hardPass": true,
+  "releaseAuthorized": true,
+  "publicMutation": false
+}

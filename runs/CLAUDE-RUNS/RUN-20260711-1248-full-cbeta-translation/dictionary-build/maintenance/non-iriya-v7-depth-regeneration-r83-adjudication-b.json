@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "non-iriya-v7-r83-adjudication.v1",
+  "cohort": "R83",
+  "sourceHierarchy": "Tier 1 authored sources first, then Tier 2 recorded sayings; no Tier 3 lamp is retained.",
+  "rows": [
+    {
+      "id": "t_1c2e34e1abb7",
+      "term": "雞鳴丑",
+      "preferredTarget": "cockcrow—the Chou hour",
+      "requiredFloor": 4,
+      "retained": [
+        "X/X87/X87n1624.xml",
+        "B/B25/B25n0145.xml",
+        "C/C077/C077n1710.xml",
+        "J/J24/J24nB137.xml"
+      ],
+      "ruling": "A conventional twelve-time-song heading marking the chou period at cockcrow; surrounding verses supply the occasion, not another lexical sense."
+    },
+    {
+      "id": "t_1c3869bb802d",
+      "term": "返本還源",
+      "preferredTarget": "return to the root and source",
+      "requiredFloor": 6,
+      "retained": [
+        "X/X64/X64n1269.xml",
+        "X/X72/X72n1442.xml",
+        "C/C077/C077n1710.xml",
+        "J/J10/J10nA158.xml",
+        "J/J25/J25nB171.xml",
+        "J/J26/J26nB182.xml"
+      ],
+      "ruling": "Return to one's source or original ground. Some records prescribe it and others criticize the very idea of a return; that contrast must remain visible."
+    },
+    {
+      "id": "t_1c7d25824f85",
+      "term": "本來面目",
+      "preferredTarget": "what one originally is",
+      "requiredFloor": 7,
+      "retained": [
+        "T/T48/T48n2016.xml",
+        "T/T48/T48n2020.xml",
+        "T/T48/T48n2021.xml",
+        "X/X63/X63n1259.xml",
+        "X/X65/X65n1289.xml",
+        "X/X69/X69n1357.xml",
+        "X/X73/X73n1457.xml",
+        "X/X78/X78n1554.xml",
+        "B/B25/B25n0145.xml"
+      ],
+      "excluded": [
+        {
+          "relPath": "J/J39/J39nB439.xml",
+          "reason": "Represented petitioner voice complicates actor assignment; unnecessary after nine exact-voice families."
+        }
+      ],
+      "ruling": "Translate as what one originally is. Original face appears only once, labeled as the literal/traditional calque; no passage requires it. Do not promote essence, parentage, or visual metaphor into the lexical meaning."
+    }
+  ],
+  "hardPass": true,
+  "independentReview": {
+    "path": "maintenance/non-iriya-v7-depth-regeneration-r83-source-review-benlaimianmu-r27.json",
+    "sha256": "0278ab53c9c5a3d2d6cee462bbe05f80d116cd9aaf7a18433132a771096edc00"
+  },
+  "firstTwoReview": {
+    "path": "maintenance/non-iriya-v7-depth-regeneration-r83-review-first-two-c.json",
+    "sha256": "e7f4dddb6caff30c99397147278b596394b3acbe270460b89c463512b83393db"
+  }
+}

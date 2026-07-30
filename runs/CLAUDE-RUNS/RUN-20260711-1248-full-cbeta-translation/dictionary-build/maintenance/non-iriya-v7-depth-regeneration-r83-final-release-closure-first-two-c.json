@@ -1,0 +1,80 @@
+{
+  "schemaVersion": "r83-final-release-closure.v1",
+  "cohort": "R83",
+  "supersedes": "maintenance/non-iriya-v7-depth-regeneration-r83-product-closure-first-two-c.json",
+  "sourceFirstReviewSha256": "e7f4dddb6caff30c99397147278b596394b3acbe270460b89c463512b83393db",
+  "depthCorrectionReceiptSha256": "0fae7379ec47edd3a183794e224f7df3cdb166bc3b690e4cd9f4788749d003f2",
+  "products": [
+    {
+      "id": "t_1c2e34e1abb7",
+      "term": "雞鳴丑",
+      "productSha256": "1b7aab4ff6a3a6ec04e80a5a00175950301a342260e87f98fd5fe0be7ee19164",
+      "worksheetSha256": "4de614bddc791507d2d2659f133745626c085c5d64c09c2ea905c9d218d2666c",
+      "compilerReportSha256": "40ac32797e4ca434eed758547a85638fcc9cfa9492d6a2f83a47670ec22ae75c",
+      "workLedgerSha256": "60e131b6fab0bc37827ed3718248c6dd64fb78627d41db10d4da0cc2f2887136",
+      "attributionAuditSha256": "ec1efb8caa4f27c147d0774cff1e6dd844edde9ded2176dd8698b84ba57d082c",
+      "ruling": {
+        "semanticsAndTargets": "PASS: one Twelve-Hours Song heading sense, with Chou treated as the time period.",
+        "families": "PASS: Zhongfeng, Ciming/Shishuang, Zhaozhou, and Huihong represent four approved independent families.",
+        "actors": "PASS: three linked exact speakers plus Juefan Huihong as identified-unlinked verse-author.",
+        "sourceHierarchy": "PASS: the authored Huihong witness and three recorded-sayings families; no lamps.",
+        "depth": "PASS: complete public KWIC bounds were reverified and expanded.",
+        "attribution": "PASS: 0 hard failures across four occurrences.",
+        "projection": "PASS: targets, prose, actors, sources, aliases, and related masters agree with the source-first ruling.",
+        "worksheetCompilerWork": "PASS: worksheet parity, canonical compiler hardPass, and WORK ledger present."
+      },
+      "defects": [],
+      "verdict": "APPROVE_RELEASE",
+      "hardPass": true,
+      "releaseAuthorized": true
+    },
+    {
+      "id": "t_1c3869bb802d",
+      "term": "返本還源",
+      "productSha256": "c0fd4856d3ecb81b6f021f45ecac0e5417e94614e3d450bedf805118caa7caa2",
+      "worksheetSha256": "08d07ad8c4da4c80d01ce019f19d1e493398f50c5d4b468d3c07cc40d20de426",
+      "compilerReportSha256": "325963f1fb287bb201bf0a7e73974c992de108914d8a92e6588fec5f6b044567",
+      "workLedgerSha256": "9621d19ebefc51f29d4eb0c2b6e0fa0ee13c80962952b9cf0cdf0b680ae1ee79",
+      "attributionAuditSha256": "9ba8146e163f8a7d5d5e50d623936e49a1ebc44f879bf90948d7a62151878db4",
+      "ruling": {
+        "semanticsAndTargets": "PASS: one return-to-root/source sense; critical and prescriptive judgments remain contextual polarity, not false sense splits.",
+        "families": "PASS: six approved coordinates and families project once each; oxherding duplicate, documentary relic-return, and reserve evidence remain absent.",
+        "actorIdentity": "PASS: all six exact actor identities are represented and attribution audit has 0 hard failures.",
+        "sourceHierarchy": "PASS: two authored Tier-1 sources plus four Tier-2 master records; no lamps.",
+        "depth": "PASS: complete public KWIC bounds were reverified and expanded.",
+        "worksheetCompilerWork": "PASS: worksheet parity, canonical compiler hardPass, and WORK ledger present."
+      },
+      "defects": [
+        {
+          "severity": "blocking",
+          "coordinate": "Senses[0].Explanation final clause",
+          "finding": "The prose still says 'Ruibai Mingxue places it in a poetic contrast', but Ruibai was a reserve and is absent from the six retained occurrences, SourceTexts, and RelatedMasters.",
+          "requiredRepair": "Delete the Ruibai clause. Do not add reserve evidence to justify stale prose."
+        },
+        {
+          "severity": "blocking",
+          "coordinate": "X/X72/X72n1442 and X/X64/X64n1269 ContextMasters roles; mirrored worksheet metadata",
+          "finding": "The two Tier-1 authored poems are still labeled generic utterer instead of the reviewed role verse-author, obscuring the authored-source layer.",
+          "requiredRepair": "Change both ContextMasters roles to verse-author and mirror the role in worksheet actor metadata."
+        },
+        {
+          "severity": "blocking",
+          "coordinate": "Explanation Kuoan name and X/X64 attribution metadata",
+          "finding": "Reader prose calls the author Kuoan Shiyuan while linked metadata calls the same roster node Liangshan Kuoan Ze, with no alias explanation. The roster itself records 梁山廓庵師遠 and notes that 'Ze' is a mis-parse.",
+          "requiredRepair": "Retain the read-only roster-linked MasterName, but explicitly identify it as the roster label for Kuoan Shiyuan (梁山廓庵師遠) in the AttributionNote so the product does not appear to name two actors."
+        }
+      ],
+      "verdict": "DENY_BOUNDED_SOURCE_FIRST_REPAIR",
+      "hardPass": false,
+      "releaseAuthorized": false
+    }
+  ],
+  "overallVerdict": "PARTIAL_RELEASE_ONLY",
+  "releaseAuthorizedIds": [
+    "t_1c2e34e1abb7"
+  ],
+  "deniedIds": [
+    "t_1c3869bb802d"
+  ],
+  "publicMutation": false
+}

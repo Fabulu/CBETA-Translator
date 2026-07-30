@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "r83-final-release-authority.v1",
+  "cohort": "R83",
+  "verdict": "RELEASE_AUTHORIZED_AND_PUBLISHED",
+  "replacements": [
+    {"id":"t_1c2e34e1abb7","term":"雞鳴丑","productSha256":"1b7aab4ff6a3a6ec04e80a5a00175950301a342260e87f98fd5fe0be7ee19164","reviewSha256":"f7660821cbdf152c0c65f4588acee72f2366dea2e8708e21024c26330291db5f"},
+    {"id":"t_1c3869bb802d","term":"返本還源","productSha256":"61ddda8521b35c4bd3083e41d96bff71c60b0314cccbb610f2737e8c5e5d5484","reviewSha256":"f9b148bd572009d74bbcad1c0d662afc02a326e7b2e84108264e79aa7fc4711a"},
+    {"id":"t_1c7d25824f85","term":"本來面目","productSha256":"856bc57ea516076cd7e3c91a5687bf5e04dc921f7c522532f32c3ac1ab9da861","reviewSha256":"70fbee0fca45456182de32c9f94708a4a0cbca7c6f4979ba4a952bc563c2365d"}
+  ],
+  "review": {
+    "retainedEvidence": "19 quotations across 19 reviewed families",
+    "tierMix": "higher-tier evidence only; zero Tier-3 lamps",
+    "attributionAudit": "zero hard failures",
+    "depthSenseAudit": "three audited; zero hard failures",
+    "originalMeaningContract": "本來面目 prefers 'what one originally is'; the opaque calque occurs once only as a labeled literal/traditional alternate."
+  },
+  "publicIntegrity": {
+    "entryCount": 4714,
+    "exactProductParity": "3/3",
+    "publicCommit": "d77da156464b95e456cffe6cbfadcb396ce9ea9b",
+    "headEqualsOriginMain": true,
+    "hardPass": true
+  },
+  "publicationTiming": {
+    "publicationDeadlineEpoch": 1785407139.772898,
+    "atomicInstallEpoch": 1785407456,
+    "atomicInstallLatenessSeconds": 316.227102,
+    "publicCommitEpoch": 1785407535,
+    "publicCommitLatenessSeconds": 395.227102,
+    "deadlineHardPass": false,
+    "latePublicationDisclosed": true,
+    "cause": "Mandatory prewrite, depth, attribution, and public semantic-regression gates exposed construction defects and a contradictory public integrity assertion; correctness was preserved and the release was delayed."
+  },
+  "releaseAuthorized": true,
+  "published": true,
+  "hardPass": true
+}
