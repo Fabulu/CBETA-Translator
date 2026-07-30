@@ -1,0 +1,432 @@
+{
+  "SchemaVersion": 1,
+  "ConstructionPipelineVersion": 2,
+  "Admission": {
+    "Decision": "admit",
+    "LexicalUnitReason": "死句 is a stable expression with repeated active Chan deployments.",
+    "ObservableChanJob": "死句 means dead phrase.",
+    "DuplicateCheck": {
+      "DeterministicIdChecked": true,
+      "ExactHeadwordChecked": true,
+      "NearDuplicateRuling": "死句 was checked against the installed dictionary; no exact or punctuation-normalized collision is admitted."
+    }
+  },
+  "EvidenceTransport": {
+    "DossierPath": "source-dossier.json",
+    "DossierSha256": "6c41f591d9b80e8c0d864a0a188e76ed55074f1262cb8806f25af924ad2fcc90",
+    "SourceAuthorityManifestSha256": "2ee44bf19a2533958e5620c38915f3d03fbb81209c76c7183742a4f3d059f501",
+    "DiscoveryMethods": [
+      "exact concordance count",
+      "complete-turn actor review",
+      "Tier 1 then Tier 2 source ranking",
+      "predecessor-evidence adjudication"
+    ],
+    "ExactCount": 442,
+    "BridgedCount": 442,
+    "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+  },
+  "Entry": {
+    "Id": "t_207efae5f6bd",
+    "SourceTerm": "死句",
+    "CreatedBy": "R90 source-hierarchy repair",
+    "WrittenUtc": "2026-07-30T10:38:00Z",
+    "Senses": [
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "dead phrase",
+        "AlternateTargets": [
+          "dead saying"
+        ],
+        "SearchAliases": [
+          "dead sentence"
+        ],
+        "Status": "preferred",
+        "Validation": "multi-source",
+        "Explanation": "A phrase treated through verbal formulation, explanation, thought, or discrimination, conventionally contrasted with a living phrase. Four authored sources and two recorded-sayings sources define, contrast, or apply the dead phrase. They also warn that use depends on the person: a dead phrase can be used alive and a living phrase can be used dead.",
+        "Note": "The contrast with a living phrase is stable, but the label is not an intrinsic property of a string of words. These are deployments of one contrastive sense, not separate senses.",
+        "Occurrences": [
+          {
+            "RelPath": "X/X63/X63n1255.xml",
+            "FromLb": "0738b20",
+            "ToLb": "0738b24",
+            "Kwic": "據法離言，直指一念，見性成佛耳。放下教義者，以此明歷歷時，雲藏深谷，深密密處，日照晴空。大抵學者須參活句，莫參死句。活句下薦得，堪與佛祖為師。",
+            "MasterName": "Hyujeong",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Hyujeong",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (X/X63/X63n1255.xml). Chan Household’s Tortoise Mirror. Exact actor: Hyujeong. The complete source frame assigns the retained headword-bearing action to Hyujeong.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "死句",
+              "GrammaticalSubject": "Hyujeong",
+              "SpeechFrame": "Source record (X/X63/X63n1255.xml). Chan Household’s Tortoise Mirror. Exact actor: Hyujeong. The complete source frame assigns the retained headword-bearing action to Hyujeong.",
+              "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to Hyujeong."
+            }
+          },
+          {
+            "RelPath": "X/X69/X69n1357.xml",
+            "FromLb": "0453c15",
+            "ToLb": "0453c17",
+            "Kwic": "句須密傳授，不免只是話會，增長機路，去本分甚遠。所以道：醍醐上味，為世所珍，遇此等人，飜成毒藥。他參活句，不參死句。活句下薦得，永劫不忘；",
+            "MasterName": "Yuanwu Keqin",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Yuanwu Keqin",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (X/X69/X69n1357.xml). Essentials of the Mind by Chan Master Foguо Keqin. Exact actor: Yuanwu Keqin. The complete source frame assigns the retained headword-bearing action to Yuanwu Keqin.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "死句",
+              "GrammaticalSubject": "Yuanwu Keqin",
+              "SpeechFrame": "Source record (X/X69/X69n1357.xml). Essentials of the Mind by Chan Master Foguо Keqin. Exact actor: Yuanwu Keqin. The complete source frame assigns the retained headword-bearing action to Yuanwu Keqin.",
+              "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to Yuanwu Keqin."
+            }
+          },
+          {
+            "RelPath": "X/X73/X73n1457.xml",
+            "FromLb": "0864c02",
+            "ToLb": "0864c02",
+            "Kwic": "答曰：古人雖有死句、活句之分",
+            "MasterName": null,
+            "Curated": true,
+            "ContextMasters": [],
+            "ContextActors": [],
+            "AttributionNote": "Source record (X/X73/X73n1457.xml). Zongmen Challenges by Chan Master Yunmen Mailanghuai. Action performer: Mailang Huai. The complete source frame assigns the retained headword-bearing action to Mailang Huai.",
+            "ActorAttribution": {
+              "Status": "identified-unlinked-master",
+              "Kind": "Chan master",
+              "ActorLabel": "Mailang Huai",
+              "ActorRole": "utterer",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "答曰 introduces Mailang Huai's answer after the anonymous question; the headword occurs in that answer.",
+              "ReviewedBy": "R90 frozen source-first adjudication",
+              "ReviewedUtc": "2026-07-30T13:03:00Z",
+              "AuthoredVoiceRiskReviewed": true
+            },
+            "DraftActorProof": {
+              "ExactHeadwordClause": "死句",
+              "GrammaticalSubject": "Mailang Huai",
+              "SpeechFrame": "答曰 introduces Mailang Huai's answer after the anonymous question; the headword occurs in that answer.",
+              "FullCaseDecision": "答曰 introduces Mailang Huai's answer after the anonymous question; the headword occurs in that answer."
+            }
+          },
+          {
+            "RelPath": "X/X87/X87n1624.xml",
+            "FromLb": "0251b12",
+            "ToLb": "0251b17",
+            "Kwic": "塘受法。予建中靖國之初，故人處獲洞山初禪師語一編，福嚴良雅所集。其語言宏妙，真法窟爪牙。大略曰：語中有語，名為死句；語中無語，名為活句。未達其源者，落在第八魔界中。又曰：言無展事，語不投機。乘言者喪，滯句者迷。於此四句語中見",
+            "MasterName": "Dongshan Shouchu",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Dongshan Shouchu",
+                "Roles": [
+                  "utterer",
+                  "case-figure"
+                ]
+              }
+            ],
+            "ContextActors": [
+              {
+                "Status": "identified-unlinked-master",
+                "ActorLabel": "Huihong",
+                "Roles": [
+                  "later-quoter",
+                  "record-owner"
+                ],
+                "GrammarEvidence": "予 introduces Huihong's narration; 大略曰 presents Dongshan Shouchu's quoted definition."
+              }
+            ],
+            "AttributionNote": "Source record (X/X87/X87n1624.xml). Forest Notes. Exact actor: Dongshan Shouchu. The complete source frame assigns the retained headword-bearing action to Dongshan Shouchu. Huihong is the identified later quoter and record owner.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "死句",
+              "GrammaticalSubject": "Dongshan Shouchu",
+              "SpeechFrame": "Source record (X/X87/X87n1624.xml). Forest Notes. Exact actor: Dongshan Shouchu. The complete source frame assigns the retained headword-bearing action to Dongshan Shouchu. Huihong is the identified later quoter and record owner.",
+              "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to Dongshan Shouchu."
+            }
+          },
+          {
+            "RelPath": "B/B27/B27n0152.xml",
+            "FromLb": "0594a02",
+            "ToLb": "0594a08",
+            "Kwic": "為甚道得也打道不得也打僧無語師云何不道學人爭敢見大人過眾僧叅師問髑髏粉碎時如何一僧云大地血淋淋師云老大年紀說出死句一僧云腦後眉毛透梵天師云別道將來進云禮拜有分師云未喫得棒在一僧云山河大地一口吞卻師打云爭奈拄杖子何僧無語師云學",
+            "MasterName": "Yulin Tongxiu",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Yulin Tongxiu",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (B/B27/B27n0152.xml). Recorded Sayings of National Master Puji Yulin. Exact actor: Yulin Tongxiu. The complete source frame assigns the retained headword-bearing action to Yulin Tongxiu.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "死句",
+              "GrammaticalSubject": "Yulin Tongxiu",
+              "SpeechFrame": "Source record (B/B27/B27n0152.xml). Recorded Sayings of National Master Puji Yulin. Exact actor: Yulin Tongxiu. The complete source frame assigns the retained headword-bearing action to Yulin Tongxiu.",
+              "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to Yulin Tongxiu."
+            }
+          },
+          {
+            "RelPath": "C/C077/C077n1710.xml",
+            "FromLb": "0817c14",
+            "ToLb": "0817c20",
+            "Kwic": "隊死漢師云移身不移步怎生是一箇活漢師云萬機俱不到後生兄弟初秋夏末何不哮吼一聲壁立千仞令我知道你是箇人向活中明取死句死中明取活句若不然者求生不得生求死不得死喫辛苦也直須哮吼一聲下座。上堂僧問道在慵開口詩成自點頭時如何師點頭數下",
+            "MasterName": "Foyan Qingyuan",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Foyan Qingyuan",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (C/C077/C077n1710.xml). Recorded Sayings of Ancient Venerable Masters. Exact actor: Foyan Qingyuan. The complete source frame assigns the retained headword-bearing action to Foyan Qingyuan.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "死句",
+              "GrammaticalSubject": "Foyan Qingyuan",
+              "SpeechFrame": "Source record (C/C077/C077n1710.xml). Recorded Sayings of Ancient Venerable Masters. Exact actor: Foyan Qingyuan. The complete source frame assigns the retained headword-bearing action to Foyan Qingyuan.",
+              "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to Foyan Qingyuan."
+            }
+          }
+        ],
+        "ClaimAnchors": [],
+        "SourceTexts": [
+          "X/X63/X63n1255.xml",
+          "X/X69/X69n1357.xml",
+          "X/X73/X73n1457.xml",
+          "X/X87/X87n1624.xml",
+          "B/B27/B27n0152.xml",
+          "C/C077/C077n1710.xml"
+        ],
+        "RelatedMasters": [
+          "Hyujeong",
+          "Yuanwu Keqin",
+          "Dongshan Shouchu",
+          "Yulin Tongxiu",
+          "Foyan Qingyuan"
+        ],
+        "RelatedTerms": [],
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "A phrase treated through verbal formulation, explanation, thought, or discrimination, conventionally contrasted with a living phrase.",
+          "EvidenceBody": [
+            "Four authored sources and two recorded-sayings sources define, contrast, or apply the dead phrase. They also warn that use depends on the person: a dead phrase can be used alive and a living phrase can be used dead."
+          ]
+        },
+        "DraftEvidence": {
+          "LiteralGraphFloor": "dead phrase",
+          "LexicalJob": "死句 means dead phrase.",
+          "DeploymentClasses": [
+            "authored verse",
+            "direct instruction"
+          ],
+          "HighValueEvidenceLedger": [
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to Hyujeong.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to Yuanwu Keqin.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to Mailang Huai.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to Dongshan Shouchu.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to Yulin Tongxiu.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to Foyan Qingyuan.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            }
+          ],
+          "OpeningClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3",
+            "o4",
+            "o5",
+            "o6"
+          ],
+          "EvidenceBodyClaimKeys": [
+            [
+              "o1",
+              "o2",
+              "o3",
+              "o4",
+              "o5",
+              "o6"
+            ]
+          ],
+          "ZenBend": "A phrase treated through verbal formulation, explanation, thought, or discrimination, conventionally contrasted with a living phrase.",
+          "CounterexampleOrLimit": "The contrast with a living phrase is stable, but the label is not an intrinsic property of a string of words. These are deployments of one contrastive sense, not separate senses.",
+          "DifferentThingTest": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "dead phrase"
+            ],
+            "Reason": "One lexical job."
+          },
+          "AliasRationale": "Alternates preserve the same lexical job.",
+          "ModifierControls": [
+            {
+              "Term": "死句",
+              "Finding": "No modifier creates a second referent."
+            }
+          ],
+          "FamilyControls": [
+            {
+              "Term": "死句",
+              "Finding": "6 independent higher-tier families meet the floor."
+            }
+          ],
+          "IndependentWorkIds": [
+            "work:X63n1255",
+            "work:X69n1357",
+            "work:X73n1457",
+            "chan:huihong-linjian-lu",
+            "work:B27n0152",
+            "work:guzunsu-yulu"
+          ],
+          "SourceAuthorityRows": [
+            {
+              "EvidenceKey": "o1",
+              "RelPath": "X/X63/X63n1255.xml",
+              "WorkId": "work:X63n1255",
+              "Tier": 1,
+              "SourceClass": "master-authored",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "dead-phrase:hyujeong-authored",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o2",
+              "RelPath": "X/X69/X69n1357.xml",
+              "WorkId": "work:X69n1357",
+              "Tier": 1,
+              "SourceClass": "master-authored",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "dead-phrase:yuanwu-authored",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o3",
+              "RelPath": "X/X73/X73n1457.xml",
+              "WorkId": "work:X73n1457",
+              "Tier": 1,
+              "SourceClass": "master-authored",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "dead-phrase:mailang-definition",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o4",
+              "RelPath": "X/X87/X87n1624.xml",
+              "WorkId": "chan:huihong-linjian-lu",
+              "Tier": 1,
+              "SourceClass": "master-authored",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "dead-phrase:dongshan-quoted-definition",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o5",
+              "RelPath": "B/B27/B27n0152.xml",
+              "WorkId": "work:B27n0152",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "dead-phrase:yulin-appraisal",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o6",
+              "RelPath": "C/C077/C077n1710.xml",
+              "WorkId": "work:guzunsu-yulu",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "dead-phrase:foyan-instruction",
+              "DeploymentRole": "original-use"
+            }
+          ],
+          "LampExcessJustification": "No Tier-3 lamp retained.",
+          "NoHigherWitnessSearchReceipt": "Tier 1 searched first, then Tier 2; no lamp needed.",
+          "DepthHarvestReceipt": {
+            "Complete": true,
+            "ReviewedExactHitCount": 442,
+            "AvailableSourceFiles": 131,
+            "SearchedDeploymentClasses": [
+              "authored verse",
+              "direct instruction"
+            ],
+            "OmissionAudit": [
+              "6 retained cases actor-adjudicated.",
+              "No lamp retained."
+            ]
+          }
+        },
+        "DraftAcceptedDerivedFields": {
+          "SourceTexts": [
+            "X/X63/X63n1255.xml",
+            "X/X69/X69n1357.xml",
+            "X/X73/X73n1457.xml",
+            "X/X87/X87n1624.xml",
+            "B/B27/B27n0152.xml",
+            "C/C077/C077n1710.xml"
+          ],
+          "RelatedMasters": [
+            "Hyujeong",
+            "Yuanwu Keqin",
+            "Dongshan Shouchu",
+            "Yulin Tongxiu",
+            "Foyan Qingyuan"
+          ]
+        }
+      }
+    ],
+    "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+  },
+  "FamilyHarvest": {
+    "PolicyVersion": 1,
+    "Scope": "R90 source-hierarchy repair",
+    "Edges": [],
+    "NegativeReceipt": [],
+    "GraphicVariants": []
+  }
+}

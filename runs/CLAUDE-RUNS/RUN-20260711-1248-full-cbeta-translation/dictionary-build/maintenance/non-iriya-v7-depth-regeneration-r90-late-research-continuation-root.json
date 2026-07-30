@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "r90-late-research-continuation.v1",
+  "cohort": "R90",
+  "hardPass": false,
+  "lateContinuationAuthorized": true,
+  "authorizedBy": "root",
+  "authorization": "Continue research only from the exact frozen R90 extraction after the research watchdog failed closed at 158.175 seconds; preserve the original clock and do not rescan, add candidates, expand scope, or reset any deadline.",
+  "originalStartedEpoch": 1785416340.4584498,
+  "researchDeadlineSeconds": 120,
+  "observedElapsedSeconds": 158.175,
+  "ids": [
+    "t_207efae5f6bd",
+    "t_20d13943f1a6",
+    "t_20ff8118754b"
+  ],
+  "terms": [
+    "死句",
+    "兔子喫牛嬭",
+    "赤骨律"
+  ],
+  "scopeExpansionForbidden": true,
+  "deadlineResetForbidden": true,
+  "rescanForbidden": true,
+  "addedCandidatesForbidden": true,
+  "bindings": {
+    "timegate": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r90-timegate-b.json",
+      "sha256": "8f2458644512049b3cd4d8a14f07f1e72831f2f254770d7916545d763ab64cca"
+    },
+    "selection": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r90-selection-b.json",
+      "sha256": "a7051fedb4ffc29fa7d94b9b7f8361ef1172ccf83502116a6798ee448e51435a"
+    },
+    "extraction": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r90-extraction-output-b.json",
+      "sha256": "23c4cacd711c7a14c3018b0d61797e55b2708612448f4a2afdd3e4428d0eb1d5"
+    },
+    "researchSkeleton": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r90-research-skeleton-b.json",
+      "sha256": "5f9a09e74754b8cc0779956a6d505d914402408113356e1796c4061221b0efbd"
+    },
+    "failClosedReceipt": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r90-research-checkpoint-b.json.fail-closed.json",
+      "sha256": "18d62e2d5688284904f39d26fd0ee222f54cb556d68c4ab8a183da13db6b9c6e"
+    }
+  },
+  "publicMutationPerformed": false
+}

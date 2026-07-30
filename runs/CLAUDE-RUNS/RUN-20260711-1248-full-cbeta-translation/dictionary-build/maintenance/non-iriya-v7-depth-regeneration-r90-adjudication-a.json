@@ -1,0 +1,269 @@
+{
+  "schemaVersion": "r90-frozen-source-adjudication.v1",
+  "cohort": "R90",
+  "adjudicator": "r90_research_a",
+  "scope": [
+    {
+      "id": "t_207efae5f6bd",
+      "term": "死句"
+    }
+  ],
+  "bindings": {
+    "extraction": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r90-extraction-output-b.json",
+      "sha256": "23c4cacd711c7a14c3018b0d61797e55b2708612448f4a2afdd3e4428d0eb1d5"
+    },
+    "lateAuthority": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r90-late-research-continuation-root.json",
+      "sha256": "687ba96636357bc97e6bf07842f244f63967b47f4860625c955fce2a24c50a97",
+      "authorization": "same-scope read-only adjudication of the frozen extraction; no rescan, added candidates, scope expansion, or clock reset"
+    }
+  },
+  "sourceHierarchy": "Prefer proved Zen-master-authored texts, then recorded sayings; use lamps only when the stronger frozen evidence cannot support the entry.",
+  "rows": [
+    {
+      "id": "t_207efae5f6bd",
+      "term": "死句",
+      "requiredFloor": 6,
+      "preferredTarget": "dead phrase",
+      "alternateTargets": [
+        "dead saying"
+      ],
+      "searchAliases": [
+        "dead sentence"
+      ],
+      "literalFloor": "死 is dead; 句 is a phrase, saying, or sentence.",
+      "senseRuling": "One corpus-wide contrastive sense. A dead phrase is a phrase treated through verbal formulation, a rational path, explanation, thought, or discrimination, in contrast with a living phrase. The sources also say that the use depends on the person: a dead phrase can be used alive and a living phrase can be used dead. Those are contrasting deployments of one referent, not separate senses.",
+      "validationRuling": "multi-source",
+      "retained": [
+        {
+          "candidateRow": 1,
+          "relPath": "X/X63/X63n1255.xml",
+          "fromLb": "0738b23",
+          "toLb": "0738b23",
+          "workId": "work:X63n1255",
+          "tier": 1,
+          "sourceTitle": "Chan Household’s Tortoise Mirror",
+          "exactActor": "Hyujeong",
+          "actorStatus": "roster-linked-master",
+          "contextMasters": [
+            {
+              "name": "Hyujeong",
+              "roles": [
+                "utterer",
+                "record-owner"
+              ]
+            }
+          ],
+          "deploymentFamily": "Hyujeong's authored living-phrase/dead-phrase instruction",
+          "deployment": "Hyujeong says to investigate a living phrase rather than a dead phrase, contrasts what follows from recognizing each, and explicitly associates the dead phrase with a route through meaning, words, hearing, explanation, and thought.",
+          "actorProof": "The headword occurs in the sustained authorial exposition of Chan Household’s Tortoise Mirror; the title and authored-work registry identify Hyujeong as the author and utterer."
+        },
+        {
+          "candidateRow": 3,
+          "relPath": "X/X69/X69n1357.xml",
+          "fromLb": "0453c17",
+          "toLb": "0453c17",
+          "workId": "work:X69n1357",
+          "tier": 1,
+          "sourceTitle": "Essentials of the Mind by Chan Master Foguо Keqin",
+          "exactActor": "Yuanwu Keqin",
+          "actorStatus": "roster-linked-master",
+          "contextMasters": [
+            {
+              "name": "Yuanwu Keqin",
+              "roles": [
+                "utterer",
+                "record-owner"
+              ]
+            }
+          ],
+          "deploymentFamily": "Yuanwu Keqin's authored living-phrase/dead-phrase instruction",
+          "deployment": "Yuanwu says to investigate the living phrase rather than the dead phrase, says recognition under the dead phrase does not suffice for self-rescue, and places the contrast inside his treatment of the Deshan last-phrase case.",
+          "actorProof": "The headword occurs in Yuanwu Keqin's own written instruction in Essentials of the Mind; the frozen registry identifies the work as his authored letters and instructions."
+        },
+        {
+          "candidateRow": 5,
+          "relPath": "X/X73/X73n1457.xml",
+          "fromLb": "0864c01",
+          "toLb": "0864c01",
+          "workId": "work:X73n1457",
+          "tier": 1,
+          "sourceTitle": "Zongmen Challenges by Chan Master Yunmen Mailanghuai",
+          "exactActor": null,
+          "actorStatus": "identified-unlinked-master",
+          "actorLabel": "Mailang Huai, the answering master named in the title",
+          "actorRole": "utterer",
+          "contextActors": [
+            {
+              "status": "identified-unlinked-master",
+              "label": "Mailang Huai",
+              "roles": [
+                "utterer",
+                "respondent",
+                "record-owner"
+              ],
+              "grammarEvidence": "After 問曰 introduces an anonymous question, 答曰 introduces Mailang Huai's sustained answer. The retained headword is in the answer's explicit formulations: 將死句作活句用, 用死句, and 謂之死句."
+            }
+          ],
+          "deploymentFamily": "Mailang Huai's authored explicit definition",
+          "deployment": "Mailang Huai says the use lies in the person rather than intrinsically in the phrase, that a wise person can use a dead phrase alive and a foolish person can use a living phrase dead, and defines a dead phrase as one that falls into verbal explication, a rational route, thought, and discrimination.",
+          "actorProof": "The title names Yunmen Mailanghuai as the master responsible for the authored challenges. The grammar assigns the retained defining uses to the answer introduced by 答曰, not to the anonymous question introduced by 問曰. The canonical roster has no exact Mailang Huai link label, so MasterName must remain null."
+        },
+        {
+          "candidateRow": 6,
+          "relPath": "X/X87/X87n1624.xml",
+          "fromLb": "0251b15",
+          "toLb": "0251b15",
+          "workId": "chan:huihong-linjian-lu",
+          "tier": 1,
+          "sourceTitle": "Forest Notes",
+          "exactActor": "Dongshan Shouchu",
+          "actorStatus": "roster-linked-master",
+          "contextMasters": [
+            {
+              "name": "Dongshan Shouchu",
+              "roles": [
+                "utterer",
+                "case-figure"
+              ]
+            }
+          ],
+          "contextActors": [
+            {
+              "status": "identified-unlinked-master",
+              "label": "Huihong",
+              "roles": [
+                "later-quoter",
+                "record-owner"
+              ],
+              "grammarEvidence": "予 introduces Huihong's first-person narration; 大略曰 then presents the words of 洞山初禪師 from the collected sayings attributed to him."
+            }
+          ],
+          "deploymentFamily": "Dongshan Shouchu's quoted explicit definition in Huihong's authored notes",
+          "deployment": "Dongshan Shouchu defines 'speech containing speech' as a dead phrase and 'speech without speech' as a living phrase, then warns against riding words and being stuck in phrases.",
+          "actorProof": "Huihong says he obtained a collection of Dongshan Shouchu's sayings and introduces its substance with 大略曰. The exact headword-bearing definition is Dongshan Shouchu's quoted speech; Huihong is the later quoter, not the utterer."
+        },
+        {
+          "candidateRow": 8,
+          "relPath": "B/B27/B27n0152.xml",
+          "fromLb": "0594a05",
+          "toLb": "0594a05",
+          "workId": "work:B27n0152",
+          "tier": 2,
+          "sourceTitle": "Recorded Sayings of National Master Puji Yulin",
+          "exactActor": "Yulin Tongxiu",
+          "actorStatus": "roster-linked-master",
+          "contextMasters": [
+            {
+              "name": "Yulin Tongxiu",
+              "roles": [
+                "utterer",
+                "respondent",
+                "record-owner"
+              ]
+            }
+          ],
+          "deploymentFamily": "Yulin Tongxiu's public appraisal of a monk's answer",
+          "deployment": "When a monk answers that the earth runs with blood when the skull is shattered, Yulin appraises it as speaking a dead phrase.",
+          "actorProof": "一僧云 marks the monk's answer; the following 師云 introduces Yulin Tongxiu's appraisal 老大年紀說出死句. The headword is therefore uttered by Yulin, not by the monk."
+        },
+        {
+          "candidateRow": 9,
+          "relPath": "C/C077/C077n1710.xml",
+          "fromLb": "0817c17",
+          "toLb": "0817c17",
+          "workId": "work:guzunsu-yulu",
+          "tier": 2,
+          "sourceTitle": "Recorded Sayings of Ancient Venerable Masters",
+          "exactActor": "Foyan Qingyuan",
+          "actorStatus": "roster-linked-master",
+          "contextMasters": [
+            {
+              "name": "Foyan Qingyuan",
+              "roles": [
+                "utterer",
+                "record-owner",
+                "section-subject"
+              ]
+            }
+          ],
+          "deploymentFamily": "Foyan Qingyuan's direct hall instruction",
+          "deployment": "Foyan tells the assembly to discern the dead phrase within the living and the living phrase within the dead, preserving the contrast while refusing a rigid division.",
+          "actorProof": "The occurrence is in the level-one 龍門佛眼禪師語錄 section, which identifies 佛眼清遠禪師. The headword occurs in his uninterrupted hall address after 師云; Foyan Qingyuan is the utterer."
+        }
+      ],
+      "excluded": [
+        {
+          "candidateRow": 2,
+          "relPath": "X/X63/X63n1257.xml",
+          "reason": "The occurrence is in Liu Chongqing's lay preface and is his literary statement that the book contains a phrase that brings people alive within a dead phrase. It is not a direct Zen-master deployment and is unnecessary once six stronger actor-clear families survive."
+        },
+        {
+          "candidateRow": 4,
+          "relPath": "X/X72/X72n1442.xml",
+          "reason": "Weilin Daopei quotes layman Shen Bushi's self-preface. The passage usefully says that living, dead, living-within-dead, and dead-within-living all depend on the same phrase, but the exact headword actor is the quoted layman and the stronger retained master evidence already establishes this deployment."
+        },
+        {
+          "candidateRow": 7,
+          "relPath": "B/B25/B25n0145.xml",
+          "reason": "The headword first appears in an unnamed interlocutor's question to Zhongfeng Mingben. Zhongfeng's reply discusses the living/dead-phrase framework only indirectly and argues against treating it as a learnable fixed method. This is a usable reserve, but its exact-turn and lexical evidence are weaker than the six retained rows."
+        }
+      ],
+      "lampPolicy": {
+        "tier3Consulted": false,
+        "lampFallbackCount": 0,
+        "ruling": "The frozen Tier 1/2 candidates meet the floor with six independent, actor-clear deployment families; no lamp is needed."
+      },
+      "proseClaims": [
+        {
+          "claim": "The phrase is paired throughout these records with 'living phrase' and is not merely a literal sentence about death.",
+          "anchors": [
+            1,
+            3,
+            5,
+            6,
+            9
+          ]
+        },
+        {
+          "claim": "Hyujeong associates the dead phrase with a route through meaning, words, hearing, explanation, and thought.",
+          "anchors": [
+            1
+          ]
+        },
+        {
+          "claim": "Mailang Huai says its use depends on the person and defines the dead deployment through verbal explication, rational pathways, thought, and discrimination.",
+          "anchors": [
+            5
+          ]
+        },
+        {
+          "claim": "Dongshan Shouchu defines speech containing speech as a dead phrase.",
+          "anchors": [
+            6
+          ]
+        },
+        {
+          "claim": "Yulin uses the term as an appraisal of a monk's stock-sounding answer, while Foyan instructs the assembly to discern dead within living and living within dead.",
+          "anchors": [
+            8,
+            9
+          ]
+        }
+      ],
+      "failures": []
+    }
+  ],
+  "retainedTotals": {
+    "tier1": 4,
+    "tier2": 2,
+    "tier3": 0,
+    "occurrences": 6,
+    "works": 6
+  },
+  "scopeExpansionPerformed": false,
+  "rescanPerformed": false,
+  "lineageTouched": false,
+  "hardPass": true
+}

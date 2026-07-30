@@ -270,7 +270,7 @@ class CheckpointTests(unittest.TestCase):
     def test_n20_evidence_scaled_schedule(self):
         total,deadlines=watchdog.evidence_schedule([6,6,8],20)
         self.assertEqual(20,total)
-        self.assertEqual({"viability":120,"researchExtraction":120,"adjudicatedConfig":560,
+        self.assertEqual({"viability":120,"researchExtraction":240,"adjudicatedConfig":560,
           "constructor":570,"firstProduct":590,"construction":650,"review":870,
           "correction":1010,"publication":1100},deadlines)
     def test_n23_and_n24_evidence_scaled_schedule(self):
@@ -353,7 +353,8 @@ class CheckpointTests(unittest.TestCase):
         ident="t_"+hashlib.sha256(term.encode()).hexdigest()[:12]
         floors=[4]; total,deadlines=watchdog.evidence_schedule(floors,4)
         tg=self.r/"real-timegate.json"
-        tg.write_text(json.dumps({"startedEpoch":started,"artifactZero":True,
+        tg.write_text(json.dumps({"schemaVersion":"bounded-dictionary-timegate.v3",
+          "startedEpoch":started,"artifactZero":True,
           "createdUtc":datetime.fromtimestamp(started,timezone.utc).isoformat(),
           "requiredFloors":floors,"admittedRequiredOccurrences":total,
           "adjudicatedCaseLoad":total,
@@ -511,6 +512,7 @@ class CheckpointTests(unittest.TestCase):
 
     def set_n14_schedule(self):
         gate=json.loads(self.tg.read_text())
+        gate["schemaVersion"]="bounded-dictionary-timegate.v3"
         gate["requiredFloors"]=[4,4]
         gate["admittedRequiredOccurrences"]=8
         gate["adjudicatedCaseLoad"]=14

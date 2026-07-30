@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "r90-final-release-authority.v1",
+  "cohort": "R90",
+  "releaseAuthorized": true,
+  "rootDecision": "Authorize atomic installation and publication of the three exact independently reviewed R90 products. The retained evidence supports one sense per entry, exact actors passed review, and no lamp evidence is used.",
+  "products": [
+    {
+      "id": "t_207efae5f6bd",
+      "entrySha256": "ff178b1c66b3504b69f1b438d9d1be6ceaec96f19f6f4f40c12d7fcb7ef431fc"
+    },
+    {
+      "id": "t_20d13943f1a6",
+      "entrySha256": "9d1f8b558cc56aeac434edaa0698b49598512f7f5d8c849fe6ba301c84047f81"
+    },
+    {
+      "id": "t_20ff8118754b",
+      "entrySha256": "8feb285990392f17e98979b21afd6eca51993d8e154c3059885a66280d31e89f"
+    }
+  ],
+  "authorityBindings": {
+    "releaseBindings": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r90-release-authority-bindings-b.json",
+      "sha256": "0ff9a019466e35c937a57f31ad5ac7c51d1cd85650c636c568e9d100b534a029"
+    },
+    "independentReview": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r90-independent-review-b.json",
+      "sha256": "e0c63f3c8d3e95b79468376ab717860aa0585c3edd18c4650964ce552add6edc",
+      "hardPass": true
+    },
+    "attributionGate": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r90-attribution-final-d.json",
+      "sha256": "5ef8c208645ca68bca0045627094d16f6b9e9dabc3a16e004bf6d1d4d2fff950",
+      "hardFailures": 0
+    },
+    "depthGate": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r90-depth-final-d.json",
+      "sha256": "f9433977a1eab3eb05538aa72e90c4c327c40a60a6cbeda946f34b48b352ab8b",
+      "hardFailures": 0
+    }
+  },
+  "sourceHierarchy": {
+    "tier1": 5,
+    "tier2": 9,
+    "tier3Lamps": 0
+  },
+  "timingDisclosure": "R90 exceeded its original v2 research and construction deadlines. Same-scope continuations preserved the original clock, exact three-ID scope, and frozen evidence. The future v3 schedule now gives viability and sequential extraction separate bounded windows.",
+  "publicMutationBeforeAuthority": false
+}
