@@ -405,6 +405,29 @@ class CheckpointTests(unittest.TestCase):
           "--ids",*self.ids,"--terms",*self.terms)
         self.assertEqual(124,result.returncode)
 
+    def viability_at(self, elapsed, receipt_name):
+        selection=self.r/f"{receipt_name}-selection.json"
+        union=self.r/f"{receipt_name}-union.json"
+        count=self.r/f"{receipt_name}-count.json"
+        selection.write_text(json.dumps({"rows":[
+          {"id":i,"term":t,"requiredFloor":f}
+          for i,t,f in zip(self.ids,self.terms,self.floors)]}))
+        union.write_text(json.dumps({"ids":[]}))
+        count.write_text(json.dumps({"results":[
+          {"id":i,"term":t,"hits":1}
+          for i,t in zip(self.ids,self.terms)]}))
+        return self.call("viability","--timegate",self.tg,
+          "--receipt",self.r/f"{receipt_name}.json",
+          "--now-epoch",str(1000+elapsed),
+          "--selection",selection,"--union",union,"--count",count,
+          "--ids",*self.ids,"--terms",*self.terms)
+
+    def test_viability_uses_validated_120_second_schedule(self):
+        self.assertEqual(0,self.viability_at(100,"v100").returncode)
+        late=self.viability_at(121,"v121")
+        self.assertEqual(124,late.returncode)
+        self.assertIn("> 120s",late.stderr)
+
     def test_timegate_without_artifact_zero_rejected(self):
         self.tg.write_text(json.dumps({"startedEpoch":1000}))
         self.assertEqual(124,self.research_call().returncode)
@@ -472,5 +495,36 @@ class CheckpointTests(unittest.TestCase):
     def test_mismatched_closure_rejected(self): self.assertEqual(124,self.construction_call(mismatch=True).returncode)
     def test_late_construction_rejected(self): self.assertEqual(124,self.construction_call(now="1530.1").returncode)
     def test_valid_construction_passes(self): self.assertEqual(0,self.construction_call().returncode)
+
+    def set_n14_schedule(self):
+        gate=json.loads(self.tg.read_text())
+        gate["requiredFloors"]=[4,4]
+        gate["admittedRequiredOccurrences"]=8
+        gate["adjudicatedCaseLoad"]=14
+        gate["deadlinesSeconds"]=watchdog.evidence_schedule([4,4],14)[1]
+        self.floors=[4,4]; self.deadlines=gate["deadlinesSeconds"]
+        self.tg.write_text(json.dumps(gate)); os.utime(self.tg,(1000,1000))
+
+    def test_governed_n14_schedule_accepts_300_and_400_seconds(self):
+        self.set_n14_schedule()
+        engine=self.r/"n14-engine.py"; engine.write_text("pass\n")
+        config=self.full_config(engine)
+        product=self.r/"outputRoot"/self.ids[0]/"entry.v2.json"
+        product.parent.mkdir(parents=True); product.write_text(
+          json.dumps({"Id":self.ids[0],"SourceTerm":self.terms[0]}))
+        report=self.r/"n14-report.json"; report.write_text(
+          json.dumps({"hardPass":True,"outputSha256":sh(product)}))
+        first=self.call("first-product","--timegate",self.tg,
+          "--receipt",self.r/"n14-first.json","--now-epoch","1300",
+          "--product",product,"--compiler-report",report,"--config",config,
+          "--id",self.ids[0],"--term",self.terms[0],"--ids",*self.ids)
+        self.assertEqual(0,first.returncode,first.stderr)
+        self.assertEqual(0,self.construction_call(now="1400").returncode)
+
+    def test_governed_n14_schedule_rejects_true_overrun(self):
+        self.set_n14_schedule()
+        late=self.construction_call(now="1579")
+        self.assertEqual(124,late.returncode)
+        self.assertIn("> 578s",late.stderr)
 
 if __name__=="__main__": unittest.main()

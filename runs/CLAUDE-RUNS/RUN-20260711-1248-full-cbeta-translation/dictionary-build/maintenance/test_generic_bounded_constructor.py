@@ -12,7 +12,8 @@ from unittest.mock import patch
 
 from atomic_write import atomic_write_json
 from maintenance.generic_bounded_constructor import (
-    ActorClosureError, CompilerPrewriteError, run, verify_whole_config_preclosure,
+    ActorClosureError, CompilerPrewriteError, enforce_governed_deadline, run,
+    verify_whole_config_preclosure,
 )
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -26,6 +27,15 @@ def sha(path):
 
 
 class GenericBoundedConstructorIntegrationTest(unittest.TestCase):
+    def test_injected_now_governed_deadline_boundaries(self):
+        deadlines={"firstProduct":518,"construction":578}
+        enforce_governed_deadline(300,deadlines,"firstProduct")
+        enforce_governed_deadline(400,deadlines,"construction")
+        with self.assertRaisesRegex(TimeoutError,r"firstProduct late: 519\.000s > 518s"):
+            enforce_governed_deadline(519,deadlines,"firstProduct")
+        with self.assertRaisesRegex(TimeoutError,r"construction late: 579\.000s > 578s"):
+            enforce_governed_deadline(579,deadlines,"construction")
+
     def test_r58_config_only_payload_closes_before_authority(self):
         entries = []
         for identity in FIXTURE_IDS:
@@ -204,7 +214,10 @@ class GenericBoundedConstructorIntegrationTest(unittest.TestCase):
             audit = base / "commands.json"
             config_path = base / "config.json"
             wrapper = base / "constructor.py"
-            atomic_write_json(timegate, {"cohort": "FIXTURE", "startedEpoch": started})
+            atomic_write_json(timegate, {
+                "cohort": "FIXTURE", "startedEpoch": started,
+                "deadlinesSeconds": {"firstProduct": 518, "construction": 578},
+            })
             entries = []
             selection_rows = []
             research_rows = []
@@ -276,6 +289,12 @@ class GenericBoundedConstructorIntegrationTest(unittest.TestCase):
             self.assertTrue((base / "manifest.json").is_file())
             self.assertTrue((base / "closure.json").is_file())
             self.assertTrue(json.loads((base / "preclosure.json").read_text())["hardPass"])
+            self.assertEqual(
+                518, json.loads((base / "first.json").read_text())["deadlineSeconds"])
+            self.assertEqual(
+                578, json.loads((base / "manifest.json").read_text())["deadlineSeconds"])
+            self.assertEqual(
+                578, json.loads((base / "closure.json").read_text())["deadlineSeconds"])
             for identity in FIXTURE_IDS:
                 self.assertTrue((base / "output" / identity / "entry.v2.json").is_file())
 

@@ -122,6 +122,13 @@ def verify_authority(config_path: Path, config: dict[str, Any], allowed_root: Pa
         raise ValueError("startedEpoch does not match timegate/watchdog receipt")
     if receipt.get("schemaVersion") != "construction-start-receipt.v1":
         raise ValueError("invalid watchdog receipt schema")
+    deadlines = timegate.get("deadlinesSeconds")
+    if not isinstance(deadlines, dict) or \
+       (receipt.get("deadlinesSeconds") is not None and
+        receipt.get("deadlinesSeconds") != deadlines) or \
+       any(not isinstance(deadlines.get(key), (int, float))
+           for key in ("firstProduct", "construction")):
+        raise ValueError("watchdog/timegate governed deadline binding mismatch")
     command = [str(item) for item in receipt.get("command", [])]
     if str(config_path) not in command or str(allowed_root) not in command:
         raise ValueError("watchdog command is not bound to config and allowed root")
@@ -164,6 +171,7 @@ def verify_authority(config_path: Path, config: dict[str, Any], allowed_root: Pa
     researched = [row["id"] for row in research["rows"]]
     if selected != ids or researched != ids or receipt.get("ids") != ids:
         raise ValueError("selection/research/config/watchdog IDs are not exactly equal and ordered")
+    paths["governedDeadlines"] = deadlines
     return paths
 
 
@@ -221,6 +229,11 @@ def verify_whole_config_preclosure(config: dict[str, Any]) -> None:
     if errors:
         raise ValueError(f"whole-config prewrite preclosure failed: {errors}")
 
+def enforce_governed_deadline(elapsed: float, deadlines: dict[str, Any], phase: str) -> None:
+    deadline = float(deadlines[phase])
+    if elapsed > deadline:
+        raise TimeoutError(f"{phase} late: {elapsed:.3f}s > {deadline:g}s")
+
 
 def canonical_compile_prewrite(config: dict[str, Any]) -> dict[str, dict[str, Any]]:
     """Compile every worksheet in memory and collect every compiler error.
@@ -256,6 +269,8 @@ def run(config_path: Path, allowed_root: Path, now=time.time) -> dict[str, Any]:
     config_path.relative_to(allowed_root)
     config = read_json(config_path)
     paths = verify_authority(config_path, config, allowed_root)
+    deadlines = paths.pop("governedDeadlines", {
+        "firstProduct": float("inf"), "construction": float("inf")})
     # This must precede source checks, mkdir, dossier writes, and compilation:
     # one defective later entry may never leave an earlier partial product.
     verify_actor_closure(config)
@@ -302,13 +317,12 @@ def run(config_path: Path, allowed_root: Path, now=time.time) -> dict[str, Any]:
         })
         if ordinal == 1:
             elapsed = now() - started
-            if elapsed > 270:
-                raise TimeoutError(f"first product late: {elapsed:.3f}s > 270s")
+            enforce_governed_deadline(elapsed, deadlines, "firstProduct")
             atomic_write_json(paths["firstProductReceipt"], {
                 "schemaVersion": "generic-bounded-first-product.v1",
                 "cohort": config["cohort"], "startedEpoch": started,
                 "emittedEpoch": now(), "elapsedSeconds": elapsed,
-                "deadlineSeconds": 270, "id": entry["id"],
+                "deadlineSeconds": deadlines["firstProduct"], "id": entry["id"],
                 "productSha256": sha256(product_path), "hardPass": True,
             })
 
@@ -325,19 +339,18 @@ def run(config_path: Path, allowed_root: Path, now=time.time) -> dict[str, Any]:
     if errors:
         raise ValueError(f"preclosure failed: {errors}")
     elapsed = now() - started
-    if elapsed > 330:
-        raise TimeoutError(f"construction late: {elapsed:.3f}s > 330s")
+    enforce_governed_deadline(elapsed, deadlines, "construction")
     atomic_write_json(paths["manifest"], {
         "schemaVersion": "generic-bounded-construction.v1", "cohort": config["cohort"],
         "startedEpoch": started, "completedEpoch": now(), "elapsedSeconds": elapsed,
-        "deadlineSeconds": 330, "rows": results,
+        "deadlineSeconds": deadlines["construction"], "rows": results,
         "publicMutation": False, "rosterMutation": False,
     })
     atomic_write_json(paths["closure"], {
         "schemaVersion": "generic-bounded-closure.v1", "cohort": config["cohort"],
         "manifestSha256": sha256(paths["manifest"]),
         "preclosureSha256": sha256(paths["preclosure"]),
-        "elapsedSeconds": elapsed, "deadlineSeconds": 330, "hardPass": True,
+        "elapsedSeconds": elapsed, "deadlineSeconds": deadlines["construction"], "hardPass": True,
         "publicMutation": False, "rosterMutation": False,
         "closedUtc": datetime.now(timezone.utc).isoformat(),
     })

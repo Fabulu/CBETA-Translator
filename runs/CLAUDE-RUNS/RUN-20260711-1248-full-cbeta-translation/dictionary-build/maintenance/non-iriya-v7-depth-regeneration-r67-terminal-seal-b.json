@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "r67-terminal-seal.v1",
+  "cohort": "R67",
+  "terminalStatus": "VIABILITY_DEADLINE_FAIL_CLOSED",
+  "continuedWorkAuthorized": false,
+  "artifactZeroSha256": "4391faee7e386d2cc6b6a5aa98f5c6a0f1c8607183c04fddb96f056e98715b47",
+  "failClosedMarkerSha256": "0e09c30f4f52abee7266991c2324d544eb86ab796b180491ff9da8e53a13e911",
+  "failure": {
+    "phase": "viability",
+    "elapsedSeconds": 175.912,
+    "deadlineSeconds": 120,
+    "watchdogReportedLegacyDeadlineSeconds": 90,
+    "semanticResearchInvoked": false
+  },
+  "postFailureArtifacts": {
+    "extractionOutput": false,
+    "researchSkeleton": false,
+    "research": false,
+    "retainedSubset": false,
+    "config": false,
+    "constructorCheckpoint": false,
+    "firstProductReceipt": false,
+    "preclosure": false,
+    "constructionManifest": false,
+    "closure": false,
+    "publicMutation": false
+  },
+  "productsCreatedOrModifiedByR67": 0,
+  "publicArtifactsCreatedOrModifiedByR67": 0,
+  "hardPass": true,
+  "sealed": true
+}

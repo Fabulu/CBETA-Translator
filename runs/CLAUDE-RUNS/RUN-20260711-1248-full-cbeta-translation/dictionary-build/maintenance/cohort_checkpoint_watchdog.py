@@ -258,7 +258,7 @@ def viability(args):
         gate, started, _, elapsed, receipt_mtime = clock(args.timegate, args.now_epoch)
         floors, total, case_load, deadlines = governed_schedule(gate, args.ids)
         if elapsed > deadlines["viability"]:
-            raise ValueError(f"{elapsed:.3f}s > 90s")
+            raise ValueError(f"{elapsed:.3f}s > {deadlines['viability']}s")
         selection = post_receipt(args.selection, receipt_mtime, "selection")
         union = post_receipt(args.union, receipt_mtime, "union")
         count = post_receipt(args.count, receipt_mtime, "count")
@@ -295,7 +295,7 @@ def research(args):
         gate, started, now, elapsed, receipt_mtime = clock(args.timegate, args.now_epoch)
         floors, total, case_load, deadlines = governed_schedule(gate, args.ids)
         if elapsed > deadlines["researchExtraction"]:
-            raise ValueError(f"{elapsed:.3f}s > 120s")
+            raise ValueError(f"{elapsed:.3f}s > {deadlines['researchExtraction']}s")
         audit = post_receipt(args.command_audit, receipt_mtime, "command audit")
         wrapper = stable_tool(args.wrapper, args.authorized_wrapper_sha, "environment wrapper")
         extractor = stable_tool(args.extractor, args.authorized_extractor_sha, "research extractor")
