@@ -1,0 +1,70 @@
+{
+  "schemaVersion": "r93-correction3-independent-rereview.v1",
+  "cohort": "R93",
+  "reviewer": "Codex independent product rereview A",
+  "startedEpoch": 1785424146.688171,
+  "reviewedUtc": "2026-07-30T15:12:32Z",
+  "deadlineSeconds": 320,
+  "verdict": "PASS",
+  "boundProducts": [
+    {
+      "id": "t_2202e37854d4",
+      "term": "王老師",
+      "sha256": "d9526c89a20c626727e659b5991a669d4cf5d4a94f3fcea3a9e03431b96418a3"
+    },
+    {
+      "id": "t_2229af16905a",
+      "term": "威音王",
+      "sha256": "2b622c6abeff7930a30ac00bcc7851e7c19f69e5c0079c189af46acd9c1208b8"
+    },
+    {
+      "id": "t_222d636a08a9",
+      "term": "竪窮三際",
+      "sha256": "b2505b9e5b50814deaeb87b19b7fb8dae374a87d38fc43b96f64c43b7bbb198c"
+    }
+  ],
+  "constructionBindings": {
+    "manifestPath": "maintenance/non-iriya-v7-depth-regeneration-r93-correction3-construction-manifest-b.json",
+    "manifestSha256": "87a1e4b97377fc1410fe4e0b252cf047b75e9478d07afef619f75d2e90606533",
+    "closurePath": "maintenance/non-iriya-v7-depth-regeneration-r93-correction3-closure-b.json",
+    "closureSha256": "a19b90ae4b4bf4706ddc54c666d1f33452da317c0e955e87bda5b8feda32e0cf",
+    "hardPass": true,
+    "publicMutation": false,
+    "rosterMutation": false
+  },
+  "priorDefectResolution": [
+    {
+      "id": "t_2202e37854d4",
+      "defect": "B/B25/B25n0145.xml assigned Zhongfeng Mingben as the exact actor of Nanquan's quoted 王老師 sentence.",
+      "result": "RESOLVED",
+      "finding": "MasterName is now Nanquan Puyuan, matching 昔南泉謂。王老師修行無力。被鬼神覷破. Nanquan carries utterer; Zhongfeng remains later-quoter, commentator, and record-owner. The active Zhongfeng commentary family is conserved."
+    },
+    {
+      "id": "t_2229af16905a",
+      "defect": "Public prose called King Majestic Sound 'primordial' and called the retained non-temporal use 'direct-address'.",
+      "result": "RESOLVED",
+      "finding": "The explanation now says 'that named Buddha'. The note now says 'Direct reference or seeing', matching Gulin's 徹見威音王. Neither rejected formulation remains in the corrected product."
+    }
+  ],
+  "integrityReview": {
+    "productManifestParity": {
+      "result": "PASS",
+      "finding": "All three staged product hashes exactly match the correction3 manifest."
+    },
+    "supportArtifactParity": {
+      "result": "PASS",
+      "finding": "Every staged dossier, worksheet, and compile report exactly matches its manifest hash."
+    },
+    "closureParity": {
+      "result": "PASS",
+      "finding": "The correction3 closure binds the exact manifest hash, is hard-pass, and records no public or roster mutation."
+    },
+    "semanticConservation": {
+      "result": "PASS",
+      "finding": "王老師 remains one seven-occurrence Nanquan designation sense; 威音王 remains one seven-occurrence named-Buddha sense; 竪窮三際 remains byte-identical with one four-occurrence temporal-scope sense. All retain multi-source validation and no lamp evidence was introduced."
+    }
+  },
+  "unresolvedDefects": [],
+  "publicationAuthorized": true,
+  "productionDataModified": false
+}

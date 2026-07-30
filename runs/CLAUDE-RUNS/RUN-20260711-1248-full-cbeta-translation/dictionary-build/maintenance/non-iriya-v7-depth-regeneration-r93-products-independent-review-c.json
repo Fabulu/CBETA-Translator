@@ -1,0 +1,86 @@
+{
+  "schemaVersion": "r93-products-independent-review.v1",
+  "cohort": "R93",
+  "reviewer": "Codex independent product/source review C",
+  "startedEpoch": 1785422700.345525,
+  "reviewedUtc": "2026-07-30T14:55:00Z",
+  "verdict": "FAIL",
+  "boundProducts": [
+    {
+      "id": "t_2202e37854d4",
+      "term": "王老師",
+      "sha256": "a8bce44755ca5b5f2d025a89b3014cb3252d6659c68a5e8814bdbb78fded6356"
+    },
+    {
+      "id": "t_2229af16905a",
+      "term": "威音王",
+      "sha256": "736bfb4607ef9c257a78c37d3f56c04c903888743ec3b9c6d9f1341a73f9e40c"
+    },
+    {
+      "id": "t_222d636a08a9",
+      "term": "竪窮三際",
+      "sha256": "b2505b9e5b50814deaeb87b19b7fb8dae374a87d38fc43b96f64c43b7bbb198c"
+    }
+  ],
+  "constructionBindings": {
+    "manifestPath": "maintenance/non-iriya-v7-depth-regeneration-r93-construction-manifest-b.json",
+    "manifestSha256": "e3b5f5874506a12098b927c36a13b373be3b9d0fcff8c76cf10abeb497fa1d1c",
+    "closurePath": "maintenance/non-iriya-v7-depth-regeneration-r93-closure-b.json",
+    "closureSha256": "1211ca4357e57e9fabab32c3753f5077d8be06ccdb1fe17dc9f0331ba0182d85",
+    "hardPass": true,
+    "publicMutation": false,
+    "rosterMutation": false
+  },
+  "reviewCoordinates": {
+    "actorAttribution": {
+      "result": "PASS",
+      "finding": "All 18 public occurrences assign MasterName to the exact headword utterer or verse/commentary author. In the three embedded 王老師 quotations, Nanquan—not the later record owner—is correctly retained as the represented utterer."
+    },
+    "contextMasters": {
+      "result": "PASS",
+      "finding": "Every non-null MasterName has a same-person ContextMasters row with a canonical exact role. Later raisers, commentators, teachers, respondents, case figures, and persons discussed remain separately linked."
+    },
+    "rosterAndNonrosterHandling": {
+      "result": "PASS",
+      "finding": "Every linked identity used by the products resolves to the canonical lineage roster. No nonroster or anonymous actor branch is present, so no nonlinked identity is disguised as a roster link."
+    },
+    "sourceHierarchy": {
+      "result": "PASS",
+      "finding": "The retained mix is eight Tier-1 authored witnesses and ten Tier-2 recorded/commentarial witnesses, with zero Tier-3 lamps. Stronger evidence fills every floor without lamp padding."
+    },
+    "sourceFamilyIndependence": {
+      "result": "FAIL",
+      "finding": "The public evidence selections are substantively independent, but the bound 王老師 source-authority rows label three embedded quotations as original-use. Xisou, Yulin, and Miyun are independent only because their surrounding authored portrait, active raising/comment, and instruction actively redeploy Nanquan's inherited wording. The manifest must record those later-deployment roles instead of manufacturing three original uses."
+    },
+    "compilerParity": {
+      "result": "PASS",
+      "finding": "Independent --new-entry compilation into a temporary directory reproduced all three exact product hashes byte-for-byte."
+    },
+    "manifestAndClosureParity": {
+      "result": "PASS",
+      "finding": "The on-disk manifest and closure hashes match the supplied bindings; the manifest binds the observed products and closure binds that manifest."
+    }
+  },
+  "hardFailures": [
+    {
+      "kind": "deployment-role-misclassification",
+      "entry": "t_2202e37854d4",
+      "coordinates": [
+        "source-dossier.json sourceAuthorityManifest o3 X/X78/X78n1554.xml",
+        "source-dossier.json sourceAuthorityManifest o5 B/B27/B27n0152.xml",
+        "source-dossier.json sourceAuthorityManifest o7 J/J10/J10nA158.xml"
+      ],
+      "detail": "Each row says DeploymentRole original-use although the exact headword voice is Nanquan inside a later master's quotation. Their distinct family status is earned by active later redeployment, not by three new original uses."
+    }
+  ],
+  "boundedCorrection": [
+    "Change 王老師 o3, o5, and o7 DeploymentRole to an accepted later-raising, active-redeployment, or equivalent governed value matching their complete contexts.",
+    "Preserve the exact public actors: Nanquan remains the represented utterer; Xisou, Yulin, and Miyun remain contextual later deployers.",
+    "Regenerate only the affected dossier/worksheet/product bindings and construction closure; no rescan or semantic rewrite is required.",
+    "Obtain an independent rereview of the corrected exact bytes and bindings before publication."
+  ],
+  "researchRedoRequired": false,
+  "productSemanticRewriteRequired": false,
+  "productionDataModified": false,
+  "publicationAuthorized": false
+}

@@ -1,0 +1,71 @@
+{
+  "schemaVersion": "generic-manifest-publisher-containment-independent-rereview.v1",
+  "reviewer": "Codex independent containment rereview C",
+  "reviewedUtc": "2026-07-30T15:40:00Z",
+  "verdict": "FAIL",
+  "scope": "Read-only containment redesign review; no production publication was run.",
+  "bindings": {
+    "maintenance/generic_manifest_publisher.py": "fc4ad08cb00e7b3d853de979d1dbce6b5b6d7245a63067bc1f57f300b672dc86",
+    "maintenance/test_generic_manifest_publisher.py": "e18c8c576d020381769fe86e79f09bf11a46adb97564543df8daa878e5063cb1"
+  },
+  "passingCoordinates": [
+    {
+      "coordinate": "explicit allowed-root semantics",
+      "result": "PASS",
+      "finding": "allowed_root is mandatory, resolved strictly, and the resolved manifest must be inside it."
+    },
+    {
+      "coordinate": "buildRoot resolution",
+      "result": "PASS",
+      "finding": "Relative buildRoot resolves from allowed_root; absolute buildRoot is accepted only after its resolved path remains within allowed_root."
+    },
+    {
+      "coordinate": "relative compatibility",
+      "result": "PASS",
+      "finding": "Relative governed paths resolve from buildRoot and must remain inside both buildRoot and allowed_root."
+    },
+    {
+      "coordinate": "absolute sibling support",
+      "result": "PASS",
+      "finding": "An absolute governed path may sit outside buildRoot but inside the shared allowed_root, permitting dictionary-build and public/roster siblings under one explicit trust root."
+    },
+    {
+      "coordinate": "escape rejection",
+      "result": "PASS",
+      "finding": "Resolved parent traversal outside buildRoot, absolute paths outside allowed_root, a manifest outside allowed_root, buildRoot escape, and symlink resolution outside the trust root are rejected."
+    },
+    {
+      "coordinate": "prior transaction safety",
+      "result": "PASS",
+      "finding": "All prior review/product, staging, mixed-mode, rollback, graph-parity, roster-restoration, and receipt-write protections remained green."
+    }
+  ],
+  "hardFailures": [
+    {
+      "kind": "governed-node-cwd-bypasses-containment",
+      "coordinate": "generic_manifest_publisher.py stage(): self.node_runner(command, Path(node[\"cwd\"]))",
+      "detail": "node.cwd is taken directly from the manifest and passed to the process runner without _path(). It is therefore the sole governed filesystem path observed that is not required to remain within allowed_root. An absolute outside cwd or relative process-dependent cwd bypasses the redesign even though script, terms, output, public, roster, stage, receipt, and source paths are contained."
+    }
+  ],
+  "requiredCorrection": [
+    "Resolve node.cwd through self._path during validate(), return the validated nodeCwd in state, and pass state[\"nodeCwd\"] to node_runner.",
+    "Add negative tests for absolute-outside and symlink-escaped node.cwd plus a positive absolute sibling node.cwd within allowed_root."
+  ],
+  "completedTests": {
+    "command": "PYTHONPATH=dictionary-build python3 -m unittest maintenance.test_generic_manifest_publisher",
+    "testsRun": 15,
+    "failures": 0,
+    "errors": 0,
+    "elapsedSeconds": 127.549,
+    "containmentTestsCompleted": [
+      "maintenance manifest spanning the allowed build tree",
+      "relative-path manifest compatibility",
+      "parent escape rejection",
+      "absolute outside allowed-root rejection",
+      "symlink escape rejection"
+    ],
+    "note": "The suite completed before the turn interruption; it was not rerun."
+  },
+  "productionRunPerformed": false,
+  "publisherContainmentAuthorized": false
+}

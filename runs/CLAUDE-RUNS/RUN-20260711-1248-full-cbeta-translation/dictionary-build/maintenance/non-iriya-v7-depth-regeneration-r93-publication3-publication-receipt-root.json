@@ -1,0 +1,66 @@
+{
+  "schemaVersion": "r93-publication3-publication-receipt.v1",
+  "cohort": "R93",
+  "publicCommit": "dc0907f4bed07a7f46e4b2aa32ff884c301b0319",
+  "bindings": {
+    "installReceipt": {
+      "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r93-publication3-generic-install-receipt-root.json",
+      "sha256": "097762d1a92fac490cf6137ed98e20ab9327188a182a1f2cb160bbdc8935f1f2"
+    },
+    "stageReceipt": {
+      "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/r93-publication3-generic-stage-root/merge-receipt.json",
+      "sha256": "814194fc25ad15eb559323f4645e0bc4ebc0443e4ecbe7d6182b356e3f44e802"
+    },
+    "genericManifest": {
+      "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r93-publication3-generic-manifest-root.json",
+      "sha256": "1cb423e74a24bf80d22df04f49ba9ac49d921057def8bd15fec608dcb80384f1"
+    },
+    "finalReleaseAuthority": {
+      "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r93-publication3-final-release-authority-root.json",
+      "sha256": "8e90f440a979534cda4d63fe99507a26a297aed7a1a108c9cb701ba8c93e2f49"
+    }
+  },
+  "products": {
+    "t_2202e37854d4": "d9526c89a20c626727e659b5991a669d4cf5d4a94f3fcea3a9e03431b96418a3",
+    "t_2229af16905a": "2b622c6abeff7930a30ac00bcc7851e7c19f69e5c0079c189af46acd9c1208b8",
+    "t_222d636a08a9": "b2505b9e5b50814deaeb87b19b7fb8dae374a87d38fc43b96f64c43b7bbb198c"
+  },
+  "entryCountBefore": 4714,
+  "entryCountAfter": 4714,
+  "replacementCount": 3,
+  "creationCount": 0,
+  "changedFiles": [
+    {
+      "path": "termbase.index.json",
+      "sha256": "aef862476801603c3d4626984966ba920e056dad78343e3a91469b352a229a5c"
+    },
+    {
+      "path": "termbase.json",
+      "sha256": "cf8f7c387d1bd0d14659ce1e9adca5d5a5831b50fbf144a8f731271d4739974c"
+    },
+    {
+      "path": "termbase.v2.json",
+      "sha256": "842875076bcdc05f522365e08f461efd84ca477299a54302e90cc42c7a035440"
+    },
+    {
+      "path": "termbase/000.json",
+      "sha256": "cac53c53b5a085a7432afe5c9c374520ea6211549e8719213c28024d3e12f869"
+    },
+    {
+      "path": "termbase/139.json",
+      "sha256": "50c90412715335cecbb7a64b50e6ca8a32cd92d59f48cc64854bfa51fd244272"
+    },
+    {
+      "path": "termbase/234.json",
+      "sha256": "e1e69faeb1c0d661e3865feca5fa75b306403613875b2451a36476d32ee933d1"
+    }
+  ],
+  "aggregateCounts": {
+    "rich": 4714,
+    "legacy": 4714,
+    "index": 4714
+  },
+  "exactProductParity": "3/3",
+  "windowsGitPush": true,
+  "hardPass": true
+}

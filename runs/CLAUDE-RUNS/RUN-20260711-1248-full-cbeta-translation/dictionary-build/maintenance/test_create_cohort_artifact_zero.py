@@ -31,10 +31,12 @@ class ArtifactZeroTests(unittest.TestCase):
             self.assertLessEqual(output.stat().st_mtime, after)
             self.assertEqual(20, gate["admittedRequiredOccurrences"])
             self.assertEqual(20, gate["adjudicatedCaseLoad"])
-            self.assertEqual(120, gate["deadlinesSeconds"]["viability"])
-            self.assertEqual(240, gate["deadlinesSeconds"]["researchExtraction"])
-            self.assertEqual(560, gate["deadlinesSeconds"]["adjudicatedConfig"])
-            self.assertEqual(1100, gate["deadlinesSeconds"]["publication"])
+            self.assertEqual("bounded-dictionary-timegate.v4", gate["schemaVersion"])
+            self.assertEqual(2.0, gate["timeboxMultiplier"])
+            self.assertEqual(240, gate["deadlinesSeconds"]["viability"])
+            self.assertEqual(480, gate["deadlinesSeconds"]["researchExtraction"])
+            self.assertEqual(1120, gate["deadlinesSeconds"]["adjudicatedConfig"])
+            self.assertEqual(2200, gate["deadlinesSeconds"]["publication"])
             self.assertNotIn("os.utime", HELPER.read_text(encoding="utf-8"))
 
     def test_existing_receipt_is_not_overwritten(self):
@@ -65,7 +67,7 @@ class ArtifactZeroTests(unittest.TestCase):
             self.assertEqual(0, result.returncode, result.stderr)
             gate = json.loads(output.read_text(encoding="utf-8"))
             self.assertEqual(23, gate["adjudicatedCaseLoad"])
-            self.assertEqual(596, gate["deadlinesSeconds"]["adjudicatedConfig"])
+            self.assertEqual(1192, gate["deadlinesSeconds"]["adjudicatedConfig"])
             low = Path(directory) / "low.json"
             result = subprocess.run([
                 sys.executable, str(HELPER), "--output", str(low),

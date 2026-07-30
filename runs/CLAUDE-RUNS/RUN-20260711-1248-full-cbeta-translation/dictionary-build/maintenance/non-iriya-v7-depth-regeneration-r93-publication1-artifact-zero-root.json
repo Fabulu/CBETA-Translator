@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "r93-publication-only-artifact-zero.v1",
+  "cohort": "R93",
+  "publicationOrdinal": 1,
+  "startedEpoch": 1785424620.806244,
+  "createdUtc": "2026-07-30T15:17:00.807319Z",
+  "deadlinesSeconds": {
+    "authorityAndStage": 120,
+    "installAndIntegrity": 240,
+    "windowsGitPush": 300
+  },
+  "scope": "Publication only of the three exact reviewed correction3 products; no construction, rescan, semantic rewrite, roster mutation, or scope expansion.",
+  "bindings": {
+    "constructionManifest": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r93-correction3-construction-manifest-b.json",
+      "sha256": "87a1e4b97377fc1410fe4e0b252cf047b75e9478d07afef619f75d2e90606533"
+    },
+    "constructionClosure": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r93-correction3-closure-b.json",
+      "sha256": "a19b90ae4b4bf4706ddc54c666d1f33452da317c0e955e87bda5b8feda32e0cf"
+    },
+    "wangProduct": {
+      "path": "fresh-build/r93-correction3/entries/t_2202e37854d4/entry.v2.json",
+      "sha256": "d9526c89a20c626727e659b5991a669d4cf5d4a94f3fcea3a9e03431b96418a3"
+    },
+    "weiyinProduct": {
+      "path": "fresh-build/r93-correction3/entries/t_2229af16905a/entry.v2.json",
+      "sha256": "2b622c6abeff7930a30ac00bcc7851e7c19f69e5c0079c189af46acd9c1208b8"
+    },
+    "threeTimesProduct": {
+      "path": "fresh-build/r93-correction3/entries/t_222d636a08a9/entry.v2.json",
+      "sha256": "b2505b9e5b50814deaeb87b19b7fb8dae374a87d38fc43b96f64c43b7bbb198c"
+    },
+    "contentRereviewA": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r93-correction3-independent-rereview-a.json",
+      "sha256": "3e11ca74da450b8b04848b779855430a9e85a664cb58ecd44458a45adfeefe03"
+    },
+    "contentRereviewC": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r93-correction3-products-independent-rereview-c.json",
+      "sha256": "b0cb380d4ec93742796dc2bb5a2d6f243039505bae08f29bbadb678d857b1347"
+    },
+    "gateReconciliation": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r93-correction3-gate-reconciliation-root.json",
+      "sha256": "d2abafa8b6ba30884703eb293ebaddc68e24302d15935b34e07a0e3680c144c4"
+    },
+    "gateReconciliationReview": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r93-correction3-gate-reconciliation-independent-review-a.json",
+      "sha256": "d0d92240574095561511b8464930346e5eab865d5d81100bd34c552634fd970a"
+    }
+  },
+  "installationAuthorized": false,
+  "publicationAuthorized": false,
+  "rootAuthorityReviewRequired": true
+}

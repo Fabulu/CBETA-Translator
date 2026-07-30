@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "generic-manifest-publisher-independent-rereview.v1",
+  "reviewer": "Codex independent publisher rereview C",
+  "reviewedUtc": "2026-07-30T15:29:00Z",
+  "verdict": "PASS",
+  "scope": "Read-only rereview of the corrected generic publisher; no production publication was run.",
+  "bindings": {
+    "maintenance/generic_manifest_publisher.py": "05af3858fd20422e916c06b33e8b11fe1f43a581c3ad42f6756ce0c538f001c8",
+    "maintenance/test_generic_manifest_publisher.py": "3d995d74eddca1ed3d6ac6ba712f9fc28488b80324dcce5b2d11cfce174ee69a"
+  },
+  "priorFailureResolution": [
+    {
+      "failure": "PASS reviews were not verified against the current cohort and product hashes.",
+      "result": "RESOLVED",
+      "evidence": "validate() requires each hash-bound review to have verdict PASS, the manifest cohort, and a boundProducts/products ID-to-SHA map exactly equal to the publication manifest product set. Stale or foreign same-ID review bytes are rejected."
+    },
+    {
+      "failure": "Term rollback bookkeeping began after destructive operations.",
+      "result": "RESOLVED",
+      "evidence": "For replacement mode the complete target is backed up first, then the identity enters installed_terms before target deletion. Create mode likewise enters rollback tracking before target creation or any move. Every later exception removes the partial target and restores the backup when present."
+    },
+    {
+      "failure": "Public graph parity checked counts rather than identity and content.",
+      "result": "RESOLVED",
+      "evidence": "_verify_public now requires unique rich and shard IDs, exact shard_by_id == rich by_id content, exact ordered rich-to-index term/target parity, exact ordered rich-to-legacy term/target parity, aggregate count parity, and exact selected-product hashes."
+    },
+    {
+      "failure": "Detected roster drift was not restored.",
+      "result": "RESOLVED",
+      "evidence": "install() snapshots the roster before any mutation. Any exception path compares its hash and restores the byte backup before re-raising."
+    },
+    {
+      "failure": "Receipt-write failure could leave installed terms/public without a receipt.",
+      "result": "RESOLVED",
+      "evidence": "The install receipt is written inside the protected transaction after parity, integrity, and roster checks. Any write failure unlinks the final receipt and rolls back public, terms, and roster state."
+    }
+  ],
+  "unchangedPassingCoordinates": {
+    "authorityAndProductHashes": "PASS",
+    "windowsNodeStaging": "PASS",
+    "mixedReplaceCreateModes": "PASS",
+    "validationFailBeforeWrite": "PASS",
+    "arbitraryContainedSourceDir": "PASS",
+    "stageAndInstallReceipts": "PASS"
+  },
+  "focusedSuite": {
+    "command": "PYTHONPATH=dictionary-build python3 -m unittest maintenance.test_generic_manifest_publisher",
+    "testsRun": 10,
+    "failures": 0,
+    "errors": 0,
+    "elapsedSeconds": 57.138,
+    "coverage": [
+      "three replacements",
+      "mixed replace/create",
+      "baseline drift before write",
+      "unauthorized authority products before write",
+      "cross-terms/public rollback",
+      "stale review product binding rejection",
+      "low-level partial term move rollback",
+      "equal-count shard/index divergence rejection",
+      "roster restoration",
+      "receipt-write rollback"
+    ]
+  },
+  "hardFailures": [],
+  "productionRunPerformed": false,
+  "publisherAuthorizedForGovernedUse": true
+}

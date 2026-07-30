@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "r93-preparation-only-failure.v1",
+  "cohort": "R93",
+  "correctionOrdinal": 2,
+  "verdict": "STOPPED_BEFORE_ARTIFACT_ZERO",
+  "reason": "Correction2 scripts were prepared before artifact zero, violating receipt-first preparation semantics.",
+  "filesTouched": [
+    {
+      "path": "maintenance/build_r93_correction2_config_b.py",
+      "sha256": "210b2dae1aa0986fc37c2ed36333a6effccce62ad9c8e0946f2d9f9a7d8e5fec"
+    },
+    {
+      "path": "maintenance/launch_r93_correction2_constructor.py",
+      "sha256": "e27b08914247d69760cd71b4592a68593aa592bfa878335873d433f67f50c84c"
+    },
+    {
+      "path": "maintenance/start_r93_correction2.py",
+      "sha256": "888f86fd7aa7b9d8af76eda1534ac43d2589ff362dd10ddb936ace35bd50a5ea"
+    }
+  ],
+  "artifactZeroCreated": false,
+  "configCreated": false,
+  "productCreated": false,
+  "termsMutation": false,
+  "publicMutation": false,
+  "rescanPerformed": false,
+  "semanticRedoPerformed": false
+}

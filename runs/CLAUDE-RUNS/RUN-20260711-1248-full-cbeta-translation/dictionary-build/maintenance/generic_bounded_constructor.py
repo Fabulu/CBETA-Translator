@@ -30,7 +30,7 @@ TOP_KEYS = {
     "schemaVersion", "cohort", "startedEpoch", "timegatePath",
     "watchdogReceiptPath", "commandAuditPath", "engineSha256", "paths", "entries",
 }
-OPTIONAL_TOP_KEYS = {"replacementStaging"}
+OPTIONAL_TOP_KEYS = {"replacementStaging", "batchPlan"}
 PATH_KEYS = {
     "selection", "research", "outputRoot", "firstProductReceipt",
     "preclosure", "manifest", "closure",
@@ -237,8 +237,7 @@ def verify_authority(config_path: Path, config: dict[str, Any], allowed_root: Pa
         raise ValueError("config engine SHA does not match executing engine")
     if set(config["paths"]) != PATH_KEYS:
         raise ValueError("paths must contain exactly the governed path keys")
-    if not isinstance(config["entries"], list) or not 1 <= len(config["entries"]) <= 3:
-        raise ValueError("ordinary bounded config requires 1-3 entries")
+    validate_batch_plan(config)
     for row in config["entries"]:
         if set(row) != ENTRY_KEYS:
             raise ValueError("entry contains unknown or missing keys")
@@ -320,6 +319,59 @@ def verify_authority(config_path: Path, config: dict[str, Any], allowed_root: Pa
         raise ValueError("selection/research/config/watchdog IDs are not exactly equal and ordered")
     paths["governedDeadlines"] = deadlines
     return paths
+
+
+def validate_batch_plan(config: dict[str, Any]) -> None:
+    """Close ordinary 1-3 cohorts or one exact ordered 3x10 rebuild batch."""
+    entries = config.get("entries")
+    if not isinstance(entries, list):
+        raise ValueError("config entries must be a list")
+    plan = config.get("batchPlan")
+    if plan is None:
+        if not 1 <= len(entries) <= 3:
+            raise ValueError("ordinary bounded config requires 1-3 entries")
+        return
+    required = {"mode", "expectedEntryCount", "lanes"}
+    if (
+        not isinstance(plan, dict)
+        or set(plan) != required
+        or plan.get("mode") != "thirty-entry-rebuild"
+        or plan.get("expectedEntryCount") != 30
+        or len(entries) != 30
+    ):
+        raise ValueError("thirty-entry rebuild requires exact batchPlan and 30 entries")
+    lanes = plan.get("lanes")
+    if not isinstance(lanes, list) or len(lanes) != 3:
+        raise ValueError("thirty-entry rebuild requires exactly three semantic lanes")
+    ordered: list[str] = []
+    reviewers: set[str] = set()
+    for ordinal, lane in enumerate(lanes, 1):
+        if (
+            not isinstance(lane, dict)
+            or set(lane) != {
+                "lane", "ids", "semanticAuthor", "crossReviewer"
+            }
+            or lane.get("lane") != ordinal
+            or not isinstance(lane.get("ids"), list)
+            or len(lane["ids"]) != 10
+            or not isinstance(lane.get("semanticAuthor"), str)
+            or not lane["semanticAuthor"].strip()
+            or not isinstance(lane.get("crossReviewer"), str)
+            or not lane["crossReviewer"].strip()
+            or lane["semanticAuthor"] == lane["crossReviewer"]
+        ):
+            raise ValueError(
+                f"semantic lane {ordinal} requires 10 IDs and distinct author/reviewer"
+            )
+        reviewers.add(lane["crossReviewer"])
+        ordered.extend(lane["ids"])
+    ids = [row.get("id") for row in entries]
+    if ordered != ids or len(set(ordered)) != 30:
+        raise ValueError(
+            "semantic lane IDs must exactly partition the 30 ordered config IDs"
+        )
+    if len(reviewers) < 2:
+        raise ValueError("cross-review must not collapse to one reviewer")
 
 
 def verify_source_hierarchy(entry: dict[str, Any]) -> None:
@@ -548,6 +600,11 @@ def run(config_path: Path, allowed_root: Path, now=time.time) -> dict[str, Any]:
     verify_whole_config_preclosure(config)
     projected_products = canonical_compile_prewrite(config)
     started = float(config["startedEpoch"])
+    # Fail before creating any staging output when the first-product clock is
+    # already expired.  Recheck at the compiler boundary below because dossier
+    # and worksheet staging can itself consume the remaining allowance.
+    enforce_governed_deadline(
+        now() - started, deadlines, "firstProduct")
     results = []
     for ordinal, entry in enumerate(config["entries"], 1):
         entry_dir = paths["outputRoot"] / entry["id"]
@@ -565,6 +622,9 @@ def run(config_path: Path, allowed_root: Path, now=time.time) -> dict[str, Any]:
         atomic_write_json(dossier_path, dossier)
         worksheet["EvidenceTransport"]["DossierSha256"] = sha256(dossier_path)
         atomic_write_json(worksheet_path, worksheet)
+        if ordinal == 1:
+            enforce_governed_deadline(
+                now() - started, deadlines, "firstProduct")
         subprocess.run(
             [
                 sys.executable, str(ROOT / "compile_evidence_draft.py"),
@@ -630,13 +690,31 @@ def run(config_path: Path, allowed_root: Path, now=time.time) -> dict[str, Any]:
         "schemaVersion": "generic-bounded-construction.v1", "cohort": config["cohort"],
         "startedEpoch": started, "completedEpoch": now(), "elapsedSeconds": elapsed,
         "deadlineSeconds": deadlines["construction"], "rows": results,
+        "batchPlan": config.get("batchPlan"),
         "publicMutation": False, "rosterMutation": False,
     })
+    product_hashes = {row["id"]: row["productSha256"] for row in results}
+    lane_closures = [
+        {
+            "lane": lane["lane"],
+            "ids": lane["ids"],
+            "productSha256s": [
+                product_hashes[identity] for identity in lane["ids"]
+            ],
+            "semanticAuthor": lane["semanticAuthor"],
+            "crossReviewer": lane["crossReviewer"],
+        }
+        for lane in (config.get("batchPlan") or {}).get("lanes", [])
+    ]
     atomic_write_json(paths["closure"], {
         "schemaVersion": "generic-bounded-closure.v1", "cohort": config["cohort"],
         "manifestSha256": sha256(paths["manifest"]),
         "preclosureSha256": sha256(paths["preclosure"]),
         "elapsedSeconds": elapsed, "deadlineSeconds": deadlines["construction"], "hardPass": True,
+        "ids": [entry["id"] for entry in config["entries"]],
+        "productCount": len(results),
+        "batchPlan": config.get("batchPlan"),
+        "laneClosures": lane_closures,
         "publicMutation": False, "rosterMutation": False,
         "closedUtc": datetime.now(timezone.utc).isoformat(),
     })

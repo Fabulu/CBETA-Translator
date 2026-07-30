@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "r93-correction-artifact-zero.v1",
+  "cohort": "R93",
+  "correctionOrdinal": 3,
+  "startedEpoch": 1785424146.688171,
+  "createdUtc": "2026-07-30T15:09:06.689942Z",
+  "deadlinesSeconds": {
+    "config": 60,
+    "construction": 180,
+    "review": 320,
+    "publication": 500
+  },
+  "bindings": {
+    "correction2PreparationFailure": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r93-correction2-preparation-failure-root.json",
+      "sha256": "23ba6c6b8d2200545c45e8d6adde12263b3a2c3bd40a9f0e3c6c2f9b013d3251"
+    },
+    "preparedConfigScript": {
+      "path": "maintenance/build_r93_correction2_config_b.py",
+      "sha256": "210b2dae1aa0986fc37c2ed36333a6effccce62ad9c8e0946f2d9f9a7d8e5fec"
+    },
+    "preparedLauncherScript": {
+      "path": "maintenance/launch_r93_correction2_constructor.py",
+      "sha256": "e27b08914247d69760cd71b4592a68593aa592bfa878335873d433f67f50c84c"
+    },
+    "preparedStartScript": {
+      "path": "maintenance/start_r93_correction2.py",
+      "sha256": "888f86fd7aa7b9d8af76eda1534ac43d2589ff362dd10ddb936ace35bd50a5ea"
+    }
+  },
+  "scopeExpansionAllowed": false,
+  "rescanAllowed": false,
+  "semanticRedoAllowed": false,
+  "publicMutationAllowedBeforeReview": false
+}

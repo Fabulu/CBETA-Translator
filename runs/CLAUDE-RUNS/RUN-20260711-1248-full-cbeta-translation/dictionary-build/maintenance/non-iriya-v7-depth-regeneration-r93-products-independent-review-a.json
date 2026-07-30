@@ -1,0 +1,103 @@
+{
+  "schemaVersion": "r93-products-independent-review.v1",
+  "cohort": "R93",
+  "reviewer": "Codex independent product review A",
+  "startedEpoch": 1785422700.345525,
+  "reviewedUtc": "2026-07-30T14:59:19Z",
+  "reviewDeadlineSeconds": 830,
+  "verdict": "FAIL",
+  "boundProducts": [
+    {
+      "id": "t_2202e37854d4",
+      "term": "王老師",
+      "sha256": "a8bce44755ca5b5f2d025a89b3014cb3252d6659c68a5e8814bdbb78fded6356",
+      "result": "FAIL"
+    },
+    {
+      "id": "t_2229af16905a",
+      "term": "威音王",
+      "sha256": "736bfb4607ef9c257a78c37d3f56c04c903888743ec3b9c6d9f1341a73f9e40c",
+      "result": "FAIL"
+    },
+    {
+      "id": "t_222d636a08a9",
+      "term": "竪窮三際",
+      "sha256": "b2505b9e5b50814deaeb87b19b7fb8dae374a87d38fc43b96f64c43b7bbb198c",
+      "result": "PASS"
+    }
+  ],
+  "reviewBindings": {
+    "extractionPath": "maintenance/non-iriya-v7-depth-regeneration-r93-extraction-output-b.json",
+    "extractionSha256": "07c2085c743b0bdfe861717d17c4b8e108b0bac37675e291bff305118161f846",
+    "manifestPath": "maintenance/non-iriya-v7-depth-regeneration-r93-construction-manifest-b.json",
+    "manifestSha256": "e3b5f5874506a12098b927c36a13b373be3b9d0fcff8c76cf10abeb497fa1d1c",
+    "closurePath": "maintenance/non-iriya-v7-depth-regeneration-r93-closure-b.json",
+    "closureSha256": "1211ca4357e57e9fabab32c3753f5077d8be06ccdb1fe17dc9f0331ba0182d85",
+    "adjudications": [
+      {
+        "path": "maintenance/non-iriya-v7-depth-regeneration-r93-adjudication-wang-a.json",
+        "sha256": "a41772e8969c16a64c2ae8418c7878f353c123abbf31c72492ae0a8249e7969e"
+      },
+      {
+        "path": "maintenance/non-iriya-v7-depth-regeneration-r93-adjudication-weiyin-c.json",
+        "sha256": "25c966737864466119fd32e98e110b1d9020e879d0cd8569080dcdd7d0edcb43"
+      },
+      {
+        "path": "maintenance/non-iriya-v7-depth-regeneration-r93-adjudication-three-times-b.json",
+        "sha256": "342575547cef0737fae350b48e0264da6a5d603d63431c3239f8fc0e40fc19b2"
+      }
+    ]
+  },
+  "reviewCoordinates": {
+    "semantics": {
+      "result": "FAIL",
+      "finding": "王老師 correctly denotes Nanquan and 竪窮三際 correctly gives the temporal half of the vertical/horizontal scope pair. 威音王 is correctly treated as one proper-name sense, but its public prose adds two claims not established by the frozen witnesses: 'primordial' is not stated by the identifying 威音王佛 witness, and 'direct-address' misdescribes the non-temporal retained deployment, which says that Gulin 'completely sees' the named figure."
+    },
+    "exactActors": {
+      "result": "FAIL",
+      "finding": "The B/B25/B25n0145.xml 王老師 occurrence is introduced by 昔南泉謂 and the stored headword occurs in the quoted sentence 王老師修行無力，被鬼神覷破. Nanquan is the exact original utterer. The product incorrectly assigns MasterName and the utterer role to Zhongfeng Mingben and labels Nanquan only person-discussed. The source adjudication made the same record-owner substitution even though its frozen full context exposes the quotation boundary."
+    },
+    "sourceMix": {
+      "result": "PASS",
+      "tier1": 9,
+      "tier2": 9,
+      "tier3Lamps": 0,
+      "finding": "Across the three products the retained authority mix is 9 Tier-1 and 9 Tier-2 occurrences. No Tier-3 lamp witness is retained."
+    },
+    "witnessIndependence": {
+      "result": "PASS",
+      "finding": "The products retain seven, seven, and four distinct works. Their active authored, recorded-sayings, quoted-case, and commentary deployments remain sufficient for multi-source status after recurrence grouping; the actor correction does not remove Zhongfeng's active commentary family."
+    },
+    "quoteSupport": {
+      "result": "FAIL",
+      "finding": "All retained KWICs contain exactly one headword span and the central glosses are supported. The two 威音王 prose formulations 'primordial Buddha' and 'direct-address' overstate or misstate the frozen evidence and require finite wording correction."
+    }
+  },
+  "finiteDefects": [
+    {
+      "id": "t_2202e37854d4",
+      "coordinate": "B/B25/B25n0145.xml exact actor and roles",
+      "severity": "substantive",
+      "evidence": "昔南泉謂。王老師修行無力。被鬼神覷破。",
+      "requiredCorrection": "Set the exact headword actor to Nanquan Puyuan. Give Nanquan the utterer role. Keep Zhongfeng Mingben only in the supported later-quoter/commentator/record-owner roles and rewrite the public attribution note accordingly. Preserve the active Zhongfeng commentary deployment family."
+    },
+    {
+      "id": "t_2229af16905a",
+      "coordinate": "public Explanation and Note",
+      "severity": "substantive-prose",
+      "evidence": "The frozen identifying witness says 威音王佛; the retained non-temporal Gulin line says 徹見威音王. None calls him primordial or addresses him vocatively.",
+      "requiredCorrection": "Replace 'that primordial Buddha' with an evidence-bounded phrase such as 'that named Buddha' or 'King Majestic Sound Buddha'. Replace 'direct-address' with 'direct-reference' or specifically 'seeing'."
+    }
+  ],
+  "passingCoordinates": [
+    "王老師 preferred target and Nanquan identity",
+    "威音王 one-referent sense structure and temporal constructions",
+    "竪窮三際 semantics, four-family depth, actors, and high/broad gloss",
+    "all three source-tier mixes",
+    "all three no-lamp claims",
+    "all three multi-source verdicts",
+    "all stored headword span counts"
+  ],
+  "publicationAuthorized": false,
+  "productionDataModified": false
+}

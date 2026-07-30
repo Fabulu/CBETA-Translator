@@ -1,0 +1,88 @@
+{
+  "schemaVersion": "r93-correction3-immutable-gate-reconciliation.v1",
+  "cohort": "R93",
+  "canonicalCorrectionOrdinal": 3,
+  "decision": "RECONCILE_IMMUTABLE_PROVENANCE_LABELS_ONLY",
+  "finding": "The correctionOrdinal value 2 in the immutable authority and timegate is an inherited clerical label. The canonical run identity is correction 3, established by artifact zero, the shared epoch, the unique correction3 staging root, and the bound construction chain.",
+  "sharedEpochProof": {
+    "artifactZeroStartedEpoch": 1785424146.688171,
+    "authorityAuthorizedEpoch": 1785424146.688171,
+    "timegateStartedEpoch": 1785424146.688171,
+    "allExactlyEqual": true
+  },
+  "stagingRootProof": {
+    "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/r93-correction3/entries",
+    "uniqueToCanonicalCorrectionOrdinal": 3
+  },
+  "bindings": {
+    "artifactZero": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r93-correction3-artifact-zero-root.json",
+      "sha256": "8d5cb9339bbc5ffcc2120b9c521e695fa73263ff98acecde9c34da6cc2c58f4f"
+    },
+    "correction2PreparationFailure": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r93-correction2-preparation-failure-root.json",
+      "sha256": "23ba6c6b8d2200545c45e8d6adde12263b3a2c3bd40a9f0e3c6c2f9b013d3251"
+    },
+    "authority": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r93-correction3-authority-root.json",
+      "sha256": "1dd7436a439a6e05a950522ce7e3e8f8d81b22fcae27cd9ec0fe8b53544aa4c8"
+    },
+    "timegate": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r93-correction3-timegate-root.json",
+      "sha256": "dd9dd8df1a68ca4223afe0e18de189169f72f53a1d3620623895dbf8628baef3"
+    },
+    "constructorConfig": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r93-correction3-constructor-config-b.json",
+      "sha256": "099418759f9f9b81aad0fc4c4c6985f6260697bbd5ee16e5034fe3a0ed44ce99"
+    },
+    "constructorCheckpoint": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r93-correction3-constructor-checkpoint-b.json",
+      "sha256": "7bfd164e24db6ecec4340068621d6b6ea90ec4329c9edc0d7c2d5db5f23cdc96"
+    },
+    "commandAudit": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r93-correction3-constructor-command-audit-b.json",
+      "sha256": "f30c57fb971fd2590676c660d53c4e3407cc6a391a81fa17306e9db674936334"
+    },
+    "constructionManifest": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r93-correction3-construction-manifest-b.json",
+      "sha256": "87a1e4b97377fc1410fe4e0b252cf047b75e9478d07afef619f75d2e90606533"
+    },
+    "constructionClosure": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r93-correction3-closure-b.json",
+      "sha256": "a19b90ae4b4bf4706ddc54c666d1f33452da317c0e955e87bda5b8feda32e0cf"
+    },
+    "productRereviewA": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r93-correction3-independent-rereview-a.json",
+      "sha256": "3e11ca74da450b8b04848b779855430a9e85a664cb58ecd44458a45adfeefe03"
+    },
+    "productRereviewC": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r93-correction3-products-independent-rereview-c.json",
+      "sha256": "b0cb380d4ec93742796dc2bb5a2d6f243039505bae08f29bbadb678d857b1347"
+    },
+    "gateAdjudication": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r93-correction3-gate-reconciliation-adjudication-c.json",
+      "sha256": "478e56c8365e0d83d5f01ed806c8a91a0770dec4264edf7fb5bb9d75b89c5086"
+    }
+  },
+  "correction2Disposition": {
+    "successfulRun": false,
+    "mayBeTreatedAsSuccessful": false,
+    "preparationOnlyFailureReceiptBound": true
+  },
+  "grants": {
+    "newAuthority": false,
+    "newClock": false,
+    "clockReset": false,
+    "scopeExpansion": false,
+    "rescan": false,
+    "semanticRewrite": false,
+    "contentMutation": false,
+    "retroactiveProductChange": false,
+    "installation": false,
+    "publication": false
+  },
+  "historicalArtifactsModified": false,
+  "termsMutation": false,
+  "publicMutation": false,
+  "nextGate": "Independent hash-bound review of this reconciliation is required before any release authority."
+}
