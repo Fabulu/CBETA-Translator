@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -13,30 +14,70 @@ HERE = Path(__file__).resolve().parent
 CREATE = HERE / "create_cohort_artifact_zero.py"
 LAUNCH = HERE / "launch_assigned_cohort.py"
 
+def governed_child_env() -> dict[str, str]:
+    env = os.environ.copy()
+    current = env.get("PYTHONPATH", "")
+    parts = [str(ROOT)]
+    if current:
+        parts.append(current)
+    env["PYTHONPATH"] = os.pathsep.join(parts)
+    return env
+
+
+def expected_binding(args, entries):
+    return {
+        "selector": str(args.selector.resolve()),
+        "priorUnion": str(args.prior_union.resolve()),
+        "entries": [
+            {"id": identity, "term": term, "requiredFloor": floor}
+            for identity, term, floor in entries
+        ],
+        "reserveIds": sorted(set(args.reserve_id)),
+    }
+
+
+def verify_resumable_gate(args, entries):
+    gate = json.loads(args.timegate.read_text(encoding="utf-8"))
+    expected_continuation = args.continuation_of or None
+    actual_continuation = gate.get("continuationOf")
+    if gate.get("schemaVersion") != "bounded-dictionary-timegate.v2" or \
+       gate.get("artifactZero") is not True or gate.get("cohort") != args.cohort or \
+       gate.get("requiredFloors") != [floor for _, _, floor in entries] or \
+       gate.get("adjudicatedCaseLoad") != args.case_load or \
+       gate.get("assignedLaunch") != expected_binding(args, entries) or \
+       actual_continuation != expected_continuation:
+        raise SystemExit("existing artifact zero does not exactly match requested resume")
+    return gate
+
 
 def run(args: argparse.Namespace) -> None:
-    if args.timegate.exists():
-        raise SystemExit(f"refusing to overwrite artifact zero: {args.timegate.resolve()}")
     entries = [(identity, term, int(floor)) for identity, term, floor in args.entry]
     floors = [floor for _, _, floor in entries]
-    create = [
-        sys.executable, str(CREATE),
-        "--output", str(args.timegate),
-        "--cohort", args.cohort,
-        "--floors", *map(str, floors),
-        "--case-load", str(args.case_load),
-        "--selector", str(args.selector),
-        "--prior-union", str(args.prior_union),
-    ]
-    if args.continuation_of:
-        create += ["--continuation-of", args.continuation_of]
-    for identity, term, floor in entries:
-        create += ["--entry", identity, term, str(floor)]
-    for identity in args.reserve_id:
-        create += ["--reserve-id", identity]
-    subprocess.run(create, cwd=ROOT, check=True)
-
-    gate = json.loads(args.timegate.read_text(encoding="utf-8"))
+    child_env = governed_child_env()
+    if args.resume_artifact_zero:
+        if not args.timegate.is_file():
+            raise SystemExit("resume requested but artifact zero is missing")
+        gate = verify_resumable_gate(args, entries)
+    else:
+        if args.timegate.exists():
+            raise SystemExit(f"refusing to overwrite artifact zero: {args.timegate.resolve()}")
+        create = [
+            sys.executable, str(CREATE),
+            "--output", str(args.timegate),
+            "--cohort", args.cohort,
+            "--floors", *map(str, floors),
+            "--case-load", str(args.case_load),
+            "--selector", str(args.selector),
+            "--prior-union", str(args.prior_union),
+        ]
+        if args.continuation_of:
+            create += ["--continuation-of", args.continuation_of]
+        for identity, term, floor in entries:
+            create += ["--entry", identity, term, str(floor)]
+        for identity in args.reserve_id:
+            create += ["--reserve-id", identity]
+        subprocess.run(create, cwd=ROOT, check=True, env=child_env)
+        gate = json.loads(args.timegate.read_text(encoding="utf-8"))
     if gate.get("schemaVersion") != "bounded-dictionary-timegate.v2":
         raise RuntimeError("artifact-zero creator emitted a non-v2 receipt")
     launch = [
@@ -51,7 +92,7 @@ def run(args: argparse.Namespace) -> None:
         launch += ["--entry", identity, term, str(floor)]
     for identity in args.reserve_id:
         launch += ["--reserve-id", identity]
-    subprocess.run(launch, cwd=ROOT, check=True)
+    subprocess.run(launch, cwd=ROOT, check=True, env=child_env)
 
 
 def main() -> None:
@@ -65,6 +106,7 @@ def main() -> None:
     parser.add_argument("--reserve-id", action="append", default=[])
     parser.add_argument("--case-load", required=True, type=int)
     parser.add_argument("--continuation-of")
+    parser.add_argument("--resume-artifact-zero", action="store_true")
     parser.add_argument("--output-dir", type=Path, default=ROOT / "maintenance")
     args = parser.parse_args()
     run(args)

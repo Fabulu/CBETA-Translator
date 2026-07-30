@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import hashlib
 import json
+import os
 from pathlib import Path
 import subprocess
 import sys
@@ -27,18 +28,54 @@ RESERVES = [
 
 
 class CanonicalAssignedStarterTests(unittest.TestCase):
-    def command(self, gate, output):
+    def command(self, gate, output, *, direct=False, resume=False, continuation=None,
+                reserves=RESERVES):
         command = [
-            sys.executable, str(ENV), "--script", str(START), "--",
+            sys.executable, str(START) if direct else str(ENV),
+        ]
+        if not direct:
+            command += ["--script", str(START), "--"]
+        command += [
             "--cohort", "TEST-R65", "--timegate", str(gate),
             "--prior-union", str(PRIOR), "--selector", str(SELECTOR),
             "--case-load", "17", "--output-dir", str(output),
         ]
+        if resume:
+            command.append("--resume-artifact-zero")
+        if continuation:
+            command += ["--continuation-of", continuation]
         for identity, term, floor in ENTRIES:
             command += ["--entry", identity, term, str(floor)]
-        for identity in RESERVES:
+        for identity in reserves:
             command += ["--reserve-id", identity]
         return command
+
+    def test_clean_environment_launch_injects_dictionary_root(self):
+        with tempfile.TemporaryDirectory(dir=HERE) as raw:
+            output = Path(raw); gate = output / "gate.json"
+            env = os.environ.copy(); env.pop("PYTHONPATH", None)
+            result = subprocess.run(
+                self.command(gate, output, direct=True), cwd=ROOT, env=env,
+                capture_output=True, text=True)
+            self.assertEqual(0, result.returncode, result.stderr)
+            self.assertTrue((output /
+                "non-iriya-v7-depth-regeneration-test-r65-viability-checkpoint-b.json").is_file())
+
+    def test_resume_rejects_any_exact_binding_mismatch_before_launch(self):
+        with tempfile.TemporaryDirectory(dir=HERE) as raw:
+            output = Path(raw); gate = output / "gate.json"
+            first = subprocess.run(
+                self.command(gate, output, continuation="R64"), cwd=ROOT,
+                capture_output=True, text=True)
+            self.assertEqual(0, first.returncode, first.stderr)
+            before = hashlib.sha256(gate.read_bytes()).hexdigest()
+            mismatch = subprocess.run(
+                self.command(gate, output, resume=True, continuation="R64",
+                             reserves=RESERVES[:-1]), cwd=ROOT,
+                capture_output=True, text=True)
+            self.assertNotEqual(0, mismatch.returncode)
+            self.assertIn("does not exactly match", mismatch.stderr)
+            self.assertEqual(before, hashlib.sha256(gate.read_bytes()).hexdigest())
 
     def test_mounted_workspace_artifact_zero_precedes_green_viability(self):
         with tempfile.TemporaryDirectory(dir=HERE) as raw:
