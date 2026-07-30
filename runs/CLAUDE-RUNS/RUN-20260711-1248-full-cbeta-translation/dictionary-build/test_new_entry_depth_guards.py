@@ -9,6 +9,7 @@ from unittest import mock
 import construct_non_iriya_v6_batch44_ab as constructor
 from compile_evidence_draft import (
     required_depth_floor,
+    validate_entry_scoped_depth,
     validate_new_entry_depth,
 )
 
@@ -71,6 +72,49 @@ class NewEntryDepthGuardTests(unittest.TestCase):
         validate_new_entry_depth({"ExactCount": 68}, sense, 1, errors)
         self.assertTrue(any("duplicate retained witness" in error for error in errors))
         self.assertTrue(any("guide depth floor is 4" in error for error in errors))
+
+    def test_multi_sense_entry_applies_floor_once_without_weakening_single_sense(self):
+        first = sense_with(2)
+        second = sense_with(2)
+        for n, row in enumerate(second["Occurrences"], 3):
+            row["RelPath"] = f"T/source-{n}.xml"
+            row["FromLb"] = row["ToLb"] = f"0001a{n:02d}"
+            row["Kwic"] = f"師云測試{n}"
+        errors = []
+        validate_entry_scoped_depth(
+            {"ExactCount": 68, "DepthFloorScope": "entry"},
+            [first, second],
+            errors,
+        )
+        self.assertEqual([], errors)
+        errors = []
+        validate_new_entry_depth({"ExactCount": 68}, first, 1, errors)
+        self.assertTrue(any("guide depth floor is 4" in error for error in errors))
+
+    def test_hundred_plus_multi_sense_entry_requires_four_works_in_aggregate(self):
+        first = sense_with(3, ["work:a", "work:a", "work:b"])
+        second = sense_with(3, ["work:b", "work:c", "work:c"])
+        for sense in (first, second):
+            sense["DraftEvidence"]["DepthHarvestReceipt"]["AvailableSourceFiles"] = 8
+        for n, row in enumerate(second["Occurrences"], 4):
+            row["RelPath"] = f"T/source-{n}.xml"
+            row["FromLb"] = row["ToLb"] = f"0001a{n:02d}"
+            row["Kwic"] = f"師云測試{n}"
+        errors = []
+        validate_entry_scoped_depth(
+            {"ExactCount": 117, "DepthFloorScope": "entry"},
+            [first, second],
+            errors,
+        )
+        self.assertTrue(any("require four source works" in error for error in errors))
+        second["DraftEvidence"]["SourceAuthorityRows"][-1]["WorkId"] = "work:d"
+        errors = []
+        validate_entry_scoped_depth(
+            {"ExactCount": 117, "DepthFloorScope": "entry"},
+            [first, second],
+            errors,
+        )
+        self.assertEqual([], errors)
 
     def test_accepts_floor_only_with_completed_harvest_receipt(self):
         sense = sense_with(4)
