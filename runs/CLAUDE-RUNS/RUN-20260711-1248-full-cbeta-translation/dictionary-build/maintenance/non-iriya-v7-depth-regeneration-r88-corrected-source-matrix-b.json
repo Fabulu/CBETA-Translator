@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "r88-corrected-source-matrix.v1",
+  "cohort": "R88",
+  "extractionSha256": "3fcac20420bc7fe1c923555c87f37a09a7af0d02d2f7b068307bf31281fde13f",
+  "failedReviewPreserved": "maintenance/non-iriya-v7-depth-regeneration-r88-review-first-two-a.json",
+  "correctionReason": "The failed review assigned 回互 to the 疑團 ID, flattened a context-sensitive term, and retained only five witnesses against floor seven.",
+  "rows": [
+    {
+      "id": "t_1e38e6b91833",
+      "term": "宜作舟航",
+      "requiredFloor": 4,
+      "senseCount": 1,
+      "preferredTarget": "you should serve as a ferryboat",
+      "semanticRuling": "Mazu tells Yaoshan not to make realization a private stopping place but to become a conveyance that carries others across. All witnesses inherit one Mazu–Yaoshan case; the four retained records are active later treatments, not independent origins.",
+      "retained": [
+        {"relPath":"J/J25/J25nB171.xml","tier":2,"actor":"Mazu Daoyi","role":"quoted-utterer","outerActor":"Tianyin Yuanxiu","outerRoles":["later-raiser","commentator","record-owner"]},
+        {"relPath":"J/J26/J26nB177.xml","tier":2,"actor":"Mazu Daoyi","role":"quoted-utterer","outerActor":"Poshan Haiming","outerRoles":["later-raiser","commentator","record-owner"]},
+        {"relPath":"J/J35/J35nB343.xml","tier":2,"actor":"Mazu Daoyi","role":"quoted-utterer","outerActor":"Miyin Zhenchuan","outerRoles":["later-raiser","commentator","record-owner"]},
+        {"relPath":"J/J36/J36nB362.xml","tier":2,"actor":"Mazu Daoyi","role":"quoted-utterer","outerActor":"Guantao Daqi","outerRoles":["later-raiser","commentator","record-owner"]}
+      ],
+      "excluded": ["L/L153/L153n1637.xml","L/L154/L154n1639.xml","L/L155/L155n1643.xml"],
+      "lampCount": 0
+    },
+    {
+      "id": "t_1e3d3a5173a6",
+      "term": "回互",
+      "requiredFloor": 7,
+      "senseCount": 3,
+      "senses": [
+        {"preferredTarget":"interrelation or interweaving","paths":["X/X87/X87n1624.xml","C/C077/C077n1710.xml"]},
+        {"preferredTarget":"turning aside or room for maneuver","paths":["X/X71/X71n1413.xml","X/X72/X72n1442.xml","B/B25/B25n0145.xml","J/J10/J10nA158.xml"]},
+        {"preferredTarget":"tactful accommodation","paths":["X/X69/X69n1357.xml"]}
+      ],
+      "retained": [
+        {"relPath":"X/X69/X69n1357.xml","tier":1,"actor":"Yuanwu Keqin","role":"author"},
+        {"relPath":"X/X71/X71n1413.xml","tier":1,"actor":"Gulin Qingmao","role":"verse-author"},
+        {"relPath":"X/X72/X72n1442.xml","tier":1,"actor":"Weilin Daopei","role":"verse-author"},
+        {"relPath":"X/X87/X87n1624.xml","tier":1,"actor":"Juefan Huihong","role":"author-commentator"},
+        {"relPath":"B/B25/B25n0145.xml","tier":2,"actor":"Zhongfeng Mingben","role":"utterer"},
+        {"relPath":"C/C077/C077n1710.xml","tier":2,"actor":"Yunmen Wenyan","role":"utterer"},
+        {"relPath":"J/J10/J10nA158.xml","tier":2,"actor":"Miyun Yuanwu","role":"utterer"}
+      ],
+      "excluded": ["X/X63/X63n1257.xml","X/X78/X78n1554.xml","B/B27/B27n0152.xml"],
+      "lampCount": 0
+    },
+    {
+      "id": "t_1e3e02536ca2",
+      "term": "疑團",
+      "requiredFloor": 6,
+      "senseCount": 1,
+      "preferredTarget": "a mass of doubt",
+      "semanticRuling": "A compacted mass or knot of doubt, conventionally broken, smashed, pulverized, or made to burst. Instruction, verse, and narrated breakthrough remain deployment types of one lexical referent.",
+      "retained": [
+        {"relPath":"J/J25/J25nB166.xml","tier":1,"actor":"Fushan Benzhi","actorStatus":"identified-unlinked-master","role":"verse-author"},
+        {"relPath":"X/X63/X63n1257.xml","tier":1,"actor":"Wuyi Yuanlai","role":"utterer"},
+        {"relPath":"X/X63/X63n1259.xml","tier":1,"actor":"Huishan Jiexian","role":"author"},
+        {"relPath":"B/B25/B25n0145.xml","tier":2,"actor":"Zhongfeng Mingben","role":"verse-author"},
+        {"relPath":"B/B27/B27n0152.xml","tier":2,"actor":"Yulin Tongxiu","role":"narrator","representedActor":"Gaofeng Yuanmiao"},
+        {"relPath":"J/J20/J20nB098.xml","tier":2,"actor":"Wunian You","role":"utterer"}
+      ],
+      "excluded": ["T/T48/T48n2021.xml","X/X78/X78n1554.xml","C/C077/C077n1710.xml"],
+      "lampCount": 0
+    }
+  ],
+  "sourceMix": {"tier1":7,"tier2":10,"tier3Lamp":0},
+  "hardPass": true,
+  "publicMutation": false
+}

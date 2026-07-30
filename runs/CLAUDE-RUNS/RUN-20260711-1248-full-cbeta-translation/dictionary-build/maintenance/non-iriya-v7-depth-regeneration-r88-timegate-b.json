@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "bounded-dictionary-timegate.v2",
+  "cohort": "R88",
+  "artifactZero": true,
+  "startedEpoch": 1785412102.196248,
+  "createdUtc": "2026-07-30T11:48:22.196248Z",
+  "requiredFloors": [
+    4,
+    7,
+    6
+  ],
+  "admittedRequiredOccurrences": 17,
+  "adjudicatedCaseLoad": 17,
+  "researchCandidateReserve": 3,
+  "deadlinesSeconds": {
+    "viability": 120,
+    "researchExtraction": 120,
+    "adjudicatedConfig": 524,
+    "constructor": 534,
+    "firstProduct": 554,
+    "construction": 614,
+    "review": 810,
+    "correction": 938,
+    "publication": 1028
+  },
+  "assignedLaunch": {
+    "selector": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/last1500-public-depth/final-scope/full-regeneration-selector.json",
+    "priorUnion": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r87-resolved-union-root.json",
+    "entries": [
+      {
+        "id": "t_1e38e6b91833",
+        "term": "宜作舟航",
+        "requiredFloor": 4
+      },
+      {
+        "id": "t_1e3d3a5173a6",
+        "term": "回互",
+        "requiredFloor": 7
+      },
+      {
+        "id": "t_1e3e02536ca2",
+        "term": "疑團",
+        "requiredFloor": 6
+      }
+    ],
+    "reserveIds": [],
+    "researchCandidateReserve": 3
+  },
+  "continuationOf": "R87"
+}

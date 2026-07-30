@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "non-iriya-v7-depth-regeneration-selection.v1",
+  "cohort": "R88",
+  "selectionRule": "exact coordinator-assigned next unreserved authoritative rows",
+  "rows": [
+    {
+      "queueOrdinal": 1,
+      "identityId": "t_1e38e6b91833",
+      "term": "宜作舟航",
+      "requiredFloor": 4,
+      "classification": "hard-fail"
+    },
+    {
+      "queueOrdinal": 2,
+      "identityId": "t_1e3d3a5173a6",
+      "term": "回互",
+      "requiredFloor": 7,
+      "classification": "legacy-selected-depth-repair"
+    },
+    {
+      "queueOrdinal": 3,
+      "identityId": "t_1e3e02536ca2",
+      "term": "疑團",
+      "requiredFloor": 6,
+      "classification": "legacy-selected-depth-repair"
+    }
+  ],
+  "collisionCheck": {
+    "priorIds": 203,
+    "collisions": [],
+    "hardPass": true
+  }
+}

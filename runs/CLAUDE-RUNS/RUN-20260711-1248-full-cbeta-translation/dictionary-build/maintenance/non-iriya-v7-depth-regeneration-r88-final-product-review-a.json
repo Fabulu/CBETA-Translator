@@ -1,0 +1,80 @@
+{
+  "schemaVersion": "final-product-rereview.v1",
+  "cohort": "R88",
+  "reviewer": "r88_review_a",
+  "scope": "changed coordinates only; frozen products; no new research",
+  "verdict": "pass",
+  "products": [
+    {
+      "id": "t_1e38e6b91833",
+      "term": "宜作舟航",
+      "entrySha256": "5538a4f715ad51d4ca7b71a760a53762ab60fba775bfd77a10233e62db7352f2",
+      "occurrences": 4,
+      "independentWorks": 4,
+      "senses": 1,
+      "lampOccurrences": 0,
+      "checks": {
+        "frozenHashMatches": true,
+        "matrixMatches": true,
+        "exactActorLayer": true,
+        "inheritedFamilyDisclosed": true,
+        "englishReaderProse": true,
+        "workLedgerPresent": true,
+        "compilerHardPassAndOutputParity": true
+      }
+    },
+    {
+      "id": "t_1e3d3a5173a6",
+      "term": "回互",
+      "entrySha256": "aad0c4ee11f8bd4de628cd27b99a03f6dffd7cefca1ed30b1401be9f2c48c922",
+      "occurrences": 7,
+      "independentWorks": 7,
+      "senses": 2,
+      "lampOccurrences": 0,
+      "checks": {
+        "frozenHashMatches": true,
+        "matrixMatches": true,
+        "entryScopedFloorSeven": true,
+        "sevenDistinctWorks": true,
+        "senseTargetsDistinguishable": true,
+        "senseOne": "interrelation or interweaving among distinct positions or aspects",
+        "senseTwo": "turning, mediation, or responsive accommodation",
+        "englishReaderProse": true,
+        "workLedgerPresent": true,
+        "compilerHardPassAndOutputParity": true
+      }
+    },
+    {
+      "id": "t_1e3e02536ca2",
+      "term": "疑團",
+      "entrySha256": "697d3cb05e3ec3c95a945a1c23a18ea6fe6f899f182634ec40ee66e97c2a6ee3",
+      "occurrences": 6,
+      "independentWorks": 6,
+      "senses": 1,
+      "lampOccurrences": 0,
+      "checks": {
+        "frozenHashMatches": true,
+        "matrixMatches": true,
+        "yulinOccurrenceMasterNameNull": true,
+        "yulinVoiceNarrated": true,
+        "gaofengRepresentedAsPersonDescribed": true,
+        "narratorNotMiscastAsExperiencer": true,
+        "englishReaderProse": true,
+        "workLedgerPresent": true,
+        "compilerHardPassAndOutputParity": true
+      }
+    }
+  ],
+  "cohortChecks": {
+    "matrix": "4/7/6",
+    "totalOccurrences": 17,
+    "totalLampOccurrences": 0,
+    "r88MetadataPresent": true,
+    "r86MetadataAbsent": true,
+    "stale1105TimestampAbsent": true,
+    "allCompileReportsHardPass": true,
+    "allCompileReportOutputHashesMatchFrozenEntries": true,
+    "noProductEditsMadeByReviewer": true
+  },
+  "reviewNote": "The literal string 'lamp' appears only in governance receipts stating that no lamp was retained. No retained RelPath is a Tier-3 lamp witness."
+}
