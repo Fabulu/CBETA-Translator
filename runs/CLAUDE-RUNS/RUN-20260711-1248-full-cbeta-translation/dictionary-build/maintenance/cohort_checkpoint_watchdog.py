@@ -161,6 +161,21 @@ def governed_constructor_command(wrapper, engine, config, allowed_root):
     ]
 
 
+def governed_research_command(wrapper, extractor, extraction_output, research_skeleton):
+    """Build the sole authorized wrapper-to-extractor invocation.
+
+    Research extractors receive their two output paths from the watchdog.  This
+    prevents a caller from substituting a bare Python launch, changing the
+    environment boundary, or writing evidence to paths other than the ones the
+    checkpoint subsequently verifies.
+    """
+    return [
+        str(Path(sys.executable).resolve()), str(wrapper), "--script", str(extractor), "--",
+        "--extraction-output", str(extraction_output.resolve()),
+        "--research-skeleton", str(research_skeleton.resolve()),
+    ]
+
+
 def configured_entry(entry, ident, term):
     if entry.get("id") != ident or entry.get("term") != term or ident != deterministic_id(term):
         raise ValueError("config deterministic identity/term mismatch")
@@ -247,11 +262,12 @@ def research(args):
         if elapsed > deadlines["researchExtraction"]:
             raise ValueError(f"{elapsed:.3f}s > 120s")
         audit = post_receipt(args.command_audit, receipt_mtime, "command audit")
-        command = list(args.command)
-        if command and command[0] == "--":
-            command = command[1:]
-        if not command:
-            raise ValueError("bounded extraction command is empty")
+        wrapper = stable_tool(args.wrapper, args.authorized_wrapper_sha, "environment wrapper")
+        extractor = stable_tool(args.extractor, args.authorized_extractor_sha, "research extractor")
+        output_target = Path(args.extraction_output).resolve()
+        skeleton_target = Path(args.research_skeleton).resolve()
+        command = governed_research_command(
+            wrapper, extractor, output_target, skeleton_target)
         audit_data = audit_commands(audit, started, command)
         write(receipt, {"schemaVersion": "cohort-research-checkpoint.v1",
                         "startedEpoch": started, "invokedEpoch": now,
@@ -284,8 +300,13 @@ def research(args):
                     "adjudicatedCaseLoad": case_load,
                     "deadlinesSeconds": deadlines,
                     "ids": args.ids, "terms": args.terms, "command": command,
+                    "wrapperPath": str(wrapper), "wrapperSha256": sha(wrapper),
+                    "extractorPath": str(extractor), "extractorSha256": sha(extractor),
                     "commandAuditSha256": sha(audit),
+                    "commandAuditPath": str(audit.resolve()),
+                    "extractionOutputPath": str(output.resolve()),
                     "extractionOutputSha256": sha(output),
+                    "researchSkeletonPath": str(skeleton.resolve()),
                     "researchSkeletonSha256": sha(skeleton),
                     "candidateCounts": [len(row["sourceCandidates"]) for row in output_rows],
                     "processState": "completed", "returnCode": 0, "hardPass": True})
@@ -461,7 +482,10 @@ def cli():
     r.add_argument("--command-audit", required=True); r.add_argument("--extraction-output", required=True)
     r.add_argument("--research-skeleton", required=True); r.add_argument("--ids", nargs="+", required=True)
     r.add_argument("--terms", nargs="+", required=True)
-    r.add_argument("command", nargs=argparse.REMAINDER); r.set_defaults(func=research)
+    r.add_argument("--extractor", required=True); r.add_argument("--wrapper", required=True)
+    r.add_argument("--authorized-extractor-sha", required=True)
+    r.add_argument("--authorized-wrapper-sha", required=True)
+    r.set_defaults(func=research)
     c = sub.add_parser("constructor"); add_clock(c)
     c.add_argument("--config", required=True); c.add_argument("--research-receipt", required=True)
     c.add_argument("--ids", nargs="+", required=True); c.add_argument("--terms", nargs="+", required=True)

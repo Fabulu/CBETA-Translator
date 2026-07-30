@@ -43,9 +43,15 @@ class CheckpointTests(unittest.TestCase):
             rows.append({"id":ident,"term":term,"sourceCandidates":cs})
             hashes=[hashlib.sha256(json.dumps(x,ensure_ascii=False,sort_keys=True).encode()).hexdigest() for x in cs]
             skeleton.append({"id":ident,"term":term,"candidateHashes":hashes})
-        script.write_text("import json\n"+f"json.dump({{'rows':{rows!r}}},open({str(out)!r},'w'))\n"+
-                          f"json.dump({{'rows':{skeleton!r}}},open({str(research)!r},'w'))\n")
-        argv=[sys.executable,str(script)]; audit=self.r/"audit.json"
+        script.write_text(
+          "import argparse,json,zc\n"
+          "p=argparse.ArgumentParser(); p.add_argument('--extraction-output',required=True); "
+          "p.add_argument('--research-skeleton',required=True); a=p.parse_args()\n"+
+          f"json.dump({{'rows':{rows!r}}},open(a.extraction_output,'w'))\n"+
+          f"json.dump({{'rows':{skeleton!r}}},open(a.research_skeleton,'w'))\n")
+        argv=watchdog.governed_research_command(
+          WRAPPER.resolve(),script.resolve(),out.resolve(),research.resolve())
+        audit=self.r/"audit.json"
         audit.write_text(json.dumps({"complete":True,"commands":[{"epoch":999 if pre_epoch else 1001,"argv":argv}]}))
         return out,research,argv,audit
     def research_call(self,shallow=False,pre_epoch=False,now="1100"):
@@ -53,7 +59,10 @@ class CheckpointTests(unittest.TestCase):
         result=self.call("research","--timegate",self.tg,"--receipt",self.r/"rr.json",
                          "--now-epoch",now,"--command-audit",audit,
                          "--extraction-output",out,"--research-skeleton",res,
-                         "--ids",*self.ids,"--terms",*self.terms,"--",*argv)
+                         "--ids",*self.ids,"--terms",*self.terms,
+                         "--extractor",self.r/"extract.py","--wrapper",WRAPPER,
+                         "--authorized-extractor-sha",sh(self.r/"extract.py"),
+                         "--authorized-wrapper-sha",sh(WRAPPER))
         return result
     def full_config(self, engine, id_only=False, empty_payload=False):
         config=self.r/"config.json"; paths={k:str(self.r/k) for k in
@@ -100,7 +109,44 @@ class CheckpointTests(unittest.TestCase):
         self.last_marker=marker
         return result
 
-    def test_real_extraction_passes(self): self.assertEqual(0,self.research_call().returncode)
+    def test_real_extraction_passes(self):
+        result=self.research_call()
+        self.assertEqual(0,result.returncode,result.stderr)
+        receipt=json.loads((self.r/"rr.json").read_text())
+        self.assertEqual(str((self.r/"extract.json").resolve()),receipt["extractionOutputPath"])
+        self.assertEqual(sh(self.r/"extract.json"),receipt["extractionOutputSha256"])
+        self.assertEqual(str((self.r/"audit.json").resolve()),receipt["commandAuditPath"])
+        self.assertEqual(sh(self.r/"audit.json"),receipt["commandAuditSha256"])
+        self.assertEqual(str((self.r/"extract.py").resolve()),receipt["extractorPath"])
+        self.assertEqual(sh(self.r/"extract.py"),receipt["extractorSha256"])
+
+    def test_bare_extractor_audit_is_rejected_before_launch(self):
+        out,res,argv,audit=self.extraction()
+        audit.write_text(json.dumps({"complete":True,"commands":[{
+          "epoch":1001,"argv":[sys.executable,str(self.r/"extract.py")]}]}))
+        result=self.call("research","--timegate",self.tg,"--receipt",self.r/"rr.json",
+          "--now-epoch","1100","--command-audit",audit,
+          "--extraction-output",out,"--research-skeleton",res,
+          "--ids",*self.ids,"--terms",*self.terms,
+          "--extractor",self.r/"extract.py","--wrapper",WRAPPER,
+          "--authorized-extractor-sha",sh(self.r/"extract.py"),
+          "--authorized-wrapper-sha",sh(WRAPPER))
+        self.assertEqual(124,result.returncode)
+        self.assertIn("does not bind exact invoked argv",result.stderr)
+        self.assertFalse(out.exists())
+        self.assertFalse(res.exists())
+
+    def test_caller_assembled_research_argv_is_not_a_cli_contract(self):
+        out,res,argv,audit=self.extraction()
+        result=self.call("research","--timegate",self.tg,"--receipt",self.r/"rr.json",
+          "--now-epoch","1100","--command-audit",audit,
+          "--extraction-output",out,"--research-skeleton",res,
+          "--ids",*self.ids,"--terms",*self.terms,
+          "--extractor",self.r/"extract.py","--wrapper",WRAPPER,
+          "--authorized-extractor-sha",sh(self.r/"extract.py"),
+          "--authorized-wrapper-sha",sh(WRAPPER),"--",*argv)
+        self.assertEqual(2,result.returncode)
+        self.assertFalse((self.r/"rr.json").exists())
     def test_n20_evidence_scaled_schedule(self):
         total,deadlines=watchdog.evidence_schedule([6,6,8],20)
         self.assertEqual(20,total)
@@ -265,7 +311,10 @@ class CheckpointTests(unittest.TestCase):
         os.utime(audit,(1000,1000))
         result=self.call("research","--timegate",self.tg,"--receipt",self.r/"rr.json",
           "--now-epoch","1100","--command-audit",audit,"--extraction-output",out,
-          "--research-skeleton",res,"--ids",*self.ids,"--terms",*self.terms,"--",*argv)
+          "--research-skeleton",res,"--ids",*self.ids,"--terms",*self.terms,
+          "--extractor",self.r/"extract.py","--wrapper",WRAPPER,
+          "--authorized-extractor-sha",sh(self.r/"extract.py"),
+          "--authorized-wrapper-sha",sh(WRAPPER))
         self.assertEqual(124,result.returncode)
 
     def test_empty_and_wrong_product_rejected(self):
