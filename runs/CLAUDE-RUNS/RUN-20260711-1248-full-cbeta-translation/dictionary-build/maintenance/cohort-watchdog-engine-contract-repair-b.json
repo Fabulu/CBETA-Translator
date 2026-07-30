@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "cohort-watchdog-engine-contract-repair.v1",
+  "failureSource": "The caller and generic engine had incompatible start-receipt schemas. R50's configuration was not defective and was not edited after failure.",
+  "repair": {
+    "caller": "maintenance/cohort_checkpoint_watchdog.py",
+    "sha256": "bfb2f8b91ec023f67a24460e5efce34158818fe4e2626714f4b49cdcbdf67b5f",
+    "emittedSchema": "construction-start-receipt.v1",
+    "artifactBindings": [
+      "config",
+      "selection",
+      "research",
+      "command-audit"
+    ]
+  },
+  "tests": {
+    "path": "maintenance/test_cohort_checkpoint_watchdog.py",
+    "sha256": "52996f1b4e36a1fcc234350ddf22e5495592f36efff0363b7ec972ca010652d0",
+    "run": 25,
+    "passed": 25,
+    "failed": 0,
+    "pythonCompilePass": true,
+    "endToEndRegression": "The exact governed wrapper command invokes the real generic_bounded_constructor.py. The engine accepts argv, start schema, and artifact hashes, then reaches the deliberate ordered-ID rejection. The test rejects recurrence of 'invalid watchdog receipt schema'."
+  },
+  "r50": {
+    "sealPath": "maintenance/non-iriya-v7-r50-finite-partial-b.json",
+    "sealSha256": "a9bdaa3a31a8300931b765cb8d4826fc3662578a2e86c610d0748ad47ed4dc73",
+    "reset": false,
+    "newProducts": 0,
+    "entryMutation": false,
+    "publicMutation": false
+  },
+  "hardPass": true,
+  "requiresIndependentReviewBeforeReuse": true
+}

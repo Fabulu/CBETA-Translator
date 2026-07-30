@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "cohort-artifact-zero-helper-authority.v1",
+  "reviewer": "/root/source_tiers_c",
+  "decision": "PASS_AUTHORIZE_R50_CONTINUATION",
+  "r49InvalidSeal": {
+    "path": "maintenance/non-iriya-v7-r49-invalid-artifact-zero-b.json",
+    "sha256": "5de00015b95d1a21e50942c1b06cf13b83b72cea33ac84290cce2e1045a1c882",
+    "status": "INVALID_ARTIFACT_ZERO",
+    "resetAuthorized": false,
+    "semanticEquivalenceRuling": "The frozen finalization preserves the same invalid-start facts, no-work audit, closure and R50 disposition. Its proposed os.utime process correction is expressly superseded by this authority's evidentiary ruling and repaired helper."
+  },
+  "helper": {
+    "path": "maintenance/create_cohort_artifact_zero.py",
+    "sha256": "19a50dec451285806efce629b6a49bd9e23dd2d4a3b927846cb7a952634efc46",
+    "writeModel": "direct final-path O_CREAT|O_EXCL write, flush and fsync",
+    "timestampModel": "startedEpoch sampled immediately before exclusive creation; filesystem mtime remains the naturally recorded write time",
+    "osUtimeUsed": false,
+    "overwriteRejected": true
+  },
+  "tests": {
+    "path": "maintenance/test_create_cohort_artifact_zero.py",
+    "sha256": "ba93e53106ee1d121d0ebf4e864feb914f618f105ba0b2cdc749f407280e840e",
+    "filesystem": "/mnt/c mounted workspace",
+    "independentRuns": 6,
+    "testsPerRun": 2,
+    "result": "12/12 pass",
+    "pyCompile": "pass",
+    "assertions": [
+      "actual mtime is no earlier than one mounted-filesystem resolution unit before the pre-command wall clock",
+      "actual mtime is no later than the post-command wall clock",
+      "actual mtime differs from startedEpoch by no more than one second",
+      "helper source contains no os.utime",
+      "existing final path is never overwritten",
+      "N=20 produces the exact evidence-scaled schedule"
+    ]
+  },
+  "evidentiaryRuling": {
+    "osUtimeNs": "REJECTED_AS_BACKDATING",
+    "reason": "Setting mtime to the sampled payload time destroys mtime as independent filesystem evidence; numeric agreement would be manufactured by the helper.",
+    "directCreation": "ACCEPTED",
+    "reasonDirect": "The final path is exclusively created once and its untouched filesystem mtime independently brackets the same direct creation event."
+  },
+  "r50Authorization": {
+    "continuationOf": "R49-INVALID-ARTIFACT-ZERO",
+    "predecessorSemanticWork": "inherit R48 only through a new post-receipt bounded inheritance validator; no rebrowse",
+    "requiredFloors": [4, 8, 8],
+    "admittedRequiredOccurrences": 20,
+    "deadlinesSeconds": {
+      "viability": 90,
+      "researchExtraction": 120,
+      "adjudicatedConfig": 300,
+      "constructor": 310,
+      "firstProduct": 330,
+      "construction": 390,
+      "review": 570,
+      "correction": 690,
+      "publication": 780
+    },
+    "helperCommandRequired": "python3 maintenance/create_cohort_artifact_zero.py --output maintenance/non-iriya-v7-depth-regeneration-r50-timegate-b.json --cohort R50 --continuation-of R49-INVALID-ARTIFACT-ZERO --floors 4 8 8"
+  },
+  "entryEditsPerformed": false,
+  "publicMutation": false
+}

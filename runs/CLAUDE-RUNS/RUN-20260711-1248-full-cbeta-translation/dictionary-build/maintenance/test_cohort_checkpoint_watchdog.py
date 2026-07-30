@@ -57,6 +57,10 @@ class CheckpointTests(unittest.TestCase):
     def full_config(self, engine, id_only=False, empty_payload=False):
         config=self.r/"config.json"; paths={k:str(self.r/k) for k in
           ["selection","research","outputRoot","firstProductReceipt","preclosure","manifest","closure"]}
+        Path(paths["selection"]).write_text(json.dumps({"rows":[
+          {"id":i,"term":t} for i,t in zip(self.ids,self.terms)]}))
+        Path(paths["research"]).write_text(json.dumps({"rows":[
+          {"id":i,"term":t} for i,t in zip(self.ids,self.terms)]}))
         entries=[{"id":i} if id_only else {"id":i,"term":t,
           "sourceDossier":{} if empty_payload else {"id":i,"term":t},
           "evidenceDraft":{} if empty_payload else {"Entry":{"Id":i,"SourceTerm":t,
@@ -127,6 +131,43 @@ class CheckpointTests(unittest.TestCase):
         self.assertEqual(0,result.returncode,result.stderr)
         self.assertEqual(["--config",str((self.r/"config.json").resolve()),
           "--allowed-build-root",str(self.r.resolve())],json.loads(self.last_marker.read_text()))
+        receipt=json.loads((self.r/"constructor-receipt.json").read_text())
+        self.assertEqual("construction-start-receipt.v1",receipt["schemaVersion"])
+        self.assertEqual({"config","selection","research","command-audit"},
+                         {row["kind"] for row in receipt["cohortArtifacts"]})
+
+    def test_exact_governed_command_passes_generic_engine_start_contract(self):
+        rr=self.r/"research-receipt.json"
+        rr.write_text(json.dumps({"hardPass":True,"ids":self.ids,"terms":self.terms,
+          "requiredFloors":self.floors,"admittedRequiredOccurrences":10,
+          "deadlinesSeconds":self.deadlines}))
+        engine=ROOT/"maintenance/generic_bounded_constructor.py"
+        wrapper=WRAPPER
+        config=self.full_config(engine)
+        # Deliberately fail after the engine has accepted the governed argv,
+        # start-receipt schema, and artifact hashes.
+        selection=self.r/"selection"
+        selection.write_text(json.dumps({"rows":[{"id":"wrong","term":"甲"}]}))
+        receipt=self.r/"generic-start-receipt.json"
+        argv=[str(Path(sys.executable).resolve()),str(wrapper),"--script",str(engine),"--",
+              "--config",str(config.resolve()),"--allowed-build-root",str(self.r.resolve())]
+        audit=self.r/"constructor-audit.json"
+        audit.write_text(json.dumps({"complete":True,"commands":[{"epoch":1001,"argv":argv}]}))
+        config_data=json.loads(config.read_text())
+        config_data["watchdogReceiptPath"]=str(receipt)
+        config_data["commandAuditPath"]=str(audit)
+        config.write_text(json.dumps(config_data)); os.utime(config,(1200,1200))
+        result=self.call("constructor","--timegate",self.tg,"--receipt",receipt,
+          "--now-epoch","1249","--config",config,"--research-receipt",rr,
+          "--ids",*self.ids,"--terms",*self.terms,"--command-audit",audit,
+          "--engine",engine,"--wrapper",wrapper,"--allowed-root",self.r,
+          "--authorized-engine-sha",sh(engine),"--authorized-wrapper-sha",sh(wrapper))
+        self.assertEqual(124,result.returncode)
+        self.assertIn("selection/research/config/watchdog IDs are not exactly equal and ordered",
+                      result.stderr)
+        self.assertNotIn("invalid watchdog receipt schema",result.stderr)
+        start=json.loads(receipt.read_text())
+        self.assertEqual("construction-start-receipt.v1",start["schemaVersion"])
     def test_late_config_and_constructor_rejected(self):
         self.assertEqual(124,self.constructor_call(now="1250.1").returncode)
     def test_receipt_overwrite_rejected(self): self.assertEqual(124,self.constructor_call(overwrite=True).returncode)

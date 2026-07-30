@@ -328,13 +328,22 @@ def constructor(args):
         command = governed_constructor_command(wrapper, engine, config, allowed_root)
         audit = post_receipt(args.command_audit, receipt_mtime, "constructor command audit")
         audit_commands(audit, started, command)
-        write(receipt, {"schemaVersion": "cohort-constructor-checkpoint.v1",
+        cohort_artifacts = [
+            {"kind": "config", "path": str(config.resolve()), "sha256": sha(config)},
+            {"kind": "selection", "path": str(Path(data["paths"]["selection"]).resolve()),
+             "sha256": sha(data["paths"]["selection"])},
+            {"kind": "research", "path": str(Path(data["paths"]["research"]).resolve()),
+             "sha256": sha(data["paths"]["research"])},
+            {"kind": "command-audit", "path": str(audit.resolve()), "sha256": sha(audit)},
+        ]
+        write(receipt, {"schemaVersion": "construction-start-receipt.v1",
                         "startedEpoch": started, "invokedEpoch": now,
                         "ids": args.ids, "terms": args.terms, "configSha256": sha(config),
                         "requiredFloors": floors, "admittedRequiredOccurrences": total,
                         "deadlinesSeconds": deadlines,
                         "engineSha256": sha(engine), "wrapperSha256": sha(wrapper),
                         "commandAuditSha256": sha(audit),
+                        "cohortArtifacts": cohort_artifacts,
                         "command": command, "processState": "starting"})
         completed = subprocess.run(command, check=False)
         if completed.returncode:
