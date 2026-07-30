@@ -1,0 +1,88 @@
+{
+  "schemaVersion": "r69-independent-source-first-review.v1",
+  "cohort": "R69",
+  "reviewer": "source_tiers_b",
+  "id": "t_1901868691a8",
+  "term": "呈漆器",
+  "entryPath": "fresh-build/entries/t_1901868691a8/entry.v2.json",
+  "entrySha256": "41641cf580f05f7317e4165d6170fc5796ab49d9abca5202aa966d8561a36a7f",
+  "sourceBindings": {
+    "extractionPath": "maintenance/non-iriya-v7-depth-regeneration-r69-extraction-output-b.json",
+    "extractionSha256": "41e0315aa822b0acd8cc19ffbc908a0d304fd21225c79b6b27bac6d4e0a1c00f",
+    "decisionPath": "maintenance/non-iriya-v7-depth-regeneration-r69-decision-chengqi-r27.json",
+    "decisionSha256": "8f71c0b89b017b27041daa7759a30ecc11e6dc88f924142897f78e37f2d9e7e9"
+  },
+  "sourceFirstRuling": {
+    "preferredTarget": "present the lacquerware",
+    "senseCount": 1,
+    "meaning": "The four retained passages preserve a concrete Zhaozhou formula about presenting or displaying lacquerware. Yuan'an Liao applies the same wording directly to a monk's presentation of his sitting cloth. The sources do not supply a stable doctrinal substitute for the lacquerware image.",
+    "familyCount": 4,
+    "families": [
+      {
+        "familyId": "t_1901868691a8-zhaozhou-source-case",
+        "ruling": "independent source case",
+        "exactActor": "Zhaozhou Congshen"
+      },
+      {
+        "familyId": "t_1901868691a8-xueguan-verse",
+        "ruling": "independent active poetic reception",
+        "exactActor": "Xueguan Zhiyin"
+      },
+      {
+        "familyId": "t_1901868691a8-lingshu-commentary",
+        "ruling": "independent active commentary around a quoted Zhaozhou use",
+        "exactHeadwordActor": "Zhaozhou Congshen",
+        "contextualCommentator": "Lingshu Yuan"
+      },
+      {
+        "familyId": "t_1901868691a8-yuanan-direct-redeployment",
+        "ruling": "independent direct contextual redeployment",
+        "exactActor": "Yuan'an Liao"
+      }
+    ],
+    "sourceHierarchy": {
+      "tier1": 0,
+      "tier2": 4,
+      "tier3Lamp": 0,
+      "ruling": "The four Tier-2 families are legitimate recorded-sayings evidence; no lamp padding is present."
+    }
+  },
+  "verification": {
+    "occurrencesChecked": 4,
+    "zcVerifyPassed": 4,
+    "exactFromToLbPassed": 4,
+    "singleExactHeadwordSpanPassed": 4,
+    "concreteGlossSupported": true,
+    "fourFamilyStructureSupported": true,
+    "yuananRedeploymentSupported": true,
+    "readerProseClaimsSupported": true,
+    "doctrinalFlatteningAbsent": true,
+    "exactActorClosureSupported": false
+  },
+  "defects": [
+    {
+      "severity": "blocking",
+      "coordinate": "Senses[0].Occurrences[2]",
+      "relPath": "J/J34/J34nB304.xml",
+      "fromLb": "0379a30",
+      "field": "MasterName / ActorAttribution / ContextActors",
+      "current": {
+        "MasterName": null,
+        "ActorAttributionStatus": "identified-unlinked-master",
+        "ActorLabel": "Lingshu Yuan (靈樹遠禪師)",
+        "ContextActors": []
+      },
+      "sourceProof": "The stored KWIC says 舉：「僧問趙州……州云：『呈漆器。』」師云…… . 州云 explicitly makes Zhaozhou Congshen the utterer of the stored headword. 師云 begins Lingshu Yuan's later appraisal only after the quotation closes.",
+      "requiredCorrection": [
+        "Set MasterName to Zhaozhou Congshen and remove ActorAttribution from this occurrence.",
+        "Add Zhaozhou Congshen to ContextMasters with role utterer.",
+        "Preserve Lingshu Yuan separately as an identified-unlinked contextual later-raiser/commentator, not as the exact actor.",
+        "Keep the active-commentary witness family: the surrounding appraisal is an independent redeployment even though Zhaozhou owns the quoted headword."
+      ],
+      "nonCollateralRuling": "The preferred target, one-sense structure, four-family count, explanation, note, other three actors, and all four exact source spans should remain unchanged."
+    }
+  ],
+  "verdict": "DENY",
+  "finiteCorrectionCount": 1,
+  "hardPass": false
+}

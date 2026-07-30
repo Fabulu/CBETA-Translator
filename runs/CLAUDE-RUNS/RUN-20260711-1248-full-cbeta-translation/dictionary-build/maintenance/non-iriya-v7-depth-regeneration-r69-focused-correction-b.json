@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "r69-focused-correction.v1",
+  "cohort": "R69",
+  "createdUtc": "2026-07-30T07:29:26.396375Z",
+  "beforeSha256": {
+    "config": "6ab8d3345cc78d8db300d5616abdf0deb5721e807cdd6f0b75cb9b24f618ef52",
+    "entries": {
+      "t_17c1d8b4f105": "77fc809bfb18f5b0520a557aaff8da029e36dfe27ac5988d58ed16960e49b73f",
+      "t_1820fe9e6a50": "abd717098ccde3e8eaa58606fc565141d5882e9f7ce5248fb8d71373ec3d85ac",
+      "t_1901868691a8": "41641cf580f05f7317e4165d6170fc5796ab49d9abca5202aa966d8561a36a7f"
+    },
+    "worksheets": {
+      "t_17c1d8b4f105": "37fd2ec7d91fc0fcb0a807f627ce808823e169dbf033d7e2d168d2ad26d20f41",
+      "t_1820fe9e6a50": "160e2d67a4b4ebb6cf7fbcd3a85f61fa562028c1e806ef51e338735339560033",
+      "t_1901868691a8": "bf879a23b56656538b000b0501e2dcbc6c73d7891bfbff249b04cecef23a693b"
+    }
+  },
+  "afterSha256": {
+    "config": "e8a2bacde23e384e71e4fac89db2654d36ab1daf121c6c9cb63756895b408fc9",
+    "entries": {
+      "t_17c1d8b4f105": "dd37c932be7ffe63db81d8f21b7131adeb1a05d37efc05db923a56243feb8741",
+      "t_1820fe9e6a50": "abd717098ccde3e8eaa58606fc565141d5882e9f7ce5248fb8d71373ec3d85ac",
+      "t_1901868691a8": "e41e68d0f1f6657a091942c376a7458ccaa3847ef7b8d248c367b1008846101d"
+    },
+    "worksheets": {
+      "t_17c1d8b4f105": "3a051e1ee32b0a10471db5d13c52dee7e62fc1cf6c4b4e1f809c024e6b0c7d64",
+      "t_1820fe9e6a50": "2f62ecf5b5fbe0836c3b5d5bb5131f900f2e426fe1669853c012d14ecd05aee3",
+      "t_1901868691a8": "c504a5626be241ecd55fc40f9a4007846813b0d6739cc53fd66e29fc918d1852"
+    },
+    "compileReports": {
+      "t_17c1d8b4f105": "f9fd2b38dd7d756aff80e2c1b04516bd0f5a8fff0c00c504c4aacfc8c9a8943e",
+      "t_1820fe9e6a50": "d9424df584abeee090e8d33fae122d29b3ef1741c5ec6bd8467b66cbcfde7817",
+      "t_1901868691a8": "738558446ca6ae6c36876bf600eeee717614388ffdd6e123533d11da5b6ac9ca"
+    }
+  },
+  "corrections": {
+    "劫外": "Five verse-author roles, one schema-valid authored-work record-owner role, and Puming label/role corrected; semantics unchanged.",
+    "瓦解冰消": "Removed only the duplicated opening definition.",
+    "呈漆器": "Assigned quoted headword to Zhaozhou; preserved Lingshu Yuan as identified-unlinked later-raiser/commentator."
+  },
+  "schemaReconciliation": "The review requested role `author` for Cheongheo, but the mandatory closed public role vocabulary does not contain `author`; `record-owner` is the closed role that preserves authored-text status without falsely claiming oral utterance.",
+  "focusedChecks": {
+    "actorClosure": true,
+    "wholeConfigPreclosure": true,
+    "canonicalCompilePrewrite": true,
+    "changedEntryCompile": true
+  },
+  "hardPass": true
+}

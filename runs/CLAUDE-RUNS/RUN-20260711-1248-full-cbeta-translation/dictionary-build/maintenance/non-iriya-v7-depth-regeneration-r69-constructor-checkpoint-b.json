@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "construction-start-receipt.v1",
+  "startedEpoch": 1785395776.161501,
+  "invokedEpoch": 1785396189.8990595,
+  "ids": [
+    "t_17c1d8b4f105",
+    "t_1820fe9e6a50",
+    "t_1901868691a8"
+  ],
+  "terms": [
+    "劫外",
+    "瓦解冰消",
+    "呈漆器"
+  ],
+  "configSha256": "00635b965670491922ac14eef286296b7ec82711f5689e6e786713bba37d2f6a",
+  "requiredFloors": [
+    7,
+    6,
+    4
+  ],
+  "admittedRequiredOccurrences": 17,
+  "adjudicatedCaseLoad": 17,
+  "deadlinesSeconds": {
+    "viability": 120,
+    "researchExtraction": 120,
+    "adjudicatedConfig": 524,
+    "constructor": 534,
+    "firstProduct": 554,
+    "construction": 614,
+    "review": 810,
+    "correction": 938,
+    "publication": 1028
+  },
+  "engineSha256": "d90150c6223653939a6597828c48533682f533d3a4e1c25bdc46997d770f8c13",
+  "wrapperSha256": "1cb33f9ac63ded2b1722a1f4b01860314cf5b4fa6008ff0b7e94a68f98d02fd2",
+  "commandAuditSha256": "87232a679e74617fb0aa29f93bff3073d5af71988d0c4971c0de3f93e3b9bf69",
+  "cohortArtifacts": [
+    {
+      "kind": "config",
+      "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r69-constructor-config-b.json",
+      "sha256": "00635b965670491922ac14eef286296b7ec82711f5689e6e786713bba37d2f6a"
+    },
+    {
+      "kind": "selection",
+      "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r69-selection-b.json",
+      "sha256": "f172b3935b107d3cd0aacc0afe83d7b335e41c281ea6d5d6b18ba94a20a6831a"
+    },
+    {
+      "kind": "research",
+      "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r69-research-b.json",
+      "sha256": "23f6096a71296d34c269e2e532a90daf86fdcc44e1f722972cb46c3870430218"
+    },
+    {
+      "kind": "command-audit",
+      "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r69-constructor-command-audit-b.json",
+      "sha256": "87232a679e74617fb0aa29f93bff3073d5af71988d0c4971c0de3f93e3b9bf69"
+    }
+  ],
+  "command": [
+    "/usr/bin/python3.10",
+    "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/dictionary_python_env.py",
+    "--script",
+    "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/generic_bounded_constructor.py",
+    "--",
+    "--config",
+    "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r69-constructor-config-b.json",
+    "--allowed-build-root",
+    "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build"
+  ],
+  "processState": "completed",
+  "elapsedSeconds": 413.73755860328674,
+  "deadlineSeconds": 534,
+  "returnCode": 0,
+  "hardPass": true
+}

@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "r69-final-release-authority.v1",
+  "cohort": "R69",
+  "verdict": "RELEASE_AUTHORIZED",
+  "products": [
+    {
+      "id": "t_17c1d8b4f105",
+      "term": "劫外",
+      "sha256": "dd37c932be7ffe63db81d8f21b7131adeb1a05d37efc05db923a56243feb8741",
+      "worksheetSha256": "3a051e1ee32b0a10471db5d13c52dee7e62fc1cf6c4b4e1f809c024e6b0c7d64",
+      "rereviewSha256": "d7f5dcfc20e6c1fb906dee39a8e69af679d4013e6409f8e26ca4813b867e8d96"
+    },
+    {
+      "id": "t_1820fe9e6a50",
+      "term": "瓦解冰消",
+      "sha256": "f7029c724c476d734d75def4828b5c659b9835d54c7c374790c1f531792bca33",
+      "worksheetSha256": "f5a8e5d294e8d755f0dc9908e5690c59cb4880b85e5639ce55b4f494fcaa2377",
+      "rereviewSha256": "780da86761c83ae4484c500582a3edc2cd1d3a7baec3a0aa003ba1df2973044e"
+    },
+    {
+      "id": "t_1901868691a8",
+      "term": "呈漆器",
+      "sha256": "e41e68d0f1f6657a091942c376a7458ccaa3847ef7b8d248c367b1008846101d",
+      "worksheetSha256": "c504a5626be241ecd55fc40f9a4007846813b0d6739cc53fd66e29fc918d1852",
+      "rereviewSha256": "58e0f87d109c913ab3ef05cf67de8b5eccdfea795452a862fd19276f00245949"
+    }
+  ],
+  "focusedCorrectionAmendmentSha256": "dfb4c4e1ca723f560a28fff1dfcaa780c57c59f9b5ef1c7485fcf51f9c09124a",
+  "review": {
+    "semanticRulings": "3/3 pass",
+    "actorsAndSourceBoundaries": "20/20 pass",
+    "retainedEvidence": "20 quotations across 18 semantic deployment families",
+    "tierMix": "6 Tier-1, 14 Tier-2, 0 Tier-3",
+    "compilerProjectionParity": "pass",
+    "unrelatedDrift": "none observed"
+  },
+  "releaseAuthorized": true,
+  "hardPass": true
+}

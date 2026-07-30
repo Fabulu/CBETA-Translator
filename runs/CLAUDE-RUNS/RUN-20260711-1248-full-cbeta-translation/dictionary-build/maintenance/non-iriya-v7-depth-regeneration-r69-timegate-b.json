@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "bounded-dictionary-timegate.v2",
+  "cohort": "R69",
+  "artifactZero": true,
+  "startedEpoch": 1785395776.161501,
+  "createdUtc": "2026-07-30T07:16:16.161501Z",
+  "requiredFloors": [
+    7,
+    6,
+    4
+  ],
+  "admittedRequiredOccurrences": 17,
+  "adjudicatedCaseLoad": 17,
+  "researchCandidateReserve": 3,
+  "deadlinesSeconds": {
+    "viability": 120,
+    "researchExtraction": 120,
+    "adjudicatedConfig": 524,
+    "constructor": 534,
+    "firstProduct": 554,
+    "construction": 614,
+    "review": 810,
+    "correction": 938,
+    "publication": 1028
+  },
+  "assignedLaunch": {
+    "selector": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/last1500-public-depth/final-scope/full-regeneration-selector.json",
+    "priorUnion": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r64-prior-union-b.json",
+    "entries": [
+      {
+        "id": "t_17c1d8b4f105",
+        "term": "劫外",
+        "requiredFloor": 7
+      },
+      {
+        "id": "t_1820fe9e6a50",
+        "term": "瓦解冰消",
+        "requiredFloor": 6
+      },
+      {
+        "id": "t_1901868691a8",
+        "term": "呈漆器",
+        "requiredFloor": 4
+      }
+    ],
+    "reserveIds": [
+      "t_16fa94f9bd79",
+      "t_1707269fc3fc",
+      "t_1793c3514a69",
+      "t_17b2631fd3ed"
+    ],
+    "researchCandidateReserve": 3
+  },
+  "continuationOf": "R68-CANONICAL-DEPTH-SEALED"
+}

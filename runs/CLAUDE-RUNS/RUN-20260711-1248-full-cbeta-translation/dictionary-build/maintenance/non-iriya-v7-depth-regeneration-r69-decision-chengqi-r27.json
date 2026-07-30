@@ -1,0 +1,67 @@
+{
+  "schemaVersion": "incremental-semantic-decision.v1",
+  "cohort": "R69",
+  "id": "t_1901868691a8",
+  "term": "呈漆器",
+  "inherits": {
+    "path": "maintenance/non-iriya-v7-depth-regeneration-r68-decision-chengqi-r27.json",
+    "sha256": "99b9b5378835f0d53b2515a8c411c4daf7544f1db933a9bc63a38a75d60ac9ef"
+  },
+  "decision": "READY_AT_FOUR_INDEPENDENT_WITNESSES",
+  "newCaseDecisions": [
+    {
+      "relPath": "J/J36/J36nB362.xml",
+      "fromLb": "0762c04",
+      "workId": "work:J36nB362",
+      "tier": 2,
+      "MasterName": "Guantao Daqi",
+      "action": "raises Zhaozhou's answer and comments on recognizing Zhaozhou",
+      "grammar": "州曰 owns the quoted 呈漆器; 師曰 begins Guantao Daqi's later appraisal.",
+      "WitnessFamilyId": "t_1901868691a8-guantao-commentary",
+      "deploymentRole": "active-commentary",
+      "retain": false,
+      "reason": "Legitimate independent reception, but Yuan'an's direct contextual redeployment is semantically stronger for the required fourth witness."
+    },
+    {
+      "relPath": "J/J37/J37nB386.xml",
+      "fromLb": "0360a01",
+      "workId": "work:J37nB386",
+      "tier": 2,
+      "MasterName": "Yuan'an Liao",
+      "action": "calls the monk's presentation of his sitting cloth a display of lacquerware",
+      "grammar": "僧呈坐具 supplies the presented object; 師云 makes Yuan'an the exact speaker who applies 呈漆器 to the monk's act.",
+      "WitnessFamilyId": "t_1901868691a8-yuanan-direct-redeployment",
+      "deploymentRole": "direct-contextual-redeployment",
+      "retain": true,
+      "strongQuote": "僧呈坐具，云：「且道者箇還有老婆心也無？」師云：「大眾看你呈漆器。」",
+      "reason": "Strongest addition: a direct live exchange extending Zhaozhou's formula to an observable act, not another quotation-only commentary."
+    },
+    {
+      "relPath": "J/J37/J37nB388.xml",
+      "fromLb": "0476b18",
+      "workId": "work:J37nB388",
+      "tier": 2,
+      "MasterName": "Yikui Yuankui",
+      "action": "uses mutually presenting lacquerware to criticize Bodhidharma's disciples stating their attainments",
+      "grammar": "師拈 introduces Yikui Yuankui's appraisal; 一隊漢互呈漆器 is his own predicate about the raised case.",
+      "WitnessFamilyId": "t_1901868691a8-yikui-commentary",
+      "deploymentRole": "active-metaphorical-redeployment",
+      "retain": false,
+      "reason": "Legitimate fifth family and useful reserve, but not needed after the stronger Yuan'an direct exchange."
+    }
+  ],
+  "finalDepth": {
+    "retainedExactWitnesses": 4,
+    "independentWitnessFamilies": 4,
+    "retainedFamilies": [
+      "t_1901868691a8-zhaozhou-source-case",
+      "t_1901868691a8-xueguan-verse",
+      "t_1901868691a8-lingshu-commentary",
+      "t_1901868691a8-yuanan-direct-redeployment"
+    ],
+    "newReserveFamiliesFullyAdjudicated": 2,
+    "tier3LampCount": 0
+  },
+  "preferredTarget": "present the lacquerware",
+  "semanticUpdate": "Yuan'an's direct use confirms that the Zhaozhou formula can be turned onto someone's concrete presentation or display; retain the literal image rather than replacing it with a doctrinal paraphrase."
+}

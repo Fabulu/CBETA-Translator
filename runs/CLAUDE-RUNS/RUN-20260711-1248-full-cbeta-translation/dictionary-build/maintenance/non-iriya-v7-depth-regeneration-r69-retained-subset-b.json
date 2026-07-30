@@ -1,0 +1,81 @@
+{
+  "schemaVersion": "r69-retained-subset.v1",
+  "cohort": "R69",
+  "sourceExtractionSha256": "41e0315aa822b0acd8cc19ffbc908a0d304fd21225c79b6b27bac6d4e0a1c00f",
+  "rows": [
+    {
+      "id": "t_17c1d8b4f105",
+      "term": "劫外",
+      "requiredFloor": 7,
+      "retained": [
+        {
+          "relPath": "X/X78/X78n1554.xml",
+          "fromLb": "0600c04",
+          "tier": 1,
+          "workId": "chan:wujia-zhengzong-zan",
+          "WitnessFamilyId": "jiewai:dongshan-withered-tree-spring-verse",
+          "candidateHash": "af1f54ff124505ff7e22758e0e07563d0d062fac64f8ba2c10bac3032825e775"
+        },
+        {
+          "relPath": "B/B25/B25n0145.xml",
+          "fromLb": "0929a06",
+          "tier": 2,
+          "workId": "work:B25n0145",
+          "WitnessFamilyId": "jiewai:zhongfeng-joy-admonition-spring-return",
+          "candidateHash": "a69b6f9b43b145b344efd74f817e571326818e788ae5e8404232e8af35bd3374"
+        }
+      ],
+      "finalRetainedCount": 7
+    },
+    {
+      "id": "t_1820fe9e6a50",
+      "term": "瓦解冰消",
+      "requiredFloor": 6,
+      "retained": [
+        {
+          "relPath": "J/J25/J25nB171.xml",
+          "fromLb": "0540c20",
+          "tier": 2,
+          "workId": "work:J25nB171",
+          "WitnessFamilyId": "wajie-tianyin-monk-snow-exchange",
+          "candidateHash": "4964ef2439bbdbcc50ae644baee1b8a2dce1445eb25555d8d9c0dfb9b9c9a9b9"
+        },
+        {
+          "relPath": "J/J25/J25nB173.xml",
+          "fromLb": "0678b16",
+          "tier": 2,
+          "workId": "work:J25nB173",
+          "WitnessFamilyId": "wajie-wuming-unresolved-case",
+          "candidateHash": "a7a0cb74760e05f4a5d4d167700fe6408baa6437406a1f9f0dee511779c3e56c"
+        },
+        {
+          "relPath": "J/J26/J26nB180.xml",
+          "fromLb": "0290a08",
+          "tier": 2,
+          "workId": "work:J26nB180",
+          "WitnessFamilyId": "wajie-muchen-doubts-address",
+          "candidateHash": "e0f343f1ed14a30c2f8ef0dbd364dfdf2d2085725453ce555b7ce2efc9cf87ef"
+        }
+      ],
+      "finalRetainedCount": 9
+    },
+    {
+      "id": "t_1901868691a8",
+      "term": "呈漆器",
+      "requiredFloor": 4,
+      "retained": [
+        {
+          "relPath": "J/J37/J37nB386.xml",
+          "fromLb": "0360a01",
+          "tier": 2,
+          "workId": "work:J37nB386",
+          "WitnessFamilyId": "t_1901868691a8-yuanan-direct-redeployment",
+          "candidateHash": "03fc9fafbd1506b22fbc29ebca21dcda69122d5fd0944e978a7e3cfaf82c4ac2"
+        }
+      ],
+      "finalRetainedCount": 4
+    }
+  ],
+  "selectionPolicy": "Tier1 authored first, Tier2 recorded sayings next, Tier3 lamps last-resort only.",
+  "hardPass": true
+}

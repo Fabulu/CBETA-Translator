@@ -1,0 +1,110 @@
+{
+  "schemaVersion": "r69-incremental-semantic-decision.v1",
+  "cohort": "R69",
+  "id": "t_17c1d8b4f105",
+  "term": "劫外",
+  "priorDecision": {
+    "path": "maintenance/non-iriya-v7-depth-regeneration-r68-decision-jiewai-b.json",
+    "sha256": "16a9133cc75325330fe82b8e15e5c34fa1b3e134bfcb3565d29ed6af46dd969e",
+    "retainedWitnessesReused": 5
+  },
+  "incrementalSourceBinding": {
+    "path": "maintenance/non-iriya-v7-depth-regeneration-r69-extraction-output-b.json",
+    "newReserveCasesRead": 3,
+    "newReserveRelPaths": [
+      "X/X72/X72n1442.xml",
+      "X/X78/X78n1554.xml",
+      "B/B25/B25n0145.xml"
+    ]
+  },
+  "semanticRuling": {
+    "senseCount": 1,
+    "preferredTarget": "beyond the cosmic aeon",
+    "alternateTargets": [
+      "before the kalpa",
+      "outside the aeon"
+    ],
+    "searchAliases": [
+      "before the cosmic cycle",
+      "beyond the kalpa"
+    ],
+    "validation": "multi-source",
+    "explanation": "劫外, literally 'outside the kalpa,' places a season, light, flower, barrier, or living root beyond ordinary cosmic-aeon reckoning. Dongshan Liangjie writes of a withered tree flowering in spring beyond the aeon (枯木花開劫外春), while Zhongfeng Mingben writes of spring returning beyond the aeon (劫外春回). These strengthen the earlier authored uses of spring, light, flowers, and a barrier without creating a second sense.",
+    "note": "Prefer the graph-level temporal image. 'Timeless,' 'eternal,' and metaphysical equivalents say more than the retained passages establish."
+  },
+  "incrementalCaseDecisions": [
+    {
+      "evidenceKey": "r69-o8",
+      "relPath": "X/X72/X72n1442.xml",
+      "fromLb": "0687b04",
+      "workId": "work:X72n1442",
+      "tier": 1,
+      "decision": "reject-surplus",
+      "exactActor": {
+        "masterName": "Weilin Daopei",
+        "role": "utterer",
+        "grammarEvidence": "孝子楊鑣懺血盆齋請示眾 opens the occasion; 師云 begins Weilin Daopei's continuous address, and 乃卓拄杖云 directly governs 靈根盤劫外."
+      },
+      "recutDecision": "The complete address establishes the speaker and the final capping couplet; no source recut is needed for adjudication.",
+      "candidateWitnessFamilyId": "jiewai:weilin-filial-address-living-root",
+      "reason": "Legitimate independent use, but not needed after the two stronger reserve cases bring the entry to its floor. It is not counted or added merely to consume the reserve."
+    },
+    {
+      "evidenceKey": "r69-o9",
+      "relPath": "X/X78/X78n1554.xml",
+      "fromLb": "0600c04",
+      "workId": "chan:wujia-zhengzong-zan",
+      "tier": 1,
+      "decision": "keep",
+      "exactActor": {
+        "masterName": "Dongshan Liangjie",
+        "role": "verse-author",
+        "grammarEvidence": "Within the Dongshan section, 師頌曰 explicitly introduces Dongshan's verse 枯木花開劫外春; the later 贊曰 begins the compiler's separate appraisal."
+      },
+      "recutDecision": "Retain Dongshan's complete four-line verse beginning 枯木花開劫外春 and stop before the compiler's 贊曰.",
+      "WitnessFamilyId": "jiewai:dongshan-withered-tree-spring-verse",
+      "deploymentRole": "quoted-authored-verse",
+      "quote": "枯木花開劫外春，倒騎玉象趁麒麟。而今高隱千峯外，月皎風清好日辰。"
+    },
+    {
+      "evidenceKey": "r69-o10",
+      "relPath": "B/B25/B25n0145.xml",
+      "fromLb": "0929a06",
+      "workId": "work:B25n0145",
+      "tier": 2,
+      "decision": "keep",
+      "exactActor": {
+        "masterName": "Zhongfeng Mingben",
+        "role": "verse-author",
+        "grammarEvidence": "喜箴并序 is Zhongfeng Mingben's own admonition; 乃為箴曰 introduces the capping verse containing 劫外春回."
+      },
+      "recutDecision": "Retain the complete 喜箴 capping verse and stop before 怒箴.",
+      "WitnessFamilyId": "jiewai:zhongfeng-joy-admonition-spring-return",
+      "deploymentRole": "authored-admonition-verse",
+      "quote": "至哉之喜徹法源，底曰如意輪契解脫體，愛見不住情欲何倚，劫外春回花開碓觜。"
+    }
+  ],
+  "finalRetainedWitnessFamilies": [
+    "jiewai:shanci-oxherding-duzhao",
+    "jiewai:dawei-jinglun-beyond-aeon-spring",
+    "jiewai:runguangze-udumbara-verse",
+    "jiewai:hyujeong-caodong-house-formula",
+    "jiewai:puming-oxherding-seventh-preface",
+    "jiewai:dongshan-withered-tree-spring-verse",
+    "jiewai:zhongfeng-joy-admonition-spring-return"
+  ],
+  "depthAccounting": {
+    "transportCandidateCount": 10,
+    "priorCasesReused": 7,
+    "newReserveCasesRead": 3,
+    "retainedOccurrences": 7,
+    "independentSemanticWitnessFamilies": 7,
+    "tier1Count": 6,
+    "tier2Count": 1,
+    "tier3LampCount": 0,
+    "reserveNotCountedAsDepth": 1,
+    "lampPolicy": "No lamp consulted or retained; seven fully adjudicated Tier-1/2 families meet the floor."
+  },
+  "hardPass": true,
+  "publicMutation": false
+}

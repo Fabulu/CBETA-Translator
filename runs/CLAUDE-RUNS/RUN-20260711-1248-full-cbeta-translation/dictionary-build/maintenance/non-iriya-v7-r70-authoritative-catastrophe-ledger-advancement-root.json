@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "authoritative-catastrophe-ledger-advancement.v1",
+  "cohort": "R70",
+  "publicCommit": "87bc2c8f989c325413bea7ef702c2826d56ec374",
+  "publicCommitSubject": "Repair 劫外 瓦解冰消 and 呈漆器",
+  "publishedIds": [
+    "t_17c1d8b4f105",
+    "t_1820fe9e6a50",
+    "t_1901868691a8"
+  ],
+  "authoritativeRemainderBefore": 903,
+  "resolvedThisAdvancement": 3,
+  "authoritativeRemainderAfter": 900,
+  "arithmeticHardPass": true,
+  "publicIntegrity": {
+    "entryCount": 4717,
+    "aggregateCount": 4717,
+    "legacyCount": 4717,
+    "indexCount": 4717,
+    "shardCount": 4717,
+    "exactProductParity": "3/3",
+    "hardPass": true
+  },
+  "reviewCarryoverAuthoritySha256": "6a232c63df95351c31e5a470f81d9ea44e4a1d7fd8b756c486110fb7b06f537c",
+  "windowsNodeMergeReceiptSha256": "7eecf62c21f88a45c8f12bbb8048f43e905bf9b7ca261b96640ff06939cbfee4",
+  "exactChangedFiles": [
+    "termbase.index.json",
+    "termbase.json",
+    "termbase.v2.json",
+    "termbase/072.json",
+    "termbase/171.json",
+    "termbase/230.json"
+  ],
+  "unrelatedPublicDirtPreserved": true,
+  "windowsNodeMerge": true,
+  "windowsGitPush": true,
+  "sealed": true
+}

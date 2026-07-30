@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "independent-blind-source-first-review.v1",
+  "cohort": "R69",
+  "id": "t_1820fe9e6a50",
+  "term": "瓦解冰消",
+  "reviewedProductSha256": "abd717098ccde3e8eaa58606fc565141d5882e9f7ce5248fb8d71373ec3d85ac",
+  "reviewedWorksheetSha256": "160e2d67a4b4ebb6cf7fbcd3a85f61fa562028c1e806ef51e338735339560033",
+  "decision": "DENY_FINITE_CORRECTION_REQUIRED",
+  "defects": [
+    {
+      "coordinate": "Senses[0].Explanation",
+      "severity": "public-prose-regression",
+      "finding": "The opening definition is duplicated: '瓦解冰消 means collapse and melt away. 瓦解冰消 means to collapse and melt away completely.'",
+      "requiredCorrection": "Remove the first redundant sentence and retain the fuller second sentence, or merge them once. Do not change the established meaning."
+    }
+  ],
+  "passingCoordinates": {
+    "meaningAndPreferredGloss": "PASS: one sense, 'collapse and melt away,' with contextual objects of dissolution.",
+    "exactActors": "PASS: Yuanwu, Zhongfeng, Yunmen, Miyun, Wuming, and Muchen are exact utterer/authors where named; the Tianyin occurrence correctly assigns the headword to the unnamed monk and Tianyin only as respondent.",
+    "tiers": "PASS: one Tier-1 and eight Tier-2 witnesses; zero lamps.",
+    "witnessAndFamilyAccounting": "PASS: nine witnesses, seven semantic families. The three Yunmen recensions share exactly one family and are not inflated.",
+    "boundariesAndRecutIdentity": "PASS: all nine relPath/fromLb/context hashes bind uniquely to the R69 extraction; complete exchanges and authored clauses are retained.",
+    "claims": "PASS: Yuanwu/Huanglong dissolution, Zhongfeng inherited forms, Miyun arrival/direct seeing, and Yunmen's target-unspecified encounter are supported.",
+    "worksheetProductProjectionParity": "PASS apart from authorized removal of draft-only metadata.",
+    "padding": "PASS: all three R69 additions contribute distinct active deployments; no parallel reserve or lamp padding."
+  },
+  "releaseAuthority": false
+}

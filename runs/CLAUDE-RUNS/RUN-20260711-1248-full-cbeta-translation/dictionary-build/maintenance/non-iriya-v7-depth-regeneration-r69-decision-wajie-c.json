@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "r69-incremental-semantic-decision.v1",
+  "cohort": "R69",
+  "id": "t_1820fe9e6a50",
+  "term": "瓦解冰消",
+  "baseDecisionSha256": "fa9be2680d6b592106c4ff7c64ecbd3b022227fffb8f413acc5f6ccaf80733c7",
+  "sourceExtractionSha256": "41e0315aa822b0acd8cc19ffbc908a0d304fd21225c79b6b27bac6d4e0a1c00f",
+  "baseWitnessCount": 6,
+  "newReserveCasesReviewed": 3,
+  "newCasesAdmitted": 3,
+  "finalWitnessCount": 9,
+  "meaningRuling": "Retain the R68 single sense and preferred gloss “collapse and melt away.” The reserve cases strengthen complete dissolution of doubt, an unresolved case, or an apparent obstruction; they do not create another sense.",
+  "newOccurrences": [
+    {
+      "evidenceKey": "o7",
+      "relPath": "J/J25/J25nB171.xml",
+      "fromLb": "0540c20",
+      "toLb": "0540c20",
+      "tier": 2,
+      "workId": "work:J25nB171",
+      "finalWitnessFamilyId": "wajie-tianyin-monk-snow-exchange",
+      "deploymentRole": "questioner-interpretation",
+      "exactActor": "an unnamed monk",
+      "contextMaster": "Tianyin Yuanxiu",
+      "actorBasis": "進云 introduces the monk's headword-bearing conclusion; 師云 begins Tianyin Yuanxiu's challenge.",
+      "boundaryRuling": "Retain the exchange from 雪覆千山則不問 through 師云為什麼如此 and the monk's answer 太虛混一色，親見普賢王.",
+      "semanticContribution": "Adds a participant's explicit use of the image for snow/obstruction clearing after direct ascent and seeing; useful concrete-to-figurative bridge.",
+      "contextSha256": "2b7d3cdf052999d14f618f4f89a2ba12f0673e118fb6c1f22395a292f2339a03",
+      "admit": true
+    },
+    {
+      "evidenceKey": "o8",
+      "relPath": "J/J25/J25nB173.xml",
+      "fromLb": "0678b16",
+      "toLb": "0678b16",
+      "tier": 2,
+      "workId": "work:J25nB173",
+      "finalWitnessFamilyId": "wajie-wuming-unresolved-case",
+      "deploymentRole": "direct-answer",
+      "exactActor": "Wuming Huijing",
+      "actorBasis": "師曰 introduces Wuming Huijing's answer 可不妨舉起，瓦解冰消.",
+      "boundaryRuling": "Retain the question about an old unresolved case and the complete answer 可不妨舉起，瓦解冰消; the following verse is Wuming's elaboration.",
+      "semanticContribution": "Directly applies the phrase to disposing of an inherited unresolved case, strengthening the ‘resolve completely’ use.",
+      "contextSha256": "d5fce6cc396f7333537855c9a63897bb0e0250f7e2a1dfa1a5eecb58b2c78fe4",
+      "admit": true
+    },
+    {
+      "evidenceKey": "o9",
+      "relPath": "J/J26/J26nB180.xml",
+      "fromLb": "0290a08",
+      "toLb": "0290a08",
+      "tier": 2,
+      "workId": "work:J26nB180",
+      "finalWitnessFamilyId": "wajie-muchen-doubts-address",
+      "deploymentRole": "original-use",
+      "exactActor": "Muchen Daomin",
+      "actorBasis": "今日山僧又復不然 begins Muchen Daomin's own contrastive hall statement.",
+      "boundaryRuling": "Retain 今日山僧又復不然 through 若知棒頭落處，管取恆沙疑義一時瓦解冰消.",
+      "semanticContribution": "The clearest reserve witness: innumerable doubts all dissolve at once. It directly anchors the abstract dissolution meaning.",
+      "contextSha256": "66ba522a6f2bde4d9aff22da3d222518d6e56ebd44eb79890842cbaa50b47f9c",
+      "admit": true
+    }
+  ],
+  "familyRuling": {
+    "newSemanticFamilies": 3,
+    "parallelOrDuplicateReserveCases": 0,
+    "totalSemanticDeploymentFamilies": 7,
+    "note": "The R68 three-witness Yunmen parallel family remains one family; each R69 reserve case is a distinct, active deployment."
+  },
+  "tierSummaryAfterAdmission": {
+    "tier1": 1,
+    "tier2": 8,
+    "tier3Lamp": 0
+  },
+  "strongestAdditionalEvidence": [
+    "o9",
+    "o8",
+    "o7"
+  ],
+  "paddingDecision": "No padding admitted. All three reserve cases add an independently attributable deployment and a distinct contextual object of dissolution.",
+  "constructionReady": true
+}

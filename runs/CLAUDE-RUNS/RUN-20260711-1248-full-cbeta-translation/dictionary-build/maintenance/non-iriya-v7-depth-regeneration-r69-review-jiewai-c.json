@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "r69-blind-source-first-review.v1",
+  "cohort": "R69",
+  "id": "t_17c1d8b4f105",
+  "term": "劫外",
+  "reviewedProduct": "fresh-build/entries/t_17c1d8b4f105/entry.v2.json",
+  "decision": "DENY",
+  "summary": "The one-sense semantic ruling, preferred gloss, seven-family count, source mix, and anti-metaphysical warning are sound. The product nevertheless fails exact-actor review because every named occurrence is flattened to the role 'utterer', including five explicitly adjudicated verse authors and one authored prose work; the unlinked Puming witness is likewise mislabeled as an unidentified generic actor and utterer. These are bounded metadata repairs, not a semantic rewrite.",
+  "semanticReview": {
+    "senseCount": "PASS: one sense is supported.",
+    "preferredTarget": "PASS: 'beyond the cosmic aeon' preserves the temporal image without importing timelessness or eternity.",
+    "alternateAndAliases": "PASS: 'before the kalpa' and 'outside the aeon' are appropriate search aids.",
+    "explanation": "PASS: spring, light, flowers, and barrier accurately summarize the seven witnesses; 'without establishing ... a timeless essence' correctly limits the claim. The phrase 'a second thing' is stylistically vague but not a false semantic claim.",
+    "familyAccounting": "PASS: seven occurrences correspond to seven final independent families; no duplicate Shanci recension or surplus Weilin case is retained.",
+    "tierAccounting": "PASS against the adjudicated R69 source policy: six Tier-1 families and one Tier-2 family, with no lamp witness retained. Dongshan is an explicitly bounded attributed verse inside Five Houses Praise, not the compiler's following 贊曰."
+  },
+  "requiredCoordinates": [
+    {
+      "coordinate": "Senses[0].Occurrences[0].ContextMasters[0].Roles[0]",
+      "current": "utterer",
+      "required": "verse-author",
+      "reason": "山茨禪師和牧牛圖頌 attributes the retained 獨照 stanza to Shanci Tongji."
+    },
+    {
+      "coordinate": "Senses[0].Occurrences[1].ContextMasters[0].Roles[0]",
+      "current": "utterer",
+      "required": "verse-author",
+      "reason": "The retained capping verse is attributed to Dawei Jinglun."
+    },
+    {
+      "coordinate": "Senses[0].Occurrences[2].ContextMasters[0].Roles[0]",
+      "current": "utterer",
+      "required": "verse-author",
+      "reason": "The retained full verse belongs to Zhengjue Runguang Ze's continuous authored verse voice."
+    },
+    {
+      "coordinate": "Senses[0].Occurrences[3].ContextMasters[0].Roles[0]",
+      "current": "utterer",
+      "required": "author",
+      "reason": "Cheongheo Hyujeong is the author of the continuous Chan Guide prose/formula, not a represented oral utterer."
+    },
+    {
+      "coordinate": "Senses[0].Occurrences[4].ActorAttribution.ActorLabel",
+      "current": "identified actor",
+      "required": "Puming, author of the retained oxherding cycle",
+      "reason": "The R68 adjudication identifies the unlinked master by the title attribution; reviewed-unnamed plus a generic label loses that conclusion."
+    },
+    {
+      "coordinate": "Senses[0].Occurrences[4].ActorAttribution.ActorRole",
+      "current": "utterer",
+      "required": "verse-author",
+      "reason": "The occurrence belongs to Puming's attributed seventh oxherding preface/cycle."
+    },
+    {
+      "coordinate": "Senses[0].Occurrences[5].ContextMasters[0].Roles[0]",
+      "current": "utterer",
+      "required": "verse-author",
+      "reason": "師頌曰 explicitly introduces Dongshan Liangjie's verse; the boundary correctly stops before the compiler's 贊曰."
+    },
+    {
+      "coordinate": "Senses[0].Occurrences[6].ContextMasters[0].Roles[0]",
+      "current": "utterer",
+      "required": "verse-author",
+      "reason": "乃為箴曰 introduces Zhongfeng Mingben's authored admonition verse."
+    }
+  ],
+  "exhaustiveness": "No other blocking discrepancy found in the gloss, sense structure, seven retained occurrence boundaries, named actors, family independence, prose claims, tier mix, or lamp exclusion."
+}
