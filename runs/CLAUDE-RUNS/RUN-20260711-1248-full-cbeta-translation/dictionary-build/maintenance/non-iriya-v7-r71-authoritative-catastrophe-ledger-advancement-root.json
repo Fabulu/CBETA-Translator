@@ -27,8 +27,13 @@
     "publicCommitEpoch": 1785398453,
     "commitMarginSeconds": 14.362026,
     "commitWithinPublicationDeadline": true,
+    "pushCompletionTimestampAvailable": false,
+    "finalRemoteVerificationUtc": "2026-07-30T08:03:58.963000Z",
+    "finalRemoteVerificationDelaySeconds": 171.600974,
+    "publicationDeadlineHardPass": false,
     "ledgerReconciledAfterDeadline": true,
-    "note": "The atomic install and public commit completed before the bound publication deadline. The exact Windows Git push subsequently reported main -> main and HEAD equals origin/main; the administrative advancement ledger was reconciled afterward."
+    "outcome": "on-time local install and commit; push completion unknown; final publication verified late",
+    "note": "The atomic install and public commit completed before the bound publication deadline. Windows Git reported main -> main, but no immutable push-completion timestamp was captured. The first independent origin/main equality observation was late, so publication timeliness remains a process failure even though the public state is authoritative."
   },
   "reviewCarryoverAuthoritySha256": "21125f1749e7a9c2b9c865a92d0530484f879c67267f3feab16d0bf2cd81404b",
   "windowsNodeMergeReceiptSha256": "74012bcde836bfa3ebe84caf1ca60bfc460f6d6460125c2d84c127c189ddea72",

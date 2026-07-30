@@ -42,6 +42,19 @@ GENERIC = re.compile(
     r"the expression .{0,120} occurs in the cited questions, answers, actions, narration, or verse|"
     r"this sense remains limited to those deployments)(?:\b|$)", re.I
 )
+SENTENCE_BREAK = re.compile(r"(?<=[.!?])\s+")
+
+
+def redundant_consecutive_opening_definition(term: str, explanation: str) -> bool:
+    """Detect only adjacent headword definitions at the prose opening."""
+    sentences = [part.strip() for part in SENTENCE_BREAK.split(explanation.strip()) if part.strip()]
+    if len(sentences) < 2 or not term:
+        return False
+    definitional = re.compile(
+        rf"^{re.escape(term)}\s+(?:means\b|is\s+(?:an?\s+|the\s+)?|names\b|denotes\b|refers\s+to\b)",
+        re.IGNORECASE,
+    )
+    return bool(definitional.match(sentences[0]) and definitional.match(sentences[1]))
 CALQUE_FIRST = re.compile(r"^\s*(?:literally|word[- ]for[- ]word|the graphs? (?:mean|say|name))\b", re.I)
 FORBIDDEN = re.compile(r"\b(?:Buddhism|meditation|Bodhiteaching)\b", re.I)
 ALLOWED_ACTOR_STATUSES = {"reviewed-unnamed", "identified-non-master", "identified-unlinked-master", "narrated", "impersonal"}
@@ -589,6 +602,14 @@ def compile_sense(value: dict, index: int, errors: list[str], require_pipeline_v
                 f"sense {index}.EvidenceBody[{n}]: duplicates the corpus-earned opening verbatim"
             )
     sense["Explanation"] = " ".join([opening, *body]).strip()
+    source_term = str(value.get("SourceTerm") or "")
+    # Sense worksheets do not normally repeat the entry headword, so recover
+    # it from the opening's initial CJK token when necessary.
+    if not source_term:
+        match = re.match(r"^(\S+)\s+", opening)
+        source_term = match.group(1) if match else ""
+    if redundant_consecutive_opening_definition(source_term, sense["Explanation"]):
+        errors.append(f"sense {index}.Explanation: redundant consecutive opening definition")
     required_text(sense.get("PreferredTarget"), f"sense {index}.PreferredTarget", errors)
     aliases = sense.get("SearchAliases")
     if not isinstance(aliases, list) or not aliases or any(not str(alias).strip() for alias in aliases):
