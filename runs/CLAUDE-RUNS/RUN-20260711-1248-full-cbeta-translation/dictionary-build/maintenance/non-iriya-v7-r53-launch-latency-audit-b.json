@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "assigned-cohort-launch-latency-audit.v1",
+  "cohort": "R53",
+  "artifactZeroStartedEpoch": 1785382263.863047,
+  "observedArtifactMtimeOffsetsSeconds": {
+    "priorUnion": 87.201,
+    "selection": 87.224,
+    "exactCount": 89.806,
+    "extractionOutput": 92.309,
+    "researchSkeleton": 92.331,
+    "viabilityFailClosedReceipt": 108.469
+  },
+  "existingCommandLogEvidence": {
+    "combinedSelectionCountExtractionCommandWallSeconds": 5.3644,
+    "viabilityWatchdogCommandWallSeconds": 0.161,
+    "conclusion": "The 87-second pre-checkpoint delay was orchestration before the combined command, not queue traversal, exact counting, or extraction runtime."
+  },
+  "repeatedOverheadIdentified": [
+    "discovering the artifact-zero helper interface",
+    "locating and reading the prior cohort viability and extraction launchers",
+    "creating a cohort-specific selection launcher",
+    "starting selection/count and viability as separate Python processes"
+  ],
+  "mechanicalCorrection": {
+    "path": "maintenance/launch_assigned_cohort.py",
+    "behavior": "Given an existing artifact-zero receipt and exact assigned tuples, validate the next unreserved rows, write union/selection/count, and invoke viability immediately in one generic launch.",
+    "candidateJudgmentChanged": false,
+    "corpusResearchAdded": false
+  },
+  "r53ContinuationPreservation": {
+    "extractionOutput": "maintenance/non-iriya-v7-depth-regeneration-r53-extraction-output-b.json",
+    "researchSkeleton": "maintenance/non-iriya-v7-depth-regeneration-r53-research-skeleton-b.json",
+    "reuseLimit": "one explicitly authorized continuation only"
+  },
+  "entryWorkPerformed": false,
+  "publicMutation": false
+}
