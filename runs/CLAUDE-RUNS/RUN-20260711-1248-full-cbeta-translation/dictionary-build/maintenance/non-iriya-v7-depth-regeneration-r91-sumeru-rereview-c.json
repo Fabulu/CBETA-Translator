@@ -1,0 +1,60 @@
+{
+  "schemaVersion": "r91-changed-coordinate-rereview.v1",
+  "cohort": "R91",
+  "reviewer": "r87_research_a",
+  "id": "t_21170b1b9a8d",
+  "term": "須彌頂上浪滔天",
+  "authorizedCoordinate": "Senses[0].Explanation sentence 1: remove unsupported 'ocean' before 'waves'",
+  "bindings": {
+    "priorReviewPath": "maintenance/non-iriya-v7-depth-regeneration-r91-formula-independent-review-c.json",
+    "priorProductSha256": "d1a3c9a8eae13f39d59662a4ce347ed478db27344ad7b21e4b3af102e4de8893",
+    "currentProductPath": "fresh-build/entries/t_21170b1b9a8d/entry.v2.json",
+    "currentProductSha256": "4a1f2f2f735fd5b42e8cc81a1ab0f1951cfd761fbb7d153c332d0abe3fe16dcb",
+    "currentWorksheetPath": "fresh-build/entries/t_21170b1b9a8d/evidence.draft.json",
+    "currentWorksheetSha256": "59cb5000eb530b64320995ab52ab896da1dfa94d46a4aa8c996d95323015c5d1",
+    "compileReportPath": "fresh-build/entries/t_21170b1b9a8d/evidence-compile-report.json"
+  },
+  "coordinateReview": {
+    "before": "A deliberately impossible image of ocean waves flooding the sky from the summit of Mount Sumeru.",
+    "after": "A deliberately impossible image of waves flooding the sky from the summit of Mount Sumeru.",
+    "unsupportedOceanRemoved": true,
+    "meaningPreserved": true,
+    "verdict": "KEEP"
+  },
+  "nonRegressionReview": {
+    "preferredTarget": "waves flood the sky atop Mount Sumeru",
+    "preferredTargetUnchanged": true,
+    "senseCount": 1,
+    "senseStructureUnchanged": true,
+    "validation": "multi-source",
+    "validationUnchanged": true,
+    "occurrenceCount": 4,
+    "sourcePaths": [
+      "J/J28/J28nB218.xml",
+      "J/J39/J39nB456.xml",
+      "J/J39/J39nB460.xml",
+      "T/T47/T47n1994A.xml"
+    ],
+    "exactActors": [
+      "Lanshi Ling",
+      "Danya Chaoyuan",
+      "Huizhou Hao",
+      "Yangqi Fanghui"
+    ],
+    "sourceFamiliesUnchanged": true,
+    "actorsUnchanged": true,
+    "lampCount": 0,
+    "semanticOrSourceDrift": false
+  },
+  "compilerParity": {
+    "compileHardPass": true,
+    "reportWorksheetSha256": "59cb5000eb530b64320995ab52ab896da1dfa94d46a4aa8c996d95323015c5d1",
+    "worksheetSha256MatchesCurrent": true,
+    "reportOutputSha256": "4a1f2f2f735fd5b42e8cc81a1ab0f1951cfd761fbb7d153c332d0abe3fe16dcb",
+    "outputSha256MatchesCurrent": true,
+    "mode": "canonical-render"
+  },
+  "verdict": "KEEP",
+  "hardPass": true,
+  "releaseAuthorizedByThisArtifact": false
+}

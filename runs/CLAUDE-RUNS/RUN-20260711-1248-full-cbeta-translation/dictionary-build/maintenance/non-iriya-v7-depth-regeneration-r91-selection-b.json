@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "non-iriya-v7-depth-regeneration-selection.v1",
+  "cohort": "R91",
+  "selectionRule": "exact coordinator-assigned next unreserved authoritative rows",
+  "rows": [
+    {
+      "queueOrdinal": 1,
+      "identityId": "t_21170b1b9a8d",
+      "term": "須彌頂上浪滔天",
+      "requiredFloor": 4,
+      "classification": "hard-fail"
+    },
+    {
+      "queueOrdinal": 2,
+      "identityId": "t_211c871daa1f",
+      "term": "大庾嶺頭提不起",
+      "requiredFloor": 4,
+      "classification": "hard-fail"
+    },
+    {
+      "queueOrdinal": 3,
+      "identityId": "t_218e4815d84a",
+      "term": "勘破",
+      "requiredFloor": 7,
+      "classification": "legacy-selected-depth-repair"
+    }
+  ],
+  "collisionCheck": {
+    "priorIds": 212,
+    "collisions": [],
+    "hardPass": true
+  }
+}

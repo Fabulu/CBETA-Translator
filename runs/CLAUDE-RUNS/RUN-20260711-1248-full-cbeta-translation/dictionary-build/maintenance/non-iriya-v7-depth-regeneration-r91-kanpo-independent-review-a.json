@@ -1,0 +1,134 @@
+{
+  "schemaVersion": "r91-kanpo-independent-review.v1",
+  "cohort": "R91",
+  "id": "t_218e4815d84a",
+  "term": "勘破",
+  "reviewMode": "independent read-only review of the frozen adjudication and final product; no rescan or scope expansion",
+  "reviewer": "Codex r89_final_review",
+  "reviewedUtc": "2026-07-30T13:48:00Z",
+  "bindings": {
+    "adjudication": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r91-adjudication-c.json",
+      "sha256": "4e5b5cb849e1bbe0bf47c78ceedbe8e69088a30d3418bc2c4fec90bec81a0617"
+    },
+    "config": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r91-constructor-config-b.json",
+      "sha256": "93ce347dc1b2726913c5c31e95e381cc3aba8277f0d7606c29ac85f45ebb1d39"
+    },
+    "attributionGate": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r91-attribution-final-b.json",
+      "sha256": "a452d9e4f1d444eef99da3d2037c1bd7047407e006b940e4807a5e6c1e5a26f6",
+      "reportedHardFailures": 0
+    },
+    "depthGate": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r91-depth-final-b.json",
+      "sha256": "71622d61a250202c8a00502322510ed7ef48d6d36bea11e0055b4c1de531f960",
+      "reportedHardFailures": 0,
+      "reviewFlag": "broad-concordance-single-sense-review"
+    },
+    "dossier": {
+      "path": "fresh-build/entries/t_218e4815d84a/source-dossier.json",
+      "sha256": "203d159c6cded01419f31d774ee16876f5af41c977c225ea1fb0f23b3a636614"
+    },
+    "worksheet": {
+      "path": "fresh-build/entries/t_218e4815d84a/evidence.draft.json",
+      "sha256": "6edd2c17393b1e96997264e3078f1d9681e2d1cd95037f26c802cab65aa86d3d"
+    },
+    "compileReport": {
+      "path": "fresh-build/entries/t_218e4815d84a/evidence-compile-report.json",
+      "sha256": "996cd94d9597ab21b91fef83a577935a50f07d511c77c8cf8ed34ce58623daa6"
+    },
+    "product": {
+      "path": "fresh-build/entries/t_218e4815d84a/entry.v2.json",
+      "sha256": "9ce8d347a9474708453c14cb05b621fe944a59b86fe1b7b477b39717209d7090"
+    }
+  },
+  "compilerParity": {
+    "verdict": "pass",
+    "method": "Recompiled the exact worksheet with compile_evidence_draft.py --new-entry to temporary output and byte-compared it with the bound product.",
+    "recompiledSha256": "9ce8d347a9474708453c14cb05b621fe944a59b86fe1b7b477b39717209d7090"
+  },
+  "semanticReview": {
+    "preferredTarget": "see through",
+    "alternateTargets": [
+      "expose upon examination",
+      "find out completely"
+    ],
+    "senseCount": 1,
+    "verdict": "pass",
+    "broadConcordanceResolution": "Active constructions present an examiner carrying the examination through; passive 被 constructions present the examined person or presentation as exposed. The argument structure changes viewpoint, not the examination-to-exposure event. The frozen evidence therefore supports one lexical sense despite the 1,803-hit, 281-file review flag.",
+    "limit": "The term itself does not guarantee enlightenment, final truth, or the success of a claimed examination; the complete case supplies that appraisal."
+  },
+  "sourceHierarchyReview": {
+    "declaredMix": {
+      "tier1": 5,
+      "tier2": 2,
+      "tier3": 0
+    },
+    "lampOccurrences": 0,
+    "hierarchyVerdict": "pass",
+    "familyIndependenceVerdict": "fail",
+    "finding": "No lamp contaminates the set, but occurrence 2 is the inherited Zhaozhou-old-woman wording inside an explicit quotation. Jinglun's following commentary does not utter 勘破, so this row cannot simultaneously be treated as Jinglun's exact lexical deployment and as an independent family from the represented Zhaozhou case."
+  },
+  "actorReview": [
+    {
+      "occurrence": 1,
+      "verdict": "partial-fail",
+      "finding": "Xuefeng Huikong is correctly the verse author, but the product drops the adjudicated contextual roles of Zhaozhou Congshen as case-figure and the old woman as person-discussed."
+    },
+    {
+      "occurrence": 2,
+      "verdict": "hard-fail",
+      "finding": "The headword is inside Zhaozhou's quoted 上堂 statement, 我為汝勘破婆子了也. Jinglun's own turn begins afterward with 拈云 and does not contain the headword. The exact utterer must therefore be Zhaozhou Congshen, not Jinglun; Jinglun is the later raiser/commentator."
+    },
+    {
+      "occurrence": 3,
+      "verdict": "pass",
+      "finding": "Runguang Ze is consistently represented as the identified-unlinked master utterer."
+    },
+    {
+      "occurrence": 4,
+      "verdict": "partial-fail",
+      "finding": "Yuanwu Keqin is correctly the utterer, but the adjudicated contextual role of Zhaozhou Congshen as person-discussed is absent."
+    },
+    {
+      "occurrence": 5,
+      "verdict": "partial-fail",
+      "finding": "Huanglong Huinan is correctly the verse author, but the product omits Ciming Chuyuan as teacher, Zhaozhou as case-figure, the old woman as person-discussed, and Huihong as later-quoter."
+    },
+    {
+      "occurrence": 6,
+      "verdict": "pass",
+      "finding": "Tianzhen is correctly the quoted utterer; the passive patient does not become utterer, and Yulin Tongxiu remains later-quoter and record-owner."
+    },
+    {
+      "occurrence": 7,
+      "verdict": "partial-fail",
+      "finding": "Huanglong Huinan is correctly the substitute-answer utterer, but the adjudicated contextual roles of Wang the judicial commissioner and Lian Sansheng as people discussed are absent."
+    }
+  ],
+  "hardFailures": [
+    {
+      "kind": "exact-actor-misattribution",
+      "coordinate": "t_218e4815d84a s1 o2 J/J25/J25nB165.xml",
+      "detail": "The product attributes the headword to Jinglun even though it occurs in Zhaozhou Congshen's explicit quoted statement; Jinglun's following commentary does not utter it."
+    },
+    {
+      "kind": "deployment-family-overcount",
+      "coordinate": "t_218e4815d84a s1 o2",
+      "detail": "Because the only headword is inherited quoted Zhaozhou speech, the row does not establish the claimed independent Jinglun lexical family. The current seven-row product therefore does not prove seven independent deployment families."
+    },
+    {
+      "kind": "context-role-loss",
+      "coordinate": "t_218e4815d84a s1 o1,o4,o5,o7",
+      "detail": "Construction dropped multiple contextual people and closed roles expressly recorded in the frozen adjudication, including Zhaozhou, the old woman, Ciming Chuyuan, Huihong, Wang the judicial commissioner, and Lian Sansheng."
+    }
+  ],
+  "requiredCorrection": [
+    "Reclassify occurrence 2 with Zhaozhou Congshen as MasterName utterer and Jinglun as later-raiser/commentator, or replace it with a genuinely independent frozen reserve if the floor must remain seven.",
+    "Recalculate deployment-family independence after the occurrence-2 actor correction; do not count an inherited quotation as a new Jinglun family.",
+    "Carry the frozen adjudication's contextual people into ContextMasters or ContextActors with closed roles at occurrences 1, 4, 5, and 7, then rerun attribution and depth gates plus independent review."
+  ],
+  "hardPass": false,
+  "publishAuthorized": false
+}

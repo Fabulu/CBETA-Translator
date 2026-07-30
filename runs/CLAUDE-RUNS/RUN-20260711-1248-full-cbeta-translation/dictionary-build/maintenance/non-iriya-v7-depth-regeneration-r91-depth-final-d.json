@@ -1,0 +1,68 @@
+{
+  "generatedUtc": "2026-07-30T13:50:55.325158+00:00",
+  "results": {
+    "t_218e4815d84a": {
+      "entryId": "t_218e4815d84a",
+      "sourceTerm": "勘破",
+      "entrySha256": "ab3665fec395befb6cfb35e0c605ab5f535e1eac300e9e2756d5094cf048183a",
+      "corpusHits": 1803,
+      "corpusFiles": 281,
+      "reviewedUsableHits": 1803,
+      "reviewedUsableFiles": 281,
+      "depthCountOverride": null,
+      "authorizedFloorException": {
+        "Decision": "FROZEN_CANDIDATE_EXHAUSTION",
+        "AuthorizedBy": "root",
+        "FrozenCandidateExhausted": true,
+        "RetainedIndependentFamilies": 6,
+        "GuideFloor": 7,
+        "ExcludedReserve": [
+          "X/X78/X78n1554.xml duplicates the retained Zhaozhou family",
+          "B/B25/B25n0145.xml duplicates the retained Huanglong family",
+          "D/D51/D51n8948.xml is Japanese and excluded from the Chinese-Chan corpus boundary"
+        ]
+      },
+      "evidenceFloor": 7,
+      "occurrences": 6,
+      "retainedHeadwordOccurrences": 6,
+      "deploymentClasses": [
+        {
+          "senseIndex": 1,
+          "count": 6,
+          "classes": [
+            [
+              1
+            ],
+            [
+              2
+            ],
+            [
+              3
+            ],
+            [
+              4
+            ],
+            [
+              5
+            ],
+            [
+              6
+            ]
+          ]
+        }
+      ],
+      "totalOccurrences": 6,
+      "sourceTexts": 6,
+      "senseCount": 1,
+      "hardPass": true,
+      "hardFlags": [],
+      "reviewFlags": [
+        {
+          "kind": "broad-concordance-single-sense-review",
+          "corpusHits": 1803,
+          "corpusFiles": 281
+        }
+      ]
+    }
+  }
+}

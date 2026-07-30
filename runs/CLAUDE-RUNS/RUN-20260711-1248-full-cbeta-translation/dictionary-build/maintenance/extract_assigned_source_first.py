@@ -147,8 +147,10 @@ def main() -> None:
         raise SystemExit("selection/count path does not match cohort output scope")
     gate = json.loads(args.timegate.read_text(encoding="utf-8"))
     viability = json.loads(args.viability_receipt.read_text(encoding="utf-8"))
-    if gate.get("schemaVersion") != "bounded-dictionary-timegate.v2":
-        raise SystemExit("extractor requires governed v2 artifact zero")
+    if gate.get("schemaVersion") not in {
+            "bounded-dictionary-timegate.v2",
+            "bounded-dictionary-timegate.v3"}:
+        raise SystemExit("extractor requires a governed v2/v3 artifact zero")
     selection = json.loads(selection_path.read_text(encoding="utf-8"))["rows"]
     counts = {
         row["id"]: row

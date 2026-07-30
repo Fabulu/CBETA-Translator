@@ -94,6 +94,29 @@ class GenericBoundedConstructorIntegrationTest(unittest.TestCase):
                     receipt, allowed_root=base, cohort="R89",
                     entry_ids=["a", "b", "c"], research=research)
 
+    def test_authorized_late_research_accepts_nested_current_cohort_bindings(self):
+        with tempfile.TemporaryDirectory(dir=ROOT / "maintenance") as raw:
+            base = Path(raw).resolve()
+            extraction = base / "extraction.json"
+            failed = base / "failed.json"
+            atomic_write_json(extraction, {"rows": []})
+            atomic_write_json(failed, {"hardPass": False})
+            ids = ["a", "b", "c"]
+            receipt = base / "late.json"
+            atomic_write_json(receipt, {
+                "schemaVersion": "r91-late-research-continuation.v1",
+                "cohort": "R91", "hardPass": False,
+                "lateContinuationAuthorized": True,
+                "scopeExpansionForbidden": True, "ids": ids,
+                "bindings": {
+                    "extraction": {"path": str(extraction), "sha256": sha(extraction)},
+                    "failClosedReceipt": {"path": str(failed), "sha256": sha(failed)},
+                },
+            })
+            verify_late_research_continuation(
+                receipt, allowed_root=base, cohort="R91", entry_ids=ids,
+                research={"governedExtractionSha256": sha(extraction), "rows": []})
+
     def test_actor_prewrite_rejects_roster_alias_and_unlinked_name(self):
         identity = FIXTURE_IDS[0]
         source = ROOT / "fresh-build/entries" / identity
