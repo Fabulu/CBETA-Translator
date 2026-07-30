@@ -1,0 +1,67 @@
+{
+  "schemaVersion": "r47-launch-rejection-independent-audit.v1",
+  "cohort": "R47",
+  "reviewer": "/root/source_tiers_c",
+  "decision": "FAIL_CLOSED_COMPLEX_QUEUE_ALL_THREE",
+  "ids": [
+    "t_0d9a92875efb",
+    "t_1403ddf1e83b",
+    "t_14281fc5afbd"
+  ],
+  "terms": [
+    "代語",
+    "臨濟喝",
+    "欽師猶被馬師惑"
+  ],
+  "launchFailure": {
+    "commandAuditPath": "maintenance/non-iriya-v7-depth-regeneration-r47-constructor-command-audit-b.json",
+    "commandAuditSha256": "eb0113cb55b261fc923c62d452f2a647fdc920b1d3d77171715d626004180486",
+    "checkpointPath": "maintenance/non-iriya-v7-depth-regeneration-r47-constructor-checkpoint-b.json",
+    "checkpointSha256": "562daf40e877a7bb6d622d90c28f2fc5850f056ec54e35b20c806dc410e939a5",
+    "failClosedPath": "maintenance/non-iriya-v7-depth-regeneration-r47-constructor-checkpoint-b.json.fail-closed.json",
+    "failClosedSha256": "5c5f20afa8c210a084cc58caf6948866e5b42bed019e4c2e313f24fd84ed25e6",
+    "invokedElapsedSeconds": 247.361,
+    "deadlineSeconds": 250,
+    "returnCode": 2,
+    "genericEngineStarted": false,
+    "cause": "The caller assembled wrapper argv without the standalone -- separator required before generic-engine options. Wrapper argparse consumed --config as its own unknown option and exited."
+  },
+  "whyFinalAuthorityMissedIt": [
+    "The old watchdog validated only the governed interpreter, wrapper and --script engine prefix; it did not validate the complete wrapper grammar or require the separator.",
+    "The happy-path fixture engine merely accepted execution and wrote a marker. It did not assert the exact forwarded argv.",
+    "The authority therefore proved path/SHA control and a synthetic wrapper-to-fixture launch, but not the production wrapper-to-generic-engine command contract."
+  ],
+  "implementedProcessRepair": {
+    "policy": "The watchdog now constructs the complete governed command itself; caller-assembled constructor argv is prohibited.",
+    "exactShape": [
+      "governed Python executable",
+      "authorized stable wrapper",
+      "--script",
+      "authorized generic engine",
+      "--",
+      "--config",
+      "validated config path",
+      "--allowed-build-root",
+      "validated allowed root"
+    ],
+    "watchdogPath": "maintenance/cohort_checkpoint_watchdog.py",
+    "watchdogSha256": "fdf08cc0983752a6a5f7a6e88e19fd47b98cf016009fab9f9b09d8551590287a",
+    "testPath": "maintenance/test_cohort_checkpoint_watchdog.py",
+    "testSha256": "e62516fc36fd884bb891f4ffb75942d675f16df946ee09a1f526074d5767258b",
+    "unitTests": "21/21 pass",
+    "pyCompile": "pass",
+    "happyPathNowAssertsExactForwardedEngineArguments": true,
+    "callerAssembledArgvNegative": true
+  },
+  "complexQueue": {
+    "path": "maintenance/non-iriya-v7-r46-r47-complex-queue-b.json",
+    "sha256": "c9e3acb4f0e1779d8647ddbbeaff6fd87bf6d587b2c8b92cd991fd70d33e5b1d",
+    "allThreePresent": true,
+    "ordinaryRetryExhausted": true,
+    "r48RetryAuthorized": false
+  },
+  "entryEditsPerformed": false,
+  "productsCreated": 0,
+  "publicMutation": false,
+  "rosterMutation": false
+}

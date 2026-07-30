@@ -63,14 +63,17 @@ class CheckpointTests(unittest.TestCase):
         rr=self.r/"research-receipt.json"; rr.write_text(json.dumps({"hardPass":True,"ids":self.ids}))
         rr.write_text(json.dumps({"hardPass":True,"ids":self.ids,"terms":self.terms}))
         marker=self.r/"invoked"; engine=self.r/"authorized-engine.py"
-        engine.write_text(f"open({str(marker)!r},'w').write('yes')\n")
+        engine.write_text(
+          "import json,sys\n"+
+          f"open({str(marker)!r},'w').write(json.dumps(sys.argv[1:]))\n")
         wrapper=self.r/"stable-wrapper.py"; shutil.copy2(WRAPPER,wrapper)
         os.utime(engine,(900,900)); os.utime(wrapper,(900,900))
         config=self.full_config(engine,id_only,empty_payload)
         supplied_engine=self.r/"unauthorized.py" if unauthorized else engine
         if unauthorized: supplied_engine.write_text("pass\n")
-        argv=["/bin/true",str(wrapper),"--script",str(supplied_engine)] if decorative else \
-             [sys.executable,str(wrapper),"--script",str(supplied_engine)]
+        argv=[str(Path(sys.executable).resolve()),str(wrapper),"--script",str(supplied_engine),"--",
+              "--config",str(config.resolve()),"--allowed-build-root",str(self.r.resolve())]
+        supplied=[sys.executable,str(wrapper),"--script",str(supplied_engine)] if decorative else []
         audit=self.r/"constructor-audit.json"; audit.write_text(json.dumps(
           {"complete":True,"commands":[{"epoch":1001,"argv":argv}]}))
         receipt=self.r/"constructor-receipt.json"
@@ -78,7 +81,7 @@ class CheckpointTests(unittest.TestCase):
         result=self.call("constructor","--timegate",self.tg,"--receipt",receipt,"--now-epoch",now,
           "--config",config,"--research-receipt",rr,"--ids",*self.ids,"--terms",*self.terms,
           "--command-audit",audit,"--engine",supplied_engine,"--wrapper",wrapper,"--allowed-root",self.r,
-          "--authorized-engine-sha",sh(engine),"--authorized-wrapper-sha",sh(wrapper),"--",*argv)
+          "--authorized-engine-sha",sh(engine),"--authorized-wrapper-sha",sh(wrapper),*supplied)
         self.last_marker=marker
         return result
 
@@ -95,7 +98,8 @@ class CheckpointTests(unittest.TestCase):
     def test_real_wrapper_launches_authorized_engine(self):
         result=self.constructor_call()
         self.assertEqual(0,result.returncode,result.stderr)
-        self.assertEqual("yes",self.last_marker.read_text())
+        self.assertEqual(["--config",str((self.r/"config.json").resolve()),
+          "--allowed-build-root",str(self.r.resolve())],json.loads(self.last_marker.read_text()))
     def test_late_config_and_constructor_rejected(self):
         self.assertEqual(124,self.constructor_call(now="1250.1").returncode)
     def test_receipt_overwrite_rejected(self): self.assertEqual(124,self.constructor_call(overwrite=True).returncode)

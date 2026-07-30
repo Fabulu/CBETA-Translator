@@ -120,6 +120,19 @@ def stable_tool(path, expected_sha, label):
     return path
 
 
+def governed_constructor_command(wrapper, engine, config, allowed_root):
+    """Build the sole authorized wrapper-to-engine invocation.
+
+    The separator is part of the wrapper protocol: without it, argparse treats
+    engine options such as --config as wrapper options and exits before the
+    engine starts.
+    """
+    return [
+        str(Path(sys.executable).resolve()), str(wrapper), "--script", str(engine), "--",
+        "--config", str(config.resolve()), "--allowed-build-root", str(allowed_root),
+    ]
+
+
 def configured_entry(entry, ident, term):
     if entry.get("id") != ident or entry.get("term") != term or ident != deterministic_id(term):
         raise ValueError("config deterministic identity/term mismatch")
@@ -276,17 +289,11 @@ def constructor(args):
         wrapper = stable_tool(args.wrapper, args.authorized_wrapper_sha, "environment wrapper")
         if data["engineSha256"] != args.authorized_engine_sha:
             raise ValueError("authorized engine SHA mismatch")
-        command = list(args.command)
-        if command and command[0] == "--":
-            command = command[1:]
-        if not command:
-            raise ValueError("constructor command is empty")
+        if args.command and args.command != ["--"]:
+            raise ValueError("caller-assembled constructor argv is prohibited")
+        command = governed_constructor_command(wrapper, engine, config, allowed_root)
         audit = post_receipt(args.command_audit, receipt_mtime, "constructor command audit")
         audit_commands(audit, started, command)
-        if len(command) < 4 or Path(command[0]).resolve() != Path(sys.executable).resolve() or \
-           Path(command[1]).resolve() != wrapper or \
-           command[2:4] != ["--script", str(engine)]:
-            raise ValueError("argv must execute authorized wrapper with authorized engine as --script target")
         write(receipt, {"schemaVersion": "cohort-constructor-checkpoint.v1",
                         "startedEpoch": started, "invokedEpoch": now,
                         "ids": args.ids, "terms": args.terms, "configSha256": sha(config),
