@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "non-iriya-v7-depth-regeneration-selection.v1",
+  "cohort": "R93",
+  "selectionRule": "exact coordinator-assigned next unreserved authoritative rows",
+  "rows": [
+    {
+      "queueOrdinal": 1,
+      "identityId": "t_2202e37854d4",
+      "term": "王老師",
+      "requiredFloor": 7,
+      "classification": "legacy-selected-depth-repair"
+    },
+    {
+      "queueOrdinal": 2,
+      "identityId": "t_2229af16905a",
+      "term": "威音王",
+      "requiredFloor": 7,
+      "classification": "legacy-selected-depth-repair"
+    },
+    {
+      "queueOrdinal": 3,
+      "identityId": "t_222d636a08a9",
+      "term": "竪窮三際",
+      "requiredFloor": 4,
+      "classification": "hard-fail"
+    }
+  ],
+  "collisionCheck": {
+    "priorIds": 218,
+    "collisions": [],
+    "hardPass": true
+  }
+}

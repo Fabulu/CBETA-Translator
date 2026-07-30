@@ -12,7 +12,10 @@ import sys
 import time
 from datetime import datetime
 
-def evidence_schedule(required_floors, case_load):
+FUTURE_TIMEBOX_MULTIPLIER = 2.0
+
+
+def evidence_schedule(required_floors, case_load, *, multiplier=1.0):
     if not isinstance(required_floors, list) or not required_floors:
         raise ValueError("requiredFloors must be a nonempty list")
     if any(isinstance(value, bool) or not isinstance(value, int) or value <= 0
@@ -23,6 +26,12 @@ def evidence_schedule(required_floors, case_load):
         raise ValueError("adjudicatedCaseLoad must be an integer")
     if case_load < total:
         raise ValueError("adjudicatedCaseLoad cannot be below requiredFloors sum")
+    if (
+        isinstance(multiplier, bool)
+        or not isinstance(multiplier, (int, float))
+        or multiplier <= 0
+    ):
+        raise ValueError("timebox multiplier must be a positive number")
     # R61's immutable receipts put the honest N=14 critical path at
     # 439.463s.  This retains the evidence-scaled slope and provides an
     # 11.04% hard margin without changing or resetting the original epoch.
@@ -30,7 +39,7 @@ def evidence_schedule(required_floors, case_load):
     construction = config + 90
     review = construction + 60 + 8 * case_load
     correction = review + 60 + 4 * case_load
-    return total, {
+    base = {
         # Viability and extraction are sequential phases.  Give each its own
         # bounded 120-second window on the immutable cohort clock instead of
         # making extraction share viability's absolute deadline.
@@ -38,6 +47,10 @@ def evidence_schedule(required_floors, case_load):
         "constructor": config + 10, "firstProduct": config + 30,
         "construction": construction, "review": review,
         "correction": correction, "publication": correction + 90,
+    }
+    return total, {
+        phase: int(deadline * multiplier)
+        for phase, deadline in base.items()
     }
 
 
@@ -47,10 +60,20 @@ def governed_schedule(gate, ids):
         raise ValueError("timegate requiredFloors do not match selected IDs")
     total = sum(floors)
     case_load = gate.get("adjudicatedCaseLoad")
-    _, deadlines = evidence_schedule(floors, case_load)
+    schema = gate.get("schemaVersion")
+    if schema == "bounded-dictionary-timegate.v4":
+        if gate.get("timeboxMultiplier") != FUTURE_TIMEBOX_MULTIPLIER:
+            raise ValueError("future timegate multiplier mismatch")
+        _, deadlines = evidence_schedule(
+            floors, case_load, multiplier=FUTURE_TIMEBOX_MULTIPLIER)
+    else:
+        _, deadlines = evidence_schedule(floors, case_load)
     # Cohorts already launched under v2 retain their exact immutable schedule.
     # New v3 receipts correct the sequential extraction window.
-    if gate.get("schemaVersion") != "bounded-dictionary-timegate.v3":
+    if schema not in {
+        "bounded-dictionary-timegate.v3",
+        "bounded-dictionary-timegate.v4",
+    }:
         deadlines["researchExtraction"] = 120
     if gate.get("admittedRequiredOccurrences") != total:
         raise ValueError("timegate admitted occurrence total mismatch")

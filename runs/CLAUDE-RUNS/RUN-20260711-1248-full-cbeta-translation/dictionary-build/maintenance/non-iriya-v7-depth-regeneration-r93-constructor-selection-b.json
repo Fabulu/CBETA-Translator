@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "r93-admitted-constructor-selection.v1",
+  "cohort": "R93",
+  "artifactZeroSelectionPath": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r93-selection-b.json",
+  "artifactZeroSelectionSha256": "fcc4d536b5d3f3adf110451d5d737101d871f093c02eee0c58b733f6aa917dd5",
+  "rows": [
+    {
+      "queueOrdinal": 1,
+      "identityId": "t_2202e37854d4",
+      "term": "王老師",
+      "requiredFloor": 7,
+      "classification": "legacy-selected-depth-repair"
+    },
+    {
+      "queueOrdinal": 2,
+      "identityId": "t_2229af16905a",
+      "term": "威音王",
+      "requiredFloor": 7,
+      "classification": "legacy-selected-depth-repair"
+    },
+    {
+      "queueOrdinal": 3,
+      "identityId": "t_222d636a08a9",
+      "term": "竪窮三際",
+      "requiredFloor": 4,
+      "classification": "hard-fail"
+    }
+  ],
+  "excluded": [],
+  "hardPass": true
+}

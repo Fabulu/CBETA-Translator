@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "r93-generic-publication-artifact-zero.v4",
+  "cohort": "R93",
+  "publicationOrdinal": 3,
+  "artifactZero": true,
+  "startedEpoch": 1785426758.064984,
+  "createdUtc": "2026-07-30T15:52:38.068716Z",
+  "timeboxMultiplier": 2.0,
+  "timeboxPolicyVersion": "future-global-timebox.v1",
+  "deadlinesSeconds": {
+    "manifestAndAuthority": 180,
+    "stageInstallIntegrity": 420,
+    "windowsGitPush": 540
+  },
+  "entryCount": 3,
+  "replacementCount": 3,
+  "creationCount": 0,
+  "expectedPublicCount": 4714,
+  "bindings": {
+    "timeboxPolicy": {
+      "path": "maintenance/FUTURE_TIMEBOX_POLICY.md",
+      "sha256": "308e785d531764e3b2bcc47bab4b033ea900a368d13b71f91a6a5b11455a812d"
+    },
+    "genericPublisher": {
+      "path": "maintenance/generic_manifest_publisher.py",
+      "sha256": "600c38d64555d37dc8ae06557078615ce79a4e10d5b2bbc3bce6eb522047a9de"
+    },
+    "finalPublisherAndV4Review": {
+      "path": "maintenance/final-publisher-cwd-v4-timebox-independent-rereview-c.json",
+      "sha256": "648ceff4a47a5aedcf054b9e8a749f854f904020c873f15508d84da71602cf6a"
+    }
+  },
+  "priorPublicationFailures": [
+    {
+      "publicationOrdinal": 1,
+      "disposition": "HARD_STOPPED_BEFORE_AUTHORITY_OR_STAGE",
+      "artifactZeroSha256": "788f9e164cec0d552f37f0ef6ed4d23a900588499261b71c03b8c1ef02b109de",
+      "successful": false,
+      "reusableAuthority": false
+    },
+    {
+      "publicationOrdinal": 2,
+      "disposition": "HARD_STOPPED_AFTER_TIMELY_AUTHORITY_AND_LATE_MANIFEST",
+      "artifactZeroSha256": "0434c3647deb92f41695df106d7d95d9b9699f1b199cc8dfec112dfc26e112a0",
+      "authoritySha256": "e14b7c792224dbfb32b4299dd900a532f0fa0422bbd105035b58b9b3b44c41a1",
+      "lateManifestSha256": "3d29e58afca551746ea031cf8115a267f63bd593f9e472bf995454e937f468b5",
+      "successful": false,
+      "reusableAuthority": false,
+      "reusableManifest": false
+    }
+  ],
+  "constructionAllowed": false,
+  "semanticMutationAllowed": false,
+  "rosterMutationAllowed": false,
+  "windowsGitAuthorized": false
+}

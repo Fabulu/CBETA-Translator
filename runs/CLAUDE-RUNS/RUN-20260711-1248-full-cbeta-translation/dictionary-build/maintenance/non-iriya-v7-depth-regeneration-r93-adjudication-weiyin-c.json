@@ -1,0 +1,186 @@
+{
+  "schemaVersion": "r93-frozen-source-adjudication.v1",
+  "cohort": "R93",
+  "adjudicator": "Codex r93_weiyin_adjudication",
+  "scope": [
+    {
+      "id": "t_2229af16905a",
+      "term": "威音王"
+    }
+  ],
+  "bindings": {
+    "extraction": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r93-extraction-output-b.json",
+      "sha256": "07c2085c743b0bdfe861717d17c4b8e108b0bac37675e291bff305118161f846"
+    },
+    "sourceAuthority": {
+      "path": "../../../../Assets/Data/zen-source-authority.json",
+      "sha256": "2ee44bf19a2533958e5620c38915f3d03fbb81209c76c7183742a4f3d059f501"
+    }
+  },
+  "scopeControl": {
+    "frozenExtractionOnly": true,
+    "rescanPerformed": false,
+    "candidateAdded": false,
+    "scopeExpanded": false
+  },
+  "sourceHierarchy": "Prefer proved Zen-master-authored texts, then recorded sayings; use lamps only when stronger frozen evidence cannot fill the floor.",
+  "ruling": {
+    "id": "t_2229af16905a",
+    "term": "威音王",
+    "requiredFloor": 7,
+    "preferredTarget": "King Majestic Sound",
+    "alternateTargets": [
+      "Majestic Sound King",
+      "the King Majestic Sound Buddha"
+    ],
+    "searchAliases": [
+      "before King Majestic Sound",
+      "on the far side of King Majestic Sound"
+    ],
+    "literalFloor": "威 is majesty or awe; 音 is sound or voice; 王 is king. Together the graphs form the name or title King Majestic Sound.",
+    "senseCount": 1,
+    "senseRuling": "One proper-name sense with an established Chan temporal deployment. 威音王 names the Buddha King Majestic Sound. Chan authors and speakers place an event, person, or condition 'before King Majestic Sound' or 'on the far side of King Majestic Sound' to mark a time imagined as prior even to that primordial Buddha; other passages address or see the named figure directly. The temporal constructions are uses of the same named referent, not a second lexical thing.",
+    "validationRuling": "multi-source",
+    "retained": [
+      {
+        "candidateRow": 2,
+        "relPath": "X/X69/X69n1357.xml",
+        "fromLb": "0459c17",
+        "toLb": "0459c17",
+        "workId": "work:X69n1357",
+        "tier": 1,
+        "sourceTitle": "Essentials of the Mind by Chan Master Foguо Keqin",
+        "exactActor": "Yuanwu Keqin",
+        "actorStatus": "roster-linked-master",
+        "actorRole": "utterer",
+        "familyId": "weiyinwang:yuanwu-beyond-empty-age",
+        "deployment": "In an authored instruction, Yuanwu says that after one passes through the empty age, King Majestic Sound on that far side is still a descendant.",
+        "actorProof": "The headword-bearing sentence belongs to Yuanwu Keqin's own written instruction to Xian Shangren; the surrounding quoted exchange begins only later and does not govern this clause."
+      },
+      {
+        "candidateRow": 3,
+        "relPath": "X/X71/X71n1413.xml",
+        "fromLb": "0276c18",
+        "toLb": "0276c18",
+        "workId": "work:X71n1413",
+        "tier": 1,
+        "sourceTitle": "Supplementary Gathas and Verses of Chan Master Gulin Qingmao",
+        "exactActor": "Gulin Qingmao",
+        "actorStatus": "roster-linked-master",
+        "actorRole": "verse-author",
+        "familyId": "weiyinwang:gulin-see-king",
+        "deployment": "Gulin's authored send-off verse says that amid a dream of snails and clams one sees King Majestic Sound completely.",
+        "actorProof": "The occurrence is in Gulin Qingmao's authored verse titled 'Sending the Western-country Canon Prefect Tan'; no embedded speaker or cited verse intervenes."
+      },
+      {
+        "candidateRow": 4,
+        "relPath": "X/X72/X72n1442.xml",
+        "fromLb": "0689c21",
+        "toLb": "0689c21",
+        "workId": "work:X72n1442",
+        "tier": 1,
+        "sourceTitle": "Drafts from Chan Master Weilin’s Traveling Hermitage",
+        "exactActor": "Weilin Daopei",
+        "actorStatus": "roster-linked-master",
+        "actorRole": "utterer",
+        "familyId": "weiyinwang:weilin-before-all-buddhas",
+        "deployment": "Weilin tells the assembly that all buddhas and beings had already become buddhas together before King Majestic Sound.",
+        "actorProof": "The headword is in the direct address introduced by 示眾 and 師云 within Weilin Daopei's Baofo discourse record; the following raised Zhongfeng passage begins after this completed address."
+      },
+      {
+        "candidateRow": 5,
+        "relPath": "X/X78/X78n1554.xml",
+        "fromLb": "0606a19",
+        "toLb": "0606a19",
+        "workId": "chan:wujia-zhengzong-zan",
+        "tier": 1,
+        "sourceTitle": "Praise of the Orthodox Lineage of the Five Houses",
+        "exactActor": "Xisou Shaotan",
+        "actorStatus": "roster-linked-master",
+        "actorRole": "verse-author",
+        "familyId": "weiyinwang:xisou-before-praise",
+        "deployment": "In his authored praise of Danxia Zichun, Xisou places the phrase 'before King Majestic Sound' beside gathering a bodhisattva's ray into one palm.",
+        "actorProof": "The headword-bearing line belongs to Xisou Shaotan's authored 贊 commentary following the recorded Danxia encounters; it is not speech assigned to Danxia or another figure in the raised cases."
+      },
+      {
+        "candidateRow": 6,
+        "relPath": "B/B25/B25n0145.xml",
+        "fromLb": "0709a17",
+        "toLb": "0709a17",
+        "workId": "work:B25n0145",
+        "tier": 2,
+        "sourceTitle": "Extensive Record of Zhongfeng Mingben of Tianmu",
+        "exactActor": "Zhongfeng Mingben",
+        "actorStatus": "roster-linked-master",
+        "actorRole": "utterer",
+        "familyId": "weiyinwang:zhongfeng-far-side-glance",
+        "deployment": "Zhongfeng tells the assembly to open their eyes and take a cool glance through the far side of King Majestic Sound.",
+        "actorProof": "The clause remains within Zhongfeng Mingben's direct 示眾 discourse at the Tianmu Huanzhu Chan hermitage; no quotation marker transfers the headword to another actor."
+      },
+      {
+        "candidateRow": 9,
+        "relPath": "C/C077/C077n1710.xml",
+        "fromLb": "0635b07",
+        "toLb": "0635b07",
+        "workId": "work:guzunsu-yulu",
+        "tier": 2,
+        "sourceTitle": "Recorded Sayings of Ancient Venerable Masters",
+        "exactActor": "Huangbo Xiyun",
+        "actorStatus": "roster-linked-master",
+        "actorRole": "utterer",
+        "familyId": "weiyinwang:huangbo-before-nanquan",
+        "deployment": "Asked by Nanquan when he had begun traveling the Way, Huangbo answers, 'before King Majestic Sound.'",
+        "actorProof": "The complete encounter explicitly gives 南泉問 followed by 師云威音王已前; the section's 師 is Huangbo Xiyun, while Nanquan is the questioner and respondent in the following turn."
+      },
+      {
+        "candidateRow": 10,
+        "relPath": "J/J10/J10nA158.xml",
+        "fromLb": "0012b29",
+        "toLb": "0012b29",
+        "workId": "work:J10nA158",
+        "tier": 2,
+        "sourceTitle": "Recorded Sayings of Chan Master Miyun",
+        "exactActor": "Miyun Yuanwu",
+        "actorStatus": "roster-linked-master",
+        "actorRole": "utterer",
+        "familyId": "weiyinwang:miyun-before-bare",
+        "deployment": "In a direct hall address, Miyun contrasts being bare before King Majestic Sound, naked through all future time, and the present cold.",
+        "actorProof": "The occurrence follows 師乃云 in Miyun Yuanwu's own hall discourse after the requesting monk's exchange has ended; Miyun governs the full headword-bearing statement."
+      }
+    ],
+    "excludedOrReserve": [
+      {
+        "candidateRow": 1,
+        "relPath": "T/T48/T48n2017.xml",
+        "fromLb": "0976c04",
+        "reason": "Although the container is Tier 1, the exact occurrence is Yongming Yanshou's passive quotation of the Lotus Sutra's King Majestic Sound Buddha episode. It is scripture-derived rather than an independent Zen-master deployment and is unnecessary once seven direct Tier 1/2 families fill the floor."
+      },
+      {
+        "candidateRow": 7,
+        "relPath": "B/B27/B27n0152.xml",
+        "fromLb": "0530b16",
+        "reason": "Yulin's record raises and comments on the same Huangbo–Nanquan encounter retained from the earlier Recorded Sayings of Ancient Venerable Masters. It is a valuable active later appraisal but not an eighth independent proof needed for the bounded floor, and retaining it would repeat the named phrase twice within one candidate context."
+      },
+      {
+        "candidateRow": 8,
+        "relPath": "D/D51/D51n8948.xml",
+        "fromLb": "0010a05",
+        "reason": "The direct hall metaphor of passing through King Majestic Sound's nostrils is semantically compatible, but the frozen context does not expose enough title-owner identity detail to resolve the exact Foguo actor as safely as the seven retained cases. It remains reserve evidence rather than receiving an inferred actor."
+      }
+    ],
+    "sourceMix": {
+      "tier1": 4,
+      "tier2": 3,
+      "tier3": 0,
+      "occurrences": 7,
+      "independentWorks": 7,
+      "independentFamilies": 7
+    },
+    "lampPolicy": "No lamp consulted or retained; four independent Tier 1 authored deployments and three independent Tier 2 recorded-sayings deployments fill the seven-family floor.",
+    "hardPass": true
+  },
+  "lineageTouched": false,
+  "publicMutationPerformed": false,
+  "hardPass": true
+}

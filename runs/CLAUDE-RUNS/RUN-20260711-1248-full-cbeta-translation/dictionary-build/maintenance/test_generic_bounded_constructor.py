@@ -236,6 +236,113 @@ class GenericBoundedConstructorIntegrationTest(unittest.TestCase):
         with self.assertRaisesRegex(TimeoutError,r"construction late: 579\.000s > 578s"):
             enforce_governed_deadline(579,deadlines,"construction")
 
+    def test_expired_first_product_fails_before_any_output_write(self):
+        with tempfile.TemporaryDirectory(dir=ROOT / "maintenance") as raw:
+            base = Path(raw).resolve()
+            output = base / "output"
+            config_path = base / "config.json"
+            atomic_write_json(config_path, {
+                "startedEpoch": 0,
+                "entries": [{
+                    "id": "t_expired_fixture",
+                    "term": "expired fixture",
+                    "sourceDossier": {},
+                    "evidenceDraft": {},
+                }],
+            })
+            governed = {
+                "outputRoot": output,
+                "governedDeadlines": {
+                    "firstProduct": 100,
+                    "construction": 200,
+                },
+            }
+            with (
+                patch(
+                    "maintenance.generic_bounded_constructor.verify_authority",
+                    return_value=governed,
+                ),
+                patch("maintenance.generic_bounded_constructor.verify_actor_closure"),
+                patch(
+                    "maintenance.generic_bounded_constructor."
+                    "verify_whole_config_preclosure"
+                ),
+                patch(
+                    "maintenance.generic_bounded_constructor."
+                    "canonical_compile_prewrite",
+                    return_value={"t_expired_fixture": {}},
+                ),
+            ):
+                with self.assertRaisesRegex(
+                    TimeoutError, r"firstProduct late: 101\.000s > 100s"
+                ):
+                    run(config_path, base, now=lambda: 101)
+            self.assertFalse(
+                output.exists(),
+                "an already-expired correction must emit no staging output",
+            )
+
+    def test_first_product_expiry_during_staging_blocks_compiler_write(self):
+        with tempfile.TemporaryDirectory(dir=ROOT / "maintenance") as raw:
+            base = Path(raw).resolve()
+            output = base / "output"
+            config_path = base / "config.json"
+            identity = "t_staging_expiry_fixture"
+            atomic_write_json(config_path, {
+                "startedEpoch": 0,
+                "entries": [{
+                    "id": identity,
+                    "term": "staging expiry fixture",
+                    "sourceDossier": {
+                        "id": identity,
+                        "term": "staging expiry fixture",
+                    },
+                    "evidenceDraft": {
+                        "Entry": {
+                            "Id": identity,
+                            "SourceTerm": "staging expiry fixture",
+                        },
+                        "EvidenceTransport": {},
+                    },
+                }],
+            })
+            governed = {
+                "outputRoot": output,
+                "governedDeadlines": {
+                    "firstProduct": 100,
+                    "construction": 200,
+                },
+            }
+            clock = iter((99, 101))
+            with (
+                patch(
+                    "maintenance.generic_bounded_constructor.verify_authority",
+                    return_value=governed,
+                ),
+                patch("maintenance.generic_bounded_constructor.verify_actor_closure"),
+                patch(
+                    "maintenance.generic_bounded_constructor."
+                    "verify_whole_config_preclosure"
+                ),
+                patch(
+                    "maintenance.generic_bounded_constructor."
+                    "canonical_compile_prewrite",
+                    return_value={identity: {}},
+                ),
+                patch(
+                    "maintenance.generic_bounded_constructor.subprocess.run"
+                ) as compiler,
+            ):
+                with self.assertRaisesRegex(
+                    TimeoutError, r"firstProduct late: 101\.000s > 100s"
+                ):
+                    run(config_path, base, now=lambda: next(clock))
+            compiler.assert_not_called()
+            self.assertFalse(
+                (output / identity / "entry.v2.json").exists(),
+                "deadline expiry during staging must block product creation",
+            )
+
     def test_r58_config_only_payload_closes_before_authority(self):
         entries = []
         for identity in FIXTURE_IDS:

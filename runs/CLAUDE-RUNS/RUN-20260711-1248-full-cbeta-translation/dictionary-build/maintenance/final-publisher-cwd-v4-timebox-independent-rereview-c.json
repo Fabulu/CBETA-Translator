@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "final-publisher-cwd-v4-timebox-independent-rereview.v1",
+  "reviewer": "Codex independent publisher/timebox rereview C",
+  "reviewedUtc": "2026-07-30T15:45:00Z",
+  "verdict": "PASS",
+  "scope": "Read-only review of final node.cwd containment and future v4 global timebox multiplier; no production publication or cohort launch.",
+  "bindings": {
+    "maintenance/generic_manifest_publisher.py": "600c38d64555d37dc8ae06557078615ce79a4e10d5b2bbc3bce6eb522047a9de",
+    "maintenance/test_generic_manifest_publisher.py": "c397090585ec4a9e66a3ac120f82ecc6c5d592f817d727ffd8695603a19149f5",
+    "maintenance/cohort_checkpoint_watchdog.py": "bd3756bc95af55882a9c2f02472be48f32672c52152a6edf5785be48f00e00cf",
+    "maintenance/create_cohort_artifact_zero.py": "bd1303fa76dc9ceee33a6c23aa4ac2960d139175ec85b48029c3e65b3bf6a4fa",
+    "maintenance/test_cohort_checkpoint_watchdog.py": "2de1f1846c27c0d26ac9bb623f6c4d8b10bd9818954387042b9a68906e53dfc7",
+    "maintenance/test_create_cohort_artifact_zero.py": "cb93e5b7ba8a21b049ab882b3bb7a123a84d73a172e5177020d079e6410984b7",
+    "maintenance/FUTURE_TIMEBOX_POLICY.md": "308e785d531764e3b2bcc47bab4b033ea900a368d13b71f91a6a5b11455a812d"
+  },
+  "publisherContainment": {
+    "result": "PASS",
+    "finding": "validate() resolves node.cwd through the same _path trust-root gate as other governed paths, requires the result to be an existing directory, returns it as nodeCwd, and stage() passes only that validated path to node_runner.",
+    "escapeCoverage": [
+      "absolute node cwd outside allowed_root is rejected",
+      "symlink node cwd resolving outside allowed_root is rejected",
+      "absolute sibling node cwd inside allowed_root is accepted"
+    ],
+    "priorContainmentDefectResolved": true
+  },
+  "v4Timebox": {
+    "result": "PASS",
+    "policy": "future-global-timebox.v1",
+    "schemaVersion": "bounded-dictionary-timegate.v4",
+    "declaredMultiplier": 2.0,
+    "applicationCount": 1,
+    "finding": "Artifact zero calls evidence_schedule once with multiplier 2.0 and stores the already-doubled absolute deadlines. governed_schedule recomputes the expected v4 schedule once from the base formula with multiplier 2.0 and compares equality; it does not multiply stored deadlines.",
+    "phaseAudit": {
+      "viability": {"base": 120, "v4": 240},
+      "researchExtraction": {"base": 240, "v4": 480},
+      "adjudicatedConfig": {"base": 560, "v4": 1120},
+      "constructor": {"base": 570, "v4": 1140},
+      "firstProduct": {"base": 590, "v4": 1180},
+      "construction": {"base": 650, "v4": 1300},
+      "review": {"base": 870, "v4": 1740},
+      "correction": {"base": 1010, "v4": 2020},
+      "publication": {"base": 1100, "v4": 2200}
+    },
+    "noFourTimes": "PASS"
+  },
+  "legacySchedules": {
+    "result": "PASS",
+    "v1": "base schedule retained, including historical researchExtraction 120",
+    "v2": "base schedule retained, including historical researchExtraction 120",
+    "v3": "base schedule retained with researchExtraction 240",
+    "finding": "No multiplier is inferred or retrofitted for schemas v1-v3; their governed deadline dictionaries remain byte-for-byte compatible."
+  },
+  "focusedSuite": {
+    "testsRun": 9,
+    "failures": 0,
+    "errors": 0,
+    "elapsedSeconds": 22.984,
+    "coverage": [
+      "absolute outside node cwd rejection",
+      "absolute allowed sibling node cwd acceptance",
+      "symlink node cwd escape rejection",
+      "future multiplier doubles base schedule once",
+      "legacy schedule unchanged",
+      "v4 watchdog does not multiply twice",
+      "real mounted artifact-zero v4 creation and verification",
+      "artifact-zero overwrite refusal",
+      "explicit replacement case-load schedule and low-load rejection"
+    ]
+  },
+  "hardFailures": [],
+  "productionRunPerformed": false,
+  "publisherAndV4AuthorizedForFutureGovernedUse": true
+}

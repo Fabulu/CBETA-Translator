@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "generic-constructor-deadline-independent-review.v1",
+  "reviewer": "Codex independent process review C",
+  "reviewedUtc": "2026-07-30T14:58:00Z",
+  "verdict": "PASS",
+  "scope": "Process-only first-product deadline patch; no dictionary content construction, edit, or publication.",
+  "bindings": {
+    "maintenance/generic_bounded_constructor.py": "127e708276a6492195091deed59df8790dbd701bb2e64eba9648419de83ecfea",
+    "maintenance/test_generic_bounded_constructor.py": "106985471b5bcd31509753ff1d30f73aa7965c399f373fc1b7d8b6b4e5f1795c"
+  },
+  "checks": [
+    {
+      "coordinate": "already-expired first-product deadline",
+      "result": "PASS",
+      "evidence": "run() enforces firstProduct immediately after read-only actor/preclosure/canonical projections and before results initialization, outputRoot/entry mkdir, dossier or worksheet staging, subprocess compilation, product/report/WORK writes, or receipt writes."
+    },
+    {
+      "coordinate": "expiry during staging",
+      "result": "PASS",
+      "evidence": "For ordinal one, run() rechecks firstProduct after dossier and worksheet staging but before invoking the compiler subprocess. Expiry at that boundary cannot create entry.v2.json or its compile report."
+    },
+    {
+      "coordinate": "normal constructor behavior",
+      "result": "PASS",
+      "evidence": "The production diff adds only two calls to the existing enforce_governed_deadline helper. For an unexpired clock both calls return without mutation; the pre-existing construction sequence, compilation, parity check, receipts, preclosure, manifest, and closure remain unchanged."
+    },
+    {
+      "coordinate": "focused deadline regressions",
+      "result": "PASS",
+      "evidence": "The strengthened pre-staging-expiry, pre-compiler-expiry, and injected-boundary tests ran 3/3 with zero failures or errors in 0.332 seconds."
+    }
+  ],
+  "focusedTestCommand": "PYTHONPATH=dictionary-build python3 -m unittest maintenance.test_generic_bounded_constructor.GenericBoundedConstructorIntegrationTest.test_expired_first_product_fails_before_any_output_write maintenance.test_generic_bounded_constructor.GenericBoundedConstructorIntegrationTest.test_first_product_expiry_during_staging_blocks_compiler_write maintenance.test_generic_bounded_constructor.GenericBoundedConstructorIntegrationTest.test_injected_now_governed_deadline_boundaries",
+  "focusedTestResult": {
+    "testsRun": 3,
+    "failures": 0,
+    "errors": 0,
+    "elapsedSeconds": 0.332
+  },
+  "fullModuleContext": {
+    "testsRun": 15,
+    "passed": 10,
+    "failures": 2,
+    "errors": 3,
+    "patchRegressionFound": false,
+    "note": "The five non-green tests are existing unrelated fixture/expectation defects: stale NearDuplicateRuling fixtures, an obsolete actor-error expectation, and a watchdog fixture missing researchCheckpointPath. None reaches or contradicts either added deadline check."
+  },
+  "contentModified": false,
+  "constructorResumeAuthorized": true
+}

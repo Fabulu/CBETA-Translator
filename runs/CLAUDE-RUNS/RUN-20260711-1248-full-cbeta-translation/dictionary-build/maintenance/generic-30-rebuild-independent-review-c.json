@@ -1,0 +1,89 @@
+{
+  "schemaVersion": "generic-thirty-rebuild-independent-review.v1",
+  "reviewer": "Codex independent 30-entry process review C",
+  "reviewedUtc": "2026-07-30T15:25:00Z",
+  "verdict": "FAIL",
+  "scope": "Read-only review of the exact 30-entry constructor mode and closure verifier; no production construction or publication was run.",
+  "bindings": {
+    "maintenance/generic_bounded_constructor.py": "a548fc1aace0f15db7442522be1505860da8e6a518b7c9119855acf896a9d570",
+    "maintenance/generic_30_rebuild_pipeline.py": "cd1473761eb03626cec4b57063e6f2991df581511af4ca96f21ec1a22c1c5963",
+    "maintenance/test_generic_30_rebuild.py": "0d515453d9c3b4b29c3a82a602251c281f25a4cc6e331f15fbc46205bcf73c36"
+  },
+  "passingCoordinates": [
+    {
+      "coordinate": "ordinary cohort admission",
+      "result": "PASS",
+      "finding": "A config without batchPlan still admits exactly 1-3 entries and rejects four or more. The 30-entry exception requires the distinct batchPlan mode rather than relaxing ordinary admission."
+    },
+    {
+      "coordinate": "exact ordered 3x10 partition",
+      "result": "PASS",
+      "finding": "The constructor requires mode thirty-entry-rebuild, expectedEntryCount 30, exactly three ordinal lanes, exactly ten IDs per lane, and an exact unique ordered partition matching config entries."
+    },
+    {
+      "coordinate": "declared author/reviewer separation",
+      "result": "PASS",
+      "finding": "Each lane requires nonempty semanticAuthor and crossReviewer values that differ; the three lanes must use at least two cross-reviewer identities."
+    },
+    {
+      "coordinate": "existing prewrite gates",
+      "result": "PASS",
+      "finding": "The 30-entry path uses the unchanged run sequence: authority/order/collision validation, exhaustive actor closure, whole-config preclosure/source-floor checks, canonical compilation of all entries in memory, and first-product deadline enforcement before the first mkdir."
+    },
+    {
+      "coordinate": "entry-30 fail-before-write",
+      "result": "PASS",
+      "finding": "A requiredFloor defect in entry 30 is collected by whole-config preclosure before outputRoot creation. The focused regression confirms no earlier product escapes."
+    },
+    {
+      "coordinate": "construction manifest and closure emission",
+      "result": "PASS",
+      "finding": "The constructor emits 30 ordered manifest rows, the exact batchPlan, 30 product hashes, and three lane closures of ten hashes each. The closure binds its construction manifest and preclosure."
+    },
+    {
+      "coordinate": "focused tests",
+      "result": "PASS",
+      "finding": "All three focused tests passed in 13.823 seconds."
+    }
+  ],
+  "hardFailures": [
+    {
+      "kind": "construction-closure-not-bound-by-release-bundle",
+      "coordinate": "generic_30_rebuild_pipeline.py verify_bundle()",
+      "detail": "The bundle schema and verifier contain constructionManifest but no constructionClosure binding. The verifier therefore never proves the supplied manifest is the one closed by the constructor, never checks closure hardPass, manifestSha256, preclosureSha256, ordered IDs, productCount, batchPlan, or laneClosures."
+    },
+    {
+      "kind": "semantic-reviews-not-bound-to-reviewed-input-or-product-bytes",
+      "coordinate": "generic_30_rebuild_pipeline.py semanticLaneReviews loop",
+      "detail": "Each review proves only reviewer name, ordered IDs, and PASS strings. It carries no required dossier, worksheet, or product SHA per entry and is not checked against construction product hashes. A stale PASS review for the same IDs satisfies independent cross-review."
+    },
+    {
+      "kind": "release-receipt-chain-incomplete",
+      "coordinate": "generic_30_rebuild_pipeline.py publication/release verification",
+      "detail": "The publication manifest product map and release receipt product map are compared independently to construction hashes, but the release receipt is not required to bind the publication manifest SHA, stage receipt SHA, install receipt SHA, or construction closure SHA. Exact products alone do not prove this single governed release chain."
+    },
+    {
+      "kind": "ledger-is-unbound-claim",
+      "coordinate": "generic_30_rebuild_pipeline.py ledger verification",
+      "detail": "The ledger gate checks only publishedIds and entryCount. It does not bind product hashes, release/install receipt, publication manifest, construction closure, prior resolved union, or resulting union. A standalone 30-ID ledger can pass without proving advancement by this release."
+    }
+  ],
+  "requiredCorrections": [
+    "Add a SHA-bound constructionClosure artifact to the bundle and verify its hardPass, manifest/preclosure bindings, exact IDs, product count, batch plan, and lane hash partitions.",
+    "Require every lane review row to bind the exact dossier/worksheet or final product SHA it independently reviewed; compare those hashes to the construction manifest.",
+    "Require the release/install receipt to bind the publication manifest, staged merge receipt, exact product set, and construction closure.",
+    "Require the ledger to bind the release/install receipt, exact product hashes, prior union, resulting union, and ordered published IDs.",
+    "Add negative tests that substitute a stale same-ID review, omit/swap the construction closure, substitute a foreign release receipt, and use an unbound same-ID ledger."
+  ],
+  "ordinaryModeCompatibilityNote": "Ordinary 1-3 admission and prewrite behavior remain intact. Its manifest/closure now include additional batch metadata fields (null or empty outside 30 mode), so byte-level output is extended rather than literally unchanged.",
+  "focusedSuite": {
+    "command": "PYTHONPATH=dictionary-build python3 -m unittest maintenance.test_generic_30_rebuild",
+    "testsRun": 3,
+    "failures": 0,
+    "errors": 0,
+    "elapsedSeconds": 13.823,
+    "coverageFinding": "The suite covers partitioning, late-entry fail-before-write, and construction emission. It does not test verify_bundle or any manifest/closure/review/release/ledger substitution."
+  },
+  "productionRunPerformed": false,
+  "releaseAuthorized": false
+}

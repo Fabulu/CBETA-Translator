@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "r93-correction3-gate-reconciliation-adjudication.v1",
+  "cohort": "R93",
+  "reviewer": "Codex independent gate adjudicator C",
+  "reviewedUtc": "2026-07-30T15:14:00Z",
+  "verdict": "PASS",
+  "question": "Can an immutable separate reconciliation close the correction-ordinal and artifact-zero binding defect without reconstructing correction3?",
+  "answer": "YES, but publication remains gated until that reconciliation exists and receives independent hash-bound review.",
+  "boundDefectArtifacts": {
+    "artifactZero": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r93-correction3-artifact-zero-root.json",
+      "correctionOrdinal": 3,
+      "startedEpoch": 1785424146.688171
+    },
+    "authority": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r93-correction3-authority-root.json",
+      "correctionOrdinal": 2,
+      "authorizedEpoch": 1785424146.688171,
+      "artifactZeroBindingPresent": false
+    },
+    "timegate": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r93-correction3-timegate-root.json",
+      "correctionOrdinal": 2,
+      "startedEpoch": 1785424146.688171,
+      "authoritySha256": "1dd7436a439a6e05a950522ce7e3e8f8d81b22fcae27cd9ec0fe8b53544aa4c8"
+    },
+    "manifest": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r93-correction3-construction-manifest-b.json",
+      "sha256": "87a1e4b97377fc1410fe4e0b252cf047b75e9478d07afef619f75d2e90606533"
+    },
+    "closure": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r93-correction3-closure-b.json",
+      "sha256": "a19b90ae4b4bf4706ddc54c666d1f33452da317c0e955e87bda5b8feda32e0cf"
+    }
+  },
+  "adjudication": {
+    "scopeAmbiguity": false,
+    "clockAmbiguity": false,
+    "stagingRootAmbiguity": false,
+    "contentAmbiguity": false,
+    "finding": "The mismatch is a provenance-label defect, not an authorization or content-scope substitution. Artifact zero, authority, and timegate share the exact epoch 1785424146.688171; the authority explicitly names the unique fresh-build/r93-correction3/entries staging root; the timegate binds that exact authority; and the manifest/closure bind the resulting correction3 products. No competing ordinal-2 run shares this epoch or staging root."
+  },
+  "requiredImmutableReconciliation": [
+    "Declare correctionOrdinal 3 the canonical run identity and identify authority/timegate correctionOrdinal 2 as inherited clerical labels, without modifying either historical artifact.",
+    "Bind by SHA-256 the artifact-zero, authority, timegate, constructor config, checkpoint, command audit, manifest, closure, product rereview, and this adjudication.",
+    "Prove the shared started/authorized epoch and exact correction3 staging root in machine-readable fields.",
+    "State explicitly that the reconciliation grants no new scope, rescan, semantic rewrite, clock reset, content mutation, or retroactive product change.",
+    "Receive an independent review confirming every bound hash and the absence of a competing run before final release authority is issued."
+  ],
+  "whyReconstructionIsNotRequired": "Reconstruction would reproduce already hash-bound bytes under the same finite scope and clock while discarding useful completed work. The pre-run authority already identifies and authorizes the exact correction3 staging root at the artifact-zero epoch; the missing edge can therefore be supplied by an immutable, independently reviewed reconciliation without rewriting history.",
+  "currentPublicationState": {
+    "productRereviewPassStillValid": true,
+    "publicationAuthorizedNow": false,
+    "publicationAuthorizedAfterReviewedReconciliation": true
+  },
+  "productionDataModified": false
+}

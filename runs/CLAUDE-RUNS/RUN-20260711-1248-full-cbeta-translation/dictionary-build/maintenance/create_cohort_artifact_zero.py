@@ -9,7 +9,9 @@ import os
 from datetime import datetime, timezone
 from pathlib import Path
 
-from cohort_checkpoint_watchdog import evidence_schedule
+from cohort_checkpoint_watchdog import (
+    FUTURE_TIMEBOX_MULTIPLIER, evidence_schedule,
+)
 
 
 def direct_exclusive_write(path: Path, payload: dict) -> None:
@@ -68,12 +70,15 @@ def main() -> None:
     output = Path(args.output).resolve()
     if output.exists():
         raise SystemExit(f"refusing to overwrite artifact zero: {output}")
-    total, deadlines = evidence_schedule(args.floors, args.case_load)
+    total, deadlines = evidence_schedule(
+        args.floors, args.case_load,
+        multiplier=FUTURE_TIMEBOX_MULTIPLIER,
+    )
     case_load = args.case_load
     started_ns = int(datetime.now(timezone.utc).timestamp() * 1_000_000_000)
     started = started_ns / 1_000_000_000
     payload = {
-        "schemaVersion": "bounded-dictionary-timegate.v3",
+        "schemaVersion": "bounded-dictionary-timegate.v4",
         "cohort": args.cohort,
         "artifactZero": True,
         "startedEpoch": started,
@@ -83,6 +88,12 @@ def main() -> None:
         "admittedRequiredOccurrences": total,
         "adjudicatedCaseLoad": case_load,
         "researchCandidateReserve": args.research_candidate_reserve,
+        "timeboxMultiplier": FUTURE_TIMEBOX_MULTIPLIER,
+        "timeboxPolicyVersion": "future-global-timebox.v1",
+        "timeboxPhases": [
+            "selection", "extraction", "config", "construction",
+            "review", "correction", "publication"
+        ],
         "deadlinesSeconds": deadlines,
     }
     launch_fields = (args.selector, args.prior_union, args.entry, args.reserve_id)

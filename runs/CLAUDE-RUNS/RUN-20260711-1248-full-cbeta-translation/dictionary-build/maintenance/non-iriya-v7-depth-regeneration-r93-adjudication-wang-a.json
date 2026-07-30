@@ -1,0 +1,276 @@
+{
+  "schemaVersion": "r93-frozen-source-adjudication.v1",
+  "cohort": "R93",
+  "adjudicator": "Codex r93_wang_adjudication",
+  "bindings": {
+    "extraction": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r93-extraction-output-b.json",
+      "sha256": "07c2085c743b0bdfe861717d17c4b8e108b0bac37675e291bff305118161f846"
+    }
+  },
+  "sourceHierarchy": "Tier 1 Zen-master-authored writing is presented first, followed by Tier 2 recorded sayings and active later raisings. No lamp was consulted or retained.",
+  "rows": [
+    {
+      "id": "t_2202e37854d4",
+      "term": "王老師",
+      "requiredFloor": 7,
+      "preferredTarget": "Old Teacher Wang",
+      "alternateTargets": [
+        "Teacher Wang"
+      ],
+      "literalFloor": "王 is the surname Wang; 老師 is an old or venerable teacher. Together the expression is “Old Teacher Wang.”",
+      "senseRuling": "One personal designation for Nanquan Puyuan, whose lay surname was Wang. Nanquan uses it of himself in the third person, and later masters quote it or use it as his familiar name. The frozen passages do not support a generic occupational sense of “a teacher surnamed Wang.”",
+      "semanticLimit": "Translate the designation as a name for Nanquan, not as an unidentified teacher and not as a title shared by every person surnamed Wang. The surrounding predicates—raising a buffalo, being seen by spirits, selling himself, or standing one line ahead—belong to their individual passages rather than to the lexical meaning of 王老師.",
+      "validationRuling": "multi-source",
+      "retained": [
+        {
+          "candidateRow": 1,
+          "relPath": "D/D50/D50n8945.xml",
+          "fromLb": "0005a05",
+          "toLb": "0005a05",
+          "workId": "work:D50n8945",
+          "tier": 1,
+          "sourceTitle": "Outer Collection of the Reverend Xuefeng Kong",
+          "exactActor": "Xuefeng Huikong",
+          "actorStatus": "roster-linked-master",
+          "contextMasters": [
+            {
+              "name": "Xuefeng Huikong",
+              "roles": [
+                "utterer",
+                "verse-author"
+              ]
+            },
+            {
+              "name": "Nanquan Puyuan",
+              "roles": [
+                "case-figure",
+                "person-discussed"
+              ]
+            }
+          ],
+          "deploymentFamily": "Xuefeng Huikong's authored verse on Nanquan selling himself",
+          "deployment": "In his verse, Xuefeng calls Nanquan “Old Teacher Wang” while alluding to Nanquan's announcement that he would sell himself.",
+          "actorProof": "The occurrence lies in a verse of 雪峯空和尚外集, explicitly authored by 釋慧空; Nanquan is the person named by the designation, not the verse's speaking voice."
+        },
+        {
+          "candidateRow": 2,
+          "relPath": "X/X69/X69n1357.xml",
+          "fromLb": "0479b24",
+          "toLb": "0479b24",
+          "workId": "work:X69n1357",
+          "tier": 1,
+          "sourceTitle": "Essentials of the Mind by Chan Master Foguo Keqin",
+          "exactActor": "Yuanwu Keqin",
+          "actorStatus": "roster-linked-master",
+          "contextMasters": [
+            {
+              "name": "Yuanwu Keqin",
+              "roles": [
+                "utterer",
+                "record-owner"
+              ]
+            },
+            {
+              "name": "Nanquan Puyuan",
+              "roles": [
+                "person-discussed"
+              ]
+            }
+          ],
+          "deploymentFamily": "Yuanwu Keqin's instruction to Jiazhong",
+          "deployment": "Yuanwu contrasts the reported ages at which Old Teacher Wang and Xianglin became capable in their practice.",
+          "actorProof": "The headword occurs in Yuanwu's uninterrupted 示嘉仲賢良 address in 佛果克勤禪師心要; 子文 is the compiler, while the title and address assign the speech to Yuanwu."
+        },
+        {
+          "candidateRow": 3,
+          "relPath": "X/X78/X78n1554.xml",
+          "fromLb": "0578c01",
+          "toLb": "0578c01",
+          "workId": "chan:wujia-zhengzong-zan",
+          "tier": 1,
+          "sourceTitle": "Eulogies of the Orthodox Lineage of the Five Houses",
+          "exactActor": "Nanquan Puyuan",
+          "actorStatus": "quoted-case-figure",
+          "contextMasters": [
+            {
+              "name": "Nanquan Puyuan",
+              "roles": [
+                "utterer",
+                "case-figure",
+                "section-subject"
+              ]
+            },
+            {
+              "name": "Xisou Shaotan",
+              "roles": [
+                "compiler",
+                "later-quoter",
+                "verse-author"
+              ]
+            }
+          ],
+          "deploymentFamily": "Shaotan's authored Nanquan portrait preserving Nanquan's self-designation",
+          "deployment": "The Nanquan section preserves several direct sayings in which Nanquan calls himself Old Teacher Wang, including the buffalo, spirit, and self-sale sayings.",
+          "actorProof": "Each headword-bearing turn is introduced by 上堂曰, 師曰, or 示眾曰 within 南泉願禪師; 王老師 is Nanquan's third-person self-reference. Shaotan records and comments on those sayings."
+        },
+        {
+          "candidateRow": 4,
+          "relPath": "B/B25/B25n0145.xml",
+          "fromLb": "0789b14",
+          "toLb": "0789b14",
+          "workId": "work:B25n0145",
+          "tier": 2,
+          "sourceTitle": "Extensive Record of Zhongfeng of Tianmu",
+          "exactActor": "Zhongfeng Mingben",
+          "actorStatus": "roster-linked-master",
+          "contextMasters": [
+            {
+              "name": "Zhongfeng Mingben",
+              "roles": [
+                "utterer",
+                "commentator",
+                "record-owner"
+              ]
+            },
+            {
+              "name": "Nanquan Puyuan",
+              "roles": [
+                "person-discussed"
+              ]
+            }
+          ],
+          "deploymentFamily": "Zhongfeng Mingben's colophon on Liang Kai's spirit-transport painting",
+          "deployment": "Mingben repeatedly calls Nanquan Old Teacher Wang while comparing Nanquan's spirit saying with the painted story of Miaofeng.",
+          "actorProof": "The occurrence is in Zhongfeng Mingben's authored colophon 題梁楷畫妙峯禪師四鬼夜移圖. 昔南泉謂 introduces an embedded premise, but the headword itself occurs in Mingben's continuing comparison and comment."
+        },
+        {
+          "candidateRow": 5,
+          "relPath": "B/B27/B27n0152.xml",
+          "fromLb": "0524b10",
+          "toLb": "0524b10",
+          "workId": "work:B27n0152",
+          "tier": 2,
+          "sourceTitle": "Recorded Sayings of National Teacher Yulin Puji",
+          "exactActor": "Nanquan Puyuan",
+          "actorStatus": "quoted-case-figure",
+          "contextMasters": [
+            {
+              "name": "Nanquan Puyuan",
+              "roles": [
+                "utterer",
+                "case-figure"
+              ]
+            },
+            {
+              "name": "Yulin Tongxiu",
+              "roles": [
+                "later-raiser",
+                "commentator",
+                "record-owner"
+              ]
+            }
+          ],
+          "deploymentFamily": "Yulin Tongxiu's active raising and comment on Nanquan's spirit case",
+          "deployment": "Yulin raises the manor-owner case, quotes Nanquan saying that Old Teacher Wang had too little practice and was seen by spirits, and then comments on the exchange.",
+          "actorProof": "泉云 directly introduces the headword-bearing sentence; 師云 begins Yulin's own response only after the full embedded exchange."
+        },
+        {
+          "candidateRow": 6,
+          "relPath": "C/C077/C077n1710.xml",
+          "fromLb": "0629b17",
+          "toLb": "0629b17",
+          "workId": "work:guzunsu-yulu",
+          "tier": 2,
+          "sourceTitle": "Old Recorded Sayings of Venerable Masters",
+          "exactActor": "Nanquan Puyuan",
+          "actorStatus": "quoted-case-figure",
+          "contextMasters": [
+            {
+              "name": "Nanquan Puyuan",
+              "roles": [
+                "utterer",
+                "questioner",
+                "teacher"
+              ]
+            },
+            {
+              "name": "Huangbo Xiyun",
+              "roles": [
+                "respondent",
+                "student",
+                "section-subject"
+              ]
+            }
+          ],
+          "deploymentFamily": "Nanquan's direct examination of Huangbo",
+          "deployment": "After Huangbo cannot answer Nanquan's question, Nanquan tells him to ask Old Teacher Wang—Nanquan's third-person reference to himself—and repeats the question.",
+          "actorProof": "The grammar alternates 泉云 and 師云. The headword occurs in 泉云道不得何不請王老師道, so Nanquan utters it; Huangbo's response begins at the following 師云."
+        },
+        {
+          "candidateRow": 7,
+          "relPath": "J/J10/J10nA158.xml",
+          "fromLb": "0037b25",
+          "toLb": "0037b25",
+          "workId": "work:J10nA158",
+          "tier": 2,
+          "sourceTitle": "Recorded Sayings of Chan Master Miyun",
+          "exactActor": "Miyun Yuanwu",
+          "actorStatus": "roster-linked-master",
+          "contextMasters": [
+            {
+              "name": "Miyun Yuanwu",
+              "roles": [
+                "utterer",
+                "later-quoter",
+                "commentator",
+                "record-owner"
+              ]
+            },
+            {
+              "name": "Nanquan Puyuan",
+              "roles": [
+                "person-discussed"
+              ]
+            }
+          ],
+          "deploymentFamily": "Miyun Yuanwu's instruction to the monk Pudu",
+          "deployment": "Miyun introduces Nanquan's buffalo saying with 南泉云, quotes “Old Teacher Wang” inside it, and then asks his addressee about its final phrase.",
+          "actorProof": "Miyun's direct instruction governs the passage and he is the present utterer quoting Nanquan; 南泉云 marks Nanquan as the original speaker of the embedded saying and the person denoted by 王老師."
+        }
+      ],
+      "excluded": [
+        {
+          "candidateRow": 8,
+          "relPath": "J/J23/J23nB134.xml",
+          "reason": "Parallel Wujia-yulu witness to candidate 9 and an inherited Nanquan saying; unnecessary after seven independent authored or actively redeployed families fill the floor."
+        },
+        {
+          "candidateRow": 9,
+          "relPath": "J/J24/J24nB138.xml",
+          "reason": "Parallel recension of candidate 8's same record and surrounding discourse; the two cannot manufacture separate independence."
+        },
+        {
+          "candidateRow": 10,
+          "relPath": "J/J25/J25nB156.xml",
+          "reason": "Usable later recorded-sayings reserve quoting Nanquan's buffalo saying, but the bounded seven-family floor is already filled without it."
+        }
+      ],
+      "lampPolicy": {
+        "tier3Consulted": false,
+        "lampFallbackCount": 0,
+        "ruling": "Seven independent Tier 1/2 families fill the required floor; no lamp evidence is admitted."
+      }
+    }
+  ],
+  "closure": {
+    "status": "PASS",
+    "scopeExpansion": false,
+    "rescanPerformed": false,
+    "retainedFamilyCount": 7,
+    "tier1Retained": 3,
+    "tier2Retained": 4,
+    "lampCount": 0,
+    "note": "The single Wang row meets floor seven from the SHA-bound frozen extraction. Tier 1 precedes Tier 2, and parallel recorded-sayings recensions are excluded rather than counted as independent proof."
+  }
+}

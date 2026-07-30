@@ -1,0 +1,104 @@
+{
+  "schemaVersion": "generic-manifest-publisher-independent-review.v1",
+  "reviewer": "Codex independent publisher review C",
+  "reviewedUtc": "2026-07-30T15:20:00Z",
+  "verdict": "FAIL",
+  "scope": "Read-only review of the generic publisher and its focused tests; no production publication was run.",
+  "bindings": {
+    "maintenance/generic_manifest_publisher.py": "d7f9f354bfe90e2d81952e4dbd89418c3bda761c7c8507eb88d13a7ef079f4a2",
+    "maintenance/test_generic_manifest_publisher.py": "486cb59288bd3e7914b7347c79dacad66fde2bc7579ca701bd702f95ada072cd"
+  },
+  "passingCoordinates": [
+    {
+      "coordinate": "manifest, authority, and source-product artifact hashes",
+      "result": "PASS",
+      "finding": "Authority, review documents, Node script, source entry, worksheet, WORK file, replacement baseline, and roster are SHA-gated before staging. Authority must affirm release and match the manifest cohort and product set."
+    },
+    {
+      "coordinate": "Windows Node staging",
+      "result": "PASS",
+      "finding": "Public data is copied to a fresh staging tree; terms are copied from each manifest sourceDir; WSL paths are converted with wslpath; and the configured Windows Node executable receives the governed script, terms, status, and output paths."
+    },
+    {
+      "coordinate": "mixed replacement and creation modes",
+      "result": "PASS",
+      "finding": "Replace requires an exact installed baseline hash; create requires an absent target and null baseline. Both modes stage and install through the same manifest iteration without a fixed product count."
+    },
+    {
+      "coordinate": "ordinary validation failure before write",
+      "result": "PASS",
+      "finding": "stage() completes validate() before creating its temporary tree. Bound-artifact, authority, product, baseline, mode, and roster failures therefore leave stage, terms, and public untouched."
+    },
+    {
+      "coordinate": "tested cross-terms/public rollback",
+      "result": "PASS",
+      "finding": "The focused injected public-phase failure restores already-installed replacement terms, removes created terms, and restores the public files recorded as installed."
+    },
+    {
+      "coordinate": "arbitrary correction source directories",
+      "result": "PASS",
+      "finding": "Every product source is taken from its manifest sourceDir and containment-checked against buildRoot; no R93 or fresh-build/entries path is hard-coded."
+    },
+    {
+      "coordinate": "receipt failure protection",
+      "result": "PASS",
+      "finding": "The hardened install receipt is written inside the protected transaction. A before-receipt or receipt-write exception deletes the receipt and enters terms/public rollback."
+    }
+  ],
+  "hardFailures": [
+    {
+      "kind": "independent-review-product-binding-not-verified",
+      "coordinate": "generic_manifest_publisher.py validate(): reviews loop",
+      "detail": "The publisher verifies only the review file SHA and verdict PASS. It does not require the review cohort to match or prove that the review's boundProducts IDs and SHA-256 values equal the manifest product set. A hash-bound PASS review for a different cohort or earlier product bytes therefore satisfies the gate."
+    },
+    {
+      "kind": "rollback-bookkeeping-begins-after-destructive-term-install",
+      "coordinate": "generic_manifest_publisher.py install(): terms loop",
+      "detail": "installed_terms is appended only after replacement target deletion, target creation, and all three os.replace calls. An exception after shutil.rmtree(target), or after a partial create/move, occurs before the identity enters rollback bookkeeping; the old replacement can remain absent or a new target can remain partial."
+    },
+    {
+      "kind": "public-graph-parity-is-count-only",
+      "coordinate": "generic_manifest_publisher.py _verify_public()",
+      "detail": "The verifier proves selected products in termbase.v2 and equal aggregate counts, but it does not prove shard IDs/content equal rich entries or that index terms/targets equal the rich dictionary. Different shard/index content with the same count can pass unless a separate optional integrityCommand happens to catch it."
+    },
+    {
+      "kind": "roster-drift-detected-but-not-restored",
+      "coordinate": "generic_manifest_publisher.py install(): roster hash check and exception rollback",
+      "detail": "Roster drift raises and rolls back terms/public, but no roster backup is restored. The publisher itself does not target the roster, yet a configured integrity command or injected process mutation leaves the lineage file changed despite the claimed immutability gate."
+    }
+  ],
+  "requiredCorrections": [
+    "Require each PASS review to bind the same cohort and exact manifest product ID/hash set; reject a review with missing, stale, or foreign product bindings.",
+    "Record each term mutation in rollback state before its first destructive operation, including create-mode partial targets; restore from the backup or remove the partial target for every exception boundary.",
+    "Verify exact rich-to-shard entry identity/content parity and exact rich-to-index term/target parity, not only counts.",
+    "Either make roster mutation impossible across every invoked command by validated path/process constraints, or snapshot and restore the roster on detected drift.",
+    "Add focused tests for all four defects and for receipt-write rollback."
+  ],
+  "focusedSuite": {
+    "command": "PYTHONPATH=dictionary-build python3 -m unittest maintenance.test_generic_manifest_publisher",
+    "testsRun": 5,
+    "failures": 0,
+    "errors": 0,
+    "elapsedSeconds": 24.908,
+    "coverageFinding": "The five tests pass but do not exercise stale/foreign PASS reviews, low-level term-install failures before installed_terms append, equal-count shard/index divergence, roster restoration, or receipt-write failure."
+  },
+  "thirtyEntryScaleAudit": {
+    "publisher": {
+      "result": "PASS",
+      "finding": "generic_manifest_publisher.py iterates arbitrary products and contains no three-entry cap."
+    },
+    "artifactZeroAndWatchdog": {
+      "result": "PASS",
+      "finding": "create_cohort_artifact_zero.py and cohort_checkpoint_watchdog.py accept variable-length entry/floor/ID lists and evidence_schedule scales deadlines by total case load."
+    },
+    "hardBlocker": {
+      "path": "maintenance/generic_bounded_constructor.py",
+      "lines": "240-241",
+      "limit": "1 <= len(config[\"entries\"]) <= 3",
+      "error": "ordinary bounded config requires 1-3 entries",
+      "effect": "A 30-entry rebuild cohort is rejected before construction. This is the exact generic-path hard-coded cohort-size blocker found."
+    }
+  },
+  "productionRunPerformed": false,
+  "publicationAuthorized": false
+}

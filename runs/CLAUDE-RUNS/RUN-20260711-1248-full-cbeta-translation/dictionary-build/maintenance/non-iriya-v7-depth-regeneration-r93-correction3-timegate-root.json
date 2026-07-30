@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "bounded-dictionary-timegate.v3",
+  "cohort": "R93",
+  "artifactZero": true,
+  "startedEpoch": 1785424146.688171,
+  "createdUtc": "2026-07-30T15:09:06.688171Z",
+  "requiredFloors": [
+    7,
+    7,
+    4
+  ],
+  "admittedRequiredOccurrences": 18,
+  "adjudicatedCaseLoad": 18,
+  "researchCandidateReserve": 3,
+  "deadlinesSeconds": {
+    "adjudicatedConfig": 60,
+    "constructor": 120,
+    "firstProduct": 150,
+    "construction": 180,
+    "review": 320,
+    "publication": 500
+  },
+  "assignedLaunch": {
+    "selector": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/last1500-public-depth/final-scope/full-regeneration-selector.json",
+    "priorUnion": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r92-resolved-union-root.json",
+    "entries": [
+      {
+        "id": "t_2202e37854d4",
+        "term": "王老師",
+        "requiredFloor": 7
+      },
+      {
+        "id": "t_2229af16905a",
+        "term": "威音王",
+        "requiredFloor": 7
+      },
+      {
+        "id": "t_222d636a08a9",
+        "term": "竪窮三際",
+        "requiredFloor": 4
+      }
+    ],
+    "reserveIds": [],
+    "researchCandidateReserve": 3
+  },
+  "continuationOf": "R92",
+  "correctionOrdinal": 2,
+  "correctionAuthorityPath": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r93-correction3-authority-root.json",
+  "correctionAuthoritySha256": "1dd7436a439a6e05a950522ce7e3e8f8d81b22fcae27cd9ec0fe8b53544aa4c8"
+}

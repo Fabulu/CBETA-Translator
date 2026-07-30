@@ -1,0 +1,69 @@
+{
+  "schemaVersion": "generic-dictionary-publication-manifest.v1",
+  "cohort": "R93",
+  "buildRoot": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator",
+  "termsRoot": "runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms",
+  "publicRoot": "/mnt/c/programmieren/CbetaZenTranslations",
+  "stageRoot": "runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/r93-publication3-generic-stage-root",
+  "installReceipt": "runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r93-publication3-generic-install-receipt-root.json",
+  "authority": {
+    "path": "runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r93-publication3-final-release-authority-root.json",
+    "sha256": "8e90f440a979534cda4d63fe99507a26a297aed7a1a108c9cb701ba8c93e2f49"
+  },
+  "reviews": [
+    {
+      "path": "runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r93-correction3-independent-rereview-a.json",
+      "sha256": "3e11ca74da450b8b04848b779855430a9e85a664cb58ecd44458a45adfeefe03"
+    },
+    {
+      "path": "runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r93-correction3-products-independent-rereview-c.json",
+      "sha256": "b0cb380d4ec93742796dc2bb5a2d6f243039505bae08f29bbadb678d857b1347"
+    }
+  ],
+  "products": [
+    {
+      "id": "t_2202e37854d4",
+      "sourceDir": "runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/r93-correction3/entries/t_2202e37854d4",
+      "entrySha256": "d9526c89a20c626727e659b5991a669d4cf5d4a94f3fcea3a9e03431b96418a3",
+      "worksheetSha256": "3ea166e7c5b1d0ce9f90f9c1c01a3d7b1c28c2247d89000be93d4b78ed4ca1a8",
+      "workSha256": "e3c992e9bea07ca3b8d97f74cd62078f9c0e62311cdf1e7d1c72f330ea0e9e58",
+      "termsMode": "replace",
+      "termsBaselineSha256": "1fdccc6fce89ac05c043d5db7f8fc90c252a9b32a964ea151277345e545e34cd"
+    },
+    {
+      "id": "t_2229af16905a",
+      "sourceDir": "runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/r93-correction3/entries/t_2229af16905a",
+      "entrySha256": "2b622c6abeff7930a30ac00bcc7851e7c19f69e5c0079c189af46acd9c1208b8",
+      "worksheetSha256": "798f647a3306dfd3aa9d96c9111fa9b009bb03c854d7f420e416bbb26e93dd35",
+      "workSha256": "ba76515778da1e1ab38556e8050e98058e1715ffb991e41926a6674c094e3af1",
+      "termsMode": "replace",
+      "termsBaselineSha256": "eb99066fa1186ddfbd85c2bd758652766bc86a86ee7cd797f304a6817e1e12b1"
+    },
+    {
+      "id": "t_222d636a08a9",
+      "sourceDir": "runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/r93-correction3/entries/t_222d636a08a9",
+      "entrySha256": "b2505b9e5b50814deaeb87b19b7fb8dae374a87d38fc43b96f64c43b7bbb198c",
+      "worksheetSha256": "7b3bd73d35dab8594f49eb082ef613afcacf7a0f04107914ad4ab00082d74c3c",
+      "workSha256": "8ad98a0b10cb1d4974d5668d76dc0dcfbf5c5ddf196b5f52a525ff1a4a916229",
+      "termsMode": "replace",
+      "termsBaselineSha256": "d3f39cd554e268b21f63fda948d26b260adf00b4eaffcf87ea310eb55dfb60f8"
+    }
+  ],
+  "roster": {
+    "path": "Assets/Data/lineage-masters.json",
+    "sha256": "bdee500537cffced1759f28f2516d8ac613f2d10e3bbdc7b4d35da6bb9bc474a"
+  },
+  "node": {
+    "windowsNodeExe": "/mnt/c/Program Files/nodejs/node.exe",
+    "script": {
+      "path": "eng/tools/merge-dict-entries.js",
+      "sha256": "98572f8852685468caa395d9374bd26ff1e4bede3156aa054dcd9c0c7ae76360"
+    },
+    "cwd": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator",
+    "status": "r93-publication3-ready"
+  },
+  "integrityCommand": [
+    "python3",
+    "scripts/audit-dictionary-integrity.py"
+  ]
+}

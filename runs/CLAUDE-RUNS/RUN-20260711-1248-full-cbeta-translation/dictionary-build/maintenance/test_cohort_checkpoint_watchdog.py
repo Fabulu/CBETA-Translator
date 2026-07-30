@@ -273,6 +273,42 @@ class CheckpointTests(unittest.TestCase):
         self.assertEqual({"viability":120,"researchExtraction":240,"adjudicatedConfig":560,
           "constructor":570,"firstProduct":590,"construction":650,"review":870,
           "correction":1010,"publication":1100},deadlines)
+    def test_future_global_multiplier_doubles_schedule_once(self):
+        total, deadlines = watchdog.evidence_schedule(
+            [6, 6, 8], 20,
+            multiplier=watchdog.FUTURE_TIMEBOX_MULTIPLIER,
+        )
+        self.assertEqual(20, total)
+        self.assertEqual({
+            "viability": 240, "researchExtraction": 480,
+            "adjudicatedConfig": 1120, "constructor": 1140,
+            "firstProduct": 1180, "construction": 1300,
+            "review": 1740, "correction": 2020, "publication": 2200,
+        }, deadlines)
+    def test_legacy_schedule_remains_byte_for_byte_unchanged(self):
+        _, deadlines = watchdog.evidence_schedule([6, 6, 8], 20)
+        self.assertEqual(560, deadlines["adjudicatedConfig"])
+        self.assertEqual(1100, deadlines["publication"])
+    def test_v4_governed_schedule_does_not_apply_multiplier_twice(self):
+        ids = [f"t_{number}" for number in range(3)]
+        floors = [6, 6, 8]
+        _, deadlines = watchdog.evidence_schedule(
+            floors, 20, multiplier=2.0)
+        gate = {
+            "schemaVersion": "bounded-dictionary-timegate.v4",
+            "requiredFloors": floors,
+            "admittedRequiredOccurrences": 20,
+            "adjudicatedCaseLoad": 20,
+            "timeboxMultiplier": 2.0,
+            "deadlinesSeconds": deadlines,
+        }
+        self.assertEqual(
+            deadlines, watchdog.governed_schedule(gate, ids)[3])
+        gate["deadlinesSeconds"] = {
+            phase: value * 2 for phase, value in deadlines.items()
+        }
+        with self.assertRaisesRegex(ValueError, "deadline schedule mismatch"):
+            watchdog.governed_schedule(gate, ids)
     def test_n23_and_n24_evidence_scaled_schedule(self):
         _, n23=watchdog.evidence_schedule([8,4,7],23)
         self.assertEqual((596,686,930,1082,1172),

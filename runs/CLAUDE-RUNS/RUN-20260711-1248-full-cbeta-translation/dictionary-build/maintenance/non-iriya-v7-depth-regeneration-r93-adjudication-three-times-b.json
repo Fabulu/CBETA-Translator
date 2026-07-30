@@ -1,0 +1,129 @@
+{
+  "schemaVersion": "r93-frozen-source-adjudication.v1",
+  "cohort": "R93",
+  "id": "t_222d636a08a9",
+  "term": "竪窮三際",
+  "bindings": {
+    "extractionPath": "maintenance/non-iriya-v7-depth-regeneration-r93-extraction-output-b.json",
+    "extractionSha256": "07c2085c743b0bdfe861717d17c4b8e108b0bac37675e291bff305118161f846"
+  },
+  "requiredFloor": 4,
+  "preferredTarget": "vertically exhaust the three times",
+  "alternateTargets": [
+    "vertically reach through the three times"
+  ],
+  "literalFloor": "竪 marks the vertical axis, 窮 reaching or exhausting its extent, and 三際 the three temporal limits: past, present, and future.",
+  "senseRuling": "One temporal half of a paired scope formula. The expression says that something reaches without temporal limit through past, present, and future; its regular partner says that it extends horizontally through the ten directions.",
+  "semanticLimit": "The vertical and horizontal language describes temporal and spatial scope, not bodily posture or a literal upright object. Preserve the parallel ten-direction clause when the source supplies it.",
+  "validationRuling": "multi-source",
+  "retained": [
+    {
+      "candidateRow": 1,
+      "relPath": "T/T48/T48n2016.xml",
+      "tier": 1,
+      "exactActor": "Yongming Yanshou",
+      "actorKind": "roster-master",
+      "actorRole": "utterer",
+      "contextMasters": [
+        {
+          "MasterName": "Yongming Yanshou",
+          "Roles": [
+            "utterer",
+            "record-owner"
+          ]
+        }
+      ],
+      "deploymentFamily": "Yongming Yanshou's authored account of Sudhana's vow-practice",
+      "deployment": "Yongming pairs broad movement through the ten directions with vow-practice exhausting the three times.",
+      "actorProof": "The headword occurs in Yongming's authored explanatory prose rather than an embedded quotation."
+    },
+    {
+      "candidateRow": 3,
+      "relPath": "B/B25/B25n0145.xml",
+      "tier": 2,
+      "exactActor": "Zhongfeng Mingben",
+      "actorKind": "roster-master",
+      "actorRole": "utterer",
+      "contextMasters": [
+        {
+          "MasterName": "Zhongfeng Mingben",
+          "Roles": [
+            "utterer",
+            "record-owner"
+          ]
+        }
+      ],
+      "deploymentFamily": "Zhongfeng Mingben's instruction to Baodeng",
+      "deployment": "Zhongfeng says the patriarchal mind-seal extends across the ten directions and exhausts the three times.",
+      "actorProof": "The section heading and continuous instruction assign the formula directly to Zhongfeng."
+    },
+    {
+      "candidateRow": 5,
+      "relPath": "M/M59/M59n1540.xml",
+      "tier": 2,
+      "exactActor": "Dahui Zonggao",
+      "actorKind": "roster-master",
+      "actorRole": "utterer",
+      "contextMasters": [
+        {
+          "MasterName": "Dahui Zonggao",
+          "Roles": [
+            "utterer",
+            "record-owner"
+          ]
+        }
+      ],
+      "deploymentFamily": "Dahui Zonggao's direct discourse on the complete great matter",
+      "deployment": "Dahui says the universally complete matter vertically exhausts the three times and horizontally extends through the ten directions.",
+      "actorProof": "The formula lies in Dahui's uninterrupted general discourse."
+    },
+    {
+      "candidateRow": 7,
+      "relPath": "T/T48/T48n2004.xml",
+      "tier": 2,
+      "exactActor": "Wansong Xingxiu",
+      "actorKind": "roster-master",
+      "actorRole": "commentator",
+      "contextMasters": [
+        {
+          "MasterName": "Wansong Xingxiu",
+          "Roles": [
+            "commentator",
+            "record-owner"
+          ]
+        }
+      ],
+      "deploymentFamily": "Wansong Xingxiu's independent explanatory gloss of high and broad",
+      "deployment": "Wansong explicitly glosses vertically exhausting the three times as 'high' and horizontally pervading the ten directions as 'broad.'",
+      "actorProof": "The headword occurs in Wansong's own prose after his citation of Tiantai material."
+    }
+  ],
+  "excluded": [
+    {
+      "candidateRow": 2,
+      "reason": "The Chan Gate compilation quotes Taiyuan Fu's inherited lecture; the same deployment family appears more completely in the Blue Cliff Record and is unnecessary after four active higher-tier families fill the floor."
+    },
+    {
+      "candidateRow": 4,
+      "reason": "A usable direct hall deployment, but the bounded floor is already filled by four clearer named independent actors."
+    },
+    {
+      "candidateRow": 6,
+      "reason": "The Blue Cliff Record preserves and comments on Taiyuan Fu's inherited lecture; it is excluded as a quoted family unnecessary for the floor."
+    }
+  ],
+  "lampPolicy": {
+    "tier3Consulted": false,
+    "lampFallbackCount": 0,
+    "ruling": "One Tier-1 authored and three Tier-2 active deployments fill the four-family floor."
+  },
+  "closure": {
+    "status": "PASS",
+    "independentFamilies": 4,
+    "tier1": 1,
+    "tier2": 3,
+    "tier3Lamps": 0,
+    "scopeExpansion": false,
+    "rescanPerformed": false
+  }
+}

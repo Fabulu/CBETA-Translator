@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "generic-thirty-rebuild-independent-rereview.v1",
+  "reviewer": "Codex independent 30-entry chain rereview C",
+  "reviewedUtc": "2026-07-30T15:33:00Z",
+  "verdict": "PASS",
+  "scope": "Read-only rereview of the corrected 30-entry construction-to-ledger chain; no production construction or publication was run.",
+  "bindings": {
+    "maintenance/generic_bounded_constructor.py": "a548fc1aace0f15db7442522be1505860da8e6a518b7c9119855acf896a9d570",
+    "maintenance/generic_30_rebuild_pipeline.py": "c942693c4f7e5c1bc324b909b92dee9899218c1de79f34eaa3357f98898aaf19",
+    "maintenance/test_generic_30_rebuild.py": "d852ef19c170bb0b29a2a91799b2871a38924c18a7ff5bf8f42499803c523405"
+  },
+  "priorFailureResolution": [
+    {
+      "failure": "The release bundle did not bind or verify construction closure.",
+      "result": "RESOLVED",
+      "evidence": "The bundle now SHA-binds constructionPreclosure, constructionManifest, and constructionClosure. verify_bundle requires hard-pass preclosure/closure, exact manifest and preclosure hashes, 30 ordered IDs, productCount 30, exact batchPlan, and three exact lane closures containing the manifest product hashes."
+    },
+    {
+      "failure": "Lane reviews did not bind reviewed support or product bytes.",
+      "result": "RESOLVED",
+      "evidence": "Every PASS review row must bind the exact dossierSha256, worksheetSha256, and productSha256 from its construction-manifest row. Each lane reviewer and ordered ten-ID coverage must match the closed batch plan, and the three lanes cover all 30 IDs exactly once."
+    },
+    {
+      "failure": "The release receipt did not close the publication chain.",
+      "result": "RESOLVED",
+      "evidence": "The verifier now SHA-binds publication manifest, stage receipt, install receipt, and release receipt. Stage and install must bind the publication manifest; install and release must bind the stage receipt; release must bind install and construction closure; install/release product maps must exactly equal construction products."
+    },
+    {
+      "failure": "The ledger was an unbound IDs/count claim.",
+      "result": "RESOLVED",
+      "evidence": "The ledger must bind exact product hashes, release receipt, install receipt, publication manifest, construction closure, predecessor union, and result union. Result IDs must equal predecessor IDs followed by the exact ordered 30 published IDs with global uniqueness."
+    }
+  ],
+  "chainChecks": {
+    "ordinaryOneToThreeMode": "PASS",
+    "exactOrderedThreeByTenMode": "PASS",
+    "entryThirtyFailBeforeWrite": "PASS",
+    "constructionManifestAndClosure": "PASS",
+    "independentCrossReviewAllThirty": "PASS",
+    "publicationStageInstallRelease": "PASS",
+    "ledgerAndUnionAdvance": "PASS",
+    "rosterMutationForbidden": "PASS"
+  },
+  "focusedSuite": {
+    "command": "PYTHONPATH=dictionary-build python3 -m unittest maintenance.test_generic_30_rebuild",
+    "testsRun": 8,
+    "failures": 0,
+    "errors": 0,
+    "elapsedSeconds": 38.115,
+    "negativeCoverage": [
+      "invalid ordered partition",
+      "entry-30 prewrite failure",
+      "construction closure substitution",
+      "stale same-ID review hash",
+      "foreign release/install binding",
+      "unbound same-ID ledger/result union"
+    ]
+  },
+  "hardFailures": [],
+  "productionRunPerformed": false,
+  "thirtyEntryChainAuthorizedForGovernedUse": true
+}

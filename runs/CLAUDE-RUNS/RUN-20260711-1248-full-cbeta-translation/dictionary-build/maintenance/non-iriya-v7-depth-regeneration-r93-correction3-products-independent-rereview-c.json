@@ -1,0 +1,83 @@
+{
+  "schemaVersion": "r93-correction3-products-independent-rereview.v1",
+  "cohort": "R93",
+  "correction": 3,
+  "reviewer": "Codex independent product/source rereview C",
+  "startedEpoch": 1785424146.688171,
+  "reviewedUtc": "2026-07-30T15:12:00Z",
+  "verdict": "PASS",
+  "boundProducts": [
+    {
+      "id": "t_2202e37854d4",
+      "term": "王老師",
+      "path": "fresh-build/r93-correction3/entries/t_2202e37854d4/entry.v2.json",
+      "sha256": "d9526c89a20c626727e659b5991a669d4cf5d4a94f3fcea3a9e03431b96418a3"
+    },
+    {
+      "id": "t_2229af16905a",
+      "term": "威音王",
+      "path": "fresh-build/r93-correction3/entries/t_2229af16905a/entry.v2.json",
+      "sha256": "2b622c6abeff7930a30ac00bcc7851e7c19f69e5c0079c189af46acd9c1208b8"
+    },
+    {
+      "id": "t_222d636a08a9",
+      "term": "竪窮三際",
+      "path": "fresh-build/r93-correction3/entries/t_222d636a08a9/entry.v2.json",
+      "sha256": "b2505b9e5b50814deaeb87b19b7fb8dae374a87d38fc43b96f64c43b7bbb198c"
+    }
+  ],
+  "constructionBindings": {
+    "manifestPath": "maintenance/non-iriya-v7-depth-regeneration-r93-correction3-construction-manifest-b.json",
+    "manifestSha256": "87a1e4b97377fc1410fe4e0b252cf047b75e9478d07afef619f75d2e90606533",
+    "closurePath": "maintenance/non-iriya-v7-depth-regeneration-r93-correction3-closure-b.json",
+    "closureSha256": "a19b90ae4b4bf4706ddc54c666d1f33452da317c0e955e87bda5b8feda32e0cf",
+    "elapsedSeconds": 78.486163854599,
+    "deadlineSeconds": 180,
+    "hardPass": true,
+    "publicMutation": false,
+    "rosterMutation": false
+  },
+  "priorFailureResolution": [
+    {
+      "coordinate": "王老師 source-authority o3 X/X78/X78n1554.xml",
+      "result": "RESOLVED",
+      "evidence": "DeploymentRole is active-quotation. Nanquan Puyuan remains the exact utterer; Xisou Shaotan remains separately linked as compiler, later-quoter, and verse-author."
+    },
+    {
+      "coordinate": "王老師 source-authority o5 B/B27/B27n0152.xml",
+      "result": "RESOLVED",
+      "evidence": "DeploymentRole is active-quotation. Nanquan Puyuan remains the exact utterer; Yulin Tongxiu remains separately linked as later-raiser, commentator, and record owner."
+    },
+    {
+      "coordinate": "王老師 source-authority o7 J/J10/J10nA158.xml",
+      "result": "RESOLVED",
+      "evidence": "DeploymentRole is active-quotation. Nanquan Puyuan remains the exact utterer; Miyun Yuanwu remains separately linked as later-quoter, commentator, and record owner."
+    }
+  ],
+  "reviewCoordinates": {
+    "deploymentRoleClassification": {
+      "result": "PASS",
+      "finding": "All three formerly mislabeled rows now distinguish an inherited Nanquan voice from the later master's active deployment. Their separate witness-family value is no longer represented as three new original uses."
+    },
+    "exactActorAndLinkedContext": {
+      "result": "PASS",
+      "finding": "Each embedded headword voice preserves MasterName Nanquan Puyuan plus a linked utterer ContextMasters row. Xisou, Yulin, and Miyun remain distinct contextual actors with closed-vocabulary roles; no later container owner replaces the quoted exact actor."
+    },
+    "compilerParity": {
+      "result": "PASS",
+      "finding": "Independent --new-entry compilation of all three correction3 worksheets reproduced d9526c89, 2b622c6a, and b2505b9e byte-for-byte."
+    },
+    "manifestAndClosureParity": {
+      "result": "PASS",
+      "finding": "The manifest binds the observed dossier, worksheet, report, and product hashes. The closure binds manifest 87a1e4b9, is hard-pass, and records no public or roster mutation."
+    },
+    "recurrenceAudit": {
+      "result": "PASS",
+      "finding": "The prior deployment-role defect does not recur, and the bounded correction introduces no actor/context or compiler-parity regression."
+    }
+  },
+  "hardFailures": [],
+  "researchRedoRequired": false,
+  "productionDataModified": false,
+  "publicationAuthorized": true
+}

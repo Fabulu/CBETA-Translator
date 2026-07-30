@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "r93-correction3-gate-reconciliation-independent-review.v1",
+  "cohort": "R93",
+  "reviewer": "Codex independent reconciliation reviewer A",
+  "reviewedUtc": "2026-07-30T15:15:02Z",
+  "verdict": "PASS",
+  "reconciliation": {
+    "path": "maintenance/non-iriya-v7-depth-regeneration-r93-correction3-gate-reconciliation-root.json",
+    "sha256": "d2abafa8b6ba30884703eb293ebaddc68e24302d15935b34e07a0e3680c144c4"
+  },
+  "gateAdjudication": {
+    "path": "maintenance/non-iriya-v7-depth-regeneration-r93-correction3-gate-reconciliation-adjudication-c.json",
+    "sha256": "478e56c8365e0d83d5f01ed806c8a91a0770dec4264edf7fb5bb9d75b89c5086"
+  },
+  "review": {
+    "allBindings": {
+      "result": "PASS",
+      "finding": "All twelve SHA-256 bindings resolve to the exact current bytes: artifact zero, correction2 preparation-failure receipt, authority, timegate, constructor config, constructor checkpoint, command audit, manifest, closure, both product rereviews, and gate adjudication."
+    },
+    "canonicalOrdinal": {
+      "result": "PASS",
+      "finding": "The reconciliation declares correction ordinal 3 canonical and confines ordinal 2 to the immutable authority/timegate clerical labels. Artifact zero, authority, and timegate share epoch 1785424146.688171, and the constructor config binds the unique fresh-build/r93-correction3/entries root."
+    },
+    "correction2Disclaimer": {
+      "result": "PASS",
+      "finding": "Correction 2 is explicitly bound as a preparation-only failure, with successfulRun and mayBeTreatedAsSuccessful both false."
+    },
+    "noNewAuthorityClockOrScope": {
+      "result": "PASS",
+      "finding": "The reconciliation grants no new authority, clock, reset, scope, rescan, semantic rewrite, content mutation, retroactive product change, installation, or publication."
+    },
+    "historicalIntegrity": {
+      "result": "PASS",
+      "finding": "Historical artifacts are not modified; the reconciliation supplies an immutable provenance edge only and matches every condition imposed by the independent gate adjudication."
+    }
+  },
+  "unresolvedDefects": [],
+  "releaseAuthorityMayProceed": true,
+  "productionDataModified": false
+}
