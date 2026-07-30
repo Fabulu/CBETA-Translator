@@ -539,6 +539,12 @@ def compile_one(config, research_row, family_counts, labels, recut_plan=None):
             "works": research_row["independentWorks"],
             "per_file": [[x["relPath"], x["hits"]] for x in research_row["fullConcordance"]],
         },
+        "requiredFloor": research_row["floor"],
+        "semanticReadComplete": True,
+        "tier3Lamp": sum(
+            1 for case in full_cases if int(case["tier"]) == 3
+        ),
+        "predecessorEvidenceAudit": [],
         "retainedCompleteCases": full_cases,
         "tier3ExceptionalJustification": "",
         "actorRiskAdjudication": research_row["actorRisks"],
@@ -569,6 +575,20 @@ def compile_one(config, research_row, family_counts, labels, recut_plan=None):
             ],
             "definitionRuling": "The source-first draft was compared with the predecessor only after its own target, sense, actors, and prose were fixed.",
         }
+        dossier["predecessorEvidenceAudit"] = [
+            {
+                "relPath": path,
+                "decision": (
+                    "KEEP" if path in {o["RelPath"] for o in occurrences}
+                    else "REJECT_AS_REDUNDANT_OR_WEAKER"
+                ),
+                "reason": (
+                    f"{config['term']}: retained only when this exact predecessor "
+                    "survives the completed actor, independence, and source-authority review."
+                ),
+            }
+            for path in old_paths
+        ]
     negative = [{
         "CandidateTerm": term,
         "Query": term,
@@ -629,7 +649,7 @@ def compile_one(config, research_row, family_counts, labels, recut_plan=None):
         },
         "familyHarvest": {
             "PolicyVersion": 1,
-            "Scope": "R11 exact source-first family harvest",
+            "Scope": f"{CREATED_BY} exact source-first family harvest",
             "Edges": [],
             "NegativeReceipt": negative,
             "GraphicVariants": [],

@@ -11,7 +11,9 @@ import unittest
 from unittest.mock import patch
 
 from atomic_write import atomic_write_json
-from maintenance.generic_bounded_constructor import ActorClosureError, run
+from maintenance.generic_bounded_constructor import (
+    ActorClosureError, run, verify_whole_config_preclosure,
+)
 
 ROOT = Path(__file__).resolve().parent.parent
 WATCHDOG = ROOT / "maintenance/construction_start_watchdog.py"
@@ -24,6 +26,59 @@ def sha(path):
 
 
 class GenericBoundedConstructorIntegrationTest(unittest.TestCase):
+    def test_r58_config_only_payload_closes_before_authority(self):
+        entries = []
+        for identity in FIXTURE_IDS:
+            source = ROOT / "fresh-build/entries" / identity
+            worksheet = json.loads((source / "evidence.draft.json").read_text())
+            dossier = json.loads((source / "source-dossier.json").read_text())
+            worksheet["Entry"]["CreatedBy"] = "R58 source-hierarchy repair"
+            worksheet["FamilyHarvest"]["Scope"] = (
+                "R58 source-hierarchy repair exact source-first family harvest"
+            )
+            entries.append({
+                "id": identity,
+                "term": worksheet["Entry"]["SourceTerm"],
+                "sourceDossier": dossier,
+                "evidenceDraft": worksheet,
+            })
+        verify_whole_config_preclosure({"entries": entries})
+
+    def test_preclosure_omission_and_stale_scope_fail_before_any_write(self):
+        fixture_ids = FIXTURE_IDS[:2]
+        with tempfile.TemporaryDirectory(dir=ROOT / "maintenance") as raw:
+            base = Path(raw).resolve()
+            output = base / "output"
+            config_path = base / "config.json"
+            entries = []
+            for identity in fixture_ids:
+                source = ROOT / "fresh-build/entries" / identity
+                worksheet = json.loads((source / "evidence.draft.json").read_text())
+                dossier = json.loads((source / "source-dossier.json").read_text())
+                entries.append({
+                    "id": identity,
+                    "term": worksheet["Entry"]["SourceTerm"],
+                    "sourceDossier": dossier,
+                    "evidenceDraft": worksheet,
+                })
+            entries[1]["sourceDossier"].pop("requiredFloor", None)
+            entries[1]["evidenceDraft"]["Entry"]["CreatedBy"] = "R57 fixture"
+            entries[1]["evidenceDraft"]["FamilyHarvest"]["Scope"] = "R56 stale scope"
+            atomic_write_json(config_path, {"entries": entries})
+            with patch(
+                "maintenance.generic_bounded_constructor.verify_authority",
+                return_value={"outputRoot": output},
+            ):
+                with self.assertRaisesRegex(
+                    ValueError,
+                    "whole-config prewrite preclosure failed.*requiredFloor.*FamilyHarvest.Scope",
+                ):
+                    run(config_path, base)
+            self.assertFalse(
+                output.exists(),
+                "later-entry metadata closure failure must create no product root",
+            )
+
     def test_actor_closure_reports_all_coordinates_before_any_product_write(self):
         with tempfile.TemporaryDirectory(dir=ROOT / "maintenance") as raw:
             base = Path(raw).resolve()

@@ -194,6 +194,23 @@ def verify_actor_closure(config: dict[str, Any]) -> None:
         raise ActorClosureError(actor_errors)
 
 
+def verify_whole_config_preclosure(config: dict[str, Any]) -> None:
+    """Reject every payload-level closure defect before the first mkdir/write."""
+    rows = []
+    for entry in config["entries"]:
+        verify_source_hierarchy(entry)
+        worksheet = entry["evidenceDraft"]
+        rows.append({
+            "id": entry["id"],
+            "entry": worksheet.get("Entry") or {},
+            "worksheet": worksheet,
+            "dossier": entry["sourceDossier"],
+        })
+    errors = validate_preclosure(rows)
+    if errors:
+        raise ValueError(f"whole-config prewrite preclosure failed: {errors}")
+
+
 def run(config_path: Path, allowed_root: Path, now=time.time) -> dict[str, Any]:
     config_path = config_path.resolve()
     allowed_root = allowed_root.resolve()
@@ -203,10 +220,10 @@ def run(config_path: Path, allowed_root: Path, now=time.time) -> dict[str, Any]:
     # This must precede source checks, mkdir, dossier writes, and compilation:
     # one defective later entry may never leave an earlier partial product.
     verify_actor_closure(config)
+    verify_whole_config_preclosure(config)
     started = float(config["startedEpoch"])
     results = []
     for ordinal, entry in enumerate(config["entries"], 1):
-        verify_source_hierarchy(entry)
         entry_dir = paths["outputRoot"] / entry["id"]
         entry_dir.mkdir(parents=True, exist_ok=True)
         dossier_path = entry_dir / "source-dossier.json"

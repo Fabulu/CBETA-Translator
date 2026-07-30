@@ -6,10 +6,10 @@ from atomic_write import atomic_write_json
 from maintenance.generic_bounded_constructor import verify_whole_config_preclosure
 
 ROOT=Path(__file__).resolve().parents[1];M=ROOT/"maintenance"
-TG=M/"non-iriya-v7-depth-regeneration-r56-timegate-b.json";SEL=M/"non-iriya-v7-depth-regeneration-r56-selection-b.json"
-EXT=M/"non-iriya-v7-depth-regeneration-r56-adjudicated-extraction-b.json"
-RES=M/"non-iriya-v7-depth-regeneration-r56-research-b.json";CFG=M/"non-iriya-v7-depth-regeneration-r56-constructor-config-b.json"
-AUD=M/"non-iriya-v7-depth-regeneration-r56-constructor-command-audit-b.json";START=M/"non-iriya-v7-depth-regeneration-r56-constructor-checkpoint-b.json"
+TG=M/"non-iriya-v7-depth-regeneration-r57-timegate-b.json";SEL=M/"non-iriya-v7-depth-regeneration-r57-selection-b.json"
+EXT=M/"non-iriya-v7-depth-regeneration-r57-extraction-output-b.json"
+RES=M/"non-iriya-v7-depth-regeneration-r57-research-b.json";CFG=M/"non-iriya-v7-depth-regeneration-r57-constructor-config-b.json"
+AUD=M/"non-iriya-v7-depth-regeneration-r57-constructor-command-audit-b.json";START=M/"non-iriya-v7-depth-regeneration-r57-constructor-checkpoint-b.json"
 ENGINE=M/"generic_bounded_constructor.py";WRAP=M/"dictionary_python_env.py"
 IDS=["t_16140def874d","t_164a31617b6a","t_16bbc5599cd2"]; TERMS=["主人公","舉揚","木人"]
 RUNGS=["line","expanded-context","section-header","book-title","tei-header","parallel-passage"]
@@ -22,7 +22,7 @@ def named(key,master,action,grammar,note):
  "fullCaseDecision":grammar,"action":action,"attributionNote":note}
 def other(key,status,kind,label,role,action,grammar,note,contexts=None,rungs=False):
  aa={"Status":status,"Kind":kind,"ActorLabel":label,"ActorRole":role,"GrammarEvidence":grammar,
- "ReviewedBy":"R56 complete-case actor adjudication","ReviewedUtc":read(TG)["createdUtc"]}
+ "ReviewedBy":"R57 complete-case actor adjudication","ReviewedUtc":read(TG)["createdUtc"]}
  if rungs:aa["RungsChecked"]=RUNGS
  return {"evidenceKey":key,"masterName":None,"actorAttribution":aa,
  "contextMasters":contexts or [],"contextActors":[],"exactHeadwordClause":"",
@@ -92,12 +92,13 @@ for config,row in zip(configs,extraction["rows"]):
  "candidateDeployments":[c["relPath"] for c in cs],"actorAndFamilyRisks":["All complete cases were explicitly actor/action adjudicated before config.","No Tier-3 lamp is retained."],
  "fullCandidates":cs,
  "fullConcordance":[{"relPath":c["relPath"],"hits":1,"workId":c["workId"],"tier":c["tier"]} for c in cs]})
-atomic_write_json(RES,{"schemaVersion":"non-iriya-v7-depth-regeneration-research.v1","cohort":"R56","rows":research_rows,
+atomic_write_json(RES,{"schemaVersion":"non-iriya-v7-depth-regeneration-research.v1","cohort":"R57","rows":research_rows,
  "sourcePolicy":{"tier1":"authored first","tier2":"recorded sayings next","tier3":"last resort"},
- "inheritanceValidationSha256":sha(M/"non-iriya-v7-depth-regeneration-r56-inheritance-validation-b.json"),
- "replacementAcquisitionSha256":sha(M/"non-iriya-v7-depth-regeneration-r56-muren-replacement-acquisition-b.json"),
- "researchCheckpointSha256":sha(M/"non-iriya-v7-depth-regeneration-r56-research-checkpoint-b.json")})
-builder.FRESH=M/"r56-config-staging";builder.RESEARCH_PATH=RES;builder.SELECTION_PATH=SEL;builder.STAMP=read(TG)["createdUtc"];builder.CREATED_BY="R56 source-hierarchy repair"
+ "inheritanceValidationSha256":sha(M/"non-iriya-v7-depth-regeneration-r57-inheritance-validation-b.json"),
+ "replacementBlindReviewSha256":sha(M/"non-iriya-v7-depth-regeneration-r56-muren-replacements-blind-review-c.json"),
+ "sourceHierarchyDeltaSha256":sha(M/"non-iriya-v7-r56-source-hierarchy-delta-b.json"),
+ "researchCheckpointSha256":sha(M/"non-iriya-v7-depth-regeneration-r57-research-checkpoint-b.json")})
+builder.FRESH=M/"r57-config-staging";builder.RESEARCH_PATH=RES;builder.SELECTION_PATH=SEL;builder.STAMP=read(TG)["createdUtc"];builder.CREATED_BY="R57 source-hierarchy repair"
 original_explicit=builder.explicit_worksheet
 def explicit(entry,dossier,decisions):
  n=len(dossier["retainedCompleteCases"]); decisions["families"]=[f"{entry['Id']}-independent-{i+1}" for i in range(n)];decisions["roles"]=["original-use"]*n
@@ -114,12 +115,15 @@ try:
   except StopCompile:pass
   d=builder.FRESH/config["id"];payload.append({"id":config["id"],"term":config["term"],"sourceDossier":read(d/"source-dossier.json"),"evidenceDraft":read(d/"evidence.draft.json")})
 finally:builder.subprocess.run=original_run;builder.explicit_worksheet=original_explicit
+# The same exhaustive payload closure used by the integrated constructor runs
+# here before config authority is written.  A mechanical R58 rollover changes
+# CREATED_BY to R58, and the helper derives FamilyHarvest.Scope from it.
 verify_whole_config_preclosure({"entries":payload})
 paths={"selection":str(SEL),"research":str(RES),"outputRoot":str(ROOT/"fresh-build/entries"),
-"firstProductReceipt":str(M/"non-iriya-v7-depth-regeneration-r56-engine-first-product-b.json"),"preclosure":str(M/"non-iriya-v7-depth-regeneration-r56-preclosure-report-b.json"),
-"manifest":str(M/"non-iriya-v7-depth-regeneration-r56-construction-manifest-b.json"),"closure":str(M/"non-iriya-v7-depth-regeneration-r56-closure-b.json")}
+"firstProductReceipt":str(M/"non-iriya-v7-depth-regeneration-r57-engine-first-product-b.json"),"preclosure":str(M/"non-iriya-v7-depth-regeneration-r57-preclosure-report-b.json"),
+"manifest":str(M/"non-iriya-v7-depth-regeneration-r57-construction-manifest-b.json"),"closure":str(M/"non-iriya-v7-depth-regeneration-r57-closure-b.json")}
 command=[str(Path(sys.executable).resolve()),str(WRAP.resolve()),"--script",str(ENGINE.resolve()),"--","--config",str(CFG.resolve()),"--allowed-build-root",str(ROOT.resolve())]
-atomic_write_json(CFG,{"schemaVersion":"generic-bounded-constructor-config.v2","cohort":"R56","startedEpoch":read(TG)["startedEpoch"],"timegatePath":str(TG),
+atomic_write_json(CFG,{"schemaVersion":"generic-bounded-constructor-config.v2","cohort":"R57","startedEpoch":read(TG)["startedEpoch"],"timegatePath":str(TG),
 "watchdogReceiptPath":str(START),"commandAuditPath":str(AUD),"engineSha256":sha(ENGINE),"paths":paths,"entries":payload})
-atomic_write_json(AUD,{"complete":True,"commands":[{"epoch":time.time(),"argv":command,"command":"R56 governed generic construction"}]})
+atomic_write_json(AUD,{"complete":True,"commands":[{"epoch":time.time(),"argv":command,"command":"R57 governed generic construction"}]})
 print(sha(CFG))
