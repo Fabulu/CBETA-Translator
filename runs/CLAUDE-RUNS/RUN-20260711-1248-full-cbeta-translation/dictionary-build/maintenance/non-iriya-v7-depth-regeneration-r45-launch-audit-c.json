@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "cohort-launch-environment-audit.v1",
+  "cohort": "R45",
+  "reviewer": "/root/source_tiers_c",
+  "terminalFinding": {
+    "status": "NO_START_LATE_INVOCATION",
+    "startedEpoch": 1785376757.0600872,
+    "watchdogAttemptElapsedSeconds": 121.752,
+    "deadlineSeconds": 120,
+    "lateBySeconds": 1.752,
+    "constructorProcessStarted": false,
+    "productsBuilt": 0,
+    "cause": "The watchdog correctly rejected the command before process creation; R45 spent the invocation budget generating the post-receipt union, counts, research packet and 138-KB config."
+  },
+  "importPathFinding": {
+    "causedR45Terminal": false,
+    "finding": "The zc import-path problem is a separate latent launch-environment defect; R45 never started far enough to encounter it.",
+    "whyAuthorizedIntegrationMissedIt": [
+      "The integration test generated a custom wrapper that explicitly inserted the dictionary root into sys.path.",
+      "It also invoked the watchdog with cwd equal to the dictionary root.",
+      "Those two test-only conditions guarantee that top-level zc.py and atomic_write.py are importable.",
+      "A direct absolute-path execution of a script under maintenance from another working directory begins with maintenance, not the dictionary root, on sys.path and can therefore fail to import top-level zc.",
+      "The test proved compilation under its injected environment, but did not prove that production and test shared one canonical invocation environment."
+    ]
+  },
+  "processRepair": {
+    "wrapperPath": "maintenance/dictionary_python_env.py",
+    "wrapperSha256": "1cb33f9ac63ded2b1722a1f4b01860314cf5b4fa6008ff0b7e94a68f98d02fd2",
+    "behavior": [
+      "Restricts the target script to the active dictionary root.",
+      "Pins cwd to the active dictionary root.",
+      "Prepends that root to PYTHONPATH while preserving any existing value.",
+      "Uses the current Python interpreter and returns the child exit code."
+    ],
+    "futureInvocationRule": "Both integration tests and production watchdog commands must bind and invoke this exact wrapper; cohort-specific sys.path wrappers are prohibited."
+  },
+  "tests": {
+    "path": "maintenance/test_dictionary_python_env.py",
+    "sha256": "222e14c10234437bb158834f5130a9462d47bcd42e0b9dfbbb2ea649ccddd072",
+    "result": "2/2 pass",
+    "coverage": [
+      "From /tmp with PYTHONPATH removed, a script inside the dictionary root imports the real zc.py and atomic_write.py and observes cwd equal to the dictionary root.",
+      "A target script outside the dictionary root is rejected."
+    ],
+    "pythonCompilePass": true
+  },
+  "complexQueue": {
+    "path": "maintenance/non-iriya-v7-r44-r45-complex-queue-c.json",
+    "sha256": "1a2f1957dd2fe1cb6253d1e4749c4dbb9582b27abcfca69d84f4849dd5ecc1d8",
+    "ids": [
+      "t_135b07152ccc",
+      "t_139475f0f410",
+      "t_13d8f4ea01c0"
+    ],
+    "ordinaryContinuationExhausted": true,
+    "r46RetryAuthorized": false
+  },
+  "entryEditsPerformed": false,
+  "newResearchPerformed": false,
+  "publicMutation": false,
+  "decision": "LAUNCH_CAUSE_CONFIRMED_ENVIRONMENT_WRAPPER_TESTED"
+}
