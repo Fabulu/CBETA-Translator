@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "r82-exact-product-review.v1",
+  "cohort": "R82",
+  "id": "t_1b2b5d1e63c9",
+  "term": "獅子吼時芳草綠",
+  "productPath": "fresh-build/entries/t_1b2b5d1e63c9/entry.v2.json",
+  "productSha256": "049e244e7bca780965db07348298cfb65cd5f1901c80b81ffdb70139eae29339",
+  "worksheetPath": "fresh-build/entries/t_1b2b5d1e63c9/evidence.draft.json",
+  "worksheetSha256": "c904f301821ad03339f5fc099f4dc7f58ea714e4422ae94d83a71537fa0f0dfe",
+  "compilerReportPath": "fresh-build/entries/t_1b2b5d1e63c9/evidence-compile-report.json",
+  "compilerReportSha256": "aef6013b327c058485793cc7e12ed7b838c16b6adbd3e93366feebcee2ba1442",
+  "carryApprovalPath": "maintenance/non-iriya-v7-depth-regeneration-r82-carry-approval-shizihou-c.json",
+  "carryApprovalSha256": "dd9df9a052cf32a23ea7646fd10dfb905de852824d673c516a30e230a2563a69",
+  "productRuling": {
+    "families": "PASS: Juelang, Linye, Yinyuan, and Hanyu project once each at the four approved coordinates; the three unnamed-monk J28 cases remain excluded.",
+    "actorIdentity": "PASS: all four occurrence MasterName values identify the exact direct speaker.",
+    "actorRoles": "FAIL NARROWLY: Yinyuan's approved exact role is respondent after the monk's shout, but ContextMasters projects the generic role utterer.",
+    "sourceHierarchy": "PASS: four recorded-sayings witnesses and no lamp padding.",
+    "attributionLabels": "PASS: all four AttributionNotes contain English source labels and passage-specific grammatical ownership evidence.",
+    "targets": "FAIL: reviewed preferred target was 'when the lion roars, the fragrant grass is green'. Product preferred 'turns green' and alternate 'grows green' both add change-of-state force not required by 芳草綠 and not approved by the source-first review.",
+    "prose": "FAIL: 'falling or reddening flowers' does not cleanly render the recurring companion 落花紅; 'red fallen flowers' preserves its surface relation. 'Hanyu Hongxian closes a showing with it' is awkward and opaque English for a 示眾 deployment.",
+    "projection": "FAIL: targets and Yinyuan's role drift from the byte-bound semantic/actor approval, although occurrence selection, actor identities, SourceTexts, and RelatedMasters project correctly.",
+    "compiler": "PASS MECHANICALLY: canonical compiler hardPass and exact byte bindings are valid, but mechanical compilation does not cure semantic projection drift."
+  },
+  "defects": [
+    {
+      "severity": "blocking",
+      "coordinate": "Senses[0].PreferredTarget and AlternateTargets",
+      "finding": "Both targets introduce a change of state ('turns/grows green') where the reviewed literal floor is stative.",
+      "requiredRepair": "Use preferred 'when the lion roars, the fragrant grass is green'; use only a stative alternate if one is needed."
+    },
+    {
+      "severity": "blocking",
+      "coordinate": "Senses[0].Explanation",
+      "finding": "'falling or reddening flowers' is an unstable paraphrase of 落花紅, and 'closes a showing' is not clear reader-facing English.",
+      "requiredRepair": "Describe the recurring companion as the elephant king with red fallen flowers; say that Hanyu uses the line to conclude an instruction to the assembly."
+    },
+    {
+      "severity": "blocking",
+      "coordinate": "Senses[0].Occurrences[2].ContextMasters[0].Roles",
+      "finding": "Yinyuan answers after the monk shouts; the approved role is respondent, not generic utterer.",
+      "requiredRepair": "Project Yinyuan Longqi with ContextMasters role respondent while retaining MasterName Yinyuan Longqi."
+    }
+  ],
+  "verdict": "DENY",
+  "hardPass": false,
+  "publicMutation": false
+}

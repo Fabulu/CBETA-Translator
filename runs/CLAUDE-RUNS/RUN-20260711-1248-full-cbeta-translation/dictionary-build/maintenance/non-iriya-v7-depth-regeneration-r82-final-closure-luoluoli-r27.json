@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "r82-changed-coordinate-closure.v1",
+  "cohort": "R82",
+  "id": "t_1b3195ce4368",
+  "term": "囉囉哩",
+  "productPath": "fresh-build/entries/t_1b3195ce4368/entry.v2.json",
+  "productSha256": "d370508ad817d9273491b86d8357f7e0b1d450580c281ee0408b6071cb748077",
+  "worksheetPath": "fresh-build/entries/t_1b3195ce4368/evidence.draft.json",
+  "worksheetSha256": "9a4846311aa0583e9e79953db8069463e1f8ea09f9cdcff9e3345f33b86aad2a",
+  "compilerReportPath": "fresh-build/entries/t_1b3195ce4368/evidence-compile-report.json",
+  "compilerReportSha256": "41452c303b8e7398ca1e40ece229bf313ee6bffdb9148230415aeb6a1e73c0c8",
+  "supersedesReviewPath": "maintenance/non-iriya-v7-depth-regeneration-r82-product-review-luoluoli-r27.json",
+  "supersedesReviewSha256": "a37cb5f3b08ee56295386d07eff3fa16429e374abd479c7aa125239134f4c5ba",
+  "changedCoordinateRuling": [
+    {
+      "coordinate": "Senses[0].Explanation",
+      "verdict": "PASS",
+      "finding": "The synthesis now explicitly includes Shiqi Tongyun's spring song, so all seven retained deployments are represented."
+    },
+    {
+      "coordinate": "Senses[0].Occurrences[5].AttributionNote and mirrored DraftActorProof.SpeechFrame",
+      "verdict": "PASS",
+      "finding": "Poshan Haiming's proof now preserves his exact 唱出 wording under 上堂師云; the copied Shiqi marker 唱個 is gone."
+    }
+  ],
+  "worksheetParity": "PASS: the corrected explanation and Poshan proof are identical in the worksheet and compiled product; the canonical hard-pass report binds both exact hashes.",
+  "carriedUnchangedRuling": "Semantics, targets, seven independent families, seven exact actors, one Tier-1 represented address, six Tier-2 direct records, zero lamps, and zero padding remain approved from the byte-bound predecessor review.",
+  "defects": [],
+  "verdict": "APPROVE",
+  "hardPass": true,
+  "releaseAuthorized": true,
+  "publicMutation": false
+}

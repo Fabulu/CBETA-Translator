@@ -1,0 +1,26 @@
+{
+  "schemaVersion":"bounded-dictionary-timegate.v2",
+  "cohort":"R82",
+  "artifactZero":true,
+  "startedEpoch":1785405076.7253616,
+  "createdUtc":"2026-07-30T09:51:16.725362Z",
+  "requiredFloors":[4,6,4],
+  "admittedRequiredOccurrences":14,
+  "adjudicatedCaseLoad":14,
+  "researchCandidateReserve":3,
+  "deadlinesSeconds":{"viability":120,"researchExtraction":120,"adjudicatedConfig":488,"constructor":498,"firstProduct":518,"construction":578,"review":750,"correction":866,"publication":956},
+  "assignedLaunch":{
+    "selector":"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/last1500-public-depth/final-scope/full-regeneration-selector.json",
+    "priorUnion":"/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r80-resolved-union-root.json",
+    "entries":[
+      {"id":"t_1b2b5d1e63c9","term":"獅子吼時芳草綠","requiredFloor":4},
+      {"id":"t_1b3195ce4368","term":"囉囉哩","requiredFloor":6},
+      {"id":"t_1b6cbdc8d52e","term":"有時人境兩俱奪","requiredFloor":4}
+    ],
+    "reserveIds":[],
+    "researchCandidateReserve":3
+  },
+  "continuationOf":"R81-OBSOLETE-WATCHDOG-FAIL-CLOSED",
+  "continuationSha256":"ac5e019835ed77d3c1e10f1aaff3447baf3b7624a3a037e1007020e0332c60a6",
+  "canonicalSequenceSha256":"fb91b24bdf376fa7517b5867cac5ec55bb63815c57efe7cf57791525d0b2cf3e"
+}

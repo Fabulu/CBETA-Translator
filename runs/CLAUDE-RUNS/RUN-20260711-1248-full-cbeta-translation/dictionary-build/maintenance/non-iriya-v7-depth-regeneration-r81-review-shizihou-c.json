@@ -1,0 +1,123 @@
+{
+  "schemaVersion": "r81-independent-source-first-review.v1",
+  "cohort": "R81",
+  "id": "t_1b2b5d1e63c9",
+  "term": "獅子吼時芳草綠",
+  "reviewScope": "Independent lexical-admission, semantic, source-hierarchy, witness-family, and exact-actor review. No product or public mutation.",
+  "sourceBindings": {
+    "timegatePath": "maintenance/non-iriya-v7-depth-regeneration-r81-timegate-root.json",
+    "timegateSha256": "ca62cd664962de71d60b23336ff3225f6d6d8defb8071babdcf7b5d78be29532",
+    "selectionPath": "maintenance/non-iriya-v7-depth-regeneration-r81-selection-b.json",
+    "selectionSha256": "e6a807baec5973e852a6d3cca1f29fcae80bb19f1be7cbbc44b9bf09a8134f9c",
+    "researchCheckpointPath": "maintenance/non-iriya-v7-depth-regeneration-r81-research-checkpoint-b.json",
+    "researchCheckpointSha256": "9e331d0665fd9d819f6a4cd28c8c2a620a293df02dbcbca5aeca9b219f358e9a",
+    "extractionPath": "maintenance/non-iriya-v7-depth-regeneration-r81-extraction-output-b.json",
+    "extractionSha256": "bec3c3c79f0f1d1433d102f851af72aa67c142fb21f3e13ba7886cbf521fca98",
+    "researchSkeletonPath": "maintenance/non-iriya-v7-depth-regeneration-r81-research-skeleton-b.json",
+    "researchSkeletonSha256": "ed2af29e8b0704d4d4ccbf156e097266a636d0eab225c08754ac57691ef63a8c"
+  },
+  "governedSupply": {
+    "requiredFloor": 4,
+    "candidateTarget": 7,
+    "candidateCount": 7,
+    "skeletonHashCount": 7,
+    "candidateSupplyExhausted": false,
+    "tier1": 0,
+    "tier2": 7,
+    "tier3Lamp": 0
+  },
+  "admissionRuling": {
+    "decision": "ADMIT",
+    "preferredTarget": "when the lion roars, the fragrant grass is green",
+    "alternateTargets": [
+      "when the lion roars, fragrant grasses are green"
+    ],
+    "lexicalJob": "A fixed poetic capping line used as an answer or concluding response.",
+    "admissionReason": "The exact first line recurs across seven independent works while its paired second line varies between 象王回顧 and 象王行處 and between 落花 and 落華. That controlled variation shows that 獅子吼時芳草綠 is itself a reusable unit rather than an arbitrarily clipped half of one immutable verse.",
+    "semanticLimit": "Translate the image before interpreting it. The records deploy the line around decisive speech, direct presentation, or a concluding cap, but they do not establish one universal doctrinal equation for lion, roar, grass, or green."
+  },
+  "approvedFamilies": [
+    {
+      "relPath": "J/J25/J25nB174.xml",
+      "fromLb": "0719b23",
+      "contextSha256": "fe647e483d686e9cdae1300a17750d171208548ac42b96b2cc2a5a86c42d80d8",
+      "masterName": "Juelang Daosheng",
+      "actorRole": "utterer",
+      "familyId": "shizihou:juelang-new-year-verse",
+      "deployment": "Juelang directly delivers the line in his New-Year's Eve instruction verse, then asks whether anyone can roar.",
+      "decision": "RETAIN"
+    },
+    {
+      "relPath": "J/J26/J26nB186.xml",
+      "fromLb": "0639b24",
+      "contextSha256": "5ab201f5b8d2a5681325d64803452ebbc0319cf2b70565bae0556bbaac09f6d3",
+      "masterName": "Linye Tongqi",
+      "actorRole": "utterer",
+      "familyId": "shizihou:linye-gate-line",
+      "deployment": "Linye directly gives the paired line after asking for the phrase for going out through the gate.",
+      "decision": "RETAIN"
+    },
+    {
+      "relPath": "J/J27/J27nB193.xml",
+      "fromLb": "0240c03",
+      "contextSha256": "0f2692fbd7b677cb6209d799284f06cbb9606851c0eadcddecd7ae4b594b1ef2",
+      "masterName": "Yinyuan Longqi",
+      "actorRole": "respondent",
+      "familyId": "shizihou:yinyuan-direct-response",
+      "deployment": "After a monk shouts in response to a request for a direct phrase, Yinyuan gives the headword and its elephant-king companion.",
+      "decision": "RETAIN"
+    },
+    {
+      "relPath": "J/J33/J33nB288.xml",
+      "fromLb": "0572b14",
+      "contextSha256": "90279fda425ff4717e96d8bde7be29219aa884682a2d101d099306cd6daff426",
+      "masterName": "Hanyu Hongxian",
+      "actorRole": "utterer",
+      "familyId": "shizihou:hanyu-owner-cap",
+      "deployment": "After asking how not to miss the host, Hanyu pauses and supplies the paired line himself.",
+      "decision": "RETAIN"
+    }
+  ],
+  "excludedCandidates": [
+    {
+      "relPath": "J/J28/J28nB202.xml",
+      "fromLb": "0059c28",
+      "exactActor": "unnamed monk",
+      "actorRole": "questioner",
+      "reason": "The monk quotes the stock line in a question; the master answers with a blow. It adds no needed source or family depth."
+    },
+    {
+      "relPath": "J/J28/J28nB211.xml",
+      "fromLb": "0446b30",
+      "exactActor": "unnamed monk",
+      "actorRole": "questioner",
+      "reason": "The monk advances the stock line; the master replies 賴汝記得 and later strikes him. Do not attribute the headword to the record master."
+    },
+    {
+      "relPath": "J/J28/J28nB212.xml",
+      "fromLb": "0476c24",
+      "exactActor": "unnamed monk",
+      "actorRole": "questioner",
+      "reason": "The monk advances the stock line; the master answers 非公境界. Do not attribute the headword to the record master."
+    }
+  ],
+  "familyRuling": {
+    "retainedFamilies": 4,
+    "floorMet": true,
+    "collapseFinding": "The three J28 question uses are separate conversational events but repeat the same stock advance by unidentified monks and are not needed. The four retained named-speaker uses differ in occasion and rhetorical work and may stand as independent active deployment families.",
+    "pairedLineFinding": "回顧 versus 行處 and 花 versus 華 are companion-line variants, not second senses of the headword."
+  },
+  "actorGate": {
+    "status": "PASS_FOR_RETAINED_TUPLE",
+    "senseMasterName": null,
+    "requiredControls": [
+      "Assign occurrence MasterName only to Juelang Daosheng, Linye Tongqi, Yinyuan Longqi, and Hanyu Hongxian at their retained direct turns.",
+      "For any J28 reserve use, keep MasterName null and identify an unnamed monk as questioner; the record master is respondent only.",
+      "Use English source titles and passage-specific grammatical evidence in every AttributionNote."
+    ]
+  },
+  "sourceHierarchyRuling": "Four independent Tier-2 recorded-sayings families meet the floor. No lamp is present or needed, and no Tier-3 fallback is authorized.",
+  "verdict": "APPROVE_CONSTRUCTION",
+  "hardPass": true,
+  "publicMutation": false
+}

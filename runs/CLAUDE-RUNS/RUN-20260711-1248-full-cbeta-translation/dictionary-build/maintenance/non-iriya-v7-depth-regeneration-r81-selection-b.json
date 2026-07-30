@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "non-iriya-v7-depth-regeneration-selection.v1",
+  "cohort": "R81",
+  "selectionRule": "exact coordinator-assigned next unreserved authoritative rows",
+  "rows": [
+    {
+      "queueOrdinal": 1,
+      "identityId": "t_1b2b5d1e63c9",
+      "term": "獅子吼時芳草綠",
+      "requiredFloor": 4,
+      "classification": "hard-fail"
+    },
+    {
+      "queueOrdinal": 2,
+      "identityId": "t_1b3195ce4368",
+      "term": "囉囉哩",
+      "requiredFloor": 6,
+      "classification": "hard-fail"
+    },
+    {
+      "queueOrdinal": 3,
+      "identityId": "t_1b6cbdc8d52e",
+      "term": "有時人境兩俱奪",
+      "requiredFloor": 4,
+      "classification": "hard-fail"
+    }
+  ],
+  "collisionCheck": {
+    "priorIds": 188,
+    "collisions": [],
+    "hardPass": true
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "bounded-dictionary-timegate.v2",
+  "cohort": "R81",
+  "artifactZero": true,
+  "startedEpoch": 1785404280.536472,
+  "createdUtc": "2026-07-30T09:38:00.536472Z",
+  "requiredFloors": [4, 6, 4],
+  "admittedRequiredOccurrences": 14,
+  "adjudicatedCaseLoad": 14,
+  "researchCandidateReserve": 3,
+  "deadlinesSeconds": {
+    "viability": 120,
+    "researchExtraction": 120,
+    "adjudicatedConfig": 488,
+    "constructor": 498,
+    "firstProduct": 518,
+    "construction": 578,
+    "review": 750,
+    "correction": 866,
+    "publication": 956
+  },
+  "assignedLaunch": {
+    "selector": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/last1500-public-depth/final-scope/full-regeneration-selector.json",
+    "priorUnion": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r80-resolved-union-root.json",
+    "entries": [
+      {"id":"t_1b2b5d1e63c9","term":"獅子吼時芳草綠","requiredFloor":4},
+      {"id":"t_1b3195ce4368","term":"囉囉哩","requiredFloor":6},
+      {"id":"t_1b6cbdc8d52e","term":"有時人境兩俱奪","requiredFloor":4}
+    ],
+    "reserveIds": [],
+    "researchCandidateReserve": 3
+  },
+  "processSafeguards": {
+    "sourceAuthorityBinding": true,
+    "preexistingOutputCollisionGuard": true,
+    "canonicalActorNoteFormatter": true,
+    "directActorGrammarRequired": true
+  }
+}

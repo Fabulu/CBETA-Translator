@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "r82-byte-bound-carry-approval.v1",
+  "cohort": "R82",
+  "id": "t_1b2b5d1e63c9",
+  "term": "獅子吼時芳草綠",
+  "bindings": {
+    "timegateSha256": "726b2b8cffd43f30f7438781b0beb0c7878bfe7f6512d371c083b6432549a93d",
+    "selectionSha256": "c8a63d73c0841243755564c36e0d98594f9653d54bf660916f6bbd76753df7a1",
+    "checkpointSha256": "06759285c6ec2447d4010a7cb65c8bd95d6bb33b4b8aa0805810c84bafdc1540",
+    "extractionSha256": "72b86140f9941d434d32ebbe6f6343c42230b448aa9655764da7b055bee1d641",
+    "skeletonSha256": "b113f73ae7105235e4ad0c714f849d4f80660c0413b4df4a1b9430014dc75305",
+    "r81ReviewSha256": "4748d3ad7c533d9ed1405594a736390ada918049a66e49941506ad4219669e5c"
+  },
+  "parity": {
+    "candidateCount": 7,
+    "skeletonHashCount": 7,
+    "coordinates": "7/7 exact parity with R81",
+    "tiers": "7 Tier-2, 0 Tier-1, 0 Tier-3 lamp",
+    "spanSha256": "1b2b5d1e63c97afc0e1963a17113bae7eab912943e0096d97c44668cebe550ca",
+    "contextHashes": "7/7 unchanged"
+  },
+  "carriedDecision": {
+    "admission": "ADMIT",
+    "preferredTarget": "when the lion roars, the fragrant grass is green",
+    "retained": [
+      "J/J25/J25nB174.xml:0719b23 — Juelang Daosheng",
+      "J/J26/J26nB186.xml:0639b24 — Linye Tongqi",
+      "J/J27/J27nB193.xml:0240c03 — Yinyuan Longqi",
+      "J/J33/J33nB288.xml:0572b14 — Hanyu Hongxian"
+    ],
+    "excluded": [
+      "J/J28/J28nB202.xml:0059c28 — unnamed monk/questioner",
+      "J/J28/J28nB211.xml:0446b30 — unnamed monk/questioner",
+      "J/J28/J28nB212.xml:0476c24 — unnamed monk/questioner"
+    ],
+    "floorMet": true,
+    "actorGate": "The four retained headword clauses have exact named direct actors. The three J28 stock-line advances must remain excluded or retain MasterName null with unnamed monk/questioner ownership.",
+    "sourceGate": "Four independent Tier-2 families meet the floor; no lamp fallback is permitted or needed."
+  },
+  "verdict": "CARRY_APPROVE_CONSTRUCTION",
+  "hardPass": true,
+  "publicMutation": false
+}

@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "r82-exact-candidate-carry-approval.v1",
+  "cohort": "R82",
+  "id": "t_1b3195ce4368",
+  "term": "囉囉哩",
+  "extractionPath": "maintenance/non-iriya-v7-depth-regeneration-r82-extraction-output-b.json",
+  "extractionSha256": "72b86140f9941d434d32ebbe6f6343c42230b448aa9655764da7b055bee1d641",
+  "skeletonPath": "maintenance/non-iriya-v7-depth-regeneration-r82-research-skeleton-b.json",
+  "skeletonSha256": "b113f73ae7105235e4ad0c714f849d4f80660c0413b4df4a1b9430014dc75305",
+  "carriedDecisionPath": "maintenance/non-iriya-v7-depth-regeneration-r81-source-review-luoluoli-r27.json",
+  "carriedDecisionSha256": "a99354e82566e355546f8b8dcda9e4dde75c631eb95791c83227367ea535ae61",
+  "parity": {
+    "candidateCount": 9,
+    "requiredFloor": 6,
+    "candidateOrder": "exact match to R81",
+    "sourceCoordinates": "exact match to R81",
+    "tiers": "exact match to R81",
+    "contextSha256Values": "exact match to R81",
+    "spanSha256Values": "exact match to R81",
+    "skeletonCandidateHashes": "exact match to R81"
+  },
+  "carriedRuling": {
+    "preferred": "la-la-li",
+    "meaning": "nonlexical sung refrain or coda whose festive, work-song, verse, or mocking sing-song force is supplied by context",
+    "retainedFamilies": 7,
+    "tier3Count": 0,
+    "lampCount": 0,
+    "paddingCount": 0,
+    "excludedCandidates": [
+      "B/B27/B27n0152.xml: inherited Yangqi quotation raised by Yulin",
+      "J/J20/J20nB098.xml: governed extraction does not securely resolve the verse author against the canonical roster"
+    ]
+  },
+  "verdict": "APPROVE_CARRY",
+  "hardPass": true,
+  "publicMutation": false
+}

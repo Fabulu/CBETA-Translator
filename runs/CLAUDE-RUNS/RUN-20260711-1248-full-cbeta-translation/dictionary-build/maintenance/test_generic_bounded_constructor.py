@@ -13,7 +13,7 @@ from unittest.mock import patch
 from atomic_write import atomic_write_json
 from maintenance.generic_bounded_constructor import (
     ActorClosureError, CompilerPrewriteError, enforce_governed_deadline, run,
-    verify_whole_config_preclosure,
+    verify_output_collision_policy, verify_whole_config_preclosure,
 )
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -27,6 +27,25 @@ def sha(path):
 
 
 class GenericBoundedConstructorIntegrationTest(unittest.TestCase):
+    def test_preexisting_per_id_output_requires_bound_replacement_authority(self):
+        with tempfile.TemporaryDirectory(dir=ROOT / "maintenance") as raw:
+            base = Path(raw).resolve()
+            output = base / "output"
+            identity = "t_collision_fixture"
+            (output / identity).mkdir(parents=True)
+            config = {
+                "cohort": "TEST",
+                "entries": [{"id": identity}],
+            }
+            with self.assertRaisesRegex(
+                ValueError, "preexisting per-ID output directories rejected"
+            ):
+                verify_output_collision_policy(config, output, base, time.time())
+            self.assertTrue(
+                (output / identity).is_dir(),
+                "collision preflight must not mutate the preexisting directory",
+            )
+
     def test_fully_adjudicated_evidence_may_exceed_minimum_floor(self):
         identity = FIXTURE_IDS[0]
         source = ROOT / "fresh-build/entries" / identity

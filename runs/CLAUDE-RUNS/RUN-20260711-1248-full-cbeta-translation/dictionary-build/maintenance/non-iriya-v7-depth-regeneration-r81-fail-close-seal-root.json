@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "cohort-fail-close-seal.v1",
+  "cohort": "R81",
+  "phase": "constructor",
+  "ruling": "SEALED_NO_CONSTRUCTION",
+  "reason": "The canonical cohort constructor watchdog rejected invocation at 512.759 seconds, after the 498-second constructor deadline.",
+  "failClosedReceiptPath": "maintenance/non-iriya-v7-depth-regeneration-r81-constructor-checkpoint-b.json.fail-closed.json",
+  "failClosedReceiptSha256": "51fcf9ca731b157f22a4ca9031efb1f24ab8a972c926dd31133a1cbc12db39cd",
+  "constructorRan": false,
+  "freshBuildMutationAuthorized": false,
+  "continuedUnderR81Prohibited": true,
+  "preservedArtifacts": {
+    "adjudicationPath": "maintenance/non-iriya-v7-depth-regeneration-r81-adjudication-b.json",
+    "adjudicationSha256": "230755a97269d32b1ff30328cdda9bb296f089a954e682e14b2421ee29cf9002",
+    "configPath": "maintenance/non-iriya-v7-depth-regeneration-r81-constructor-config-b.json",
+    "configSha256": "50220b388d3122b1b811d14d4d9d9e6f1c18434e26d3c879b34f39790cca9cb2"
+  },
+  "requiredAction": "Launch a new cohort and regenerate all time-bound bindings before construction."
+}

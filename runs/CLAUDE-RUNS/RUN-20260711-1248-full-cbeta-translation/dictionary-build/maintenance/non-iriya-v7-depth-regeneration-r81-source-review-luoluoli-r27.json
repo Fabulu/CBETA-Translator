@@ -1,0 +1,113 @@
+{
+  "schemaVersion": "r81-independent-source-first-review.v1",
+  "cohort": "R81",
+  "id": "t_1b3195ce4368",
+  "term": "囉囉哩",
+  "requiredFloor": 6,
+  "extractionPath": "maintenance/non-iriya-v7-depth-regeneration-r81-extraction-output-b.json",
+  "extractionSha256": "bec3c3c79f0f1d1433d102f851af72aa67c142fb21f3e13ba7886cbf521fca98",
+  "skeletonPath": "maintenance/non-iriya-v7-depth-regeneration-r81-research-skeleton-b.json",
+  "skeletonSha256": "ed2af29e8b0704d4d4ccbf156e097266a636d0eab225c08754ac57691ef63a8c",
+  "semanticDecision": {
+    "preferred": "la-la-li",
+    "alternate": "nonlexical sung refrain",
+    "doNotUse": [
+      "a proposition with a fixed lexical meaning",
+      "a doctrinal technical term",
+      "a uniformly joyful exclamation"
+    ],
+    "meaning": "Rhythmic vocal syllables used as a song-like refrain or coda. The records place them after clapping, explicitly call their surroundings a song, invite everyone to sing, or expand them into reversible strings such as 哩哩囉、囉囉哩 and 囉囉哩哩囉囉. Their pragmatic color comes from the surrounding performance: they can mark rustic work-song play, public festivity, a verse coda, or mocking imitation of empty back-and-forth. The syllables themselves do not state one fixed proposition.",
+    "translationNote": "Use an English vocable such as 'la-la-li' in running translation and explain once that the Chinese writes nonlexical refrain syllables. Preserve longer source strings rather than normalizing every variant to the three-character headword."
+  },
+  "retainedEvidence": [
+    {
+      "relPath": "X/X78/X78n1554.xml",
+      "tier": 1,
+      "family": "Baoning Renyong",
+      "actor": "Baoning Renyong",
+      "role": "utterer in a retained earlier address",
+      "speechFrame": "The Baoning section gives 上堂 and then 拍手，云 immediately before 囉囉哩, making the refrain Baoning Renyong's clapped vocal coda.",
+      "semanticUse": "A clapped coda to a spring address.",
+      "qualification": "The Tier-1 container is Xisou Shaotan's authored praise collection, but the passage-level actor is the represented Baoning Renyong; do not misattribute the utterance to Xisou."
+    },
+    {
+      "relPath": "C/C077/C077n1710.xml",
+      "tier": 2,
+      "family": "Zhenjing Kewen",
+      "actor": "Zhenjing Kewen",
+      "role": "utterer",
+      "speechFrame": "Within Zhenjing Kewen's 上堂 address for his teacher's death anniversary, the verse itself runs 順風吹，囉囉哩，水急風高下釣磯.",
+      "semanticUse": "A rhythmic vocable inside a verse coda."
+    },
+    {
+      "relPath": "J/J25/J25nB154.xml",
+      "tier": 2,
+      "family": "Wei'an Deran",
+      "actor": "Wei'an Deran",
+      "role": "author-utterer",
+      "speechFrame": "The record labels the passage 示智戒主; Wei'an Deran's own verse turns from paired alternatives to 囉囉哩 before continuing with another direct question.",
+      "semanticUse": "A playful refrain or transition in an instructional verse."
+    },
+    {
+      "relPath": "J/J25/J25nB163.xml",
+      "tier": 2,
+      "family": "Guting Shanjian",
+      "actor": "Guting Shanjian",
+      "role": "commentator-utterer",
+      "speechFrame": "After raising the Fengxue-Lupo exchange, 師拈云 directly governs Guting Shanjian's appraisal 彼彼此此，囉囉哩哩.",
+      "semanticUse": "Mocking sing-song imitation of inconclusive back-and-forth; evidence that tone is contextual rather than uniformly festive."
+    },
+    {
+      "relPath": "J/J25/J25nB171.xml",
+      "tier": 2,
+      "family": "Tianyin Yuanxiu",
+      "actor": "Tianyin Yuanxiu",
+      "role": "utterer",
+      "speechFrame": "元旦示眾，師云 governs the New Year address in which 大家齊唱太平歌 leads directly to 哩哩囉兮囉囉哩.",
+      "semanticUse": "Explicit communal song refrain in a festive address."
+    },
+    {
+      "relPath": "J/J26/J26nB177.xml",
+      "tier": 2,
+      "family": "Poshan Haiming",
+      "actor": "Poshan Haiming",
+      "role": "utterer",
+      "speechFrame": "上堂，師云 governs Poshan Haiming's statement 我儂有首洗泥歌，唱出 followed by 哩哩囉，囉囉哩.",
+      "semanticUse": "Explicitly identified song vocables in a rustic mud-washing or field-work performance."
+    },
+    {
+      "relPath": "J/J26/J26nB183.xml",
+      "tier": 2,
+      "family": "Shiqi Tongyun",
+      "actor": "Shiqi Tongyun",
+      "role": "utterer",
+      "speechFrame": "In Shiqi Tongyun's 春朝上堂, 老僧到此亦不免隨例歡喜，唱個 directly introduces 囉囉哩哩囉囉.",
+      "semanticUse": "An explicitly sung festive refrain."
+    }
+  ],
+  "excludedEvidence": [
+    {
+      "relPath": "B/B27/B27n0152.xml",
+      "tier": 2,
+      "reason": "Yulin Tongxiu is reading and commenting on Yangqi Fanghui's older verse. The exact actor is Yangqi, not Yulin, and this inherited quotation is unnecessary padding once seven independent direct-use families meet the floor."
+    },
+    {
+      "relPath": "J/J20/J20nB098.xml",
+      "tier": 2,
+      "reason": "The oxherding verse is semantically useful, but the governed extraction does not securely resolve its author against the canonical roster. Excluding it preserves an exact-actor set without lowering the seven-family result."
+    }
+  ],
+  "familyAudit": {
+    "retainedIndependentFamilies": 7,
+    "requiredFloorMet": true,
+    "tier1Count": 1,
+    "tier2Count": 6,
+    "tier3Count": 0,
+    "lampCount": 0,
+    "paddingCount": 0,
+    "note": "The retained families are Baoning, Zhenjing, Wei'an, Guting, Tianyin, Poshan, and Shiqi. The represented Baoning address is counted as the Baoning family, not as a second Xisou family."
+  },
+  "reviewVerdict": "APPROVE_FOR_AUTHORING",
+  "hardPass": true,
+  "publicMutation": false
+}

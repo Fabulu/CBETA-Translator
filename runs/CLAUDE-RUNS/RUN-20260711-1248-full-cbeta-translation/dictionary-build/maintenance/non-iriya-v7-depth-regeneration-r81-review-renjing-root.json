@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "r81-independent-semantic-review.v1",
+  "cohort": "R81",
+  "id": "t_1b6cbdc8d52e",
+  "term": "有時人境兩俱奪",
+  "requiredFloor": 4,
+  "governedExtractionSha256": "bec3c3c79f0f1d1433d102f851af72aa67c142fb21f3e13ba7886cbf521fca98",
+  "governedResearchSkeletonSha256": "ed2af29e8b0704d4d4ccbf156e097266a636d0eab225c08754ac57691ef63a8c",
+  "verdict": "ADMIT",
+  "preferredTarget": "at times both person and environment are taken away",
+  "alternateTargets": [
+    "sometimes both person and situation are stripped away"
+  ],
+  "semanticRuling": {
+    "sense": "The third member of Linji's fourfold formulation: a response may remove both the person or subject at issue and the encountered situation or object.",
+    "usage": "Later masters quote, verse, criticize, enact, and explain this member together with the other three. Its meaning depends on the four-member contrast; it is not a free-standing promise to destroy people or the physical world.",
+    "scopeLimit": "Keep 有時 as 'at times/sometimes' and 兩俱 as 'both together.' Translate 境 contextually as environment, situation, or object; do not automatically import a modern subject-object theory."
+  },
+  "familyRuling": {
+    "retained": "At least four independent Tier-2 active deployment families survive: Zhongfeng's fourfold 錯 critique; the B27 staff enactment after raising the four; the J25 independently composed verse on the four classifications; and the J26 hall address that raises Linji and comments on the formulation.",
+    "reserves": "The J29 discussions and versified presentations are valid active later uses but are surplus after the floor is met.",
+    "lampFallback": 0
+  },
+  "actorRuling": "Do not assign every occurrence mechanically to the later record owner. Where 臨濟云 or 臨濟老祖云 explicitly introduces the inherited wording, Linji Yixuan is the quoted exact utterer and the record master is later raiser/commentator. Where the later master voices the headword inside a newly composed 頌, that later master owns the verse wording. The B27 先聖道 case must preserve its explicit quoted-predecessor boundary rather than inventing a named direct utterer.",
+  "hardPass": true,
+  "publicMutationPerformed": false
+}

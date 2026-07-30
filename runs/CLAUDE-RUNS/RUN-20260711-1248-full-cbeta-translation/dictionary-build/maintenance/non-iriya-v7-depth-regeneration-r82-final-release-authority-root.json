@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "r82-final-release-authority.v1",
+  "cohort": "R82",
+  "verdict": "RELEASE_AUTHORIZED_AND_PUBLISHED",
+  "replacements": [
+    {
+      "id": "t_1b2b5d1e63c9",
+      "term": "獅子吼時芳草綠",
+      "productSha256": "c3c00f288a14949ba03ac532f75de036016580ba4a063b6d656695625c0ab093",
+      "reviewSha256": "fcb7899f648aa4b0c63aa55bb869ef7db61b0ea01e31c5167371f2724298a501"
+    },
+    {
+      "id": "t_1b3195ce4368",
+      "term": "囉囉哩",
+      "productSha256": "d370508ad817d9273491b86d8357f7e0b1d450580c281ee0408b6071cb748077",
+      "reviewSha256": "569a1f6b33fe8790505030cdb1df4df7ce9798f7360c33134fdc374a782d501a"
+    },
+    {
+      "id": "t_1b6cbdc8d52e",
+      "term": "有時人境兩俱奪",
+      "productSha256": "8b3e4469b00e7886f4dc2ca1113c5dc80d84904482309967165f85df64774e49",
+      "reviewSha256": "1ae6f7bd5690077b7f1cccc45f8fc5b81af7d7ce4b97254840e375fe88e5806e"
+    }
+  ],
+  "review": {
+    "retainedEvidence": "15 quotations across 15 reviewed deployment families",
+    "tierMix": "15 higher-tier witnesses, 0 Tier-3 lamps",
+    "attributionAudit": "zero hard failures",
+    "changedCoordinateClosures": "3/3 independently approved"
+  },
+  "publicIntegrity": {
+    "entryCount": 4714,
+    "aggregateCount": 4714,
+    "legacyCount": 4714,
+    "indexCount": 4714,
+    "shardCount": 4714,
+    "exactProductParity": "3/3",
+    "publicCommit": "8142734ce964ff6f8140acbead02db80c0c7bc0c",
+    "headEqualsOriginMain": true,
+    "hardPass": true
+  },
+  "publicationTiming": {
+    "publicationDeadlineEpoch": 1785406032.7253616,
+    "atomicInstallEpoch": 1785405852,
+    "atomicInstallMarginSeconds": 180.7253616,
+    "publicCommitEpoch": 1785405921,
+    "publicCommitMarginSeconds": 111.7253616,
+    "hardPass": true
+  },
+  "releaseAuthorized": true,
+  "published": true,
+  "hardPass": true
+}

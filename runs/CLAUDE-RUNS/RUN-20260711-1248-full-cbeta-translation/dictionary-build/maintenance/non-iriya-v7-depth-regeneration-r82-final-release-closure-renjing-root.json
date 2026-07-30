@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "r82-final-release-closure.v1",
+  "cohort": "R82",
+  "id": "t_1b6cbdc8d52e",
+  "term": "有時人境兩俱奪",
+  "reviewer": "/root",
+  "reviewPacketPath": "maintenance/non-iriya-v7-depth-regeneration-r82-renjing-changed-coordinate-gate-b.json",
+  "reviewPacketSha256": "039b16af96c423b404e8eb4e292cffdfa550deb4b6586541db210e16f538188d",
+  "productPath": "fresh-build/entries/t_1b6cbdc8d52e/entry.v2.json",
+  "productSha256": "8b3e4469b00e7886f4dc2ca1113c5dc80d84904482309967165f85df64774e49",
+  "worksheetPath": "fresh-build/entries/t_1b6cbdc8d52e/evidence.draft.json",
+  "worksheetSha256": "d551e5947f08100bfef2a00724b72f44627c61fb66497e29d7cb277160be879b",
+  "compilerReportPath": "fresh-build/entries/t_1b6cbdc8d52e/evidence-compile-report.json",
+  "compilerReportSha256": "b3cae806c18158915044535f9e69117cc65fd6776187a539bfae59d1b4a40fa5",
+  "coordinateClosure": [
+    {
+      "coordinate": "Senses[0].Occurrences[0]",
+      "decision": "PASS",
+      "finding": "The reader KWIC contains exactly one governed headword span in Zhongfeng Mingben's second, critical repetition under 師拈云; 錯 is preserved and Zhongfeng is the exact actor."
+    },
+    {
+      "coordinate": "Senses[0].Occurrences[2]",
+      "decision": "PASS",
+      "finding": "臨濟老祖云 marks Linji Yixuan as the embedded exact speaker; Feiyin Tongrong is separately preserved as later raiser, commentator, and record owner."
+    },
+    {
+      "coordinate": "Senses[0].Occurrences[3]",
+      "decision": "PASS",
+      "finding": "The 小參 quotation belongs to Linji Yixuan; Juyun Chuiwan Guangzhen is separately preserved as later raiser, commentator, and record owner."
+    },
+    {
+      "coordinate": "Senses[0].Explanation",
+      "decision": "PASS",
+      "finding": "The prose accurately distinguishes Zhongfeng's criticism, Tianyin's verse, Feiyin's raising and commentary, and Chuiwan's exposition; the unrelated Sanshan claim is absent."
+    },
+    {
+      "coordinate": "Senses[0].RelatedMasters",
+      "decision": "PASS",
+      "finding": "The derived links include all exact speakers and the two roster-linked outer commentators represented in the retained evidence."
+    }
+  ],
+  "semanticVerdict": "The definition as the third of Linji's Four Selections remains supported after correcting voice layers; no new sense or false work-independence claim emerges.",
+  "mechanicalGates": {
+    "compileHardPass": true,
+    "worksheetProductParity": true,
+    "attributionHardFailures": 0,
+    "o1HeadwordSpanCount": 1
+  },
+  "defects": [],
+  "verdict": "APPROVE_RELEASE",
+  "hardPass": true,
+  "releaseAuthorized": true,
+  "publicMutation": false
+}

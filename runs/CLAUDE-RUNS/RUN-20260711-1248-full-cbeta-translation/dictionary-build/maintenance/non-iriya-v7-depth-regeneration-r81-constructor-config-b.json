@@ -1,0 +1,2833 @@
+{
+  "schemaVersion": "generic-bounded-constructor-config.v2",
+  "cohort": "R81",
+  "startedEpoch": 1785404280.536472,
+  "timegatePath": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r81-timegate-root.json",
+  "watchdogReceiptPath": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r81-constructor-checkpoint-b.json",
+  "commandAuditPath": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r81-constructor-command-audit-b.json",
+  "engineSha256": "94c639896844807c829a7998bd5db0e98e49c2dad43d6b158d169a8e65edcdf9",
+  "paths": {
+    "selection": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r81-constructor-selection-b.json",
+    "research": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r81-research-b.json",
+    "outputRoot": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries",
+    "firstProductReceipt": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r81-engine-first-product-b.json",
+    "preclosure": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r81-preclosure-report-b.json",
+    "manifest": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r81-construction-manifest-b.json",
+    "closure": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r81-closure-b.json"
+  },
+  "entries": [
+    {
+      "id": "t_1b2b5d1e63c9",
+      "term": "獅子吼時芳草綠",
+      "sourceDossier": {
+        "schemaVersion": "r11-source-dossier.v1",
+        "id": "t_1b2b5d1e63c9",
+        "term": "獅子吼時芳草綠",
+        "selectionBinding": {
+          "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r81-constructor-selection-b.json",
+          "sha256": "bb91412900a52245e88fb98a6b70ecdc3dd4b48ea942d3c1888b4ce150bf5090"
+        },
+        "researchBinding": {
+          "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r81-research-b.json",
+          "sha256": "b2769a658620e3d8b3be979a9fdd1fc86c300b3e268630ff5c82c8b023f5a4de"
+        },
+        "exactCount": {
+          "id": "t_1b2b5d1e63c9",
+          "term": "獅子吼時芳草綠",
+          "hits": 22,
+          "files": 18,
+          "works": 18,
+          "per_file": [
+            [
+              "J/J28/J28nB212.xml",
+              2
+            ],
+            [
+              "J/J37/J37nB392.xml",
+              2
+            ],
+            [
+              "J/J38/J38nB424.xml",
+              2
+            ],
+            [
+              "J/J40/J40nB472.xml",
+              2
+            ],
+            [
+              "J/J25/J25nB174.xml",
+              1
+            ],
+            [
+              "J/J26/J26nB186.xml",
+              1
+            ],
+            [
+              "J/J27/J27nB193.xml",
+              1
+            ],
+            [
+              "J/J28/J28nB202.xml",
+              1
+            ],
+            [
+              "J/J28/J28nB211.xml",
+              1
+            ],
+            [
+              "J/J33/J33nB288.xml",
+              1
+            ],
+            [
+              "J/J38/J38nB418.xml",
+              1
+            ],
+            [
+              "J/J39/J39nB450.xml",
+              1
+            ],
+            [
+              "J/J40/J40nB477.xml",
+              1
+            ],
+            [
+              "J/J40/J40nB493.xml",
+              1
+            ],
+            [
+              "L/L158/L158n1652.xml",
+              1
+            ],
+            [
+              "X/X80/X80n1566.xml",
+              1
+            ],
+            [
+              "X/X82/X82n1571.xml",
+              1
+            ],
+            [
+              "X/X85/X85n1591.xml",
+              1
+            ]
+          ]
+        },
+        "requiredFloor": 4,
+        "semanticReadComplete": true,
+        "tier3Lamp": 0,
+        "predecessorEvidenceAudit": [],
+        "retainedCompleteCases": [
+          {
+            "relPath": "J/J25/J25nB174.xml",
+            "workId": "work:J25nB174",
+            "sourceTitle": "Recorded Sayings of Chan Master Juelangsheng of Tianjie",
+            "tier": 2,
+            "fullCaseWindow": "在何處？又問石鞏，道：「一回入草去，驀鼻拽將回。」如今鼻孔索子在那裏？者一隊執事底人還敢自語不知其落處乎？而南泉又云：「不特昨夜三更失卻牛，天明起來又失卻火也。」杖人大笑，急得佛殿裏燈籠如黑漆桶相似，𨁝跳上三十三天，觸著帝釋鼻孔，東海鯉魚打一棒雨似盆傾，打失汝等眉毛，只願天晴晒朗看取，隔墻或見彼角；隔山或見生煙，正好來杖人處討棒喫，莫說不先為汝道破。吽吽！示眾。問僧：「作甚麼來？」曰：「摘茶。」師云：「茶摘人，人摘茶？」曰：「火爐裏翻身。」師云：「好喫三十棒。」曰：「剛刀雖快，不斬無罪之人。」師云：「你自招承那，莫孤負拄杖子好。不見溈仰父子摘茶，溈云：『終日只聞子聲，不見子形。』仰撼茶樹，溈云：『子秪得其用，不得其體。』仰云：『和尚又作麼生？』溈良久，仰云：『和尚秪得其體，不得其用。』溈云：『放子三十棒。』仰云：『和尚棒某甲喫，某甲棒教誰喫？』溈云：『放子三十棒。』者兩個漢打葛藤不了，雖然也須知他父子有時捨身飼虎、割肉餵鷹；有時虎口中奪雀兒、鷹爪上爭兔子。還有於此中明殺活者麼？直饒於百草頭上薦取老僧；鬧市叢中識得天子，也須喫博山三十痛棒始得。」除夕示眾：大人無我自參同，收放全機妙始終；獅子吼時芳草綠，象王回顧落花紅。可中還有能哮吼者麼？古人以臘月除夕為末後一著，與諸人討個折合，者也是作死馬醫，何知有最初底句子？雖然走路走到家，辛苦亦自喜；做事做到頭，喫虧亦自己。秪者自喜自己也須自有分曉始得，不則豈但業識茫茫迷頭認影與觸途成滯無路出身也哉？且道皋亭今夕底風光又作麼生？且喜寒林消息密，梅花引得早春歸。示眾：古人立不語期，要人言語道斷撒手縣崖；立枯木堂，要人心行處滅絕後重甦，不是商量通消息得的，直須拼性命與生死疑情討箇分曉，憤激不已，如輪刀上陣，不能殺冤必被冤殺。果能削平魔佛，如許別立乾坤。示眾：磁石之微，能吸天下之鐵；春風之密，能發天地之生。此氣機之必致，非人力之所能也。羅經盤之方寸，以一無知無識之針，能定乾坤之中、分卦爻之正。天地卦爻之神化，無敢違此一針，而此一針不能違天地卦爻之中正也。吾人身世性命上，此一針今在何處？須能先自定之，則十世古今微塵剎海，咸不出此無知無識之針，而自能無所不知無所不識，而不為自欺欺世之人也。處州龍泉西寺孤舟和尚請為眾證戒。師云：「昨日已與諸兄弟滿口道破也，今日又要夢筆杖子為汝等斬新敲磕？我問汝等：腳跟下誰無立地？也要有處出身；頂門上誰不撩天？也要有處開眼",
+            "heading": {
+              "head": "",
+              "mulu": []
+            },
+            "actorDecision": {
+              "evidenceKey": "o1",
+              "masterName": "Juelang Daosheng",
+              "actorAttribution": null,
+              "action": "uses or actively raises the headword in the retained passage",
+              "grammarEvidence": "除夕示眾 assigns the verse to Juelang Daosheng",
+              "voice": "The complete source frame assigns this use to the named actor.",
+              "contextMasters": [
+                {
+                  "MasterName": "Juelang Daosheng",
+                  "Roles": [
+                    "utterer"
+                  ]
+                }
+              ],
+              "contextActors": []
+            },
+            "sourceSpanIdentity": {
+              "fromLb": "0719b23",
+              "sourceSpanOrdinal": 0,
+              "sourceContextSha256": "fe647e483d686e9cdae1300a17750d171208548ac42b96b2cc2a5a86c42d80d8",
+              "boundedKwic": "『放子三十棒。』仰云：『和尚棒某甲喫，某甲棒教誰喫？』溈云：『放子三十棒。』者兩個漢打葛藤不了，雖然也須知他父子有時捨身飼虎、割肉餵鷹；有時虎口中奪雀兒、鷹爪上爭兔子。還有於此中明殺活者麼？直饒於百草頭上薦取老僧；鬧市叢中識得天子，也須喫博山三十痛棒始得。」除夕示眾：大人無我自參同，收放全機妙始終；獅子吼時芳草綠，象王回顧落花紅。可中還有能哮吼者麼？古人以臘月除夕為末後一著，與諸人討個折合，者也是作死馬醫，何知有最初底句子？雖然走路走到家，辛苦亦自喜；做事做到頭，喫虧亦自己。秪者自喜自己也須自有分曉始得，不則豈但業識茫茫迷頭認影與觸途成滯無路出身也哉？且道皋亭今夕底風光又作麼生？且喜寒林消息密，梅花引得早春",
+              "boundedFromLb": "0719b23",
+              "boundedToLb": "0719b23",
+              "boundaryEvidence": "Retain the complete reviewed headword-bearing unit."
+            },
+            "decisionBasis": "除夕示眾 assigns the verse to Juelang Daosheng"
+          },
+          {
+            "relPath": "J/J26/J26nB186.xml",
+            "workId": "work:J26nB186",
+            "sourceTitle": "Recorded Sayings of Chan Master Linyexi",
+            "tier": 2,
+            "fullCaseWindow": "：「恁麼則獨露無私去也。」師云：「如何是你獨露無私句？」進云：「等閒識得東風面，萬紫千紅總是春。」師云：「非汝境界。」進云：「也要和尚疑著。」師噓一噓。問：「世尊住世四十九年，未曾說著一字，不審和尚陞座說何法要？」師便打。僧一喝，師復打。乃舉拄杖，云：「去年歲朝，把筆一揮，書盡三藏。雖然文彩已彰，究竟毫端未放。今年歲朝——」把筆遂畫一畫，云：「一揮書盡儒典。雖然毫端已放，究竟文彩未顯。且道其中義理還有優劣也無？」便下座。解制上堂。肯喏問：「天童解制，龍象雲興。和尚還是放行好，把住好？」師云：「不在這兩頭。」進云：「恁麼則橫擔楖栗，獨步大方去也。」師云：「走煞闍黎。」進云：「直透萬重關，不住青霄外。」師云：「腳跟下錯過三千里。」得本問：「解制結制即不問。天不能蓋，地不能載，是甚麼人？」師云：「老僧不識。」進云：「摑碎太虛空，毘盧頂上行。」師云：「閒言語。」進云：「和尚不得壓良為賤。」師云：「閒言語。」乃云：「三冬結制，把斷要津，不通凡聖。縱有牙如劍樹、口似血盆的到來，也只結舌有分。今朝不免放條活路，江北江南聽其去住。前頭如遇把關人，當頭拶著勿罔措。且道出門一句作麼生道？」驀卓拄杖，云：「獅子吼時芳草綠，象王回顧落花紅。」上堂。「山僧四大不強，無能為眾說法。」遂拈拄杖，云：「惟這木上座，雖則全無孔竅，卻能善說法要。」擊香几，云：「切莫隨伊顛倒。不見古人道：『毋聽之以耳，而聽之以心。毋聽之以心，而聽之以智。』須知智不到處，切忌道著。何故？他家自有通霄路，不用當陽指畫伊。」師誕上堂。「老僧年來癡癡憨憨，懵懵懂懂，尚不見有世法，焉有佛法可說。茲因老朽母難之辰，內外堅請，不免陞座。且道說個甚麼即得？若道老朽今日生乃是誑言，不道今日生亦是妄語。若道生本無生，滅亦非滅，正是三家村裏座主見解，自是唐塞諸人不得。幸有從前脫盡廉纖的一著子，略為顯示。」遂擲下拂，云：「莫把是非來辨我，從前穿鑿不相關。」林野奇禪師語錄卷第四林野奇禪師語錄卷第五住華亭船子法忍寺嗣法門人行謐等編示眾示眾通玄示眾。「大眾！現成公案不用參詳，等閒起坐乃正覺場。汝等諸人還委悉麼？若委悉得，受用無窮。如未委悉，萬古碧潭空界月，再三撈摝始應知。」示眾。以拄杖卓一卓，云：「者事本自現成，不假絲毫造作。擬欲參禪，早錯了也。所以山僧素嘗接待方來，不用尖新辭句，唯用一條白棒。凡擬議便棒，不擬議亦棒。擬不擬俱棒，何故？殺人刀，活人劍，具眼者辨取",
+            "heading": {
+              "head": "",
+              "mulu": []
+            },
+            "actorDecision": {
+              "evidenceKey": "o2",
+              "masterName": "Linye Tongqi",
+              "actorAttribution": null,
+              "action": "uses or actively raises the headword in the retained passage",
+              "grammarEvidence": "師 asks for and then supplies the departure line",
+              "voice": "The complete source frame assigns this use to the named actor.",
+              "contextMasters": [
+                {
+                  "MasterName": "Linye Tongqi",
+                  "Roles": [
+                    "utterer"
+                  ]
+                }
+              ],
+              "contextActors": []
+            },
+            "sourceSpanIdentity": {
+              "fromLb": "0639b24",
+              "sourceSpanOrdinal": 0,
+              "sourceContextSha256": "5ab201f5b8d2a5681325d64803452ebbc0319cf2b70565bae0556bbaac09f6d3",
+              "boundedKwic": "老僧不識。」進云：「摑碎太虛空，毘盧頂上行。」師云：「閒言語。」進云：「和尚不得壓良為賤。」師云：「閒言語。」乃云：「三冬結制，把斷要津，不通凡聖。縱有牙如劍樹、口似血盆的到來，也只結舌有分。今朝不免放條活路，江北江南聽其去住。前頭如遇把關人，當頭拶著勿罔措。且道出門一句作麼生道？」驀卓拄杖，云：「獅子吼時芳草綠，象王回顧落花紅。」上堂。「山僧四大不強，無能為眾說法。」遂拈拄杖，云：「惟這木上座，雖則全無孔竅，卻能善說法要。」擊香几，云：「切莫隨伊顛倒。不見古人道：『毋聽之以耳，而聽之以心。毋聽之以心，而聽之以智。』須知智不到處，切忌道著。何故？他家自有通霄路，不用當陽指畫伊。」師誕上堂。「老僧年來癡癡憨憨",
+              "boundedFromLb": "0639b24",
+              "boundedToLb": "0639b24",
+              "boundaryEvidence": "Retain the complete reviewed headword-bearing unit."
+            },
+            "decisionBasis": "師 asks for and then supplies the departure line"
+          },
+          {
+            "relPath": "J/J27/J27nB193.xml",
+            "workId": "work:J27nB193",
+            "sourceTitle": "Recorded Sayings of Chan Master Yinyuan",
+            "tier": 2,
+            "fullCaseWindow": "乃云：「茲者瑟江翁居士，奉母林氏之命，特特入山修懺設齋，請轉法輪，以慰慈親奉佛之誠，用固金剛不壞之體。蓋林氏稟佛遺訓，過午十載，漸積淨財，供佛及僧，雖處塵勞之中，不為塵勞所轉，而能卓立其間，正所謂應以婦女身得度者，即現婦女身而為說法了也。還要山僧說箇甚麼？雖然如是，今值元宵請福之日，又是衲僧解制之辰，偶占一偈，以壯行腳之美，伏惟靜聽。且喜良宵徹夜天，燈燈相續接先賢，聊拈楖栗窮三際，略展眉稜爍大千。本地風光添瑞彩，故園生意轉新鮮，豁開戶牖溪山碧。若個闍黎不悄然。偈已說了。若也會得，大制已解、大疑已釋、大悟已開、大事已畢，東去西去，無往不吉。然則吉慶不妨吉慶，悄然一任悄然脫。有人問：『如何是父母未生前本來面目？』汝等諸人將何抵對？」眾俱喝。師云：「陌頭一陣春風起，動著威音那半邊。」下座。師到城山庵，請上堂。師云：「杖藜在處是生涯，撥盡春雲絕點瑕。獨露城山天漢表，萬村圍繞法王家。豁開淨眼看塵世，滿目青黃不是他。諸禪人會麼？既不是他，是箇甚麼？若也薦得，左之右之、古之今之，受用無涯，不妨法隨法行，法幢隨處建立。道繇人悟，道風普被，恒沙普被。恒沙則不無，且道直截為人一句作麼生道？」僧喝。師云：「獅子吼時芳草綠，象王行處落花紅。」下座。師到鎮海寺，請上堂。云：「乘槎渡海，為求格外知音；策杖登山，惟訪通方作者。遇知音，聲價益重；逢作者，大道愈彰。道彰，普天普地，滿眼滿耳，通身遍身，無處囊藏。聲重，於國於家，若長若幼，聞名睹相，悉皆皈依。故能道滿天下，名垂百世，皆繇知音作者，遞相舉揚而然也。今日山僧海已渡也，山已登也，且道誰是知音？誰是作者？諸人還會麼？沒鼻眠牛橫海島，不須繩索再勾牽。」下座。上堂。云：「學無前後，達者為先；道絕彼此，明之為貴。學未至於達，所學奚益？道未至於明，其道罔然。罔然，則業識茫茫，無本可據；奚益，則被物所轉，誠難解脫。諸人還知麼？只如父母未生已前一著子又作麼生達？死了燒了之後一著子又作麼生明？苟能直下坐斷，兩頭歷落，生死不能籠罩，去住豈可遷移？所謂處生死流，驪珠獨耀于滄海；踞涅槃岸，桂輪孤朗于碧天。山僧今日偶到西院，北山諸善人虔請陞座，不覺逗漏如此，還有明眼衲僧共相證明者麼？如無，山僧自證去也。踏著南山動北山，洞明大事剎那間。善人不昧山僧旨，收拾春風自去還。」下座。師到茶林寺，請上堂。云：「𩖼𩖼春風二月天，特來此處訪高賢。一聲雷破三更夢，個個心開五葉蓮。殊勝偏逢殊勝事，希",
+            "heading": {
+              "head": "",
+              "mulu": []
+            },
+            "actorDecision": {
+              "evidenceKey": "o3",
+              "masterName": "Yinyuan Longqi",
+              "actorAttribution": null,
+              "action": "uses or actively raises the headword in the retained passage",
+              "grammarEvidence": "師云 directly assigns the answer to Yinyuan Longqi",
+              "voice": "The complete source frame assigns this use to the named actor.",
+              "contextMasters": [
+                {
+                  "MasterName": "Yinyuan Longqi",
+                  "Roles": [
+                    "utterer"
+                  ]
+                }
+              ],
+              "contextActors": []
+            },
+            "sourceSpanIdentity": {
+              "fromLb": "0240c03",
+              "sourceSpanOrdinal": 0,
+              "sourceContextSha256": "0f2692fbd7b677cb6209d799284f06cbb9606851c0eadcddecd7ae4b594b1ef2",
+              "boundedKwic": "庵，請上堂。師云：「杖藜在處是生涯，撥盡春雲絕點瑕。獨露城山天漢表，萬村圍繞法王家。豁開淨眼看塵世，滿目青黃不是他。諸禪人會麼？既不是他，是箇甚麼？若也薦得，左之右之、古之今之，受用無涯，不妨法隨法行，法幢隨處建立。道繇人悟，道風普被，恒沙普被。恒沙則不無，且道直截為人一句作麼生道？」僧喝。師云：「獅子吼時芳草綠，象王行處落花紅。」下座。師到鎮海寺，請上堂。云：「乘槎渡海，為求格外知音；策杖登山，惟訪通方作者。遇知音，聲價益重；逢作者，大道愈彰。道彰，普天普地，滿眼滿耳，通身遍身，無處囊藏。聲重，於國於家，若長若幼，聞名睹相，悉皆皈依。故能道滿天下，名垂百世，皆繇知音作者，遞相舉揚而然也。今日山僧海已渡也，",
+              "boundedFromLb": "0240c03",
+              "boundedToLb": "0240c03",
+              "boundaryEvidence": "Retain the complete reviewed headword-bearing unit."
+            },
+            "decisionBasis": "師云 directly assigns the answer to Yinyuan Longqi"
+          },
+          {
+            "relPath": "J/J33/J33nB288.xml",
+            "workId": "work:J33nB288",
+            "sourceTitle": "Recorded Sayings of Chan Master Hanyu Xian",
+            "tier": 2,
+            "fullCaseWindow": "衲僧巴鼻云何判？諸禪珍重莫蹉跎，休等閻家暗打算，直下玄關早透過，管教佛祖為侶伴。苟或依俙不恁麼，袈裟之下人身換，山僧苦口足堪涼，奮出超群出格漢。果若如是，真誠虛空喫汝痛棒；倘或不然，汝喫閻羅鐵棒，莫言不道。」小參。云：「舉谷隱和尚示眾云：『十五日已前諸佛生，你不得住我者裏；若住我者裏，我有錐子錐你。十五日已後諸佛滅，你不得離我者裏；若離我者裏，我有鉤子鉤你。正當十五日，且道用鉤即是？用錐即是？』」師云：「者老漢恁麼示眾，大似惡口小家，未免傷鋒犯手。今日汾陽不用如何若何，直令一個個前後際斷、生滅兩忘，更說甚麼諸佛生滅、鉤錐施設？一任缽囊高挂、拄杖橫擔，去住自由，各增意氣。秪如正當十五日又作麼生？」良久，云：「一輪光燦爛，千古意輝煌。」示眾示眾示眾。舉：「僧問古德云：『如何是一大藏教？』德云：『演出演入。』」師云：「古德恁麼為人條直，露膽傾心，非但一大藏教，將牟尼寶珠覿面和盤托出。廣勝今日重為舉似，且道還有酬價者麼？」良久，云：「海神知貴不知價，留與人間光照夜。」示眾。云：「秋光彈指又將冬，堪嘆浮生若夢中，生死玄關須薦透，休教錯過主人公。生死玄關則且置，云何得不錯過主人公聻？」良久，云：「獅子吼時芳草綠，象王回顧落花紅。」示眾。云：「箇段大事，歷歷輝騰於腳下；當陽不昧，明明獨露在眉間。從朝至暮無回互，動用施為自悄然。既是如斯現成，為甚諸人不會？」良久，云：「只為分明極，翻令所得遲。」示眾。云：每月十一五，大家同入室，無事可商量，只要當下瞥。若也瞥，獨露祖師箇巴鼻；倘未瞥，切須珍重知端的。人命無常呼吸間，百歲光陰一瞬息。且問諸禪人：還有端的祖師巴鼻者麼？金風昨夜透窗寒，吹綻禪關破衲罅。示眾。云：「天寒人寒，點水滴凍，至道無難，惟嫌撿擇，但莫憎愛，洞然明白。且道點水滴凍還有撿擇處也無？若有撿擇，須向寒風凜凜處高著眼看。若也看得明白，管取明明爾、法法爾，助顯大機大用，一任自在風流。還有直下承當者麼？」良久，云：「若無舉鼎拔山力，千里烏錐不易騎。」示眾。云：「佛未出世，本無一法；祖未西來，了無二致。若能於生佛已前薦得，大好一場笑話。何故？若有毫釐脩學心，無相光中不自在。所以云：『無明實性即佛性，幻化空身即法身，法身覺了無一物，本源自性天真佛。』敢問諸禪人：作麼生是天真佛？」良久，云：「我不敢輕于汝等。」便下座。示眾。云：「打七打三，佛祖玄關；投機入室，衲僧巴鼻。人人問答分明，箇箇獅兒骨格，切",
+            "heading": {
+              "head": "",
+              "mulu": []
+            },
+            "actorDecision": {
+              "evidenceKey": "o4",
+              "masterName": "Hanyu Hongxian",
+              "actorAttribution": null,
+              "action": "uses or actively raises the headword in the retained passage",
+              "grammarEvidence": "示眾 and 良久云 assign the concluding verse to Hanyu Hongxian",
+              "voice": "The complete source frame assigns this use to the named actor.",
+              "contextMasters": [
+                {
+                  "MasterName": "Hanyu Hongxian",
+                  "Roles": [
+                    "utterer"
+                  ]
+                }
+              ],
+              "contextActors": []
+            },
+            "sourceSpanIdentity": {
+              "fromLb": "0572b14",
+              "sourceSpanOrdinal": 0,
+              "sourceContextSha256": "90279fda425ff4717e96d8bde7be29219aa884682a2d101d099306cd6daff426",
+              "boundedKwic": "演出演入。』」師云：「古德恁麼為人條直，露膽傾心，非但一大藏教，將牟尼寶珠覿面和盤托出。廣勝今日重為舉似，且道還有酬價者麼？」良久，云：「海神知貴不知價，留與人間光照夜。」示眾。云：「秋光彈指又將冬，堪嘆浮生若夢中，生死玄關須薦透，休教錯過主人公。生死玄關則且置，云何得不錯過主人公聻？」良久，云：「獅子吼時芳草綠，象王回顧落花紅。」示眾。云：「箇段大事，歷歷輝騰於腳下；當陽不昧，明明獨露在眉間。從朝至暮無回互，動用施為自悄然。既是如斯現成，為甚諸人不會？」良久，云：「只為分明極，翻令所得遲。」示眾。云：每月十一五，大家同入室，無事可商量，只要當下瞥。若也瞥，獨露祖師箇巴鼻；倘未瞥，切須珍重知端的。人命無常呼",
+              "boundedFromLb": "0572b14",
+              "boundedToLb": "0572b14",
+              "boundaryEvidence": "Retain the complete reviewed headword-bearing unit."
+            },
+            "decisionBasis": "示眾 and 良久云 assign the concluding verse to Hanyu Hongxian"
+          }
+        ],
+        "tier3ExceptionalJustification": "",
+        "actorRiskAdjudication": [
+          "Every retained complete case has an exact actor and final WitnessFamilyId.",
+          "No Tier-3 lamp is retained."
+        ],
+        "senseRuling": "One corpus-wide sense: the retained grammatical and rhetorical frames do not introduce a different referent.",
+        "sourceMeta": [
+          {
+            "path": "J/J25/J25nB174.xml",
+            "tier": 2,
+            "title": "Recorded Sayings of Chan Master Juelangsheng of Tianjie"
+          },
+          {
+            "path": "J/J26/J26nB186.xml",
+            "tier": 2,
+            "title": "Recorded Sayings of Chan Master Linyexi"
+          },
+          {
+            "path": "J/J27/J27nB193.xml",
+            "tier": 2,
+            "title": "Recorded Sayings of Chan Master Yinyuan"
+          },
+          {
+            "path": "J/J33/J33nB288.xml",
+            "tier": 2,
+            "title": "Recorded Sayings of Chan Master Hanyu Xian"
+          }
+        ],
+        "sourceAuthorityManifest": {
+          "rows": [
+            {
+              "EvidenceKey": "o1",
+              "RelPath": "J/J25/J25nB174.xml",
+              "WorkId": "work:J25nB174",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "A named master's recorded sayings; the complete turn was independently actor-reviewed.",
+              "WitnessFamilyId": "juelang-new-years-eve-verse",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o2",
+              "RelPath": "J/J26/J26nB186.xml",
+              "WorkId": "work:J26nB186",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "A named master's recorded sayings; the complete turn was independently actor-reviewed.",
+              "WitnessFamilyId": "linye-release-capping-line",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o3",
+              "RelPath": "J/J27/J27nB193.xml",
+              "WorkId": "work:J27nB193",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "A named master's recorded sayings; the complete turn was independently actor-reviewed.",
+              "WitnessFamilyId": "yinyuan-direct-answer",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o4",
+              "RelPath": "J/J33/J33nB288.xml",
+              "WorkId": "work:J33nB288",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "A named master's recorded sayings; the complete turn was independently actor-reviewed.",
+              "WitnessFamilyId": "hanyu-showing-verse",
+              "DeploymentRole": "original-use"
+            }
+          ]
+        },
+        "researchNotes": {
+          "openingInterpretation": "A recurrent poetic capping line, usually paired with the elephant king and falling or reddening flowers.",
+          "evidenceBody": [
+            "Juelang Daosheng gives it in a New Year's Eve verse; Linye Tongqi uses it as the requested departure line; Yinyuan Longqi gives it as a direct answer; and Hanyu Hongxian closes a showing with it."
+          ],
+          "counterexampleOrLimit": "The records do not establish one fixed allegorical decoding of lion, grass, elephant, and flowers.",
+          "literalGraphFloor": "when the lion roars, the fragrant grass turns green",
+          "lexicalJob": "獅子吼時芳草綠 means when the lion roars, the fragrant grass turns green.",
+          "deploymentClasses": [
+            "direct answer",
+            "active capping line",
+            "active case raising"
+          ],
+          "highValueEvidenceLedger": [
+            {
+              "Disposition": "keep",
+              "Finding": "Juelang Daosheng actively uses the headword in Recorded Sayings of Chan Master Juelangsheng of Tianjie.",
+              "Reason": "The complete case secures an exact actor and an independent recorded-sayings deployment."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Linye Tongqi actively uses the headword in Recorded Sayings of Chan Master Linyexi.",
+              "Reason": "The complete case secures an exact actor and an independent recorded-sayings deployment."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Yinyuan Longqi actively uses the headword in Recorded Sayings of Chan Master Yinyuan.",
+              "Reason": "The complete case secures an exact actor and an independent recorded-sayings deployment."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Hanyu Hongxian actively uses the headword in Recorded Sayings of Chan Master Hanyu Xian.",
+              "Reason": "The complete case secures an exact actor and an independent recorded-sayings deployment."
+            }
+          ],
+          "openingClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3",
+            "o4"
+          ],
+          "evidenceBodyClaimKeys": [
+            [
+              "o1",
+              "o2",
+              "o3",
+              "o4"
+            ]
+          ],
+          "zenBend": "A recurrent poetic capping line, usually paired with the elephant king and falling or reddening flowers.",
+          "counterexample": "The records do not establish one fixed allegorical decoding of lion, grass, elephant, and flowers.",
+          "differentThing": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "when the lion roars, the fragrant grass turns green"
+            ],
+            "Reason": "All retained uses preserve one lexical job."
+          },
+          "aliasRationale": "Alternates preserve the same concrete expression.",
+          "modifierControls": [
+            {
+              "Term": "獅子吼時芳草綠",
+              "Finding": "No modifier creates a second referent."
+            }
+          ],
+          "familyControls": [
+            {
+              "Term": "獅子吼時芳草綠",
+              "Finding": "4 independent higher-authority families meet the floor."
+            }
+          ],
+          "higherSearch": "Tier 1 was searched first, then Tier 2; retained higher-authority evidence meets the floor, so no lamp was consulted.",
+          "depthReceipt": {
+            "Complete": true,
+            "ReviewedExactHitCount": 22,
+            "AvailableSourceFiles": 18,
+            "SearchedDeploymentClasses": [
+              "direct answer",
+              "active capping line",
+              "active case raising"
+            ],
+            "OmissionAudit": [
+              "4 retained complete cases were actor-adjudicated.",
+              "Tier-3 lamps were not needed."
+            ]
+          },
+          "admissionReason": "獅子吼時芳草綠 is a stable expression with repeated active Chan deployments.",
+          "duplicateCheck": {
+            "DeterministicIdChecked": true,
+            "ExactHeadwordChecked": true,
+            "NearDuplicateRuling": "No exact collision admitted."
+          },
+          "familyHarvest": {
+            "PolicyVersion": 1,
+            "Scope": "R81 source-hierarchy repair",
+            "Edges": [],
+            "NegativeReceipt": [],
+            "GraphicVariants": []
+          }
+        }
+      },
+      "evidenceDraft": {
+        "SchemaVersion": 1,
+        "ConstructionPipelineVersion": 2,
+        "Admission": {
+          "Decision": "admit",
+          "LexicalUnitReason": "獅子吼時芳草綠 is a stable expression with repeated active Chan deployments.",
+          "ObservableChanJob": "獅子吼時芳草綠 means when the lion roars, the fragrant grass turns green.",
+          "DuplicateCheck": {
+            "DeterministicIdChecked": true,
+            "ExactHeadwordChecked": true,
+            "NearDuplicateRuling": "No exact or punctuation-normalized collision occurs in R01-R10 or the current R11 selection; companion clauses remain separately named family leads."
+          }
+        },
+        "EvidenceTransport": {
+          "DossierPath": "source-dossier.json",
+          "DossierSha256": "43ebe89062cf97b95d183e35877b403ab301bf7fa45d9ce8a13e69fd2a081519",
+          "SourceAuthorityManifestSha256": "2ee44bf19a2533958e5620c38915f3d03fbb81209c76c7183742a4f3d059f501",
+          "DiscoveryMethods": [
+            "exact concordance count",
+            "complete-turn actor review",
+            "Tier 1 then Tier 2 source ranking",
+            "predecessor-evidence adjudication"
+          ],
+          "ExactCount": 22,
+          "BridgedCount": 22,
+          "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+        },
+        "Entry": {
+          "Id": "t_1b2b5d1e63c9",
+          "SourceTerm": "獅子吼時芳草綠",
+          "CreatedBy": "R81 source-hierarchy repair",
+          "WrittenUtc": "2026-07-30T09:10:00Z",
+          "Senses": [
+            {
+              "SenseKey": null,
+              "MasterName": null,
+              "PreferredTarget": "when the lion roars, the fragrant grass turns green",
+              "AlternateTargets": [
+                "when the lion roars, fragrant grass grows green"
+              ],
+              "SearchAliases": [
+                "lion roar fragrant grass green"
+              ],
+              "Status": "preferred",
+              "Validation": "multi-source",
+              "Explanation": "A recurrent poetic capping line, usually paired with the elephant king and falling or reddening flowers. Juelang Daosheng gives it in a New Year's Eve verse; Linye Tongqi uses it as the requested departure line; Yinyuan Longqi gives it as a direct answer; and Hanyu Hongxian closes a showing with it.",
+              "Note": "The records do not establish one fixed allegorical decoding of lion, grass, elephant, and flowers.",
+              "Occurrences": [
+                {
+                  "RelPath": "J/J25/J25nB174.xml",
+                  "FromLb": "0719b23",
+                  "ToLb": "0719b23",
+                  "Kwic": "『放子三十棒。』仰云：『和尚棒某甲喫，某甲棒教誰喫？』溈云：『放子三十棒。』者兩個漢打葛藤不了，雖然也須知他父子有時捨身飼虎、割肉餵鷹；有時虎口中奪雀兒、鷹爪上爭兔子。還有於此中明殺活者麼？直饒於百草頭上薦取老僧；鬧市叢中識得天子，也須喫博山三十痛棒始得。」除夕示眾：大人無我自參同，收放全機妙始終；獅子吼時芳草綠，象王回顧落花紅。可中還有能哮吼者麼？古人以臘月除夕為末後一著，與諸人討個折合，者也是作死馬醫，何知有最初底句子？雖然走路走到家，辛苦亦自喜；做事做到頭，喫虧亦自己。秪者自喜自己也須自有分曉始得，不則豈但業識茫茫迷頭認影與觸途成滯無路出身也哉？且道皋亭今夕底風光又作麼生？且喜寒林消息密，梅花引得早春",
+                  "MasterName": "Juelang Daosheng",
+                  "Curated": true,
+                  "ContextMasters": [
+                    {
+                      "MasterName": "Juelang Daosheng",
+                      "Roles": [
+                        "utterer"
+                      ]
+                    }
+                  ],
+                  "ContextActors": [],
+                  "AttributionNote": "Source record (J/J25/J25nB174.xml). Recorded Sayings of Chan Master Juelangsheng of Tianjie. Exact actor: Juelang Daosheng. 除夕示眾 assigns the verse to Juelang Daosheng",
+                  "DraftActorProof": {
+                    "ExactHeadwordClause": "獅子吼時芳草綠",
+                    "GrammaticalSubject": "Juelang Daosheng",
+                    "SpeechFrame": "Source record (J/J25/J25nB174.xml). Recorded Sayings of Chan Master Juelangsheng of Tianjie. Exact actor: Juelang Daosheng. 除夕示眾 assigns the verse to Juelang Daosheng",
+                    "FullCaseDecision": "Juelang Daosheng is the exact actor at the headword-bearing clause."
+                  }
+                },
+                {
+                  "RelPath": "J/J26/J26nB186.xml",
+                  "FromLb": "0639b24",
+                  "ToLb": "0639b24",
+                  "Kwic": "老僧不識。」進云：「摑碎太虛空，毘盧頂上行。」師云：「閒言語。」進云：「和尚不得壓良為賤。」師云：「閒言語。」乃云：「三冬結制，把斷要津，不通凡聖。縱有牙如劍樹、口似血盆的到來，也只結舌有分。今朝不免放條活路，江北江南聽其去住。前頭如遇把關人，當頭拶著勿罔措。且道出門一句作麼生道？」驀卓拄杖，云：「獅子吼時芳草綠，象王回顧落花紅。」上堂。「山僧四大不強，無能為眾說法。」遂拈拄杖，云：「惟這木上座，雖則全無孔竅，卻能善說法要。」擊香几，云：「切莫隨伊顛倒。不見古人道：『毋聽之以耳，而聽之以心。毋聽之以心，而聽之以智。』須知智不到處，切忌道著。何故？他家自有通霄路，不用當陽指畫伊。」師誕上堂。「老僧年來癡癡憨憨",
+                  "MasterName": "Linye Tongqi",
+                  "Curated": true,
+                  "ContextMasters": [
+                    {
+                      "MasterName": "Linye Tongqi",
+                      "Roles": [
+                        "utterer"
+                      ]
+                    }
+                  ],
+                  "ContextActors": [],
+                  "AttributionNote": "Source record (J/J26/J26nB186.xml). Recorded Sayings of Chan Master Linyexi. Exact actor: Linye Tongqi. 師 asks for and then supplies the departure line",
+                  "DraftActorProof": {
+                    "ExactHeadwordClause": "獅子吼時芳草綠",
+                    "GrammaticalSubject": "Linye Tongqi",
+                    "SpeechFrame": "Source record (J/J26/J26nB186.xml). Recorded Sayings of Chan Master Linyexi. Exact actor: Linye Tongqi. 師 asks for and then supplies the departure line",
+                    "FullCaseDecision": "Linye Tongqi is the exact actor at the headword-bearing clause."
+                  }
+                },
+                {
+                  "RelPath": "J/J27/J27nB193.xml",
+                  "FromLb": "0240c03",
+                  "ToLb": "0240c03",
+                  "Kwic": "庵，請上堂。師云：「杖藜在處是生涯，撥盡春雲絕點瑕。獨露城山天漢表，萬村圍繞法王家。豁開淨眼看塵世，滿目青黃不是他。諸禪人會麼？既不是他，是箇甚麼？若也薦得，左之右之、古之今之，受用無涯，不妨法隨法行，法幢隨處建立。道繇人悟，道風普被，恒沙普被。恒沙則不無，且道直截為人一句作麼生道？」僧喝。師云：「獅子吼時芳草綠，象王行處落花紅。」下座。師到鎮海寺，請上堂。云：「乘槎渡海，為求格外知音；策杖登山，惟訪通方作者。遇知音，聲價益重；逢作者，大道愈彰。道彰，普天普地，滿眼滿耳，通身遍身，無處囊藏。聲重，於國於家，若長若幼，聞名睹相，悉皆皈依。故能道滿天下，名垂百世，皆繇知音作者，遞相舉揚而然也。今日山僧海已渡也，",
+                  "MasterName": "Yinyuan Longqi",
+                  "Curated": true,
+                  "ContextMasters": [
+                    {
+                      "MasterName": "Yinyuan Longqi",
+                      "Roles": [
+                        "utterer"
+                      ]
+                    }
+                  ],
+                  "ContextActors": [],
+                  "AttributionNote": "Source record (J/J27/J27nB193.xml). Recorded Sayings of Chan Master Yinyuan. Exact actor: Yinyuan Longqi. 師云 directly assigns the answer to Yinyuan Longqi",
+                  "DraftActorProof": {
+                    "ExactHeadwordClause": "獅子吼時芳草綠",
+                    "GrammaticalSubject": "Yinyuan Longqi",
+                    "SpeechFrame": "Source record (J/J27/J27nB193.xml). Recorded Sayings of Chan Master Yinyuan. Exact actor: Yinyuan Longqi. 師云 directly assigns the answer to Yinyuan Longqi",
+                    "FullCaseDecision": "Yinyuan Longqi is the exact actor at the headword-bearing clause."
+                  }
+                },
+                {
+                  "RelPath": "J/J33/J33nB288.xml",
+                  "FromLb": "0572b14",
+                  "ToLb": "0572b14",
+                  "Kwic": "演出演入。』」師云：「古德恁麼為人條直，露膽傾心，非但一大藏教，將牟尼寶珠覿面和盤托出。廣勝今日重為舉似，且道還有酬價者麼？」良久，云：「海神知貴不知價，留與人間光照夜。」示眾。云：「秋光彈指又將冬，堪嘆浮生若夢中，生死玄關須薦透，休教錯過主人公。生死玄關則且置，云何得不錯過主人公聻？」良久，云：「獅子吼時芳草綠，象王回顧落花紅。」示眾。云：「箇段大事，歷歷輝騰於腳下；當陽不昧，明明獨露在眉間。從朝至暮無回互，動用施為自悄然。既是如斯現成，為甚諸人不會？」良久，云：「只為分明極，翻令所得遲。」示眾。云：每月十一五，大家同入室，無事可商量，只要當下瞥。若也瞥，獨露祖師箇巴鼻；倘未瞥，切須珍重知端的。人命無常呼",
+                  "MasterName": "Hanyu Hongxian",
+                  "Curated": true,
+                  "ContextMasters": [
+                    {
+                      "MasterName": "Hanyu Hongxian",
+                      "Roles": [
+                        "utterer"
+                      ]
+                    }
+                  ],
+                  "ContextActors": [],
+                  "AttributionNote": "Source record (J/J33/J33nB288.xml). Recorded Sayings of Chan Master Hanyu Xian. Exact actor: Hanyu Hongxian. 示眾 and 良久云 assign the concluding verse to Hanyu Hongxian",
+                  "DraftActorProof": {
+                    "ExactHeadwordClause": "獅子吼時芳草綠",
+                    "GrammaticalSubject": "Hanyu Hongxian",
+                    "SpeechFrame": "Source record (J/J33/J33nB288.xml). Recorded Sayings of Chan Master Hanyu Xian. Exact actor: Hanyu Hongxian. 示眾 and 良久云 assign the concluding verse to Hanyu Hongxian",
+                    "FullCaseDecision": "Hanyu Hongxian is the exact actor at the headword-bearing clause."
+                  }
+                }
+              ],
+              "ClaimAnchors": [],
+              "SourceTexts": [
+                "J/J25/J25nB174.xml",
+                "J/J26/J26nB186.xml",
+                "J/J27/J27nB193.xml",
+                "J/J33/J33nB288.xml"
+              ],
+              "RelatedMasters": [
+                "Juelang Daosheng",
+                "Linye Tongqi",
+                "Yinyuan Longqi",
+                "Hanyu Hongxian"
+              ],
+              "RelatedTerms": [],
+              "ExplanationParts": {
+                "CorpusEarnedOpening": "A recurrent poetic capping line, usually paired with the elephant king and falling or reddening flowers.",
+                "EvidenceBody": [
+                  "Juelang Daosheng gives it in a New Year's Eve verse; Linye Tongqi uses it as the requested departure line; Yinyuan Longqi gives it as a direct answer; and Hanyu Hongxian closes a showing with it."
+                ]
+              },
+              "DraftEvidence": {
+                "LiteralGraphFloor": "when the lion roars, the fragrant grass turns green",
+                "LexicalJob": "獅子吼時芳草綠 means when the lion roars, the fragrant grass turns green.",
+                "DeploymentClasses": [
+                  "direct answer",
+                  "active capping line",
+                  "active case raising"
+                ],
+                "HighValueEvidenceLedger": [
+                  {
+                    "Disposition": "keep",
+                    "Finding": "Juelang Daosheng actively uses the headword in Recorded Sayings of Chan Master Juelangsheng of Tianjie.",
+                    "Reason": "The complete case secures an exact actor and an independent recorded-sayings deployment."
+                  },
+                  {
+                    "Disposition": "keep",
+                    "Finding": "Linye Tongqi actively uses the headword in Recorded Sayings of Chan Master Linyexi.",
+                    "Reason": "The complete case secures an exact actor and an independent recorded-sayings deployment."
+                  },
+                  {
+                    "Disposition": "keep",
+                    "Finding": "Yinyuan Longqi actively uses the headword in Recorded Sayings of Chan Master Yinyuan.",
+                    "Reason": "The complete case secures an exact actor and an independent recorded-sayings deployment."
+                  },
+                  {
+                    "Disposition": "keep",
+                    "Finding": "Hanyu Hongxian actively uses the headword in Recorded Sayings of Chan Master Hanyu Xian.",
+                    "Reason": "The complete case secures an exact actor and an independent recorded-sayings deployment."
+                  }
+                ],
+                "OpeningClaimEvidenceKeys": [
+                  "o1",
+                  "o2",
+                  "o3",
+                  "o4"
+                ],
+                "EvidenceBodyClaimKeys": [
+                  [
+                    "o1",
+                    "o2",
+                    "o3",
+                    "o4"
+                  ]
+                ],
+                "ZenBend": "A recurrent poetic capping line, usually paired with the elephant king and falling or reddening flowers.",
+                "CounterexampleOrLimit": "The records do not establish one fixed allegorical decoding of lion, grass, elephant, and flowers.",
+                "DifferentThingTest": {
+                  "Decision": "one-thing",
+                  "ComparedThings": [
+                    "when the lion roars, the fragrant grass turns green"
+                  ],
+                  "Reason": "All retained uses preserve one lexical job."
+                },
+                "AliasRationale": "Alternates preserve the same concrete expression.",
+                "ModifierControls": [
+                  {
+                    "Term": "獅子吼時芳草綠",
+                    "Finding": "No modifier creates a second referent."
+                  }
+                ],
+                "FamilyControls": [
+                  {
+                    "Term": "獅子吼時芳草綠",
+                    "Finding": "4 independent higher-authority families meet the floor."
+                  }
+                ],
+                "IndependentWorkIds": [
+                  "work:J25nB174",
+                  "work:J26nB186",
+                  "work:J27nB193",
+                  "work:J33nB288"
+                ],
+                "SourceAuthorityRows": [
+                  {
+                    "EvidenceKey": "o1",
+                    "RelPath": "J/J25/J25nB174.xml",
+                    "WorkId": "work:J25nB174",
+                    "Tier": 2,
+                    "SourceClass": "recorded-sayings",
+                    "AuthorityReason": "A named master's recorded sayings; the complete turn was independently actor-reviewed.",
+                    "WitnessFamilyId": "juelang-new-years-eve-verse",
+                    "DeploymentRole": "original-use"
+                  },
+                  {
+                    "EvidenceKey": "o2",
+                    "RelPath": "J/J26/J26nB186.xml",
+                    "WorkId": "work:J26nB186",
+                    "Tier": 2,
+                    "SourceClass": "recorded-sayings",
+                    "AuthorityReason": "A named master's recorded sayings; the complete turn was independently actor-reviewed.",
+                    "WitnessFamilyId": "linye-release-capping-line",
+                    "DeploymentRole": "original-use"
+                  },
+                  {
+                    "EvidenceKey": "o3",
+                    "RelPath": "J/J27/J27nB193.xml",
+                    "WorkId": "work:J27nB193",
+                    "Tier": 2,
+                    "SourceClass": "recorded-sayings",
+                    "AuthorityReason": "A named master's recorded sayings; the complete turn was independently actor-reviewed.",
+                    "WitnessFamilyId": "yinyuan-direct-answer",
+                    "DeploymentRole": "original-use"
+                  },
+                  {
+                    "EvidenceKey": "o4",
+                    "RelPath": "J/J33/J33nB288.xml",
+                    "WorkId": "work:J33nB288",
+                    "Tier": 2,
+                    "SourceClass": "recorded-sayings",
+                    "AuthorityReason": "A named master's recorded sayings; the complete turn was independently actor-reviewed.",
+                    "WitnessFamilyId": "hanyu-showing-verse",
+                    "DeploymentRole": "original-use"
+                  }
+                ],
+                "LampExcessJustification": "No Tier-3 lamp or lineage compilation is retained.",
+                "NoHigherWitnessSearchReceipt": "Tier 1 was searched first; Tier 2 met the floor; no lamp was consulted.",
+                "DepthHarvestReceipt": {
+                  "Complete": true,
+                  "ReviewedExactHitCount": 22,
+                  "AvailableSourceFiles": 18,
+                  "SearchedDeploymentClasses": [
+                    "direct answer",
+                    "active capping line",
+                    "active case raising"
+                  ],
+                  "OmissionAudit": [
+                    "4 retained complete cases were actor-adjudicated.",
+                    "Tier-3 lamps were not needed."
+                  ]
+                }
+              },
+              "DraftAcceptedDerivedFields": {
+                "SourceTexts": [
+                  "J/J25/J25nB174.xml",
+                  "J/J26/J26nB186.xml",
+                  "J/J27/J27nB193.xml",
+                  "J/J33/J33nB288.xml"
+                ],
+                "RelatedMasters": [
+                  "Juelang Daosheng",
+                  "Linye Tongqi",
+                  "Yinyuan Longqi",
+                  "Hanyu Hongxian"
+                ]
+              }
+            }
+          ],
+          "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+        },
+        "FamilyHarvest": {
+          "PolicyVersion": 1,
+          "Scope": "R81 source-hierarchy repair",
+          "Edges": [],
+          "NegativeReceipt": [],
+          "GraphicVariants": []
+        }
+      }
+    },
+    {
+      "id": "t_1b3195ce4368",
+      "term": "囉囉哩",
+      "sourceDossier": {
+        "schemaVersion": "r11-source-dossier.v1",
+        "id": "t_1b3195ce4368",
+        "term": "囉囉哩",
+        "selectionBinding": {
+          "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r81-constructor-selection-b.json",
+          "sha256": "bb91412900a52245e88fb98a6b70ecdc3dd4b48ea942d3c1888b4ce150bf5090"
+        },
+        "researchBinding": {
+          "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r81-research-b.json",
+          "sha256": "b2769a658620e3d8b3be979a9fdd1fc86c300b3e268630ff5c82c8b023f5a4de"
+        },
+        "exactCount": {
+          "id": "t_1b3195ce4368",
+          "term": "囉囉哩",
+          "hits": 149,
+          "files": 87,
+          "works": 86,
+          "per_file": [
+            [
+              "X/X82/X82n1571.xml",
+              7
+            ],
+            [
+              "X/X64/X64n1260.xml",
+              6
+            ],
+            [
+              "X/X79/X79n1559.xml",
+              6
+            ],
+            [
+              "T/T51/T51n2077.xml",
+              4
+            ],
+            [
+              "X/X68/X68n1318.xml",
+              4
+            ],
+            [
+              "X/X70/X70n1390.xml",
+              4
+            ],
+            [
+              "X/X80/X80n1565.xml",
+              4
+            ],
+            [
+              "C/C078/C078n1720.xml",
+              3
+            ],
+            [
+              "J/J29/J29nB244.xml",
+              3
+            ],
+            [
+              "J/J38/J38nB418.xml",
+              3
+            ],
+            [
+              "J/J39/J39nB445.xml",
+              3
+            ],
+            [
+              "L/L155/L155n1643.xml",
+              3
+            ],
+            [
+              "X/X66/X66n1297.xml",
+              3
+            ],
+            [
+              "X/X81/X81n1568.xml",
+              3
+            ],
+            [
+              "X/X84/X84n1583.xml",
+              3
+            ],
+            [
+              "C/C077/C077n1710.xml",
+              2
+            ],
+            [
+              "D/D48/D48n8939.xml",
+              2
+            ],
+            [
+              "J/J25/J25nB154.xml",
+              2
+            ],
+            [
+              "J/J26/J26nB188.xml",
+              2
+            ],
+            [
+              "J/J27/J27nB196.xml",
+              2
+            ],
+            [
+              "J/J29/J29nB230.xml",
+              2
+            ],
+            [
+              "J/J36/J36nB362.xml",
+              2
+            ],
+            [
+              "J/J37/J37nB386.xml",
+              2
+            ],
+            [
+              "J/J39/J39nB470.xml",
+              2
+            ],
+            [
+              "J/J40/J40nB472.xml",
+              2
+            ],
+            [
+              "T/T47/T47n1997.xml",
+              2
+            ],
+            [
+              "X/X66/X66n1296.xml",
+              2
+            ],
+            [
+              "X/X69/X69n1350.xml",
+              2
+            ],
+            [
+              "X/X71/X71n1416.xml",
+              2
+            ],
+            [
+              "X/X71/X71n1417.xml",
+              2
+            ],
+            [
+              "X/X71/X71n1420.xml",
+              2
+            ],
+            [
+              "X/X80/X80n1566.xml",
+              2
+            ],
+            [
+              "X/X86/X86n1605.xml",
+              2
+            ],
+            [
+              "B/B27/B27n0152.xml",
+              1
+            ],
+            [
+              "J/J20/J20nB098.xml",
+              1
+            ],
+            [
+              "J/J25/J25nB163.xml",
+              1
+            ],
+            [
+              "J/J25/J25nB171.xml",
+              1
+            ],
+            [
+              "J/J26/J26nB177.xml",
+              1
+            ],
+            [
+              "J/J26/J26nB183.xml",
+              1
+            ],
+            [
+              "J/J26/J26nB187.xml",
+              1
+            ],
+            [
+              "J/J27/J27nB194.xml",
+              1
+            ],
+            [
+              "J/J28/J28nB202.xml",
+              1
+            ],
+            [
+              "J/J28/J28nB204.xml",
+              1
+            ],
+            [
+              "J/J28/J28nB208.xml",
+              1
+            ],
+            [
+              "J/J32/J32nB273.xml",
+              1
+            ],
+            [
+              "J/J36/J36nB359.xml",
+              1
+            ],
+            [
+              "J/J36/J36nB369.xml",
+              1
+            ],
+            [
+              "J/J37/J37nB383.xml",
+              1
+            ],
+            [
+              "J/J37/J37nB394.xml",
+              1
+            ],
+            [
+              "J/J37/J37nB399.xml",
+              1
+            ],
+            [
+              "J/J38/J38nB407.xml",
+              1
+            ],
+            [
+              "J/J38/J38nB425.xml",
+              1
+            ],
+            [
+              "J/J39/J39nB442.xml",
+              1
+            ],
+            [
+              "J/J39/J39nB446.xml",
+              1
+            ],
+            [
+              "J/J39/J39nB447.xml",
+              1
+            ],
+            [
+              "J/J39/J39nB453.xml",
+              1
+            ],
+            [
+              "J/J39/J39nB463.xml",
+              1
+            ],
+            [
+              "J/J40/J40nB494.xml",
+              1
+            ],
+            [
+              "L/L154/L154n1638.xml",
+              1
+            ],
+            [
+              "L/L154/L154n1639.xml",
+              1
+            ],
+            [
+              "L/L157/L157n1649.xml",
+              1
+            ],
+            [
+              "P/P155/P155n1519.xml",
+              1
+            ],
+            [
+              "T/T47/T47n1998A.xml",
+              1
+            ],
+            [
+              "T/T47/T47n2000.xml",
+              1
+            ],
+            [
+              "T/T48/T48n2006.xml",
+              1
+            ],
+            [
+              "X/X67/X67n1309.xml",
+              1
+            ],
+            [
+              "X/X69/X69n1336.xml",
+              1
+            ],
+            [
+              "X/X69/X69n1346.xml",
+              1
+            ],
+            [
+              "X/X70/X70n1382.xml",
+              1
+            ],
+            [
+              "X/X70/X70n1396.xml",
+              1
+            ],
+            [
+              "X/X71/X71n1412.xml",
+              1
+            ],
+            [
+              "X/X71/X71n1415.xml",
+              1
+            ],
+            [
+              "X/X71/X71n1421.xml",
+              1
+            ],
+            [
+              "X/X71/X71n1422.xml",
+              1
+            ],
+            [
+              "X/X72/X72n1444.xml",
+              1
+            ],
+            [
+              "X/X73/X73n1451.xml",
+              1
+            ],
+            [
+              "X/X78/X78n1554.xml",
+              1
+            ],
+            [
+              "X/X78/X78n1556.xml",
+              1
+            ],
+            [
+              "X/X79/X79n1557.xml",
+              1
+            ],
+            [
+              "X/X83/X83n1574.xml",
+              1
+            ],
+            [
+              "X/X83/X83n1578.xml",
+              1
+            ],
+            [
+              "X/X84/X84n1580.xml",
+              1
+            ],
+            [
+              "X/X84/X84n1585.xml",
+              1
+            ],
+            [
+              "X/X85/X85n1587.xml",
+              1
+            ],
+            [
+              "X/X85/X85n1591.xml",
+              1
+            ],
+            [
+              "X/X85/X85n1592.xml",
+              1
+            ],
+            [
+              "X/X85/X85n1593.xml",
+              1
+            ]
+          ]
+        },
+        "requiredFloor": 6,
+        "semanticReadComplete": true,
+        "tier3Lamp": 0,
+        "predecessorEvidenceAudit": [],
+        "retainedCompleteCases": [
+          {
+            "relPath": "X/X78/X78n1554.xml",
+            "workId": "chan:wujia-zhengzong-zan",
+            "sourceTitle": "Praise of the Orthodox Lineage of the Five Houses",
+            "tier": 1,
+            "fullCaseWindow": "生。勘辦衲僧，水上捺胡芦，機轆轆轉。吞栗棘，塞斷娘生口，懷楊岐毒，恨卒難消。舉青氈，還與舊主翁，知圓通客，情不易遣。拋金鈎，九江曲，可憐生，認鱉為鯨。開飯店，白雲深，放慕顧，和麩糶󳫹。葛藤窠裏，斥三箇漢，說南嶽天台。毛孔汗中，指一莖草，現瓊樓玉殿。跨瞎驢蹈斷溪橋去，被村山主掩彩多年。叱白牛安眠露地休，喜窮官人打成一片。頌臨濟三頓棒，少遇知音。投摩尼五色珠，多逢按劒。買酒肉餘剩錢物，信演闍梨遭謗無根。煨芦菔換得底禪，使凝侍者慚惶滿面。最無端是受他人屈眴之衣，致萬古叢林惡風相扇。保寧勇禪師保寧勇禪師師諱仁勇，四明竺氏子。少習天竺教，更衣謁雪竇，竇熟視之，呵曰：央庠座主。師氣不平，發憤下山望雪竇。山大展三拜，誓曰：我此生行脚參禪，名不過如雪竇，斷不歸鄉。徑往見楊岐悟旨，出世保寧。道播叢林，果如師言。師呈雲蓋顒頌云：拈將楖栗路縱橫，大地清風颯颯生。北斗柄斜輕撥轉，大唐人眼直須盲。上堂。云：一是一，二是二，三是三，四是四，數目甚分明，上下依資次。依資次，有何事？以拄杖畫一畫，云：大眾！一時亂却六十甲子了也。立春，上堂。立春日，打春牛，一棒兩棒，千頭萬頭，雪花深覆辨不得，頂門有眼徒悠悠。拍手，云：囉囉哩，惱亂春風卒未休。上堂。風鳴條，雨破塊，曉來枕上鸎聲碎。蝦蟇蚯蚓一時鳴，妙德空生都不會。都不會，三箇成群，四箇作隊。窈窈窕窕，颯颯颻颻。向南北東西，折得梨花李花，一佩兩佩。牧童頌曰：西風浩浩楚天秋，索寞無人野渡頭。沙鳥晚來俱散盡，鳴咿歸去倒騎牛。答陳遷秀才曰：胡孫兒子最惺惺，愛弄千年鬼眼睛。懊惱不知能要相，有時來我頂頭行。贊曰：家四明，住保寧。鬼眼睛逢人拈弄，窮伎倆到處旋呈。棒打春牛，深覆雪花難可辨。杖挑北斗，大唐人眼直須盲。曉枕上幽鳥吟殘，折梨花一佩兩佩。野渡頭沙禽散盡，聽鳴咿三聲四聲。指達磨老臊胡，著草鞋從他肚裏過。罵陳遷胡孫子，能要相來我頂𩕳行。杜撰巡官，花甲子，指輪上一時亂了。央庠座主，天台教，脚跟下十字縱橫。行闊步，與雪竇高蹤並駕。奮空拳，把楊岐破屋支撑。水銀無假，阿魏無真。無人過價，打與會兄。真淨文禪師真淨文禪師師諱克文，嗣黃龍，關西鄭氏子。師在溈山，夜間誦雲門語。僧問：佛法如水中月，是否？門云：清波無透路。師有省。以氣自負，諸方目為飽參。少有嬰其鋒者，聞積翠道喧宇宙，徑往見之。凡入室下語，翠皆不許。師怒發，乃曰：我自有悟處，渠不識我語。遂行至翠巖，見順和尚。順問：甚處來？",
+            "heading": {
+              "head": "",
+              "mulu": []
+            },
+            "actorDecision": {
+              "evidenceKey": "o1",
+              "masterName": "Baoning Renyong",
+              "actorAttribution": null,
+              "action": "uses or actively raises the headword in the retained passage",
+              "grammarEvidence": "The authored praise explicitly quotes Baoning Renyong's hall verse",
+              "voice": "The complete source frame assigns this use to the named actor.",
+              "contextMasters": [
+                {
+                  "MasterName": "Baoning Renyong",
+                  "Roles": [
+                    "utterer"
+                  ]
+                }
+              ],
+              "contextActors": []
+            },
+            "sourceSpanIdentity": {
+              "fromLb": "0592c15",
+              "sourceSpanOrdinal": 0,
+              "sourceContextSha256": "e028e9d22ea3858b171bf563ca6a516107707b3dcf3a71973a054d83dc83f34a",
+              "boundedKwic": "。師呈雲蓋顒頌云：拈將楖栗路縱橫，大地清風颯颯生。北斗柄斜輕撥轉，大唐人眼直須盲。上堂。云：一是一，二是二，三是三，四是四，數目甚分明，上下依資次。依資次，有何事？以拄杖畫一畫，云：大眾！一時亂却六十甲子了也。立春，上堂。立春日，打春牛，一棒兩棒，千頭萬頭，雪花深覆辨不得，頂門有眼徒悠悠。拍手，云：囉囉哩，惱亂春風卒未休。上堂。風鳴條，雨破塊，曉來枕上鸎聲碎。蝦蟇蚯蚓一時鳴，妙德空生都不會。都不會，三箇成群，四箇作隊。窈窈窕窕，颯颯颻颻。向南北東西，折得梨花李花，一佩兩佩。牧童頌曰：西風浩浩楚天秋，索寞無人野渡頭。沙鳥晚來俱散盡，鳴咿歸去倒騎牛。答陳遷秀才曰：胡孫兒子最惺惺，愛弄千年鬼眼睛。懊惱不知",
+              "boundedFromLb": "0592c15",
+              "boundedToLb": "0592c15",
+              "boundaryEvidence": "Retain the complete reviewed headword-bearing unit."
+            },
+            "decisionBasis": "The authored praise explicitly quotes Baoning Renyong's hall verse"
+          },
+          {
+            "relPath": "J/J20/J20nB098.xml",
+            "workId": "work:J20nB098",
+            "sourceTitle": "Further Questions to Chan Master Huangbo Wunian",
+            "tier": 2,
+            "fullCaseWindow": "生死？」師速叫一聲，僧應諾，師曰：「從這裏出。」曰：「和尚說的話，我不曉得。」師曰：「等你曉得，堪作甚麼？」曰：「何故瞞人？」師曰：「你夢不醒，反怪別人。」偈居士問：「日用何為？」師以偈答曰：「終日閑閑無所為，記得曾參一字機，無限精神空費了，依然還是舊行持。」「終日閑閑無所為，鳥啼花笑互酬機，客來問我為何事，飯罷菴前走一時。」「終日閑閑無所為，蒲團竹椅盡生埃，祖師公案忘來久，禪客來參懶接陪。」「三十年前學坐禪，猶如求鏡去磨磚，于今忘卻途中事，語默依稀記不全。」「饑即餐兮倦即眠，有時微笑水雲邊，赤心片片無人會，下是黃泉上是天。」「饑即餐兮倦即眠，閑忙動靜只隨緣，人間甲子無心記，開到梅花又一年。」牧牛圖頌牧牛圖頌尋牛尋牛入山撥草急追尋，峻嶺荒郊竹徑深，尋到水窮山盡處，回頭忽聽野猿吟。見跡見跡溪邊嶺畔足跡多，不是牛兮是甚麼？緊密行纏牢著腳，好攜繩索急追他。捉獲捉獲狹路崖前覺一聲，全身獨露在荒青，悠悠喚轉靈苗引，貫鼻穿繩孔現成。調治調治牢把繩頭痛策渠，曠陳劣性漸憑除，二時水草勤調治，體伏純然樂宅居。純和純和散放無拘養幻身，縱橫無處絕埃塵，這回不觸凡情境，左右周旋逐故人。歸家歸家宛轉回頭歸故家，囉囉哩哩出煙霞，鞭繩簑笠俱拋卻，鐵笛橫吹不犯牙。存人存人得意忘緣迥出山，堂堂無束任清閑，眠雲枕石深鼾睡，那肯容身落世間？俱忘俱忘人亦空兮牛亦空，寒光寂照盡融通，大千沙界無名相，依舊扶桑在海東。還源還源識破從前不假功，古今凝潔一非聾，欲知端的還源處，山自青兮花自紅。入廛入廛赤腳髼頭出世來，春風滿面展唇腮，玄關金鎖皆方便，只要當人薦得開。黃蘗無念禪師醒昏錄卷之四附錄一黃蘗無念禪師附錄卷之五語溪參學比丘明聞刪訂小傳小傳南皋鄒元標昔韓公上佛骨表尉潮陽，與大顛往來留衣別，士縉疑之，予謂此公聰明蓋世，能轉《法華》，必不為一疏便了生平。其言顛曰：「實能外形骸，以理自勝，不為事物是非窒礙。」夫曰以理自勝，猶未深悉其義也，公亦達矣。歐陽、蘇子，才高八斗，好與諸僧往還。歐公曰：「時于其人，察其氣魄，有為世用者，而蘇子則時遇可人，箭鋒相射，蘇公亦有逼人處。」諸先生皆一代鴻碩，好與方外人遊者，何哉？蓋身處火宅，入林樾，睹蕭蕭數竹，頓令心地清涼，亦以夙因，故予束髮，每到蕭寺，五臟若冰，不可言說。鄉里中所與二三僧，唯推魯摻，作田畝，無敗行，然亦足敬也。浪游南北，所接僧非無赫然為世頂禮者，大都落風流，講解窠臼，儼然如天竺",
+            "heading": {
+              "head": "",
+              "mulu": []
+            },
+            "actorDecision": {
+              "evidenceKey": "o2",
+              "masterName": "Wunian You",
+              "actorAttribution": null,
+              "action": "uses or actively raises the headword in the retained passage",
+              "grammarEvidence": "The 牧牛圖頌 section assigns the verse to the record owner",
+              "voice": "The complete source frame assigns this use to the named actor.",
+              "contextMasters": [
+                {
+                  "MasterName": "Wunian You",
+                  "Roles": [
+                    "utterer"
+                  ]
+                }
+              ],
+              "contextActors": []
+            },
+            "sourceSpanIdentity": {
+              "fromLb": "0521a14",
+              "sourceSpanOrdinal": 0,
+              "sourceContextSha256": "6812706821054257c1f585129d4eb0c7f2b1c09bf0a9d7ae5e076b231663a90c",
+              "boundedKwic": "嶺畔足跡多，不是牛兮是甚麼？緊密行纏牢著腳，好攜繩索急追他。捉獲捉獲狹路崖前覺一聲，全身獨露在荒青，悠悠喚轉靈苗引，貫鼻穿繩孔現成。調治調治牢把繩頭痛策渠，曠陳劣性漸憑除，二時水草勤調治，體伏純然樂宅居。純和純和散放無拘養幻身，縱橫無處絕埃塵，這回不觸凡情境，左右周旋逐故人。歸家歸家宛轉回頭歸故家，囉囉哩哩出煙霞，鞭繩簑笠俱拋卻，鐵笛橫吹不犯牙。存人存人得意忘緣迥出山，堂堂無束任清閑，眠雲枕石深鼾睡，那肯容身落世間？俱忘俱忘人亦空兮牛亦空，寒光寂照盡融通，大千沙界無名相，依舊扶桑在海東。還源還源識破從前不假功，古今凝潔一非聾，欲知端的還源處，山自青兮花自紅。入廛入廛赤腳髼頭出世來，春風滿面展唇腮，玄",
+              "boundedFromLb": "0521a14",
+              "boundedToLb": "0521a14",
+              "boundaryEvidence": "Retain the complete reviewed headword-bearing unit."
+            },
+            "decisionBasis": "The 牧牛圖頌 section assigns the verse to the record owner"
+          },
+          {
+            "relPath": "J/J25/J25nB154.xml",
+            "workId": "work:J25nB154",
+            "sourceTitle": "Recorded Sayings of Songyin Weianran",
+            "tier": 2,
+            "fullCaseWindow": "蓋乾坤兮，玉振金聲；超越古今兮，裁長就短。子若干斯見得親，揚起真風未為晚。送性海真長老送性海真長老性海無風，金波自湧；撼倒須彌，大千儱侗。澄澄寂寂涵青空，森羅萬象難逃蹤；鐵船浮動不浮動，總在一莖毛孔中。有時徹底無涓滴，蓬塵輥起三千尺；翳卻阿那律眼睛，直至如今開不得。贈雲巢隱士隨所寓贈雲巢隱士隨所寓隨所寓，隨所寓，任運騰騰無定處；泛宅浮家老此身，水雲影裏無生路。往來游戲一浮漚，宛如碧玉壺中住；逆風駕上須彌巔，背手拔得珊瑚樹。咄哉，玄真子！不識吾真趣，老倒鴟夷翁，風月無今古；興來一口吞長江，金波洶湧充饑腸，化作無邊香水海，八萬四千毛孔皆清涼；或寓東西或南北，傍梅待月無遲速，片帆不覺過滄洲，欸乃一聲山水綠。紉草為衣，狎鷗忘機，飯有雕胡，羹有蓴絲，唱紫芝於花汀月浦，歌白雪於蓮塘柳堤，梗跡萍蹤無所依，高風千古寄漁磯。隨所寓，隨所寓，煙波歷盡無寒暑；老我乾坤雪一頭，滿懷風月難分付。示智戒主示智戒主戒如瓔珞珠，亦如淨滿月；汝當力堅持，慎勿暫時瞥。一念若遲疑，生死無休歇；光陰能幾何？子自宜甄別。吾家種草不易做，眨起眉毛須薦取；百尺竿頭解轉身，腳底何妨草鞋破。便甚麼會，石女唱巴歌；不甚麼會，跛驢拽鐵磨。囉囉哩，黃頭碧眼；知不知？玉兔踏折珊瑚枝。送虎丘統藏主送虎丘統藏主拈得缽囉娘一句，絕毫絕釐沒巴鼻；古木寒嵒月色新，統攝大千歸自己。蘇州有也常州有，劍池夜半蒼龍吼；驪珠抉得本無心，一任猛風翻石臼。五臺山上隔塵氛，雲蒸飯熟香氤氳；驚倒生公點頭石，當機說法教誰聞？送大龍興澤監寺送大龍興澤監寺大用現前滿眼滿耳，纔墮見聞埋沒自己。石窗漏燈盞，喪盡宗猷；楊岐三腳驢，全彰玄旨。似火燒冰，道人行履，澤禪澤禪莫忘此理。送玉禪人歸天台送玉禪人歸天台格外之機，石中韞玉，渾渾侖侖，不受磨琢；當陽忽剖開，光明照幽谷。覿體絕瑕痕，誰能強名邈？得來不費纖毫力，翻笑卞和三度泣；邁古超今也大奇，驚倒豐干與寒拾。示印禪人示印禪人文彩未施，全彰寶印；信手搭來，頭正尾正。印空印水及印泥，鼓聲咬折撞鍾槌；羅𥈑羅也竟罔措，聞根喪盡洩真機。印水印泥還印空，腳頭到處忘西東；金毛哮吼大千震，身在蟭螟眼孔中。印泥印空復印水，高峰頂上波濤起；撼倒上天三十三，舜若多神汗如雨。一二三兮三二一，六合茫茫誰辨的；筆描八臂那吒神，倒把秤鎚捏出汁。送四川明禪人禮補陀送四川明禪人禮補陀明明百草頭，明明祖師意；直饒道得親，猶是半途底。此理灼然原自別，海底泥牛嚼",
+            "heading": {
+              "head": "",
+              "mulu": []
+            },
+            "actorDecision": {
+              "evidenceKey": "o3",
+              "masterName": "Wei'an Deran",
+              "actorAttribution": null,
+              "action": "uses or actively raises the headword in the retained passage",
+              "grammarEvidence": "The 示智戒主 verse belongs to Wei'an Deran",
+              "voice": "The complete source frame assigns this use to the named actor.",
+              "contextMasters": [
+                {
+                  "MasterName": "Wei'an Deran",
+                  "Roles": [
+                    "utterer"
+                  ]
+                }
+              ],
+              "contextActors": []
+            },
+            "sourceSpanIdentity": {
+              "fromLb": "0037b20",
+              "sourceSpanOrdinal": 0,
+              "sourceContextSha256": "c3347fc1c026b6fd75298001443bbfeafaaf314b7d45148ea682f7353621cd9c",
+              "boundedKwic": "高風千古寄漁磯。隨所寓，隨所寓，煙波歷盡無寒暑；老我乾坤雪一頭，滿懷風月難分付。示智戒主示智戒主戒如瓔珞珠，亦如淨滿月；汝當力堅持，慎勿暫時瞥。一念若遲疑，生死無休歇；光陰能幾何？子自宜甄別。吾家種草不易做，眨起眉毛須薦取；百尺竿頭解轉身，腳底何妨草鞋破。便甚麼會，石女唱巴歌；不甚麼會，跛驢拽鐵磨。囉囉哩，黃頭碧眼；知不知？玉兔踏折珊瑚枝。送虎丘統藏主送虎丘統藏主拈得缽囉娘一句，絕毫絕釐沒巴鼻；古木寒嵒月色新，統攝大千歸自己。蘇州有也常州有，劍池夜半蒼龍吼；驪珠抉得本無心，一任猛風翻石臼。五臺山上隔塵氛，雲蒸飯熟香氤氳；驚倒生公點頭石，當機說法教誰聞？送大龍興澤監寺送大龍興澤監寺大用現前滿眼滿耳，纔",
+              "boundedFromLb": "0037b20",
+              "boundedToLb": "0037b20",
+              "boundaryEvidence": "Retain the complete reviewed headword-bearing unit."
+            },
+            "decisionBasis": "The 示智戒主 verse belongs to Wei'an Deran"
+          },
+          {
+            "relPath": "J/J25/J25nB163.xml",
+            "workId": "work:J25nB163",
+            "sourceTitle": "Selected Record of Chan Master Guting’s Sayings",
+            "tier": 2,
+            "fullCaseWindow": "云：「南山有一條鱉鼻蛇，汝等諸人切須好看。」長慶云：「今日堂中，大有人喪身失命。」僧舉似玄沙。沙云：「須是稜兄始得。雖然如是，我即不與麼。」僧云：「和尚作麼生？」沙云：「用南山作麼？」雲門以拄杖攛向前作怕勢。師拈云：「八面狂風，五湖波浪。飄飄落落兮也是不著便。只如上不見諸佛、下不見眾生，長慶、玄沙門被雪峰惑亂，當下有得手的衲僧，痛與掀翻，一場慶快。」拈拄杖云：「照顧腳下。」頌曰：「一條拄杖從拈弄，萬別千差總豁如，松直鶴長根本事，莫猶緘口坐茅廬。」風穴在郢州衙內上堂云：「祖師心印，狀似鐵牛之機，去即印住，住即印破。只如不去不住，印即是？不印即是？」有盧陂長老出問云：「某甲有鐵牛之機，請師不搭印。」穴云：「慣釣鯨鯢沉巨浸，卻嗟駐步輾泥沙。」陂佇思，穴喝云：「長老何不進語？」陂擬議，穴打一拂子云：「還記得話頭麼？試舉看。」陂擬開口，穴又打一拂子。牧主云：「佛法與王法一般。」穴云：「見箇什麼？」牧云：「當斷不斷，返招其亂。」穴便下座。師拈云：「嫩筍細茶，松風石枕，也索是家裏人方知滋味。風穴權衡太過，不能決斷。牧主饒舌，俗氣未除。凡謂鐵牛之機將示，盧陂出陣當鋒，可惜龍頭蛇尾。大眾會麼？彼彼此此，囉囉哩哩，疑出囚人口，花開石碓嘴。」頌曰：「天賦靈機自陸沉，當人錯過謾追尋，窗前梅白枝枝玉，砌下黃花朵朵金。」洛浦初參夾山，山云：「雞棲鳳窠，非其同類，出去！」浦云：「自遠趨風，乞師一接。」山云：「目前無闍黎，此間無老僧。」浦便喝。山云：「住住，且莫草草匆匆，須知雲月是同，溪山各異，截斷天下人舌頭即不無，爭奈無舌人解語。」浦無語，山便打。師拈云：「柳綠花紅，鶯啼鴈語，有牛皮，搖牛尾，總不出這些子見解。若向無巴鼻處摸著巴鼻，虛空中擊碎虛空，敢保夾山老人亦且望崖而退。洛浦當時，待他道『且莫草草匆匆』，連加兩喝，山亦未免手忙腳亂。大眾！洛浦當時一喝就死，聽其取斷；若不如此，豈有今日？」頌曰。「釘樁搖櫓死登登，帶水拖泥赤律藤，不辯來鋒施一喝，深巖古殿撲寒燈。」太陽明安察和尚問梁山：「如何是無相道場？」山指觀音：「此是吳處士畫。」陽擬進語，山急索云：「這箇有相的。」陽言下有省，禮拜歸位立。山云：「何不道取一句子。」陽云：「道則不辭，恐上紙墨。」山呵呵云：「此上石去。」在後果上碑。師拈云：「塵說剎說，微細說，橫說豎說，一切說。與麼說，總不如隨例度日。且明安言下有省，禮拜歸位，這些子，恰似高高峰頂立，深深",
+            "heading": {
+              "head": "",
+              "mulu": []
+            },
+            "actorDecision": {
+              "evidenceKey": "o4",
+              "masterName": "Guting Shanjian",
+              "actorAttribution": null,
+              "action": "uses or actively raises the headword in the retained passage",
+              "grammarEvidence": "師拈 and the following line assign the comment to Guting Shanjian",
+              "voice": "The complete source frame assigns this use to the named actor.",
+              "contextMasters": [
+                {
+                  "MasterName": "Guting Shanjian",
+                  "Roles": [
+                    "utterer"
+                  ]
+                }
+              ],
+              "contextActors": []
+            },
+            "sourceSpanIdentity": {
+              "fromLb": "0253a10",
+              "sourceSpanOrdinal": 0,
+              "sourceContextSha256": "dd53f5d988967600cb0d17bde860ae410bd9125c16fcb0c4cfb16aecd31cf728",
+              "boundedKwic": "「還記得話頭麼？試舉看。」陂擬開口，穴又打一拂子。牧主云：「佛法與王法一般。」穴云：「見箇什麼？」牧云：「當斷不斷，返招其亂。」穴便下座。師拈云：「嫩筍細茶，松風石枕，也索是家裏人方知滋味。風穴權衡太過，不能決斷。牧主饒舌，俗氣未除。凡謂鐵牛之機將示，盧陂出陣當鋒，可惜龍頭蛇尾。大眾會麼？彼彼此此，囉囉哩哩，疑出囚人口，花開石碓嘴。」頌曰：「天賦靈機自陸沉，當人錯過謾追尋，窗前梅白枝枝玉，砌下黃花朵朵金。」洛浦初參夾山，山云：「雞棲鳳窠，非其同類，出去！」浦云：「自遠趨風，乞師一接。」山云：「目前無闍黎，此間無老僧。」浦便喝。山云：「住住，且莫草草匆匆，須知雲月是同，溪山各異，截斷天下人舌頭即不無，",
+              "boundedFromLb": "0253a10",
+              "boundedToLb": "0253a10",
+              "boundaryEvidence": "Retain the complete reviewed headword-bearing unit."
+            },
+            "decisionBasis": "師拈 and the following line assign the comment to Guting Shanjian"
+          },
+          {
+            "relPath": "J/J25/J25nB171.xml",
+            "workId": "work:J25nB171",
+            "sourceTitle": "Recorded Sayings of Monk Tianyin",
+            "tier": 2,
+            "fullCaseWindow": "汝等入堂坐禪已經一月，並無有一人到室中通箇消息，都盧是一隊無心道人。老僧信得汝等過，汝等還信得老僧過麼？若信得過，莫謂無心云是道，無心猶隔一重關。不見藥山和尚坐禪，石頭一日偶見，問云：『汝在這裏作麼？』云：『一物不為。』『云不為即閒坐也，云閒坐即為也。汝不為，不為箇甚麼？』云：『諸佛亦不識。』你看古人，一箇閒坐尚不可得，而況昏沉掉舉妄念紛飛者乎？石頭便云：『從來共住不知名，任運相將只麼行。自古上賢猶未識，造次凡流豈可明。』你看石頭和尚舌頭拖地，入泥入水為人。老僧今晚為汝等註破。『從來共住不知名』，那裏識得來？『任運相將只麼行』，也是客作漢。『自古上賢猶未識』，難道。『造次凡流豈可明』，不是壓良為賤。既註破，還知麼？若論這一段事，人人本有、箇箇不無。秖為無始以來無明業識煩惱蓋覆，不得現前。還見麼？」驀舉起拄杖云：「先天有物能為主，不屬陰陽造化生。」久立珍重。元旦示眾，師云：「今日元來新年頭，昨日元來舊年尾。新年頭上不見來，舊年尾上不見去。不來不去常現前，箇裏元來無所住。無所住處著眼看，大千沙界一毫許，漫看春風滿面生，張公喫酒李公醉。更有一般堪羨處，千門萬戶瞳瞳睡，大家齊唱太平歌，哩哩囉兮囉囉哩。所以道：『有條攀條，無條攀例。』大眾！祝聖壽以無疆。讚皇圖而永固。」元宵示眾，師云：「一燈纔焰萬燈瑩，爍破乾坤徹底空，山色自今光燦爛，桃花依舊笑春風。大眾！剛纔過歲又已半月，流光荏苒無暫停息。若是手腳未穩，切宜努力，莫待臨渴掘井追悔無門，要做工夫已遲了也。會得麼？英靈衲子未舉先知，機鈍之流不妨薦取。」以拄杖指燈云：「看！喚作燈則觸，不喚作燈即背。且道喚作什麼？雲門大師道：『光不透脫，有兩般病：一切處不明，面前有物是一；又透得一切法空，隱隱地似有箇物相似，亦是光不透脫。』直饒恁麼不恁麼，會即聲色而非聲色；不恁麼恁麼，會即非聲色而非非聲色。《般若經》云：『若取法相，即著我人眾生壽者。若取非法相，即著我人眾生壽者。是故不應取法，不應取非法。』到這裏無你下口處、無你入頭處、無你插手處、無你劄腳處，若佇思停機，即沒交涉矣。還會麼？除非上根利器一聞千悟始得。不見達磨初祖遙觀震旦人有大根器，得得航海而來。在梁國不契，直造少室，端坐面壁九載。剛接得箇神光二祖，斷臂安心、頓悟本來，謂之得髓。傳至六祖開心地法門，然後宗分二派，再四傳而派列五宗，豈不是燈燈相續瑩徹交輝。所以道：『法流不泯，派永接於曹溪；燈",
+            "heading": {
+              "head": "",
+              "mulu": []
+            },
+            "actorDecision": {
+              "evidenceKey": "o5",
+              "masterName": "Tianyin Yuanxiu",
+              "actorAttribution": null,
+              "action": "uses or actively raises the headword in the retained passage",
+              "grammarEvidence": "元旦示眾 and 師云 assign the song to Tianyin Yuanxiu",
+              "voice": "The complete source frame assigns this use to the named actor.",
+              "contextMasters": [
+                {
+                  "MasterName": "Tianyin Yuanxiu",
+                  "Roles": [
+                    "utterer"
+                  ]
+                }
+              ],
+              "contextActors": []
+            },
+            "sourceSpanIdentity": {
+              "fromLb": "0525c03",
+              "sourceSpanOrdinal": 0,
+              "sourceContextSha256": "c9a7548099a3d92569b7b0fc89d40adce4adba48971f9b465eed067168926124",
+              "boundedKwic": "麼？」驀舉起拄杖云：「先天有物能為主，不屬陰陽造化生。」久立珍重。元旦示眾，師云：「今日元來新年頭，昨日元來舊年尾。新年頭上不見來，舊年尾上不見去。不來不去常現前，箇裏元來無所住。無所住處著眼看，大千沙界一毫許，漫看春風滿面生，張公喫酒李公醉。更有一般堪羨處，千門萬戶瞳瞳睡，大家齊唱太平歌，哩哩囉兮囉囉哩。所以道：『有條攀條，無條攀例。』大眾！祝聖壽以無疆。讚皇圖而永固。」元宵示眾，師云：「一燈纔焰萬燈瑩，爍破乾坤徹底空，山色自今光燦爛，桃花依舊笑春風。大眾！剛纔過歲又已半月，流光荏苒無暫停息。若是手腳未穩，切宜努力，莫待臨渴掘井追悔無門，要做工夫已遲了也。會得麼？英靈衲子未舉先知，機鈍之流不妨薦取",
+              "boundedFromLb": "0525c03",
+              "boundedToLb": "0525c03",
+              "boundaryEvidence": "Retain the complete reviewed headword-bearing unit."
+            },
+            "decisionBasis": "元旦示眾 and 師云 assign the song to Tianyin Yuanxiu"
+          },
+          {
+            "relPath": "J/J26/J26nB177.xml",
+            "workId": "work:J26nB177",
+            "sourceTitle": "Recorded Sayings of Chan Master Poshan",
+            "tier": 2,
+            "fullCaseWindow": "：「聲、色二上座已為諸人露頭露面了也，還見麼？燭華光滿座，梁燕語留人。」遂陞座，拈香云：「此一瓣香，端為祝嚴今上皇帝萬歲萬歲萬萬歲，伏願鵰弓已挂狼煙息，萬里謳歌賀太平。」次拈香云：「此瓣香奉為闔國勳貴、當道宰官，伏願風以時、雨以時，道安百姓，齊其家、治其國，德被萬民。」末拈香云：「此瓣香威音那畔盤根，今世門頭秀實，第三回拈出，供養天童山密雲老人，用酬法乳，斂衣敷座。」上首白椎竟，師云：「鉤頭有餌，意外無私，擬汎扁舟，魚龍𨁝跳，還有現躍飛騰者麼？」僧問：「釋迦老人今日生是謂謗佛、釋迦老人未生亦是謗佛，生與未生即不問，如何是瞿曇獨尊處？」師云：「將謂獰龍躍，誰知跛鱉來？」僧喝一喝，師云：「此喝落在甚麼處？」僧擬測，師便打。僧禮拜，師乃云：「山僧向南方走一回，拾得幾箇金剛圈、一籃粟棘蓬，今日向人天眾前不辭拈出，與諸人共相吞跳。」以拄杖打圓相，云：「者是金剛圈，試跳看。」僧云：「跳。」師舉拄杖，云：「者是栗棘蓬，試吞看。」僧云：「吐。」師云：「多口阿師未在。」僧無語。師云：「不是與人難共聚，大都緇素要分明。」上堂，師云：「撞到今朝五月一，荒田瘦地都栽畢，我儂有首洗泥歌，唱出令人笑尿滴。哩哩囉，囉囉哩，種田博飯家常事，不是飽參人不知。」復舉：「地藏問眾禪客從何方來，一僧云：『從南方來。』藏曰：『南方佛法近日如何？』僧云：『商量浩浩地。』藏曰：『何如我者裏種田博飯喫？』僧云：『怎奈三界何？』藏曰：『喚什麼作三界？』僧無語。」師云：「者飯袋子大似逆風揚塵，自取撲面。若是箇漢，待他問：『南方近日佛法如何？』只消當面便唾，更再如何若何，拂袖便行，不惟疑著地藏，亦且不玷行腳。山僧恁麼告報，未審眾中還有傍不肯底麼？」良久，眾無出，師云：「行腳不開如是眼，艸鞋終被石頭欺。」上堂，師云：「般若如大火聚，四面不可入；般若如清涼池，四面俱可入。大眾且道：入底是？不入底是？試簡點看。若簡點得出，不妨到方丈裏通箇消息。」開爐，上堂，師云：「鍛煉幾團頑鐵，入火麤而出火細；療理幾箇病人，吞藥易而吐藥難。只須吞吐得宜、入出得所，慈悲下智之庸愚成就上根之利器。若遇泠脆熱焦、牛溲馬溺，任是扁鵲盧醫見之拱手、巧匠良工聞之吐舌。是以中慶今日開爐設舖，未審眾中還有不經鍛煉療理者麼？試出來相見。如無，巧匠爐邊多鈍鐵，良醫門首足病人。」上堂，師云：「說心說性，毒蛇頭上揩癢；舉古舉今，饑鷹爪下奪食。明上座不吐一詞，卻違所請，只",
+            "heading": {
+              "head": "",
+              "mulu": []
+            },
+            "actorDecision": {
+              "evidenceKey": "o6",
+              "masterName": "Poshan Haiming",
+              "actorAttribution": null,
+              "action": "uses or actively raises the headword in the retained passage",
+              "grammarEvidence": "上堂師云 and 唱個 assign the work song to Poshan Haiming",
+              "voice": "The complete source frame assigns this use to the named actor.",
+              "contextMasters": [
+                {
+                  "MasterName": "Poshan Haiming",
+                  "Roles": [
+                    "utterer"
+                  ]
+                }
+              ],
+              "contextActors": []
+            },
+            "sourceSpanIdentity": {
+              "fromLb": "0009c14",
+              "sourceSpanOrdinal": 0,
+              "sourceContextSha256": "d14a1c71df358cbcf86b2494195cd0713e859adaf4d8a23d14462fea06366331",
+              "boundedKwic": "眾前不辭拈出，與諸人共相吞跳。」以拄杖打圓相，云：「者是金剛圈，試跳看。」僧云：「跳。」師舉拄杖，云：「者是栗棘蓬，試吞看。」僧云：「吐。」師云：「多口阿師未在。」僧無語。師云：「不是與人難共聚，大都緇素要分明。」上堂，師云：「撞到今朝五月一，荒田瘦地都栽畢，我儂有首洗泥歌，唱出令人笑尿滴。哩哩囉，囉囉哩，種田博飯家常事，不是飽參人不知。」復舉：「地藏問眾禪客從何方來，一僧云：『從南方來。』藏曰：『南方佛法近日如何？』僧云：『商量浩浩地。』藏曰：『何如我者裏種田博飯喫？』僧云：『怎奈三界何？』藏曰：『喚什麼作三界？』僧無語。」師云：「者飯袋子大似逆風揚塵，自取撲面。若是箇漢，待他問：『南方近日佛法如",
+              "boundedFromLb": "0009c14",
+              "boundedToLb": "0009c14",
+              "boundaryEvidence": "Retain the complete reviewed headword-bearing unit."
+            },
+            "decisionBasis": "上堂師云 and 唱個 assign the work song to Poshan Haiming"
+          }
+        ],
+        "tier3ExceptionalJustification": "",
+        "actorRiskAdjudication": [
+          "Every retained complete case has an exact actor and final WitnessFamilyId.",
+          "No Tier-3 lamp is retained."
+        ],
+        "senseRuling": "One corpus-wide sense: the retained grammatical and rhetorical frames do not introduce a different referent.",
+        "sourceMeta": [
+          {
+            "path": "X/X78/X78n1554.xml",
+            "tier": 1,
+            "title": "Praise of the Orthodox Lineage of the Five Houses"
+          },
+          {
+            "path": "J/J20/J20nB098.xml",
+            "tier": 2,
+            "title": "Further Questions to Chan Master Huangbo Wunian"
+          },
+          {
+            "path": "J/J25/J25nB154.xml",
+            "tier": 2,
+            "title": "Recorded Sayings of Songyin Weianran"
+          },
+          {
+            "path": "J/J25/J25nB163.xml",
+            "tier": 2,
+            "title": "Selected Record of Chan Master Guting’s Sayings"
+          },
+          {
+            "path": "J/J25/J25nB171.xml",
+            "tier": 2,
+            "title": "Recorded Sayings of Monk Tianyin"
+          },
+          {
+            "path": "J/J26/J26nB177.xml",
+            "tier": 2,
+            "title": "Recorded Sayings of Chan Master Poshan"
+          }
+        ],
+        "sourceAuthorityManifest": {
+          "rows": [
+            {
+              "EvidenceKey": "o1",
+              "RelPath": "X/X78/X78n1554.xml",
+              "WorkId": "chan:wujia-zhengzong-zan",
+              "Tier": 1,
+              "SourceClass": "master-authored",
+              "AuthorityReason": "A named master's recorded sayings; the complete turn was independently actor-reviewed.",
+              "WitnessFamilyId": "baoning-spring-verse",
+              "DeploymentRole": "active-quotation"
+            },
+            {
+              "EvidenceKey": "o2",
+              "RelPath": "J/J20/J20nB098.xml",
+              "WorkId": "work:J20nB098",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "A named master's recorded sayings; the complete turn was independently actor-reviewed.",
+              "WitnessFamilyId": "wunian-oxherding-return-home-verse",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o3",
+              "RelPath": "J/J25/J25nB154.xml",
+              "WorkId": "work:J25nB154",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "A named master's recorded sayings; the complete turn was independently actor-reviewed.",
+              "WitnessFamilyId": "weian-instructional-verse",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o4",
+              "RelPath": "J/J25/J25nB163.xml",
+              "WorkId": "work:J25nB163",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "A named master's recorded sayings; the complete turn was independently actor-reviewed.",
+              "WitnessFamilyId": "guting-case-comment",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o5",
+              "RelPath": "J/J25/J25nB171.xml",
+              "WorkId": "work:J25nB171",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "A named master's recorded sayings; the complete turn was independently actor-reviewed.",
+              "WitnessFamilyId": "tianyin-new-year-song",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o6",
+              "RelPath": "J/J26/J26nB177.xml",
+              "WorkId": "work:J26nB177",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "A named master's recorded sayings; the complete turn was independently actor-reviewed.",
+              "WitnessFamilyId": "poshan-field-work-song",
+              "DeploymentRole": "original-use"
+            }
+          ]
+        },
+        "researchNotes": {
+          "openingInterpretation": "A performed vocable or song refrain rather than a sentence assembled from the individual graphs.",
+          "evidenceBody": [
+            "Baoning Renyong's spring verse, Wunian You's oxherding verse, Wei'an Deran's instruction, Guting Shanjian's case comment, Tianyin Yuanxiu's New Year song, and Poshan Haiming's field-work song deploy it in sung, rhythmic, celebratory, or playful frames."
+          ],
+          "counterexampleOrLimit": "Transliteration preserves the sound; context supplies the performance, not a lexical meaning for each graph.",
+          "literalGraphFloor": "luo-luo-li!",
+          "lexicalJob": "囉囉哩 means luo-luo-li!.",
+          "deploymentClasses": [
+            "direct answer",
+            "active capping line",
+            "active case raising"
+          ],
+          "highValueEvidenceLedger": [
+            {
+              "Disposition": "keep",
+              "Finding": "Baoning Renyong actively uses the headword in Praise of the Orthodox Lineage of the Five Houses.",
+              "Reason": "The complete case secures an exact actor and an independent recorded-sayings deployment."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Wunian You actively uses the headword in Further Questions to Chan Master Huangbo Wunian.",
+              "Reason": "The complete case secures an exact actor and an independent recorded-sayings deployment."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Wei'an Deran actively uses the headword in Recorded Sayings of Songyin Weianran.",
+              "Reason": "The complete case secures an exact actor and an independent recorded-sayings deployment."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Guting Shanjian actively uses the headword in Selected Record of Chan Master Guting’s Sayings.",
+              "Reason": "The complete case secures an exact actor and an independent recorded-sayings deployment."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Tianyin Yuanxiu actively uses the headword in Recorded Sayings of Monk Tianyin.",
+              "Reason": "The complete case secures an exact actor and an independent recorded-sayings deployment."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Poshan Haiming actively uses the headword in Recorded Sayings of Chan Master Poshan.",
+              "Reason": "The complete case secures an exact actor and an independent recorded-sayings deployment."
+            }
+          ],
+          "openingClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3",
+            "o4",
+            "o5",
+            "o6"
+          ],
+          "evidenceBodyClaimKeys": [
+            [
+              "o1",
+              "o2",
+              "o3",
+              "o4",
+              "o5",
+              "o6"
+            ]
+          ],
+          "zenBend": "A performed vocable or song refrain rather than a sentence assembled from the individual graphs.",
+          "counterexample": "Transliteration preserves the sound; context supplies the performance, not a lexical meaning for each graph.",
+          "differentThing": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "luo-luo-li!"
+            ],
+            "Reason": "All retained uses preserve one lexical job."
+          },
+          "aliasRationale": "Alternates preserve the same concrete expression.",
+          "modifierControls": [
+            {
+              "Term": "囉囉哩",
+              "Finding": "No modifier creates a second referent."
+            }
+          ],
+          "familyControls": [
+            {
+              "Term": "囉囉哩",
+              "Finding": "6 independent higher-authority families meet the floor."
+            }
+          ],
+          "higherSearch": "Tier 1 was searched first, then Tier 2; retained higher-authority evidence meets the floor, so no lamp was consulted.",
+          "depthReceipt": {
+            "Complete": true,
+            "ReviewedExactHitCount": 149,
+            "AvailableSourceFiles": 87,
+            "SearchedDeploymentClasses": [
+              "direct answer",
+              "active capping line",
+              "active case raising"
+            ],
+            "OmissionAudit": [
+              "6 retained complete cases were actor-adjudicated.",
+              "Tier-3 lamps were not needed."
+            ]
+          },
+          "admissionReason": "囉囉哩 is a stable expression with repeated active Chan deployments.",
+          "duplicateCheck": {
+            "DeterministicIdChecked": true,
+            "ExactHeadwordChecked": true,
+            "NearDuplicateRuling": "No exact collision admitted."
+          },
+          "familyHarvest": {
+            "PolicyVersion": 1,
+            "Scope": "R81 source-hierarchy repair",
+            "Edges": [],
+            "NegativeReceipt": [],
+            "GraphicVariants": []
+          }
+        }
+      },
+      "evidenceDraft": {
+        "SchemaVersion": 1,
+        "ConstructionPipelineVersion": 2,
+        "Admission": {
+          "Decision": "admit",
+          "LexicalUnitReason": "囉囉哩 is a stable expression with repeated active Chan deployments.",
+          "ObservableChanJob": "囉囉哩 means luo-luo-li!.",
+          "DuplicateCheck": {
+            "DeterministicIdChecked": true,
+            "ExactHeadwordChecked": true,
+            "NearDuplicateRuling": "No exact or punctuation-normalized collision occurs in R01-R10 or the current R11 selection; companion clauses remain separately named family leads."
+          }
+        },
+        "EvidenceTransport": {
+          "DossierPath": "source-dossier.json",
+          "DossierSha256": "258fb6712434af535d553ba2f407d67ef34803ba7a2c441bcda650aa8f15d0c7",
+          "SourceAuthorityManifestSha256": "2ee44bf19a2533958e5620c38915f3d03fbb81209c76c7183742a4f3d059f501",
+          "DiscoveryMethods": [
+            "exact concordance count",
+            "complete-turn actor review",
+            "Tier 1 then Tier 2 source ranking",
+            "predecessor-evidence adjudication"
+          ],
+          "ExactCount": 149,
+          "BridgedCount": 149,
+          "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+        },
+        "Entry": {
+          "Id": "t_1b3195ce4368",
+          "SourceTerm": "囉囉哩",
+          "CreatedBy": "R81 source-hierarchy repair",
+          "WrittenUtc": "2026-07-30T09:10:00Z",
+          "Senses": [
+            {
+              "SenseKey": null,
+              "MasterName": null,
+              "PreferredTarget": "luo-luo-li!",
+              "AlternateTargets": [
+                "lo-lo-li!",
+                "a sung luo-luo-li refrain"
+              ],
+              "SearchAliases": [
+                "song refrain",
+                "capping cry"
+              ],
+              "Status": "preferred",
+              "Validation": "multi-source",
+              "Explanation": "A performed vocable or song refrain rather than a sentence assembled from the individual graphs. Baoning Renyong's spring verse, Wunian You's oxherding verse, Wei'an Deran's instruction, Guting Shanjian's case comment, Tianyin Yuanxiu's New Year song, and Poshan Haiming's field-work song deploy it in sung, rhythmic, celebratory, or playful frames.",
+              "Note": "Transliteration preserves the sound; context supplies the performance, not a lexical meaning for each graph.",
+              "Occurrences": [
+                {
+                  "RelPath": "X/X78/X78n1554.xml",
+                  "FromLb": "0592c15",
+                  "ToLb": "0592c15",
+                  "Kwic": "。師呈雲蓋顒頌云：拈將楖栗路縱橫，大地清風颯颯生。北斗柄斜輕撥轉，大唐人眼直須盲。上堂。云：一是一，二是二，三是三，四是四，數目甚分明，上下依資次。依資次，有何事？以拄杖畫一畫，云：大眾！一時亂却六十甲子了也。立春，上堂。立春日，打春牛，一棒兩棒，千頭萬頭，雪花深覆辨不得，頂門有眼徒悠悠。拍手，云：囉囉哩，惱亂春風卒未休。上堂。風鳴條，雨破塊，曉來枕上鸎聲碎。蝦蟇蚯蚓一時鳴，妙德空生都不會。都不會，三箇成群，四箇作隊。窈窈窕窕，颯颯颻颻。向南北東西，折得梨花李花，一佩兩佩。牧童頌曰：西風浩浩楚天秋，索寞無人野渡頭。沙鳥晚來俱散盡，鳴咿歸去倒騎牛。答陳遷秀才曰：胡孫兒子最惺惺，愛弄千年鬼眼睛。懊惱不知",
+                  "MasterName": "Baoning Renyong",
+                  "Curated": true,
+                  "ContextMasters": [
+                    {
+                      "MasterName": "Baoning Renyong",
+                      "Roles": [
+                        "utterer"
+                      ]
+                    }
+                  ],
+                  "ContextActors": [],
+                  "AttributionNote": "Source record (X/X78/X78n1554.xml). Praise of the Orthodox Lineage of the Five Houses. Exact actor: Baoning Renyong. The authored praise explicitly quotes Baoning Renyong's hall verse",
+                  "DraftActorProof": {
+                    "ExactHeadwordClause": "囉囉哩",
+                    "GrammaticalSubject": "Baoning Renyong",
+                    "SpeechFrame": "Source record (X/X78/X78n1554.xml). Praise of the Orthodox Lineage of the Five Houses. Exact actor: Baoning Renyong. The authored praise explicitly quotes Baoning Renyong's hall verse",
+                    "FullCaseDecision": "Baoning Renyong is the exact actor at the headword-bearing clause."
+                  }
+                },
+                {
+                  "RelPath": "J/J20/J20nB098.xml",
+                  "FromLb": "0521a14",
+                  "ToLb": "0521a14",
+                  "Kwic": "嶺畔足跡多，不是牛兮是甚麼？緊密行纏牢著腳，好攜繩索急追他。捉獲捉獲狹路崖前覺一聲，全身獨露在荒青，悠悠喚轉靈苗引，貫鼻穿繩孔現成。調治調治牢把繩頭痛策渠，曠陳劣性漸憑除，二時水草勤調治，體伏純然樂宅居。純和純和散放無拘養幻身，縱橫無處絕埃塵，這回不觸凡情境，左右周旋逐故人。歸家歸家宛轉回頭歸故家，囉囉哩哩出煙霞，鞭繩簑笠俱拋卻，鐵笛橫吹不犯牙。存人存人得意忘緣迥出山，堂堂無束任清閑，眠雲枕石深鼾睡，那肯容身落世間？俱忘俱忘人亦空兮牛亦空，寒光寂照盡融通，大千沙界無名相，依舊扶桑在海東。還源還源識破從前不假功，古今凝潔一非聾，欲知端的還源處，山自青兮花自紅。入廛入廛赤腳髼頭出世來，春風滿面展唇腮，玄",
+                  "MasterName": "Wunian You",
+                  "Curated": true,
+                  "ContextMasters": [
+                    {
+                      "MasterName": "Wunian You",
+                      "Roles": [
+                        "utterer"
+                      ]
+                    }
+                  ],
+                  "ContextActors": [],
+                  "AttributionNote": "Source record (J/J20/J20nB098.xml). Further Questions to Chan Master Huangbo Wunian. Exact actor: Wunian You. The 牧牛圖頌 section assigns the verse to the record owner",
+                  "DraftActorProof": {
+                    "ExactHeadwordClause": "囉囉哩",
+                    "GrammaticalSubject": "Wunian You",
+                    "SpeechFrame": "Source record (J/J20/J20nB098.xml). Further Questions to Chan Master Huangbo Wunian. Exact actor: Wunian You. The 牧牛圖頌 section assigns the verse to the record owner",
+                    "FullCaseDecision": "Wunian You is the exact actor at the headword-bearing clause."
+                  }
+                },
+                {
+                  "RelPath": "J/J25/J25nB154.xml",
+                  "FromLb": "0037b20",
+                  "ToLb": "0037b20",
+                  "Kwic": "高風千古寄漁磯。隨所寓，隨所寓，煙波歷盡無寒暑；老我乾坤雪一頭，滿懷風月難分付。示智戒主示智戒主戒如瓔珞珠，亦如淨滿月；汝當力堅持，慎勿暫時瞥。一念若遲疑，生死無休歇；光陰能幾何？子自宜甄別。吾家種草不易做，眨起眉毛須薦取；百尺竿頭解轉身，腳底何妨草鞋破。便甚麼會，石女唱巴歌；不甚麼會，跛驢拽鐵磨。囉囉哩，黃頭碧眼；知不知？玉兔踏折珊瑚枝。送虎丘統藏主送虎丘統藏主拈得缽囉娘一句，絕毫絕釐沒巴鼻；古木寒嵒月色新，統攝大千歸自己。蘇州有也常州有，劍池夜半蒼龍吼；驪珠抉得本無心，一任猛風翻石臼。五臺山上隔塵氛，雲蒸飯熟香氤氳；驚倒生公點頭石，當機說法教誰聞？送大龍興澤監寺送大龍興澤監寺大用現前滿眼滿耳，纔",
+                  "MasterName": "Wei'an Deran",
+                  "Curated": true,
+                  "ContextMasters": [
+                    {
+                      "MasterName": "Wei'an Deran",
+                      "Roles": [
+                        "utterer"
+                      ]
+                    }
+                  ],
+                  "ContextActors": [],
+                  "AttributionNote": "Source record (J/J25/J25nB154.xml). Recorded Sayings of Songyin Weianran. Exact actor: Wei'an Deran. The 示智戒主 verse belongs to Wei'an Deran",
+                  "DraftActorProof": {
+                    "ExactHeadwordClause": "囉囉哩",
+                    "GrammaticalSubject": "Wei'an Deran",
+                    "SpeechFrame": "Source record (J/J25/J25nB154.xml). Recorded Sayings of Songyin Weianran. Exact actor: Wei'an Deran. The 示智戒主 verse belongs to Wei'an Deran",
+                    "FullCaseDecision": "Wei'an Deran is the exact actor at the headword-bearing clause."
+                  }
+                },
+                {
+                  "RelPath": "J/J25/J25nB163.xml",
+                  "FromLb": "0253a10",
+                  "ToLb": "0253a10",
+                  "Kwic": "「還記得話頭麼？試舉看。」陂擬開口，穴又打一拂子。牧主云：「佛法與王法一般。」穴云：「見箇什麼？」牧云：「當斷不斷，返招其亂。」穴便下座。師拈云：「嫩筍細茶，松風石枕，也索是家裏人方知滋味。風穴權衡太過，不能決斷。牧主饒舌，俗氣未除。凡謂鐵牛之機將示，盧陂出陣當鋒，可惜龍頭蛇尾。大眾會麼？彼彼此此，囉囉哩哩，疑出囚人口，花開石碓嘴。」頌曰：「天賦靈機自陸沉，當人錯過謾追尋，窗前梅白枝枝玉，砌下黃花朵朵金。」洛浦初參夾山，山云：「雞棲鳳窠，非其同類，出去！」浦云：「自遠趨風，乞師一接。」山云：「目前無闍黎，此間無老僧。」浦便喝。山云：「住住，且莫草草匆匆，須知雲月是同，溪山各異，截斷天下人舌頭即不無，",
+                  "MasterName": "Guting Shanjian",
+                  "Curated": true,
+                  "ContextMasters": [
+                    {
+                      "MasterName": "Guting Shanjian",
+                      "Roles": [
+                        "utterer"
+                      ]
+                    }
+                  ],
+                  "ContextActors": [],
+                  "AttributionNote": "Source record (J/J25/J25nB163.xml). Selected Record of Chan Master Guting’s Sayings. Exact actor: Guting Shanjian. 師拈 and the following line assign the comment to Guting Shanjian",
+                  "DraftActorProof": {
+                    "ExactHeadwordClause": "囉囉哩",
+                    "GrammaticalSubject": "Guting Shanjian",
+                    "SpeechFrame": "Source record (J/J25/J25nB163.xml). Selected Record of Chan Master Guting’s Sayings. Exact actor: Guting Shanjian. 師拈 and the following line assign the comment to Guting Shanjian",
+                    "FullCaseDecision": "Guting Shanjian is the exact actor at the headword-bearing clause."
+                  }
+                },
+                {
+                  "RelPath": "J/J25/J25nB171.xml",
+                  "FromLb": "0525c03",
+                  "ToLb": "0525c03",
+                  "Kwic": "麼？」驀舉起拄杖云：「先天有物能為主，不屬陰陽造化生。」久立珍重。元旦示眾，師云：「今日元來新年頭，昨日元來舊年尾。新年頭上不見來，舊年尾上不見去。不來不去常現前，箇裏元來無所住。無所住處著眼看，大千沙界一毫許，漫看春風滿面生，張公喫酒李公醉。更有一般堪羨處，千門萬戶瞳瞳睡，大家齊唱太平歌，哩哩囉兮囉囉哩。所以道：『有條攀條，無條攀例。』大眾！祝聖壽以無疆。讚皇圖而永固。」元宵示眾，師云：「一燈纔焰萬燈瑩，爍破乾坤徹底空，山色自今光燦爛，桃花依舊笑春風。大眾！剛纔過歲又已半月，流光荏苒無暫停息。若是手腳未穩，切宜努力，莫待臨渴掘井追悔無門，要做工夫已遲了也。會得麼？英靈衲子未舉先知，機鈍之流不妨薦取",
+                  "MasterName": "Tianyin Yuanxiu",
+                  "Curated": true,
+                  "ContextMasters": [
+                    {
+                      "MasterName": "Tianyin Yuanxiu",
+                      "Roles": [
+                        "utterer"
+                      ]
+                    }
+                  ],
+                  "ContextActors": [],
+                  "AttributionNote": "Source record (J/J25/J25nB171.xml). Recorded Sayings of Monk Tianyin. Exact actor: Tianyin Yuanxiu. 元旦示眾 and 師云 assign the song to Tianyin Yuanxiu",
+                  "DraftActorProof": {
+                    "ExactHeadwordClause": "囉囉哩",
+                    "GrammaticalSubject": "Tianyin Yuanxiu",
+                    "SpeechFrame": "Source record (J/J25/J25nB171.xml). Recorded Sayings of Monk Tianyin. Exact actor: Tianyin Yuanxiu. 元旦示眾 and 師云 assign the song to Tianyin Yuanxiu",
+                    "FullCaseDecision": "Tianyin Yuanxiu is the exact actor at the headword-bearing clause."
+                  }
+                },
+                {
+                  "RelPath": "J/J26/J26nB177.xml",
+                  "FromLb": "0009c14",
+                  "ToLb": "0009c14",
+                  "Kwic": "眾前不辭拈出，與諸人共相吞跳。」以拄杖打圓相，云：「者是金剛圈，試跳看。」僧云：「跳。」師舉拄杖，云：「者是栗棘蓬，試吞看。」僧云：「吐。」師云：「多口阿師未在。」僧無語。師云：「不是與人難共聚，大都緇素要分明。」上堂，師云：「撞到今朝五月一，荒田瘦地都栽畢，我儂有首洗泥歌，唱出令人笑尿滴。哩哩囉，囉囉哩，種田博飯家常事，不是飽參人不知。」復舉：「地藏問眾禪客從何方來，一僧云：『從南方來。』藏曰：『南方佛法近日如何？』僧云：『商量浩浩地。』藏曰：『何如我者裏種田博飯喫？』僧云：『怎奈三界何？』藏曰：『喚什麼作三界？』僧無語。」師云：「者飯袋子大似逆風揚塵，自取撲面。若是箇漢，待他問：『南方近日佛法如",
+                  "MasterName": "Poshan Haiming",
+                  "Curated": true,
+                  "ContextMasters": [
+                    {
+                      "MasterName": "Poshan Haiming",
+                      "Roles": [
+                        "utterer"
+                      ]
+                    }
+                  ],
+                  "ContextActors": [],
+                  "AttributionNote": "Source record (J/J26/J26nB177.xml). Recorded Sayings of Chan Master Poshan. Exact actor: Poshan Haiming. 上堂師云 and 唱個 assign the work song to Poshan Haiming",
+                  "DraftActorProof": {
+                    "ExactHeadwordClause": "囉囉哩",
+                    "GrammaticalSubject": "Poshan Haiming",
+                    "SpeechFrame": "Source record (J/J26/J26nB177.xml). Recorded Sayings of Chan Master Poshan. Exact actor: Poshan Haiming. 上堂師云 and 唱個 assign the work song to Poshan Haiming",
+                    "FullCaseDecision": "Poshan Haiming is the exact actor at the headword-bearing clause."
+                  }
+                }
+              ],
+              "ClaimAnchors": [],
+              "SourceTexts": [
+                "X/X78/X78n1554.xml",
+                "J/J20/J20nB098.xml",
+                "J/J25/J25nB154.xml",
+                "J/J25/J25nB163.xml",
+                "J/J25/J25nB171.xml",
+                "J/J26/J26nB177.xml"
+              ],
+              "RelatedMasters": [
+                "Baoning Renyong",
+                "Wunian You",
+                "Wei'an Deran",
+                "Guting Shanjian",
+                "Tianyin Yuanxiu",
+                "Poshan Haiming"
+              ],
+              "RelatedTerms": [],
+              "ExplanationParts": {
+                "CorpusEarnedOpening": "A performed vocable or song refrain rather than a sentence assembled from the individual graphs.",
+                "EvidenceBody": [
+                  "Baoning Renyong's spring verse, Wunian You's oxherding verse, Wei'an Deran's instruction, Guting Shanjian's case comment, Tianyin Yuanxiu's New Year song, and Poshan Haiming's field-work song deploy it in sung, rhythmic, celebratory, or playful frames."
+                ]
+              },
+              "DraftEvidence": {
+                "LiteralGraphFloor": "luo-luo-li!",
+                "LexicalJob": "囉囉哩 means luo-luo-li!.",
+                "DeploymentClasses": [
+                  "direct answer",
+                  "active capping line",
+                  "active case raising"
+                ],
+                "HighValueEvidenceLedger": [
+                  {
+                    "Disposition": "keep",
+                    "Finding": "Baoning Renyong actively uses the headword in Praise of the Orthodox Lineage of the Five Houses.",
+                    "Reason": "The complete case secures an exact actor and an independent recorded-sayings deployment."
+                  },
+                  {
+                    "Disposition": "keep",
+                    "Finding": "Wunian You actively uses the headword in Further Questions to Chan Master Huangbo Wunian.",
+                    "Reason": "The complete case secures an exact actor and an independent recorded-sayings deployment."
+                  },
+                  {
+                    "Disposition": "keep",
+                    "Finding": "Wei'an Deran actively uses the headword in Recorded Sayings of Songyin Weianran.",
+                    "Reason": "The complete case secures an exact actor and an independent recorded-sayings deployment."
+                  },
+                  {
+                    "Disposition": "keep",
+                    "Finding": "Guting Shanjian actively uses the headword in Selected Record of Chan Master Guting’s Sayings.",
+                    "Reason": "The complete case secures an exact actor and an independent recorded-sayings deployment."
+                  },
+                  {
+                    "Disposition": "keep",
+                    "Finding": "Tianyin Yuanxiu actively uses the headword in Recorded Sayings of Monk Tianyin.",
+                    "Reason": "The complete case secures an exact actor and an independent recorded-sayings deployment."
+                  },
+                  {
+                    "Disposition": "keep",
+                    "Finding": "Poshan Haiming actively uses the headword in Recorded Sayings of Chan Master Poshan.",
+                    "Reason": "The complete case secures an exact actor and an independent recorded-sayings deployment."
+                  }
+                ],
+                "OpeningClaimEvidenceKeys": [
+                  "o1",
+                  "o2",
+                  "o3",
+                  "o4",
+                  "o5",
+                  "o6"
+                ],
+                "EvidenceBodyClaimKeys": [
+                  [
+                    "o1",
+                    "o2",
+                    "o3",
+                    "o4",
+                    "o5",
+                    "o6"
+                  ]
+                ],
+                "ZenBend": "A performed vocable or song refrain rather than a sentence assembled from the individual graphs.",
+                "CounterexampleOrLimit": "Transliteration preserves the sound; context supplies the performance, not a lexical meaning for each graph.",
+                "DifferentThingTest": {
+                  "Decision": "one-thing",
+                  "ComparedThings": [
+                    "luo-luo-li!"
+                  ],
+                  "Reason": "All retained uses preserve one lexical job."
+                },
+                "AliasRationale": "Alternates preserve the same concrete expression.",
+                "ModifierControls": [
+                  {
+                    "Term": "囉囉哩",
+                    "Finding": "No modifier creates a second referent."
+                  }
+                ],
+                "FamilyControls": [
+                  {
+                    "Term": "囉囉哩",
+                    "Finding": "6 independent higher-authority families meet the floor."
+                  }
+                ],
+                "IndependentWorkIds": [
+                  "chan:wujia-zhengzong-zan",
+                  "work:J20nB098",
+                  "work:J25nB154",
+                  "work:J25nB163",
+                  "work:J25nB171",
+                  "work:J26nB177"
+                ],
+                "SourceAuthorityRows": [
+                  {
+                    "EvidenceKey": "o1",
+                    "RelPath": "X/X78/X78n1554.xml",
+                    "WorkId": "chan:wujia-zhengzong-zan",
+                    "Tier": 1,
+                    "SourceClass": "master-authored",
+                    "AuthorityReason": "A named master's recorded sayings; the complete turn was independently actor-reviewed.",
+                    "WitnessFamilyId": "baoning-spring-verse",
+                    "DeploymentRole": "active-quotation"
+                  },
+                  {
+                    "EvidenceKey": "o2",
+                    "RelPath": "J/J20/J20nB098.xml",
+                    "WorkId": "work:J20nB098",
+                    "Tier": 2,
+                    "SourceClass": "recorded-sayings",
+                    "AuthorityReason": "A named master's recorded sayings; the complete turn was independently actor-reviewed.",
+                    "WitnessFamilyId": "wunian-oxherding-return-home-verse",
+                    "DeploymentRole": "original-use"
+                  },
+                  {
+                    "EvidenceKey": "o3",
+                    "RelPath": "J/J25/J25nB154.xml",
+                    "WorkId": "work:J25nB154",
+                    "Tier": 2,
+                    "SourceClass": "recorded-sayings",
+                    "AuthorityReason": "A named master's recorded sayings; the complete turn was independently actor-reviewed.",
+                    "WitnessFamilyId": "weian-instructional-verse",
+                    "DeploymentRole": "original-use"
+                  },
+                  {
+                    "EvidenceKey": "o4",
+                    "RelPath": "J/J25/J25nB163.xml",
+                    "WorkId": "work:J25nB163",
+                    "Tier": 2,
+                    "SourceClass": "recorded-sayings",
+                    "AuthorityReason": "A named master's recorded sayings; the complete turn was independently actor-reviewed.",
+                    "WitnessFamilyId": "guting-case-comment",
+                    "DeploymentRole": "original-use"
+                  },
+                  {
+                    "EvidenceKey": "o5",
+                    "RelPath": "J/J25/J25nB171.xml",
+                    "WorkId": "work:J25nB171",
+                    "Tier": 2,
+                    "SourceClass": "recorded-sayings",
+                    "AuthorityReason": "A named master's recorded sayings; the complete turn was independently actor-reviewed.",
+                    "WitnessFamilyId": "tianyin-new-year-song",
+                    "DeploymentRole": "original-use"
+                  },
+                  {
+                    "EvidenceKey": "o6",
+                    "RelPath": "J/J26/J26nB177.xml",
+                    "WorkId": "work:J26nB177",
+                    "Tier": 2,
+                    "SourceClass": "recorded-sayings",
+                    "AuthorityReason": "A named master's recorded sayings; the complete turn was independently actor-reviewed.",
+                    "WitnessFamilyId": "poshan-field-work-song",
+                    "DeploymentRole": "original-use"
+                  }
+                ],
+                "LampExcessJustification": "No Tier-3 lamp or lineage compilation is retained.",
+                "NoHigherWitnessSearchReceipt": "Tier 1 was searched first; Tier 2 met the floor; no lamp was consulted.",
+                "DepthHarvestReceipt": {
+                  "Complete": true,
+                  "ReviewedExactHitCount": 149,
+                  "AvailableSourceFiles": 87,
+                  "SearchedDeploymentClasses": [
+                    "direct answer",
+                    "active capping line",
+                    "active case raising"
+                  ],
+                  "OmissionAudit": [
+                    "6 retained complete cases were actor-adjudicated.",
+                    "Tier-3 lamps were not needed."
+                  ]
+                }
+              },
+              "DraftAcceptedDerivedFields": {
+                "SourceTexts": [
+                  "X/X78/X78n1554.xml",
+                  "J/J20/J20nB098.xml",
+                  "J/J25/J25nB154.xml",
+                  "J/J25/J25nB163.xml",
+                  "J/J25/J25nB171.xml",
+                  "J/J26/J26nB177.xml"
+                ],
+                "RelatedMasters": [
+                  "Baoning Renyong",
+                  "Wunian You",
+                  "Wei'an Deran",
+                  "Guting Shanjian",
+                  "Tianyin Yuanxiu",
+                  "Poshan Haiming"
+                ]
+              }
+            }
+          ],
+          "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+        },
+        "FamilyHarvest": {
+          "PolicyVersion": 1,
+          "Scope": "R81 source-hierarchy repair",
+          "Edges": [],
+          "NegativeReceipt": [],
+          "GraphicVariants": []
+        }
+      }
+    },
+    {
+      "id": "t_1b6cbdc8d52e",
+      "term": "有時人境兩俱奪",
+      "sourceDossier": {
+        "schemaVersion": "r11-source-dossier.v1",
+        "id": "t_1b6cbdc8d52e",
+        "term": "有時人境兩俱奪",
+        "selectionBinding": {
+          "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r81-constructor-selection-b.json",
+          "sha256": "bb91412900a52245e88fb98a6b70ecdc3dd4b48ea942d3c1888b4ce150bf5090"
+        },
+        "researchBinding": {
+          "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r81-research-b.json",
+          "sha256": "b2769a658620e3d8b3be979a9fdd1fc86c300b3e268630ff5c82c8b023f5a4de"
+        },
+        "exactCount": {
+          "id": "t_1b6cbdc8d52e",
+          "term": "有時人境兩俱奪",
+          "hits": 67,
+          "files": 36,
+          "works": 35,
+          "per_file": [
+            [
+              "X/X64/X64n1260.xml",
+              6
+            ],
+            [
+              "X/X83/X83n1578.xml",
+              5
+            ],
+            [
+              "M/M59/M59n1540.xml",
+              4
+            ],
+            [
+              "T/T47/T47n1998A.xml",
+              4
+            ],
+            [
+              "L/L154/L154n1639.xml",
+              3
+            ],
+            [
+              "X/X66/X66n1297.xml",
+              3
+            ],
+            [
+              "X/X70/X70n1397.xml",
+              3
+            ],
+            [
+              "X/X84/X84n1583.xml",
+              3
+            ],
+            [
+              "B/B25/B25n0145.xml",
+              2
+            ],
+            [
+              "B/B27/B27n0152.xml",
+              2
+            ],
+            [
+              "J/J25/J25nB171.xml",
+              2
+            ],
+            [
+              "J/J26/J26nB178.xml",
+              2
+            ],
+            [
+              "X/X66/X66n1296.xml",
+              2
+            ],
+            [
+              "X/X80/X80n1565.xml",
+              2
+            ],
+            [
+              "X/X81/X81n1568.xml",
+              2
+            ],
+            [
+              "X/X85/X85n1593.xml",
+              2
+            ],
+            [
+              "J/J29/J29nB239.xml",
+              1
+            ],
+            [
+              "J/J29/J29nB244.xml",
+              1
+            ],
+            [
+              "J/J29/J29nB248.xml",
+              1
+            ],
+            [
+              "J/J32/J32nB276.xml",
+              1
+            ],
+            [
+              "J/J33/J33nB280.xml",
+              1
+            ],
+            [
+              "J/J36/J36nB367.xml",
+              1
+            ],
+            [
+              "J/J38/J38nB409.xml",
+              1
+            ],
+            [
+              "T/T48/T48n2001.xml",
+              1
+            ],
+            [
+              "T/T48/T48n2004.xml",
+              1
+            ],
+            [
+              "T/T51/T51n2077.xml",
+              1
+            ],
+            [
+              "X/X67/X67n1299.xml",
+              1
+            ],
+            [
+              "X/X68/X68n1319.xml",
+              1
+            ],
+            [
+              "X/X71/X71n1421.xml",
+              1
+            ],
+            [
+              "X/X79/X79n1559.xml",
+              1
+            ],
+            [
+              "X/X81/X81n1571.xml",
+              1
+            ],
+            [
+              "X/X82/X82n1571.xml",
+              1
+            ],
+            [
+              "X/X83/X83n1574.xml",
+              1
+            ],
+            [
+              "X/X84/X84n1580.xml",
+              1
+            ],
+            [
+              "X/X84/X84n1585.xml",
+              1
+            ],
+            [
+              "X/X85/X85n1590.xml",
+              1
+            ]
+          ]
+        },
+        "requiredFloor": 4,
+        "semanticReadComplete": true,
+        "tier3Lamp": 0,
+        "predecessorEvidenceAudit": [],
+        "retainedCompleteCases": [
+          {
+            "relPath": "J/J25/J25nB171.xml",
+            "workId": "work:J25nB171",
+            "sourceTitle": "Recorded Sayings of Monk Tianyin",
+            "tier": 2,
+            "fullCaseWindow": "翻擲之機風雷動。」舉臨濟四照用。頌云：「電光影裏見尤難，及至針錐轉不堪，若得英靈獅子子，擲機用在照先前。」「白棒臨頭殺活機，轉身吐氣見遲遲，絲綸漫擲鉤頭餌，任爾風波柄已持。」「和聲便打絕商量，明月清風豈覆藏？若是祖師門下客，通身拶碎也承當。」「或時風雨或時晴，果爾知音不用聽，堪笑時人無理會，錯將孤境向人吟。」舉臨濟四賓主。頌云：「賓中賓，綠水青山向外尋，秖因未具參方眼，縱遇知音不識人。」「賓中主，四海遨遊無所倚，回頭卻望故鄉關，及至歸來兩目瞽。」「主中賓，應機接物莫沉吟，打風打雨天然在，無論高低一樣平。」「主中主，坐斷乾坤令行矣，何須要假庫中刀，太平不用將軍致。」「杖藜行處萬峰低，勘破諸方獅子皮，收拾蒲團疊雙足，免教空費老婆癡。」「入廛垂手吾家事，種草須教百劫來，箇裏一些湊不著，面前猶隔萬重臺。」「驀劄相逢曲調高，知音不用更推敲，橫行直入千峰外，老遠歸來不憚勞。」「水中撈月妄心高，卻被舟人又刻刀，孤負己靈何日醒，可憐賓主轉徒勞。」舉臨濟四料簡。頌云：「有時奪人不奪境，蓋覆將來風雷陣。若然不透這重關，猶隔煙雲千萬嶺。」「有時奪境不奪人，輕輕撥去眼中塵，從斯剔起眉毛也，拋擲大千沒處尋。」「有時人境兩俱奪，白棒臨頭天地黑，轉身無路暗慚惶，打失娘生面方徹。」「有時人境俱不奪，權實並行非一橛，四海遨遊未識伊，而今點出家常訣。」舉雲門三句。頌云：「函蓋乾坤體自然，箇中原不著毫端，虛空一口能吞盡，放出三千及大千。」「截斷眾流非解悟，何容擬議落言詮？饒他佛祖親傳受，到此還須用鐵鞭。」「隨波逐浪趁風遊，月下垂鉤放小舟，識得句中消息子，回頭不住在中流。」舉古意句四。頌云：「有時意到句不到，月隱雲中難普照，森羅萬象亂如麻，指點烏能得分曉？」「有時句到意不到，攢華簇錦無邊表，撞著無位老真人，拶破不直一莖草。」「有時意句兩俱到，坐斷乾坤光晃曜，拈來一字足為奇，物物頭頭隨處了。」「有時意句俱不到，扶墻摸壁向外討，驀然撞著自家底，方始知羞免顛倒。」機緣機緣師掩關嶺南，顧九疇太史訪，問：「如何是奪人不奪境？」師云：「白雲封我圓光戶，恰似無人坐室中。」「如何是奪境不奪人？」師云：「風送白雲歸洞去，秖留一箇野僧閒。」「如何是人境兩俱奪。」師云：「了知四大原非我，白雲聚散本無蹤。」「如何是人境俱不奪？」師云：「幾度白雲來伴我，就裏和衣帶月眠。」僧參云：「某甲如今看十方世界總是一條拄杖。」師笑云：「十方世界總是一條拄杖",
+            "heading": {
+              "head": "",
+              "mulu": []
+            },
+            "actorDecision": {
+              "evidenceKey": "o1",
+              "masterName": "Tianyin Yuanxiu",
+              "actorAttribution": null,
+              "action": "uses or actively raises the headword in the retained passage",
+              "grammarEvidence": "舉臨濟四料簡頌云 assigns the authored verse to Tianyin Yuanxiu",
+              "voice": "The complete source frame assigns this use to the named actor.",
+              "contextMasters": [
+                {
+                  "MasterName": "Tianyin Yuanxiu",
+                  "Roles": [
+                    "utterer"
+                  ]
+                }
+              ],
+              "contextActors": []
+            },
+            "sourceSpanIdentity": {
+              "fromLb": "0566a03",
+              "sourceSpanOrdinal": 0,
+              "sourceContextSha256": "590065b790ebe4906c7b60146fc8f11e96632194cbeee80762db67744ae8879a",
+              "boundedKwic": "臺。」「驀劄相逢曲調高，知音不用更推敲，橫行直入千峰外，老遠歸來不憚勞。」「水中撈月妄心高，卻被舟人又刻刀，孤負己靈何日醒，可憐賓主轉徒勞。」舉臨濟四料簡。頌云：「有時奪人不奪境，蓋覆將來風雷陣。若然不透這重關，猶隔煙雲千萬嶺。」「有時奪境不奪人，輕輕撥去眼中塵，從斯剔起眉毛也，拋擲大千沒處尋。」「有時人境兩俱奪，白棒臨頭天地黑，轉身無路暗慚惶，打失娘生面方徹。」「有時人境俱不奪，權實並行非一橛，四海遨遊未識伊，而今點出家常訣。」舉雲門三句。頌云：「函蓋乾坤體自然，箇中原不著毫端，虛空一口能吞盡，放出三千及大千。」「截斷眾流非解悟，何容擬議落言詮？饒他佛祖親傳受，到此還須用鐵鞭。」「隨波逐浪趁風遊，月下垂鉤",
+              "boundedFromLb": "0566a03",
+              "boundedToLb": "0566a03",
+              "boundaryEvidence": "Retain the complete reviewed headword-bearing unit."
+            },
+            "decisionBasis": "舉臨濟四料簡頌云 assigns the authored verse to Tianyin Yuanxiu"
+          },
+          {
+            "relPath": "J/J26/J26nB178.xml",
+            "workId": "work:J26nB178",
+            "sourceTitle": "Recorded Sayings of Chan Master Feiyin",
+            "tier": 2,
+            "fullCaseWindow": "不見有能施之心，亦不見有所施之物，能所兩忘，法法圓融，雖在塵勞中人，不妨隨流合妙，遇緣可宗，與我佛祖之意不相違背。只如佛祖之意如何指點？金磚不出井，白雲常在山，個中如契會，不用更喃喃。」卓拄杖下座。上堂，師登座云：「無影枝頭一點春，阿誰拈得？」龍文法姪孫出問：「山前一片閒田地，叉手叮嚀問祖翁。如何是叮嚀教誡底意？」師云：「高著眼看。」進云：「幾度買來還自賣，為憐修竹引清風。未審契券甚麼人寫？」師云：「看他少賣弄。」進云：「直得諸佛拍手，演祖點頭。」師云：「干汝甚事？」文云：「且禮和尚一拜。」師云：「山僧何曾受？」問：「向上有一句子，從上諸祖未曾道著，且道如何是未曾道著底句？」師云：「大似瞞頇。」進云：「禮拜去也。」師云：「輕輕便捉敗。」乃云：「動動林中鳥，遊遊水上魚，不知何所以，活潑更無拘。月來思焦兔，鳥語見唐人，灑脫春光裏，煥然天地新。此兩首偈，若機悟得去，攢花簇錦流露將來，奇言妙語活脫而至，更說有百千三昧無量妙門，分明都是個爛草堆。正當恁麼時，得意一句作麼生道？笑眼豁開沙界外，半竿風雨樂瀛洲。」喝一喝下座。上堂，師登座，震聲一喝云：「臨濟老祖云：『我有時奪人不奪境，有時奪境不奪人，有時人境兩俱奪，有時人境俱不奪。』臨濟老祖分明敲出虛空髓，揭卻腦門蓋，兩處俱掀翻，多把風流賣。又云：『我有時先照後用，有時先用後照，有時照用同時，有時照用不同時。』臨濟老祖在世，以棒喝接人，如電激雷轟、雷轟電激，火蛇燒面，迴避不及。又云：『有一無位真人，常在汝等面門出入，未證據者看看。』真人既稱無位，不知在何處安身立命？八角磨盤空裏走，金毛獅子變作狗，擬欲將身北斗藏，應須合掌南辰後。」舉拂子云：「臨濟老祖來也，急著眼覷。」喝一喝便下座。超果寺當家知一公請上堂，師登座，擊香几云：「一番提起一番新，還有新鮮見識底人麼？請出來與老僧相見；如無，老僧自拈去也。雙徑峰頭，壁立萬仞，超果門風，平沙水月，兩處風規，了無沾著。所以道，動若行雲，止猶谷神，既無心于彼此，那有象可去來？去來不以象，動靜不以心，則唯施大機、發大用，與法門龍象解粘去縛。一番提起一番新，一度用來一度快，不容淺見衲僧會，只許通方作者知。又有恁麼人麼？且莫眼搭󳯨。」遂喝一喝，卓拄杖下座。光祿寺雲臺蔡居士七旬華誕，送米百擔徑山供眾，請師就宅中上堂，僧問：「福如東海即不問，壽比南山事若何？」師云：「海屋重添籌。」進云：「一點白雲常作伴，如來千古鎮儒林",
+            "heading": {
+              "head": "",
+              "mulu": []
+            },
+            "actorDecision": {
+              "evidenceKey": "o2",
+              "masterName": "Linji Yixuan",
+              "actorAttribution": null,
+              "action": "uses or actively raises the headword in the retained passage",
+              "grammarEvidence": "臨濟老祖云 marks Linji as embedded speaker and Feiyin as active later commentator",
+              "voice": "The complete source frame assigns this use to the named actor.",
+              "contextMasters": [
+                {
+                  "MasterName": "Linji Yixuan",
+                  "Roles": [
+                    "utterer"
+                  ]
+                }
+              ],
+              "contextActors": []
+            },
+            "sourceSpanIdentity": {
+              "fromLb": "0141c20",
+              "sourceSpanOrdinal": 0,
+              "sourceContextSha256": "07494e864c16f3929c319635267a36a85a123a0835e934cf1dea3ffcd1fd5835",
+              "boundedKwic": "月來思焦兔，鳥語見唐人，灑脫春光裏，煥然天地新。此兩首偈，若機悟得去，攢花簇錦流露將來，奇言妙語活脫而至，更說有百千三昧無量妙門，分明都是個爛草堆。正當恁麼時，得意一句作麼生道？笑眼豁開沙界外，半竿風雨樂瀛洲。」喝一喝下座。上堂，師登座，震聲一喝云：「臨濟老祖云：『我有時奪人不奪境，有時奪境不奪人，有時人境兩俱奪，有時人境俱不奪。』臨濟老祖分明敲出虛空髓，揭卻腦門蓋，兩處俱掀翻，多把風流賣。又云：『我有時先照後用，有時先用後照，有時照用同時，有時照用不同時。』臨濟老祖在世，以棒喝接人，如電激雷轟、雷轟電激，火蛇燒面，迴避不及。又云：『有一無位真人，常在汝等面門出入，未證據者看看。』真人既稱無位，不知在何處安",
+              "boundedFromLb": "0141c20",
+              "boundedToLb": "0141c20",
+              "boundaryEvidence": "Retain the complete reviewed headword-bearing unit."
+            },
+            "decisionBasis": "臨濟老祖云 marks Linji as embedded speaker and Feiyin as active later commentator"
+          },
+          {
+            "relPath": "J/J29/J29nB239.xml",
+            "workId": "work:J29nB239",
+            "sourceTitle": "Recorded Sayings of Chan Master Chuiwan",
+            "tier": 2,
+            "fullCaseWindow": "以智知、不以識識。故祖師直用一箇參字，即是諸藥引子，者裏不容不會，必曰立此宗者何謂？如以一用饅首之喻，箇箇盡知，過去尊宿奚止千百餘員，獨不肯析其微細、究其底蘊，故臨濟之宗超邁耳。今唯以直捷之處樹之，則類為諸宿，何有臨濟？故我大慧老人中興臨濟之宗，不唯破碎此宗，抑乃重加註腳，特為學人不會故耳。如水銀撲地，何曾破碎？如源泉放海，何曾註腳？若謂破碎，臨濟自破；若謂註腳，臨濟自註：非我大慧破註也。試看臨濟棒下得悟之後，乃云：『山僧今日見處與佛祖不別，若第一句中薦得，堪與佛祖為師；若第二句中薦得，堪與人天為師；若第三句中薦得，自救不了。』僧便問：『如何是第一句？』濟曰：『三要印開朱點窄，未容擬議主賓分。』曰：『如何是第二句？』濟曰：『妙解豈容無著問，漚和爭負截流機？』曰：『如何是第三句？』濟曰：『但看棚頭弄傀儡，抽牽全藉裏頭人。』復曰：『大凡演唱宗乘，一語中須具三玄門，一玄門須具三要，有權有實、有照有用，汝等諸人作麼生會？』此第一番破碎？又云：『有時一喝如金剛王寶劍、有時一喝如踞地獅子、有時一喝如探竿影草、有時一喝不作一喝用。』此是臨濟大師第二番破碎。小參，曰：『有時奪人不奪境，有時奪境不奪人，有時人境兩俱奪，有時人境俱不奪。』克符問：『如何是奪人不奪境？』師曰：『煦日發生鋪地錦，嬰兒垂髮白如絲。』符曰：『如何是奪境不奪人？』師曰：『王令已行天下遍，將軍塞外絕煙塵。』符曰：『如何是人境兩俱奪？』師曰：『并汾絕信，獨處一方。』符曰：『如何是人境俱不奪？』師曰：『王登寶殿，野老謳歌。』符於言下大悟。此第一番註腳。又示眾云：『我有時先照後用，有時先用後照，有時照用同時，有時照用不同時。先照後用有人在，先用後照有法在。照用同時，驅耕夫之牛，奪饑人之食，敲骨取髓，痛下針錐。照用不同時，有問有答，立主立賓，和泥合水，應機接物。若是過量人，向未舉時撩起便行，猶較些子。』此第二番註腳。又賓看主，主看賓，主看主，賓看賓，四機亦不離玄要權實之轉變。若單用直捷痛快一著，不行玄要宗旨。譬如天下第一等秀才，文雖光芒萬丈，只是不肯做官，以謂此是功名，於我無益。殊不知做官理事，全是文章出入門戶，何曾離得？若直體究玄要句法，依樣描模，不會本命元辰下落。譬如宋儒，只能做得《四書》註子，不能說得本文章句。若是會得，本也本得，註也註得，玄也玄得，要也要得，直捷也直捷得，多事也多事得，正也正得，旁也旁得，他元不是死煞底物件。老僧",
+            "heading": {
+              "head": "",
+              "mulu": []
+            },
+            "actorDecision": {
+              "evidenceKey": "o3",
+              "masterName": "Juyun Chuiwan Guangzhen",
+              "actorAttribution": null,
+              "action": "uses or actively raises the headword in the retained passage",
+              "grammarEvidence": "The record owner's extended exposition actively quotes and analyzes the Four Selections",
+              "voice": "The complete source frame assigns this use to the named actor.",
+              "contextMasters": [
+                {
+                  "MasterName": "Juyun Chuiwan Guangzhen",
+                  "Roles": [
+                    "utterer"
+                  ]
+                }
+              ],
+              "contextActors": []
+            },
+            "sourceSpanIdentity": {
+              "fromLb": "0482c10",
+              "sourceSpanOrdinal": 0,
+              "sourceContextSha256": "f5b3f34da70ac719a7bd801d9993a51ad32a2747de221a47cab52da82339a4a1",
+              "boundedKwic": "棚頭弄傀儡，抽牽全藉裏頭人。』復曰：『大凡演唱宗乘，一語中須具三玄門，一玄門須具三要，有權有實、有照有用，汝等諸人作麼生會？』此第一番破碎？又云：『有時一喝如金剛王寶劍、有時一喝如踞地獅子、有時一喝如探竿影草、有時一喝不作一喝用。』此是臨濟大師第二番破碎。小參，曰：『有時奪人不奪境，有時奪境不奪人，有時人境兩俱奪，有時人境俱不奪。』克符問：『如何是奪人不奪境？』師曰：『煦日發生鋪地錦，嬰兒垂髮白如絲。』符曰：『如何是奪境不奪人？』師曰：『王令已行天下遍，將軍塞外絕煙塵。』符曰：『如何是人境兩俱奪？』師曰：『并汾絕信，獨處一方。』符曰：『如何是人境俱不奪？』師曰：『王登寶殿，野老謳歌。』符於言下大悟。此第一番",
+              "boundedFromLb": "0482c10",
+              "boundedToLb": "0482c10",
+              "boundaryEvidence": "Retain the complete reviewed headword-bearing unit."
+            },
+            "decisionBasis": "The record owner's extended exposition actively quotes and analyzes the Four Selections"
+          },
+          {
+            "relPath": "J/J29/J29nB244.xml",
+            "workId": "work:J29nB244",
+            "sourceTitle": "Recorded Sayings of Chan Master Sanshanlai",
+            "tier": 2,
+            "fullCaseWindow": "。概舉生平，不私飯、不衣絲、不積一錢一帛。不奉權貴而圖利養、不務炫耀而博名高，一味慈悲，真實供眾如奉慈尊，其大略也。甲申後，予從弔巖落髮二師會下，兵擾各適東西，予後參本師鐵和尚，二師如忠路。南師於辛卯入滅忠之天壽山，浙師負靈骨而遷徙數處。及丙申，予寓石寶，浙師渡江而來，予執弟子禮款留數日。浙師因受請入金剛山，一到便指其頂曰：「此地可為予兩人塔。」果數日而微疾，遂終。今上首立雪與孫眾等，為二師造合葬浮屠，來梁屬予為銘。夫立雪弟子也，予亦弟子也。弟子而不敢揚師之美者，禮也。但就二師之實略為紀述，俾後之禮師塔者，知師為如是云云爾。銘曰：稽首二師，古今模範，雲水相逢，肝腸不換。住則同住、行則同行，道誼締結，誓以畢生。合力叢林，弘開接待，真實慈悲，四來攸賴。不圖利養、不務聲名，如風偃草，二諦咸欽。報緣既盡，雖有先後，誓共窣堵，如生如舊。嗟哉末法，暮雨朝雲，交情莫問，誰同死生？我曾北面，皈禮二師，二師往矣！動我悲思。悠悠我心，托與斯銘，斯銘不朽，二師長存。四川向化侯養元譚公諱詣捐俸刻三山來禪師語錄卷六三山來禪師語錄卷七書記普定編五宗頌五宗頌臨濟宗臨濟小參云：「我有時奪人不奪境；我有時奪境不奪人；我有時人境兩俱奪；我有時人境俱不奪。」拈：「要見縱奪機關麼？君子之中庸也，君子而時中。」「如何是奪人不奪境？」答：「王孫一去芳草綠。」頌：「奪人不奪境，胭脂和紅粉，大地與山河，在在呈圖影。」「如何是奪境不奪人？」答：「洛陽春罷洞賓來。」頌：「奪境不奪人，把手夜深行，相逢不相識，覿面沒疏親。」「如何是人境兩俱奪？」答：「漁翁夜宿三更晚。」頌：「人境兩俱奪，虛空那摸索，無形金彈子，落盡翀霄鶴。」「如何是人境俱不奪？」答：「牧童遙指杏花村。」頌：「人境俱不奪，脫灑灑脫脫，腳板踏峨眉，舌頭談五嶽。」總頌：「縱奪臨機用不差，電光影裡活如蛇，睜眉擬覷從中事，十萬程途路轉賒。」僧問臨濟：「如何是真佛、真法、真道？」濟云：「佛者，心清淨是；法者，心光明是；道者，處處無礙淨光是！三即一，皆空而無實，如有真正道人，念念心不間斷。達磨大師從西土來，只是覓個不受人惑底人，後遇二祖一言便了，始知從前虛用工夫。山僧今日見處與佛祖無別。若第一句薦得，堪與佛祖為師；第二句薦得，堪與人天為師；第三句薦得，自救不了。」別：「第一句薦得半夜撞倒漆崑崙；第二句薦得，藕絲孔裡翻筋斗；第三句薦得，三歲孩兒跛挈行。」「如何是第一句？」答：「遠。」",
+            "heading": {
+              "head": "",
+              "mulu": []
+            },
+            "actorDecision": {
+              "evidenceKey": "o4",
+              "masterName": "Sanshan Denglai",
+              "actorAttribution": null,
+              "action": "uses or actively raises the headword in the retained passage",
+              "grammarEvidence": "五宗頌 assigns the answers and verses to Sanshan Denglai",
+              "voice": "The complete source frame assigns this use to the named actor.",
+              "contextMasters": [
+                {
+                  "MasterName": "Sanshan Denglai",
+                  "Roles": [
+                    "utterer"
+                  ]
+                }
+              ],
+              "contextActors": []
+            },
+            "sourceSpanIdentity": {
+              "fromLb": "0715c05",
+              "sourceSpanOrdinal": 0,
+              "sourceContextSha256": "2fcc521ef2133cd2a246737bd524c4f55adcfef279c6c3c5c31bf7436f34ac80",
+              "boundedKwic": "既盡，雖有先後，誓共窣堵，如生如舊。嗟哉末法，暮雨朝雲，交情莫問，誰同死生？我曾北面，皈禮二師，二師往矣！動我悲思。悠悠我心，托與斯銘，斯銘不朽，二師長存。四川向化侯養元譚公諱詣捐俸刻三山來禪師語錄卷六三山來禪師語錄卷七書記普定編五宗頌五宗頌臨濟宗臨濟小參云：「我有時奪人不奪境；我有時奪境不奪人；我有時人境兩俱奪；我有時人境俱不奪。」拈：「要見縱奪機關麼？君子之中庸也，君子而時中。」「如何是奪人不奪境？」答：「王孫一去芳草綠。」頌：「奪人不奪境，胭脂和紅粉，大地與山河，在在呈圖影。」「如何是奪境不奪人？」答：「洛陽春罷洞賓來。」頌：「奪境不奪人，把手夜深行，相逢不相識，覿面沒疏親。」「如何是人境兩俱奪？」答",
+              "boundedFromLb": "0715c05",
+              "boundedToLb": "0715c05",
+              "boundaryEvidence": "Retain the complete reviewed headword-bearing unit."
+            },
+            "decisionBasis": "五宗頌 assigns the answers and verses to Sanshan Denglai"
+          }
+        ],
+        "tier3ExceptionalJustification": "",
+        "actorRiskAdjudication": [
+          "Every retained complete case has an exact actor and final WitnessFamilyId.",
+          "No Tier-3 lamp is retained."
+        ],
+        "senseRuling": "One corpus-wide sense: the retained grammatical and rhetorical frames do not introduce a different referent.",
+        "sourceMeta": [
+          {
+            "path": "J/J25/J25nB171.xml",
+            "tier": 2,
+            "title": "Recorded Sayings of Monk Tianyin"
+          },
+          {
+            "path": "J/J26/J26nB178.xml",
+            "tier": 2,
+            "title": "Recorded Sayings of Chan Master Feiyin"
+          },
+          {
+            "path": "J/J29/J29nB239.xml",
+            "tier": 2,
+            "title": "Recorded Sayings of Chan Master Chuiwan"
+          },
+          {
+            "path": "J/J29/J29nB244.xml",
+            "tier": 2,
+            "title": "Recorded Sayings of Chan Master Sanshanlai"
+          }
+        ],
+        "sourceAuthorityManifest": {
+          "rows": [
+            {
+              "EvidenceKey": "o1",
+              "RelPath": "J/J25/J25nB171.xml",
+              "WorkId": "work:J25nB171",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "A named master's recorded sayings; the complete turn was independently actor-reviewed.",
+              "WitnessFamilyId": "tianyin-four-selections-verses",
+              "DeploymentRole": "commentary"
+            },
+            {
+              "EvidenceKey": "o2",
+              "RelPath": "J/J26/J26nB178.xml",
+              "WorkId": "work:J26nB178",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "A named master's recorded sayings; the complete turn was independently actor-reviewed.",
+              "WitnessFamilyId": "feiyin-four-selections-hall-commentary",
+              "DeploymentRole": "active-quotation"
+            },
+            {
+              "EvidenceKey": "o3",
+              "RelPath": "J/J29/J29nB239.xml",
+              "WorkId": "work:J29nB239",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "A named master's recorded sayings; the complete turn was independently actor-reviewed.",
+              "WitnessFamilyId": "chuiwan-linji-system-exposition",
+              "DeploymentRole": "commentary"
+            },
+            {
+              "EvidenceKey": "o4",
+              "RelPath": "J/J29/J29nB244.xml",
+              "WorkId": "work:J29nB244",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "A named master's recorded sayings; the complete turn was independently actor-reviewed.",
+              "WitnessFamilyId": "sanshan-four-selections-verses",
+              "DeploymentRole": "commentary"
+            }
+          ]
+        },
+        "researchNotes": {
+          "openingInterpretation": "The third member of Linji's Four Selections, controlled by the contrast with taking away person only, environment only, or neither.",
+          "evidenceBody": [
+            "Tianyin Yuanxiu versifies the four selections; Feiyin Tongrong actively raises and comments on Linji's formulation; Chuiwan Guangzhen expounds its place in Linji's system; and Sanshan Denglai supplies answers and verses for all four."
+          ],
+          "counterexampleOrLimit": "Parallel copies of Linji's original formula remain one original family; the retained later witnesses are distinct active commentary deployments.",
+          "literalGraphFloor": "sometimes both person and environment are taken away",
+          "lexicalJob": "有時人境兩俱奪 means sometimes both person and environment are taken away.",
+          "deploymentClasses": [
+            "direct answer",
+            "active capping line",
+            "active case raising"
+          ],
+          "highValueEvidenceLedger": [
+            {
+              "Disposition": "keep",
+              "Finding": "Tianyin Yuanxiu actively uses the headword in Recorded Sayings of Monk Tianyin.",
+              "Reason": "The complete case secures an exact actor and an independent recorded-sayings deployment."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Linji Yixuan actively uses the headword in Recorded Sayings of Chan Master Feiyin.",
+              "Reason": "The complete case secures an exact actor and an independent recorded-sayings deployment."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Juyun Chuiwan Guangzhen actively uses the headword in Recorded Sayings of Chan Master Chuiwan.",
+              "Reason": "The complete case secures an exact actor and an independent recorded-sayings deployment."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Sanshan Denglai actively uses the headword in Recorded Sayings of Chan Master Sanshanlai.",
+              "Reason": "The complete case secures an exact actor and an independent recorded-sayings deployment."
+            }
+          ],
+          "openingClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3",
+            "o4"
+          ],
+          "evidenceBodyClaimKeys": [
+            [
+              "o1",
+              "o2",
+              "o3",
+              "o4"
+            ]
+          ],
+          "zenBend": "The third member of Linji's Four Selections, controlled by the contrast with taking away person only, environment only, or neither.",
+          "counterexample": "Parallel copies of Linji's original formula remain one original family; the retained later witnesses are distinct active commentary deployments.",
+          "differentThing": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "sometimes both person and environment are taken away"
+            ],
+            "Reason": "All retained uses preserve one lexical job."
+          },
+          "aliasRationale": "Alternates preserve the same concrete expression.",
+          "modifierControls": [
+            {
+              "Term": "有時人境兩俱奪",
+              "Finding": "No modifier creates a second referent."
+            }
+          ],
+          "familyControls": [
+            {
+              "Term": "有時人境兩俱奪",
+              "Finding": "4 independent higher-authority families meet the floor."
+            }
+          ],
+          "higherSearch": "Tier 1 was searched first, then Tier 2; retained higher-authority evidence meets the floor, so no lamp was consulted.",
+          "depthReceipt": {
+            "Complete": true,
+            "ReviewedExactHitCount": 67,
+            "AvailableSourceFiles": 36,
+            "SearchedDeploymentClasses": [
+              "direct answer",
+              "active capping line",
+              "active case raising"
+            ],
+            "OmissionAudit": [
+              "4 retained complete cases were actor-adjudicated.",
+              "Tier-3 lamps were not needed."
+            ]
+          },
+          "admissionReason": "有時人境兩俱奪 is a stable expression with repeated active Chan deployments.",
+          "duplicateCheck": {
+            "DeterministicIdChecked": true,
+            "ExactHeadwordChecked": true,
+            "NearDuplicateRuling": "No exact collision admitted."
+          },
+          "familyHarvest": {
+            "PolicyVersion": 1,
+            "Scope": "R81 source-hierarchy repair",
+            "Edges": [],
+            "NegativeReceipt": [],
+            "GraphicVariants": []
+          }
+        }
+      },
+      "evidenceDraft": {
+        "SchemaVersion": 1,
+        "ConstructionPipelineVersion": 2,
+        "Admission": {
+          "Decision": "admit",
+          "LexicalUnitReason": "有時人境兩俱奪 is a stable expression with repeated active Chan deployments.",
+          "ObservableChanJob": "有時人境兩俱奪 means sometimes both person and environment are taken away.",
+          "DuplicateCheck": {
+            "DeterministicIdChecked": true,
+            "ExactHeadwordChecked": true,
+            "NearDuplicateRuling": "No exact or punctuation-normalized collision occurs in R01-R10 or the current R11 selection; companion clauses remain separately named family leads."
+          }
+        },
+        "EvidenceTransport": {
+          "DossierPath": "source-dossier.json",
+          "DossierSha256": "31efa8f43a6e42ebe7de5ac6cb9c17bf203d635a8a48f7347686239c1eddbc1a",
+          "SourceAuthorityManifestSha256": "2ee44bf19a2533958e5620c38915f3d03fbb81209c76c7183742a4f3d059f501",
+          "DiscoveryMethods": [
+            "exact concordance count",
+            "complete-turn actor review",
+            "Tier 1 then Tier 2 source ranking",
+            "predecessor-evidence adjudication"
+          ],
+          "ExactCount": 67,
+          "BridgedCount": 67,
+          "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+        },
+        "Entry": {
+          "Id": "t_1b6cbdc8d52e",
+          "SourceTerm": "有時人境兩俱奪",
+          "CreatedBy": "R81 source-hierarchy repair",
+          "WrittenUtc": "2026-07-30T09:10:00Z",
+          "Senses": [
+            {
+              "SenseKey": null,
+              "MasterName": null,
+              "PreferredTarget": "sometimes both person and environment are taken away",
+              "AlternateTargets": [
+                "at times both person and circumstances are stripped away"
+              ],
+              "SearchAliases": [
+                "take away both person and environment",
+                "Linji's Four Selections"
+              ],
+              "Status": "preferred",
+              "Validation": "multi-source",
+              "Explanation": "The third member of Linji's Four Selections, controlled by the contrast with taking away person only, environment only, or neither. Tianyin Yuanxiu versifies the four selections; Feiyin Tongrong actively raises and comments on Linji's formulation; Chuiwan Guangzhen expounds its place in Linji's system; and Sanshan Denglai supplies answers and verses for all four.",
+              "Note": "Parallel copies of Linji's original formula remain one original family; the retained later witnesses are distinct active commentary deployments.",
+              "Occurrences": [
+                {
+                  "RelPath": "J/J25/J25nB171.xml",
+                  "FromLb": "0566a03",
+                  "ToLb": "0566a03",
+                  "Kwic": "臺。」「驀劄相逢曲調高，知音不用更推敲，橫行直入千峰外，老遠歸來不憚勞。」「水中撈月妄心高，卻被舟人又刻刀，孤負己靈何日醒，可憐賓主轉徒勞。」舉臨濟四料簡。頌云：「有時奪人不奪境，蓋覆將來風雷陣。若然不透這重關，猶隔煙雲千萬嶺。」「有時奪境不奪人，輕輕撥去眼中塵，從斯剔起眉毛也，拋擲大千沒處尋。」「有時人境兩俱奪，白棒臨頭天地黑，轉身無路暗慚惶，打失娘生面方徹。」「有時人境俱不奪，權實並行非一橛，四海遨遊未識伊，而今點出家常訣。」舉雲門三句。頌云：「函蓋乾坤體自然，箇中原不著毫端，虛空一口能吞盡，放出三千及大千。」「截斷眾流非解悟，何容擬議落言詮？饒他佛祖親傳受，到此還須用鐵鞭。」「隨波逐浪趁風遊，月下垂鉤",
+                  "MasterName": "Tianyin Yuanxiu",
+                  "Curated": true,
+                  "ContextMasters": [
+                    {
+                      "MasterName": "Tianyin Yuanxiu",
+                      "Roles": [
+                        "utterer"
+                      ]
+                    }
+                  ],
+                  "ContextActors": [],
+                  "AttributionNote": "Source record (J/J25/J25nB171.xml). Recorded Sayings of Monk Tianyin. Exact actor: Tianyin Yuanxiu. 舉臨濟四料簡頌云 assigns the authored verse to Tianyin Yuanxiu",
+                  "DraftActorProof": {
+                    "ExactHeadwordClause": "有時人境兩俱奪",
+                    "GrammaticalSubject": "Tianyin Yuanxiu",
+                    "SpeechFrame": "Source record (J/J25/J25nB171.xml). Recorded Sayings of Monk Tianyin. Exact actor: Tianyin Yuanxiu. 舉臨濟四料簡頌云 assigns the authored verse to Tianyin Yuanxiu",
+                    "FullCaseDecision": "Tianyin Yuanxiu is the exact actor at the headword-bearing clause."
+                  }
+                },
+                {
+                  "RelPath": "J/J26/J26nB178.xml",
+                  "FromLb": "0141c20",
+                  "ToLb": "0141c20",
+                  "Kwic": "月來思焦兔，鳥語見唐人，灑脫春光裏，煥然天地新。此兩首偈，若機悟得去，攢花簇錦流露將來，奇言妙語活脫而至，更說有百千三昧無量妙門，分明都是個爛草堆。正當恁麼時，得意一句作麼生道？笑眼豁開沙界外，半竿風雨樂瀛洲。」喝一喝下座。上堂，師登座，震聲一喝云：「臨濟老祖云：『我有時奪人不奪境，有時奪境不奪人，有時人境兩俱奪，有時人境俱不奪。』臨濟老祖分明敲出虛空髓，揭卻腦門蓋，兩處俱掀翻，多把風流賣。又云：『我有時先照後用，有時先用後照，有時照用同時，有時照用不同時。』臨濟老祖在世，以棒喝接人，如電激雷轟、雷轟電激，火蛇燒面，迴避不及。又云：『有一無位真人，常在汝等面門出入，未證據者看看。』真人既稱無位，不知在何處安",
+                  "MasterName": "Linji Yixuan",
+                  "Curated": true,
+                  "ContextMasters": [
+                    {
+                      "MasterName": "Linji Yixuan",
+                      "Roles": [
+                        "utterer"
+                      ]
+                    }
+                  ],
+                  "ContextActors": [],
+                  "AttributionNote": "Source record (J/J26/J26nB178.xml). Recorded Sayings of Chan Master Feiyin. Exact actor: Linji Yixuan. 臨濟老祖云 marks Linji as embedded speaker and Feiyin as active later commentator",
+                  "DraftActorProof": {
+                    "ExactHeadwordClause": "有時人境兩俱奪",
+                    "GrammaticalSubject": "Linji Yixuan",
+                    "SpeechFrame": "Source record (J/J26/J26nB178.xml). Recorded Sayings of Chan Master Feiyin. Exact actor: Linji Yixuan. 臨濟老祖云 marks Linji as embedded speaker and Feiyin as active later commentator",
+                    "FullCaseDecision": "Linji Yixuan is the exact actor at the headword-bearing clause."
+                  }
+                },
+                {
+                  "RelPath": "J/J29/J29nB239.xml",
+                  "FromLb": "0482c10",
+                  "ToLb": "0482c10",
+                  "Kwic": "棚頭弄傀儡，抽牽全藉裏頭人。』復曰：『大凡演唱宗乘，一語中須具三玄門，一玄門須具三要，有權有實、有照有用，汝等諸人作麼生會？』此第一番破碎？又云：『有時一喝如金剛王寶劍、有時一喝如踞地獅子、有時一喝如探竿影草、有時一喝不作一喝用。』此是臨濟大師第二番破碎。小參，曰：『有時奪人不奪境，有時奪境不奪人，有時人境兩俱奪，有時人境俱不奪。』克符問：『如何是奪人不奪境？』師曰：『煦日發生鋪地錦，嬰兒垂髮白如絲。』符曰：『如何是奪境不奪人？』師曰：『王令已行天下遍，將軍塞外絕煙塵。』符曰：『如何是人境兩俱奪？』師曰：『并汾絕信，獨處一方。』符曰：『如何是人境俱不奪？』師曰：『王登寶殿，野老謳歌。』符於言下大悟。此第一番",
+                  "MasterName": "Juyun Chuiwan Guangzhen",
+                  "Curated": true,
+                  "ContextMasters": [
+                    {
+                      "MasterName": "Juyun Chuiwan Guangzhen",
+                      "Roles": [
+                        "utterer"
+                      ]
+                    }
+                  ],
+                  "ContextActors": [],
+                  "AttributionNote": "Source record (J/J29/J29nB239.xml). Recorded Sayings of Chan Master Chuiwan. Exact actor: Juyun Chuiwan Guangzhen. The record owner's extended exposition actively quotes and analyzes the Four Selections",
+                  "DraftActorProof": {
+                    "ExactHeadwordClause": "有時人境兩俱奪",
+                    "GrammaticalSubject": "Juyun Chuiwan Guangzhen",
+                    "SpeechFrame": "Source record (J/J29/J29nB239.xml). Recorded Sayings of Chan Master Chuiwan. Exact actor: Juyun Chuiwan Guangzhen. The record owner's extended exposition actively quotes and analyzes the Four Selections",
+                    "FullCaseDecision": "Juyun Chuiwan Guangzhen is the exact actor at the headword-bearing clause."
+                  }
+                },
+                {
+                  "RelPath": "J/J29/J29nB244.xml",
+                  "FromLb": "0715c05",
+                  "ToLb": "0715c05",
+                  "Kwic": "既盡，雖有先後，誓共窣堵，如生如舊。嗟哉末法，暮雨朝雲，交情莫問，誰同死生？我曾北面，皈禮二師，二師往矣！動我悲思。悠悠我心，托與斯銘，斯銘不朽，二師長存。四川向化侯養元譚公諱詣捐俸刻三山來禪師語錄卷六三山來禪師語錄卷七書記普定編五宗頌五宗頌臨濟宗臨濟小參云：「我有時奪人不奪境；我有時奪境不奪人；我有時人境兩俱奪；我有時人境俱不奪。」拈：「要見縱奪機關麼？君子之中庸也，君子而時中。」「如何是奪人不奪境？」答：「王孫一去芳草綠。」頌：「奪人不奪境，胭脂和紅粉，大地與山河，在在呈圖影。」「如何是奪境不奪人？」答：「洛陽春罷洞賓來。」頌：「奪境不奪人，把手夜深行，相逢不相識，覿面沒疏親。」「如何是人境兩俱奪？」答",
+                  "MasterName": "Sanshan Denglai",
+                  "Curated": true,
+                  "ContextMasters": [
+                    {
+                      "MasterName": "Sanshan Denglai",
+                      "Roles": [
+                        "utterer"
+                      ]
+                    }
+                  ],
+                  "ContextActors": [],
+                  "AttributionNote": "Source record (J/J29/J29nB244.xml). Recorded Sayings of Chan Master Sanshanlai. Exact actor: Sanshan Denglai. 五宗頌 assigns the answers and verses to Sanshan Denglai",
+                  "DraftActorProof": {
+                    "ExactHeadwordClause": "有時人境兩俱奪",
+                    "GrammaticalSubject": "Sanshan Denglai",
+                    "SpeechFrame": "Source record (J/J29/J29nB244.xml). Recorded Sayings of Chan Master Sanshanlai. Exact actor: Sanshan Denglai. 五宗頌 assigns the answers and verses to Sanshan Denglai",
+                    "FullCaseDecision": "Sanshan Denglai is the exact actor at the headword-bearing clause."
+                  }
+                }
+              ],
+              "ClaimAnchors": [],
+              "SourceTexts": [
+                "J/J25/J25nB171.xml",
+                "J/J26/J26nB178.xml",
+                "J/J29/J29nB239.xml",
+                "J/J29/J29nB244.xml"
+              ],
+              "RelatedMasters": [
+                "Tianyin Yuanxiu",
+                "Linji Yixuan",
+                "Juyun Chuiwan Guangzhen",
+                "Sanshan Denglai"
+              ],
+              "RelatedTerms": [],
+              "ExplanationParts": {
+                "CorpusEarnedOpening": "The third member of Linji's Four Selections, controlled by the contrast with taking away person only, environment only, or neither.",
+                "EvidenceBody": [
+                  "Tianyin Yuanxiu versifies the four selections; Feiyin Tongrong actively raises and comments on Linji's formulation; Chuiwan Guangzhen expounds its place in Linji's system; and Sanshan Denglai supplies answers and verses for all four."
+                ]
+              },
+              "DraftEvidence": {
+                "LiteralGraphFloor": "sometimes both person and environment are taken away",
+                "LexicalJob": "有時人境兩俱奪 means sometimes both person and environment are taken away.",
+                "DeploymentClasses": [
+                  "direct answer",
+                  "active capping line",
+                  "active case raising"
+                ],
+                "HighValueEvidenceLedger": [
+                  {
+                    "Disposition": "keep",
+                    "Finding": "Tianyin Yuanxiu actively uses the headword in Recorded Sayings of Monk Tianyin.",
+                    "Reason": "The complete case secures an exact actor and an independent recorded-sayings deployment."
+                  },
+                  {
+                    "Disposition": "keep",
+                    "Finding": "Linji Yixuan actively uses the headword in Recorded Sayings of Chan Master Feiyin.",
+                    "Reason": "The complete case secures an exact actor and an independent recorded-sayings deployment."
+                  },
+                  {
+                    "Disposition": "keep",
+                    "Finding": "Juyun Chuiwan Guangzhen actively uses the headword in Recorded Sayings of Chan Master Chuiwan.",
+                    "Reason": "The complete case secures an exact actor and an independent recorded-sayings deployment."
+                  },
+                  {
+                    "Disposition": "keep",
+                    "Finding": "Sanshan Denglai actively uses the headword in Recorded Sayings of Chan Master Sanshanlai.",
+                    "Reason": "The complete case secures an exact actor and an independent recorded-sayings deployment."
+                  }
+                ],
+                "OpeningClaimEvidenceKeys": [
+                  "o1",
+                  "o2",
+                  "o3",
+                  "o4"
+                ],
+                "EvidenceBodyClaimKeys": [
+                  [
+                    "o1",
+                    "o2",
+                    "o3",
+                    "o4"
+                  ]
+                ],
+                "ZenBend": "The third member of Linji's Four Selections, controlled by the contrast with taking away person only, environment only, or neither.",
+                "CounterexampleOrLimit": "Parallel copies of Linji's original formula remain one original family; the retained later witnesses are distinct active commentary deployments.",
+                "DifferentThingTest": {
+                  "Decision": "one-thing",
+                  "ComparedThings": [
+                    "sometimes both person and environment are taken away"
+                  ],
+                  "Reason": "All retained uses preserve one lexical job."
+                },
+                "AliasRationale": "Alternates preserve the same concrete expression.",
+                "ModifierControls": [
+                  {
+                    "Term": "有時人境兩俱奪",
+                    "Finding": "No modifier creates a second referent."
+                  }
+                ],
+                "FamilyControls": [
+                  {
+                    "Term": "有時人境兩俱奪",
+                    "Finding": "4 independent higher-authority families meet the floor."
+                  }
+                ],
+                "IndependentWorkIds": [
+                  "work:J25nB171",
+                  "work:J26nB178",
+                  "work:J29nB239",
+                  "work:J29nB244"
+                ],
+                "SourceAuthorityRows": [
+                  {
+                    "EvidenceKey": "o1",
+                    "RelPath": "J/J25/J25nB171.xml",
+                    "WorkId": "work:J25nB171",
+                    "Tier": 2,
+                    "SourceClass": "recorded-sayings",
+                    "AuthorityReason": "A named master's recorded sayings; the complete turn was independently actor-reviewed.",
+                    "WitnessFamilyId": "tianyin-four-selections-verses",
+                    "DeploymentRole": "commentary"
+                  },
+                  {
+                    "EvidenceKey": "o2",
+                    "RelPath": "J/J26/J26nB178.xml",
+                    "WorkId": "work:J26nB178",
+                    "Tier": 2,
+                    "SourceClass": "recorded-sayings",
+                    "AuthorityReason": "A named master's recorded sayings; the complete turn was independently actor-reviewed.",
+                    "WitnessFamilyId": "feiyin-four-selections-hall-commentary",
+                    "DeploymentRole": "active-quotation"
+                  },
+                  {
+                    "EvidenceKey": "o3",
+                    "RelPath": "J/J29/J29nB239.xml",
+                    "WorkId": "work:J29nB239",
+                    "Tier": 2,
+                    "SourceClass": "recorded-sayings",
+                    "AuthorityReason": "A named master's recorded sayings; the complete turn was independently actor-reviewed.",
+                    "WitnessFamilyId": "chuiwan-linji-system-exposition",
+                    "DeploymentRole": "commentary"
+                  },
+                  {
+                    "EvidenceKey": "o4",
+                    "RelPath": "J/J29/J29nB244.xml",
+                    "WorkId": "work:J29nB244",
+                    "Tier": 2,
+                    "SourceClass": "recorded-sayings",
+                    "AuthorityReason": "A named master's recorded sayings; the complete turn was independently actor-reviewed.",
+                    "WitnessFamilyId": "sanshan-four-selections-verses",
+                    "DeploymentRole": "commentary"
+                  }
+                ],
+                "LampExcessJustification": "No Tier-3 lamp or lineage compilation is retained.",
+                "NoHigherWitnessSearchReceipt": "Tier 1 was searched first; Tier 2 met the floor; no lamp was consulted.",
+                "DepthHarvestReceipt": {
+                  "Complete": true,
+                  "ReviewedExactHitCount": 67,
+                  "AvailableSourceFiles": 36,
+                  "SearchedDeploymentClasses": [
+                    "direct answer",
+                    "active capping line",
+                    "active case raising"
+                  ],
+                  "OmissionAudit": [
+                    "4 retained complete cases were actor-adjudicated.",
+                    "Tier-3 lamps were not needed."
+                  ]
+                }
+              },
+              "DraftAcceptedDerivedFields": {
+                "SourceTexts": [
+                  "J/J25/J25nB171.xml",
+                  "J/J26/J26nB178.xml",
+                  "J/J29/J29nB239.xml",
+                  "J/J29/J29nB244.xml"
+                ],
+                "RelatedMasters": [
+                  "Tianyin Yuanxiu",
+                  "Linji Yixuan",
+                  "Juyun Chuiwan Guangzhen",
+                  "Sanshan Denglai"
+                ]
+              }
+            }
+          ],
+          "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+        },
+        "FamilyHarvest": {
+          "PolicyVersion": 1,
+          "Scope": "R81 source-hierarchy repair",
+          "Edges": [],
+          "NegativeReceipt": [],
+          "GraphicVariants": []
+        }
+      }
+    }
+  ]
+}

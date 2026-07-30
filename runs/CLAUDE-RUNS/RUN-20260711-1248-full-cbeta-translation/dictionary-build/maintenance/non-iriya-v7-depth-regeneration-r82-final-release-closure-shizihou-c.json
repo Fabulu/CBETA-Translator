@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "r82-final-release-closure.v1",
+  "cohort": "R82",
+  "id": "t_1b2b5d1e63c9",
+  "term": "獅子吼時芳草綠",
+  "priorClosurePath": "maintenance/non-iriya-v7-depth-regeneration-r82-correction-closure-shizihou-c.json",
+  "priorClosureSha256": "2450ede3b807f2991bee32c348d7cc8b74689caeadfb0b171e7abd1161b7c2de",
+  "productPath": "fresh-build/entries/t_1b2b5d1e63c9/entry.v2.json",
+  "productSha256": "c3c00f288a14949ba03ac532f75de036016580ba4a063b6d656695625c0ab093",
+  "worksheetPath": "fresh-build/entries/t_1b2b5d1e63c9/evidence.draft.json",
+  "worksheetSha256": "3f048402a307acdc944b5b155ce761bba4bfb6d6445abfe4b778dd0ed02fc143",
+  "compilerReportPath": "fresh-build/entries/t_1b2b5d1e63c9/evidence-compile-report.json",
+  "compilerReportSha256": "85087cb0e17d391dea55880c855345b9777a768d00dc5559b95a954f9ef456b2",
+  "coordinateClosure": {
+    "preferredTarget": {
+      "value": "when the lion roars, the fragrant grass is green",
+      "decision": "PASS"
+    },
+    "alternateTarget": {
+      "value": "at the lion’s roar, the fragrant grass is green",
+      "decision": "PASS",
+      "finding": "The alternate is now stative; the rejected grows/turns reading is absent."
+    },
+    "companionImage": {
+      "value": "the elephant king and red fallen flowers",
+      "decision": "PASS"
+    },
+    "hanyuProse": {
+      "value": "Hanyu Hongxian concludes an instruction to the assembly with it",
+      "decision": "PASS"
+    },
+    "yinyuanRole": {
+      "roles": [
+        "utterer",
+        "respondent"
+      ],
+      "decision": "PASS",
+      "finding": "Respondent is preserved as the exact turn function; utterer is also true of the direct headword-bearing speech."
+    }
+  },
+  "attributionAudit": {
+    "occurrencesReviewed": 4,
+    "englishSourceLabelsPresent": 4,
+    "exactActorFailures": 0,
+    "hardAttributionFailures": 0,
+    "decision": "PASS"
+  },
+  "worksheetParity": "PASS: targets, Explanation, Note, four actors, and Yinyuan roles agree between worksheet and rendered product.",
+  "compilerParity": "PASS: canonical compiler hardPass, zero errors, and exact worksheet/product hashes bound.",
+  "unrelatedDrift": "No release-blocking unrelated drift identified.",
+  "verdict": "APPROVE_RELEASE",
+  "hardPass": true,
+  "releaseAuthorized": true,
+  "publicMutation": false
+}

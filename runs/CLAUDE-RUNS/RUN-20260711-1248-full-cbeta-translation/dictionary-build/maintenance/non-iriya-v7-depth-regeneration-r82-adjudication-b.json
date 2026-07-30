@@ -1,0 +1,207 @@
+{
+  "schemaVersion": "non-iriya-v7-r81-adjudication.v1",
+  "cohort": "R82",
+  "lane": "B",
+  "policy": {
+    "sourceOrder": [
+      "Tier 1: master-authored text",
+      "Tier 2: recorded sayings",
+      "Tier 3: lamp or lineage compilation"
+    ],
+    "lampRule": "Lamp evidence is admissible only when higher-tier evidence cannot do the required lexical job. No Tier-3 witness is retained in this lane.",
+    "familyRule": "A copied saying is one original witness family. A later master's active quotation, criticism, verse, or exposition may document a separate reception/deployment family, but must not be mislabeled as a new original utterance."
+  },
+  "rows": [
+    {
+      "id": "t_1b2b5d1e63c9",
+      "term": "獅子吼時芳草綠",
+      "preferredTarget": "when the lion roars, the fragrant grass turns green",
+      "alternateTargets": [
+        "when the lion roars, fragrant grass grows green"
+      ],
+      "sense": "A recurrent poetic capping line, usually paired with a line about the elephant king and falling or reddening flowers. The retained records use it as an answer, cap, or concluding verse; they do not establish a fixed allegorical decoding of lion, grass, elephant, and flowers.",
+      "retained": [
+        {
+          "relPath": "J/J25/J25nB174.xml",
+          "actor": "Juelang Daosheng",
+          "tier": 2,
+          "deploymentRole": "original-use",
+          "family": "juelang-new-years-eve-verse"
+        },
+        {
+          "relPath": "J/J26/J26nB186.xml",
+          "actor": "Linye Tongqi",
+          "tier": 2,
+          "deploymentRole": "original-use",
+          "family": "linye-release-capping-line"
+        },
+        {
+          "relPath": "J/J27/J27nB193.xml",
+          "actor": "Yinyuan Longqi",
+          "tier": 2,
+          "deploymentRole": "original-use",
+          "family": "yinyuan-direct-answer"
+        },
+        {
+          "relPath": "J/J33/J33nB288.xml",
+          "actor": "Hanyu Hongxian",
+          "tier": 2,
+          "deploymentRole": "original-use",
+          "family": "hanyu-showing-verse"
+        }
+      ],
+      "excluded": [
+        {
+          "relPath": "J/J28/J28nB202.xml",
+          "reason": "The unnamed monk, not Baichi, speaks the headword-bearing line."
+        },
+        {
+          "relPath": "J/J28/J28nB211.xml",
+          "reason": "The unnamed monk, not Ji Zongche, speaks the headword-bearing line."
+        },
+        {
+          "relPath": "J/J28/J28nB212.xml",
+          "reason": "The unnamed monk, not Eryin Mi, speaks the headword-bearing line."
+        }
+      ]
+    },
+    {
+      "id": "t_1b3195ce4368",
+      "term": "囉囉哩",
+      "preferredTarget": "la-la-li",
+      "alternateTargets": [
+        "nonlexical sung refrain",
+        "luo-luo-li!"
+      ],
+      "sense": "A performed vocable or song refrain rather than a sentence assembled from the individual graphs. Its surrounding lines repeatedly mark singing, celebration, work-song rhythm, or playful capping performance.",
+      "retained": [
+        {
+          "relPath": "X/X78/X78n1554.xml",
+          "actor": "Baoning Renyong",
+          "tier": 1,
+          "deploymentRole": "active-quotation",
+          "family": "baoning-spring-verse"
+        },
+        {
+          "relPath": "C/C077/C077n1710.xml",
+          "actor": "Zhenjing Kewen",
+          "tier": 2,
+          "deploymentRole": "original-use",
+          "family": "zhenjing-verse-coda"
+        },
+        {
+          "relPath": "J/J25/J25nB154.xml",
+          "actor": "Wei'an Deran",
+          "tier": 2,
+          "deploymentRole": "original-use",
+          "family": "weian-instructional-verse"
+        },
+        {
+          "relPath": "J/J25/J25nB163.xml",
+          "actor": "Guting Shanjian",
+          "tier": 2,
+          "deploymentRole": "original-use",
+          "family": "guting-case-comment"
+        },
+        {
+          "relPath": "J/J25/J25nB171.xml",
+          "actor": "Tianyin Yuanxiu",
+          "tier": 2,
+          "deploymentRole": "original-use",
+          "family": "tianyin-new-year-song"
+        },
+        {
+          "relPath": "J/J26/J26nB177.xml",
+          "actor": "Poshan Haiming",
+          "tier": 2,
+          "deploymentRole": "original-use",
+          "family": "poshan-field-work-song"
+        },
+        {
+          "relPath": "J/J26/J26nB183.xml",
+          "actor": "Shiqi Tongyun",
+          "tier": 2,
+          "deploymentRole": "original-use",
+          "family": "shiqi-spring-song"
+        }
+      ],
+      "excluded": [
+        {
+          "relPath": "B/B27/B27n0152.xml",
+          "reason": "Inherited Yangqi quotation is unnecessary padding."
+        },
+        {
+          "relPath": "J/J20/J20nB098.xml",
+          "reason": "Actor unresolved against canonical roster."
+        }
+      ]
+    },
+    {
+      "id": "t_1b6cbdc8d52e",
+      "term": "有時人境兩俱奪",
+      "preferredTarget": "at times both person and environment are taken away",
+      "alternateTargets": [
+        "sometimes both person and situation are stripped away"
+      ],
+      "sense": "The third member of Linji's Four Selections: at times the person is taken away but not the environment; at times the environment but not the person; at times both; and at times neither. Person and environment are kept because the four-part contrast controls the wording.",
+      "retained": [
+        {
+          "relPath": "B/B25/B25n0145.xml",
+          "actor": "Linji Yixuan",
+          "contextActor": "Zhongfeng Mingben",
+          "tier": 2,
+          "deploymentRole": "active-quotation",
+          "family": "zhongfeng-fourfold-critique"
+        },
+        {
+          "relPath": "J/J25/J25nB171.xml",
+          "actor": "Tianyin Yuanxiu",
+          "tier": 2,
+          "deploymentRole": "commentary",
+          "family": "tianyin-four-selections-verses"
+        },
+        {
+          "relPath": "J/J26/J26nB178.xml",
+          "actor": "Linji Yixuan",
+          "contextActor": "Feiyin Tongrong",
+          "tier": 2,
+          "deploymentRole": "active-quotation",
+          "family": "feiyin-four-selections-commentary"
+        },
+        {
+          "relPath": "J/J29/J29nB239.xml",
+          "actor": "Juyun Chuiwan Guangzhen",
+          "tier": 2,
+          "deploymentRole": "commentary",
+          "family": "chuiwan-linji-exposition"
+        }
+      ],
+      "excluded": [
+        {
+          "relPath": "B/B27/B27n0152.xml",
+          "reason": "Exact speaker is only 先聖; reserve rather than invent a named actor."
+        },
+        {
+          "relPath": "J/J29/J29nB244.xml",
+          "reason": "Valid reserve after the floor."
+        },
+        {
+          "relPath": "J/J29/J29nB248.xml",
+          "reason": "Primarily another Linji case reproduction."
+        }
+      ]
+    }
+  ],
+  "hardPass": true,
+  "independentReviews": [
+    {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r81-review-shizihou-c.json"
+    },
+    {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r81-source-review-luoluoli-r27.json"
+    },
+    {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r81-review-renjing-root.json"
+    }
+  ]
+}

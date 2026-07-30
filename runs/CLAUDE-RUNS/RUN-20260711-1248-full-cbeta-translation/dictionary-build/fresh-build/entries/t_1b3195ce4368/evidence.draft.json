@@ -1,0 +1,460 @@
+{
+  "SchemaVersion": 1,
+  "ConstructionPipelineVersion": 2,
+  "Admission": {
+    "Decision": "admit",
+    "LexicalUnitReason": "囉囉哩 is a stable expression with repeated active Chan deployments.",
+    "ObservableChanJob": "囉囉哩 means la-la-li.",
+    "DuplicateCheck": {
+      "DeterministicIdChecked": true,
+      "ExactHeadwordChecked": true,
+      "NearDuplicateRuling": "No exact or punctuation-normalized collision occurs in R01-R10 or the current R11 selection; companion clauses remain separately named family leads."
+    }
+  },
+  "EvidenceTransport": {
+    "DossierPath": "source-dossier.json",
+    "DossierSha256": "02f6d887cdfd7f7e150a76a7a01a9acfa4de47117eb9556e53d0449c467cbb78",
+    "SourceAuthorityManifestSha256": "2ee44bf19a2533958e5620c38915f3d03fbb81209c76c7183742a4f3d059f501",
+    "DiscoveryMethods": [
+      "exact concordance count",
+      "complete-turn actor review",
+      "Tier 1 then Tier 2 source ranking",
+      "predecessor-evidence adjudication"
+    ],
+    "ExactCount": 149,
+    "BridgedCount": 149,
+    "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+  },
+  "Entry": {
+    "Id": "t_1b3195ce4368",
+    "SourceTerm": "囉囉哩",
+    "CreatedBy": "R82 source-hierarchy repair",
+    "WrittenUtc": "2026-07-30T09:10:00Z",
+    "Senses": [
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "la-la-li",
+        "AlternateTargets": [
+          "nonlexical sung refrain",
+          "luo-luo-li!"
+        ],
+        "SearchAliases": [
+          "song refrain",
+          "capping cry"
+        ],
+        "Status": "preferred",
+        "Validation": "multi-source",
+        "Explanation": "A performed vocable or song refrain rather than a sentence assembled from the individual graphs. Baoning Renyong's spring verse, Zhenjing Kewen's verse coda, Wei'an Deran's instruction, Guting Shanjian's case comment, Tianyin Yuanxiu's New Year song, Poshan Haiming's field-work song, and Shiqi Tongyun's spring song deploy it in sung, rhythmic, celebratory, or playful frames.",
+        "Note": "Transliteration preserves the sound; context supplies the performance, not a lexical meaning for each graph.",
+        "Occurrences": [
+          {
+            "RelPath": "X/X78/X78n1554.xml",
+            "FromLb": "0592c15",
+            "ToLb": "0592c15",
+            "Kwic": "。師呈雲蓋顒頌云：拈將楖栗路縱橫，大地清風颯颯生。北斗柄斜輕撥轉，大唐人眼直須盲。上堂。云：一是一，二是二，三是三，四是四，數目甚分明，上下依資次。依資次，有何事？以拄杖畫一畫，云：大眾！一時亂却六十甲子了也。立春，上堂。立春日，打春牛，一棒兩棒，千頭萬頭，雪花深覆辨不得，頂門有眼徒悠悠。拍手，云：囉囉哩，惱亂春風卒未休。上堂。風鳴條，雨破塊，曉來枕上鸎聲碎。蝦蟇蚯蚓一時鳴，妙德空生都不會。都不會，三箇成群，四箇作隊。窈窈窕窕，颯颯颻颻。向南北東西，折得梨花李花，一佩兩佩。牧童頌曰：西風浩浩楚天秋，索寞無人野渡頭。沙鳥晚來俱散盡，鳴咿歸去倒騎牛。答陳遷秀才曰：胡孫兒子最惺惺，愛弄千年鬼眼睛。懊惱不知",
+            "MasterName": "Baoning Renyong",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Baoning Renyong",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (X/X78/X78n1554.xml). Praise of the Orthodox Lineage of the Five Houses. Exact actor: Baoning Renyong. The authored praise explicitly quotes Baoning Renyong's hall verse",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "囉囉哩",
+              "GrammaticalSubject": "Baoning Renyong",
+              "SpeechFrame": "Source record (X/X78/X78n1554.xml). Praise of the Orthodox Lineage of the Five Houses. Exact actor: Baoning Renyong. The authored praise explicitly quotes Baoning Renyong's hall verse",
+              "FullCaseDecision": "Baoning Renyong is the exact actor at the headword-bearing clause."
+            }
+          },
+          {
+            "RelPath": "C/C077/C077n1710.xml",
+            "FromLb": "0822a12",
+            "ToLb": "0822a12",
+            "Kwic": "麼向此有个入處更有什麼事也或若未明良久曰不觧作客久立。上堂獨自坐方信西來有達磨獨自行不用紅蓮足下生獨自語分明向誰誰肯許獨自叅剎剎塵塵示指南相逢相問窮端的莫道山僧觧放憨。端師翁忌辰上堂昔人已乘白雲去此地空餘綠水流綠水一去不復返白雲千載空悠悠湖南舊說老楊岐失却金毛師子兒江北江南無覔處龍門今日順風吹順風吹囉囉哩水急風高下釣磯。上堂鳥從空裏飛人向心中住人死心宛然鳥沒空何預人生一過鳥此心實可㨿但自了其心無勞問來去所以須菩提問世尊云何住世尊荅曰如是住𡖉生胎生濕生化生有色無色有想無想等皆令入無餘涅槃而滅度之而實無有一眾生實滅度者還會得麼三界万法實無絲毫生滅動靜之相秪由迷此決定惑為色身之內所以質礙名色領納曰受思惟曰",
+            "MasterName": "Zhenjing Kewen",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Zhenjing Kewen",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (C/C077/C077n1710.xml). Recorded Sayings of Ancient Venerable Masters. Exact actor: Zhenjing Kewen. 上堂 frame assigns the verse and refrain to Zhenjing Kewen",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "囉囉哩",
+              "GrammaticalSubject": "Zhenjing Kewen",
+              "SpeechFrame": "Source record (C/C077/C077n1710.xml). Recorded Sayings of Ancient Venerable Masters. Exact actor: Zhenjing Kewen. 上堂 frame assigns the verse and refrain to Zhenjing Kewen",
+              "FullCaseDecision": "Zhenjing Kewen is the exact actor at the headword-bearing clause."
+            }
+          },
+          {
+            "RelPath": "J/J25/J25nB154.xml",
+            "FromLb": "0037b20",
+            "ToLb": "0037b20",
+            "Kwic": "高風千古寄漁磯。隨所寓，隨所寓，煙波歷盡無寒暑；老我乾坤雪一頭，滿懷風月難分付。示智戒主示智戒主戒如瓔珞珠，亦如淨滿月；汝當力堅持，慎勿暫時瞥。一念若遲疑，生死無休歇；光陰能幾何？子自宜甄別。吾家種草不易做，眨起眉毛須薦取；百尺竿頭解轉身，腳底何妨草鞋破。便甚麼會，石女唱巴歌；不甚麼會，跛驢拽鐵磨。囉囉哩，黃頭碧眼；知不知？玉兔踏折珊瑚枝。送虎丘統藏主送虎丘統藏主拈得缽囉娘一句，絕毫絕釐沒巴鼻；古木寒嵒月色新，統攝大千歸自己。蘇州有也常州有，劍池夜半蒼龍吼；驪珠抉得本無心，一任猛風翻石臼。五臺山上隔塵氛，雲蒸飯熟香氤氳；驚倒生公點頭石，當機說法教誰聞？送大龍興澤監寺送大龍興澤監寺大用現前滿眼滿耳，纔",
+            "MasterName": "Wei'an Deran",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Wei'an Deran",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J25/J25nB154.xml). Recorded Sayings of Songyin Weianran. Exact actor: Wei'an Deran. The 示智戒主 verse belongs to Wei'an Deran",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "囉囉哩",
+              "GrammaticalSubject": "Wei'an Deran",
+              "SpeechFrame": "Source record (J/J25/J25nB154.xml). Recorded Sayings of Songyin Weianran. Exact actor: Wei'an Deran. The 示智戒主 verse belongs to Wei'an Deran",
+              "FullCaseDecision": "Wei'an Deran is the exact actor at the headword-bearing clause."
+            }
+          },
+          {
+            "RelPath": "J/J25/J25nB163.xml",
+            "FromLb": "0253a10",
+            "ToLb": "0253a10",
+            "Kwic": "「還記得話頭麼？試舉看。」陂擬開口，穴又打一拂子。牧主云：「佛法與王法一般。」穴云：「見箇什麼？」牧云：「當斷不斷，返招其亂。」穴便下座。師拈云：「嫩筍細茶，松風石枕，也索是家裏人方知滋味。風穴權衡太過，不能決斷。牧主饒舌，俗氣未除。凡謂鐵牛之機將示，盧陂出陣當鋒，可惜龍頭蛇尾。大眾會麼？彼彼此此，囉囉哩哩，疑出囚人口，花開石碓嘴。」頌曰：「天賦靈機自陸沉，當人錯過謾追尋，窗前梅白枝枝玉，砌下黃花朵朵金。」洛浦初參夾山，山云：「雞棲鳳窠，非其同類，出去！」浦云：「自遠趨風，乞師一接。」山云：「目前無闍黎，此間無老僧。」浦便喝。山云：「住住，且莫草草匆匆，須知雲月是同，溪山各異，截斷天下人舌頭即不無，",
+            "MasterName": "Guting Shanjian",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Guting Shanjian",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J25/J25nB163.xml). Selected Record of Chan Master Guting’s Sayings. Exact actor: Guting Shanjian. 師拈 and the following line assign the comment to Guting Shanjian",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "囉囉哩",
+              "GrammaticalSubject": "Guting Shanjian",
+              "SpeechFrame": "Source record (J/J25/J25nB163.xml). Selected Record of Chan Master Guting’s Sayings. Exact actor: Guting Shanjian. 師拈 and the following line assign the comment to Guting Shanjian",
+              "FullCaseDecision": "Guting Shanjian is the exact actor at the headword-bearing clause."
+            }
+          },
+          {
+            "RelPath": "J/J25/J25nB171.xml",
+            "FromLb": "0525c03",
+            "ToLb": "0525c03",
+            "Kwic": "麼？」驀舉起拄杖云：「先天有物能為主，不屬陰陽造化生。」久立珍重。元旦示眾，師云：「今日元來新年頭，昨日元來舊年尾。新年頭上不見來，舊年尾上不見去。不來不去常現前，箇裏元來無所住。無所住處著眼看，大千沙界一毫許，漫看春風滿面生，張公喫酒李公醉。更有一般堪羨處，千門萬戶瞳瞳睡，大家齊唱太平歌，哩哩囉兮囉囉哩。所以道：『有條攀條，無條攀例。』大眾！祝聖壽以無疆。讚皇圖而永固。」元宵示眾，師云：「一燈纔焰萬燈瑩，爍破乾坤徹底空，山色自今光燦爛，桃花依舊笑春風。大眾！剛纔過歲又已半月，流光荏苒無暫停息。若是手腳未穩，切宜努力，莫待臨渴掘井追悔無門，要做工夫已遲了也。會得麼？英靈衲子未舉先知，機鈍之流不妨薦取",
+            "MasterName": "Tianyin Yuanxiu",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Tianyin Yuanxiu",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J25/J25nB171.xml). Recorded Sayings of Monk Tianyin. Exact actor: Tianyin Yuanxiu. 元旦示眾 and 師云 assign the song to Tianyin Yuanxiu",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "囉囉哩",
+              "GrammaticalSubject": "Tianyin Yuanxiu",
+              "SpeechFrame": "Source record (J/J25/J25nB171.xml). Recorded Sayings of Monk Tianyin. Exact actor: Tianyin Yuanxiu. 元旦示眾 and 師云 assign the song to Tianyin Yuanxiu",
+              "FullCaseDecision": "Tianyin Yuanxiu is the exact actor at the headword-bearing clause."
+            }
+          },
+          {
+            "RelPath": "J/J26/J26nB177.xml",
+            "FromLb": "0009c14",
+            "ToLb": "0009c14",
+            "Kwic": "眾前不辭拈出，與諸人共相吞跳。」以拄杖打圓相，云：「者是金剛圈，試跳看。」僧云：「跳。」師舉拄杖，云：「者是栗棘蓬，試吞看。」僧云：「吐。」師云：「多口阿師未在。」僧無語。師云：「不是與人難共聚，大都緇素要分明。」上堂，師云：「撞到今朝五月一，荒田瘦地都栽畢，我儂有首洗泥歌，唱出令人笑尿滴。哩哩囉，囉囉哩，種田博飯家常事，不是飽參人不知。」復舉：「地藏問眾禪客從何方來，一僧云：『從南方來。』藏曰：『南方佛法近日如何？』僧云：『商量浩浩地。』藏曰：『何如我者裏種田博飯喫？』僧云：『怎奈三界何？』藏曰：『喚什麼作三界？』僧無語。」師云：「者飯袋子大似逆風揚塵，自取撲面。若是箇漢，待他問：『南方近日佛法如",
+            "MasterName": "Poshan Haiming",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Poshan Haiming",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J26/J26nB177.xml). Recorded Sayings of Chan Master Poshan. Exact actor: Poshan Haiming. 上堂師云 and 唱出 assign the work song to Poshan Haiming",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "囉囉哩",
+              "GrammaticalSubject": "Poshan Haiming",
+              "SpeechFrame": "Source record (J/J26/J26nB177.xml). Recorded Sayings of Chan Master Poshan. Exact actor: Poshan Haiming. 上堂師云 and 唱出 assign the work song to Poshan Haiming",
+              "FullCaseDecision": "Poshan Haiming is the exact actor at the headword-bearing clause."
+            }
+          },
+          {
+            "RelPath": "J/J26/J26nB183.xml",
+            "FromLb": "0492c21",
+            "ToLb": "0492c21",
+            "Kwic": "拄杖，下座。春朝上堂，「臘月二十五，春到山門左，四大天王驀頭撞見，便高聲問云：『春哥！春哥！你今年與麼蚤來作麼？』報道：『雪竇祖庭昨朝豎立大佛殿而來慶賀。』即便揖進佛殿中央，倒地三拜，直得和氣騰騰，克滿僧堂、方丈，洎及各寮廚庫，人人滿面春風歡喜無限，土地伽藍不覺足蹈手舞。老僧到此亦不免隨例歡喜，唱個囉囉哩哩囉囉。好大哥！扯索去。」古燕遊宦張調鼎居士入山，請上堂。舉：「睦州和尚問一居士：『先輩治何經論？』士云：『易經。』州曰：『易中道：「百姓日用而不知。」不知個甚麼？』士云：『不知其道。』州云：『作麼生是道？』士無語。州云：『果然不知。』」師云：「可惜者居士，蹉過睦州。聽取山僧一頌：道在尋常日用中，不",
+            "MasterName": "Shiqi Tongyun",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Shiqi Tongyun",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J26/J26nB183.xml). Recorded Sayings of Chan Master Shiqi of Xuedou. Exact actor: Shiqi Tongyun. 春朝上堂 and 唱個 assign the sung refrain to Shiqi Tongyun",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "囉囉哩",
+              "GrammaticalSubject": "Shiqi Tongyun",
+              "SpeechFrame": "Source record (J/J26/J26nB183.xml). Recorded Sayings of Chan Master Shiqi of Xuedou. Exact actor: Shiqi Tongyun. 春朝上堂 and 唱個 assign the sung refrain to Shiqi Tongyun",
+              "FullCaseDecision": "Shiqi Tongyun is the exact actor at the headword-bearing clause."
+            }
+          }
+        ],
+        "ClaimAnchors": [],
+        "SourceTexts": [
+          "X/X78/X78n1554.xml",
+          "C/C077/C077n1710.xml",
+          "J/J25/J25nB154.xml",
+          "J/J25/J25nB163.xml",
+          "J/J25/J25nB171.xml",
+          "J/J26/J26nB177.xml",
+          "J/J26/J26nB183.xml"
+        ],
+        "RelatedMasters": [
+          "Baoning Renyong",
+          "Zhenjing Kewen",
+          "Wei'an Deran",
+          "Guting Shanjian",
+          "Tianyin Yuanxiu",
+          "Poshan Haiming",
+          "Shiqi Tongyun"
+        ],
+        "RelatedTerms": [],
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "A performed vocable or song refrain rather than a sentence assembled from the individual graphs.",
+          "EvidenceBody": [
+            "Baoning Renyong's spring verse, Zhenjing Kewen's verse coda, Wei'an Deran's instruction, Guting Shanjian's case comment, Tianyin Yuanxiu's New Year song, Poshan Haiming's field-work song, and Shiqi Tongyun's spring song deploy it in sung, rhythmic, celebratory, or playful frames."
+          ]
+        },
+        "DraftEvidence": {
+          "LiteralGraphFloor": "la-la-li",
+          "LexicalJob": "囉囉哩 means la-la-li.",
+          "DeploymentClasses": [
+            "direct answer",
+            "active capping line",
+            "active case raising"
+          ],
+          "HighValueEvidenceLedger": [
+            {
+              "Disposition": "keep",
+              "Finding": "Baoning Renyong actively uses the headword in Praise of the Orthodox Lineage of the Five Houses.",
+              "Reason": "The complete case secures an exact actor and an independent recorded-sayings deployment."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Zhenjing Kewen actively uses the headword in Recorded Sayings of Ancient Venerable Masters.",
+              "Reason": "The complete case secures an exact actor and an independent recorded-sayings deployment."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Wei'an Deran actively uses the headword in Recorded Sayings of Songyin Weianran.",
+              "Reason": "The complete case secures an exact actor and an independent recorded-sayings deployment."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Guting Shanjian actively uses the headword in Selected Record of Chan Master Guting’s Sayings.",
+              "Reason": "The complete case secures an exact actor and an independent recorded-sayings deployment."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Tianyin Yuanxiu actively uses the headword in Recorded Sayings of Monk Tianyin.",
+              "Reason": "The complete case secures an exact actor and an independent recorded-sayings deployment."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Poshan Haiming actively uses the headword in Recorded Sayings of Chan Master Poshan.",
+              "Reason": "The complete case secures an exact actor and an independent recorded-sayings deployment."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Shiqi Tongyun actively uses the headword in Recorded Sayings of Chan Master Shiqi of Xuedou.",
+              "Reason": "The complete case secures an exact actor and an independent recorded-sayings deployment."
+            }
+          ],
+          "OpeningClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3",
+            "o4",
+            "o5",
+            "o6"
+          ],
+          "EvidenceBodyClaimKeys": [
+            [
+              "o1",
+              "o2",
+              "o3",
+              "o4",
+              "o5",
+              "o6"
+            ]
+          ],
+          "ZenBend": "A performed vocable or song refrain rather than a sentence assembled from the individual graphs.",
+          "CounterexampleOrLimit": "Transliteration preserves the sound; context supplies the performance, not a lexical meaning for each graph.",
+          "DifferentThingTest": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "la-la-li"
+            ],
+            "Reason": "All retained uses preserve one lexical job."
+          },
+          "AliasRationale": "Alternates preserve the same concrete expression.",
+          "ModifierControls": [
+            {
+              "Term": "囉囉哩",
+              "Finding": "No modifier creates a second referent."
+            }
+          ],
+          "FamilyControls": [
+            {
+              "Term": "囉囉哩",
+              "Finding": "6 independent higher-authority families meet the floor."
+            }
+          ],
+          "IndependentWorkIds": [
+            "chan:wujia-zhengzong-zan",
+            "work:guzunsu-yulu",
+            "work:J25nB154",
+            "work:J25nB163",
+            "work:J25nB171",
+            "work:J26nB177",
+            "work:J26nB183"
+          ],
+          "SourceAuthorityRows": [
+            {
+              "EvidenceKey": "o1",
+              "RelPath": "X/X78/X78n1554.xml",
+              "WorkId": "chan:wujia-zhengzong-zan",
+              "Tier": 1,
+              "SourceClass": "master-authored",
+              "AuthorityReason": "A named master's recorded sayings; the complete turn was independently actor-reviewed.",
+              "WitnessFamilyId": "baoning-spring-verse",
+              "DeploymentRole": "active-quotation"
+            },
+            {
+              "EvidenceKey": "o2",
+              "RelPath": "C/C077/C077n1710.xml",
+              "WorkId": "work:guzunsu-yulu",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "A named master's recorded sayings; the complete turn was independently actor-reviewed.",
+              "WitnessFamilyId": "zhenjing-verse-coda",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o3",
+              "RelPath": "J/J25/J25nB154.xml",
+              "WorkId": "work:J25nB154",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "A named master's recorded sayings; the complete turn was independently actor-reviewed.",
+              "WitnessFamilyId": "weian-instructional-verse",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o4",
+              "RelPath": "J/J25/J25nB163.xml",
+              "WorkId": "work:J25nB163",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "A named master's recorded sayings; the complete turn was independently actor-reviewed.",
+              "WitnessFamilyId": "guting-case-comment",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o5",
+              "RelPath": "J/J25/J25nB171.xml",
+              "WorkId": "work:J25nB171",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "A named master's recorded sayings; the complete turn was independently actor-reviewed.",
+              "WitnessFamilyId": "tianyin-new-year-song",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o6",
+              "RelPath": "J/J26/J26nB177.xml",
+              "WorkId": "work:J26nB177",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "A named master's recorded sayings; the complete turn was independently actor-reviewed.",
+              "WitnessFamilyId": "poshan-field-work-song",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o7",
+              "RelPath": "J/J26/J26nB183.xml",
+              "WorkId": "work:J26nB183",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "A named master's recorded sayings; the complete turn was independently actor-reviewed.",
+              "WitnessFamilyId": "shiqi-spring-song",
+              "DeploymentRole": "original-use"
+            }
+          ],
+          "LampExcessJustification": "No Tier-3 lamp or lineage compilation is retained.",
+          "NoHigherWitnessSearchReceipt": "Tier 1 was searched first; Tier 2 met the floor; no lamp was consulted.",
+          "DepthHarvestReceipt": {
+            "Complete": true,
+            "ReviewedExactHitCount": 149,
+            "AvailableSourceFiles": 87,
+            "SearchedDeploymentClasses": [
+              "direct answer",
+              "active capping line",
+              "active case raising"
+            ],
+            "OmissionAudit": [
+              "6 retained complete cases were actor-adjudicated.",
+              "Tier-3 lamps were not needed."
+            ]
+          }
+        },
+        "DraftAcceptedDerivedFields": {
+          "SourceTexts": [
+            "X/X78/X78n1554.xml",
+            "C/C077/C077n1710.xml",
+            "J/J25/J25nB154.xml",
+            "J/J25/J25nB163.xml",
+            "J/J25/J25nB171.xml",
+            "J/J26/J26nB177.xml",
+            "J/J26/J26nB183.xml"
+          ],
+          "RelatedMasters": [
+            "Baoning Renyong",
+            "Zhenjing Kewen",
+            "Wei'an Deran",
+            "Guting Shanjian",
+            "Tianyin Yuanxiu",
+            "Poshan Haiming",
+            "Shiqi Tongyun"
+          ]
+        }
+      }
+    ],
+    "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+  },
+  "FamilyHarvest": {
+    "PolicyVersion": 1,
+    "Scope": "R82 source-hierarchy repair",
+    "Edges": [],
+    "NegativeReceipt": [],
+    "GraphicVariants": []
+  }
+}

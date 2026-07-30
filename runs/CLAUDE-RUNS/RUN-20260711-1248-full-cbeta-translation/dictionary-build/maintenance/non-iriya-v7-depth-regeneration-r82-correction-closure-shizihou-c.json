@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "r82-changed-coordinate-closure.v1",
+  "cohort": "R82",
+  "id": "t_1b2b5d1e63c9",
+  "term": "獅子吼時芳草綠",
+  "rejectingReviewPath": "maintenance/non-iriya-v7-depth-regeneration-r82-product-review-shizihou-c.json",
+  "rejectingReviewSha256": "3deef334fcc878f6d86179cbe9a64f63ad8138e1dce1a3291afbec9f559149a7",
+  "productPath": "fresh-build/entries/t_1b2b5d1e63c9/entry.v2.json",
+  "productSha256": "f738cf6eaf5398e04be47962a38233f8986d440caec37ae5bec061f0d4322620",
+  "worksheetPath": "fresh-build/entries/t_1b2b5d1e63c9/evidence.draft.json",
+  "worksheetSha256": "e211da51402fdc959cd2ca834435faaed4f906373fc3c3a73dbac1dce50b4f55",
+  "compilerReportPath": "fresh-build/entries/t_1b2b5d1e63c9/evidence-compile-report.json",
+  "compilerReportSha256": "cc7d35f423fdfd640d7a4bcda159adfa6f71cd9733dbf0b03b6114062f7b33ba",
+  "coordinateReview": [
+    {
+      "coordinate": "Senses[0].PreferredTarget",
+      "value": "when the lion roars, the fragrant grass is green",
+      "decision": "PASS"
+    },
+    {
+      "coordinate": "Senses[0].AlternateTargets[0]",
+      "value": "when the lion roars, fragrant grass grows green",
+      "decision": "FAIL",
+      "finding": "The unapproved change-of-state reading remains. The rejecting review required a stative alternate or no alternate.",
+      "requiredRepair": "Remove the alternate or replace it with a genuinely stative wording, such as 'at the lion's roar, the fragrant grass is green'."
+    },
+    {
+      "coordinate": "Senses[0].Explanation companion image",
+      "value": "the elephant king and red fallen flowers",
+      "decision": "PASS"
+    },
+    {
+      "coordinate": "Senses[0].Explanation Hanyu clause",
+      "value": "Hanyu Hongxian concludes an instruction to the assembly with it",
+      "decision": "PASS"
+    },
+    {
+      "coordinate": "Senses[0].Occurrences[2].ContextMasters[0].Roles[0]",
+      "value": "respondent",
+      "decision": "PASS"
+    }
+  ],
+  "worksheetParity": "PASS: the corrected worksheet and product agree on preferred target, remaining alternate, Explanation, and Yinyuan respondent role.",
+  "compilerParity": "PASS MECHANICALLY: compiler hardPass, no errors, and exact worksheet/product hashes bound.",
+  "unrelatedDrift": "No unrelated product drift identified.",
+  "verdict": "DENY_REMAINING_TARGET_DEFECT",
+  "hardPass": false,
+  "releaseAuthorized": false,
+  "publicMutation": false
+}

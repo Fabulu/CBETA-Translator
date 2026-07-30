@@ -1,0 +1,323 @@
+{
+  "SchemaVersion": 1,
+  "ConstructionPipelineVersion": 2,
+  "Admission": {
+    "Decision": "admit",
+    "LexicalUnitReason": "獅子吼時芳草綠 is a stable expression with repeated active Chan deployments.",
+    "ObservableChanJob": "獅子吼時芳草綠 means when the lion roars, the fragrant grass is green.",
+    "DuplicateCheck": {
+      "DeterministicIdChecked": true,
+      "ExactHeadwordChecked": true,
+      "NearDuplicateRuling": "No exact or punctuation-normalized collision occurs in R01-R10 or the current R11 selection; companion clauses remain separately named family leads."
+    }
+  },
+  "EvidenceTransport": {
+    "DossierPath": "source-dossier.json",
+    "DossierSha256": "230de1b46519ba8728f8d44b7b35badc354b5cb81782a63f06a9780899376db2",
+    "SourceAuthorityManifestSha256": "2ee44bf19a2533958e5620c38915f3d03fbb81209c76c7183742a4f3d059f501",
+    "DiscoveryMethods": [
+      "exact concordance count",
+      "complete-turn actor review",
+      "Tier 1 then Tier 2 source ranking",
+      "predecessor-evidence adjudication"
+    ],
+    "ExactCount": 22,
+    "BridgedCount": 22,
+    "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+  },
+  "Entry": {
+    "Id": "t_1b2b5d1e63c9",
+    "SourceTerm": "獅子吼時芳草綠",
+    "CreatedBy": "R82 source-hierarchy repair",
+    "WrittenUtc": "2026-07-30T09:10:00Z",
+    "Senses": [
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "when the lion roars, the fragrant grass is green",
+        "AlternateTargets": [
+          "at the lion’s roar, the fragrant grass is green"
+        ],
+        "SearchAliases": [
+          "lion roar fragrant grass green"
+        ],
+        "Status": "preferred",
+        "Validation": "multi-source",
+        "Explanation": "A recurrent poetic capping line, usually paired with the elephant king and red fallen flowers. Juelang Daosheng gives it in a New Year's Eve verse; Linye Tongqi uses it as the requested departure line; Yinyuan Longqi gives it as a direct answer; and Hanyu Hongxian concludes an instruction to the assembly with it.",
+        "Note": "The records do not establish one fixed allegorical decoding of lion, grass, elephant, and flowers.",
+        "Occurrences": [
+          {
+            "RelPath": "J/J25/J25nB174.xml",
+            "FromLb": "0719b23",
+            "ToLb": "0719b23",
+            "Kwic": "『放子三十棒。』仰云：『和尚棒某甲喫，某甲棒教誰喫？』溈云：『放子三十棒。』者兩個漢打葛藤不了，雖然也須知他父子有時捨身飼虎、割肉餵鷹；有時虎口中奪雀兒、鷹爪上爭兔子。還有於此中明殺活者麼？直饒於百草頭上薦取老僧；鬧市叢中識得天子，也須喫博山三十痛棒始得。」除夕示眾：大人無我自參同，收放全機妙始終；獅子吼時芳草綠，象王回顧落花紅。可中還有能哮吼者麼？古人以臘月除夕為末後一著，與諸人討個折合，者也是作死馬醫，何知有最初底句子？雖然走路走到家，辛苦亦自喜；做事做到頭，喫虧亦自己。秪者自喜自己也須自有分曉始得，不則豈但業識茫茫迷頭認影與觸途成滯無路出身也哉？且道皋亭今夕底風光又作麼生？且喜寒林消息密，梅花引得早春",
+            "MasterName": "Juelang Daosheng",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Juelang Daosheng",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J25/J25nB174.xml). Recorded Sayings of Chan Master Juelangsheng of Tianjie. Exact actor: Juelang Daosheng. 除夕示眾 assigns the verse to Juelang Daosheng",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "獅子吼時芳草綠",
+              "GrammaticalSubject": "Juelang Daosheng",
+              "SpeechFrame": "Source record (J/J25/J25nB174.xml). Recorded Sayings of Chan Master Juelangsheng of Tianjie. Exact actor: Juelang Daosheng. 除夕示眾 assigns the verse to Juelang Daosheng",
+              "FullCaseDecision": "Juelang Daosheng is the exact actor at the headword-bearing clause."
+            }
+          },
+          {
+            "RelPath": "J/J26/J26nB186.xml",
+            "FromLb": "0639b24",
+            "ToLb": "0639b24",
+            "Kwic": "老僧不識。」進云：「摑碎太虛空，毘盧頂上行。」師云：「閒言語。」進云：「和尚不得壓良為賤。」師云：「閒言語。」乃云：「三冬結制，把斷要津，不通凡聖。縱有牙如劍樹、口似血盆的到來，也只結舌有分。今朝不免放條活路，江北江南聽其去住。前頭如遇把關人，當頭拶著勿罔措。且道出門一句作麼生道？」驀卓拄杖，云：「獅子吼時芳草綠，象王回顧落花紅。」上堂。「山僧四大不強，無能為眾說法。」遂拈拄杖，云：「惟這木上座，雖則全無孔竅，卻能善說法要。」擊香几，云：「切莫隨伊顛倒。不見古人道：『毋聽之以耳，而聽之以心。毋聽之以心，而聽之以智。』須知智不到處，切忌道著。何故？他家自有通霄路，不用當陽指畫伊。」師誕上堂。「老僧年來癡癡憨憨",
+            "MasterName": "Linye Tongqi",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Linye Tongqi",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J26/J26nB186.xml). Recorded Sayings of Chan Master Linyexi. Exact actor: Linye Tongqi. 師 asks for and then supplies the departure line",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "獅子吼時芳草綠",
+              "GrammaticalSubject": "Linye Tongqi",
+              "SpeechFrame": "Source record (J/J26/J26nB186.xml). Recorded Sayings of Chan Master Linyexi. Exact actor: Linye Tongqi. 師 asks for and then supplies the departure line",
+              "FullCaseDecision": "Linye Tongqi is the exact actor at the headword-bearing clause."
+            }
+          },
+          {
+            "RelPath": "J/J27/J27nB193.xml",
+            "FromLb": "0240c03",
+            "ToLb": "0240c03",
+            "Kwic": "庵，請上堂。師云：「杖藜在處是生涯，撥盡春雲絕點瑕。獨露城山天漢表，萬村圍繞法王家。豁開淨眼看塵世，滿目青黃不是他。諸禪人會麼？既不是他，是箇甚麼？若也薦得，左之右之、古之今之，受用無涯，不妨法隨法行，法幢隨處建立。道繇人悟，道風普被，恒沙普被。恒沙則不無，且道直截為人一句作麼生道？」僧喝。師云：「獅子吼時芳草綠，象王行處落花紅。」下座。師到鎮海寺，請上堂。云：「乘槎渡海，為求格外知音；策杖登山，惟訪通方作者。遇知音，聲價益重；逢作者，大道愈彰。道彰，普天普地，滿眼滿耳，通身遍身，無處囊藏。聲重，於國於家，若長若幼，聞名睹相，悉皆皈依。故能道滿天下，名垂百世，皆繇知音作者，遞相舉揚而然也。今日山僧海已渡也，",
+            "MasterName": "Yinyuan Longqi",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Yinyuan Longqi",
+                "Roles": [
+                  "utterer",
+                  "respondent"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J27/J27nB193.xml). Recorded Sayings of Chan Master Yinyuan. Exact actor: Yinyuan Longqi. 師云 directly assigns the answer to Yinyuan Longqi",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "獅子吼時芳草綠",
+              "GrammaticalSubject": "Yinyuan Longqi",
+              "SpeechFrame": "Source record (J/J27/J27nB193.xml). Recorded Sayings of Chan Master Yinyuan. Exact actor: Yinyuan Longqi. 師云 directly assigns the answer to Yinyuan Longqi",
+              "FullCaseDecision": "Yinyuan Longqi is the exact actor at the headword-bearing clause."
+            }
+          },
+          {
+            "RelPath": "J/J33/J33nB288.xml",
+            "FromLb": "0572b14",
+            "ToLb": "0572b14",
+            "Kwic": "演出演入。』」師云：「古德恁麼為人條直，露膽傾心，非但一大藏教，將牟尼寶珠覿面和盤托出。廣勝今日重為舉似，且道還有酬價者麼？」良久，云：「海神知貴不知價，留與人間光照夜。」示眾。云：「秋光彈指又將冬，堪嘆浮生若夢中，生死玄關須薦透，休教錯過主人公。生死玄關則且置，云何得不錯過主人公聻？」良久，云：「獅子吼時芳草綠，象王回顧落花紅。」示眾。云：「箇段大事，歷歷輝騰於腳下；當陽不昧，明明獨露在眉間。從朝至暮無回互，動用施為自悄然。既是如斯現成，為甚諸人不會？」良久，云：「只為分明極，翻令所得遲。」示眾。云：每月十一五，大家同入室，無事可商量，只要當下瞥。若也瞥，獨露祖師箇巴鼻；倘未瞥，切須珍重知端的。人命無常呼",
+            "MasterName": "Hanyu Hongxian",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Hanyu Hongxian",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J33/J33nB288.xml). Recorded Sayings of Chan Master Hanyu Xian. Exact actor: Hanyu Hongxian. 示眾 and 良久云 assign the concluding verse to Hanyu Hongxian",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "獅子吼時芳草綠",
+              "GrammaticalSubject": "Hanyu Hongxian",
+              "SpeechFrame": "Source record (J/J33/J33nB288.xml). Recorded Sayings of Chan Master Hanyu Xian. Exact actor: Hanyu Hongxian. 示眾 and 良久云 assign the concluding verse to Hanyu Hongxian",
+              "FullCaseDecision": "Hanyu Hongxian is the exact actor at the headword-bearing clause."
+            }
+          }
+        ],
+        "ClaimAnchors": [],
+        "SourceTexts": [
+          "J/J25/J25nB174.xml",
+          "J/J26/J26nB186.xml",
+          "J/J27/J27nB193.xml",
+          "J/J33/J33nB288.xml"
+        ],
+        "RelatedMasters": [
+          "Juelang Daosheng",
+          "Linye Tongqi",
+          "Yinyuan Longqi",
+          "Hanyu Hongxian"
+        ],
+        "RelatedTerms": [],
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "A recurrent poetic capping line, usually paired with the elephant king and red fallen flowers.",
+          "EvidenceBody": [
+            "Juelang Daosheng gives it in a New Year's Eve verse; Linye Tongqi uses it as the requested departure line; Yinyuan Longqi gives it as a direct answer; and Hanyu Hongxian concludes an instruction to the assembly with it."
+          ]
+        },
+        "DraftEvidence": {
+          "LiteralGraphFloor": "when the lion roars, the fragrant grass is green",
+          "LexicalJob": "獅子吼時芳草綠 means when the lion roars, the fragrant grass is green.",
+          "DeploymentClasses": [
+            "direct answer",
+            "active capping line",
+            "active case raising"
+          ],
+          "HighValueEvidenceLedger": [
+            {
+              "Disposition": "keep",
+              "Finding": "Juelang Daosheng actively uses the headword in Recorded Sayings of Chan Master Juelangsheng of Tianjie.",
+              "Reason": "The complete case secures an exact actor and an independent recorded-sayings deployment."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Linye Tongqi actively uses the headword in Recorded Sayings of Chan Master Linyexi.",
+              "Reason": "The complete case secures an exact actor and an independent recorded-sayings deployment."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Yinyuan Longqi actively uses the headword in Recorded Sayings of Chan Master Yinyuan.",
+              "Reason": "The complete case secures an exact actor and an independent recorded-sayings deployment."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "Hanyu Hongxian actively uses the headword in Recorded Sayings of Chan Master Hanyu Xian.",
+              "Reason": "The complete case secures an exact actor and an independent recorded-sayings deployment."
+            }
+          ],
+          "OpeningClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3",
+            "o4"
+          ],
+          "EvidenceBodyClaimKeys": [
+            [
+              "o1",
+              "o2",
+              "o3",
+              "o4"
+            ]
+          ],
+          "ZenBend": "A recurrent poetic capping line, usually paired with the elephant king and red fallen flowers.",
+          "CounterexampleOrLimit": "The records do not establish one fixed allegorical decoding of lion, grass, elephant, and flowers.",
+          "DifferentThingTest": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "when the lion roars, the fragrant grass is green"
+            ],
+            "Reason": "All retained uses preserve one lexical job."
+          },
+          "AliasRationale": "Alternates preserve the same concrete expression.",
+          "ModifierControls": [
+            {
+              "Term": "獅子吼時芳草綠",
+              "Finding": "No modifier creates a second referent."
+            }
+          ],
+          "FamilyControls": [
+            {
+              "Term": "獅子吼時芳草綠",
+              "Finding": "4 independent higher-authority families meet the floor."
+            }
+          ],
+          "IndependentWorkIds": [
+            "work:J25nB174",
+            "work:J26nB186",
+            "work:J27nB193",
+            "work:J33nB288"
+          ],
+          "SourceAuthorityRows": [
+            {
+              "EvidenceKey": "o1",
+              "RelPath": "J/J25/J25nB174.xml",
+              "WorkId": "work:J25nB174",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "A named master's recorded sayings; the complete turn was independently actor-reviewed.",
+              "WitnessFamilyId": "juelang-new-years-eve-verse",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o2",
+              "RelPath": "J/J26/J26nB186.xml",
+              "WorkId": "work:J26nB186",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "A named master's recorded sayings; the complete turn was independently actor-reviewed.",
+              "WitnessFamilyId": "linye-release-capping-line",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o3",
+              "RelPath": "J/J27/J27nB193.xml",
+              "WorkId": "work:J27nB193",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "A named master's recorded sayings; the complete turn was independently actor-reviewed.",
+              "WitnessFamilyId": "yinyuan-direct-answer",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o4",
+              "RelPath": "J/J33/J33nB288.xml",
+              "WorkId": "work:J33nB288",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "A named master's recorded sayings; the complete turn was independently actor-reviewed.",
+              "WitnessFamilyId": "hanyu-showing-verse",
+              "DeploymentRole": "original-use"
+            }
+          ],
+          "LampExcessJustification": "No Tier-3 lamp or lineage compilation is retained.",
+          "NoHigherWitnessSearchReceipt": "Tier 1 was searched first; Tier 2 met the floor; no lamp was consulted.",
+          "DepthHarvestReceipt": {
+            "Complete": true,
+            "ReviewedExactHitCount": 22,
+            "AvailableSourceFiles": 18,
+            "SearchedDeploymentClasses": [
+              "direct answer",
+              "active capping line",
+              "active case raising"
+            ],
+            "OmissionAudit": [
+              "4 retained complete cases were actor-adjudicated.",
+              "Tier-3 lamps were not needed."
+            ]
+          }
+        },
+        "DraftAcceptedDerivedFields": {
+          "SourceTexts": [
+            "J/J25/J25nB174.xml",
+            "J/J26/J26nB186.xml",
+            "J/J27/J27nB193.xml",
+            "J/J33/J33nB288.xml"
+          ],
+          "RelatedMasters": [
+            "Juelang Daosheng",
+            "Linye Tongqi",
+            "Yinyuan Longqi",
+            "Hanyu Hongxian"
+          ]
+        }
+      }
+    ],
+    "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+  },
+  "FamilyHarvest": {
+    "PolicyVersion": 1,
+    "Scope": "R82 source-hierarchy repair",
+    "Edges": [],
+    "NegativeReceipt": [],
+    "GraphicVariants": []
+  }
+}

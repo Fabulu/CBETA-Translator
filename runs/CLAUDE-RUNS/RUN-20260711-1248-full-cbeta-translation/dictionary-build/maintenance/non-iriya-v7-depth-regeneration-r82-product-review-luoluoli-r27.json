@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "r82-exact-product-review.v1",
+  "cohort": "R82",
+  "id": "t_1b3195ce4368",
+  "term": "囉囉哩",
+  "productPath": "fresh-build/entries/t_1b3195ce4368/entry.v2.json",
+  "productSha256": "69041a7f3d8e061024e4ae50cdb960f855dcef0685da7e590bf36bdee74d278a",
+  "worksheetPath": "fresh-build/entries/t_1b3195ce4368/evidence.draft.json",
+  "worksheetSha256": "b4a03ec9a85e416c6b095afe92fcb45273e1b5a72897adb138a8ebd938a933d3",
+  "compilerReportPath": "fresh-build/entries/t_1b3195ce4368/evidence-compile-report.json",
+  "compilerReportSha256": "5f9df3f8c0139b8255521260b5cffa24137779822b1f8ebd6160e7c01aebe849",
+  "decisionAuthorityPath": "maintenance/non-iriya-v7-depth-regeneration-r82-carry-approval-luoluoli-r27.json",
+  "decisionAuthoritySha256": "22c1e0af031545b10e390a628b19ecc101ff11bfc63d75c81eba3b7de4099dd5",
+  "productRuling": {
+    "semantics": "PASS: the preferred target and note correctly treat 囉囉哩 as performed nonlexical vocables whose force comes from context, not as a sentence or doctrinal term.",
+    "targets": "PASS: 'la-la-li' is an intelligible English vocable and 'nonlexical sung refrain' documents its function.",
+    "families": "PASS: seven independent retained families exceed the six-family floor; the inherited Yulin-Yangqi quotation and unresolved J20 verse remain excluded.",
+    "sourceHierarchy": "PASS: one Tier-1 authored container carrying Baoning's represented address, six Tier-2 direct records, and zero lamps or padding.",
+    "actors": "PASS: Baoning Renyong, Zhenjing Kewen, Wei'an Deran, Guting Shanjian, Tianyin Yuanxiu, Poshan Haiming, and Shiqi Tongyun are correctly assigned as utterers.",
+    "projection": "FAIL: the product explanation enumerates only six of the seven retained deployments and silently omits Shiqi Tongyun's especially explicit 唱個 refrain, so the public synthesis does not account for all curated evidence.",
+    "actorProofPrecision": "FAIL: Poshan Haiming's AttributionNote says 唱個 assigns the work song, but his retained source says 我儂有首洗泥歌，唱出. 唱個 belongs to Shiqi Tongyun's occurrence. Poshan's actor remains secure under 上堂，師云, but the projected proof contains a copied false speech marker.",
+    "compilerBinding": "PASS BYTES: the hard-pass report binds the exact worksheet and product hashes, but canonical compilation does not detect the two content projection defects."
+  },
+  "defects": [
+    {
+      "severity": "blocking",
+      "coordinate": "Senses[0].Explanation",
+      "finding": "The prose lists six deployments while retaining seven and omits Shiqi Tongyun.",
+      "requiredRepair": "Add Shiqi Tongyun's explicitly sung festive refrain to the evidence synthesis without changing the approved meaning."
+    },
+    {
+      "severity": "blocking",
+      "coordinate": "Senses[0].Occurrences[5].AttributionNote and mirrored DraftActorProof.SpeechFrame",
+      "finding": "The Poshan proof incorrectly imports Shiqi's 唱個 marker.",
+      "requiredRepair": "Replace 唱個 with Poshan's exact 唱出; preserve 上堂，師云 and all other actor, family, source, and semantic fields."
+    }
+  ],
+  "verdict": "DENY",
+  "hardPass": false,
+  "publicMutation": false
+}
