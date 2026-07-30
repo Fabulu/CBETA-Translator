@@ -1,0 +1,79 @@
+{
+  "schemaVersion": "cohort-checkpoint-watchdog-independent-review.v1",
+  "reviewer": "/root/source_tiers_b",
+  "reviewedArtifacts": [
+    {
+      "path": "maintenance/cohort_checkpoint_watchdog.py",
+      "sha256": "e5910d3e91cee9484424e4933bbbac435c8503683b8fdcb7f17f95728400dcfc"
+    },
+    {
+      "path": "maintenance/test_cohort_checkpoint_watchdog.py",
+      "sha256": "ba519f9fc63d8c431a0054112e9af20ff76b2e18d93fbba1531f69f4d3775053"
+    },
+    {
+      "path": "DICTIONARY_ENTRY_GUIDE.md",
+      "sha256": "f198340ef9ca6168dccebfa494ae4ce54ea2c140f97519a8d9f0c2c62d18ba08"
+    }
+  ],
+  "independentExecution": {
+    "pyCompile": "pass",
+    "unitTests": "7/7 pass",
+    "elapsedSeconds": 2.808
+  },
+  "requirementVerdicts": {
+    "honestBoundedExtractionBy120WithoutFullConfig": "partial pass: the research phase actually invokes a command by 120 seconds and does not require the adjudicated config",
+    "rejectsEmptyMarkers": "partial fail: empty lists are rejected, but one shallow relPath-only object per ID passes and is the test fixture itself",
+    "viability90": "partial pass: deadline, selection IDs, union collision, result count and positive hit checks exist; count rows are not bound to selected IDs or terms",
+    "config240": "partial fail: mtime deadline and entry-ID list are checked, but a placeholder config containing only entries[{id}] passes the checkpoint test",
+    "constructor250": "fail: command is invoked by deadline, but no command-audit, authorized engine SHA, stable environment wrapper, exact argv hash, or config SHA binding is required before execution",
+    "firstProduct270": "fail: any post-receipt file, including {}, passes; product Identity.Id, configured output path, config binding, and compiler report are not checked",
+    "construction330": "fail: an empty manifest plus arbitrary hardPass preclosure/closure passes; selected IDs, product hashes, manifest/closure bindings, and real preclosure scope are not verified",
+    "receiptFirst": "partial fail: cohort artifacts are checked only against the numeric startedEpoch; timegate creation order and immutable checkpoint receipts are not enforced",
+    "commandAudit": "fail: research checks only the last argv and file mtime; command epochs are not checked against startedEpoch, and constructor has no command audit at all"
+  },
+  "hardDefects": [
+    {
+      "coordinate": "research:sourceCandidates/researchSkeleton",
+      "finding": "The supposed real-extraction gate accepts a candidate object containing only relPath. It does not require fromLb, complete bounded context/window, workId, tier/source authority, or any nonempty extracted text.",
+      "impact": "A fabricated shallow marker satisfies the 120-second checkpoint without paying real bounded extraction."
+    },
+    {
+      "coordinate": "research:command audit",
+      "finding": "Only commands[-1].argv is compared. No command epoch is required or checked, and earlier audited commands are ignored.",
+      "impact": "Pre-receipt activity can be represented inside a post-receipt audit file."
+    },
+    {
+      "coordinate": "constructor:config and command",
+      "finding": "The config gate checks only entries[].id. The test explicitly passes a two-row ID-only placeholder. The constructor command has no audit or authorized engine/wrapper/SHA binding.",
+      "impact": "The repair does not prove an adjudicated config exists by 240 or that the authorized generic engine is what runs by 250."
+    },
+    {
+      "coordinate": "first-product",
+      "finding": "The checkpoint hashes a file but never parses it or checks its Identity.Id against --id. The current test uses an empty JSON object and expects only the late deadline to fail.",
+      "impact": "A fake or unrelated file can satisfy the first-product milestone."
+    },
+    {
+      "coordinate": "construction",
+      "finding": "The current passing test uses an empty manifest. Preclosure and closure need only hardPass=true; no selected scope, product hashes, or cross-artifact bindings are checked.",
+      "impact": "The 330-second closure can be green without demonstrating construction."
+    },
+    {
+      "coordinate": "all phases:receipt zero and immutability",
+      "finding": "The numeric startedEpoch is trusted without verifying that the timegate itself is the earliest artifact. Viability, constructor, product, and construction receipts may overwrite existing paths.",
+      "impact": "Receipt-zero ordering and immutable checkpoint history are not fail-closed."
+    }
+  ],
+  "requiredCorrections": [
+    "Require every extraction candidate to contain a nonempty bounded complete-case/context payload plus exact relPath, fromLb, workId, tier, and matched term/span; require the research skeleton to bind those candidate hashes rather than repeat shallow objects.",
+    "Validate every command-audit epoch is at or after startedEpoch and bind the exact invoked argv; require the same audit discipline for constructor invocation.",
+    "At config240 validate the exact generic config schema, deterministic IDs, sourceDossier/evidenceDraft payload presence, selection/research equality, allowed-root containment, and config SHA.",
+    "At constructor250 require the independently authorized generic-engine SHA and stable dictionary_python_env.py wrapper SHA, exact argv, and audit binding.",
+    "At first270 parse the canonical product, require Identity.Id/SourceTerm/config equality, governed output path, and successful compiler report.",
+    "At construction330 require exact selected IDs and product hashes across manifest, preclosure and closure, with current hardPass bindings rather than boolean-only files.",
+    "Make every phase receipt immutable and prove timegate artifact-zero ordering rather than trusting a caller-supplied epoch.",
+    "Add negative tests for shallow candidates, pre-receipt command epochs, ID-only config, unauthorized constructor/wrapper, empty/wrong-ID products, empty manifests, mismatched closure hashes, late config240/constructor250/construction330, and receipt overwrite."
+  ],
+  "entryEditsPerformed": false,
+  "publicMutation": false,
+  "decision": "AUTHORITY_WITHHELD"
+}

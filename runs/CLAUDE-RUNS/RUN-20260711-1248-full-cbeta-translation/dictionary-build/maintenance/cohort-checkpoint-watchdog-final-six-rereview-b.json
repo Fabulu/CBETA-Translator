@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "cohort-checkpoint-watchdog-final-six-rereview.v1",
+  "reviewer": "/root/source_tiers_b",
+  "sourceDeltaReview": {
+    "path": "maintenance/cohort-checkpoint-watchdog-delta-rereview-b.json",
+    "sha256": "d5b8b58219b0b3c781d9e916a811999551ca10ec956b73c1179a91076f19f7ad"
+  },
+  "reviewedArtifacts": [
+    {
+      "path": "maintenance/cohort_checkpoint_watchdog.py",
+      "sha256": "ec15c4e2b2f18d274333f180ebc93a9d56de89015b676de1c15894d59306b39e"
+    },
+    {
+      "path": "maintenance/test_cohort_checkpoint_watchdog.py",
+      "sha256": "6075085bd130471496e93aac99e5d8cdf4be731c3f994ebff40a59496f5f9a55"
+    }
+  ],
+  "independentExecution": {
+    "pyCompile": "pass",
+    "unitTests": "19/19 pass",
+    "elapsedSeconds": 9.389
+  },
+  "sixDefectClosure": [
+    {
+      "defect": "authorized wrapper/engine execution",
+      "status": "incomplete",
+      "finding": "The watchdog requires command[1] to be the wrapper and command[2:4] to be --script plus engine, but does not constrain command[0] to the Python interpreter. An arbitrary successful executable can receive those three strings as unused arguments and return zero without executing either authorized tool."
+    },
+    {
+      "defect": "stable reusable tool timestamps",
+      "status": "closed",
+      "finding": "stable_tool now authorizes engine and wrapper by immutable path/SHA without post-receipt mtime."
+    },
+    {
+      "defect": "full adjudicated config",
+      "status": "closed",
+      "finding": "Deterministic IDs, dossier/worksheet identity and term, nonempty senses/occurrences, and research receipt IDs/terms are checked."
+    },
+    {
+      "defect": "bounded span integrity",
+      "status": "closed",
+      "finding": "spanText must occur inside context in addition to the existing exact hashes and matched term."
+    },
+    {
+      "defect": "first product configured binding",
+      "status": "closed",
+      "finding": "The exact configured outputRoot/ID/entry.v2.json path and config SHA are now bound."
+    },
+    {
+      "defect": "actual artifact-zero ordering",
+      "status": "incomplete",
+      "finding": "clock permits timegate mtime up to one second after startedEpoch, while post_receipt still compares cohort artifacts only to startedEpoch. An artifact at started+0.1 can therefore predate a timegate written at started+0.9 and still pass. No check compares artifact mtime directly with actual timegate mtime."
+    }
+  ],
+  "remainingFiniteDelta": [
+    "Require command[0] to resolve to the governed Python interpreter (or otherwise prove the wrapper was the actual executed program), and add a negative arbitrary-executable/decorative-argv test.",
+    "Return the actual timegate mtime from clock and require every candidate-specific artifact mtime to be at or after max(startedEpoch, timegate mtime); add a sub-second pre-timegate artifact test."
+  ],
+  "entryEditsPerformed": false,
+  "publicMutation": false,
+  "decision": "AUTHORITY_WITHHELD"
+}

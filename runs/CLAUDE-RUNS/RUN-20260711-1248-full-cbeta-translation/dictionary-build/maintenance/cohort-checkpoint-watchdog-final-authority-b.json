@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "cohort-checkpoint-watchdog-final-authority.v1",
+  "reviewer": "/root/source_tiers_b",
+  "reviewedArtifacts": [
+    {
+      "path": "maintenance/cohort_checkpoint_watchdog.py",
+      "sha256": "1dff5bd0806aa41e3a0f8040cf8f6cdf411a5880cd5f6b532872ab3cfe39cbf0"
+    },
+    {
+      "path": "maintenance/test_cohort_checkpoint_watchdog.py",
+      "sha256": "ccf6269228ca381825d0c6b95051791cb0bee48e3759f0c038b4cfcadd0611a3"
+    }
+  ],
+  "independentExecution": {
+    "pyCompile": "pass",
+    "unitTests": "21/21 pass",
+    "elapsedSeconds": 13.476
+  },
+  "closedDelta": [
+    "actual argv must begin with the governed Python interpreter, execute the exact stable wrapper, and target the authorized engine via --script",
+    "decorative wrapper/engine arguments under an arbitrary successful executable are rejected",
+    "stable reusable tools are authorized by immutable path and SHA without receipt-mtime mutation",
+    "config deterministic IDs, dossier/worksheet identity, term, evidence and occurrences are validated",
+    "bounded extracted span must occur inside its hashed complete context",
+    "first product is bound to config SHA and exact configured output path",
+    "every candidate-specific artifact is compared with the actual timegate file mtime",
+    "a sub-second artifact created after numeric startedEpoch but before the actual timegate is rejected"
+  ],
+  "r46MismatchRequirements": {
+    "viabilityDeadlineSeconds": 90,
+    "actualBoundedExtractionDeadlineSeconds": 120,
+    "adjudicatedConfigDeadlineSeconds": 240,
+    "authorizedConstructorDeadlineSeconds": 250,
+    "firstProductDeadlineSeconds": 270,
+    "constructionClosureDeadlineSeconds": 330,
+    "receiptFirst": true,
+    "commandAuditBound": true,
+    "emptyOrFakeMarkersRejected": true,
+    "hardPass": true
+  },
+  "entryEditsPerformed": false,
+  "publicMutation": false,
+  "decision": "FINAL_AUTHORITY_PASS"
+}

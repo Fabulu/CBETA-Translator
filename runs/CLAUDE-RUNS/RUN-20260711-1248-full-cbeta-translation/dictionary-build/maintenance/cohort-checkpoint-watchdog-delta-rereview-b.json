@@ -1,0 +1,81 @@
+{
+  "schemaVersion": "cohort-checkpoint-watchdog-delta-rereview.v1",
+  "reviewer": "/root/source_tiers_b",
+  "sourceReview": {
+    "path": "maintenance/cohort-checkpoint-watchdog-independent-review-b.json",
+    "sha256": "8917db5165ad5b798322464f1c00e0f5f3f11f01b646b00f934faa8bdb9d20ac"
+  },
+  "reviewedArtifacts": [
+    {
+      "path": "maintenance/cohort_checkpoint_watchdog.py",
+      "sha256": "ba4c54a8e7b73349e7e5c97cd6459149d0e0b4bfd1ba29aa76760ae490829d5e"
+    },
+    {
+      "path": "maintenance/test_cohort_checkpoint_watchdog.py",
+      "sha256": "2bcc6cceec4b8598e1e29ef6c6961c47ca273b6f974f269606c4be72a46b39a5"
+    },
+    {
+      "path": "DICTIONARY_ENTRY_GUIDE.md",
+      "sha256": "8b4ee1d3456b6cfd16aa476c8bbde8bdd01b02979a0891a737b038cf3bafd2fa"
+    }
+  ],
+  "independentExecution": {
+    "pyCompile": "pass",
+    "unitTests": "15/15 pass",
+    "elapsedSeconds": 6.860
+  },
+  "closedFindings": [
+    "count rows now bind exact selected IDs and terms",
+    "command-audit rows require post-receipt epochs and exact final argv",
+    "shallow relPath-only candidates are rejected and candidate hashes bind the research skeleton",
+    "ID-only config rows are rejected",
+    "empty or wrong-ID first product is rejected",
+    "empty manifest, closure-hash mismatch, late construction, and receipt overwrite are rejected"
+  ],
+  "remainingHardDefects": [
+    {
+      "coordinate": "constructor:authorized wrapper/engine execution",
+      "finding": "The watchdog only requires the wrapper and engine path strings to occur somewhere in argv. The passing constructor fixture actually executes marker.py and supplies the authorized wrapper and engine merely as unused trailing arguments.",
+      "evidence": "test constructor argv is [python, marker.py, WRAPPER, ENGINE]; marker.py contains only pass.",
+      "impact": "An arbitrary program can receive a green authorized-constructor checkpoint without executing either the stable wrapper or generic engine."
+    },
+    {
+      "coordinate": "constructor:reusable tool receipt ordering",
+      "finding": "Both the authorized generic engine and stable environment wrapper are passed through post_receipt(), which rejects their normal pre-cohort mtimes. The tests hide this because startedEpoch is the ancient value 1000.",
+      "impact": "Real production with a current receipt cannot use the independently authorized reusable engine/wrapper unless their mtimes are artificially touched or copied after every receipt, contradicting their source-independent reusable role."
+    },
+    {
+      "coordinate": "constructor:full adjudicated config",
+      "finding": "The config validator requires sourceDossier and evidenceDraft to be dictionaries but accepts empty objects. It does not recompute deterministic IDs, validate dossier/worksheet identity and term, or require the research receipt terms to match.",
+      "evidence": "The purported full-config test uses sourceDossier:{} and evidenceDraft:{} with nondeterministic IDs t_a/t_b for terms 甲/乙.",
+      "impact": "A placeholder config still passes the 240-second validation layer; because the fixture does not execute the real engine, the constructor checkpoint also returns green."
+    },
+    {
+      "coordinate": "research:bounded span integrity",
+      "finding": "The extracted span need not occur inside the hashed bounded context. The passing fixture uses context='bounded 甲 complete case' and spanText='xx甲yy', which are disjoint strings.",
+      "impact": "The watchdog proves two independently hashed strings, not that the matched span belongs to the retained complete-case context."
+    },
+    {
+      "coordinate": "first-product:configured output binding",
+      "finding": "The phase parses ID/term and compiler report but receives no config or config SHA and does not require the product path to equal the configured outputRoot/ID/entry.v2.json.",
+      "impact": "A different post-receipt product carrying the selected ID and term can satisfy the milestone."
+    },
+    {
+      "coordinate": "timegate:artifact-zero ordering",
+      "finding": "clock() requires artifactZero=true and the timegate mtime not to predate its numeric startedEpoch, while post_receipt compares other files only with the numeric epoch. It never proves every cohort artifact mtime is at or after the timegate file mtime.",
+      "impact": "An artifact created after a caller-chosen numeric epoch but before the actual timegate file can still pass receipt-zero ordering."
+    }
+  ],
+  "requiredFiniteDelta": [
+    "Require the actual constructor argv shape to execute dictionary_python_env.py as the script and generic_bounded_constructor.py as its --script target; do not accept decorative path arguments.",
+    "Authorize reusable engine/wrapper by exact immutable SHA without requiring post-receipt mtime; keep post-receipt ordering for candidate-specific config/audit/research artifacts.",
+    "Validate deterministic ID from term and nonempty nested dossier/worksheet identity, term, evidence, and occurrence payloads; require research receipt IDs and terms.",
+    "Require spanText to occur inside context and retain all existing hash checks.",
+    "Bind first-product phase to config SHA and exact configured output path.",
+    "Compare all cohort artifact mtimes with the actual timegate mtime as well as startedEpoch.",
+    "Replace the marker.py happy-path constructor test with an actual stable-wrapper to real-generic-engine invocation or a strict argv-shape fixture, and use current receipt timestamps."
+  ],
+  "entryEditsPerformed": false,
+  "publicMutation": false,
+  "decision": "AUTHORITY_WITHHELD"
+}
