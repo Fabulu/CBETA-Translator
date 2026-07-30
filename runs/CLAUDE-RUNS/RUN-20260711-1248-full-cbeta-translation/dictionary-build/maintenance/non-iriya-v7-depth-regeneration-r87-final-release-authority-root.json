@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "r87-final-release-authority.v1",
+  "cohort": "R87",
+  "verdict": "RELEASE_AUTHORIZED_AND_PUBLISHED",
+  "replacements": [
+    {"id":"t_1db401e441ec","term":"百丈直得三日耳聾","productSha256":"087c71abee2697aade7ace604fdda82833f0e5e88d4d11f76e1f6f22bf3940dd"},
+    {"id":"t_1dbdbd1d4e72","term":"劫火洞然毫末盡","productSha256":"ab067a92756bbfe8751c4b500033a378ad3d45891c80680a0c64f0ea83aeee2c"},
+    {"id":"t_1dfe52dc92d6","term":"刻刻提撕","productSha256":"7fa7ec72a8f16315646abff50ce20762ed6ae3cd677ca67418f2a0e079b6a155"}
+  ],
+  "review": {
+    "closureSha256": "ed9c45c3e6a2b853f42e112ba4b19ba59fb0e81ba20422f0a2638ae3711bb39e",
+    "retainedEvidence": "12 quotations across 12 independently reviewed deployment families",
+    "tierMix": "12 Tier-2 recorded-sayings witnesses; zero lamps",
+    "attributionAudit": "zero hard failures",
+    "depthSenseAudit": "three audited; zero hard failures and zero review flags",
+    "staleCollisionRejected": true
+  },
+  "publicIntegrity": {
+    "entryCount": 4714,
+    "exactProductParity": "3/3",
+    "publicCommit": "cdb6ef3b00c554914b54a091e3a2612097c5cd51",
+    "headEqualsOriginMain": true,
+    "hardPass": true
+  },
+  "publicationTiming": {
+    "publicationDeadlineEpoch": 1785411689.170698,
+    "atomicInstallEpoch": 1785411905,
+    "atomicInstallLatenessSeconds": 215.829302,
+    "publicCommitEpoch": 1785411926,
+    "publicCommitLatenessSeconds": 236.829302,
+    "deadlineHardPass": false,
+    "latePublicationDisclosed": true,
+    "cause": "One reviewer exceeded its hard window and was replaced; preexisting stale product directories were detected, rejected, quarantined, and regenerated; final metadata corrections were made at worksheet authority."
+  },
+  "releaseAuthorized": true,
+  "published": true,
+  "hardPass": true
+}

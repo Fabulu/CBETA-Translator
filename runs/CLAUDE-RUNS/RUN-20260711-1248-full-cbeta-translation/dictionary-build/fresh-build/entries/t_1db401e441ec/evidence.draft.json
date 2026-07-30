@@ -1,0 +1,387 @@
+{
+  "SchemaVersion": 1,
+  "ConstructionPipelineVersion": 2,
+  "Admission": {
+    "Decision": "admit",
+    "LexicalUnitReason": "百丈直得三日耳聾 is a stable expression with repeated active Chan deployments.",
+    "ObservableChanJob": "百丈直得三日耳聾 means Baizhang was left deaf for three days.",
+    "DuplicateCheck": {
+      "DeterministicIdChecked": true,
+      "ExactHeadwordChecked": true,
+      "NearDuplicateRuling": "百丈直得三日耳聾 was checked against the installed dictionary; no exact or punctuation-normalized collision is admitted."
+    }
+  },
+  "EvidenceTransport": {
+    "DossierPath": "source-dossier.json",
+    "DossierSha256": "0baedaa5e5ee00fff24e6c4748f69a49e6e36299d433648d172a148892fc9abf",
+    "SourceAuthorityManifestSha256": "2ee44bf19a2533958e5620c38915f3d03fbb81209c76c7183742a4f3d059f501",
+    "DiscoveryMethods": [
+      "exact concordance count",
+      "complete-turn actor review",
+      "Tier 1 then Tier 2 source ranking",
+      "predecessor-evidence adjudication"
+    ],
+    "ExactCount": 24,
+    "BridgedCount": 24,
+    "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+  },
+  "Entry": {
+    "Id": "t_1db401e441ec",
+    "SourceTerm": "百丈直得三日耳聾",
+    "CreatedBy": "R87 source-hierarchy repair",
+    "WrittenUtc": "2026-07-30T10:38:00Z",
+    "Senses": [
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "Baizhang was left deaf for three days",
+        "AlternateTargets": [
+          "Baizhang was deafened for three days"
+        ],
+        "SearchAliases": [
+          "Baizhang was three days deaf"
+        ],
+        "Status": "preferred",
+        "Validation": "multi-source",
+        "Explanation": "The fixed result of Mazu's shout in the Mazu–Baizhang whisk case: Baizhang was left deaf for three days. Yulin Tongxiu, Neishao Zhizhong, Juelang Daosheng, and Xuedou Chongxian actively raise, interpret, or reenact that result in four independent recorded-sayings families.",
+        "Note": "Baizhang is the represented experiencer, not the source of these later formulations. Later narration, questioning, and commentary do not create additional lexical senses.",
+        "Occurrences": [
+          {
+            "RelPath": "B/B27/B27n0152.xml",
+            "FromLb": "0530a02",
+            "ToLb": "0530a07",
+            "Kwic": "祖以目視禪牀角頭拂子丈云即此用離此用祖云爾他後開兩片皮將何為人丈取拂子竪起祖云即此用離此用丈挂拂子於舊處祖便喝百丈直得三日耳聾竇云奇怪諸禪德如今列其派者甚多究其源者極少總道百丈於喝下大悟還端的也無然刁刀相似魚魯參差若是明眼漢瞞他一點不得",
+            "MasterName": "Yulin Tongxiu",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Yulin Tongxiu",
+                "Roles": [
+                  "utterer",
+                  "later-raiser",
+                  "commentator",
+                  "record-owner"
+                ]
+              },
+              {
+                "MasterName": "Mazu Daoyi",
+                "Roles": [
+                  "case-figure"
+                ]
+              },
+              {
+                "MasterName": "Baizhang Huaihai",
+                "Roles": [
+                  "case-figure",
+                  "person-described"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (B/B27/B27n0152.xml). Recorded Sayings of National Master Puji Yulin. Exact actor: Yulin Tongxiu. The complete source frame assigns the retained headword-bearing action to Yulin Tongxiu.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "百丈直得三日耳聾",
+              "GrammaticalSubject": "Yulin Tongxiu",
+              "SpeechFrame": "Source record (B/B27/B27n0152.xml). Recorded Sayings of National Master Puji Yulin. Exact actor: Yulin Tongxiu. The complete source frame assigns the retained headword-bearing action to Yulin Tongxiu.",
+              "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to Yulin Tongxiu."
+            }
+          },
+          {
+            "RelPath": "J/J34/J34nB306.xml",
+            "FromLb": "0416a17",
+            "ToLb": "0416a22",
+            "Kwic": "立萬仞，誰敢正眼覷著？覷著即瞎卻渠眼。可以權衡佛祖、可以開鑿人天、可以拔濟群機、可以流通正眼。是故，馬祖一喝，百丈直得三日耳聾；黃檗三頓，臨濟也只一撥便轉。此是大人發大用、大智顯大機，於其中間如擊石火、似閃電光，直截根源，更無回互。須是",
+            "MasterName": "Neishao Zhizhong",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Neishao Zhizhong",
+                "Roles": [
+                  "utterer",
+                  "commentator",
+                  "record-owner"
+                ]
+              },
+              {
+                "MasterName": "Mazu Daoyi",
+                "Roles": [
+                  "case-figure"
+                ]
+              },
+              {
+                "MasterName": "Baizhang Huaihai",
+                "Roles": [
+                  "case-figure",
+                  "person-described"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J34/J34nB306.xml). Recorded Sayings of Chan Master Neishaozhong. Exact actor: Neishao Zhizhong. The complete source frame assigns the retained headword-bearing action to Neishao Zhizhong.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "百丈直得三日耳聾",
+              "GrammaticalSubject": "Neishao Zhizhong",
+              "SpeechFrame": "Source record (J/J34/J34nB306.xml). Recorded Sayings of Chan Master Neishaozhong. Exact actor: Neishao Zhizhong. The complete source frame assigns the retained headword-bearing action to Neishao Zhizhong.",
+              "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to Neishao Zhizhong."
+            }
+          },
+          {
+            "RelPath": "J/J34/J34nB311.xml",
+            "FromLb": "0601a03",
+            "ToLb": "0601a08",
+            "Kwic": "甚非心非佛劄？說甚不是心、不是佛、不是物劄？你扭痛野鴨子鼻孔劄？你見舉拂子云：『即此用？離此用？』震聲一喝，使百丈直得三日耳聾。劄！劄！劄！且道如何遮一則連下三劄聻？秪為圓通當時曾遭他此毒，則今日狹路相逢放他不過也。設使座下有一人掀倒禪",
+            "MasterName": "Juelang Daosheng",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Juelang Daosheng",
+                "Roles": [
+                  "utterer",
+                  "later-raiser",
+                  "commentator",
+                  "record-owner"
+                ]
+              },
+              {
+                "MasterName": "Mazu Daoyi",
+                "Roles": [
+                  "case-figure"
+                ]
+              },
+              {
+                "MasterName": "Baizhang Huaihai",
+                "Roles": [
+                  "case-figure",
+                  "person-described"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J34/J34nB311.xml). Complete Record of Chan Master Juelangsheng of Tianjie. Exact actor: Juelang Daosheng. The complete source frame assigns the retained headword-bearing action to Juelang Daosheng.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "百丈直得三日耳聾",
+              "GrammaticalSubject": "Juelang Daosheng",
+              "SpeechFrame": "Source record (J/J34/J34nB311.xml). Complete Record of Chan Master Juelangsheng of Tianjie. Exact actor: Juelang Daosheng. The complete source frame assigns the retained headword-bearing action to Juelang Daosheng.",
+              "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to Juelang Daosheng."
+            }
+          },
+          {
+            "RelPath": "T/T47/T47n1996.xml",
+            "FromLb": "0685b22",
+            "ToLb": "0685b27",
+            "Kwic": "丈云。即此用離此用。祖云。爾他後開兩片皮。將何為人。丈取拂子竪起。祖云。即此用離此用。丈挂拂子於舊處。祖便喝。百丈直得三日耳聾。師云。奇怪諸禪德。如今列其派者甚多。究其源者極少。總道百丈於喝下大悟。還端的也無。然刁刀相似。魚魯參差。若是",
+            "MasterName": "Xuedou Chongxian",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Xuedou Chongxian",
+                "Roles": [
+                  "utterer",
+                  "later-raiser",
+                  "commentator",
+                  "record-owner"
+                ]
+              },
+              {
+                "MasterName": "Mazu Daoyi",
+                "Roles": [
+                  "case-figure"
+                ]
+              },
+              {
+                "MasterName": "Baizhang Huaihai",
+                "Roles": [
+                  "case-figure",
+                  "person-described"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (T/T47/T47n1996.xml). Recorded Sayings of Chan Master Mingjue. Exact actor: Xuedou Chongxian. The complete source frame assigns the retained headword-bearing action to Xuedou Chongxian.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "百丈直得三日耳聾",
+              "GrammaticalSubject": "Xuedou Chongxian",
+              "SpeechFrame": "Source record (T/T47/T47n1996.xml). Recorded Sayings of Chan Master Mingjue. Exact actor: Xuedou Chongxian. The complete source frame assigns the retained headword-bearing action to Xuedou Chongxian.",
+              "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to Xuedou Chongxian."
+            }
+          }
+        ],
+        "ClaimAnchors": [],
+        "SourceTexts": [
+          "B/B27/B27n0152.xml",
+          "J/J34/J34nB306.xml",
+          "J/J34/J34nB311.xml",
+          "T/T47/T47n1996.xml"
+        ],
+        "RelatedMasters": [
+          "Yulin Tongxiu",
+          "Mazu Daoyi",
+          "Baizhang Huaihai",
+          "Neishao Zhizhong",
+          "Juelang Daosheng",
+          "Xuedou Chongxian"
+        ],
+        "RelatedTerms": [],
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "The fixed result of Mazu's shout in the Mazu–Baizhang whisk case: Baizhang was left deaf for three days.",
+          "EvidenceBody": [
+            "Yulin Tongxiu, Neishao Zhizhong, Juelang Daosheng, and Xuedou Chongxian actively raise, interpret, or reenact that result in four independent recorded-sayings families."
+          ]
+        },
+        "DraftEvidence": {
+          "LiteralGraphFloor": "Baizhang was left deaf for three days",
+          "LexicalJob": "百丈直得三日耳聾 means Baizhang was left deaf for three days.",
+          "DeploymentClasses": [
+            "authored verse",
+            "direct instruction"
+          ],
+          "HighValueEvidenceLedger": [
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to Yulin Tongxiu.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to Neishao Zhizhong.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to Juelang Daosheng.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to Xuedou Chongxian.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            }
+          ],
+          "OpeningClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3",
+            "o4"
+          ],
+          "EvidenceBodyClaimKeys": [
+            [
+              "o1",
+              "o2",
+              "o3",
+              "o4"
+            ]
+          ],
+          "ZenBend": "The fixed result of Mazu's shout in the Mazu–Baizhang whisk case: Baizhang was left deaf for three days.",
+          "CounterexampleOrLimit": "Baizhang is the represented experiencer, not the source of these later formulations. Later narration, questioning, and commentary do not create additional lexical senses.",
+          "DifferentThingTest": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "Baizhang was left deaf for three days"
+            ],
+            "Reason": "One lexical job."
+          },
+          "AliasRationale": "Alternates preserve the same lexical job.",
+          "ModifierControls": [
+            {
+              "Term": "百丈直得三日耳聾",
+              "Finding": "No modifier creates a second referent."
+            }
+          ],
+          "FamilyControls": [
+            {
+              "Term": "百丈直得三日耳聾",
+              "Finding": "4 independent higher-tier families meet the floor."
+            }
+          ],
+          "IndependentWorkIds": [
+            "work:B27n0152",
+            "work:J34nB306",
+            "work:J34nB311",
+            "work:T47n1996"
+          ],
+          "SourceAuthorityRows": [
+            {
+              "EvidenceKey": "o1",
+              "RelPath": "B/B27/B27n0152.xml",
+              "WorkId": "work:B27n0152",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "baizhang-deaf:yulin-commentarial-raising",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o2",
+              "RelPath": "J/J34/J34nB306.xml",
+              "WorkId": "work:J34nB306",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "baizhang-deaf:neishao-great-function",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o3",
+              "RelPath": "J/J34/J34nB311.xml",
+              "WorkId": "work:J34nB311",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "baizhang-deaf:juelang-live-reenactment",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o4",
+              "RelPath": "T/T47/T47n1996.xml",
+              "WorkId": "work:T47n1996",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "baizhang-deaf:xuedou-source-critical-comment",
+              "DeploymentRole": "original-use"
+            }
+          ],
+          "LampExcessJustification": "No Tier-3 lamp retained.",
+          "NoHigherWitnessSearchReceipt": "Tier 1 searched first, then Tier 2; no lamp needed.",
+          "DepthHarvestReceipt": {
+            "Complete": true,
+            "ReviewedExactHitCount": 24,
+            "AvailableSourceFiles": 20,
+            "SearchedDeploymentClasses": [
+              "authored verse",
+              "direct instruction"
+            ],
+            "OmissionAudit": [
+              "4 retained cases actor-adjudicated.",
+              "No lamp retained."
+            ]
+          }
+        },
+        "DraftAcceptedDerivedFields": {
+          "SourceTexts": [
+            "B/B27/B27n0152.xml",
+            "J/J34/J34nB306.xml",
+            "J/J34/J34nB311.xml",
+            "T/T47/T47n1996.xml"
+          ],
+          "RelatedMasters": [
+            "Yulin Tongxiu",
+            "Mazu Daoyi",
+            "Baizhang Huaihai",
+            "Neishao Zhizhong",
+            "Juelang Daosheng",
+            "Xuedou Chongxian"
+          ]
+        }
+      }
+    ],
+    "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+  },
+  "FamilyHarvest": {
+    "PolicyVersion": 1,
+    "Scope": "R87 source-hierarchy repair",
+    "Edges": [],
+    "NegativeReceipt": [],
+    "GraphicVariants": []
+  }
+}

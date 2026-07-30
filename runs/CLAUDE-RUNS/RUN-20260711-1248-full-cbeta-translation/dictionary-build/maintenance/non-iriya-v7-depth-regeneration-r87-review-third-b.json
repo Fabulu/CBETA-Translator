@@ -1,0 +1,127 @@
+{
+  "schemaVersion": "r87-independent-source-first-review.v1",
+  "cohort": "R87",
+  "reviewedIds": [
+    "t_1dfe52dc92d6"
+  ],
+  "bindings": {
+    "timegateSha256": "4ff1a51c4a9aafcfe6cfa3e5d64955ad299f50c50e6f4369e0540def0478f2dc",
+    "selectionSha256": "602f093231d6696507b8e9e35026e354909753249b5de060291d51412c4a99d8",
+    "checkpointSha256": "d8f71e4a60318012779befb74551feebe6b8e27a3bd276f150d3d1657eedd366",
+    "extractionSha256": "04e38b56e279352bc71d0d660a1fb623ac849eb12372a1f3c210a30ad3f5719d",
+    "skeletonSha256": "ae2555ae790b7663aae0d29fdb24475f71470e1268427ebb355763c4ca8f7c11"
+  },
+  "reviews": [
+    {
+      "id": "t_1dfe52dc92d6",
+      "term": "刻刻提撕",
+      "requiredFloor": 4,
+      "candidateCount": 7,
+      "admission": "ADMIT",
+      "senseCount": 1,
+      "preferredTarget": "keep bringing it to attention, moment after moment",
+      "alternateTargets": [
+        "bring it up and examine it at every moment",
+        "keep it under examination, moment after moment"
+      ],
+      "semanticRuling": "A continuous instruction to bring the matter or cited saying back to attention and examine it at every moment. The direct records couple the phrase with not letting go thought after thought, investigating at all times, clarifying one's own affair, and repeatedly examining named old answers. These predicates establish sustained recollection and investigation, not a momentary reminder.",
+      "semanticLimit": "The object is supplied by context: one's own affair, a raised saying, two old answers, or the source of one's responses to affairs. The compound does not itself name a posture, a generic contemplative technique, or undifferentiated awareness.",
+      "agreementWithRootReview": "AGREE. The independent source-first ruling matches root's one-sense analysis and exact preferred target. The four retained records satisfy root's requirement for distinct direct Tier-2 instructions, and no lamps are needed.",
+      "retainedFamilies": [
+        {
+          "relPath": "J/J26/J26nB180.xml",
+          "fromLb": "0292c01",
+          "tier": 2,
+          "contextSha256": "0bee054df618b864bae2a83c110c680d1f59411ee48c242b8713c6167f1765b2",
+          "masterName": "Muchen Daomin",
+          "actorRole": "utterer",
+          "outerRoles": [
+            {
+              "actor": "the Shunzhi emperor",
+              "role": "interlocutor"
+            }
+          ],
+          "familyId": "moment-after-moment:muchen-imperial-affairs",
+          "deployment": "Muchen tells the emperor to look back after responding to affairs and ask where the response arose and vanished, then to keep bringing this up moment after moment and not relinquish it thought after thought.",
+          "actorEvidence": "The headword-bearing sentence follows 師云 in Muchen Daomin's direct answer to the emperor; the emperor asks the surrounding questions but does not utter the phrase.",
+          "decision": "RETAIN"
+        },
+        {
+          "relPath": "J/J26/J26nB185.xml",
+          "fromLb": "0595b16",
+          "tier": 2,
+          "contextSha256": "ce85264a66a367710f846b04b4db3d150478b6f876640bef33b209c52b8c9ca7",
+          "masterName": "Fushi Tongxian",
+          "actorRole": "utterer",
+          "outerRoles": [],
+          "familyId": "moment-after-moment:fushi-raised-saying",
+          "deployment": "In a direct small address, Fushi says to put one's original raised saying before one's eyes like Mount Sumeru, investigate it at all times, and bring it to attention moment after moment without changing one's resolve.",
+          "actorEvidence": "The sentence is unquoted discourse inside a 小參 in the Recorded Sayings of Chan Master Fushi; Fushi Tongxian is the record owner and exact utterer.",
+          "decision": "RETAIN"
+        },
+        {
+          "relPath": "J/J26/J26nB187.xml",
+          "fromLb": "0709c15",
+          "tier": 2,
+          "contextSha256": "fe9ca18fdef26535c5c1e50f587f9e67bcda2a0110c4d0d9a3e3701f4f0658f0",
+          "masterName": "Tian'an Sheng",
+          "actorRole": "utterer",
+          "outerRoles": [],
+          "familyId": "moment-after-moment:tianan-own-affair",
+          "deployment": "Tian'an addresses the assembled community and asks whether, after obtaining a human body, leaving home, meeting a true knowledgeable person, and hearing the correct teaching, they would not betray those conditions if they failed to examine and clarify their own affair moment after moment.",
+          "actorEvidence": "After the preceding exchange the record marks 乃云 and continues Tian'an Sheng's direct address; the headword occurs in that address, not in an embedded quotation.",
+          "decision": "RETAIN"
+        },
+        {
+          "relPath": "J/J28/J28nB202.xml",
+          "fromLb": "0096a15",
+          "tier": 2,
+          "contextSha256": "6f7943fbbdc3248146e60554695db4ec0ec07ed27a6ab7677dd5dedd9c973a81",
+          "masterName": "Baichi Xingyuan",
+          "actorRole": "utterer",
+          "outerRoles": [
+            {
+              "actor": "Daomei, an attendant",
+              "role": "addressee"
+            }
+          ],
+          "familyId": "moment-after-moment:baichi-two-road-answers",
+          "deployment": "In an instruction to attendant Daomei, Baichi quotes Zhaozhou's and Nanquan's answers to questions about the Way and tells him to keep those two turns under examination moment after moment.",
+          "actorEvidence": "The section heading 示道眉侍者 establishes the addressee; the headword-bearing instruction is Baichi Xingyuan's outer speech, while Zhaozhou and Nanquan are quoted case figures whose earlier answers supply its object.",
+          "decision": "RETAIN"
+        }
+      ],
+      "excludedOrReserve": [
+        {
+          "relPath": "J/J28/J28nB210.xml",
+          "fromLb": "0426b20",
+          "exactActor": "Qiyuan Xinggang",
+          "actorRole": "utterer",
+          "reason": "Valid direct Tier-2 exhortation pairing the phrase with keeping correct attention, but it adds less lexical discrimination than the four retained uses and is unnecessary once the floor is met."
+        },
+        {
+          "relPath": "J/J29/J29nB234.xml",
+          "fromLb": "0394c04",
+          "exactActor": "Yichu Wuyuan",
+          "actorRole": "utterer",
+          "reason": "Valid direct Tier-2 instruction to three named Chan students, but it substantially overlaps Fushi's raised-saying and investigation family."
+        },
+        {
+          "relPath": "J/J29/J29nB243.xml",
+          "fromLb": "0686c24",
+          "exactActor": "Er'an Song",
+          "actorRole": "utterer",
+          "reason": "Valid direct Tier-2 general warning coupling constant vigilance with moment-after-moment attention; retained as reserve because its unstated object is less informative than the selected cases."
+        }
+      ],
+      "sourceHierarchy": "No Tier-1 authored occurrence was supplied by the bounded extraction. Four independent Tier-2 recorded-sayings instructions meet the required floor. Three additional Tier-2 instructions remain reserve. Tier-3 lamps were not consulted and no lamp evidence is admitted.",
+      "familyGate": "All seven candidates are distinct direct instructions rather than parallel recensions. Four complementary records are sufficient: imperial daily affairs, a raised saying, one's own affair, and two named old answers. The remaining three would add volume without establishing a different sense.",
+      "actorGate": "Sense MasterName must be null. The retained exact utterers are Muchen Daomin, Fushi Tongxian, Tian'an Sheng, and Baichi Xingyuan. The emperor and Daomei are contextual interlocutor/addressee; Zhaozhou Congshen and Nanquan Puyuan are quoted case figures in Baichi's instruction and must not replace Baichi as the headword utterer.",
+      "verdict": "APPROVE_CONSTRUCTION",
+      "hardPass": true
+    }
+  ],
+  "overallVerdict": "APPROVE_FOR_CONSTRUCTION",
+  "hardPass": true,
+  "publicMutation": false
+}

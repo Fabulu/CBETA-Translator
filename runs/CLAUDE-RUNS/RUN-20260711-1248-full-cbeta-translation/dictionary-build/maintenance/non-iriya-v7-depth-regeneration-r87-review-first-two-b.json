@@ -1,0 +1,177 @@
+{
+  "schemaVersion": "r87-independent-source-first-review.v1",
+  "cohort": "R87",
+  "reviewMode": "strict-bounded-fallback",
+  "reviewedIds": [
+    "t_1db401e441ec",
+    "t_1dbdbd1d4e72"
+  ],
+  "bindings": {
+    "extractionSha256": "04e38b56e279352bc71d0d660a1fb623ac849eb12372a1f3c210a30ad3f5719d",
+    "rootReviewSha256": "b3917928870b9947dbf8965e6396fcd593a427e5ff8a2d2873e7d5d91dbf3779"
+  },
+  "reviews": [
+    {
+      "id": "t_1db401e441ec",
+      "term": "百丈直得三日耳聾",
+      "senseCount": 1,
+      "preferredTarget": "Baizhang was left deaf for three days",
+      "semanticRuling": "The fixed narrated result of Mazu's shout in the Mazu-Baizhang whisk case. Later masters raise, question, and comment on that result without creating another lexical referent.",
+      "retainedFamilies": [
+        {
+          "relPath": "B/B27/B27n0152.xml",
+          "fromLb": "0530a04",
+          "contextSha256": "36c0ed9280b1e49cb4b8662627577f4bdf8c30b0b6346e265afb8bcee73bac8a",
+          "tier": 2,
+          "exactActor": "Yulin Tongxiu",
+          "actorRole": "later-raiser",
+          "outerRoles": [
+            "commentator"
+          ],
+          "familyId": "baizhang-deaf:yulin-commentarial-raising",
+          "decision": "RETAIN"
+        },
+        {
+          "relPath": "J/J34/J34nB306.xml",
+          "fromLb": "0416a19",
+          "contextSha256": "97903e9e2f1100d8a069a5f439f4d418062ad81368131c97a0f34e5031960f05",
+          "tier": 2,
+          "exactActor": "Neishao Zhizhong",
+          "actorRole": "utterer",
+          "outerRoles": [
+            "commentator"
+          ],
+          "familyId": "baizhang-deaf:neishao-great-function",
+          "decision": "RETAIN"
+        },
+        {
+          "relPath": "J/J34/J34nB311.xml",
+          "fromLb": "0601a05",
+          "contextSha256": "0907d3df21f644a1800dcef3ee245cd18594ef80c855b6ba62d9ddd7b285c24c",
+          "tier": 2,
+          "exactActor": "Juelang Daosheng",
+          "actorRole": "utterer",
+          "outerRoles": [
+            "later-raiser",
+            "commentator"
+          ],
+          "familyId": "baizhang-deaf:juelang-live-reenactment",
+          "decision": "RETAIN"
+        },
+        {
+          "relPath": "T/T47/T47n1996.xml",
+          "fromLb": "0685b24",
+          "contextSha256": "f7c138a375a7c492c985fdf4bbb413205ac0f592a1a0d272a13c263f07471415",
+          "tier": 2,
+          "exactActor": "Xuedou Chongxian",
+          "actorRole": "later-raiser",
+          "outerRoles": [
+            "commentator"
+          ],
+          "familyId": "baizhang-deaf:xuedou-source-critical-comment",
+          "decision": "RETAIN"
+        }
+      ],
+      "reserveOrExcluded": [
+        {
+          "relPath": "C/C077/C077n1710.xml",
+          "reason": "Valid direct question-and-answer redeployment, but the bounded packet does not expose the section owner's canonical identity as cleanly as the four retained records."
+        },
+        {
+          "relPath": "J/J36/J36nB366.xml",
+          "reason": "Autobiographical transmission narrative in which an elder asks the inherited question; valid reception evidence but exact elder identity is less clean in the bounded packet."
+        },
+        {
+          "relPath": "X/X67/X67n1301.xml",
+          "reason": "Overlaps Xuedou's same commentarial treatment and would duplicate that deployment family."
+        }
+      ],
+      "familyGate": "The base Mazu-Baizhang event is one inherited family. The four retained sources count because each later master actively raises, appraises, reenacts, or critically comments on it; parallel recital alone would not multiply depth.",
+      "actorGate": "Baizhang is the represented experiencer, not the utterer. Mazu is the case figure whose shout precedes the narrated result. Each retained later master owns the outer headword-bearing narration or raising.",
+      "comparisonWithRoot": "AGREE with root's one-sense meaning, preferred target, four-active-Tier-2 requirement, and actor distinction.",
+      "unresolvedCoordinates": [],
+      "hardPass": true
+    },
+    {
+      "id": "t_1dbdbd1d4e72",
+      "term": "劫火洞然毫末盡",
+      "senseCount": 1,
+      "preferredTarget": "when the kalpa fire blazes, not a hair-tip remains",
+      "semanticRuling": "A recurrent first line in a paired image: the world-ending fire consumes everything down to the slightest hair-tip, while the following green-mountains line supplies the counterpoint. Funeral addresses, verse, and a direct answer retain the same referent.",
+      "retainedFamilies": [
+        {
+          "relPath": "J/J36/J36nB366.xml",
+          "fromLb": "0843b10",
+          "contextSha256": "f99f9d8b623352a3cc8a6292cc0192dd07a5f936833d84b6c7339c91e8f2a773",
+          "tier": 2,
+          "exactActor": "Dafang Xinghai",
+          "actorRole": "verse-author",
+          "outerRoles": [],
+          "familyId": "kalpa-fire:dafang-warning-verse",
+          "decision": "RETAIN"
+        },
+        {
+          "relPath": "J/J37/J37nB386.xml",
+          "fromLb": "0401a01",
+          "contextSha256": "107d0767ba8fd82743757c1b1a44aaefe8006e28d529a60e18785a9f50ab8134",
+          "tier": 2,
+          "exactActor": "Yuan'an Liao",
+          "actorRole": "utterer",
+          "outerRoles": [
+            "funeral officiant"
+          ],
+          "familyId": "kalpa-fire:yuanan-funeral-address",
+          "decision": "RETAIN"
+        },
+        {
+          "relPath": "J/J37/J37nB392.xml",
+          "fromLb": "0600a12",
+          "contextSha256": "96a9a9fe509237c0658e33f1dc2ecba155b77869b0321eb78d7ae34efc8a1fdd",
+          "tier": 2,
+          "exactActor": "Hansong Zhicao",
+          "actorRole": "respondent",
+          "outerRoles": [
+            "interlocutor"
+          ],
+          "familyId": "kalpa-fire:hansong-direct-answer",
+          "decision": "RETAIN"
+        },
+        {
+          "relPath": "J/J40/J40nB488.xml",
+          "fromLb": "0317b04",
+          "contextSha256": "14b74bb2922ac04d513f1f94c2eaa4e99141ad5101526bfcfaff35ca0483e532",
+          "tier": 2,
+          "exactActor": "Dounan Wei",
+          "actorRole": "utterer",
+          "outerRoles": [
+            "funeral officiant"
+          ],
+          "familyId": "kalpa-fire:dounan-funeral-address",
+          "decision": "RETAIN"
+        }
+      ],
+      "reserveOrExcluded": [
+        {
+          "relPath": "X/X67/X67n1301.xml",
+          "reason": "Valid sayings-record witness, but the four retained sources already cover verse, direct answer, and two independent funeral deployments."
+        },
+        {
+          "relPath": "T/T47/T47n1997.xml",
+          "reason": "The exact phrase is uttered by an unnamed questioning monk before Yuanwu answers; valid but weaker attribution than the selected direct master turns."
+        },
+        {
+          "relPath": "X/X67/X67n1309.xml",
+          "reason": "Later anthology quotation of Tianyi Yihuai's verse; useful recension history but unnecessary once four direct Tier-2 families meet the floor."
+        }
+      ],
+      "familyGate": "The paired fire-and-green-mountains wording must remain intact in explanation and adequate KWIC. Repetition of an inherited verse or anthology copy counts once; distinct direct funeral addresses and a direct answer are separate active uses.",
+      "actorGate": "The exact actor is the verse author, funeral officiant, or respondent who speaks the line. The deceased person in a funeral address is context, not utterer.",
+      "comparisonWithRoot": "AGREE with root's one-sense meaning, preferred target, paired-line limit, four-active-Tier-2 requirement, and exact-actor distinction.",
+      "unresolvedCoordinates": [],
+      "hardPass": true
+    }
+  ],
+  "overallVerdict": "APPROVE_FOR_CONSTRUCTION",
+  "hardPass": true,
+  "publicMutation": false
+}

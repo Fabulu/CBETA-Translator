@@ -1,0 +1,363 @@
+{
+  "SchemaVersion": 1,
+  "ConstructionPipelineVersion": 2,
+  "Admission": {
+    "Decision": "admit",
+    "LexicalUnitReason": "刻刻提撕 is a stable expression with repeated active Chan deployments.",
+    "ObservableChanJob": "刻刻提撕 means keep bringing it to attention, moment after moment.",
+    "DuplicateCheck": {
+      "DeterministicIdChecked": true,
+      "ExactHeadwordChecked": true,
+      "NearDuplicateRuling": "刻刻提撕 was checked against the installed dictionary; no exact or punctuation-normalized collision is admitted."
+    }
+  },
+  "EvidenceTransport": {
+    "DossierPath": "source-dossier.json",
+    "DossierSha256": "2305cee04fb9b46512cd859a2dbe34e855cc26212c8ba76a8f52ac001038a5f8",
+    "SourceAuthorityManifestSha256": "2ee44bf19a2533958e5620c38915f3d03fbb81209c76c7183742a4f3d059f501",
+    "DiscoveryMethods": [
+      "exact concordance count",
+      "complete-turn actor review",
+      "Tier 1 then Tier 2 source ranking",
+      "predecessor-evidence adjudication"
+    ],
+    "ExactCount": 29,
+    "BridgedCount": 29,
+    "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+  },
+  "Entry": {
+    "Id": "t_1dfe52dc92d6",
+    "SourceTerm": "刻刻提撕",
+    "CreatedBy": "R87 source-hierarchy repair",
+    "WrittenUtc": "2026-07-30T10:38:00Z",
+    "Senses": [
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "keep bringing it to attention, moment after moment",
+        "AlternateTargets": [
+          "bring it up and examine it at every moment",
+          "keep it under examination, moment after moment"
+        ],
+        "SearchAliases": [
+          "moment after moment keep it present"
+        ],
+        "Status": "preferred",
+        "Validation": "multi-source",
+        "Explanation": "A continuous instruction to bring the matter or cited saying back to attention and examine it at every moment. Muchen Daomin, Fushi Tongxian, Tian'an Sheng, and Baichi Xingyuan apply the instruction respectively to responses during affairs, a raised saying, one's own affair, and two named old answers.",
+        "Note": "Context supplies the object. The phrase does not itself name a posture or undifferentiated awareness.",
+        "Occurrences": [
+          {
+            "RelPath": "J/J26/J26nB180.xml",
+            "FromLb": "0292b29",
+            "ToLb": "0292c03",
+            "Kwic": "于事無心，則虛而靈、寂而妙。』皇上但遇大小事務，不妨隨時支應，事後返觀向來酬應底，畢竟從甚麼處起？從甚麼處滅？刻刻提撕，念念不舍，自然打成一片，事事無礙。」上云：「恐有間斷時如何？」師云：「參禪無別訣，只要生死切。皇上！果生死切",
+            "MasterName": "Muchen Daomin",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Muchen Daomin",
+                "Roles": [
+                  "utterer",
+                  "teacher",
+                  "record-owner"
+                ]
+              }
+            ],
+            "ContextActors": [
+              {
+                "Status": "identified-non-master",
+                "ActorLabel": "the Shunzhi emperor",
+                "Roles": [
+                  "interlocutor"
+                ],
+                "GrammarEvidence": "The surrounding exchange identifies the Shunzhi emperor as Muchen Daomin's questioner and interlocutor."
+              }
+            ],
+            "AttributionNote": "Source record (J/J26/J26nB180.xml). Northern Travels Collection of Chan Master Hongjue Min of Tiantong. Exact actor: Muchen Daomin. The complete source frame assigns the retained headword-bearing action to Muchen Daomin. Contextual interlocutor: the Shunzhi emperor.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "刻刻提撕",
+              "GrammaticalSubject": "Muchen Daomin",
+              "SpeechFrame": "Source record (J/J26/J26nB180.xml). Northern Travels Collection of Chan Master Hongjue Min of Tiantong. Exact actor: Muchen Daomin. The complete source frame assigns the retained headword-bearing action to Muchen Daomin. Contextual interlocutor: the Shunzhi emperor.",
+              "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to Muchen Daomin."
+            }
+          },
+          {
+            "RelPath": "J/J26/J26nB185.xml",
+            "FromLb": "0595b13",
+            "ToLb": "0595b18",
+            "Kwic": "？其或未能，亦不可向別處尋討，只將一箇本參話頭頓在眼前，如靠一座須彌山相似，生亦與之俱、死亦與之俱，時時參究、刻刻提撕，日久月深，確志勿移。如人行路行到水窮山盡處，自然有箇轉身的時節。那時，㘞地一聲，始信我不相賺。故經云：『有能",
+            "MasterName": "Fushi Tongxian",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Fushi Tongxian",
+                "Roles": [
+                  "utterer",
+                  "teacher",
+                  "record-owner"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J26/J26nB185.xml). Recorded Sayings of Chan Master Fushi. Exact actor: Fushi Tongxian. The complete source frame assigns the retained headword-bearing action to Fushi Tongxian.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "刻刻提撕",
+              "GrammaticalSubject": "Fushi Tongxian",
+              "SpeechFrame": "Source record (J/J26/J26nB185.xml). Recorded Sayings of Chan Master Fushi. Exact actor: Fushi Tongxian. The complete source frame assigns the retained headword-bearing action to Fushi Tongxian.",
+              "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to Fushi Tongxian."
+            }
+          },
+          {
+            "RelPath": "J/J26/J26nB187.xml",
+            "FromLb": "0709c12",
+            "ToLb": "0709c17",
+            "Kwic": "弟：得人身難、出家難、遇真善知識難、聞正法難，今人身得矣、出家就矣、真善知識遇矣、正法聞矣，況復逢斯盛會？若不刻刻提撕究明己躬下事，豈不辜負父母養育之恩、師長玉成之誼？此身一失，何時可復？改頭換面，相見無期，累他諸佛出世、祖師西",
+            "MasterName": "Tian'an Sheng",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Tian'an Sheng",
+                "Roles": [
+                  "utterer",
+                  "teacher",
+                  "record-owner"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J26/J26nB187.xml). Recorded Sayings of Chan Master Tian’an Sheng. Exact actor: Tian'an Sheng. The complete source frame assigns the retained headword-bearing action to Tian'an Sheng.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "刻刻提撕",
+              "GrammaticalSubject": "Tian'an Sheng",
+              "SpeechFrame": "Source record (J/J26/J26nB187.xml). Recorded Sayings of Chan Master Tian’an Sheng. Exact actor: Tian'an Sheng. The complete source frame assigns the retained headword-bearing action to Tian'an Sheng.",
+              "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to Tian'an Sheng."
+            }
+          },
+          {
+            "RelPath": "J/J28/J28nB202.xml",
+            "FromLb": "0096a13",
+            "ToLb": "0096a19",
+            "Kwic": "：「如何是道？」州云：「墻外底。」又，僧問南泉：「如何是道？」泉云：「平常心是道。」果欲抵敵生死，且將此兩轉語刻刻提撕，驀忽眉尖放光，咄！是什麼道？好與笑三十年。示解為書記示解為書記古人為法真誠，動經二三十年不辭艱苦，凡所見聞有",
+            "MasterName": "Baichi Xingyuan",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Baichi Xingyuan",
+                "Roles": [
+                  "utterer",
+                  "teacher",
+                  "record-owner"
+                ]
+              },
+              {
+                "MasterName": "Zhaozhou Congshen",
+                "Roles": [
+                  "case-figure"
+                ]
+              },
+              {
+                "MasterName": "Nanquan Puyuan",
+                "Roles": [
+                  "case-figure"
+                ]
+              }
+            ],
+            "ContextActors": [
+              {
+                "Status": "identified-non-master",
+                "ActorLabel": "attendant Daomei",
+                "Roles": [
+                  "addressee"
+                ],
+                "GrammarEvidence": "The section heading identifies attendant Daomei as the addressee of Baichi Xingyuan's instruction."
+              }
+            ],
+            "AttributionNote": "Source record (J/J28/J28nB202.xml). Recorded Sayings of Chan Master Baichi. Exact actor: Baichi Xingyuan. The complete source frame assigns the retained headword-bearing action to Baichi Xingyuan. Contextual addressee: attendant Daomei.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "刻刻提撕",
+              "GrammaticalSubject": "Baichi Xingyuan",
+              "SpeechFrame": "Source record (J/J28/J28nB202.xml). Recorded Sayings of Chan Master Baichi. Exact actor: Baichi Xingyuan. The complete source frame assigns the retained headword-bearing action to Baichi Xingyuan. Contextual addressee: attendant Daomei.",
+              "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to Baichi Xingyuan."
+            }
+          }
+        ],
+        "ClaimAnchors": [],
+        "SourceTexts": [
+          "J/J26/J26nB180.xml",
+          "J/J26/J26nB185.xml",
+          "J/J26/J26nB187.xml",
+          "J/J28/J28nB202.xml"
+        ],
+        "RelatedMasters": [
+          "Muchen Daomin",
+          "Fushi Tongxian",
+          "Tian'an Sheng",
+          "Baichi Xingyuan",
+          "Zhaozhou Congshen",
+          "Nanquan Puyuan"
+        ],
+        "RelatedTerms": [],
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "A continuous instruction to bring the matter or cited saying back to attention and examine it at every moment.",
+          "EvidenceBody": [
+            "Muchen Daomin, Fushi Tongxian, Tian'an Sheng, and Baichi Xingyuan apply the instruction respectively to responses during affairs, a raised saying, one's own affair, and two named old answers."
+          ]
+        },
+        "DraftEvidence": {
+          "LiteralGraphFloor": "keep bringing it to attention, moment after moment",
+          "LexicalJob": "刻刻提撕 means keep bringing it to attention, moment after moment.",
+          "DeploymentClasses": [
+            "authored verse",
+            "direct instruction"
+          ],
+          "HighValueEvidenceLedger": [
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to Muchen Daomin.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to Fushi Tongxian.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to Tian'an Sheng.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to Baichi Xingyuan.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            }
+          ],
+          "OpeningClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3",
+            "o4"
+          ],
+          "EvidenceBodyClaimKeys": [
+            [
+              "o1",
+              "o2",
+              "o3",
+              "o4"
+            ]
+          ],
+          "ZenBend": "A continuous instruction to bring the matter or cited saying back to attention and examine it at every moment.",
+          "CounterexampleOrLimit": "Context supplies the object. The phrase does not itself name a posture or undifferentiated awareness.",
+          "DifferentThingTest": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "keep bringing it to attention, moment after moment"
+            ],
+            "Reason": "One lexical job."
+          },
+          "AliasRationale": "Alternates preserve the same lexical job.",
+          "ModifierControls": [
+            {
+              "Term": "刻刻提撕",
+              "Finding": "No modifier creates a second referent."
+            }
+          ],
+          "FamilyControls": [
+            {
+              "Term": "刻刻提撕",
+              "Finding": "4 independent higher-tier families meet the floor."
+            }
+          ],
+          "IndependentWorkIds": [
+            "work:J26nB180",
+            "work:J26nB185",
+            "work:J26nB187",
+            "work:J28nB202"
+          ],
+          "SourceAuthorityRows": [
+            {
+              "EvidenceKey": "o1",
+              "RelPath": "J/J26/J26nB180.xml",
+              "WorkId": "work:J26nB180",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "moment-after-moment:muchen-imperial-affairs",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o2",
+              "RelPath": "J/J26/J26nB185.xml",
+              "WorkId": "work:J26nB185",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "moment-after-moment:fushi-raised-saying",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o3",
+              "RelPath": "J/J26/J26nB187.xml",
+              "WorkId": "work:J26nB187",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "moment-after-moment:tianan-own-affair",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o4",
+              "RelPath": "J/J28/J28nB202.xml",
+              "WorkId": "work:J28nB202",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "moment-after-moment:baichi-two-road-answers",
+              "DeploymentRole": "original-use"
+            }
+          ],
+          "LampExcessJustification": "No Tier-3 lamp retained.",
+          "NoHigherWitnessSearchReceipt": "Tier 1 searched first, then Tier 2; no lamp needed.",
+          "DepthHarvestReceipt": {
+            "Complete": true,
+            "ReviewedExactHitCount": 29,
+            "AvailableSourceFiles": 25,
+            "SearchedDeploymentClasses": [
+              "authored verse",
+              "direct instruction"
+            ],
+            "OmissionAudit": [
+              "4 retained cases actor-adjudicated.",
+              "No lamp retained."
+            ]
+          }
+        },
+        "DraftAcceptedDerivedFields": {
+          "SourceTexts": [
+            "J/J26/J26nB180.xml",
+            "J/J26/J26nB185.xml",
+            "J/J26/J26nB187.xml",
+            "J/J28/J28nB202.xml"
+          ],
+          "RelatedMasters": [
+            "Muchen Daomin",
+            "Fushi Tongxian",
+            "Tian'an Sheng",
+            "Baichi Xingyuan",
+            "Zhaozhou Congshen",
+            "Nanquan Puyuan"
+          ]
+        }
+      }
+    ],
+    "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+  },
+  "FamilyHarvest": {
+    "PolicyVersion": 1,
+    "Scope": "R87 source-hierarchy repair",
+    "Edges": [],
+    "NegativeReceipt": [],
+    "GraphicVariants": []
+  }
+}
