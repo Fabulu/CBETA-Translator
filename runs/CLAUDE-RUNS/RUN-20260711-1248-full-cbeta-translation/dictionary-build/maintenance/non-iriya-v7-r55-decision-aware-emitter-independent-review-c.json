@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "non-iriya-v7-decision-aware-emitter-review.v1",
+  "cohort": "R55",
+  "reviewer": "/root/source_tiers_c",
+  "inputs": {
+    "helper": {
+      "path": "construct_r11_clean_regeneration_c.py",
+      "sha256": "2baebe352ded9ec89b7efd7a8a6891240009a9b63300643305b759ed473163d4"
+    },
+    "boundedCaller": {
+      "path": "maintenance/build_r54_adjudicated_config_b.py",
+      "sha256": "9ff90db96bcf554a7c18599509e674ebbf0bdb251c5f26ef2b3f53305e49ee52"
+    },
+    "tests": {
+      "path": "maintenance/test_decision_aware_occurrence_emitter.py",
+      "sha256": "2003f1a59b362f9c53187fe00b5dd71a55cca1b97ddbebf066d2d22981214cb1"
+    },
+    "partialSeal": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r55-finite-semantic-process-partial-b.json",
+      "sha256": "5ed9b133439779c42441d387a401646bceec249521d336a242f7d28c2fa749d1"
+    },
+    "wholeConfigGuard": {
+      "path": "maintenance/generic_bounded_constructor.py",
+      "sha256": "0829626e9ee6953ddd0461b85439fed438bc99304e85aaba6f9e7ec636d16b5c"
+    }
+  },
+  "audit": [
+    {
+      "requirement": "Explicit keyed per-occurrence decisions",
+      "finding": "Each occurrence spec and nested actorDecision must independently carry the expected oN evidenceKey. Exact key inventories reject duplicate, missing, surplus, and reordered occurrence identities.",
+      "ruling": "PASS"
+    },
+    {
+      "requirement": "No actor default",
+      "finding": "Exactly one of masterName or a closed ActorAttribution is mandatory. Empty actor representations, dual representations, open statuses, empty grammar, and inconsistent utterer contexts are rejected.",
+      "ruling": "PASS"
+    },
+    {
+      "requirement": "Supported actor/action modes",
+      "finding": "Named master, reviewed-unnamed, identified-non-master, narrated, and impersonal examples all emit mandatory grammar/action/voice/full-case proof and pass verify_actor_closure.",
+      "ruling": "PASS"
+    },
+    {
+      "requirement": "Whole-config exhaustive failure before writes",
+      "finding": "preflight_config_occurrence_decisions traverses every config and occurrence, accumulates all identity/schema errors, and is called before compile_one. The bounded caller supplies an external expected ID inventory. The actual-emitter canary places a valid first config before an invalid later config and confirms the output root is never created.",
+      "ruling": "PASS"
+    },
+    {
+      "requirement": "Independent compiler interoperability",
+      "finding": "All five emitted actor modes pass the generic constructor's independent whole-config actor-closure guard; a damaged later ActorAttribution is rejected at its exact entry coordinate.",
+      "ruling": "PASS"
+    }
+  ],
+  "testRuns": [
+    {
+      "command": "python3 -m unittest -v maintenance.test_decision_aware_occurrence_emitter",
+      "result": "PASS",
+      "testsRun": 6
+    },
+    {
+      "command": "python3 -m unittest maintenance.test_decision_aware_occurrence_emitter maintenance.test_generic_bounded_constructor maintenance.test_cohort_checkpoint_watchdog",
+      "result": "PASS",
+      "testsRun": 34
+    }
+  ],
+  "canary": {
+    "mixedRepresentations": [
+      "named-master",
+      "reviewed-unnamed",
+      "identified-non-master",
+      "narrated",
+      "impersonal"
+    ],
+    "missingOrMiskeyedLaterCoordinate": "exhaustively reported",
+    "outputRootCreated": false,
+    "ruling": "PASS"
+  },
+  "scopeCaution": "Future bounded callers must bind expected_ids to the governed selection inventory, not derive it from the config being validated. The inspected bounded caller uses an external IDS inventory.",
+  "entryConstructionPerformed": false,
+  "publicMutation": false,
+  "decision": "CONTINUATION_AUTHORIZED"
+}
