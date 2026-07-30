@@ -1,0 +1,308 @@
+{
+  "schemaVersion": "r91-frozen-source-adjudication.v1",
+  "cohort": "R91",
+  "adjudicator": "Codex r89_final_review",
+  "scope": [
+    {
+      "id": "t_21170b1b9a8d",
+      "term": "須彌頂上浪滔天"
+    },
+    {
+      "id": "t_211c871daa1f",
+      "term": "大庾嶺頭提不起"
+    }
+  ],
+  "bindings": {
+    "extraction": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r91-extraction-output-b.json",
+      "sha256": "303fa82078e39d7f6cdfb07600a2f260e6a7c56197e8f7c09f6162c0b0c58a0b"
+    },
+    "lateAuthority": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r91-late-research-continuation-root.json",
+      "sha256": "ba58a15627367f89cc26d248ca34cfd321ce9955d9ce1223bd212eb071e04476",
+      "authorization": "same-scope adjudication of the frozen extraction; no rescan, added candidates, scope expansion, or clock reset"
+    }
+  },
+  "sourceHierarchy": "Prefer proved Zen-master-authored texts, then recorded sayings; retain lamps only as last-resort corroboration when stronger frozen evidence cannot fill the floor.",
+  "rows": [
+    {
+      "id": "t_21170b1b9a8d",
+      "term": "須彌頂上浪滔天",
+      "requiredFloor": 4,
+      "preferredTarget": "waves flood the sky atop Mount Sumeru",
+      "alternateTargets": [
+        "on Mount Sumeru's summit, waves reach the sky"
+      ],
+      "searchAliases": [
+        "waves on top of Mount Sumeru"
+      ],
+      "literalFloor": "須彌頂上 is atop Mount Sumeru; 浪 is waves; 滔天 is to flood, fill, or rise to the sky.",
+      "senseRuling": "One deliberately impossible image of ocean waves flooding the sky from the summit of Mount Sumeru. The image appears as a verse line, hall declaration, and direct answer, but the frozen records do not establish separate lexical senses or one universal abstract paraphrase.",
+      "validationRuling": "multi-source",
+      "retained": [
+        {
+          "candidateRow": 1,
+          "relPath": "J/J28/J28nB218.xml",
+          "fromLb": "0643a22",
+          "toLb": "0643a22",
+          "workId": "work:J28nB218",
+          "tier": 2,
+          "sourceTitle": "Recorded Sayings of Chan Master Lanshi Ling",
+          "exactActor": "Lanshi Ling",
+          "actorStatus": "roster-linked-master",
+          "contextMasters": [
+            {
+              "name": "Lanshi Ling",
+              "roles": [
+                "utterer",
+                "verse-author",
+                "record-owner"
+              ]
+            }
+          ],
+          "deploymentFamily": "Lanshi Ling's birthday-session verse",
+          "deployment": "Lanshi places sky-flooding waves on Mount Sumeru's summit among a sequence of physically inverted images in his own session verse.",
+          "actorProof": "The occurrence follows 師誕，小參 and lies in the uninterrupted verse delivered by the named owner of Recorded Sayings of Chan Master Lanshi Ling."
+        },
+        {
+          "candidateRow": 3,
+          "relPath": "J/J39/J39nB456.xml",
+          "fromLb": "0691c07",
+          "toLb": "0691c07",
+          "workId": "work:J39nB456",
+          "tier": 2,
+          "sourceTitle": "Recorded Sayings of Chan Master Danyayuan of Tongtian",
+          "exactActor": "Danya Chaoyuan",
+          "actorStatus": "roster-linked-master",
+          "contextMasters": [
+            {
+              "name": "Danya Chaoyuan",
+              "roles": [
+                "utterer",
+                "record-owner"
+              ]
+            }
+          ],
+          "deploymentFamily": "Danya Chaoyuan's direct hall declaration",
+          "deployment": "Danya includes the image in a hall address whose paired impossibilities also put red dust in the ocean and a boat in a gnat's eye.",
+          "actorProof": "上堂 introduces an uninterrupted address in Danya Chaoyuan's own recorded sayings; no embedded speaker governs the headword line."
+        },
+        {
+          "candidateRow": 4,
+          "relPath": "J/J39/J39nB460.xml",
+          "fromLb": "0735b27",
+          "toLb": "0735b27",
+          "workId": "work:J39nB460",
+          "tier": 2,
+          "sourceTitle": "Recorded Sayings of Chan Master Huizhou Hao of Wanshan, Luanzhou",
+          "exactActor": "Huizhou Hao",
+          "actorStatus": "roster-linked-master",
+          "contextMasters": [
+            {
+              "name": "Huizhou Hao",
+              "roles": [
+                "utterer",
+                "record-owner"
+              ]
+            }
+          ],
+          "deploymentFamily": "Huizhou Hao's direct hall verse",
+          "deployment": "Huizhou places the image among a chain of inversions involving a flying toad, a struck dragon, thunder from a clear sky, and the Yellow River drying up.",
+          "actorProof": "乃云 introduces the record owner's own continuation after his exchange with a monk; the headword remains in Huizhou Hao's turn."
+        },
+        {
+          "candidateRow": 5,
+          "relPath": "T/T47/T47n1994A.xml",
+          "fromLb": "0642a07",
+          "toLb": "0642a07",
+          "workId": "work:T47n1994A",
+          "tier": 2,
+          "sourceTitle": "Recorded Sayings of Monk Fanghui of Yangqi",
+          "exactActor": "Yangqi Fanghui",
+          "actorStatus": "roster-linked-master",
+          "contextMasters": [
+            {
+              "name": "Yangqi Fanghui",
+              "roles": [
+                "utterer",
+                "verse-author",
+                "record-owner"
+              ]
+            }
+          ],
+          "deploymentFamily": "Yangqi Fanghui's original recorded verse",
+          "deployment": "Yangqi pairs waves flooding the sky on Mount Sumeru with the ocean bottom burning hot.",
+          "actorProof": "The occurrence is a complete 上堂 verse inside Yangqi Fanghui's own recorded sayings."
+        }
+      ],
+      "excluded": [
+        {
+          "candidateRow": 2,
+          "relPath": "J/J38/J38nB406.xml",
+          "reason": "Tianran actively comments on Yangqi's verse, but the headword itself remains inside his explicit quotation of Yangqi; the original Yangqi witness is retained and three direct independent redeployments already fill the floor."
+        },
+        {
+          "candidateRow": 6,
+          "relPath": "T/T47/T47n1999.xml",
+          "reason": "Mi'an Xianjie gives the line as a direct answer and it is usable reserve evidence, but the four retained independent families already fill the floor while preserving the original Yangqi deployment and three later direct uses."
+        },
+        {
+          "candidateRow": 7,
+          "relPath": "X/X67/X67n1299.xml",
+          "reason": "The classified anthology embeds the line in Haiyin Xin's verse on the inherited case; it is a lower-clarity compiled witness unnecessary after four direct recorded-sayings families fill the floor."
+        }
+      ],
+      "lampPolicy": {
+        "tier3Consulted": false,
+        "lampFallbackCount": 0,
+        "ruling": "Four independent recorded-sayings deployments fill the floor; no lamp is needed."
+      }
+    },
+    {
+      "id": "t_211c871daa1f",
+      "term": "大庾嶺頭提不起",
+      "requiredFloor": 4,
+      "preferredTarget": "could not lift it at Dayu Ridge",
+      "alternateTargets": [
+        "unliftable at Dayu Ridge"
+      ],
+      "searchAliases": [
+        "could not lift the robe at Dayu Ridge"
+      ],
+      "literalFloor": "大庾嶺頭 is at or atop Dayu Ridge; 提不起 is could not lift or raise it.",
+      "senseRuling": "One fixed allusion to the robe in the Huineng-Ming encounter that could not be lifted at Dayu Ridge. Later records apply the line to presented or transmitted robes and ask about it in exchanges, but those are deployments of the same allusion rather than separate senses.",
+      "validationRuling": "multi-source",
+      "retained": [
+        {
+          "candidateRow": 4,
+          "relPath": "J/J26/J26nB177.xml",
+          "fromLb": "0003a07",
+          "toLb": "0003a07",
+          "workId": "work:J26nB177",
+          "tier": 2,
+          "sourceTitle": "Recorded Sayings of Chan Master Poshan",
+          "exactActor": "Poshan Haiming",
+          "actorStatus": "roster-linked-master",
+          "contextMasters": [
+            {
+              "name": "Poshan Haiming",
+              "roles": [
+                "utterer",
+                "record-owner"
+              ]
+            }
+          ],
+          "deploymentFamily": "Poshan Haiming's dharma-robe hall verse",
+          "deployment": "On receiving a dharma robe, Poshan calls it what could not be lifted at Dayu Ridge, contrasts it with the robe becoming stock at Vulture Peak, and warns the assembly not to move it.",
+          "actorProof": "上堂，師云 introduces Poshan Haiming's uninterrupted verse in his own recorded sayings."
+        },
+        {
+          "candidateRow": 5,
+          "relPath": "J/J26/J26nB178.xml",
+          "fromLb": "0142a12",
+          "toLb": "0142a12",
+          "workId": "work:J26nB178",
+          "tier": 2,
+          "sourceTitle": "Recorded Sayings of Chan Master Feiyin",
+          "exactActor": null,
+          "actorStatus": "reviewed-unnamed",
+          "actorLabel": "the unnamed monk questioning Feiyin Tongrong",
+          "actorRole": "questioner",
+          "contextMasters": [
+            {
+              "name": "Feiyin Tongrong",
+              "roles": [
+                "respondent",
+                "record-owner"
+              ]
+            }
+          ],
+          "deploymentFamily": "an unnamed monk's Dayu-Ridge question to Feiyin Tongrong",
+          "deployment": "The monk asks why another ornamental addition is needed when the robe could not be lifted at Dayu Ridge; Feiyin answers that the monk's own eyes are dazzled.",
+          "actorProof": "僧問 introduces the exchange and 進云 governs the monk's headword-bearing continuation; the following 師云 introduces Feiyin Tongrong's response."
+        },
+        {
+          "candidateRow": 6,
+          "relPath": "J/J26/J26nB182.xml",
+          "fromLb": "0443c01",
+          "toLb": "0443c01",
+          "workId": "work:J26nB182",
+          "tier": 2,
+          "sourceTitle": "Recorded Sayings of Chan Master Wanru",
+          "exactActor": null,
+          "actorStatus": "reviewed-unnamed",
+          "actorLabel": "the unnamed monk questioning Wanru Tongwei",
+          "actorRole": "questioner",
+          "contextMasters": [
+            {
+              "name": "Wanru Tongwei",
+              "roles": [
+                "respondent",
+                "record-owner"
+              ]
+            }
+          ],
+          "deploymentFamily": "an unnamed monk's robe-transmission question to Wanru Tongwei",
+          "deployment": "When a robe arrives from Tiantong, the monk invokes what could not be lifted at Dayu Ridge and asks about the matter transmitted from ancestor to ancestor.",
+          "actorProof": "僧問 introduces the question and its 進云 continuation; 師提衣角示之 then introduces Wanru Tongwei's response."
+        },
+        {
+          "candidateRow": 7,
+          "relPath": "J/J26/J26nB187.xml",
+          "fromLb": "0667a13",
+          "toLb": "0667a13",
+          "workId": "work:J26nB187",
+          "tier": 2,
+          "sourceTitle": "Recorded Sayings of Chan Master Tian’an Sheng",
+          "exactActor": "Tian'an Sheng",
+          "actorStatus": "roster-linked-master",
+          "contextMasters": [
+            {
+              "name": "Tian'an Sheng",
+              "roles": [
+                "utterer",
+                "record-owner"
+              ]
+            }
+          ],
+          "deploymentFamily": "Tian'an Sheng's direct robe-and-transmission instruction",
+          "deployment": "Tian'an says what could not be lifted at Dayu Ridge was handed over with both hands, then treats transmission and renewed handing-over in the same address.",
+          "actorProof": "乃云 introduces Tian'an Sheng's uninterrupted address following the preceding exchange."
+        }
+      ],
+      "excluded": [
+        {
+          "candidateRow": 1,
+          "relPath": "B/B27/B27n0152.xml",
+          "reason": "The headword occurs in an unnamed monk's question to Yulin Tongxiu and is usable reserve evidence, but two direct master deployments and two cleaner independent questions already fill the floor."
+        },
+        {
+          "candidateRow": 2,
+          "relPath": "J/J23/J23nB134.xml",
+          "reason": "The line appears inside a raised inherited case about the robe keeper at Caoxi; it is parallel to candidate 3 and does not add an independent deployment family."
+        },
+        {
+          "candidateRow": 3,
+          "relPath": "J/J24/J24nB138.xml",
+          "reason": "This is a parallel recension of the same raised Caoxi robe-keeper case as candidate 2; retaining both would pad one deployment family."
+        }
+      ],
+      "lampPolicy": {
+        "tier3Consulted": false,
+        "lampFallbackCount": 0,
+        "ruling": "Four independent recorded-sayings deployments fill the floor; no lamp is needed."
+      }
+    }
+  ],
+  "retainedTotals": {
+    "tier1": 0,
+    "tier2": 8,
+    "tier3": 0,
+    "occurrences": 8,
+    "works": 8
+  },
+  "scopeExpansionPerformed": false,
+  "rescanPerformed": false,
+  "lineageTouched": false,
+  "hardPass": true
+}

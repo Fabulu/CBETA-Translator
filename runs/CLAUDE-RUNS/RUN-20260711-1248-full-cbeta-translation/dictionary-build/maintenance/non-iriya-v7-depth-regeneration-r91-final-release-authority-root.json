@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "r91-final-release-authority.v1",
+  "cohort": "R91",
+  "releaseAuthorized": true,
+  "rootDecision": "Authorize the three exact corrected R91 products. Independent cross-review passed after removing unsupported wording, correcting the misattributed redundant 勘破 occurrence, restoring context roles, and documenting frozen exhaustion at six independent 勘破 families rather than padding to seven.",
+  "products": [
+    {
+      "id": "t_21170b1b9a8d",
+      "entrySha256": "4a1f2f2f735fd5b42e8cc81a1ab0f1951cfd761fbb7d153c332d0abe3fe16dcb"
+    },
+    {
+      "id": "t_211c871daa1f",
+      "entrySha256": "6db85bc0d81f96a7468c40ffe8272c4bb0e33893e5371772dd2b8e1f06539a45"
+    },
+    {
+      "id": "t_218e4815d84a",
+      "entrySha256": "ab3665fec395befb6cfb35e0c605ab5f535e1eac300e9e2756d5094cf048183a"
+    }
+  ],
+  "authorityBindings": {
+    "releaseBindings": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r91-release-authority-bindings-b.json",
+      "sha256": "dcd9bb72c8de0ca0ab7d7402e8fea267c209c3b6f8a29596587a6b45d40260ba"
+    },
+    "sumeruRereview": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r91-sumeru-rereview-c.json",
+      "sha256": "95a335e8fdf2ac8b4adbf57bc028ac777444d79a156902be37c9a57efb1a5ded"
+    },
+    "kanpoRereview": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r91-kanpo-rereview-a.json",
+      "sha256": "f805c960a209186d6b611d55065068f682b951cea4142d0eed1ba7b81e941a96"
+    },
+    "attributionGate": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r91-attribution-final-d.json",
+      "sha256": "8b1c2a4c7aa2cace215ba077fb5b2a84d89654f1df0b06e7d29d4861382c8110",
+      "hardFailures": 0
+    },
+    "depthGate": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r91-depth-final-d.json",
+      "sha256": "ea204de5abda372e35cb2eeab772048459d8d81c3253b33600f3344d8f52aed4",
+      "hardFailures": 0
+    }
+  },
+  "sourceHierarchy": {
+    "tier1": 4,
+    "tier2": 10,
+    "tier3Lamps": 0
+  },
+  "timingDisclosure": "R91 exceeded phase deadlines after a fail-closed command-audit canonicalization defect and its repair. Same-scope continuations preserved the original clock and frozen evidence. The launcher now emits the canonical governed argv directly, and the generic late-research path accepts hash-bound cohort receipts.",
+  "publicMutationBeforeAuthority": false
+}

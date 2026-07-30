@@ -1,0 +1,80 @@
+{
+  "schemaVersion": "r91-release-authority-bindings.v1",
+  "cohort": "R91",
+  "rootDecisionPending": true,
+  "releaseAuthorized": false,
+  "products": [
+    {
+      "id": "t_21170b1b9a8d",
+      "term": "須彌頂上浪滔天",
+      "entrySha256": "4a1f2f2f735fd5b42e8cc81a1ab0f1951cfd761fbb7d153c332d0abe3fe16dcb",
+      "worksheetSha256": "59cb5000eb530b64320995ab52ab896da1dfa94d46a4aa8c996d95323015c5d1",
+      "workSha256": "a2a8678aa608641336644c31629c02a1d16b1bfb15bc73204a8072e1fd07d9d5",
+      "termsInstallMode": "replace",
+      "termsBaselineSha256": "c6ea45a95a674309b2fdfefb31aba13f59a10be857eb4da81286a7dd971ff8ea",
+      "publicMode": "replace"
+    },
+    {
+      "id": "t_211c871daa1f",
+      "term": "大庾嶺頭提不起",
+      "entrySha256": "6db85bc0d81f96a7468c40ffe8272c4bb0e33893e5371772dd2b8e1f06539a45",
+      "worksheetSha256": "2ed4efa894a0428bcea90fdb50cf8d162e9f602c1813a765757b6077b0a4aad5",
+      "workSha256": "b53001b9eea0a7b319e99cc81e680d46e4b2ca1fcbb5b1682b2a91f604a72dd2",
+      "termsInstallMode": "replace",
+      "termsBaselineSha256": "405b44d382387178a46e08d99faca9670c31f82a8bdedfc4252eee4e51b1a98e",
+      "publicMode": "replace"
+    },
+    {
+      "id": "t_218e4815d84a",
+      "term": "勘破",
+      "entrySha256": "ab3665fec395befb6cfb35e0c605ab5f535e1eac300e9e2756d5094cf048183a",
+      "worksheetSha256": "18a5c32f698d10fe815064a361ea38e3a925948650a4122c3ffcfa8f51b9eb95",
+      "workSha256": "91ddd75e0da74c900ce5616e7cfbed1c2c6ffdd28d66ab90e3353437441d286c",
+      "termsInstallMode": "replace",
+      "termsBaselineSha256": "aa114d8413ff89e84c6922435875bcb0882bc8a84844b8b8f20626c18b4a3d9a",
+      "publicMode": "replace"
+    }
+  ],
+  "authorityBindings": {
+    "formulaReview": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r91-formula-independent-review-c.json",
+      "sha256": "78bff80c94e1b2a9e10b2b569e61818c342b65996c7329573b141bb2a7748040"
+    },
+    "sumeruRereview": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r91-sumeru-rereview-c.json",
+      "sha256": "95a335e8fdf2ac8b4adbf57bc028ac777444d79a156902be37c9a57efb1a5ded"
+    },
+    "kanpoRereview": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r91-kanpo-rereview-a.json",
+      "sha256": "f805c960a209186d6b611d55065068f682b951cea4142d0eed1ba7b81e941a96"
+    },
+    "attributionGate": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r91-attribution-final-d.json",
+      "sha256": "8b1c2a4c7aa2cace215ba077fb5b2a84d89654f1df0b06e7d29d4861382c8110",
+      "hardFailures": 0
+    },
+    "depthGate": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r91-depth-final-d.json",
+      "sha256": "ea204de5abda372e35cb2eeab772048459d8d81c3253b33600f3344d8f52aed4",
+      "hardFailures": 0
+    },
+    "finalCorrection": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r91-note-correction-b.json",
+      "sha256": "8d3a12805c8b9120fef34970176797affdf7da39b6b8b2f3c1057bea3df058f8",
+      "hardPass": true
+    }
+  },
+  "sourceHierarchy": {
+    "tier1": 4,
+    "tier2": 10,
+    "tier3Lamps": 0,
+    "hardPass": true
+  },
+  "publicationExpectation": {
+    "currentPublicEntryCount": 4714,
+    "expectedPublicEntryCount": 4714,
+    "exactProductParity": "3/3",
+    "reason": "All three IDs already exist in active terms and the public aggregate; R91 is an exact three-entry replacement."
+  },
+  "publicMutationPerformed": false
+}

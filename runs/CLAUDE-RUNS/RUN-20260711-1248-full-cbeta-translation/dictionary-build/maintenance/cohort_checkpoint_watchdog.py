@@ -321,11 +321,14 @@ def research(args):
         extractor = stable_tool(args.extractor, args.authorized_extractor_sha, "research extractor")
         output_target = Path(args.extraction_output).resolve()
         skeleton_target = Path(args.research_skeleton).resolve()
-        bound = gate.get("schemaVersion") == "bounded-dictionary-timegate.v2"
+        bound = gate.get("schemaVersion") in {
+            "bounded-dictionary-timegate.v2",
+            "bounded-dictionary-timegate.v3",
+        }
         selection = count = viability_receipt = None
         if bound:
             if not args.selection or not args.count or not args.viability_receipt:
-                raise ValueError("v2 research requires selection/count/viability bindings")
+                raise ValueError("governed v2/v3 research requires selection/count/viability bindings")
             selection = post_receipt(args.selection, receipt_mtime, "selection")
             count = post_receipt(args.count, receipt_mtime, "count")
             viability_receipt = post_receipt(
@@ -423,10 +426,32 @@ def constructor(args):
         config = post_receipt(args.config, receipt_mtime, "config")
         research_receipt = post_receipt(args.research_receipt, receipt_mtime, "research receipt")
         rr = read(research_receipt)
-        if rr.get("hardPass") is not True or rr.get("ids") != args.ids or rr.get("terms") != args.terms or \
-           rr.get("requiredFloors") != floors or rr.get("admittedRequiredOccurrences") != total or \
-           rr.get("adjudicatedCaseLoad") != case_load or \
-           rr.get("deadlinesSeconds") != deadlines:
+        ordinary_research = (
+            rr.get("hardPass") is True
+            and rr.get("ids") == args.ids
+            and rr.get("terms") == args.terms
+            and rr.get("requiredFloors") == floors
+            and rr.get("admittedRequiredOccurrences") == total
+            and rr.get("adjudicatedCaseLoad") == case_load
+            and rr.get("deadlinesSeconds") == deadlines
+        )
+        late_research = (
+            rr.get("hardPass") is False
+            and rr.get("lateContinuationAuthorized") is True
+            and rr.get("scopeExpansionForbidden") is True
+            and rr.get("ids") == args.ids
+            and isinstance(rr.get("bindings"), dict)
+        )
+        if late_research:
+            for label, binding in rr["bindings"].items():
+                if not isinstance(binding, dict) or set(binding) != {"path", "sha256"}:
+                    raise ValueError(f"late research binding malformed: {label}")
+                bound = Path(binding["path"])
+                if not bound.is_absolute():
+                    bound = Path(args.allowed_root).resolve() / bound
+                if not bound.is_file() or sha(bound) != binding["sha256"]:
+                    raise ValueError(f"late research binding drift: {label}")
+        if not ordinary_research and not late_research:
             raise ValueError("research checkpoint is not valid for selected IDs")
         config_elapsed = config.stat().st_mtime - started
         if config_elapsed > deadlines["adjudicatedConfig"]:

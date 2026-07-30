@@ -50,7 +50,7 @@ class AssignedCohortLauncherTest(unittest.TestCase):
             timegate = maintenance / "timegate.json"
             started = time.time()
             timegate.write_text(json.dumps({
-                "schemaVersion": "bounded-dictionary-timegate.v2",
+                "schemaVersion": "bounded-dictionary-timegate.v3",
                 "cohort": "R99", "artifactZero": True,
                 "startedEpoch": started,
                 "createdUtc": datetime.fromtimestamp(
@@ -89,6 +89,14 @@ class AssignedCohortLauncherTest(unittest.TestCase):
             selection = json.loads(paths["selection"].read_text())
             self.assertEqual([row["identityId"] for row in selection["rows"]], ["a", "b", "c"])
             self.assertTrue(selection["collisionCheck"]["hardPass"])
+            audit = json.loads(paths["researchAudit"].read_text())
+            argv = audit["commands"][0]["argv"]
+            self.assertEqual(Path(argv[1]), (root / "maintenance/dictionary_python_env.py").resolve())
+            self.assertEqual(Path(argv[3]), (root / "maintenance/extract_assigned_source_first.py").resolve())
+            self.assertEqual(Path(argv[10]), timegate.resolve())
+            self.assertEqual(Path(argv[12]), paths["selection"].resolve())
+            self.assertEqual(Path(argv[14]), paths["count"].resolve())
+            self.assertEqual(Path(argv[16]), paths["receipt"].resolve())
 
 
 if __name__ == "__main__":

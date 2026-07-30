@@ -12,13 +12,18 @@ import argparse
 import json
 import subprocess
 import sys
+import time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 import zc
 from atomic_write import atomic_write_json
-from cohort_checkpoint_watchdog import clock, governed_schedule
+from cohort_checkpoint_watchdog import (
+    clock,
+    governed_research_command,
+    governed_schedule,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 WATCHDOG = Path(__file__).with_name("cohort_checkpoint_watchdog.py")
@@ -41,7 +46,9 @@ def prepare(
     research_candidate_reserve: int = 3,
 ) -> dict[str, Path]:
     stamp, _, _, _, _ = clock(timegate, None)
-    if stamp.get("schemaVersion") != "bounded-dictionary-timegate.v2":
+    if stamp.get("schemaVersion") not in {
+            "bounded-dictionary-timegate.v2",
+            "bounded-dictionary-timegate.v3"}:
         raise RuntimeError("legacy or unknown artifact-zero schema")
     if stamp.get("cohort") != cohort or stamp.get("artifactZero") is not True:
         raise RuntimeError("artifact-zero receipt/cohort mismatch")
@@ -88,6 +95,7 @@ def prepare(
         "union": output_dir / f"{prefix}-prior-union-b.json",
         "selection": output_dir / f"{prefix}-selection-b.json",
         "count": output_dir / f"{prefix}-count-b.json",
+        "researchAudit": output_dir / f"{prefix}-research-command-audit-b.json",
         "receipt": output_dir / f"{prefix}-viability-checkpoint-b.json",
     }
     atomic_write_json(paths["union"], {
@@ -114,6 +122,26 @@ def prepare(
             {"id": identity, "term": term, **counts[term]}
             for identity, term, _ in entries
         ],
+    })
+    extraction = output_dir / f"{prefix}-extraction-output-b.json"
+    skeleton = output_dir / f"{prefix}-research-skeleton-b.json"
+    research_command = governed_research_command(
+        (ROOT / "maintenance/dictionary_python_env.py").resolve(),
+        (ROOT / "maintenance/extract_assigned_source_first.py").resolve(),
+        extraction.resolve(),
+        skeleton.resolve(),
+        timegate.resolve(),
+        paths["selection"].resolve(),
+        paths["count"].resolve(),
+        paths["receipt"].resolve(),
+    )
+    atomic_write_json(paths["researchAudit"], {
+        "complete": True,
+        "commands": [{
+            "epoch": time.time(),
+            "argv": research_command,
+            "command": f"{cohort} governed bounded source-first extraction",
+        }],
     })
     return paths
 

@@ -128,8 +128,11 @@ def verify_late_research_continuation(
 ) -> None:
     """Accept a failed research clock only through an exact, immutable same-scope receipt."""
     receipt = read_json(receipt_path)
-    if receipt.get("schemaVersion") != "r89-late-research-continuation.v1":
+    if receipt.get("lateContinuationAuthorized") is not True:
         return
+    schema = receipt.get("schemaVersion", "")
+    if not (schema.startswith("r") and schema.endswith("-late-research-continuation.v1")):
+        raise ValueError("authorized-late research receipt schema is unsupported")
     if (
         receipt.get("cohort") != cohort
         or receipt.get("hardPass") is not False
@@ -138,6 +141,20 @@ def verify_late_research_continuation(
         or receipt.get("ids") != entry_ids
     ):
         raise ValueError("authorized-late research receipt scope or decision drift")
+    nested = receipt.get("bindings")
+    if isinstance(nested, dict):
+        for label, binding in nested.items():
+            if not isinstance(binding, dict) or set(binding) != {"path", "sha256"}:
+                raise ValueError(f"authorized-late research binding malformed: {label}")
+            bound = contained(allowed_root, binding["path"])
+            if not bound.is_file() or sha256(bound) != binding["sha256"]:
+                raise ValueError(f"authorized-late research receipt hash drift: {label}")
+        extraction = nested.get("extraction")
+        if not extraction:
+            raise ValueError("authorized-late research receipt lacks extraction binding")
+        if research.get("governedExtractionSha256") != extraction["sha256"]:
+            raise ValueError("authorized-late extraction/research binding drift")
+        return
     bindings = (
         ("extractionPath", "extractionSha256"),
         ("failClosedCheckpointPath", "failClosedCheckpointSha256"),

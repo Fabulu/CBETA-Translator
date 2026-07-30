@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "r91-admitted-constructor-selection.v1",
+  "cohort": "R91",
+  "artifactZeroSelectionPath": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r91-selection-b.json",
+  "artifactZeroSelectionSha256": "626f3f9c458af85b41fcb1128e8610e908b281dd8f952a93a0a1b5bdc253f42c",
+  "rows": [
+    {
+      "queueOrdinal": 1,
+      "identityId": "t_21170b1b9a8d",
+      "term": "須彌頂上浪滔天",
+      "requiredFloor": 4,
+      "classification": "hard-fail"
+    },
+    {
+      "queueOrdinal": 2,
+      "identityId": "t_211c871daa1f",
+      "term": "大庾嶺頭提不起",
+      "requiredFloor": 4,
+      "classification": "hard-fail"
+    },
+    {
+      "queueOrdinal": 3,
+      "identityId": "t_218e4815d84a",
+      "term": "勘破",
+      "requiredFloor": 7,
+      "classification": "legacy-selected-depth-repair"
+    }
+  ],
+  "excluded": [],
+  "hardPass": true
+}

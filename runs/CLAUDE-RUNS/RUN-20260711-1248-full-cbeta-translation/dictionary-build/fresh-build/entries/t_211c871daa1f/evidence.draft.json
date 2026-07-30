@@ -1,0 +1,358 @@
+{
+  "SchemaVersion": 1,
+  "ConstructionPipelineVersion": 2,
+  "Admission": {
+    "Decision": "admit",
+    "LexicalUnitReason": "大庾嶺頭提不起 is a stable expression with repeated active Chan deployments.",
+    "ObservableChanJob": "大庾嶺頭提不起 means could not lift it at Dayu Ridge.",
+    "DuplicateCheck": {
+      "DeterministicIdChecked": true,
+      "ExactHeadwordChecked": true,
+      "NearDuplicateRuling": "大庾嶺頭提不起 was checked against the installed dictionary; no exact or punctuation-normalized collision is admitted."
+    }
+  },
+  "EvidenceTransport": {
+    "DossierPath": "source-dossier.json",
+    "DossierSha256": "e313727f67ffb4599db16b21fcf64245a0b83bc7b950b06a6546cad757bc5054",
+    "SourceAuthorityManifestSha256": "2ee44bf19a2533958e5620c38915f3d03fbb81209c76c7183742a4f3d059f501",
+    "DiscoveryMethods": [
+      "exact concordance count",
+      "complete-turn actor review",
+      "Tier 1 then Tier 2 source ranking",
+      "predecessor-evidence adjudication"
+    ],
+    "ExactCount": 99,
+    "BridgedCount": 99,
+    "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+  },
+  "Entry": {
+    "Id": "t_211c871daa1f",
+    "SourceTerm": "大庾嶺頭提不起",
+    "CreatedBy": "R91 source-hierarchy repair",
+    "WrittenUtc": "2026-07-30T10:38:00Z",
+    "Senses": [
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "could not lift it at Dayu Ridge",
+        "AlternateTargets": [
+          "unliftable at Dayu Ridge"
+        ],
+        "SearchAliases": [
+          "could not lift the robe at Dayu Ridge"
+        ],
+        "Status": "preferred",
+        "Validation": "multi-source",
+        "Explanation": "A fixed allusion to the robe in the Huineng–Ming encounter that could not be lifted at Dayu Ridge. Poshan Haiming and Tian'an Sheng deploy the allusion directly; unnamed monks invoke it in questions to Feiyin Tongrong and Wanru Tongwei.",
+        "Note": "Later applications to presented or transmitted robes remain deployments of the same allusion rather than separate senses.",
+        "Occurrences": [
+          {
+            "RelPath": "J/J26/J26nB177.xml",
+            "FromLb": "0003a05",
+            "ToLb": "0003a10",
+            "Kwic": "瞎。阿㖿阿㖿，相救相救。」卓拄杖，云：「幸爾還有者箇在，不然終是扶籬傍壁漢。」金粟專使送法衣至，上堂，師云：「大庾嶺頭提不起，雞足山前成滯貨，山僧今日獲一披，如雲普覆華王座。大眾記取：三十年後切不可動著。何也？動著則禍生。」望日，上堂",
+            "MasterName": "Poshan Haiming",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Poshan Haiming",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J26/J26nB177.xml). Recorded Sayings of Chan Master Poshan. Exact actor: Poshan Haiming. The complete source frame assigns the retained headword-bearing action to Poshan Haiming.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "大庾嶺頭提不起",
+              "GrammaticalSubject": "Poshan Haiming",
+              "SpeechFrame": "Source record (J/J26/J26nB177.xml). Recorded Sayings of Chan Master Poshan. Exact actor: Poshan Haiming. The complete source frame assigns the retained headword-bearing action to Poshan Haiming.",
+              "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to Poshan Haiming."
+            }
+          },
+          {
+            "RelPath": "J/J26/J26nB178.xml",
+            "FromLb": "0142a10",
+            "ToLb": "0142a15",
+            "Kwic": "壽比南山事若何？」師云：「海屋重添籌。」進云：「一點白雲常作伴，如來千古鎮儒林。」師云：「汝肯證明。」進云：「大庾嶺頭提不起，何必錦上又鋪花？」師云：「汝自眼花。」乃云：「今日是蔡居士從心華誕之辰，瑞氣騰空、慶雲繞座，皈依老僧有年，與",
+            "MasterName": null,
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Feiyin Tongrong",
+                "Roles": [
+                  "respondent",
+                  "record-owner"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J26/J26nB178.xml). Recorded Sayings of Chan Master Feiyin. Action performer: the unnamed monk questioning Feiyin Tongrong. The complete source frame assigns the retained headword-bearing action to the unnamed monk questioning Feiyin Tongrong.",
+            "ActorAttribution": {
+              "Status": "reviewed-unnamed",
+              "Kind": "person",
+              "ActorLabel": "the unnamed monk questioning Feiyin Tongrong",
+              "ActorRole": "questioner",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "The complete source frame assigns the retained headword-bearing action to the unnamed monk questioning Feiyin Tongrong.",
+              "ReviewedBy": "R91 frozen source-first adjudication",
+              "ReviewedUtc": "2026-07-30T16:10:00Z",
+              "AuthoredVoiceRiskReviewed": true
+            },
+            "DraftActorProof": {
+              "ExactHeadwordClause": "大庾嶺頭提不起",
+              "GrammaticalSubject": "the unnamed monk questioning Feiyin Tongrong",
+              "SpeechFrame": "Source record (J/J26/J26nB178.xml). Recorded Sayings of Chan Master Feiyin. Action performer: the unnamed monk questioning Feiyin Tongrong. The complete source frame assigns the retained headword-bearing action to the unnamed monk questioning Feiyin Tongrong.",
+              "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to the unnamed monk questioning Feiyin Tongrong."
+            }
+          },
+          {
+            "RelPath": "J/J26/J26nB182.xml",
+            "FromLb": "0443b28",
+            "ToLb": "0443c04",
+            "Kwic": "沙界。且道：林下衲僧以何報答？」遂插香云：「香爇一爐沉水供，萬年長祝聖明君。」天童專使送法衣至，上堂。僧問：「大庾嶺頭提不起，如今已得在師邊。如何是祖祖相傳底事？」師提衣角示之。進云：「恁麼則一句迥超千聖外，滿筵目擊盡知音。」師云：「",
+            "MasterName": null,
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Wanru Tongwei",
+                "Roles": [
+                  "respondent",
+                  "record-owner"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J26/J26nB182.xml). Recorded Sayings of Chan Master Wanru. Action performer: the unnamed monk questioning Wanru Tongwei. The complete source frame assigns the retained headword-bearing action to the unnamed monk questioning Wanru Tongwei.",
+            "ActorAttribution": {
+              "Status": "reviewed-unnamed",
+              "Kind": "person",
+              "ActorLabel": "the unnamed monk questioning Wanru Tongwei",
+              "ActorRole": "questioner",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "The complete source frame assigns the retained headword-bearing action to the unnamed monk questioning Wanru Tongwei.",
+              "ReviewedBy": "R91 frozen source-first adjudication",
+              "ReviewedUtc": "2026-07-30T16:10:00Z",
+              "AuthoredVoiceRiskReviewed": true
+            },
+            "DraftActorProof": {
+              "ExactHeadwordClause": "大庾嶺頭提不起",
+              "GrammaticalSubject": "the unnamed monk questioning Wanru Tongwei",
+              "SpeechFrame": "Source record (J/J26/J26nB182.xml). Recorded Sayings of Chan Master Wanru. Action performer: the unnamed monk questioning Wanru Tongwei. The complete source frame assigns the retained headword-bearing action to the unnamed monk questioning Wanru Tongwei.",
+              "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to the unnamed monk questioning Wanru Tongwei."
+            }
+          },
+          {
+            "RelPath": "J/J26/J26nB187.xml",
+            "FromLb": "0667a11",
+            "ToLb": "0667a16",
+            "Kwic": "？」師云：「東家點燈，西家暗坐。」進云：「恁麼則自從盧老收歸後，須信人人總有之。」師云：「頂戴奉行。」乃云：「大庾嶺頭提不起底兩手分付，雞足峰前等箇人底盡底傳持，既盡底傳持，復兩手分付，則彼彼男子、各各丈夫，何必承稟釋迦、讓美彌勒？快",
+            "MasterName": "Tian'an Sheng",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Tian'an Sheng",
+                "Roles": [
+                  "utterer"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J26/J26nB187.xml). Recorded Sayings of Chan Master Tian’an Sheng. Exact actor: Tian'an Sheng. The complete source frame assigns the retained headword-bearing action to Tian'an Sheng.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "大庾嶺頭提不起",
+              "GrammaticalSubject": "Tian'an Sheng",
+              "SpeechFrame": "Source record (J/J26/J26nB187.xml). Recorded Sayings of Chan Master Tian’an Sheng. Exact actor: Tian'an Sheng. The complete source frame assigns the retained headword-bearing action to Tian'an Sheng.",
+              "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to Tian'an Sheng."
+            }
+          }
+        ],
+        "ClaimAnchors": [],
+        "SourceTexts": [
+          "J/J26/J26nB177.xml",
+          "J/J26/J26nB178.xml",
+          "J/J26/J26nB182.xml",
+          "J/J26/J26nB187.xml"
+        ],
+        "RelatedMasters": [
+          "Poshan Haiming",
+          "Feiyin Tongrong",
+          "Wanru Tongwei",
+          "Tian'an Sheng"
+        ],
+        "RelatedTerms": [],
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "A fixed allusion to the robe in the Huineng–Ming encounter that could not be lifted at Dayu Ridge.",
+          "EvidenceBody": [
+            "Poshan Haiming and Tian'an Sheng deploy the allusion directly; unnamed monks invoke it in questions to Feiyin Tongrong and Wanru Tongwei."
+          ]
+        },
+        "DraftEvidence": {
+          "LiteralGraphFloor": "could not lift it at Dayu Ridge",
+          "LexicalJob": "大庾嶺頭提不起 means could not lift it at Dayu Ridge.",
+          "DeploymentClasses": [
+            "authored verse",
+            "direct instruction"
+          ],
+          "HighValueEvidenceLedger": [
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to Poshan Haiming.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to the unnamed monk questioning Feiyin Tongrong.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to the unnamed monk questioning Wanru Tongwei.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to Tian'an Sheng.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            }
+          ],
+          "OpeningClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3",
+            "o4"
+          ],
+          "EvidenceBodyClaimKeys": [
+            [
+              "o1",
+              "o2",
+              "o3",
+              "o4"
+            ]
+          ],
+          "ZenBend": "A fixed allusion to the robe in the Huineng–Ming encounter that could not be lifted at Dayu Ridge.",
+          "CounterexampleOrLimit": "Later applications to presented or transmitted robes remain deployments of the same allusion rather than separate senses.",
+          "DifferentThingTest": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "could not lift it at Dayu Ridge"
+            ],
+            "Reason": "One lexical job."
+          },
+          "AliasRationale": "Alternates preserve the same lexical job.",
+          "ModifierControls": [
+            {
+              "Term": "大庾嶺頭提不起",
+              "Finding": "No modifier creates a second referent."
+            }
+          ],
+          "FamilyControls": [
+            {
+              "Term": "大庾嶺頭提不起",
+              "Finding": "4 independent higher-tier families meet the floor."
+            }
+          ],
+          "IndependentWorkIds": [
+            "work:J26nB177",
+            "work:J26nB178",
+            "work:J26nB182",
+            "work:J26nB187"
+          ],
+          "SourceAuthorityRows": [
+            {
+              "EvidenceKey": "o1",
+              "RelPath": "J/J26/J26nB177.xml",
+              "WorkId": "work:J26nB177",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "dayu-unliftable:poshan-hall",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o2",
+              "RelPath": "J/J26/J26nB178.xml",
+              "WorkId": "work:J26nB178",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "dayu-unliftable:feiyin-question",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o3",
+              "RelPath": "J/J26/J26nB182.xml",
+              "WorkId": "work:J26nB182",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "dayu-unliftable:wanru-question",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o4",
+              "RelPath": "J/J26/J26nB187.xml",
+              "WorkId": "work:J26nB187",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "dayu-unliftable:tianan-hall",
+              "DeploymentRole": "original-use"
+            }
+          ],
+          "LampExcessJustification": "No Tier-3 lamp retained.",
+          "NoHigherWitnessSearchReceipt": "Tier 1 searched first, then Tier 2; no lamp needed.",
+          "DepthHarvestReceipt": {
+            "Complete": true,
+            "ReviewedExactHitCount": 99,
+            "AvailableSourceFiles": 72,
+            "SearchedDeploymentClasses": [
+              "authored verse",
+              "direct instruction"
+            ],
+            "OmissionAudit": [
+              "4 retained cases actor-adjudicated.",
+              "No lamp retained."
+            ]
+          }
+        },
+        "DraftAcceptedDerivedFields": {
+          "SourceTexts": [
+            "J/J26/J26nB177.xml",
+            "J/J26/J26nB178.xml",
+            "J/J26/J26nB182.xml",
+            "J/J26/J26nB187.xml"
+          ],
+          "RelatedMasters": [
+            "Poshan Haiming",
+            "Feiyin Tongrong",
+            "Wanru Tongwei",
+            "Tian'an Sheng"
+          ]
+        }
+      }
+    ],
+    "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+  },
+  "FamilyHarvest": {
+    "PolicyVersion": 1,
+    "Scope": "R91 source-hierarchy repair",
+    "Edges": [],
+    "NegativeReceipt": [],
+    "GraphicVariants": []
+  }
+}

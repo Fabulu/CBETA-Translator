@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "r91-late-research-continuation.v1",
+  "cohort": "R91",
+  "hardPass": false,
+  "lateContinuationAuthorized": true,
+  "authorizedBy": "root",
+  "authorization": "Continue adjudication and construction only from the exact existing frozen R91 extraction after the v3 research window was exceeded solely while repairing a fail-closed canonical argv mismatch.",
+  "originalStartedEpoch": 1785417848.4595213,
+  "researchDeadlineSeconds": 240,
+  "observedElapsedSecondsApproximate": 260,
+  "ids": [
+    "t_21170b1b9a8d",
+    "t_211c871daa1f",
+    "t_218e4815d84a"
+  ],
+  "scopeExpansionForbidden": true,
+  "deadlineResetForbidden": true,
+  "rescanForbidden": true,
+  "addedCandidatesForbidden": true,
+  "bindings": {
+    "timegate": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r91-timegate-b.json",
+      "sha256": "45c3e4603d4dc60f78f9ffbebe48c7e1ed262285ddf30763b90c5da498e1d5cf"
+    },
+    "selection": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r91-selection-b.json",
+      "sha256": "626f3f9c458af85b41fcb1128e8610e908b281dd8f952a93a0a1b5bdc253f42c"
+    },
+    "extraction": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r91-extraction-output-b.json",
+      "sha256": "303fa82078e39d7f6cdfb07600a2f260e6a7c56197e8f7c09f6162c0b0c58a0b"
+    },
+    "researchSkeleton": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r91-research-skeleton-b.json",
+      "sha256": "72b3d8b9f9f63cad47a99a77b1b93d34dcfca000d4b1f13a9ffcb14e497cfc1c"
+    },
+    "correctedCommandAudit": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r91-research-command-audit-b.json",
+      "sha256": "224a4415a469a95264fbde2fb1af4568e32425d91e1108c345adddf2ca886411"
+    },
+    "failClosedReceipt": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r91-research-checkpoint-b.json.fail-closed.json",
+      "sha256": "5362b7fe0e2e17ec1a6c08a7367bee6345dd5e8dc9d442ba3d01203cf6cb5439"
+    }
+  },
+  "publicMutationPerformed": false
+}

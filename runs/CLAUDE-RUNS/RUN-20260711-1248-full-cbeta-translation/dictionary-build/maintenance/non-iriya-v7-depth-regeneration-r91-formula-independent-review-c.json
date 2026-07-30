@@ -1,0 +1,164 @@
+{
+  "schemaVersion": "r91-formula-independent-review.v1",
+  "cohort": "R91",
+  "reviewer": "r87_research_a",
+  "reviewMode": "frozen-product-source-first-independent-review",
+  "reviewedIds": [
+    "t_21170b1b9a8d",
+    "t_211c871daa1f"
+  ],
+  "bindings": {
+    "adjudication": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r91-adjudication-a.json",
+      "extractionSha256RecordedThere": "303fa82078e39d7f6cdfb07600a2f260e6a7c56197e8f7c09f6162c0b0c58a0b"
+    },
+    "products": [
+      {
+        "id": "t_21170b1b9a8d",
+        "path": "fresh-build/entries/t_21170b1b9a8d/entry.v2.json",
+        "sha256": "d1a3c9a8eae13f39d59662a4ce347ed478db27344ad7b21e4b3af102e4de8893",
+        "worksheetPath": "fresh-build/entries/t_21170b1b9a8d/evidence.draft.json",
+        "worksheetSha256": "397640d6cddbd9575f31eac51fb6a297df9b0be7758609dcc721bcbfe7f9f7c6",
+        "compileReportPath": "fresh-build/entries/t_21170b1b9a8d/evidence-compile-report.json"
+      },
+      {
+        "id": "t_211c871daa1f",
+        "path": "fresh-build/entries/t_211c871daa1f/entry.v2.json",
+        "sha256": "6db85bc0d81f96a7468c40ffe8272c4bb0e33893e5371772dd2b8e1f06539a45",
+        "worksheetPath": "fresh-build/entries/t_211c871daa1f/evidence.draft.json",
+        "worksheetSha256": "2ed4efa894a0428bcea90fdb50cf8d162e9f602c1813a765757b6077b0a4aad5",
+        "compileReportPath": "fresh-build/entries/t_211c871daa1f/evidence-compile-report.json"
+      }
+    ]
+  },
+  "reviews": [
+    {
+      "id": "t_21170b1b9a8d",
+      "term": "須彌頂上浪滔天",
+      "entrySha256": "d1a3c9a8eae13f39d59662a4ce347ed478db27344ad7b21e4b3af102e4de8893",
+      "senseVerdict": "KEEP_ONE_SENSE",
+      "preferredTargetVerdict": "KEEP",
+      "preferredTarget": "waves flood the sky atop Mount Sumeru",
+      "semanticRuling": "The four complete cases use one fixed impossible image: waves rise or flood skyward from Mount Sumeru's summit. Verse, hall-address, and surrounding-image differences do not create different referents or lexical senses.",
+      "wordingFinding": {
+        "severity": "minor-nonblocking",
+        "coordinate": "Senses[0].Explanation sentence 1",
+        "finding": "The headword itself says waves, not specifically ocean waves. The retained contexts make the marine contrast visible, especially Yangqi's paired ocean-bottom line, so 'ocean waves' is understandable, but plain 'waves' would adhere more exactly to the formula.",
+        "releaseEffect": "No semantic overclaim requiring revision; the preferred target already says only waves."
+      },
+      "sourceFamilyReview": [
+        {
+          "relPath": "J/J28/J28nB218.xml",
+          "family": "Lanshi Ling birthday-session verse",
+          "tier": 2,
+          "actor": "Lanshi Ling",
+          "actorRole": "verse-author",
+          "decision": "KEEP"
+        },
+        {
+          "relPath": "J/J39/J39nB456.xml",
+          "family": "Danya Chaoyuan direct hall declaration",
+          "tier": 2,
+          "actor": "Danya Chaoyuan",
+          "actorRole": "utterer",
+          "decision": "KEEP"
+        },
+        {
+          "relPath": "J/J39/J39nB460.xml",
+          "family": "Huizhou Hao direct hall verse",
+          "tier": 2,
+          "actor": "Huizhou Hao",
+          "actorRole": "utterer",
+          "decision": "KEEP"
+        },
+        {
+          "relPath": "T/T47/T47n1994A.xml",
+          "family": "Yangqi Fanghui original recorded verse",
+          "tier": 2,
+          "actor": "Yangqi Fanghui",
+          "actorRole": "verse-author",
+          "decision": "KEEP"
+        }
+      ],
+      "actorVerdict": "All four exact actors agree with the governing speech or verse frames. No record owner has been substituted for an embedded speaker.",
+      "duplicateVerdict": "The retained four are active, work-distinct deployments. Tianran's quotation of Yangqi and the classified anthology verse were correctly excluded; no recension volume is counted.",
+      "lampCount": 0,
+      "compilerParity": {
+        "hardPass": true,
+        "worksheetSha256MatchesReport": true,
+        "outputSha256MatchesCurrentProduct": true,
+        "mode": "canonical-render"
+      },
+      "verdict": "KEEP"
+    },
+    {
+      "id": "t_211c871daa1f",
+      "term": "大庾嶺頭提不起",
+      "entrySha256": "6db85bc0d81f96a7468c40ffe8272c4bb0e33893e5371772dd2b8e1f06539a45",
+      "senseVerdict": "KEEP_ONE_SENSE",
+      "preferredTargetVerdict": "KEEP",
+      "preferredTarget": "could not lift it at Dayu Ridge",
+      "semanticRuling": "All four complete cases invoke the same Huineng-Ming robe allusion. Later physical robes, robe transmission, and questions about the phrase change the occasion of use, not the referent encoded by the fixed formula.",
+      "wordingFinding": {
+        "severity": "none",
+        "finding": "The preferred target preserves the source's omitted object as 'it'; the explanation then identifies the robe from the complete cases. This is accurate and avoids forcing the contextual noun into the headword translation."
+      },
+      "sourceFamilyReview": [
+        {
+          "relPath": "J/J26/J26nB177.xml",
+          "family": "Poshan Haiming dharma-robe hall verse",
+          "tier": 2,
+          "actor": "Poshan Haiming",
+          "actorRole": "utterer",
+          "decision": "KEEP"
+        },
+        {
+          "relPath": "J/J26/J26nB178.xml",
+          "family": "unnamed monk's Dayu-Ridge question to Feiyin Tongrong",
+          "tier": 2,
+          "actor": "the unnamed monk questioning Feiyin Tongrong",
+          "actorRole": "questioner",
+          "decision": "KEEP"
+        },
+        {
+          "relPath": "J/J26/J26nB182.xml",
+          "family": "unnamed monk's robe-transmission question to Wanru Tongwei",
+          "tier": 2,
+          "actor": "the unnamed monk questioning Wanru Tongwei",
+          "actorRole": "questioner",
+          "decision": "KEEP"
+        },
+        {
+          "relPath": "J/J26/J26nB187.xml",
+          "family": "Tian'an Sheng direct robe-and-transmission instruction",
+          "tier": 2,
+          "actor": "Tian'an Sheng",
+          "actorRole": "utterer",
+          "decision": "KEEP"
+        }
+      ],
+      "actorVerdict": "The two anonymous question turns correctly belong to their monks, while Feiyin Tongrong and Wanru Tongwei remain respondents and record owners. Poshan Haiming and Tian'an Sheng own their direct turns.",
+      "duplicateVerdict": "All four retained uses are independent deployments. The two parallel Caoxi robe-keeper recensions were correctly excluded rather than used for padding.",
+      "lampCount": 0,
+      "compilerParity": {
+        "hardPass": true,
+        "worksheetSha256MatchesReport": true,
+        "outputSha256MatchesCurrentProduct": true,
+        "mode": "canonical-render"
+      },
+      "verdict": "KEEP"
+    }
+  ],
+  "summary": {
+    "keep": 2,
+    "revise": 0,
+    "tier1Retained": 0,
+    "tier2Retained": 8,
+    "tier3Retained": 0,
+    "lampRetained": 0,
+    "actorFailures": 0,
+    "compilerParityFailures": 0,
+    "hardPass": true,
+    "releaseAuthorizedByThisArtifact": false
+  }
+}

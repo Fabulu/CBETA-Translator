@@ -1,0 +1,203 @@
+{
+  "schemaVersion": "r91-frozen-adjudication.v1",
+  "cohort": "R91",
+  "reviewer": "r87_research_a",
+  "reviewedIds": [
+    "t_218e4815d84a"
+  ],
+  "bindings": {
+    "extractionPath": "maintenance/non-iriya-v7-depth-regeneration-r91-extraction-output-b.json",
+    "extractionSha256": "303fa82078e39d7f6cdfb07600a2f260e6a7c56197e8f7c09f6162c0b0c58a0b",
+    "lateAuthorityPath": "maintenance/non-iriya-v7-depth-regeneration-r91-late-research-continuation-root.json"
+  },
+  "scopeControl": {
+    "frozenExtractionOnly": true,
+    "rescanPerformed": false,
+    "candidateAdded": false,
+    "scopeExpanded": false
+  },
+  "ruling": {
+    "id": "t_218e4815d84a",
+    "term": "勘破",
+    "requiredFloor": 7,
+    "candidateCount": 10,
+    "admission": "ADMIT",
+    "senseCount": 1,
+    "preferredTarget": "see through",
+    "alternateTargets": [
+      "expose upon examination",
+      "find out completely"
+    ],
+    "semanticRuling": "勘破 names carrying an examination through until the person, claim, or situation is exposed or decisively known. Active constructions present someone as seeing through another; 被 constructions present someone as being exposed. Those voice and argument changes concern one event and do not establish separate lexical things.",
+    "semanticLimits": "Do not make 勘破 a guarantee of enlightenment or final truth. The records use it both for Zhaozhou's announced examination of the old woman and for later speakers saying that a person or presentation has been exposed; appraisal of whether a claimed examination succeeded belongs to each complete case.",
+    "retainedFamilies": [
+      {
+        "relPath": "D/D50/D50n8945.xml",
+        "fromLb": "0004a05",
+        "tier": 1,
+        "exactActor": "the verse author of the Xuefeng Kong outer collection",
+        "actorStatus": "identified-master-canonical-label-unresolved",
+        "actorRole": "verse-author",
+        "contextActors": [
+          {
+            "actor": "Zhaozhou Congshen",
+            "role": "case-figure"
+          },
+          {
+            "actor": "the old woman on the Mount Wutai road",
+            "role": "person-discussed"
+          }
+        ],
+        "familyId": "kanpo:xuefeng-kong-zhaozhou-verse",
+        "deployment": "An authored verse says Zhaozhou saw through the old woman on the Mount Wutai road.",
+        "decision": "RETAIN",
+        "constructionCondition": "Resolve the verse author's roster-exact canonical label from existing authority; do not assign Zhaozhou as utterer."
+      },
+      {
+        "relPath": "J/J25/J25nB165.xml",
+        "fromLb": "0290b11",
+        "tier": 1,
+        "exactActor": "Jinglun",
+        "actorStatus": "identified-unlinked-master",
+        "actorRole": "commentator",
+        "contextActors": [
+          {
+            "actor": "Zhaozhou Congshen",
+            "role": "case-figure"
+          },
+          {
+            "actor": "the old woman on the Mount Wutai road",
+            "role": "person-discussed"
+          }
+        ],
+        "familyId": "kanpo:jinglun-zhaozhou-comment",
+        "deployment": "Jinglun raises Zhaozhou's announcement that he had seen through the old woman and then asks how later communities discuss it.",
+        "decision": "RETAIN"
+      },
+      {
+        "relPath": "J/J39/J39nB458.xml",
+        "fromLb": "0710a16",
+        "tier": 1,
+        "exactActor": "the record's identified exhortation author",
+        "actorStatus": "identified-master-canonical-label-unresolved",
+        "actorRole": "utterer",
+        "familyId": "kanpo:direct-exhortation",
+        "deployment": "In a direct exhortation, the speaker uses 勘破了也 for having fully seen the matter through before pairing it with bringing knowledge to completion.",
+        "decision": "RETAIN",
+        "constructionCondition": "Resolve the record owner's roster-exact label from existing authority before emission."
+      },
+      {
+        "relPath": "X/X69/X69n1357.xml",
+        "fromLb": "0464b02",
+        "tier": 1,
+        "exactActor": "Yuanwu Keqin",
+        "actorStatus": "roster-linked-master",
+        "actorRole": "utterer",
+        "contextActors": [
+          {
+            "actor": "Zhaozhou Congshen",
+            "role": "person-discussed"
+          }
+        ],
+        "familyId": "kanpo:yuanwu-no-further-examination",
+        "deployment": "Yuanwu says that once the final phrase has been carried through in speech and silence, no further seeing-through is needed.",
+        "decision": "RETAIN"
+      },
+      {
+        "relPath": "X/X87/X87n1624.xml",
+        "fromLb": "0253b22",
+        "tier": 1,
+        "exactActor": "Huanglong Huinan",
+        "actorStatus": "roster-linked-master",
+        "actorRole": "verse-author",
+        "contextActors": [
+          {
+            "actor": "Ciming Chuyuan",
+            "role": "teacher"
+          },
+          {
+            "actor": "Zhaozhou Congshen",
+            "role": "case-figure"
+          },
+          {
+            "actor": "the old woman on the Mount Wutai road",
+            "role": "person-discussed"
+          },
+          {
+            "actor": "Huihong",
+            "role": "later-quoter"
+          }
+        ],
+        "familyId": "kanpo:huanglong-ciming-verse-correction",
+        "deployment": "Huanglong's verse says the old woman was seen through; Ciming changes one graph in the line and approves the correction.",
+        "decision": "RETAIN"
+      },
+      {
+        "relPath": "B/B27/B27n0152.xml",
+        "fromLb": "0526a14",
+        "tier": 2,
+        "exactActor": "Tianzhen",
+        "actorStatus": "identified-master-canonical-label-unresolved",
+        "actorRole": "utterer",
+        "contextActors": [
+          {
+            "actor": "Yulin Tongxiu",
+            "role": "later-quoter"
+          }
+        ],
+        "familyId": "kanpo:tianzhen-exposed-by-monk",
+        "deployment": "Tianzhen says that the speaker's own presentation has instead been seen through by a monk; Yulin later raises and comments on the saying.",
+        "decision": "RETAIN",
+        "constructionCondition": "Resolve Tianzhen's roster-exact identity from existing authority; Yulin is later quoter, not exact actor."
+      },
+      {
+        "relPath": "C/C077/C077n1710.xml",
+        "fromLb": "0756b02",
+        "tier": 2,
+        "exactActor": "Huanglong Huinan",
+        "actorStatus": "roster-linked-master",
+        "actorRole": "utterer",
+        "contextActors": [
+          {
+            "actor": "Wang the judicial commissioner",
+            "role": "person-discussed"
+          },
+          {
+            "actor": "Lian Sansheng",
+            "role": "person-discussed"
+          }
+        ],
+        "familyId": "kanpo:huanglong-substitute-answer",
+        "deployment": "After recounting an exchange in which Lian Sansheng had no answer, Huanglong supplies the substitute line 'today it has been seen through.'",
+        "decision": "RETAIN"
+      }
+    ],
+    "excludedOrReserve": [
+      {
+        "relPath": "X/X78/X78n1554.xml",
+        "fromLb": "0580a19",
+        "reason": "Repeats the inherited Zhaozhou-old-woman case already represented by authored verse and commentary; retaining it would count recension volume."
+      },
+      {
+        "relPath": "B/B25/B25n0145.xml",
+        "fromLb": "0697a15",
+        "reason": "Repeats the Huanglong-Ciming verse-correction family preserved more directly in Huihong's authored account."
+      },
+      {
+        "relPath": "D/D51/D51n8948.xml",
+        "fromLb": "0002b06",
+        "reason": "Japanese Chan source; source-tier certainty does not override the Chinese-Chan corpus boundary."
+      }
+    ],
+    "sourceHierarchy": "Five retained Tier-1 authored families and two Tier-2 sayings families meet the floor. No lamp witness is needed. Parallel Zhaozhou and Huanglong recensions are excluded rather than counted as independent depth.",
+    "actorGate": "The person who says 勘破 owns the turn; the examined or exposed person is context. Passive 被 constructions do not transfer utterership to their grammatical patient. Later quoters remain later quoters.",
+    "unresolvedCoordinates": [
+      "D/D50/D50n8945.xml 0004a05: canonical roster label for the identified verse author",
+      "J/J39/J39nB458.xml 0710a16: canonical roster label for the identified record owner",
+      "B/B27/B27n0152.xml 0526a14: roster-exact identity for Tianzhen"
+    ],
+    "verdict": "APPROVE_CONSTRUCTION_CONDITIONALLY",
+    "hardPass": false,
+    "reason": "Semantic, source-family, duplicate, and actor-role rulings are closed from the frozen extraction. Three identified-master canonical labels must be resolved from existing authority before product emission; no additional corpus research is authorized or needed."
+  }
+}

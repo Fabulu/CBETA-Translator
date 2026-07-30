@@ -1,0 +1,86 @@
+{
+  "schemaVersion": "r91-kanpo-changed-coordinate-rereview.v1",
+  "cohort": "R91",
+  "id": "t_218e4815d84a",
+  "term": "勘破",
+  "reviewMode": "changed-coordinate rereview of the corrected product only; no rescan or scope expansion",
+  "reviewer": "Codex r89_final_review",
+  "reviewedUtc": "2026-07-30T13:54:00Z",
+  "bindings": {
+    "config": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r91-constructor-config-b.json",
+      "sha256": "4fa92bd1a1f5efd4f8cfa2605fdf43cc23bef8c3b53f22949a7046d74ed968cb"
+    },
+    "noteCorrection": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r91-note-correction-b.json",
+      "sha256": "8d3a12805c8b9120fef34970176797affdf7da39b6b8b2f3c1057bea3df058f8"
+    },
+    "attributionGate": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r91-attribution-final-d.json",
+      "sha256": "8b1c2a4c7aa2cace215ba077fb5b2a84d89654f1df0b06e7d29d4861382c8110",
+      "hardFailures": 0
+    },
+    "depthGate": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r91-depth-final-d.json",
+      "sha256": "ea204de5abda372e35cb2eeab772048459d8d81c3253b33600f3344d8f52aed4",
+      "hardFailures": 0,
+      "expectedReviewFlag": "broad-concordance-single-sense-review"
+    },
+    "dossier": {
+      "path": "fresh-build/entries/t_218e4815d84a/source-dossier.json",
+      "sha256": "6634375889ba451bbe69c6eedc795a2a1ed4f07472b33125ab227ad8d5b7a043"
+    },
+    "worksheet": {
+      "path": "fresh-build/entries/t_218e4815d84a/evidence.draft.json",
+      "sha256": "18a5c32f698d10fe815064a361ea38e3a925948650a4122c3ffcfa8f51b9eb95"
+    },
+    "compileReport": {
+      "path": "fresh-build/entries/t_218e4815d84a/evidence-compile-report.json",
+      "sha256": "f565815e4f19a8ac3cdc8cedff3f5a3e50640a6acc59076c6b4c314d53feb335"
+    },
+    "product": {
+      "path": "fresh-build/entries/t_218e4815d84a/entry.v2.json",
+      "sha256": "ab3665fec395befb6cfb35e0c605ab5f535e1eac300e9e2756d5094cf048183a"
+    }
+  },
+  "changedCoordinateChecks": [
+    {
+      "check": "J25 inherited quotation removed",
+      "verdict": "pass",
+      "finding": "J/J25/J25nB165.xml is absent from the six retained occurrences. The incorrect Jinglun attribution and false independent-family count no longer reach the product."
+    },
+    {
+      "check": "six-family frozen-exhaustion exception",
+      "verdict": "pass",
+      "finding": "The dossier, worksheet, public note, and final depth receipt consistently record root-authorized FROZEN_CANDIDATE_EXHAUSTION: six independent families remain against guide floor seven; X78 duplicates the retained Zhaozhou family, B25 duplicates the retained Huanglong family, and D51 is excluded by the Chinese-Chan corpus boundary."
+    },
+    {
+      "check": "context restoration",
+      "verdict": "pass",
+      "finding": "Occurrence 1 now includes Zhaozhou and the old woman; occurrence 3 includes Zhaozhou; occurrence 4 includes Shishuang Chuyuan, Zhaozhou, the old woman, and Huihong with the correct roles and public note; occurrence 6 includes Wang the judicial commissioner and Lian Sansheng."
+    },
+    {
+      "check": "exact actors",
+      "verdict": "pass",
+      "finding": "The remaining exact actors are Xuefeng Huikong, Runguang Ze, Yuanwu Keqin, Huanglong Huinan, Tianzhen, and Huanglong Huinan. Passive grammatical patients and later quoters are not assigned as utterers."
+    },
+    {
+      "check": "active-passive one-sense ruling",
+      "verdict": "pass",
+      "finding": "Active seeing-through and passive being-exposed retain one examination-to-exposure lexical event. The 1,803-hit, 281-file broad-concordance flag does not establish a second thing."
+    },
+    {
+      "check": "source hierarchy",
+      "verdict": "pass",
+      "finding": "The corrected set contains four Tier 1 authored families, two Tier 2 recorded-sayings families, and zero lamps."
+    }
+  ],
+  "compilerParity": {
+    "verdict": "pass",
+    "method": "Recompiled the exact corrected worksheet with compile_evidence_draft.py --new-entry to temporary output and byte-compared it with the bound corrected product.",
+    "recompiledSha256": "ab3665fec395befb6cfb35e0c605ab5f535e1eac300e9e2756d5094cf048183a"
+  },
+  "hardFailures": [],
+  "hardPass": true,
+  "publishAuthorized": false
+}

@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "bounded-dictionary-timegate.v3",
+  "cohort": "R91",
+  "artifactZero": true,
+  "startedEpoch": 1785417848.4595213,
+  "createdUtc": "2026-07-30T13:24:08.459521Z",
+  "requiredFloors": [
+    4,
+    4,
+    7
+  ],
+  "admittedRequiredOccurrences": 15,
+  "adjudicatedCaseLoad": 15,
+  "researchCandidateReserve": 3,
+  "deadlinesSeconds": {
+    "viability": 120,
+    "researchExtraction": 240,
+    "adjudicatedConfig": 500,
+    "constructor": 510,
+    "firstProduct": 530,
+    "construction": 590,
+    "review": 770,
+    "correction": 890,
+    "publication": 980
+  },
+  "assignedLaunch": {
+    "selector": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/last1500-public-depth/final-scope/full-regeneration-selector.json",
+    "priorUnion": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r90-resolved-union-root.json",
+    "entries": [
+      {
+        "id": "t_21170b1b9a8d",
+        "term": "須彌頂上浪滔天",
+        "requiredFloor": 4
+      },
+      {
+        "id": "t_211c871daa1f",
+        "term": "大庾嶺頭提不起",
+        "requiredFloor": 4
+      },
+      {
+        "id": "t_218e4815d84a",
+        "term": "勘破",
+        "requiredFloor": 7
+      }
+    ],
+    "reserveIds": [],
+    "researchCandidateReserve": 3
+  },
+  "continuationOf": "R90"
+}
