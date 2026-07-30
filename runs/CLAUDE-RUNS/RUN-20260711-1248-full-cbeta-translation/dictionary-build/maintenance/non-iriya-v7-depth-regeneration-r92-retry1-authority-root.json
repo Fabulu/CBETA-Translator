@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "r92-explicit-same-scope-retry-authority.v1",
+  "cohort": "R92",
+  "decision": "AUTHORIZE_ONE_SAME_SCOPE_RETRY",
+  "authorizedEpoch": 1785421261.869296,
+  "historicalFailure": {
+    "deadlineSeconds": 500,
+    "phase": "adjudicated-config",
+    "finding": "The original R92 500-second config deadline expired during actor-schema conversion; original artifacts remain immutable."
+  },
+  "boundInputs": {
+    "non-iriya-v7-depth-regeneration-r92-timegate-b.json": "0dd5612276f7b72b2b8d2596d254807e0cd1750e001af8086c7cba64fb5628e5",
+    "non-iriya-v7-depth-regeneration-r92-selection-b.json": "1becd5cc735e1350868a9f3436a14baced1d09deb83cc36aa5626578acf8ea9a",
+    "non-iriya-v7-depth-regeneration-r92-viability-checkpoint-b.json": "f659797f6adcd461d33af85b6bc3b9a59dc5a11751f89f238e510c2e35b991c4",
+    "non-iriya-v7-depth-regeneration-r92-research-checkpoint-b.json": "37dde34391485c16a3ccf88683646fe2776d0da64c8d6453df7f43ac5b459cd6",
+    "non-iriya-v7-depth-regeneration-r92-extraction-output-b.json": "46fa8c86ea017ea178151a4cc0376b0e145d22f5111c52501745bd3fe2c1ded7",
+    "non-iriya-v7-depth-regeneration-r92-adjudication-a.json": "4737c9041d840a5199c4e021fd45e4dcf8d14cfa1ecacc7b7e9b8415bdefa42c",
+    "non-iriya-v7-depth-regeneration-r92-adjudication-c.json": "b2122b7347ca361ba608b93568bc062acc2b7ba12f1757de970dcfbf42b80f26",
+    "adjudicated_actor_adapter.py": "35d5e2d053111401d24bbcec22471de358eb11d4c664dd13268cd26796c802ce",
+    "build_r92_config_b.py": "98a1b4f627166688c92d338faead50282738e1c9ec1491af815d7abd12beebe1",
+    "non-iriya-v7-depth-regeneration-r92-actor-adapter-independent-rereview-d.json": "f957438cd3d138934b5005ab956630c83010b50f196d000b5c1810b64e2d87fc",
+    "build_r92_retry1_config_b.py": "4a8c3ed244948c3697d89e63dff835eb07ccdcae580b882896552c3b61e509d9"
+  },
+  "scope": {
+    "ids": [
+      "t_219099a33daa",
+      "t_21a3463bc0db",
+      "t_21b44f051c7a"
+    ],
+    "rescanAllowed": false,
+    "scopeExpansionAllowed": false,
+    "publicationAllowed": false,
+    "termInstallationAllowed": false
+  },
+  "retryDeadlinesSeconds": {
+    "config": 120,
+    "firstProduct": 180,
+    "construction": 220,
+    "review": 400,
+    "correction": 500,
+    "publication": 590
+  }
+}

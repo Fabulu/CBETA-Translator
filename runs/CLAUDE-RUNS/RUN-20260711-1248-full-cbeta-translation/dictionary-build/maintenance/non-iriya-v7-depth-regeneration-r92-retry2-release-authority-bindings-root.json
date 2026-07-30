@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "r92-retry2-release-authority-bindings.v1",
+  "cohort": "R92",
+  "retryOrdinal": 2,
+  "rootDecisionPending": true,
+  "releaseAuthorized": false,
+  "products": [
+    {
+      "id": "t_219099a33daa",
+      "term": "疾入於涅槃",
+      "entrySha256": "1851fa3d1be027706c496dfe2c5ba1d30449f5998fc96ba75cf4622d8b14931b",
+      "worksheetSha256": "2225a0e8ea8be03e829e938a108a80b0865adb465eb686f41ffda04f3341b359",
+      "workSha256": "8053745fd18d6f4e27408e0fbbdb3b3803203c73c2f12d370a9e4d42c97dfeeb",
+      "termsInstallMode": "create-missing",
+      "termsBaselineSha256": null,
+      "publicMode": "replace"
+    },
+    {
+      "id": "t_21a3463bc0db",
+      "term": "隨處",
+      "entrySha256": "7bc95a32e9d7dd9a99aa10dc083c0486ab9f1e973665b26f062501b9e71768fa",
+      "worksheetSha256": "bd591f3f934bbb4021d9c0e8cb06d22ed385d653bb4e8ab800e48b7c5011197b",
+      "workSha256": "5c0de0fc3517fd0e3a1ad1b49ae117a4a587780fe49974889e4523ebc49ff71c",
+      "termsInstallMode": "replace",
+      "termsBaselineSha256": "82f944027691b6186a03fc8999a67d55116022bdc6121549a5778735c6c51202",
+      "publicMode": "replace"
+    },
+    {
+      "id": "t_21b44f051c7a",
+      "term": "財法二施",
+      "entrySha256": "2304e8a688fded4103efb27daa4de6dcb3b9bc348dbfe0e3c0663242ffebe5d3",
+      "worksheetSha256": "ba2d2a66021fdbc4164cf93ad5ba5bd09de6bdec909e76f103616ce2c602cc55",
+      "workSha256": "3784dffe1cecdd5ca2d4f59a4d12ce628aeb4d7c0066af065cb7597bef37ffab",
+      "termsInstallMode": "replace",
+      "termsBaselineSha256": "7ddc8db15d4c99bb3493d8cccc2b202f67a5cc2c38042adeaa8bc901364896e8",
+      "publicMode": "replace"
+    }
+  ],
+  "authorityBindings": {
+    "retry2Authority": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r92-retry2-authority-root.json",
+      "sha256": "03347889139ad90db764d3f9f45d99f974ef0a860d76b282b0707342245632ee"
+    },
+    "retry2Timegate": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r92-retry2-timegate-root.json",
+      "sha256": "920286a0df8d28f490f83cf42d77d92bc0659a8ab86dfd892dacaeb52872c450"
+    },
+    "constructorConfig": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r92-retry2-constructor-config-b.json",
+      "sha256": "dbafcc897e09e2bb95a87a057deb0692d66adb88e997c347e6430020a275a78a"
+    },
+    "constructionManifest": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r92-retry2-construction-manifest-b.json",
+      "sha256": "78a3e37a69a917895cef1242f18bdf1ff4b90932fba74813da8dcdcec1dbf957"
+    },
+    "closure": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r92-retry2-closure-b.json",
+      "sha256": "26e84159bbac899f6575fec3384dcfe7be986ed190b865a317b63d5dc08ff99f"
+    },
+    "productReviewB": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r92-retry2-product-independent-review-b.json",
+      "sha256": "80caf8d7d51f993732676b8389e80ed9154eb77e9bdc83af0e6eafa23f3880e6",
+      "hardPass": true
+    },
+    "productReviewD": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r92-retry2-products-independent-review-d.json",
+      "sha256": "b280fa33f8822b197c933cd9bb0970b90ac44ddbc278ce067d62a660ec897d85",
+      "hardPass": true
+    }
+  },
+  "retryHistory": {
+    "original": "The 500-second adjudicated-config clock expired before construction.",
+    "retry1": "Construction completed, but two independent reviews rejected actor-context loss and a lay witness misclassified as master-authored.",
+    "correction1": "Corrected config was built, but corrected construction was not emitted after the absolute clock expired.",
+    "retry2": "Fresh authority bound the reviewed fixes; corrected construction and both independent product reviews passed."
+  },
+  "sourceHierarchy": {
+    "tier1": 7,
+    "tier2": 8,
+    "tier3Lamps": 0,
+    "hardPass": true
+  },
+  "publicationExpectation": {
+    "currentPublicEntryCount": 4714,
+    "expectedPublicEntryCount": 4714,
+    "exactProductParity": "3/3",
+    "reason": "All three IDs already exist in the public dictionary and are replaced; the first ID was missing only from the active build terms."
+  },
+  "publicMutationPerformed": false
+}

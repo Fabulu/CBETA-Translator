@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "r92-correction-input-independent-review.v1",
+  "cohort": "R92",
+  "reviewer": "Codex r92_product_review_b",
+  "reviewScope": "Stopped correction inputs only; no product review, edits, rescan, or publication.",
+  "bindings": {
+    "builder": {
+      "path": "maintenance/build_r92_config_b.py",
+      "sha256": "c03d3d4976413163037fdcdfc3c06dd2d69ce4d407d7db7e3d541a2258642cb6"
+    },
+    "frozenExtraction": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r92-extraction-output-b.json",
+      "sha256": "46fa8c86ea017ea178151a4cc0376b0e145d22f5111c52501745bd3fe2c1ded7"
+    },
+    "frozenAdjudication": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r92-adjudication-a.json",
+      "sha256": "4737c9041d840a5199c4e021fd45e4dcf8d14cfa1ecacc7b7e9b8415bdefa42c"
+    },
+    "frozenRetryResearch": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r92-retry1-research-b.json",
+      "sha256": "e40ac50c5d9013f58d84690cee7bd3c41859e42c8e4b9ddf718b982a288d0669"
+    }
+  },
+  "replacementReview": {
+    "term": "財法二施",
+    "replacementRelPath": "J/J26/J26nB188.xml",
+    "replacementWorkId": "work:J26nB188",
+    "exactActor": "Ruibai Mingxue",
+    "tier": 2,
+    "familyId": "two-givings:ruibai-hall",
+    "frozenBeforeCorrection": true,
+    "adjudicatedBeforeCorrection": true,
+    "independentFamily": true,
+    "semanticFit": true,
+    "finding": "The frozen extraction already contains this exact headword occurrence at 0751c25. The frozen adjudication already identifies candidate row 5 as a usable direct recorded-sayings reserve. In Ruibai's winter-solstice hall address, a donor provides a feast and asks him to teach, which Ruibai explicitly calls 財法二施. This is Ruibai's direct deployment, not the Tianyin question, inherited Huangbo-Ganzi case, or Feiyin hall address."
+  },
+  "sourceAuthorityReview": {
+    "verdict": "pass",
+    "finding": "The frozen source-authority manifest registers J/J26/J26nB188.xml as Recorded Sayings of Chan Master Rujiu Ruibai, Tier 2, high-confidence recorded sayings/discourse."
+  },
+  "scopeReview": {
+    "semanticExpansion": false,
+    "sourceExpansion": false,
+    "finding": "The preferred target, alternate, one-sense ruling, and semantic limit are unchanged. The correction substitutes a previously frozen and adjudicated reserve from the same frozen research set; it performs no new search and admits no source outside R92."
+  },
+  "hardPass": true,
+  "correctionInputAuthorized": true,
+  "productOrPublicationAuthorized": false
+}

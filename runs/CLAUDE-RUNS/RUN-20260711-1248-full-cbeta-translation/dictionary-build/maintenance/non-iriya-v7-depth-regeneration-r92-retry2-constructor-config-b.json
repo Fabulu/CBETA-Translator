@@ -1,0 +1,4182 @@
+{
+  "schemaVersion": "generic-bounded-constructor-config.v2",
+  "cohort": "R92",
+  "startedEpoch": 1785421931.7709854,
+  "timegatePath": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r92-retry2-timegate-root.json",
+  "watchdogReceiptPath": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r92-retry2-constructor-checkpoint-b.json",
+  "commandAuditPath": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r92-retry2-constructor-command-audit-b.json",
+  "engineSha256": "e236f9a0951ef6aa5fdfe00f9b133b73bf9a6e37e485533ce4a5f3166acef8af",
+  "paths": {
+    "selection": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r92-retry2-constructor-selection-b.json",
+    "research": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r92-retry2-research-b.json",
+    "outputRoot": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/fresh-build/entries",
+    "firstProductReceipt": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r92-retry2-engine-first-product-b.json",
+    "preclosure": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r92-retry2-preclosure-report-b.json",
+    "manifest": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r92-retry2-construction-manifest-b.json",
+    "closure": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r92-retry2-closure-b.json"
+  },
+  "entries": [
+    {
+      "id": "t_219099a33daa",
+      "term": "疾入於涅槃",
+      "sourceDossier": {
+        "schemaVersion": "r11-source-dossier.v1",
+        "id": "t_219099a33daa",
+        "term": "疾入於涅槃",
+        "selectionBinding": {
+          "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r92-retry2-constructor-selection-b.json",
+          "sha256": "e9956dcb342904e78850b76bcb3a89c2f0f01a3cb6dfb19d71d5bb509e8740fe"
+        },
+        "researchBinding": {
+          "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r92-retry2-research-b.json",
+          "sha256": "bbdde6ff3324a7740d7c3d43b2857fbd9e573ccd072efcbdd472da9982e8207c"
+        },
+        "exactCount": {
+          "id": "t_219099a33daa",
+          "term": "疾入於涅槃",
+          "hits": 21,
+          "files": 17,
+          "works": 17,
+          "per_file": [
+            [
+              "C/C077/C077n1710.xml",
+              2
+            ],
+            [
+              "M/M59/M59n1540.xml",
+              2
+            ],
+            [
+              "T/T48/T48n2003.xml",
+              2
+            ],
+            [
+              "X/X78/X78n1553.xml",
+              2
+            ],
+            [
+              "J/J26/J26nB185.xml",
+              1
+            ],
+            [
+              "J/J35/J35nB342.xml",
+              1
+            ],
+            [
+              "T/T47/T47n1998A.xml",
+              1
+            ],
+            [
+              "X/X64/X64n1260.xml",
+              1
+            ],
+            [
+              "X/X69/X69n1346.xml",
+              1
+            ],
+            [
+              "X/X70/X70n1381.xml",
+              1
+            ],
+            [
+              "X/X70/X70n1384.xml",
+              1
+            ],
+            [
+              "X/X72/X72n1444.xml",
+              1
+            ],
+            [
+              "X/X78/X78n1556.xml",
+              1
+            ],
+            [
+              "X/X79/X79n1557.xml",
+              1
+            ],
+            [
+              "X/X79/X79n1559.xml",
+              1
+            ],
+            [
+              "X/X81/X81n1571.xml",
+              1
+            ],
+            [
+              "X/X83/X83n1578.xml",
+              1
+            ]
+          ]
+        },
+        "requiredFloor": 4,
+        "semanticReadComplete": true,
+        "tier3Lamp": 0,
+        "predecessorEvidenceAudit": [],
+        "retainedCompleteCases": [
+          {
+            "relPath": "J/J26/J26nB185.xml",
+            "workId": "work:J26nB185",
+            "sourceTitle": "Recorded Sayings of Chan Master Fushi",
+            "tier": 2,
+            "fullCaseWindow": "人天龜鑑。切不可半塗而廢、得少為足、貪他利養、要人禮敬、假粧知識粉飾無聞、不慚不愧、錯因錯果、未得言得、未證言證，大妄語成造無間業，一時苦事臨頭，他日悔之晚矣。諸仁者！當聞是語，銘刻在心，依此而行，超凡入聖，出類拔萃，得大受用，庶不辜負生平。大眾久立，伏惟珍重。迎龍庵，求開示。「去歲承招今日齋，貴圖一飽了余懷，誰知眾請重開示？須信談玄口不開。大眾！既是談玄，為甚口不開？不見教中道：『是法不可示，言辭相寂滅。』諸法從本來常自寂滅相，所以昔日外道問佛：『不問有言，不問無言。』世尊良久，外道云：『世尊大慈大悲，開我迷雲，令我得入。』於此見得是謂上根，於此不見，可謂東土衲僧不如西天外道。山僧未免更向第二門頭別通個消息，正是教中道：『我有異方便，助顯第一義。』故世尊初生，一手指天，一手指地，周行七步，目顧四方，乃云：『天上天下，唯我獨尊。』是異方便助顯第一義。年登十九，念世無常，捨王宮，居雪嶺，苦行六年，因睹明星忽然大悟，歎云：『奇哉！眾生皆有如來智慧德相，良由妄想執著不能證得。』是異方便助顯第一義。隱勝現劣，經行樹下，三七思惟，云：『若但讚佛乘，眾生沒在苦，破法不信受，墜於三惡道。我寧不說法，疾入於涅槃。』尋念過去佛所行方便力，亦應說三乘。作是思惟時，十方佛皆現梵音慰諭我。善哉！釋迦文第一之導師。於是，機分大小、道殊半滿，說法四十九年，談經三百餘會。末後於靈山會上百萬眾前，拈一枝合歡梧桐花舉示四眾，唯有迦葉破顏微笑，便云：『我有正法眼藏涅槃妙心實相無相，教外別傳，付囑與摩訶大迦葉。』是異方便助顯第一義。於此會得，是謂中根。如其根器淺劣，不能領會，且看昔日有智閑上座聰辯過人，問一荅十、問十荅百。一日，參禮溈山次，山問：『聞子聰辯過人，問一荅十、問十荅百，此皆冊子中語，向『父母未生前道一句來。』閑乃杜口無對，禮請溈山說破，山云：『我若與子說破。他日罵我在。』乃禮辭溈山，併去所習，結茅於忠國師遺跡，終日呆呆地討箇父母未生前消息。日久月深，忽於掃地次拾瓦礫，擊竹作聲，頓然打破疑團，洞徹生前消息。便設香望溈山，禮拜云：『當時若與我說破，怎得有今日？』此便是鈍根人參禮善知識做工夫悟道的樣子。蓋因入道遲速不同，故分根器有三種。雖說有三，於悟處無有異。大眾！古人如是，爾豈不然？各宜憤悱，急自究取，莫將閒學解，空費好時光。」浮石禪師語錄卷八浮石禪師語錄卷九嗣法門人行浚等編偈贊偈贊古林寺募糧古林寺募糧世",
+            "heading": {
+              "head": "",
+              "mulu": []
+            },
+            "actorDecision": {
+              "evidenceKey": "o1",
+              "masterName": null,
+              "actorAttribution": {
+                "Status": "identified-unlinked-master",
+                "Kind": "Chan master",
+                "ActorLabel": "Shakyamuni",
+                "ActorRole": "utterer",
+                "RungsChecked": [
+                  "line",
+                  "expanded-context",
+                  "section-header",
+                  "book-title",
+                  "tei-header",
+                  "parallel-passage"
+                ],
+                "GrammarEvidence": "The complete source frame assigns the retained headword-bearing action to Shakyamuni.",
+                "ReviewedBy": "R92 frozen source-first adjudication",
+                "ReviewedUtc": "2026-07-30T14:12:00Z",
+                "AuthoredVoiceRiskReviewed": true
+              },
+              "action": "uses the headword in the retained source unit",
+              "grammarEvidence": "The complete source frame assigns the retained headword-bearing action to Shakyamuni.",
+              "voice": "The complete source frame assigns the retained headword-bearing action to Shakyamuni.",
+              "contextMasters": [
+                {
+                  "MasterName": "Fushi Tongxian",
+                  "Roles": [
+                    "later-quoter",
+                    "commentator",
+                    "record-owner"
+                  ]
+                }
+              ],
+              "contextActors": []
+            },
+            "sourceSpanIdentity": {
+              "fromLb": "0608b26",
+              "sourceSpanOrdinal": 0,
+              "sourceContextSha256": "9c9ac154aa81a1acd947051b3a306459d2283e895dea62e6065915b92d3d77f0",
+              "boundedKwic": "便助顯第一義。隱勝現劣，經行樹下，三七思惟，云：『若但讚佛乘，眾生沒在苦，破法不信受，墜於三惡道。我寧不說法，疾入於涅槃。』尋念過去佛所行方便力，亦應說三乘。作是思惟時，十方佛皆現梵音慰諭我。善哉！釋迦文第一之導師。於是，機分大小",
+              "boundedFromLb": "0608b26",
+              "boundedToLb": "0608c01",
+              "boundaryEvidence": "zc.verify binds the complete retained public KWIC."
+            },
+            "decisionBasis": "The complete source frame assigns the retained headword-bearing action to Shakyamuni."
+          },
+          {
+            "relPath": "J/J35/J35nB342.xml",
+            "workId": "work:J35nB342",
+            "sourceTitle": "Recorded Sayings of Chan Master Shengke (Huayan)",
+            "tier": 2,
+            "fullCaseWindow": "。捨無明習氣，得檀；急自省改，得進；勿縱恚怒，得忍；護持正念，得戒；入三摩地，得定；時時消息，得慧。信而力行，名曰善丈夫。為寂惺號不多為寂惺，號不多惺得自家底事了，縱橫八面任高歌。尋常拈出一莖草，丈六金身不欠多。為寂誠號拳山為寂誠，號拳山誠心幹辦生死事，十二時中莫放過。直把拳頭捏教緊，一捶粉碎者山河。送雪如明知事送雪如明知事一蹋一蹋又一蹋，直破重圍千百匝。矍鑠是翁壯志圓，傑出叢林箇老衲。與惟識典上座與惟識典上座一箇拳頭生鐵鑄，不從人得誰相付？如斯方便與君通，震旦古今無別路。挽敏樹法兄和尚挽敏樹法兄和尚吾兄厭世欲何之？令弟悲傷法漸弛。眼見桂林凋弗茂，寥寥此道賴誰持？留枯木上座留枯木上座拄杖芒鞋老可休，何勞特地駕輕舟？諸方風味咸如此，不若還居最上頭。與不群應上座與不群應上座拈起、放下蒲團，豎拂、掛拂一樣。老僧無喝與君，痛與三十拄杖。送法旨禪人三四六言還玉泉送法旨禪人三四六言還玉泉不說禪，非同啞。一機纔發，走殺天下。舍得自己嬴人，兒孫箇箇如馬。達磨讚達磨讚佛國種草，世像不群，髮紋且鷲，眼竇而深。行如風之疾，渡似葉之輕。不為鈍根常面壁，九年那得上乘人？為德鎧禪人入塔為德鎧禪人入塔「我寧不說法，疾入於涅槃。世尊說得行不得，德鎧業已涅槃了也，行得說不得。」師遂舉起靈骨，云：「華岩則不然，要行說俱到，我寧不說疾入。」便以靈骨入塔。雙桂忌雙桂忌師詣幀前，拈香，云：「不解巴陵三轉語，不會楊岐女人拜。」遂插香，云：「單單只有片檀香，觸碎鼻頭師莫怪。」為治平慧覺和尚起龕為治平慧覺和尚起龕「眼前實相，腦後神光，而今而後，遍界莫藏。」便封。起龕。以拄杖敲龕，云：「三十餘年，廣化眾生。恬然無恙，一笑孤征。有眼當見，有耳當聞。大家到通遠門外，看取火裏之金。」引杖便行。舉火。舉起火炬，作此，云：「黃蘗被人活埋，普化自將直裰，惟我治平法兄，了無如是絡索。」乃攛下火炬，云：「大千沙界海中漚，一切聖賢如電過。」題齋榜題齋榜顆顆明珠，一粒一須彌，價酬不盡；勞勞做辨，一食一應量，咬著也無。施受財三輪體空，免不信心底披毛帶角；油鹽菜六味具足，使大修行人證聖成賢。是文殊、是普賢，休於灶上弄鬼眼睛，只管和盤托出。若道玄、若無盡，莫把家中私財浪費，何妨徹底將來？觀音大士讚觀音大士讚「普陀大士，如眾生奴，示馬郎婦，現蛤蜊軀。見宜心念，意莫之乎，纔稱名號，脫一切拘。」又：「正法明佛，從聞思修，入三摩地，應化閻浮。銷除七難，俞允二",
+            "heading": {
+              "head": "",
+              "mulu": []
+            },
+            "actorDecision": {
+              "evidenceKey": "o2",
+              "masterName": null,
+              "actorAttribution": {
+                "Status": "identified-unlinked-master",
+                "Kind": "Chan master",
+                "ActorLabel": "Shakyamuni",
+                "ActorRole": "utterer",
+                "RungsChecked": [
+                  "line",
+                  "expanded-context",
+                  "section-header",
+                  "book-title",
+                  "tei-header",
+                  "parallel-passage"
+                ],
+                "GrammarEvidence": "The complete source frame assigns the retained headword-bearing action to Shakyamuni.",
+                "ReviewedBy": "R92 frozen source-first adjudication",
+                "ReviewedUtc": "2026-07-30T14:12:00Z",
+                "AuthoredVoiceRiskReviewed": true
+              },
+              "action": "uses the headword in the retained source unit",
+              "grammarEvidence": "The complete source frame assigns the retained headword-bearing action to Shakyamuni.",
+              "voice": "The complete source frame assigns the retained headword-bearing action to Shakyamuni.",
+              "contextMasters": [
+                {
+                  "MasterName": "Shengke Deyu",
+                  "Roles": [
+                    "later-quoter",
+                    "commentator",
+                    "record-owner"
+                  ]
+                }
+              ],
+              "contextActors": []
+            },
+            "sourceSpanIdentity": {
+              "fromLb": "0804a19",
+              "sourceSpanOrdinal": 0,
+              "sourceContextSha256": "31261465fffc410b8d041c5989960db712b78b143c2d5670cde84049e5f18e4a",
+              "boundedKwic": "，眼竇而深。行如風之疾，渡似葉之輕。不為鈍根常面壁，九年那得上乘人？為德鎧禪人入塔為德鎧禪人入塔「我寧不說法，疾入於涅槃。世尊說得行不得，德鎧業已涅槃了也，行得說不得。」師遂舉起靈骨，云：「華岩則不然，要行說俱到，我寧不說疾入。」",
+              "boundedFromLb": "0804a19",
+              "boundedToLb": "0804a24",
+              "boundaryEvidence": "zc.verify binds the complete retained public KWIC."
+            },
+            "decisionBasis": "The complete source frame assigns the retained headword-bearing action to Shakyamuni."
+          },
+          {
+            "relPath": "M/M59/M59n1540.xml",
+            "workId": "chan:dahui-pushuo",
+            "sourceTitle": "General Discourses of Chan Master Dahui Pujue",
+            "tier": 2,
+            "fullCaseWindow": "動道場徧十方界身含十方無盡虗空於一毛端現寶王剎坐微塵裏轉大法輪非是強為法體本來如是法體既如是因甚麼一切眾生却有生死輪轉不見佛謂富樓那曰汝以色空相傾相奪於如來藏而如來藏隨為色空周徧法界故於是中風動空澄日明雲暗眾生迷悶背覺合塵故發塵勞有世間相既有世間相則無是非苦由此昧却自己真如妙性於平等法中見有不平等處云何名為平等法不見道未離兜率已降王宮未出母胎度人已畢豈不是平等法只為眾生不得自心明妙受用所以有迷有悟由迷悟故有彼此也於是如來以大悲願力示現受生乘日輪香象降摩耶夫人誕生千代金輪王家身為長嫡所謂種族豪善離過清淨纔生下來示現行七步示現處王宮示現逾城出家示現雪山六年苦行示現成等正覺示現轉法輪然後起道樹詣鹿苑為憍陳如五比丘轉四諦法輪曰善男子此是苦聖諦此是集聖諦此是滅聖諦此是道聖諦如是三遍說已五比丘於聲塵中忽然悟道乃至為緣覺人說十二因緣法為菩薩人說六波羅蜜為求最上乘者說一切種智然古聖以說法為難豈不見佛在摩竭提國三七日覓啟口處不得何以故若說一切法有眾生便著有若說一切法無眾生便棄有著無若說一切法非有非無又是戲論若說一切法非非有非非無又是相違若但說一乘圓頓之教又恐眾生不信故破法墮惡道返成無利益所以道我寧不說法疾入於涅槃到這裏又却尋念過去佛所行方便力既出來作佛若不說法眾生無由得出三界二十五有塵勞故曰我今所得道亦應說三乘自此始說華嚴經然後說阿含方等因果等法又恐眾生殢在因果故有金粟如來現居士身訶斥小果聲聞山僧昔在京師被虜人取至金明池上會西天密三藏者數日見渠說維摩經梵本中排斥小乘分文不直今羅什所譯但存其略耳原先聖之意蓋欲發起聲聞緣覺大乘之志所謂初以三車誘引諸子得出火宅住於四衢露地而坐然後等賜諸子一大車此明如來權設三乘之法故云唯此一事實餘二則非真雖然如是若到涅槃會上只這一乘法也使不著要你撒手那邊千聖外回程堪作火中牛又說有六百卷般若經以般若智水蕩滌法塵故有二十種空所謂內空外空內外空空空大空勝義空有為空無為空畢竟空乃至無性自性空空亦不可得所以龐居士得這箇道理便言無有寄龐大空空無處坐家內空空空空空無有貨日出空裏行日入空裏臥空坐吟空詩詩空空相和莫恠純用空空是諸佛座若人不了空空是諸佛過看他古人一識得這箇關棙便解說大脫空有也空無也空非有非無亦空非非有非非無亦空謂之離四句絕百非一時蕩滌得淨盡了然後說大闡提人皆得作佛故涅槃會上廣額屠兒放下屠刀便預千佛之數然此是難信之法未證者不能無疑是故法華會上舍利弗慇懃三請佛方待說只見會中比",
+            "heading": {
+              "head": "",
+              "mulu": []
+            },
+            "actorDecision": {
+              "evidenceKey": "o3",
+              "masterName": null,
+              "actorAttribution": {
+                "Status": "identified-unlinked-master",
+                "Kind": "Chan master",
+                "ActorLabel": "Shakyamuni",
+                "ActorRole": "utterer",
+                "RungsChecked": [
+                  "line",
+                  "expanded-context",
+                  "section-header",
+                  "book-title",
+                  "tei-header",
+                  "parallel-passage"
+                ],
+                "GrammarEvidence": "The complete source frame assigns the retained headword-bearing action to Shakyamuni.",
+                "ReviewedBy": "R92 frozen source-first adjudication",
+                "ReviewedUtc": "2026-07-30T14:12:00Z",
+                "AuthoredVoiceRiskReviewed": true
+              },
+              "action": "uses the headword in the retained source unit",
+              "grammarEvidence": "The complete source frame assigns the retained headword-bearing action to Shakyamuni.",
+              "voice": "The complete source frame assigns the retained headword-bearing action to Shakyamuni.",
+              "contextMasters": [
+                {
+                  "MasterName": "Dahui Zonggao",
+                  "Roles": [
+                    "later-quoter",
+                    "commentator",
+                    "record-owner"
+                  ]
+                }
+              ],
+              "contextActors": []
+            },
+            "sourceSpanIdentity": {
+              "fromLb": "0890a01",
+              "sourceSpanOrdinal": 0,
+              "sourceContextSha256": "9aca0cc7c78408b502026cff2c75404de37baf5956e6b8651a85f535df1fa731",
+              "boundedKwic": "非無又是戲論若說一切法非非有非非無又是相違若但說一乘圓頓之教又恐眾生不信故破法墮惡道返成無利益所以道我寧不說法疾入於涅槃到這裏又却尋念過去佛所行方便力既出來作佛若不說法眾生無由得出三界二十五有塵勞故曰我今所得道亦應說三乘自此始說華",
+              "boundedFromLb": "0890a01",
+              "boundedToLb": "0890a06",
+              "boundaryEvidence": "zc.verify binds the complete retained public KWIC."
+            },
+            "decisionBasis": "The complete source frame assigns the retained headword-bearing action to Shakyamuni."
+          },
+          {
+            "relPath": "T/T48/T48n2003.xml",
+            "workId": "work:T48n2003",
+            "sourceTitle": "Blue Cliff Record by Chan Master Yuanwu Foguo",
+            "tier": 2,
+            "fullCaseWindow": "眾云。十五日已前不問汝。十五日已後道將一句來。坐斷千差不通凡聖。自代云。日日是好日。十五日已前。這語已坐斷千差。十五日已後。這語也坐斷千差。是他不道明日是十六。後人只管隨語生解。有什麼交涉他雲門立箇宗風。須是有箇為人處。垂語了。却自代云。日日是好日。此語通貫古今。從前至後。一時坐斷。山僧如此說話。也是隨語生解。他殺不如自殺。纔作道理。墮坑落塹。雲門一句中。三句俱備。蓋是他家宗旨如此。垂一句語。須要歸宗。若不如此。只是杜撰。此事無許多論說。而未透者。却要如此。若透得。便見古人意旨。看取雪竇打葛藤。去却一拈得七上下四維無等匹徐行踏斷流水聲縱觀寫出飛禽跡草茸茸煙羃羃空生巖畔花狼籍彈指堪悲舜若多莫動著動著三十棒雪竇頌古。偏能如此。當頭以金剛王寶劍。揮一下了。然後略露些風規。雖然如此。畢竟無有二解。去却一拈得七。人多作算數會道。去却一是十五日已前事。雪竇驀頭下兩句言語印破了。却露出教人見。去却一拈得七。切忌向言句中作活計。何故胡餅有什麼汁。人多落在意識中。須是向語句未生已前。會取始得。大用現前。自然見得也。所以釋迦老子成道後。於摩竭提國。三七日中。思惟如是事。諸法寂滅相。不可以言宣。我寧不說法。疾入於涅槃。到這裏覓箇開口處不得。以方便力故。為五比丘說已。至三百六十會。說一代時教。只是方便。所以脫珍御服。著獘垢衣。不得已。而向第二義門中淺近之處。誘引諸子。若教他向上全提。盡大地無一箇半箇。且道。作麼生是第一句。到這裏。雪竇露些意教人見。爾但上不見有諸佛。下不見有眾生。外不見有山河大地。內不見有見聞覺知。如大死底人却活相似。長短好惡。打成一片。一一拈來更無異見。然後應用不失其宜。方見他道去却一拈得七。上下四維無等匹。若於此句透得。直得上下四維無有等匹。森羅萬象。草芥人畜。著著全彰自己家風。所以道。萬象之中獨露身。惟人自肯乃方親。昔年謬向途中覓。今日看來火裏氷。天上天下惟我獨尊。人多逐末不求其本。先得本正。自然風行草偃。水到渠成。徐行踏斷流水聲。徐徐行動時。浩浩流水聲。也應踏斷。縱觀寫出飛禽跡。縱目一觀。直饒是飛禽跡亦如寫出相似。到這裏。鑊湯爐炭吹教滅。劍樹刀山喝便摧。不為難事。雪竇到此。慈悲之故。恐人坐在無事界中。復道。草茸茸煙羃羃。所以蓋覆却直得草茸茸。煙羃羃。且道是什麼人境界。喚作日日是好日得麼。且喜沒交涉。直得徐行踏斷流水聲也不是。縱觀寫出飛禽跡也不是。草茸茸也不是。煙羃羃也不是。直",
+            "heading": {
+              "head": "",
+              "mulu": []
+            },
+            "actorDecision": {
+              "evidenceKey": "o4",
+              "masterName": null,
+              "actorAttribution": {
+                "Status": "identified-unlinked-master",
+                "Kind": "Chan master",
+                "ActorLabel": "Shakyamuni",
+                "ActorRole": "utterer",
+                "RungsChecked": [
+                  "line",
+                  "expanded-context",
+                  "section-header",
+                  "book-title",
+                  "tei-header",
+                  "parallel-passage"
+                ],
+                "GrammarEvidence": "The complete source frame assigns the retained headword-bearing action to Shakyamuni.",
+                "ReviewedBy": "R92 frozen source-first adjudication",
+                "ReviewedUtc": "2026-07-30T14:12:00Z",
+                "AuthoredVoiceRiskReviewed": true
+              },
+              "action": "uses the headword in the retained source unit",
+              "grammarEvidence": "The complete source frame assigns the retained headword-bearing action to Shakyamuni.",
+              "voice": "The complete source frame assigns the retained headword-bearing action to Shakyamuni.",
+              "contextMasters": [
+                {
+                  "MasterName": "Yuanwu Keqin",
+                  "Roles": [
+                    "later-quoter",
+                    "commentator"
+                  ]
+                }
+              ],
+              "contextActors": []
+            },
+            "sourceSpanIdentity": {
+              "fromLb": "0146b27",
+              "sourceSpanOrdinal": 0,
+              "sourceContextSha256": "d26259b9a5b201533b95483efbc3670b0e4b166fdcf69ea3ea2ad619b1f85453",
+              "boundedKwic": "用現前。自然見得也。所以釋迦老子成道後。於摩竭提國。三七日中。思惟如是事。諸法寂滅相。不可以言宣。我寧不說法。疾入於涅槃。到這裏覓箇開口處不得。以方便力故。為五比丘說已。至三百六十會。說一代時教。只是方便。所以脫珍御服。著獘垢衣。",
+              "boundedFromLb": "0146b27",
+              "boundedToLb": "0146c04",
+              "boundaryEvidence": "zc.verify binds the complete retained public KWIC."
+            },
+            "decisionBasis": "The complete source frame assigns the retained headword-bearing action to Shakyamuni."
+          }
+        ],
+        "tier3ExceptionalJustification": "",
+        "actorRiskAdjudication": [
+          "Every retained complete case has an exact actor and final WitnessFamilyId.",
+          "No Tier-3 lamp is retained."
+        ],
+        "senseRuling": "One corpus-wide sense: the retained grammatical and rhetorical frames do not introduce a different referent.",
+        "sourceMeta": [
+          {
+            "path": "J/J26/J26nB185.xml",
+            "tier": 2,
+            "title": "Recorded Sayings of Chan Master Fushi"
+          },
+          {
+            "path": "J/J35/J35nB342.xml",
+            "tier": 2,
+            "title": "Recorded Sayings of Chan Master Shengke (Huayan)"
+          },
+          {
+            "path": "M/M59/M59n1540.xml",
+            "tier": 2,
+            "title": "General Discourses of Chan Master Dahui Pujue"
+          },
+          {
+            "path": "T/T48/T48n2003.xml",
+            "tier": 2,
+            "title": "Blue Cliff Record by Chan Master Yuanwu Foguo"
+          }
+        ],
+        "sourceAuthorityManifest": {
+          "rows": [
+            {
+              "EvidenceKey": "o1",
+              "RelPath": "J/J26/J26nB185.xml",
+              "WorkId": "work:J26nB185",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "nirvana:Fushi-quotation",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o2",
+              "RelPath": "J/J35/J35nB342.xml",
+              "WorkId": "work:J35nB342",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "nirvana:Shengke-contrast",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o3",
+              "RelPath": "M/M59/M59n1540.xml",
+              "WorkId": "chan:dahui-pushuo",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "nirvana:Dahui-explanation",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o4",
+              "RelPath": "T/T48/T48n2003.xml",
+              "WorkId": "work:T48n2003",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "nirvana:Yuanwu-commentary",
+              "DeploymentRole": "original-use"
+            }
+          ]
+        },
+        "researchNotes": {
+          "openingInterpretation": "A fixed clause from the Buddha's reported deliberation: to quickly enter final extinction rather than teach.",
+          "evidenceBody": [
+            "Fushi Tongxian, Shengke Deyu, Dahui Zonggao, and Yuanwu Keqin independently quote, explain, contrast, or alter the clause."
+          ],
+          "counterexampleOrLimit": "The clause reports a counterfactual deliberation before the Buddha decides to teach; it is not a general injunction to die.",
+          "literalGraphFloor": "quickly enter final extinction",
+          "lexicalJob": "疾入於涅槃 means quickly enter final extinction.",
+          "deploymentClasses": [
+            "authored verse",
+            "direct instruction"
+          ],
+          "highValueEvidenceLedger": [
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to Shakyamuni.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to Shakyamuni.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to Shakyamuni.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to Shakyamuni.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            }
+          ],
+          "openingClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3",
+            "o4"
+          ],
+          "evidenceBodyClaimKeys": [
+            [
+              "o1",
+              "o2",
+              "o3",
+              "o4"
+            ]
+          ],
+          "zenBend": "A fixed clause from the Buddha's reported deliberation: to quickly enter final extinction rather than teach.",
+          "counterexample": "The clause reports a counterfactual deliberation before the Buddha decides to teach; it is not a general injunction to die.",
+          "differentThing": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "quickly enter final extinction"
+            ],
+            "Reason": "One lexical job."
+          },
+          "aliasRationale": "Alternates preserve the same lexical job.",
+          "modifierControls": [
+            {
+              "Term": "疾入於涅槃",
+              "Finding": "No modifier creates a second referent."
+            }
+          ],
+          "familyControls": [
+            {
+              "Term": "疾入於涅槃",
+              "Finding": "4 independent higher-tier families meet the floor."
+            }
+          ],
+          "higherSearch": "Tier 1 searched first, then Tier 2; no lamp needed.",
+          "depthReceipt": {
+            "Complete": true,
+            "ReviewedExactHitCount": 21,
+            "AvailableSourceFiles": 17,
+            "SearchedDeploymentClasses": [
+              "authored verse",
+              "direct instruction"
+            ],
+            "OmissionAudit": [
+              "4 retained cases actor-adjudicated.",
+              "No lamp retained."
+            ]
+          },
+          "admissionReason": "疾入於涅槃 is a stable expression with repeated active Chan deployments.",
+          "duplicateCheck": {
+            "DeterministicIdChecked": true,
+            "ExactHeadwordChecked": true,
+            "NearDuplicateRuling": "R92 checked 疾入於涅槃 against the installed dictionary; no exact collision is admitted."
+          },
+          "familyHarvest": {
+            "PolicyVersion": 1,
+            "Scope": "R83 source-hierarchy repair",
+            "Edges": [],
+            "NegativeReceipt": [],
+            "GraphicVariants": []
+          }
+        }
+      },
+      "evidenceDraft": {
+        "SchemaVersion": 1,
+        "ConstructionPipelineVersion": 2,
+        "Admission": {
+          "Decision": "admit",
+          "LexicalUnitReason": "疾入於涅槃 is a stable expression with repeated active Chan deployments.",
+          "ObservableChanJob": "疾入於涅槃 means quickly enter final extinction.",
+          "DuplicateCheck": {
+            "DeterministicIdChecked": true,
+            "ExactHeadwordChecked": true,
+            "NearDuplicateRuling": "疾入於涅槃 was checked against the installed dictionary; no exact or punctuation-normalized collision is admitted."
+          }
+        },
+        "EvidenceTransport": {
+          "DossierPath": "source-dossier.json",
+          "DossierSha256": "ceef58838f04e704583220faa377466482fc15a47ab37ba819b58da2913799a4",
+          "SourceAuthorityManifestSha256": "2ee44bf19a2533958e5620c38915f3d03fbb81209c76c7183742a4f3d059f501",
+          "DiscoveryMethods": [
+            "exact concordance count",
+            "complete-turn actor review",
+            "Tier 1 then Tier 2 source ranking",
+            "predecessor-evidence adjudication"
+          ],
+          "ExactCount": 21,
+          "BridgedCount": 21,
+          "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+        },
+        "Entry": {
+          "Id": "t_219099a33daa",
+          "SourceTerm": "疾入於涅槃",
+          "CreatedBy": "R92 source-hierarchy repair",
+          "WrittenUtc": "2026-07-30T10:38:00Z",
+          "Senses": [
+            {
+              "SenseKey": null,
+              "MasterName": null,
+              "PreferredTarget": "quickly enter final extinction",
+              "AlternateTargets": [
+                "hasten into final extinction"
+              ],
+              "SearchAliases": [
+                "quickly enter nirvana"
+              ],
+              "Status": "preferred",
+              "Validation": "multi-source",
+              "Explanation": "A fixed clause from the Buddha's reported deliberation: to quickly enter final extinction rather than teach. Fushi Tongxian, Shengke Deyu, Dahui Zonggao, and Yuanwu Keqin independently quote, explain, contrast, or alter the clause.",
+              "Note": "The clause reports a counterfactual deliberation before the Buddha decides to teach; it is not a general injunction to die.",
+              "Occurrences": [
+                {
+                  "RelPath": "J/J26/J26nB185.xml",
+                  "FromLb": "0608b26",
+                  "ToLb": "0608c01",
+                  "Kwic": "便助顯第一義。隱勝現劣，經行樹下，三七思惟，云：『若但讚佛乘，眾生沒在苦，破法不信受，墜於三惡道。我寧不說法，疾入於涅槃。』尋念過去佛所行方便力，亦應說三乘。作是思惟時，十方佛皆現梵音慰諭我。善哉！釋迦文第一之導師。於是，機分大小",
+                  "MasterName": null,
+                  "Curated": true,
+                  "ContextMasters": [
+                    {
+                      "MasterName": "Fushi Tongxian",
+                      "Roles": [
+                        "later-quoter",
+                        "commentator",
+                        "record-owner"
+                      ]
+                    }
+                  ],
+                  "ContextActors": [],
+                  "AttributionNote": "Source record (J/J26/J26nB185.xml). Recorded Sayings of Chan Master Fushi. Action performer: Shakyamuni. The complete source frame assigns the retained headword-bearing action to Shakyamuni.",
+                  "ActorAttribution": {
+                    "Status": "identified-unlinked-master",
+                    "Kind": "Chan master",
+                    "ActorLabel": "Shakyamuni",
+                    "ActorRole": "utterer",
+                    "RungsChecked": [
+                      "line",
+                      "expanded-context",
+                      "section-header",
+                      "book-title",
+                      "tei-header",
+                      "parallel-passage"
+                    ],
+                    "GrammarEvidence": "The complete source frame assigns the retained headword-bearing action to Shakyamuni.",
+                    "ReviewedBy": "R92 frozen source-first adjudication",
+                    "ReviewedUtc": "2026-07-30T14:12:00Z",
+                    "AuthoredVoiceRiskReviewed": true
+                  },
+                  "DraftActorProof": {
+                    "ExactHeadwordClause": "疾入於涅槃",
+                    "GrammaticalSubject": "Shakyamuni",
+                    "SpeechFrame": "Source record (J/J26/J26nB185.xml). Recorded Sayings of Chan Master Fushi. Action performer: Shakyamuni. The complete source frame assigns the retained headword-bearing action to Shakyamuni.",
+                    "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to Shakyamuni."
+                  }
+                },
+                {
+                  "RelPath": "J/J35/J35nB342.xml",
+                  "FromLb": "0804a19",
+                  "ToLb": "0804a24",
+                  "Kwic": "，眼竇而深。行如風之疾，渡似葉之輕。不為鈍根常面壁，九年那得上乘人？為德鎧禪人入塔為德鎧禪人入塔「我寧不說法，疾入於涅槃。世尊說得行不得，德鎧業已涅槃了也，行得說不得。」師遂舉起靈骨，云：「華岩則不然，要行說俱到，我寧不說疾入。」",
+                  "MasterName": null,
+                  "Curated": true,
+                  "ContextMasters": [
+                    {
+                      "MasterName": "Shengke Deyu",
+                      "Roles": [
+                        "later-quoter",
+                        "commentator",
+                        "record-owner"
+                      ]
+                    }
+                  ],
+                  "ContextActors": [],
+                  "AttributionNote": "Source record (J/J35/J35nB342.xml). Recorded Sayings of Chan Master Shengke (Huayan). Action performer: Shakyamuni. The complete source frame assigns the retained headword-bearing action to Shakyamuni.",
+                  "ActorAttribution": {
+                    "Status": "identified-unlinked-master",
+                    "Kind": "Chan master",
+                    "ActorLabel": "Shakyamuni",
+                    "ActorRole": "utterer",
+                    "RungsChecked": [
+                      "line",
+                      "expanded-context",
+                      "section-header",
+                      "book-title",
+                      "tei-header",
+                      "parallel-passage"
+                    ],
+                    "GrammarEvidence": "The complete source frame assigns the retained headword-bearing action to Shakyamuni.",
+                    "ReviewedBy": "R92 frozen source-first adjudication",
+                    "ReviewedUtc": "2026-07-30T14:12:00Z",
+                    "AuthoredVoiceRiskReviewed": true
+                  },
+                  "DraftActorProof": {
+                    "ExactHeadwordClause": "疾入於涅槃",
+                    "GrammaticalSubject": "Shakyamuni",
+                    "SpeechFrame": "Source record (J/J35/J35nB342.xml). Recorded Sayings of Chan Master Shengke (Huayan). Action performer: Shakyamuni. The complete source frame assigns the retained headword-bearing action to Shakyamuni.",
+                    "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to Shakyamuni."
+                  }
+                },
+                {
+                  "RelPath": "M/M59/M59n1540.xml",
+                  "FromLb": "0890a01",
+                  "ToLb": "0890a06",
+                  "Kwic": "非無又是戲論若說一切法非非有非非無又是相違若但說一乘圓頓之教又恐眾生不信故破法墮惡道返成無利益所以道我寧不說法疾入於涅槃到這裏又却尋念過去佛所行方便力既出來作佛若不說法眾生無由得出三界二十五有塵勞故曰我今所得道亦應說三乘自此始說華",
+                  "MasterName": null,
+                  "Curated": true,
+                  "ContextMasters": [
+                    {
+                      "MasterName": "Dahui Zonggao",
+                      "Roles": [
+                        "later-quoter",
+                        "commentator",
+                        "record-owner"
+                      ]
+                    }
+                  ],
+                  "ContextActors": [],
+                  "AttributionNote": "Source record (M/M59/M59n1540.xml). General Discourses of Chan Master Dahui Pujue. Action performer: Shakyamuni. The complete source frame assigns the retained headword-bearing action to Shakyamuni.",
+                  "ActorAttribution": {
+                    "Status": "identified-unlinked-master",
+                    "Kind": "Chan master",
+                    "ActorLabel": "Shakyamuni",
+                    "ActorRole": "utterer",
+                    "RungsChecked": [
+                      "line",
+                      "expanded-context",
+                      "section-header",
+                      "book-title",
+                      "tei-header",
+                      "parallel-passage"
+                    ],
+                    "GrammarEvidence": "The complete source frame assigns the retained headword-bearing action to Shakyamuni.",
+                    "ReviewedBy": "R92 frozen source-first adjudication",
+                    "ReviewedUtc": "2026-07-30T14:12:00Z",
+                    "AuthoredVoiceRiskReviewed": true
+                  },
+                  "DraftActorProof": {
+                    "ExactHeadwordClause": "疾入於涅槃",
+                    "GrammaticalSubject": "Shakyamuni",
+                    "SpeechFrame": "Source record (M/M59/M59n1540.xml). General Discourses of Chan Master Dahui Pujue. Action performer: Shakyamuni. The complete source frame assigns the retained headword-bearing action to Shakyamuni.",
+                    "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to Shakyamuni."
+                  }
+                },
+                {
+                  "RelPath": "T/T48/T48n2003.xml",
+                  "FromLb": "0146b27",
+                  "ToLb": "0146c04",
+                  "Kwic": "用現前。自然見得也。所以釋迦老子成道後。於摩竭提國。三七日中。思惟如是事。諸法寂滅相。不可以言宣。我寧不說法。疾入於涅槃。到這裏覓箇開口處不得。以方便力故。為五比丘說已。至三百六十會。說一代時教。只是方便。所以脫珍御服。著獘垢衣。",
+                  "MasterName": null,
+                  "Curated": true,
+                  "ContextMasters": [
+                    {
+                      "MasterName": "Yuanwu Keqin",
+                      "Roles": [
+                        "later-quoter",
+                        "commentator"
+                      ]
+                    }
+                  ],
+                  "ContextActors": [],
+                  "AttributionNote": "Source record (T/T48/T48n2003.xml). Blue Cliff Record by Chan Master Yuanwu Foguo. Action performer: Shakyamuni. The complete source frame assigns the retained headword-bearing action to Shakyamuni.",
+                  "ActorAttribution": {
+                    "Status": "identified-unlinked-master",
+                    "Kind": "Chan master",
+                    "ActorLabel": "Shakyamuni",
+                    "ActorRole": "utterer",
+                    "RungsChecked": [
+                      "line",
+                      "expanded-context",
+                      "section-header",
+                      "book-title",
+                      "tei-header",
+                      "parallel-passage"
+                    ],
+                    "GrammarEvidence": "The complete source frame assigns the retained headword-bearing action to Shakyamuni.",
+                    "ReviewedBy": "R92 frozen source-first adjudication",
+                    "ReviewedUtc": "2026-07-30T14:12:00Z",
+                    "AuthoredVoiceRiskReviewed": true
+                  },
+                  "DraftActorProof": {
+                    "ExactHeadwordClause": "疾入於涅槃",
+                    "GrammaticalSubject": "Shakyamuni",
+                    "SpeechFrame": "Source record (T/T48/T48n2003.xml). Blue Cliff Record by Chan Master Yuanwu Foguo. Action performer: Shakyamuni. The complete source frame assigns the retained headword-bearing action to Shakyamuni.",
+                    "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to Shakyamuni."
+                  }
+                }
+              ],
+              "ClaimAnchors": [],
+              "SourceTexts": [
+                "J/J26/J26nB185.xml",
+                "J/J35/J35nB342.xml",
+                "M/M59/M59n1540.xml",
+                "T/T48/T48n2003.xml"
+              ],
+              "RelatedMasters": [
+                "Fushi Tongxian",
+                "Shengke Deyu",
+                "Dahui Zonggao",
+                "Yuanwu Keqin"
+              ],
+              "RelatedTerms": [],
+              "ExplanationParts": {
+                "CorpusEarnedOpening": "A fixed clause from the Buddha's reported deliberation: to quickly enter final extinction rather than teach.",
+                "EvidenceBody": [
+                  "Fushi Tongxian, Shengke Deyu, Dahui Zonggao, and Yuanwu Keqin independently quote, explain, contrast, or alter the clause."
+                ]
+              },
+              "DraftEvidence": {
+                "LiteralGraphFloor": "quickly enter final extinction",
+                "LexicalJob": "疾入於涅槃 means quickly enter final extinction.",
+                "DeploymentClasses": [
+                  "authored verse",
+                  "direct instruction"
+                ],
+                "HighValueEvidenceLedger": [
+                  {
+                    "Disposition": "keep",
+                    "Finding": "The complete source frame assigns the retained headword-bearing action to Shakyamuni.",
+                    "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+                  },
+                  {
+                    "Disposition": "keep",
+                    "Finding": "The complete source frame assigns the retained headword-bearing action to Shakyamuni.",
+                    "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+                  },
+                  {
+                    "Disposition": "keep",
+                    "Finding": "The complete source frame assigns the retained headword-bearing action to Shakyamuni.",
+                    "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+                  },
+                  {
+                    "Disposition": "keep",
+                    "Finding": "The complete source frame assigns the retained headword-bearing action to Shakyamuni.",
+                    "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+                  }
+                ],
+                "OpeningClaimEvidenceKeys": [
+                  "o1",
+                  "o2",
+                  "o3",
+                  "o4"
+                ],
+                "EvidenceBodyClaimKeys": [
+                  [
+                    "o1",
+                    "o2",
+                    "o3",
+                    "o4"
+                  ]
+                ],
+                "ZenBend": "A fixed clause from the Buddha's reported deliberation: to quickly enter final extinction rather than teach.",
+                "CounterexampleOrLimit": "The clause reports a counterfactual deliberation before the Buddha decides to teach; it is not a general injunction to die.",
+                "DifferentThingTest": {
+                  "Decision": "one-thing",
+                  "ComparedThings": [
+                    "quickly enter final extinction"
+                  ],
+                  "Reason": "One lexical job."
+                },
+                "AliasRationale": "Alternates preserve the same lexical job.",
+                "ModifierControls": [
+                  {
+                    "Term": "疾入於涅槃",
+                    "Finding": "No modifier creates a second referent."
+                  }
+                ],
+                "FamilyControls": [
+                  {
+                    "Term": "疾入於涅槃",
+                    "Finding": "4 independent higher-tier families meet the floor."
+                  }
+                ],
+                "IndependentWorkIds": [
+                  "work:J26nB185",
+                  "work:J35nB342",
+                  "chan:dahui-pushuo",
+                  "work:T48n2003"
+                ],
+                "SourceAuthorityRows": [
+                  {
+                    "EvidenceKey": "o1",
+                    "RelPath": "J/J26/J26nB185.xml",
+                    "WorkId": "work:J26nB185",
+                    "Tier": 2,
+                    "SourceClass": "recorded-sayings",
+                    "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+                    "WitnessFamilyId": "nirvana:Fushi-quotation",
+                    "DeploymentRole": "original-use"
+                  },
+                  {
+                    "EvidenceKey": "o2",
+                    "RelPath": "J/J35/J35nB342.xml",
+                    "WorkId": "work:J35nB342",
+                    "Tier": 2,
+                    "SourceClass": "recorded-sayings",
+                    "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+                    "WitnessFamilyId": "nirvana:Shengke-contrast",
+                    "DeploymentRole": "original-use"
+                  },
+                  {
+                    "EvidenceKey": "o3",
+                    "RelPath": "M/M59/M59n1540.xml",
+                    "WorkId": "chan:dahui-pushuo",
+                    "Tier": 2,
+                    "SourceClass": "recorded-sayings",
+                    "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+                    "WitnessFamilyId": "nirvana:Dahui-explanation",
+                    "DeploymentRole": "original-use"
+                  },
+                  {
+                    "EvidenceKey": "o4",
+                    "RelPath": "T/T48/T48n2003.xml",
+                    "WorkId": "work:T48n2003",
+                    "Tier": 2,
+                    "SourceClass": "recorded-sayings",
+                    "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+                    "WitnessFamilyId": "nirvana:Yuanwu-commentary",
+                    "DeploymentRole": "original-use"
+                  }
+                ],
+                "LampExcessJustification": "No Tier-3 lamp retained.",
+                "NoHigherWitnessSearchReceipt": "Tier 1 searched first, then Tier 2; no lamp needed.",
+                "DepthHarvestReceipt": {
+                  "Complete": true,
+                  "ReviewedExactHitCount": 21,
+                  "AvailableSourceFiles": 17,
+                  "SearchedDeploymentClasses": [
+                    "authored verse",
+                    "direct instruction"
+                  ],
+                  "OmissionAudit": [
+                    "4 retained cases actor-adjudicated.",
+                    "No lamp retained."
+                  ]
+                }
+              },
+              "DraftAcceptedDerivedFields": {
+                "SourceTexts": [
+                  "J/J26/J26nB185.xml",
+                  "J/J35/J35nB342.xml",
+                  "M/M59/M59n1540.xml",
+                  "T/T48/T48n2003.xml"
+                ],
+                "RelatedMasters": [
+                  "Fushi Tongxian",
+                  "Shengke Deyu",
+                  "Dahui Zonggao",
+                  "Yuanwu Keqin"
+                ]
+              }
+            }
+          ],
+          "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+        },
+        "FamilyHarvest": {
+          "PolicyVersion": 1,
+          "Scope": "R92 source-hierarchy repair",
+          "Edges": [],
+          "NegativeReceipt": [],
+          "GraphicVariants": []
+        }
+      }
+    },
+    {
+      "id": "t_21a3463bc0db",
+      "term": "隨處",
+      "sourceDossier": {
+        "schemaVersion": "r11-source-dossier.v1",
+        "id": "t_21a3463bc0db",
+        "term": "隨處",
+        "selectionBinding": {
+          "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r92-retry2-constructor-selection-b.json",
+          "sha256": "e9956dcb342904e78850b76bcb3a89c2f0f01a3cb6dfb19d71d5bb509e8740fe"
+        },
+        "researchBinding": {
+          "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r92-retry2-research-b.json",
+          "sha256": "bbdde6ff3324a7740d7c3d43b2857fbd9e573ccd072efcbdd472da9982e8207c"
+        },
+        "exactCount": {
+          "id": "t_21a3463bc0db",
+          "term": "隨處",
+          "hits": 1417,
+          "files": 317,
+          "works": 313,
+          "per_file": [
+            [
+              "X/X82/X82n1571.xml",
+              33
+            ],
+            [
+              "X/X64/X64n1260.xml",
+              31
+            ],
+            [
+              "C/C077/C077n1710.xml",
+              22
+            ],
+            [
+              "J/J28/J28nB202.xml",
+              22
+            ],
+            [
+              "T/T47/T47n1997.xml",
+              22
+            ],
+            [
+              "X/X79/X79n1557.xml",
+              22
+            ],
+            [
+              "X/X80/X80n1565.xml",
+              22
+            ],
+            [
+              "T/T48/T48n2016.xml",
+              21
+            ],
+            [
+              "X/X81/X81n1571.xml",
+              21
+            ],
+            [
+              "X/X83/X83n1578.xml",
+              21
+            ],
+            [
+              "J/J28/J28nB208.xml",
+              20
+            ],
+            [
+              "T/T48/T48n2001.xml",
+              20
+            ],
+            [
+              "J/J36/J36nB359.xml",
+              18
+            ],
+            [
+              "X/X78/X78n1553.xml",
+              18
+            ],
+            [
+              "J/J26/J26nB178.xml",
+              17
+            ],
+            [
+              "J/J38/J38nB425.xml",
+              17
+            ],
+            [
+              "X/X81/X81n1568.xml",
+              17
+            ],
+            [
+              "X/X68/X68n1319.xml",
+              15
+            ],
+            [
+              "J/J38/J38nB410.xml",
+              14
+            ],
+            [
+              "X/X66/X66n1297.xml",
+              14
+            ],
+            [
+              "X/X85/X85n1593.xml",
+              14
+            ],
+            [
+              "D/D48/D48n8939.xml",
+              13
+            ],
+            [
+              "J/J25/J25nB171.xml",
+              13
+            ],
+            [
+              "J/J26/J26nB177.xml",
+              13
+            ],
+            [
+              "J/J27/J27nB189.xml",
+              12
+            ],
+            [
+              "L/L158/L158n1652.xml",
+              12
+            ],
+            [
+              "B/B25/B25n0145.xml",
+              11
+            ],
+            [
+              "J/J34/J34nB311.xml",
+              11
+            ],
+            [
+              "L/L154/L154n1639.xml",
+              11
+            ],
+            [
+              "T/T51/T51n2076.xml",
+              10
+            ],
+            [
+              "X/X78/X78n1556.xml",
+              10
+            ],
+            [
+              "C/C078/C078n1720.xml",
+              9
+            ],
+            [
+              "J/J23/J23nB134.xml",
+              9
+            ],
+            [
+              "J/J29/J29nB224.xml",
+              9
+            ],
+            [
+              "J/J33/J33nB288.xml",
+              9
+            ],
+            [
+              "J/J35/J35nB343.xml",
+              9
+            ],
+            [
+              "J/J36/J36nB369.xml",
+              9
+            ],
+            [
+              "J/J37/J37nB392.xml",
+              9
+            ],
+            [
+              "J/J39/J39nB447.xml",
+              9
+            ],
+            [
+              "X/X70/X70n1376.xml",
+              9
+            ],
+            [
+              "X/X72/X72n1435.xml",
+              9
+            ],
+            [
+              "B/B27/B27n0152.xml",
+              8
+            ],
+            [
+              "J/J10/J10nA158.xml",
+              8
+            ],
+            [
+              "J/J26/J26nB185.xml",
+              8
+            ],
+            [
+              "J/J37/J37nB386.xml",
+              8
+            ],
+            [
+              "X/X67/X67n1309.xml",
+              8
+            ],
+            [
+              "X/X72/X72n1437.xml",
+              8
+            ],
+            [
+              "X/X80/X80n1568.xml",
+              8
+            ],
+            [
+              "J/J26/J26nB183.xml",
+              7
+            ],
+            [
+              "J/J27/J27nB190.xml",
+              7
+            ],
+            [
+              "J/J36/J36nB357.xml",
+              7
+            ],
+            [
+              "J/J36/J36nB364.xml",
+              7
+            ],
+            [
+              "J/J37/J37nB384.xml",
+              7
+            ],
+            [
+              "J/J38/J38nB429.xml",
+              7
+            ],
+            [
+              "L/L154/L154n1640.xml",
+              7
+            ],
+            [
+              "T/T47/T47n1985.xml",
+              7
+            ],
+            [
+              "T/T51/T51n2077.xml",
+              7
+            ],
+            [
+              "X/X70/X70n1382.xml",
+              7
+            ],
+            [
+              "B/B25/B25n0144.xml",
+              6
+            ],
+            [
+              "J/J26/J26nB188.xml",
+              6
+            ],
+            [
+              "J/J29/J29nB223.xml",
+              6
+            ],
+            [
+              "J/J29/J29nB230.xml",
+              6
+            ],
+            [
+              "J/J29/J29nB249.xml",
+              6
+            ],
+            [
+              "J/J34/J34nB299.xml",
+              6
+            ],
+            [
+              "J/J39/J39nB450.xml",
+              6
+            ],
+            [
+              "J/J39/J39nB454.xml",
+              6
+            ],
+            [
+              "J/J39/J39nB471.xml",
+              6
+            ],
+            [
+              "X/X66/X66n1296.xml",
+              6
+            ],
+            [
+              "X/X68/X68n1318.xml",
+              6
+            ],
+            [
+              "X/X69/X69n1357.xml",
+              6
+            ],
+            [
+              "X/X71/X71n1416.xml",
+              6
+            ],
+            [
+              "B/B14/B14n0082.xml",
+              5
+            ],
+            [
+              "J/J25/J25nB156.xml",
+              5
+            ],
+            [
+              "J/J26/J26nB182.xml",
+              5
+            ],
+            [
+              "J/J27/J27nB193.xml",
+              5
+            ],
+            [
+              "J/J28/J28nB203.xml",
+              5
+            ],
+            [
+              "J/J28/J28nB219.xml",
+              5
+            ],
+            [
+              "J/J29/J29nB233.xml",
+              5
+            ],
+            [
+              "J/J32/J32nB276.xml",
+              5
+            ],
+            [
+              "J/J36/J36nB362.xml",
+              5
+            ],
+            [
+              "J/J37/J37nB383.xml",
+              5
+            ],
+            [
+              "J/J37/J37nB390.xml",
+              5
+            ],
+            [
+              "J/J38/J38nB406.xml",
+              5
+            ],
+            [
+              "J/J39/J39nB441.xml",
+              5
+            ],
+            [
+              "J/J40/J40nB472.xml",
+              5
+            ],
+            [
+              "J/J40/J40nB474.xml",
+              5
+            ],
+            [
+              "J/J40/J40nB494.xml",
+              5
+            ],
+            [
+              "L/L153/L153n1637.xml",
+              5
+            ],
+            [
+              "T/T47/T47n1998A.xml",
+              5
+            ],
+            [
+              "T/T47/T47n2000.xml",
+              5
+            ],
+            [
+              "T/T48/T48n2003.xml",
+              5
+            ],
+            [
+              "X/X69/X69n1359.xml",
+              5
+            ],
+            [
+              "X/X69/X69n1360.xml",
+              5
+            ],
+            [
+              "X/X71/X71n1409.xml",
+              5
+            ],
+            [
+              "X/X71/X71n1412.xml",
+              5
+            ],
+            [
+              "X/X71/X71n1420.xml",
+              5
+            ],
+            [
+              "X/X72/X72n1439.xml",
+              5
+            ],
+            [
+              "X/X79/X79n1559.xml",
+              5
+            ],
+            [
+              "X/X80/X80n1566.xml",
+              5
+            ],
+            [
+              "X/X84/X84n1580.xml",
+              5
+            ],
+            [
+              "X/X84/X84n1583.xml",
+              5
+            ],
+            [
+              "X/X87/X87n1624.xml",
+              5
+            ],
+            [
+              "J/J25/J25nB174.xml",
+              4
+            ],
+            [
+              "J/J26/J26nB187.xml",
+              4
+            ],
+            [
+              "J/J27/J27nB197.xml",
+              4
+            ],
+            [
+              "J/J27/J27nB200.xml",
+              4
+            ],
+            [
+              "J/J28/J28nB205.xml",
+              4
+            ],
+            [
+              "J/J33/J33nB280.xml",
+              4
+            ],
+            [
+              "J/J33/J33nB281.xml",
+              4
+            ],
+            [
+              "J/J35/J35nB340.xml",
+              4
+            ],
+            [
+              "J/J36/J36nB366.xml",
+              4
+            ],
+            [
+              "J/J37/J37nB394.xml",
+              4
+            ],
+            [
+              "J/J38/J38nB407.xml",
+              4
+            ],
+            [
+              "J/J38/J38nB409.xml",
+              4
+            ],
+            [
+              "J/J39/J39nB448.xml",
+              4
+            ],
+            [
+              "J/J40/J40nB478.xml",
+              4
+            ],
+            [
+              "X/X69/X69n1355.xml",
+              4
+            ],
+            [
+              "X/X69/X69n1356.xml",
+              4
+            ],
+            [
+              "X/X69/X69n1367.xml",
+              4
+            ],
+            [
+              "X/X71/X71n1407.xml",
+              4
+            ],
+            [
+              "X/X71/X71n1421.xml",
+              4
+            ],
+            [
+              "X/X78/X78n1554.xml",
+              4
+            ],
+            [
+              "X/X85/X85n1592.xml",
+              4
+            ],
+            [
+              "J/J25/J25nB155.xml",
+              3
+            ],
+            [
+              "J/J26/J26nB180.xml",
+              3
+            ],
+            [
+              "J/J26/J26nB186.xml",
+              3
+            ],
+            [
+              "J/J27/J27nB194.xml",
+              3
+            ],
+            [
+              "J/J27/J27nB196.xml",
+              3
+            ],
+            [
+              "J/J27/J27nB198.xml",
+              3
+            ],
+            [
+              "J/J28/J28nB204.xml",
+              3
+            ],
+            [
+              "J/J28/J28nB209.xml",
+              3
+            ],
+            [
+              "J/J28/J28nB221.xml",
+              3
+            ],
+            [
+              "J/J29/J29nB248.xml",
+              3
+            ],
+            [
+              "J/J33/J33nB286.xml",
+              3
+            ],
+            [
+              "J/J33/J33nB294.xml",
+              3
+            ],
+            [
+              "J/J34/J34nB301.xml",
+              3
+            ],
+            [
+              "J/J37/J37nB371.xml",
+              3
+            ],
+            [
+              "J/J37/J37nB401.xml",
+              3
+            ],
+            [
+              "J/J38/J38nB414.xml",
+              3
+            ],
+            [
+              "J/J38/J38nB415.xml",
+              3
+            ],
+            [
+              "J/J38/J38nB423.xml",
+              3
+            ],
+            [
+              "J/J38/J38nB427.xml",
+              3
+            ],
+            [
+              "J/J39/J39nB436.xml",
+              3
+            ],
+            [
+              "J/J39/J39nB469.xml",
+              3
+            ],
+            [
+              "J/J40/J40nB487.xml",
+              3
+            ],
+            [
+              "J/J40/J40nB490.xml",
+              3
+            ],
+            [
+              "L/L155/L155n1643.xml",
+              3
+            ],
+            [
+              "T/T47/T47n1992.xml",
+              3
+            ],
+            [
+              "T/T48/T48n2006.xml",
+              3
+            ],
+            [
+              "X/X63/X63n1250.xml",
+              3
+            ],
+            [
+              "X/X67/X67n1307.xml",
+              3
+            ],
+            [
+              "X/X69/X69n1353.xml",
+              3
+            ],
+            [
+              "X/X70/X70n1386.xml",
+              3
+            ],
+            [
+              "X/X70/X70n1398.xml",
+              3
+            ],
+            [
+              "X/X70/X70n1402.xml",
+              3
+            ],
+            [
+              "X/X70/X70n1403.xml",
+              3
+            ],
+            [
+              "X/X71/X71n1405.xml",
+              3
+            ],
+            [
+              "X/X71/X71n1414.xml",
+              3
+            ],
+            [
+              "X/X71/X71n1418.xml",
+              3
+            ],
+            [
+              "X/X71/X71n1422.xml",
+              3
+            ],
+            [
+              "X/X72/X72n1444.xml",
+              3
+            ],
+            [
+              "X/X83/X83n1574.xml",
+              3
+            ],
+            [
+              "X/X84/X84n1585.xml",
+              3
+            ],
+            [
+              "X/X85/X85n1587.xml",
+              3
+            ],
+            [
+              "X/X85/X85n1590.xml",
+              3
+            ],
+            [
+              "X/X85/X85n1591.xml",
+              3
+            ],
+            [
+              "D/D50/D50n8945.xml",
+              2
+            ],
+            [
+              "D/D51/D51n8948.xml",
+              2
+            ],
+            [
+              "J/J20/J20nB098.xml",
+              2
+            ],
+            [
+              "J/J24/J24nB138.xml",
+              2
+            ],
+            [
+              "J/J25/J25nB159.xml",
+              2
+            ],
+            [
+              "J/J25/J25nB163.xml",
+              2
+            ],
+            [
+              "J/J25/J25nB176.xml",
+              2
+            ],
+            [
+              "J/J26/J26nB184.xml",
+              2
+            ],
+            [
+              "J/J27/J27nB199.xml",
+              2
+            ],
+            [
+              "J/J28/J28nB206.xml",
+              2
+            ],
+            [
+              "J/J28/J28nB210.xml",
+              2
+            ],
+            [
+              "J/J28/J28nB211.xml",
+              2
+            ],
+            [
+              "J/J28/J28nB220.xml",
+              2
+            ],
+            [
+              "J/J29/J29nB225.xml",
+              2
+            ],
+            [
+              "J/J29/J29nB232.xml",
+              2
+            ],
+            [
+              "J/J29/J29nB234.xml",
+              2
+            ],
+            [
+              "J/J29/J29nB244.xml",
+              2
+            ],
+            [
+              "J/J33/J33nB284.xml",
+              2
+            ],
+            [
+              "J/J33/J33nB287.xml",
+              2
+            ],
+            [
+              "J/J34/J34nB298.xml",
+              2
+            ],
+            [
+              "J/J34/J34nB300.xml",
+              2
+            ],
+            [
+              "J/J34/J34nB308.xml",
+              2
+            ],
+            [
+              "J/J36/J36nB367.xml",
+              2
+            ],
+            [
+              "J/J37/J37nB388.xml",
+              2
+            ],
+            [
+              "J/J37/J37nB389.xml",
+              2
+            ],
+            [
+              "J/J38/J38nB411.xml",
+              2
+            ],
+            [
+              "J/J38/J38nB418.xml",
+              2
+            ],
+            [
+              "J/J38/J38nB424.xml",
+              2
+            ],
+            [
+              "J/J38/J38nB430.xml",
+              2
+            ],
+            [
+              "J/J38/J38nB431.xml",
+              2
+            ],
+            [
+              "J/J39/J39nB446.xml",
+              2
+            ],
+            [
+              "J/J39/J39nB451.xml",
+              2
+            ],
+            [
+              "J/J39/J39nB452.xml",
+              2
+            ],
+            [
+              "J/J39/J39nB465.xml",
+              2
+            ],
+            [
+              "J/J40/J40nB475.xml",
+              2
+            ],
+            [
+              "J/J40/J40nB477.xml",
+              2
+            ],
+            [
+              "J/J40/J40nB483.xml",
+              2
+            ],
+            [
+              "J/J40/J40nB493.xml",
+              2
+            ],
+            [
+              "L/L153/L153n1638.xml",
+              2
+            ],
+            [
+              "M/M59/M59n1540.xml",
+              2
+            ],
+            [
+              "P/P154/P154n1519.xml",
+              2
+            ],
+            [
+              "T/T47/T47n1988.xml",
+              2
+            ],
+            [
+              "T/T47/T47n1994A.xml",
+              2
+            ],
+            [
+              "T/T47/T47n1995.xml",
+              2
+            ],
+            [
+              "T/T47/T47n1999.xml",
+              2
+            ],
+            [
+              "T/T48/T48n2004.xml",
+              2
+            ],
+            [
+              "T/T48/T48n2005.xml",
+              2
+            ],
+            [
+              "T/T48/T48n2015.xml",
+              2
+            ],
+            [
+              "T/T48/T48n2021.xml",
+              2
+            ],
+            [
+              "X/X67/X67n1299.xml",
+              2
+            ],
+            [
+              "X/X67/X67n1308.xml",
+              2
+            ],
+            [
+              "X/X67/X67n1310.xml",
+              2
+            ],
+            [
+              "X/X69/X69n1344.xml",
+              2
+            ],
+            [
+              "X/X69/X69n1354.xml",
+              2
+            ],
+            [
+              "X/X69/X69n1365.xml",
+              2
+            ],
+            [
+              "X/X69/X69n1370.xml",
+              2
+            ],
+            [
+              "X/X70/X70n1391.xml",
+              2
+            ],
+            [
+              "X/X71/X71n1410.xml",
+              2
+            ],
+            [
+              "X/X71/X71n1417.xml",
+              2
+            ],
+            [
+              "X/X71/X71n1419.xml",
+              2
+            ],
+            [
+              "X/X71/X71n1425.xml",
+              2
+            ],
+            [
+              "X/X72/X72n1432.xml",
+              2
+            ],
+            [
+              "X/X72/X72n1443.xml",
+              2
+            ],
+            [
+              "X/X73/X73n1451.xml",
+              2
+            ],
+            [
+              "X/X85/X85n1588.xml",
+              2
+            ],
+            [
+              "X/X86/X86n1607.xml",
+              2
+            ],
+            [
+              "X/X87/X87n1620.xml",
+              2
+            ],
+            [
+              "J/J23/J23nB118.xml",
+              1
+            ],
+            [
+              "J/J25/J25nB166.xml",
+              1
+            ],
+            [
+              "J/J25/J25nB173.xml",
+              1
+            ],
+            [
+              "J/J25/J25nB175.xml",
+              1
+            ],
+            [
+              "J/J28/J28nB212.xml",
+              1
+            ],
+            [
+              "J/J28/J28nB213.xml",
+              1
+            ],
+            [
+              "J/J29/J29nB235.xml",
+              1
+            ],
+            [
+              "J/J29/J29nB236.xml",
+              1
+            ],
+            [
+              "J/J29/J29nB239.xml",
+              1
+            ],
+            [
+              "J/J29/J29nB240.xml",
+              1
+            ],
+            [
+              "J/J29/J29nB246.xml",
+              1
+            ],
+            [
+              "J/J32/J32nB272.xml",
+              1
+            ],
+            [
+              "J/J32/J32nB273.xml",
+              1
+            ],
+            [
+              "J/J33/J33nB282.xml",
+              1
+            ],
+            [
+              "J/J34/J34nB305.xml",
+              1
+            ],
+            [
+              "J/J34/J34nB306.xml",
+              1
+            ],
+            [
+              "J/J34/J34nB309.xml",
+              1
+            ],
+            [
+              "J/J34/J34nB310.xml",
+              1
+            ],
+            [
+              "J/J35/J35nB337.xml",
+              1
+            ],
+            [
+              "J/J35/J35nB338.xml",
+              1
+            ],
+            [
+              "J/J35/J35nB341.xml",
+              1
+            ],
+            [
+              "J/J36/J36nB345.xml",
+              1
+            ],
+            [
+              "J/J36/J36nB346.xml",
+              1
+            ],
+            [
+              "J/J36/J36nB352.xml",
+              1
+            ],
+            [
+              "J/J36/J36nB365.xml",
+              1
+            ],
+            [
+              "J/J36/J36nB368.xml",
+              1
+            ],
+            [
+              "J/J37/J37nB372.xml",
+              1
+            ],
+            [
+              "J/J37/J37nB387.xml",
+              1
+            ],
+            [
+              "J/J37/J37nB391.xml",
+              1
+            ],
+            [
+              "J/J37/J37nB395.xml",
+              1
+            ],
+            [
+              "J/J37/J37nB400.xml",
+              1
+            ],
+            [
+              "J/J38/J38nB419.xml",
+              1
+            ],
+            [
+              "J/J38/J38nB428.xml",
+              1
+            ],
+            [
+              "J/J38/J38nB432.xml",
+              1
+            ],
+            [
+              "J/J38/J38nB433.xml",
+              1
+            ],
+            [
+              "J/J39/J39nB453.xml",
+              1
+            ],
+            [
+              "J/J39/J39nB455.xml",
+              1
+            ],
+            [
+              "J/J39/J39nB460.xml",
+              1
+            ],
+            [
+              "J/J39/J39nB461.xml",
+              1
+            ],
+            [
+              "J/J39/J39nB462.xml",
+              1
+            ],
+            [
+              "J/J39/J39nB463.xml",
+              1
+            ],
+            [
+              "J/J39/J39nB466.xml",
+              1
+            ],
+            [
+              "J/J39/J39nB468.xml",
+              1
+            ],
+            [
+              "J/J40/J40nB476.xml",
+              1
+            ],
+            [
+              "J/J40/J40nB479.xml",
+              1
+            ],
+            [
+              "J/J40/J40nB485.xml",
+              1
+            ],
+            [
+              "J/J40/J40nB488.xml",
+              1
+            ],
+            [
+              "J/J40/J40nB492.xml",
+              1
+            ],
+            [
+              "L/L157/L157n1649.xml",
+              1
+            ],
+            [
+              "T/T47/T47n1987A.xml",
+              1
+            ],
+            [
+              "T/T47/T47n1993.xml",
+              1
+            ],
+            [
+              "T/T48/T48n2013.xml",
+              1
+            ],
+            [
+              "T/T48/T48n2018.xml",
+              1
+            ],
+            [
+              "T/T48/T48n2019A.xml",
+              1
+            ],
+            [
+              "X/X63/X63n1224.xml",
+              1
+            ],
+            [
+              "X/X63/X63n1225.xml",
+              1
+            ],
+            [
+              "X/X63/X63n1232.xml",
+              1
+            ],
+            [
+              "X/X66/X66n1298.xml",
+              1
+            ],
+            [
+              "X/X69/X69n1321.xml",
+              1
+            ],
+            [
+              "X/X69/X69n1333.xml",
+              1
+            ],
+            [
+              "X/X69/X69n1336.xml",
+              1
+            ],
+            [
+              "X/X69/X69n1338.xml",
+              1
+            ],
+            [
+              "X/X69/X69n1343.xml",
+              1
+            ],
+            [
+              "X/X69/X69n1345.xml",
+              1
+            ],
+            [
+              "X/X69/X69n1346.xml",
+              1
+            ],
+            [
+              "X/X69/X69n1350.xml",
+              1
+            ],
+            [
+              "X/X69/X69n1364.xml",
+              1
+            ],
+            [
+              "X/X69/X69n1369.xml",
+              1
+            ],
+            [
+              "X/X69/X69n1371.xml",
+              1
+            ],
+            [
+              "X/X69/X69n1372.xml",
+              1
+            ],
+            [
+              "X/X70/X70n1377.xml",
+              1
+            ],
+            [
+              "X/X70/X70n1384.xml",
+              1
+            ],
+            [
+              "X/X70/X70n1385.xml",
+              1
+            ],
+            [
+              "X/X70/X70n1392.xml",
+              1
+            ],
+            [
+              "X/X71/X71n1415.xml",
+              1
+            ],
+            [
+              "X/X71/X71n1426.xml",
+              1
+            ],
+            [
+              "X/X72/X72n1428.xml",
+              1
+            ],
+            [
+              "X/X72/X72n1431.xml",
+              1
+            ],
+            [
+              "X/X72/X72n1440.xml",
+              1
+            ],
+            [
+              "X/X72/X72n1442.xml",
+              1
+            ],
+            [
+              "X/X73/X73n1445.xml",
+              1
+            ],
+            [
+              "X/X73/X73n1446.xml",
+              1
+            ],
+            [
+              "X/X79/X79n1563.xml",
+              1
+            ],
+            [
+              "X/X86/X86n1605.xml",
+              1
+            ]
+          ]
+        },
+        "requiredFloor": 7,
+        "semanticReadComplete": true,
+        "tier3Lamp": 0,
+        "predecessorEvidenceAudit": [],
+        "retainedCompleteCases": [
+          {
+            "relPath": "D/D50/D50n8945.xml",
+            "workId": "work:D50n8945",
+            "sourceTitle": "Outer Collection of Monk Xuefeng Kong",
+            "tier": 1,
+            "fullCaseWindow": "利一枝春信有來由六出飛花不相類到秀峯真得地四方老衲如雲至跨著三門酹一杯換却眼睛拈却鼻鐵靣老禪今徤否家居道舊想安然飯香苦憶伊蒲饌井冽還思甘露泉真𨷖九湯雲起雪貢餘徑寸玉無瑕春寒不念山中事歲歲封題記我家瓦盆雷動千山曉橫嶺香傳兩袖風添得老禪精彩好江西一吸兔甌中今我老無崖險句送人行不折楊花前頭有問又須道黃靣禪和喫釅茶衲僧手眼親把得是日用左乞建溪茶右化連江供快拈兩條蛇併作一手弄行看臘雪消便是春雷動披秀三句二偈與寵為茶佛事法味法樂法財資神資生資惠使於施受之間而無虚得虚󵉖我亦未證其中乃就其中出氣截却嬌梵舌根捩轉衲僧巴鼻來者滿與一甌看伊東倒西醉既醉各各起來門外曉山橫翠當陽一印妙無文慚愧東山有子孫是聖是凡齊印定不妨持鉢扣人門至辱莫若乞至樂在無求苟得無求旨雖乞吾何羞道人白雲居心與白雲儔明朝出山去迫夏歸來不盡大地是吾檀越梅花杏花先後發綠楊隂下問長安門門有路皆通達祖師禪活鱍鱍長秔米飯抄滿鉢佛子平居觀世間皆謂圓融無雜壞使其應入如所觀與奪交馳還窒閡我嘗行乞今示汝要得圓成先擊碎一毛不立等剎塵八靣俱來無向背如採有無於懷中如問可不於自己有無可不非外來是中欲誰為喜佛子當持此法門入此界中而示現丹山紅鑪為汝開歲晚歸來金百鍊道人隨處展家風酒肆魚行有路通但得堂中鹽米辦吉山佛法自興隆佛與眾生舊有緣入廛一句更為宣眼前不用生貪戀三界無安若火煎達人不見塵中隘為有而今這一解長柄笊籬入手來倒用橫拈風雨快南街打到北街頭東園乞得西園菜阿呵呵也奇怪他家自有通人愛送印侍者廣化開田歌送印侍者廣化開田歌君不見東山老人僧中月法惟直指初無說有眾如雲來不休有飯如山供不徹印道人善時節不持應噐循門乞只募同心一萬人請將大地為檀越或寬平或曲折與我福田衣不別二彼雖無施受心萬斛千倉從此出若見聞宜猛烈莫守從前慳恡穴些兒信種落其中遍界靈苗齊秀發送光侍者充街坊送光侍者充街坊養子不著順摩捋喝要耳聾棒要殺摩捋得成用不行棒殺教伊應手活東山妙得養子方所以用時俱𤓰抹我是謝郎光早歸打就鐵船相觸撥送願兄化永嘉送願兄化永嘉秦谿在處皆招提我此東山為最上非謂豐庖麗堂宇於中坐此真導師如火周空擬則焚如鼓塗毒聞則死癡禪眇劣渠得知但以情疑實相法我觀此會比丘眾一一從其法化生混而不雜如千光用而無畏如師子汝宜於此辦肎心此心一辦一切辦善哉遍界塵勞門悉是東山大智海脩途初發步步步要相似後步纔到時豈離最初故乃翁眾導師況是為之子欲取步驟同努力無忽此送廣州化士送廣州化士禪參閩嶺雪峯寺飯在南方檀越家歲歲僧歸飯",
+            "heading": {
+              "head": "",
+              "mulu": []
+            },
+            "actorDecision": {
+              "evidenceKey": "o1",
+              "masterName": "Xuefeng Huikong",
+              "actorAttribution": null,
+              "action": "uses the headword in the retained source unit",
+              "grammarEvidence": "The complete source frame assigns the retained authored verse to Xuefeng Huikong.",
+              "voice": "The complete source frame assigns the retained authored verse to Xuefeng Huikong.",
+              "contextMasters": [
+                {
+                  "MasterName": "Xuefeng Huikong",
+                  "Roles": [
+                    "verse-author"
+                  ]
+                }
+              ],
+              "contextActors": []
+            },
+            "sourceSpanIdentity": {
+              "fromLb": "0043b08",
+              "sourceSpanOrdinal": 0,
+              "sourceContextSha256": "3af0f94ca794747a55b5e70117e50d666dce7cd2ffe308a3ce0794fa53cdf498",
+              "boundedKwic": "有無於懷中如問可不於自己有無可不非外來是中欲誰為喜佛子當持此法門入此界中而示現丹山紅鑪為汝開歲晚歸來金百鍊道人隨處展家風酒肆魚行有路通但得堂中鹽米辦吉山佛法自興隆佛與眾生舊有緣入廛一句更為宣眼前不用生貪戀三界無安若火煎達人不",
+              "boundedFromLb": "0043b08",
+              "boundedToLb": "0044a06",
+              "boundaryEvidence": "zc.verify binds the complete retained public KWIC."
+            },
+            "decisionBasis": "The complete source frame assigns the retained authored verse to Xuefeng Huikong."
+          },
+          {
+            "relPath": "J/J23/J23nB118.xml",
+            "workId": "work:J23nB118",
+            "sourceTitle": "Posthumous Writings of Chan Master Micang Kai",
+            "tier": 1,
+            "fullCaseWindow": "其徒心悟者不遠萬里奔逐，為求塔銘。老師謂此段光明，必從足下筆端流出，始能照耀匡廬永久。健齋居士與不肖等僉以為然，遂令悟上人往返牢盛求行實南往。健齋居士業已通其懇懇，不肖所徼惠足下者，有速成而已。蓋黃龍潭近有慈聖皇太后新頒大藏且至，悟上人急欲得此文先往，更理治接藏事宜耳。足下蚤就艸一日，則不肖多受惠一分。祝祝悟上人為健齋居士舊交，其候足下於武林，幸一安其包笠。天台萬年寺亦有賜藏，乃龍華、明因二主人齎往。二師實都城名德，敢希寵一顧禮之，并命一便庇其關渡之擾。補藏附往，屬歸之楞嚴矣。止欠一函并闕卷，繼圖之金山。楞嚴賴力護，感荷可勝言。緣起、緒言各一冊，諸公願文謄錄者一紙附去，緒言得翻刻。江南為妙樂，子晉近狀何如？二令郎善訓誨之。又數日太勞身體，恐欲作疾，奈何二上人，其力亦頗能立塔，此段因緣，決當今日了之。不爾，儻足下他日有正冗或遺亡，則咎將誰歸？此貧衲終不忍默默於足下者。聞足下事繁即生厭惱。此甚不可。何也？一厭惱，即自苦身心，從上參學人不能於事外得心，從上修行人不能於事外證果。古德有言：「但於事上通無事，見色聞聲不用聾。」又云：「日用事無別，唯吾自偶諧。」臨事儻自己正分光明不到，或瞥起處不能隨處冰消雪渙，即當以此頌言轉念，少助自己。苟於事為關頭不得自在，恐自今日窮未來際，無有無事時處承教，不忍貧衲為求見足下者作傳，置邇來果瑣瑣足下，誠自慚愧。第來者尚不止此，所報者知係，足下必不可已事要之，實貧衲受累，視足下增倍耳。願足下耐煩，將佛門事與俗家事等視之，即無難也，非貧衲非足下不進此言，願足下聽之。鳳老回書，決當作過。此老極尚清虛、懶於人事，足下簡末之言，無異以水灌水，且啟其慢僧之失。非天子不能賞罰人，非智眼太清不能揀辨僧行得失。今足下以此言簡鳳老，得無與之而不得其人則僭耶？從此貧衲決當體諒足下繁劇，足下亦當諒貧衲不得已而非有他腸也。有暇過坐，半日何如？又本師度夏滁陽，因夢中見貧衲病狀，使慈航回視，有書致門下，附上備訊。其接納諸公曲折，若湯海、若鄒南皋、丁勺源，皆信向老師之極。南皋至滁陽，尚追趨之焦從，吾亦信之篤。獨勺源根鈍，且世間情重，雖信愛不能趣入，雅自恨之深耳。南皋前與門下書，聞其筆底甚多雌黃，豈豪傑丈夫而有背面耶？其書願即檢來一看，旋送上。兵諫之諍，南皋亦甚護持，楞嚴近來搬運石料，日日震喊兵尊處，似不可緩其通，苟事敗救之晚矣。早晚尚期入城，委悉滁陽事體，因上人去平湖，儻轉檇",
+            "heading": {
+              "head": "",
+              "mulu": []
+            },
+            "actorDecision": {
+              "evidenceKey": "o2",
+              "masterName": null,
+              "actorAttribution": {
+                "Status": "identified-unlinked-master",
+                "Kind": "Chan master",
+                "ActorLabel": "Micang Daokai",
+                "ActorRole": "utterer",
+                "RungsChecked": [
+                  "line",
+                  "expanded-context",
+                  "section-header",
+                  "book-title",
+                  "tei-header",
+                  "parallel-passage"
+                ],
+                "GrammarEvidence": "The complete source frame assigns the retained headword-bearing action to Micang Daokai.",
+                "ReviewedBy": "R92 frozen source-first adjudication",
+                "ReviewedUtc": "2026-07-30T14:12:00Z",
+                "AuthoredVoiceRiskReviewed": true
+              },
+              "action": "uses the headword in the retained source unit",
+              "grammarEvidence": "The complete source frame assigns the retained headword-bearing action to Micang Daokai.",
+              "voice": "The complete source frame assigns the retained headword-bearing action to Micang Daokai.",
+              "contextMasters": [],
+              "contextActors": []
+            },
+            "sourceSpanIdentity": {
+              "fromLb": "0019a25",
+              "sourceSpanOrdinal": 0,
+              "sourceContextSha256": "0b3833ab7634980e447c12932de1ab52a7bbfe54b4dd5dd891450d987c3d98e6",
+              "boundedKwic": "言：「但於事上通無事，見色聞聲不用聾。」又云：「日用事無別，唯吾自偶諧。」臨事儻自己正分光明不到，或瞥起處不能隨處冰消雪渙，即當以此頌言轉念，少助自己。苟於事為關頭不得自在，恐自今日窮未來際，無有無事時處承教，不忍貧衲為求見",
+              "boundedFromLb": "0019a25",
+              "boundedToLb": "0019a30",
+              "boundaryEvidence": "zc.verify binds the complete retained public KWIC."
+            },
+            "decisionBasis": "The complete source frame assigns the retained headword-bearing action to Micang Daokai."
+          },
+          {
+            "relPath": "J/J25/J25nB166.xml",
+            "workId": "work:J25nB166",
+            "sourceTitle": "Dharma Sayings of Fushan",
+            "tier": 1,
+            "fullCaseWindow": "單拈箇死貓頭，臭氣潑天俱漏泄。轉身復我一粗拳，謂云朗漢多饒舌。五言律五言律秋日坐白雲巖方丈為吳篤之明之兩居士譚楞嚴實相每禪餘經行峰頂趺坐巖龕吟風嘯月偶成偈語遂筆以贈之凡八首秋日坐白雲巖，方丈為吳篤之明之。兩居士譚楞嚴實相，每禪餘經行峰頂，趺坐巖龕，吟風嘯月，偶成偈語，遂筆以贈之，凡八首。其一結社傍禪棲，長松覆石溪，一心秪這是，萬法本來齊。得旨空身世，忘機出悟迷，目前親指示，煩惱即菩提。其二其二欲識圓通旨，先須了性空，道超言象外，心應色塵中。鳥語談真諦，溪聲演妙宗。返聞聞自性，更莫問西東。其三其三稱性開玄旨，隨機闡密因，了心忘我相，觀世轉空輪。獨照融三諦，和光泯六塵，圓通無內外，法界現全身。其四其四經行烏石頂，長嘯白雲端，夜月山光淨，秋空斗宿寒。談心揮麈柄，問偈坐蒲團，點破金剛眼，乾坤掌上看。其五其五青華方丈坐，與世自相分，燈挂巖前月，衣沾石上雲。寒崖翻豹霧，古木篆蟲文，更上孤峰頂，超然思不群。其六其六古洞開青嶂，丹崖挂碧蘿，澗中流水細，峰頂白雲多。僧坐深巖定，樵歸野路歌，幾多西祖意，寂寞在山阿。其七其七這箇摩尼寶，塵塵盡放光，希聲誰解聽？遍界不曾藏。返復無歸落，來回不定方，未離些子地，隨處見空王。其八其八今證圓通境，長林入曉風，普門何滯礙？萬法本參同。月色波紋裏，山光樹影中，圓通不是境，識境即圓通。坐木蓮閣坐木蓮閣小閣千巖下，幽栖一病禪，燈懸天上月，茶煮谷中泉。石潤巖飛瀑，林昏樹吐煙。有人來問法，惟指木開蓮。送僧歸雞足送僧歸雞足孤身遊萬里，一錫振千峰，踏遍曹溪旨，參窮少室宗。心花開片片，慧日現重重。禮罷諸方後，歸家扣石鍾。七言律七言律登雙峰登雙峰短策輕衣信步登，扳蘿直上最高層，千重雲裏三間屋，萬丈崖前一箇僧。片石孤峰為法座，疏星皓月是明燈。洞中天地忘今古，到此方知最上乘。鏡心講堂贈瑞光座主鏡心講堂贈瑞光座主雨花金地湧青蓮，勝會靈山尚儼然，萬法森羅三昧印，一心清淨六根禪。劫前寶塔憑誰供？空外燈明只自然，無垢一生須作佛，莫將遠計賺人天。浮山解制浮山解制千日禪關解制時，秋風吹動紫伽黎。白雲片片橫金谷，流水潺潺下石溪。錫杖竟飛天柱北，缽囊爭出石門西。因緣聚散由他去，獨向寒山樹影棲。呈焦弱侯太史呈焦弱侯太史坐到虛空粉碎時，此生心地自平夷。撥開智眼元無智，打破疑團更不疑。見離見時名實見，知無知處是良知。君今剔起眉毛看，大地山河更有誰？答三龍居士答三龍居士挂月擔風淮海過，偶逢知己道情",
+            "heading": {
+              "head": "",
+              "mulu": []
+            },
+            "actorDecision": {
+              "evidenceKey": "o3",
+              "masterName": null,
+              "actorAttribution": {
+                "Status": "identified-unlinked-master",
+                "Kind": "Chan master",
+                "ActorLabel": "Fushan Benzhi",
+                "ActorRole": "verse-author",
+                "RungsChecked": [
+                  "line",
+                  "expanded-context",
+                  "section-header",
+                  "book-title",
+                  "tei-header",
+                  "parallel-passage"
+                ],
+                "GrammarEvidence": "The complete source frame assigns the retained authored verse to Fushan Benzhi.",
+                "ReviewedBy": "R92 frozen source-first adjudication",
+                "ReviewedUtc": "2026-07-30T14:12:00Z",
+                "AuthoredVoiceRiskReviewed": true
+              },
+              "action": "uses the headword in the retained source unit",
+              "grammarEvidence": "The complete source frame assigns the retained authored verse to Fushan Benzhi.",
+              "voice": "The complete source frame assigns the retained authored verse to Fushan Benzhi.",
+              "contextMasters": [],
+              "contextActors": []
+            },
+            "sourceSpanIdentity": {
+              "fromLb": "0301a11",
+              "sourceSpanOrdinal": 0,
+              "sourceContextSha256": "c08e7e97549f7e86f9776389fc21c0fc82e00c87d1e18e03567944502528b93d",
+              "boundedKwic": "祖意，寂寞在山阿。其七其七這箇摩尼寶，塵塵盡放光，希聲誰解聽？遍界不曾藏。返復無歸落，來回不定方，未離些子地，隨處見空王。其八其八今證圓通境，長林入曉風，普門何滯礙？萬法本參同。月色波紋裏，山光樹影中，圓通不是境，識境即圓通",
+              "boundedFromLb": "0301a11",
+              "boundedToLb": "0301a17",
+              "boundaryEvidence": "zc.verify binds the complete retained public KWIC."
+            },
+            "decisionBasis": "The complete source frame assigns the retained authored verse to Fushan Benzhi."
+          },
+          {
+            "relPath": "T/T48/T48n2013.xml",
+            "workId": "work:T48n2013",
+            "sourceTitle": "Yongjia Collection of the Chan School",
+            "tier": 1,
+            "fullCaseWindow": "專精至道者。可謂澄神方寸歟。夫欲採妙探玄。實非容易。決擇之次。如履輕氷。必須側耳目而奉玄音。肅情塵而賞幽致。忘言宴旨。濯累飡微。夕惕朝詢。不濫絲髮。如是則乃可潛形山谷。寂累絕群哉。其或心徑未通。矚物成壅。而欲避諠求靜者。盡世未有其方。況乎欝欝長林。峨峨聳峭。鳥獸嗚咽。松竹森梢。水石崢嶸。風枝蕭索。藤蘿縈絆。雲霧氤氳。節物衰榮。晨昏眩晃。斯之種類。豈非喧雜耶。故知見惑尚紆。觸途成滯耳。是以先須識道後乃居山。若未識道而先居山者。但見其山。必忘其道。若未居山而先識道者。但見其道。必忘其山。忘山則道性怡神。忘道則山形眩目。是以見道忘山者。人間亦寂也。見山忘道者。山中乃喧也。必能了陰無我。無我誰住人間。若知陰入如空。空聚何殊山谷。如其三毒未祛。六塵尚擾。身心自相矛盾。何關人山之喧寂耶。且夫道性冲虛。萬物本非其累。真慈平等。聲色何非道乎。特因見倒惑生。遂成輪轉耳。若能了境非有。觸目無非道場。知了本無。所以不緣而照。圓融法界。解惑何殊。以含靈而辨悲。即想念而明智。智生則法應圓照。離境何以觀悲。悲智理合通收。乖生何以能度。度盡生而悲大。照窮境以智圓。智圓則喧寂同觀。悲大則怨親普救。如是則何假長居山谷。隨處任緣哉。況乎法法虛融。心心寂滅。本自非有。誰強言無。何喧擾之可喧。何寂靜之可寂。若知物我冥一。彼此無非道場。復何狥喧雜於人間。散寂寞於山谷。是以釋動求靜者。憎枷愛杻也。離怨求親者。厭檻忻籠也。若能慕寂於喧。市廛無非宴坐。徵違納順。怨債由來善友矣。如是則劫奪毀辱。何曾非我本師。叫喚喧煩。無非寂滅。故知妙道無形。萬像不乖。其致真如寂滅。眾響靡異其源。迷之則見倒惑生。悟之則違順無地。閴寂非有緣會而能生峨嶷非無緣散而能滅。滅既非滅以何滅滅。生既非生以何生生。生滅既虛。實相常住矣。是以定水滔滔。何念塵而不洗。智燈了了。何惑霧而不祛。乖之則六趣循環。會之則三塗逈出。如是則何不乘慧舟而遊法海。而欲駕折軸於山谷者哉。故知物類紜紜。其性自一。靈源寂寂。不照而知實相。天真靈智非造。人迷謂之失。人悟謂之得。得失在於人。何關動靜者乎。譬夫未解乘舟。而欲怨其水曲者哉。若能妙識玄宗。虛心冥契。動靜常短。語默恒規。寂爾有歸。恬然無間。如是則乃可逍遙山谷。放曠郊𮠔。遊逸形儀。寂怕心腑。恬澹息於內。蕭散揚於外。其身兮若拘。其心兮若泰。現形容於寰宇。潛幽靈於法界。如是則應機有感。適然無準矣。因信略此。餘更何申。若非志朋。",
+            "heading": {
+              "head": "",
+              "mulu": []
+            },
+            "actorDecision": {
+              "evidenceKey": "o4",
+              "masterName": "Yongjia Xuanjue",
+              "actorAttribution": null,
+              "action": "uses the headword in the retained source unit",
+              "grammarEvidence": "The complete source frame assigns the retained headword-bearing action to Yongjia Xuanjue.",
+              "voice": "The complete source frame assigns the retained headword-bearing action to Yongjia Xuanjue.",
+              "contextMasters": [
+                {
+                  "MasterName": "Yongjia Xuanjue",
+                  "Roles": [
+                    "utterer"
+                  ]
+                }
+              ],
+              "contextActors": []
+            },
+            "sourceSpanIdentity": {
+              "fromLb": "0394b14",
+              "sourceSpanOrdinal": 0,
+              "sourceContextSha256": "49ced73074125e5286fe3599e7ca669f3481b15725b332f9293040a119e32543",
+              "boundedKwic": "。悲智理合通收。乖生何以能度。度盡生而悲大。照窮境以智圓。智圓則喧寂同觀。悲大則怨親普救。如是則何假長居山谷。隨處任緣哉。況乎法法虛融。心心寂滅。本自非有。誰強言無。何喧擾之可喧。何寂靜之可寂。若知物我冥一。彼此無非道場。復",
+              "boundedFromLb": "0394b14",
+              "boundedToLb": "0394b20",
+              "boundaryEvidence": "zc.verify binds the complete retained public KWIC."
+            },
+            "decisionBasis": "The complete source frame assigns the retained headword-bearing action to Yongjia Xuanjue."
+          },
+          {
+            "relPath": "T/T48/T48n2015.xml",
+            "workId": "work:T48n2015",
+            "sourceTitle": "General Preface to the Collection of Explanations on the Sources of Chan",
+            "tier": 1,
+            "fullCaseWindow": "開頓門漸門。二教二門各相符契。今講者偏彰漸義。禪者偏播頓宗。禪講相逢胡越之隔。宗密不知宿生何作熏得此心。自未解脫欲解他縛。為法忘於軀命。愍人切於神情每歎人與法差。法為人病。故別撰經律論疏。大開戒定慧門。顯頓悟資於漸修。證師說符於佛意。意既本末而委示。文乃浩博而難尋。泛學雖多秉志者少。況迹涉名相。誰辨金鍮。徒自疲勞。未見機感。雖佛說悲增是行。而自慮愛見難防。遂捨眾入山習定均慧。前後息慮相計十年微細習情。起滅彰於靜慧。差別法義。羅列見於空心。虛隙日光纖埃擾擾。清潭水底影像昭昭。豈比夫空守默之癡禪。但尋文之狂慧者。然本因了自心而辨諸教。故懇情於心宗。又因辨諸教而解修心。故虔誠於教義。教也者。諸佛菩薩所留經論也。禪也者。諸善知識所述句偈也。但佛經開張。羅大千八部之眾。禪偈撮略。就此方一類之機。羅眾則渀蕩難依。就機即指的易用。今之纂集意在斯焉。問夫言撮略者。文須簡約。義須周足。理應撮束多義在少文中。且諸佛說經皆具法義因果信解修證雖世界各異化儀不同。其所立教無不備此。故華嚴每會每位。皆結十方世界悉同此說。今覽所集諸家禪述。多是隨問反質旋立旋破。無斯綸緒。不見始終。豈得名為撮略佛教。答佛出世立教與師隨處度人。事體各別。佛教萬代依馮。理須委示。師訓在即時度脫。意使玄通。玄通必在忘言。故言下不留其迹。迹絕於意地。理現於心源。即信解修證。不為而自然成就。經律疏論。不習而自然冥通。故有問修道。即答以無修。有求解脫。即反質誰縛。有問成佛之路。即云本無凡夫。有問臨終安心。即云本來無事。或亦云此是妄此是真。如是用心。如是息業。舉要而言。但是隨當時事應當時機。何有定法名阿耨菩提。豈有定行名摩訶般若。但得情無所念。意無所為。心無所生。慧無所住。即真信真解真修真證也。若不了自心但執名教欲求佛道者。豈不現見識字看經元不證悟。銷文釋義唯熾貪嗔耶。況阿難多聞總持。積歲不登聖果。息緣反照。暫時即證無生。即知乘教之益。度人之方。各有其由。不應於文字而責也。問既重得意不貴專文。即何必纂集此諸句偈。答集有二意。一有雖經師授而悟不決究。又不逢諸善知識處處勘契者。今覽之遍見諸師言意。以通其心以絕餘念。二為悟解了者欲為人師。令廣其見聞增其善巧。依解攝眾答問教授也。即上云。羅千界即漭蕩難依。就一方即指的易用也。然又非直資忘言之門。亦兼垂禪教之益。非但令意符於佛。亦欲使文合於經。既文似乖而令合實為不易。須判一藏經大小乘權實理了",
+            "heading": {
+              "head": "",
+              "mulu": []
+            },
+            "actorDecision": {
+              "evidenceKey": "o5",
+              "masterName": "Guifeng Zongmi",
+              "actorAttribution": null,
+              "action": "uses the headword in the retained source unit",
+              "grammarEvidence": "The complete source frame assigns the retained headword-bearing action to Guifeng Zongmi.",
+              "voice": "The complete source frame assigns the retained headword-bearing action to Guifeng Zongmi.",
+              "contextMasters": [
+                {
+                  "MasterName": "Guifeng Zongmi",
+                  "Roles": [
+                    "utterer"
+                  ]
+                }
+              ],
+              "contextActors": []
+            },
+            "sourceSpanIdentity": {
+              "fromLb": "0399c28",
+              "sourceSpanOrdinal": 0,
+              "sourceContextSha256": "f9c42b6c80e5a83f633f90d3df318e0d236677b9f4800d8ef83cffc4a984167e",
+              "boundedKwic": "方世界悉同此說。今覽所集諸家禪述。多是隨問反質旋立旋破。無斯綸緒。不見始終。豈得名為撮略佛教。答佛出世立教與師隨處度人。事體各別。佛教萬代依馮。理須委示。師訓在即時度脫。意使玄通。玄通必在忘言。故言下不留其迹。迹絕於意地。理",
+              "boundedFromLb": "0399c28",
+              "boundedToLb": "0400a04",
+              "boundaryEvidence": "zc.verify binds the complete retained public KWIC."
+            },
+            "decisionBasis": "The complete source frame assigns the retained headword-bearing action to Guifeng Zongmi."
+          },
+          {
+            "relPath": "T/T48/T48n2018.xml",
+            "workId": "work:T48n2018",
+            "sourceTitle": "Mind-Only Verses of Chan Master Zhijue of Yongming",
+            "tier": 1,
+            "fullCaseWindow": "忘，身心無寄；隨緣養性，逐處消時；猶縱浪之虛舟，若凌空之逸翮；縱橫放曠，任跡郊𮠔。普勸諸後賢，但遵斯一路。聞而不信，尚結佛種之因；學而未成，猶益人天之福。此乃群經具載、諸佛同宣，非率爾以致辭，請收凝而玄鑒。永明智覺禪師唯心訣定慧相資歌定慧相資歌祖教宗中有二門，十度萬行稱為尊。初名止觀助新學，後成定慧菩提根。唯一法，似雙分，法性寂然體真止，寂而常照妙觀存。定為父，慧為母，能孕千聖之門戶，增長根力養聖胎，念念出生成佛祖。定為將，慧為相，能弼心王成無上，永作群生證道門，即是古佛菩提樣。定如月，光爍外道邪星滅，能挑智炬轉分明，滋潤道芽除愛結；慧如日，照破無明之暗室，能令邪見愚夫禪，盡成般若波羅蜜。少時默，剎那靜，漸漸增修成正定，諸聖較量功不多，終見靈臺之妙性。瞥聞法，纔歷耳，能熏識藏覺種起，一念回光正智開，須臾成佛法如是。禪定力，不思議，變凡為聖剎那時，無邊生死根由斷，積劫塵勞巢穴墮。湛心水，淨意珠，光吞萬像爍千途，抉開己眼無瑕翳，三界元無一法拘。覺觀賊，應時剋；攀緣病，倏然淨；蕩念垢兮洗惑塵，顯法身兮堅慧命。如斷山，若停海，天翻地覆終無改，瑩似琉璃含寶月，倏然無寄而無待。般若慧，莫能量，自然隨處現心光，萬行門中為導首，一切時中稱法王。竭苦海，碎邪山，妄雲卷盡片時間，貧女室中金頓現，壯士額上珠潛還。斬癡網，截欲流，大雄威猛更無儔，能令鐵床銅柱冷，頓使魔怨業果休；和諍訟，成孝義，普現群生諸佛智，邊邪惡慧盡朝宗，螻蟻鯤鵬齊受記。偏修定，純陰爛物刳正命，若將正慧照禪那，自然萬法明如鏡；偏修慧，純陽枯物成迂滯，須憑妙定助觀門，如月分明除霧翳。勸等學，莫偏修，從來一體無二頭，似禽兩翼飛空界，如車二輪乘白牛，即向凡途登覺岸，便於業海泛慈舟。或事定，制之一處無不竟；或理定，唯當直下觀心性。或事觀，明諸法相生籌算；或理觀，頓了無一無那畔。定即慧，非一非二非心計；慧即定，不同不別絕觀聽。或雙運，即寂而照通真訓；或俱泯，非定非慧超常準。一塵入定眾塵起，般若門中成法爾。童子身中三昧時，老人身分談真軌。能觀一境萬境同，近塵遠剎無不通。真如路上論生死，無明海裏演圓宗。眼根能作鼻佛事，色塵入定香塵起。心境常同見自差，誰言不信波元水。非寂非照絕言思，而寂而照功無比；權實雙行闡正途，體用更資含妙旨。勸諸子，勿虛棄，光陰如箭如流水，散亂全因缺定門，愚盲秪為虧真智。真實言，須入耳，千經萬論同標記，定慧全功不暫忘，",
+            "heading": {
+              "head": "",
+              "mulu": []
+            },
+            "actorDecision": {
+              "evidenceKey": "o6",
+              "masterName": "Yongming Yanshou",
+              "actorAttribution": null,
+              "action": "uses the headword in the retained source unit",
+              "grammarEvidence": "The complete source frame assigns the retained authored verse to Yongming Yanshou.",
+              "voice": "The complete source frame assigns the retained authored verse to Yongming Yanshou.",
+              "contextMasters": [
+                {
+                  "MasterName": "Yongming Yanshou",
+                  "Roles": [
+                    "verse-author"
+                  ]
+                }
+              ],
+              "contextActors": []
+            },
+            "sourceSpanIdentity": {
+              "fromLb": "0997a15",
+              "sourceSpanOrdinal": 0,
+              "sourceContextSha256": "0cc887c799beae4047ad95275712415d18cf386ab683e5f4927249289c5963ea",
+              "boundedKwic": "兮洗惑塵，顯法身兮堅慧命。如斷山，若停海，天翻地覆終無改，瑩似琉璃含寶月，倏然無寄而無待。般若慧，莫能量，自然隨處現心光，萬行門中為導首，一切時中稱法王。竭苦海，碎邪山，妄雲卷盡片時間，貧女室中金頓現，壯士額上珠潛還。斬癡網",
+              "boundedFromLb": "0997a15",
+              "boundedToLb": "0997a20",
+              "boundaryEvidence": "zc.verify binds the complete retained public KWIC."
+            },
+            "decisionBasis": "The complete source frame assigns the retained authored verse to Yongming Yanshou."
+          },
+          {
+            "relPath": "T/T48/T48n2021.xml",
+            "workId": "work:T48n2021",
+            "sourceTitle": "Chan School Collection for Resolving Doubts",
+            "tier": 1,
+            "fullCaseWindow": "退。此退之一字多者不知。故舉小喻以明斯事。且如世有貧窮之人。聞萬里之外有珍寶所。往而求之。或行一千二千。乃至五千而生退還不復前進。退之不已。驀然自嘆曰。我若退還枉費前工。永受飢寒貧窮困苦。翻思此寶去者人人有分。何故我自棄之。於此奮起堅志又復前進。不憚疲勞不避寒暑。直至寶所得大富饒安樂眷屬。世事皆然。設此進退之喻。皆是主張做工夫不得力處。使其復還得力。誠恐後來學者中道而廢。故以此事重加勉勵。退墮策勵門退墮策勵門此舉退與不得力事分兩說。學人不得一例而舉。此下重明這箇退字。使學者知之。退者退菩提心。退長遠心。退精進心。佛不欲禮。道不欲修。善知識不欲見。道友不欲親。話頭不欲舉。只好散誕自在。若有這般退念起時。或是用心過度或是宿業障深善根微弱。數數向諸佛菩薩像前。五體投地然指然香。發露前愆求哀懺悔。勇猛舉起話頭。此念如湯消氷倏爾無餘。純一淨念學者須知。余遇此退念起時。即便然香發露懺悔。求佛哀祐即舉話頭。此念應時隨滅。此是已驗之事。故錄此以警後學者也。懈怠勉勤門懈怠勉勤門此舉不得力者。或是話頭上無疑。或是話頭舉不起。或沈或浮。或隨聲色。或逐攀緣。或喜眠睡。皆是懶惰懈怠恣縱身心。於生死事上用心不切。隨處樂著。故不得力。此二種病。余工夫未純熟時數數而起。只向話頭上決起疑情。亦不用分別排遣是非。疑情一起此念頓消。已上所說皆無他事。只要決擇學人做工夫處。乾乾淨淨酒酒落落。無一點異念上心。將從前生而知之者。學而知之者。記得佛說者。祖說者。諸子百家所說者。於此一筆勾下。直得水泄不通。聖凡情盡。到此參箇話頭。或參無字話。或舉萬法歸一一歸何處。一肩領荷奮力趨前更莫回顧。直至歸家穩坐。方是安樂底時節也。執礙決疑門執礙決疑門此上兩則語皆出趙州和尚。叢林多舉。每見同道者。於無字上各出異見。或者執空執有執斷執常。執空者為。趙州道無。萬法本無。本性無故何疑之有。執有者謂。趙州道無。指有言無無中即有。又何疑哉。執斷者謂。趙州道無。萬有皆空無一可取何必疑耶。執常者謂。趙州道無。真性常存寂然不動。何用著疑。噫所見偏枯故有此失。若如此主張。不須用疑得無上菩提者。除是天生彌勒自然釋迦始得。譬如世間工巧藝術之人。各有所務未有不疑而成事者也。此疑之一字便是思想用謀之心。體同而名異耳。如楞嚴會上二十五圓通。各有所疑方有所證。此事不必細註。眾所共知。失正究竟門失正究竟門此舉參無字者。學人見前尊宿說。把這無字貼在眼睛上。眼睛便",
+            "heading": {
+              "head": "",
+              "mulu": []
+            },
+            "actorDecision": {
+              "evidenceKey": "o7",
+              "masterName": null,
+              "actorAttribution": {
+                "Status": "identified-unlinked-master",
+                "Kind": "Chan master",
+                "ActorLabel": "Zhiche",
+                "ActorRole": "utterer",
+                "RungsChecked": [
+                  "line",
+                  "expanded-context",
+                  "section-header",
+                  "book-title",
+                  "tei-header",
+                  "parallel-passage"
+                ],
+                "GrammarEvidence": "The complete source frame assigns the retained headword-bearing action to Zhiche.",
+                "ReviewedBy": "R92 frozen source-first adjudication",
+                "ReviewedUtc": "2026-07-30T14:12:00Z",
+                "AuthoredVoiceRiskReviewed": true
+              },
+              "action": "uses the headword in the retained source unit",
+              "grammarEvidence": "The complete source frame assigns the retained headword-bearing action to Zhiche.",
+              "voice": "The complete source frame assigns the retained headword-bearing action to Zhiche.",
+              "contextMasters": [],
+              "contextActors": []
+            },
+            "sourceSpanIdentity": {
+              "fromLb": "1010b17",
+              "sourceSpanOrdinal": 0,
+              "sourceContextSha256": "15299837b8698fa65853a2f99dc0d9e5a3bae004ad2b3e122a67460d1665c88b",
+              "boundedKwic": "話頭上無疑。或是話頭舉不起。或沈或浮。或隨聲色。或逐攀緣。或喜眠睡。皆是懶惰懈怠恣縱身心。於生死事上用心不切。隨處樂著。故不得力。此二種病。余工夫未純熟時數數而起。只向話頭上決起疑情。亦不用分別排遣是非。疑情一起此念頓消。已",
+              "boundedFromLb": "1010b17",
+              "boundedToLb": "1010b23",
+              "boundaryEvidence": "zc.verify binds the complete retained public KWIC."
+            },
+            "decisionBasis": "The complete source frame assigns the retained headword-bearing action to Zhiche."
+          }
+        ],
+        "tier3ExceptionalJustification": "",
+        "actorRiskAdjudication": [
+          "Every retained complete case has an exact actor and final WitnessFamilyId.",
+          "No Tier-3 lamp is retained."
+        ],
+        "senseRuling": "One corpus-wide sense: the retained grammatical and rhetorical frames do not introduce a different referent.",
+        "sourceMeta": [
+          {
+            "path": "D/D50/D50n8945.xml",
+            "tier": 1,
+            "title": "Outer Collection of Monk Xuefeng Kong"
+          },
+          {
+            "path": "J/J23/J23nB118.xml",
+            "tier": 1,
+            "title": "Posthumous Writings of Chan Master Micang Kai"
+          },
+          {
+            "path": "J/J25/J25nB166.xml",
+            "tier": 1,
+            "title": "Dharma Sayings of Fushan"
+          },
+          {
+            "path": "T/T48/T48n2013.xml",
+            "tier": 1,
+            "title": "Yongjia Collection of the Chan School"
+          },
+          {
+            "path": "T/T48/T48n2015.xml",
+            "tier": 1,
+            "title": "General Preface to the Collection of Explanations on the Sources of Chan"
+          },
+          {
+            "path": "T/T48/T48n2018.xml",
+            "tier": 1,
+            "title": "Mind-Only Verses of Chan Master Zhijue of Yongming"
+          },
+          {
+            "path": "T/T48/T48n2021.xml",
+            "tier": 1,
+            "title": "Chan School Collection for Resolving Doubts"
+          }
+        ],
+        "sourceAuthorityManifest": {
+          "rows": [
+            {
+              "EvidenceKey": "o1",
+              "RelPath": "D/D50/D50n8945.xml",
+              "WorkId": "work:D50n8945",
+              "Tier": 1,
+              "SourceClass": "master-authored",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "wherever:xuefeng-house-style",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o2",
+              "RelPath": "J/J23/J23nB118.xml",
+              "WorkId": "work:J23nB118",
+              "Tier": 1,
+              "SourceClass": "master-authored",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "wherever:micang-reaction",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o3",
+              "RelPath": "J/J25/J25nB166.xml",
+              "WorkId": "work:J25nB166",
+              "Tier": 1,
+              "SourceClass": "master-authored",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "wherever:fushan-see-buddha",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o4",
+              "RelPath": "T/T48/T48n2013.xml",
+              "WorkId": "work:T48n2013",
+              "Tier": 1,
+              "SourceClass": "master-authored",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "wherever:yongjia-conditions",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o5",
+              "RelPath": "T/T48/T48n2015.xml",
+              "WorkId": "work:T48n2015",
+              "Tier": 1,
+              "SourceClass": "master-authored",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "wherever:zongmi-teachers",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o6",
+              "RelPath": "T/T48/T48n2018.xml",
+              "WorkId": "work:T48n2018",
+              "Tier": 1,
+              "SourceClass": "master-authored",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "wherever:yanshou-mind-light",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o7",
+              "RelPath": "T/T48/T48n2021.xml",
+              "WorkId": "work:T48n2021",
+              "Tier": 1,
+              "SourceClass": "master-authored",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "wherever:zhiche-attachment",
+              "DeploymentRole": "original-use"
+            }
+          ]
+        },
+        "researchNotes": {
+          "openingInterpretation": "At whatever place or situation is in view, or throughout all such places.",
+          "evidenceBody": [
+            "Seven independent authored works use the expression for displaying a house style, meeting reactions, seeing Buddha, following conditions, teaching, revealing mind-light, or becoming attached."
+          ],
+          "counterexampleOrLimit": "These different predicates preserve one locative-distributive sense rather than establishing separate lexical things.",
+          "literalGraphFloor": "wherever",
+          "lexicalJob": "隨處 means wherever.",
+          "deploymentClasses": [
+            "authored verse",
+            "direct instruction"
+          ],
+          "highValueEvidenceLedger": [
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained authored verse to Xuefeng Huikong.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to Micang Daokai.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained authored verse to Fushan Benzhi.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to Yongjia Xuanjue.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to Guifeng Zongmi.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained authored verse to Yongming Yanshou.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to Zhiche.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            }
+          ],
+          "openingClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3",
+            "o4",
+            "o5",
+            "o6",
+            "o7"
+          ],
+          "evidenceBodyClaimKeys": [
+            [
+              "o1",
+              "o2",
+              "o3",
+              "o4",
+              "o5",
+              "o6",
+              "o7"
+            ]
+          ],
+          "zenBend": "At whatever place or situation is in view, or throughout all such places.",
+          "counterexample": "These different predicates preserve one locative-distributive sense rather than establishing separate lexical things.",
+          "differentThing": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "wherever"
+            ],
+            "Reason": "One lexical job."
+          },
+          "aliasRationale": "Alternates preserve the same lexical job.",
+          "modifierControls": [
+            {
+              "Term": "隨處",
+              "Finding": "No modifier creates a second referent."
+            }
+          ],
+          "familyControls": [
+            {
+              "Term": "隨處",
+              "Finding": "7 independent higher-tier families meet the floor."
+            }
+          ],
+          "higherSearch": "Tier 1 searched first, then Tier 2; no lamp needed.",
+          "depthReceipt": {
+            "Complete": true,
+            "ReviewedExactHitCount": 1417,
+            "AvailableSourceFiles": 317,
+            "SearchedDeploymentClasses": [
+              "authored verse",
+              "direct instruction"
+            ],
+            "OmissionAudit": [
+              "7 retained cases actor-adjudicated.",
+              "No lamp retained."
+            ]
+          },
+          "admissionReason": "隨處 is a stable expression with repeated active Chan deployments.",
+          "duplicateCheck": {
+            "DeterministicIdChecked": true,
+            "ExactHeadwordChecked": true,
+            "NearDuplicateRuling": "R92 checked 隨處 against the installed dictionary; no exact collision is admitted."
+          },
+          "familyHarvest": {
+            "PolicyVersion": 1,
+            "Scope": "R83 source-hierarchy repair",
+            "Edges": [],
+            "NegativeReceipt": [],
+            "GraphicVariants": []
+          }
+        }
+      },
+      "evidenceDraft": {
+        "SchemaVersion": 1,
+        "ConstructionPipelineVersion": 2,
+        "Admission": {
+          "Decision": "admit",
+          "LexicalUnitReason": "隨處 is a stable expression with repeated active Chan deployments.",
+          "ObservableChanJob": "隨處 means wherever.",
+          "DuplicateCheck": {
+            "DeterministicIdChecked": true,
+            "ExactHeadwordChecked": true,
+            "NearDuplicateRuling": "隨處 was checked against the installed dictionary; no exact or punctuation-normalized collision is admitted."
+          }
+        },
+        "EvidenceTransport": {
+          "DossierPath": "source-dossier.json",
+          "DossierSha256": "a9f2287cd0afb9deb2582c116a8ab9b58f3912558e4bdaf4bfe06e2c3c4de3ff",
+          "SourceAuthorityManifestSha256": "2ee44bf19a2533958e5620c38915f3d03fbb81209c76c7183742a4f3d059f501",
+          "DiscoveryMethods": [
+            "exact concordance count",
+            "complete-turn actor review",
+            "Tier 1 then Tier 2 source ranking",
+            "predecessor-evidence adjudication"
+          ],
+          "ExactCount": 1417,
+          "BridgedCount": 1417,
+          "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+        },
+        "Entry": {
+          "Id": "t_21a3463bc0db",
+          "SourceTerm": "隨處",
+          "CreatedBy": "R92 source-hierarchy repair",
+          "WrittenUtc": "2026-07-30T10:38:00Z",
+          "Senses": [
+            {
+              "SenseKey": null,
+              "MasterName": null,
+              "PreferredTarget": "wherever",
+              "AlternateTargets": [
+                "everywhere",
+                "in any place"
+              ],
+              "SearchAliases": [
+                "wherever one is",
+                "wherever it occurs"
+              ],
+              "Status": "preferred",
+              "Validation": "multi-source",
+              "Explanation": "At whatever place or situation is in view, or throughout all such places. Seven independent authored works use the expression for displaying a house style, meeting reactions, seeing Buddha, following conditions, teaching, revealing mind-light, or becoming attached.",
+              "Note": "These different predicates preserve one locative-distributive sense rather than establishing separate lexical things.",
+              "Occurrences": [
+                {
+                  "RelPath": "D/D50/D50n8945.xml",
+                  "FromLb": "0043b08",
+                  "ToLb": "0044a06",
+                  "Kwic": "有無於懷中如問可不於自己有無可不非外來是中欲誰為喜佛子當持此法門入此界中而示現丹山紅鑪為汝開歲晚歸來金百鍊道人隨處展家風酒肆魚行有路通但得堂中鹽米辦吉山佛法自興隆佛與眾生舊有緣入廛一句更為宣眼前不用生貪戀三界無安若火煎達人不",
+                  "MasterName": "Xuefeng Huikong",
+                  "Curated": true,
+                  "ContextMasters": [
+                    {
+                      "MasterName": "Xuefeng Huikong",
+                      "Roles": [
+                        "verse-author"
+                      ]
+                    }
+                  ],
+                  "ContextActors": [],
+                  "AttributionNote": "Source record (D/D50/D50n8945.xml). Outer Collection of Monk Xuefeng Kong. Exact actor: Xuefeng Huikong. The complete source frame assigns the retained authored verse to Xuefeng Huikong.",
+                  "DraftActorProof": {
+                    "ExactHeadwordClause": "隨處",
+                    "GrammaticalSubject": "Xuefeng Huikong",
+                    "SpeechFrame": "Source record (D/D50/D50n8945.xml). Outer Collection of Monk Xuefeng Kong. Exact actor: Xuefeng Huikong. The complete source frame assigns the retained authored verse to Xuefeng Huikong.",
+                    "FullCaseDecision": "The complete source frame assigns the retained authored verse to Xuefeng Huikong."
+                  }
+                },
+                {
+                  "RelPath": "J/J23/J23nB118.xml",
+                  "FromLb": "0019a25",
+                  "ToLb": "0019a30",
+                  "Kwic": "言：「但於事上通無事，見色聞聲不用聾。」又云：「日用事無別，唯吾自偶諧。」臨事儻自己正分光明不到，或瞥起處不能隨處冰消雪渙，即當以此頌言轉念，少助自己。苟於事為關頭不得自在，恐自今日窮未來際，無有無事時處承教，不忍貧衲為求見",
+                  "MasterName": null,
+                  "Curated": true,
+                  "ContextMasters": [],
+                  "ContextActors": [],
+                  "AttributionNote": "Source record (J/J23/J23nB118.xml). Posthumous Writings of Chan Master Micang Kai. Action performer: Micang Daokai. The complete source frame assigns the retained headword-bearing action to Micang Daokai.",
+                  "ActorAttribution": {
+                    "Status": "identified-unlinked-master",
+                    "Kind": "Chan master",
+                    "ActorLabel": "Micang Daokai",
+                    "ActorRole": "utterer",
+                    "RungsChecked": [
+                      "line",
+                      "expanded-context",
+                      "section-header",
+                      "book-title",
+                      "tei-header",
+                      "parallel-passage"
+                    ],
+                    "GrammarEvidence": "The complete source frame assigns the retained headword-bearing action to Micang Daokai.",
+                    "ReviewedBy": "R92 frozen source-first adjudication",
+                    "ReviewedUtc": "2026-07-30T14:12:00Z",
+                    "AuthoredVoiceRiskReviewed": true
+                  },
+                  "DraftActorProof": {
+                    "ExactHeadwordClause": "隨處",
+                    "GrammaticalSubject": "Micang Daokai",
+                    "SpeechFrame": "Source record (J/J23/J23nB118.xml). Posthumous Writings of Chan Master Micang Kai. Action performer: Micang Daokai. The complete source frame assigns the retained headword-bearing action to Micang Daokai.",
+                    "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to Micang Daokai."
+                  }
+                },
+                {
+                  "RelPath": "J/J25/J25nB166.xml",
+                  "FromLb": "0301a11",
+                  "ToLb": "0301a17",
+                  "Kwic": "祖意，寂寞在山阿。其七其七這箇摩尼寶，塵塵盡放光，希聲誰解聽？遍界不曾藏。返復無歸落，來回不定方，未離些子地，隨處見空王。其八其八今證圓通境，長林入曉風，普門何滯礙？萬法本參同。月色波紋裏，山光樹影中，圓通不是境，識境即圓通",
+                  "MasterName": null,
+                  "Curated": true,
+                  "ContextMasters": [],
+                  "ContextActors": [],
+                  "AttributionNote": "Source record (J/J25/J25nB166.xml). Dharma Sayings of Fushan. Action performer: Fushan Benzhi. The complete source frame assigns the retained authored verse to Fushan Benzhi.",
+                  "ActorAttribution": {
+                    "Status": "identified-unlinked-master",
+                    "Kind": "Chan master",
+                    "ActorLabel": "Fushan Benzhi",
+                    "ActorRole": "verse-author",
+                    "RungsChecked": [
+                      "line",
+                      "expanded-context",
+                      "section-header",
+                      "book-title",
+                      "tei-header",
+                      "parallel-passage"
+                    ],
+                    "GrammarEvidence": "The complete source frame assigns the retained authored verse to Fushan Benzhi.",
+                    "ReviewedBy": "R92 frozen source-first adjudication",
+                    "ReviewedUtc": "2026-07-30T14:12:00Z",
+                    "AuthoredVoiceRiskReviewed": true
+                  },
+                  "DraftActorProof": {
+                    "ExactHeadwordClause": "隨處",
+                    "GrammaticalSubject": "Fushan Benzhi",
+                    "SpeechFrame": "Source record (J/J25/J25nB166.xml). Dharma Sayings of Fushan. Action performer: Fushan Benzhi. The complete source frame assigns the retained authored verse to Fushan Benzhi.",
+                    "FullCaseDecision": "The complete source frame assigns the retained authored verse to Fushan Benzhi."
+                  }
+                },
+                {
+                  "RelPath": "T/T48/T48n2013.xml",
+                  "FromLb": "0394b14",
+                  "ToLb": "0394b20",
+                  "Kwic": "。悲智理合通收。乖生何以能度。度盡生而悲大。照窮境以智圓。智圓則喧寂同觀。悲大則怨親普救。如是則何假長居山谷。隨處任緣哉。況乎法法虛融。心心寂滅。本自非有。誰強言無。何喧擾之可喧。何寂靜之可寂。若知物我冥一。彼此無非道場。復",
+                  "MasterName": "Yongjia Xuanjue",
+                  "Curated": true,
+                  "ContextMasters": [
+                    {
+                      "MasterName": "Yongjia Xuanjue",
+                      "Roles": [
+                        "utterer"
+                      ]
+                    }
+                  ],
+                  "ContextActors": [],
+                  "AttributionNote": "Source record (T/T48/T48n2013.xml). Yongjia Collection of the Chan School. Exact actor: Yongjia Xuanjue. The complete source frame assigns the retained headword-bearing action to Yongjia Xuanjue.",
+                  "DraftActorProof": {
+                    "ExactHeadwordClause": "隨處",
+                    "GrammaticalSubject": "Yongjia Xuanjue",
+                    "SpeechFrame": "Source record (T/T48/T48n2013.xml). Yongjia Collection of the Chan School. Exact actor: Yongjia Xuanjue. The complete source frame assigns the retained headword-bearing action to Yongjia Xuanjue.",
+                    "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to Yongjia Xuanjue."
+                  }
+                },
+                {
+                  "RelPath": "T/T48/T48n2015.xml",
+                  "FromLb": "0399c28",
+                  "ToLb": "0400a04",
+                  "Kwic": "方世界悉同此說。今覽所集諸家禪述。多是隨問反質旋立旋破。無斯綸緒。不見始終。豈得名為撮略佛教。答佛出世立教與師隨處度人。事體各別。佛教萬代依馮。理須委示。師訓在即時度脫。意使玄通。玄通必在忘言。故言下不留其迹。迹絕於意地。理",
+                  "MasterName": "Guifeng Zongmi",
+                  "Curated": true,
+                  "ContextMasters": [
+                    {
+                      "MasterName": "Guifeng Zongmi",
+                      "Roles": [
+                        "utterer"
+                      ]
+                    }
+                  ],
+                  "ContextActors": [],
+                  "AttributionNote": "Source record (T/T48/T48n2015.xml). General Preface to the Collection of Explanations on the Sources of Chan. Exact actor: Guifeng Zongmi. The complete source frame assigns the retained headword-bearing action to Guifeng Zongmi.",
+                  "DraftActorProof": {
+                    "ExactHeadwordClause": "隨處",
+                    "GrammaticalSubject": "Guifeng Zongmi",
+                    "SpeechFrame": "Source record (T/T48/T48n2015.xml). General Preface to the Collection of Explanations on the Sources of Chan. Exact actor: Guifeng Zongmi. The complete source frame assigns the retained headword-bearing action to Guifeng Zongmi.",
+                    "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to Guifeng Zongmi."
+                  }
+                },
+                {
+                  "RelPath": "T/T48/T48n2018.xml",
+                  "FromLb": "0997a15",
+                  "ToLb": "0997a20",
+                  "Kwic": "兮洗惑塵，顯法身兮堅慧命。如斷山，若停海，天翻地覆終無改，瑩似琉璃含寶月，倏然無寄而無待。般若慧，莫能量，自然隨處現心光，萬行門中為導首，一切時中稱法王。竭苦海，碎邪山，妄雲卷盡片時間，貧女室中金頓現，壯士額上珠潛還。斬癡網",
+                  "MasterName": "Yongming Yanshou",
+                  "Curated": true,
+                  "ContextMasters": [
+                    {
+                      "MasterName": "Yongming Yanshou",
+                      "Roles": [
+                        "verse-author"
+                      ]
+                    }
+                  ],
+                  "ContextActors": [],
+                  "AttributionNote": "Source record (T/T48/T48n2018.xml). Mind-Only Verses of Chan Master Zhijue of Yongming. Exact actor: Yongming Yanshou. The complete source frame assigns the retained authored verse to Yongming Yanshou.",
+                  "DraftActorProof": {
+                    "ExactHeadwordClause": "隨處",
+                    "GrammaticalSubject": "Yongming Yanshou",
+                    "SpeechFrame": "Source record (T/T48/T48n2018.xml). Mind-Only Verses of Chan Master Zhijue of Yongming. Exact actor: Yongming Yanshou. The complete source frame assigns the retained authored verse to Yongming Yanshou.",
+                    "FullCaseDecision": "The complete source frame assigns the retained authored verse to Yongming Yanshou."
+                  }
+                },
+                {
+                  "RelPath": "T/T48/T48n2021.xml",
+                  "FromLb": "1010b17",
+                  "ToLb": "1010b23",
+                  "Kwic": "話頭上無疑。或是話頭舉不起。或沈或浮。或隨聲色。或逐攀緣。或喜眠睡。皆是懶惰懈怠恣縱身心。於生死事上用心不切。隨處樂著。故不得力。此二種病。余工夫未純熟時數數而起。只向話頭上決起疑情。亦不用分別排遣是非。疑情一起此念頓消。已",
+                  "MasterName": null,
+                  "Curated": true,
+                  "ContextMasters": [],
+                  "ContextActors": [],
+                  "AttributionNote": "Source record (T/T48/T48n2021.xml). Chan School Collection for Resolving Doubts. Action performer: Zhiche. The complete source frame assigns the retained headword-bearing action to Zhiche.",
+                  "ActorAttribution": {
+                    "Status": "identified-unlinked-master",
+                    "Kind": "Chan master",
+                    "ActorLabel": "Zhiche",
+                    "ActorRole": "utterer",
+                    "RungsChecked": [
+                      "line",
+                      "expanded-context",
+                      "section-header",
+                      "book-title",
+                      "tei-header",
+                      "parallel-passage"
+                    ],
+                    "GrammarEvidence": "The complete source frame assigns the retained headword-bearing action to Zhiche.",
+                    "ReviewedBy": "R92 frozen source-first adjudication",
+                    "ReviewedUtc": "2026-07-30T14:12:00Z",
+                    "AuthoredVoiceRiskReviewed": true
+                  },
+                  "DraftActorProof": {
+                    "ExactHeadwordClause": "隨處",
+                    "GrammaticalSubject": "Zhiche",
+                    "SpeechFrame": "Source record (T/T48/T48n2021.xml). Chan School Collection for Resolving Doubts. Action performer: Zhiche. The complete source frame assigns the retained headword-bearing action to Zhiche.",
+                    "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to Zhiche."
+                  }
+                }
+              ],
+              "ClaimAnchors": [],
+              "SourceTexts": [
+                "D/D50/D50n8945.xml",
+                "J/J23/J23nB118.xml",
+                "J/J25/J25nB166.xml",
+                "T/T48/T48n2013.xml",
+                "T/T48/T48n2015.xml",
+                "T/T48/T48n2018.xml",
+                "T/T48/T48n2021.xml"
+              ],
+              "RelatedMasters": [
+                "Xuefeng Huikong",
+                "Yongjia Xuanjue",
+                "Guifeng Zongmi",
+                "Yongming Yanshou"
+              ],
+              "RelatedTerms": [],
+              "ExplanationParts": {
+                "CorpusEarnedOpening": "At whatever place or situation is in view, or throughout all such places.",
+                "EvidenceBody": [
+                  "Seven independent authored works use the expression for displaying a house style, meeting reactions, seeing Buddha, following conditions, teaching, revealing mind-light, or becoming attached."
+                ]
+              },
+              "DraftEvidence": {
+                "LiteralGraphFloor": "wherever",
+                "LexicalJob": "隨處 means wherever.",
+                "DeploymentClasses": [
+                  "authored verse",
+                  "direct instruction"
+                ],
+                "HighValueEvidenceLedger": [
+                  {
+                    "Disposition": "keep",
+                    "Finding": "The complete source frame assigns the retained authored verse to Xuefeng Huikong.",
+                    "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+                  },
+                  {
+                    "Disposition": "keep",
+                    "Finding": "The complete source frame assigns the retained headword-bearing action to Micang Daokai.",
+                    "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+                  },
+                  {
+                    "Disposition": "keep",
+                    "Finding": "The complete source frame assigns the retained authored verse to Fushan Benzhi.",
+                    "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+                  },
+                  {
+                    "Disposition": "keep",
+                    "Finding": "The complete source frame assigns the retained headword-bearing action to Yongjia Xuanjue.",
+                    "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+                  },
+                  {
+                    "Disposition": "keep",
+                    "Finding": "The complete source frame assigns the retained headword-bearing action to Guifeng Zongmi.",
+                    "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+                  },
+                  {
+                    "Disposition": "keep",
+                    "Finding": "The complete source frame assigns the retained authored verse to Yongming Yanshou.",
+                    "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+                  },
+                  {
+                    "Disposition": "keep",
+                    "Finding": "The complete source frame assigns the retained headword-bearing action to Zhiche.",
+                    "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+                  }
+                ],
+                "OpeningClaimEvidenceKeys": [
+                  "o1",
+                  "o2",
+                  "o3",
+                  "o4",
+                  "o5",
+                  "o6",
+                  "o7"
+                ],
+                "EvidenceBodyClaimKeys": [
+                  [
+                    "o1",
+                    "o2",
+                    "o3",
+                    "o4",
+                    "o5",
+                    "o6",
+                    "o7"
+                  ]
+                ],
+                "ZenBend": "At whatever place or situation is in view, or throughout all such places.",
+                "CounterexampleOrLimit": "These different predicates preserve one locative-distributive sense rather than establishing separate lexical things.",
+                "DifferentThingTest": {
+                  "Decision": "one-thing",
+                  "ComparedThings": [
+                    "wherever"
+                  ],
+                  "Reason": "One lexical job."
+                },
+                "AliasRationale": "Alternates preserve the same lexical job.",
+                "ModifierControls": [
+                  {
+                    "Term": "隨處",
+                    "Finding": "No modifier creates a second referent."
+                  }
+                ],
+                "FamilyControls": [
+                  {
+                    "Term": "隨處",
+                    "Finding": "7 independent higher-tier families meet the floor."
+                  }
+                ],
+                "IndependentWorkIds": [
+                  "work:D50n8945",
+                  "work:J23nB118",
+                  "work:J25nB166",
+                  "work:T48n2013",
+                  "work:T48n2015",
+                  "work:T48n2018",
+                  "work:T48n2021"
+                ],
+                "SourceAuthorityRows": [
+                  {
+                    "EvidenceKey": "o1",
+                    "RelPath": "D/D50/D50n8945.xml",
+                    "WorkId": "work:D50n8945",
+                    "Tier": 1,
+                    "SourceClass": "master-authored",
+                    "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+                    "WitnessFamilyId": "wherever:xuefeng-house-style",
+                    "DeploymentRole": "original-use"
+                  },
+                  {
+                    "EvidenceKey": "o2",
+                    "RelPath": "J/J23/J23nB118.xml",
+                    "WorkId": "work:J23nB118",
+                    "Tier": 1,
+                    "SourceClass": "master-authored",
+                    "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+                    "WitnessFamilyId": "wherever:micang-reaction",
+                    "DeploymentRole": "original-use"
+                  },
+                  {
+                    "EvidenceKey": "o3",
+                    "RelPath": "J/J25/J25nB166.xml",
+                    "WorkId": "work:J25nB166",
+                    "Tier": 1,
+                    "SourceClass": "master-authored",
+                    "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+                    "WitnessFamilyId": "wherever:fushan-see-buddha",
+                    "DeploymentRole": "original-use"
+                  },
+                  {
+                    "EvidenceKey": "o4",
+                    "RelPath": "T/T48/T48n2013.xml",
+                    "WorkId": "work:T48n2013",
+                    "Tier": 1,
+                    "SourceClass": "master-authored",
+                    "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+                    "WitnessFamilyId": "wherever:yongjia-conditions",
+                    "DeploymentRole": "original-use"
+                  },
+                  {
+                    "EvidenceKey": "o5",
+                    "RelPath": "T/T48/T48n2015.xml",
+                    "WorkId": "work:T48n2015",
+                    "Tier": 1,
+                    "SourceClass": "master-authored",
+                    "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+                    "WitnessFamilyId": "wherever:zongmi-teachers",
+                    "DeploymentRole": "original-use"
+                  },
+                  {
+                    "EvidenceKey": "o6",
+                    "RelPath": "T/T48/T48n2018.xml",
+                    "WorkId": "work:T48n2018",
+                    "Tier": 1,
+                    "SourceClass": "master-authored",
+                    "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+                    "WitnessFamilyId": "wherever:yanshou-mind-light",
+                    "DeploymentRole": "original-use"
+                  },
+                  {
+                    "EvidenceKey": "o7",
+                    "RelPath": "T/T48/T48n2021.xml",
+                    "WorkId": "work:T48n2021",
+                    "Tier": 1,
+                    "SourceClass": "master-authored",
+                    "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+                    "WitnessFamilyId": "wherever:zhiche-attachment",
+                    "DeploymentRole": "original-use"
+                  }
+                ],
+                "LampExcessJustification": "No Tier-3 lamp retained.",
+                "NoHigherWitnessSearchReceipt": "Tier 1 searched first, then Tier 2; no lamp needed.",
+                "DepthHarvestReceipt": {
+                  "Complete": true,
+                  "ReviewedExactHitCount": 1417,
+                  "AvailableSourceFiles": 317,
+                  "SearchedDeploymentClasses": [
+                    "authored verse",
+                    "direct instruction"
+                  ],
+                  "OmissionAudit": [
+                    "7 retained cases actor-adjudicated.",
+                    "No lamp retained."
+                  ]
+                }
+              },
+              "DraftAcceptedDerivedFields": {
+                "SourceTexts": [
+                  "D/D50/D50n8945.xml",
+                  "J/J23/J23nB118.xml",
+                  "J/J25/J25nB166.xml",
+                  "T/T48/T48n2013.xml",
+                  "T/T48/T48n2015.xml",
+                  "T/T48/T48n2018.xml",
+                  "T/T48/T48n2021.xml"
+                ],
+                "RelatedMasters": [
+                  "Xuefeng Huikong",
+                  "Yongjia Xuanjue",
+                  "Guifeng Zongmi",
+                  "Yongming Yanshou"
+                ]
+              }
+            }
+          ],
+          "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+        },
+        "FamilyHarvest": {
+          "PolicyVersion": 1,
+          "Scope": "R92 source-hierarchy repair",
+          "Edges": [],
+          "NegativeReceipt": [],
+          "GraphicVariants": []
+        }
+      }
+    },
+    {
+      "id": "t_21b44f051c7a",
+      "term": "財法二施",
+      "sourceDossier": {
+        "schemaVersion": "r11-source-dossier.v1",
+        "id": "t_21b44f051c7a",
+        "term": "財法二施",
+        "selectionBinding": {
+          "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r92-retry2-constructor-selection-b.json",
+          "sha256": "e9956dcb342904e78850b76bcb3a89c2f0f01a3cb6dfb19d71d5bb509e8740fe"
+        },
+        "researchBinding": {
+          "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r92-retry2-research-b.json",
+          "sha256": "bbdde6ff3324a7740d7c3d43b2857fbd9e573ccd072efcbdd472da9982e8207c"
+        },
+        "exactCount": {
+          "id": "t_21b44f051c7a",
+          "term": "財法二施",
+          "hits": 96,
+          "files": 51,
+          "works": 49,
+          "per_file": [
+            [
+              "J/J36/J36nB359.xml",
+              5
+            ],
+            [
+              "X/X82/X82n1571.xml",
+              5
+            ],
+            [
+              "J/J27/J27nB193.xml",
+              4
+            ],
+            [
+              "C/C078/C078n1720.xml",
+              3
+            ],
+            [
+              "M/M59/M59n1540.xml",
+              3
+            ],
+            [
+              "P/P154/P154n1519.xml",
+              3
+            ],
+            [
+              "X/X66/X66n1297.xml",
+              3
+            ],
+            [
+              "X/X67/X67n1309.xml",
+              3
+            ],
+            [
+              "X/X68/X68n1319.xml",
+              3
+            ],
+            [
+              "X/X80/X80n1565.xml",
+              3
+            ],
+            [
+              "X/X81/X81n1571.xml",
+              3
+            ],
+            [
+              "X/X83/X83n1578.xml",
+              3
+            ],
+            [
+              "X/X84/X84n1580.xml",
+              3
+            ],
+            [
+              "X/X85/X85n1593.xml",
+              3
+            ],
+            [
+              "X/X86/X86n1607.xml",
+              3
+            ],
+            [
+              "X/X87/X87n1620.xml",
+              3
+            ],
+            [
+              "J/J25/J25nB174.xml",
+              2
+            ],
+            [
+              "J/J27/J27nB189.xml",
+              2
+            ],
+            [
+              "J/J38/J38nB410.xml",
+              2
+            ],
+            [
+              "X/X66/X66n1296.xml",
+              2
+            ],
+            [
+              "X/X70/X70n1377.xml",
+              2
+            ],
+            [
+              "X/X71/X71n1420.xml",
+              2
+            ],
+            [
+              "X/X79/X79n1563.xml",
+              2
+            ],
+            [
+              "X/X80/X80n1568.xml",
+              2
+            ],
+            [
+              "J/J23/J23nB118.xml",
+              1
+            ],
+            [
+              "J/J25/J25nB171.xml",
+              1
+            ],
+            [
+              "J/J26/J26nB178.xml",
+              1
+            ],
+            [
+              "J/J26/J26nB188.xml",
+              1
+            ],
+            [
+              "J/J27/J27nB198.xml",
+              1
+            ],
+            [
+              "J/J28/J28nB203.xml",
+              1
+            ],
+            [
+              "J/J28/J28nB212.xml",
+              1
+            ],
+            [
+              "J/J28/J28nB213.xml",
+              1
+            ],
+            [
+              "J/J29/J29nB235.xml",
+              1
+            ],
+            [
+              "J/J33/J33nB294.xml",
+              1
+            ],
+            [
+              "J/J37/J37nB392.xml",
+              1
+            ],
+            [
+              "J/J37/J37nB393.xml",
+              1
+            ],
+            [
+              "J/J37/J37nB395.xml",
+              1
+            ],
+            [
+              "J/J40/J40nB488.xml",
+              1
+            ],
+            [
+              "L/L154/L154n1639.xml",
+              1
+            ],
+            [
+              "T/T47/T47n1998B.xml",
+              1
+            ],
+            [
+              "T/T47/T47n2000.xml",
+              1
+            ],
+            [
+              "T/T51/T51n2076.xml",
+              1
+            ],
+            [
+              "T/T51/T51n2077.xml",
+              1
+            ],
+            [
+              "X/X69/X69n1346.xml",
+              1
+            ],
+            [
+              "X/X69/X69n1364.xml",
+              1
+            ],
+            [
+              "X/X70/X70n1382.xml",
+              1
+            ],
+            [
+              "X/X72/X72n1435.xml",
+              1
+            ],
+            [
+              "X/X78/X78n1553.xml",
+              1
+            ],
+            [
+              "X/X79/X79n1557.xml",
+              1
+            ],
+            [
+              "X/X81/X81n1568.xml",
+              1
+            ],
+            [
+              "X/X83/X83n1574.xml",
+              1
+            ]
+          ]
+        },
+        "requiredFloor": 4,
+        "semanticReadComplete": true,
+        "tier3Lamp": 0,
+        "predecessorEvidenceAudit": [],
+        "retainedCompleteCases": [
+          {
+            "relPath": "J/J26/J26nB188.xml",
+            "workId": "work:J26nB188",
+            "sourceTitle": "Recorded Sayings of Chan Master Rujiu Ruibai",
+            "tier": 2,
+            "fullCaseWindow": "進云：「布雨不興，雲即不問，還歸大海事如何？」師云：「兩岸東西。」僧拜師，下座。上堂。「沒意白雲封嶽麓，無心明月印寒潭。於是句中全曉會，依然又隔一重關。既是曉會，為甚麼又隔一重關？向道莫去，歸來背父。昔日世尊在神通大光明藏中與清淨慧菩薩云：『居一切時不起妄念』，明月團團元不炤，『于諸妄心亦不息滅』，春日容容草自青，『住妄想境不加了知』，穿花蝴蝶忘情意，『於無了知不辨真實』，不知誰是弄香人。大小世尊只可抱橋柱洗腳。今日雲門雖與他著語，猶未剿絕，更有一偈舉似大眾：香爐飛過海，石傘便撐開，鐵馬雲中吼，泥牛上五臺。具眼者辨取。」僧問：「黑荳未生芽時如何？」師云：「金雞啼半夜。」進云：「生後如何？」師云：「玉犬吠天明。」進云：「黑荳已蒙師指示，開花結子事如何？」師云：「石傘峰頭明歷歷。」僧拜，師下座。冬至上堂。「明明聲色難該，歷歷覆藏不可，直須言外知歸，休向句中擔荷。清淨伽藍烏容瞌睡，百花叢裡豈可散心，石傘峰頭那堪住足？萬竹林裏快且翻身，鑑湖波底行拳，玉笥山頭歌舞。還有恁麼人知恁麼事麼？」良久云：「暑退三秋起，冬至一陽生。今日是冬至節屆，躍雲禪友入山設齋，更請山僧登座說法，為大眾結般若緣。正所謂財法二施。今問大眾，且道應時納祐一句作麼生道？天寒日色淡，水冷草方枯。」上堂。「道本無言，徒為指示。殺活縱奪，露布門庭。這邊那邊，總無正意。全身擔荷，猶在半途。覿體承當，奴兒婢子。談今論古，播弄唇皮。驅魔使佛，元非尊貴。既不恁麼，且道畢竟作麼生？」復高聲云：「密移一步虛空外，鶴出銀籠始是奇。」僧問：「這邊那邊即不問，大中現小事如何？」師云：「金雞初唱佳林曉。」進云：「如何是小中現大？」師云：「鑑湖月落潭無影。」進云：「不大不小又如何？」師云：「五雲溪畔木人歌。」僧禮拜，師云：「切莫承虛接響。」又僧問：「朔風凜凜逼冬過，白駒馳騁似投梭。學人向甚麼處安身立命？」師云：「日落海底枯。」進云：「還有處也無？」師云：「大唐休住足，新羅莫倚停。」僧拜，師下座。上堂，正值雞鳴，乃云：「窗前雞唱午，屋後鳥鳴中。明明相告報，休得更朦朧。大眾！珍重！」僧問：「天氣寒冬霜雪皎，庭前桂立影娑婆。意旨如何？」師云：「兩春夾一冬。」進云：「恁麼則拔枝弄影去也。」師云：「無被煖烘烘。」僧云：「葉落歸根時作麼生？」師云：「赤條條底。」僧拜，師下座。雲門先和尚忌日，上堂。「此日先年，先年此日，四野冰花，朔風歷歷。正恁麼時，且道",
+            "heading": {
+              "head": "",
+              "mulu": []
+            },
+            "actorDecision": {
+              "evidenceKey": "o1",
+              "masterName": "Ruibai Mingxue",
+              "actorAttribution": null,
+              "action": "uses the headword in the retained source unit",
+              "grammarEvidence": "The complete source frame assigns the retained headword-bearing action to Ruibai Mingxue.",
+              "voice": "The complete source frame assigns the retained headword-bearing action to Ruibai Mingxue.",
+              "contextMasters": [
+                {
+                  "MasterName": "Ruibai Mingxue",
+                  "Roles": [
+                    "utterer",
+                    "record-owner"
+                  ]
+                }
+              ],
+              "contextActors": []
+            },
+            "sourceSpanIdentity": {
+              "fromLb": "0751c23",
+              "sourceSpanOrdinal": 0,
+              "sourceContextSha256": "5cd5b7a7d48b088fb57b50a4e574954cb7bd1ca5ebc292c3061eb7ceba2125fa",
+              "boundedKwic": "」良久云：「暑退三秋起，冬至一陽生。今日是冬至節屆，躍雲禪友入山設齋，更請山僧登座說法，為大眾結般若緣。正所謂財法二施。今問大眾，且道應時納祐一句作麼生道？天寒日色淡，水冷草方枯。」上堂。「道本無言，徒為指示。殺活縱奪，露布門庭",
+              "boundedFromLb": "0751c23",
+              "boundedToLb": "0751c27",
+              "boundaryEvidence": "zc.verify binds the complete retained public KWIC."
+            },
+            "decisionBasis": "The complete source frame assigns the retained headword-bearing action to Ruibai Mingxue."
+          },
+          {
+            "relPath": "J/J25/J25nB171.xml",
+            "workId": "work:J25nB171",
+            "sourceTitle": "Recorded Sayings of Monk Tianyin",
+            "tier": 2,
+            "fullCaseWindow": "無理外之事，事理圓融權實並用。恁麼即今應時及節一句作麼生道？」擲拄杖云：「識得一陽纔動處，森羅萬象掌中看。」檀越請小參，師云：「妙性圓明，離諸名相。本來無有世界眾生，因妄有生，因生有滅。生滅名妄，滅妄名真。真既不立，其妄本空。不意釋迦老子到遮箇田地。而今現前大眾，若僧若俗、若男若女，若老若少、若高若下，還能離諸名相，得達妙性圓明否？只因各守其名、各執其相，故不得見本來面目。山僧今日與你諸人通箇消息。高著眼看。」以拂子打圓相云：「遮裏薦得，也無僧、也無俗，也無男、也無女，也無老、也無少，也無高、也無下。轉愚癡為般若，易短壽為長年。恁麼時，山還是山、水還是水，僧還是僧、俗還是俗，男還是男、女還是女，老還是老、少還是少，高還是高、下還是下。不得動著一絲毫，動著則與你三十拄杖。委悉麼？不見道：『具足凡夫法，凡夫不知。具足聖人法，聖人不會。聖人若會，即同凡夫。凡夫若知，即是聖人。』」左右顧視云：「還知麼？聖賢俱是凡夫做，祇恐凡夫心不堅。」驀擲拂子。示眾，師云：「四十年來端為禪，半肩風月只隨緣。尋常簡點無欺處，纔向煙波擲釣竿。」以拄杖作釣勢云：「不惜性命者，上來吞餌。」僧問：「信施營齋，法王陞座，財法二施兼周，未審無事衲僧憑何報德？」師橫呈拄杖。進云：「與麼一粒一莖，布雲水缽中，咸成菩提種草。或語或默，與寶華座下，胥為大道標模。」師云：「禮拜著。」進云：「古人道：『大家相聚喫莖虀，喚作一莖虀，入地獄如箭。』又道：『喫粥了也，洗缽盂去。』雖總殘羹剩飯，試問是別是同？」師云：「你還待第二杓惡水麼？」進云：「不明先聖門中事，逐隊饔飧實可危。」師云：「放你三十棒。」僧禮拜。師乃云：「道本無方，因方故迷；心本無住，因住故執。執之則觸途成滯，迷之則背覺合塵。念念攀緣，矻矻造業。故經云：『一切眾生皆由不知當住真心性淨明體，用諸妄想，此想不真，故有輪轉。若能一念迴光返照，直下見得廣大心體，無有邊涯際畔，則不被生滅妄緣之所流轉也。』於是一念清淨。一念清淨故，則一身清淨；一身清淨故，則一世界清淨；一世界清淨故，則無量無邊世界清淨。諸人還到遮田地麼？若未到遮田地，切不可以無明為佛性，將煩惱作菩提，日用現行更須仔細。不見當時龐居士云：『難！難！難！十擔油麻樹上攤。』龐婆出來道：『易！易！易！百草頭上祖師意。』靈照女又道：『也不難，也不易，饑來喫飯困來睡。』據山僧見處，此三老有一人行到說不到，有一人說到行不到，",
+            "heading": {
+              "head": "",
+              "mulu": []
+            },
+            "actorDecision": {
+              "evidenceKey": "o2",
+              "masterName": null,
+              "actorAttribution": {
+                "Status": "reviewed-unnamed",
+                "Kind": "person",
+                "ActorLabel": "the unnamed monk questioning Tianyin Yuanxiu",
+                "ActorRole": "questioner",
+                "RungsChecked": [
+                  "line",
+                  "expanded-context",
+                  "section-header",
+                  "book-title",
+                  "tei-header",
+                  "parallel-passage"
+                ],
+                "GrammarEvidence": "The complete source frame assigns the retained headword-bearing action to the unnamed monk questioning Tianyin Yuanxiu.",
+                "ReviewedBy": "R92 frozen source-first adjudication",
+                "ReviewedUtc": "2026-07-30T14:12:00Z",
+                "AuthoredVoiceRiskReviewed": true
+              },
+              "action": "uses the headword in the retained source unit",
+              "grammarEvidence": "The complete source frame assigns the retained headword-bearing action to the unnamed monk questioning Tianyin Yuanxiu.",
+              "voice": "The complete source frame assigns the retained headword-bearing action to the unnamed monk questioning Tianyin Yuanxiu.",
+              "contextMasters": [
+                {
+                  "MasterName": "Tianyin Yuanxiu",
+                  "Roles": [
+                    "respondent",
+                    "record-owner"
+                  ]
+                }
+              ],
+              "contextActors": []
+            },
+            "sourceSpanIdentity": {
+              "fromLb": "0539a29",
+              "sourceSpanOrdinal": 0,
+              "sourceContextSha256": "23787d4aef485cec0c6df54c0f7b3009c2f82a8c970151f939042a03abe4d647",
+              "boundedKwic": "隨緣。尋常簡點無欺處，纔向煙波擲釣竿。」以拄杖作釣勢云：「不惜性命者，上來吞餌。」僧問：「信施營齋，法王陞座，財法二施兼周，未審無事衲僧憑何報德？」師橫呈拄杖。進云：「與麼一粒一莖，布雲水缽中，咸成菩提種草。或語或默，與寶華座下",
+              "boundedFromLb": "0539a29",
+              "boundedToLb": "0539b04",
+              "boundaryEvidence": "zc.verify binds the complete retained public KWIC."
+            },
+            "decisionBasis": "The complete source frame assigns the retained headword-bearing action to the unnamed monk questioning Tianyin Yuanxiu."
+          },
+          {
+            "relPath": "J/J25/J25nB174.xml",
+            "workId": "work:J25nB174",
+            "sourceTitle": "Recorded Sayings of Chan Master Juelangsheng of Tianjie",
+            "tier": 2,
+            "fullCaseWindow": "』諸仁者！何處是被他惑聻？若向此中透得，便見三老。如摩醯首眼，豎亞縱橫；炤徹乾坤，一道平等。會麼？驢駝馬載無人識，踏上崑崙最上頭。」上堂：「相逢不拈出，舉意便知有；事故無一向，何妨垂隻手？諸仁者！不可作尋嘗茶飯看，須知有古今一段迥出嘗流公案以作法施。昔臨濟大師云：『第一句薦得，可與佛祖為師；第二句薦得，可與人天為師；第三句薦得，自救不了。』還有薦得此三句意旨麼？山僧卻有四句，前三句不敢舉似。何故？第一句能令人七顛八倒，不敢舉，恐汝等皆七顛八倒去，我亦禁制你不得，又誰奈你何？第二句能令人昏天黑地，不敢舉，恐汝等皆昏天黑地去，悶殺了你，教阿誰償命？第三句能令人大徹大悟，不敢舉，恐汝等皆大徹大悟，打筋斗去了，叫那箇守這禪堂？若恁麼則第四句可以舉，似乎且緩著，此時天氣炎熱人命無嘗，得坐且坐、得行且行。五月二十九，昨日已過了，臘月三十日，大盡尚遠，未必閻羅大王即叫你們還飯錢，但自耐煩切莫性燥，燥則打破汝頭。畢竟第四句作麼生？」大喝一聲云：「剖心不用刀。」上堂：「大道原來絕異同，無功勳處立奇功；魔宮虎穴能穿過，掉臂歸來笑自濃。」復舉：「甘贄行者一日到南泉設齋，黃檗為首座。甘曰：『請施財。』檗曰：『財法二施，等無差別。』甘曰：『若恁麼，爭消得某甲嚫？』便將下去。頃又復來曰：『請施財。』檗曰：『財法二施，等無差別。』甘乃行嚫。」師云：「你看南泉門風，壁立萬仞；黃檗作略，坐斷聖凡；甘贄機鋒，善能殺活。雖然如是，不免各自把定要關，未有天然尊貴事在。何如我圓通高坐，湛公為之支撐，高道特地設供，不分大小親疏平等一例行嚫，可中更無一人敢居功恃德以己方人，且道還有為人處麼？不因今日事，爭識古人心。」鳳林上堂：二十七年中，兩度曾到此，今還特地來，誰是舊知己？莫是吹布毛底古鳥窠麼？須是會通侍者始得；莫是問佛法底白侍郎麼？須是八十老翁始得；莫是重陽九日菊花新麼？須是汾陽老漢始得；莫是牛頭一枝今當重于鳳林橫出麼？須向杖人良久處透得不觸不背始得。雖然今日得到鳳林，全是姚愚谷前年於廬山先與諸公通一消息相挽始得，從金陵一路來此以酬勝願，其鴛鴦繡出，妙在金針；不落文彩，更須著眼。秪如杖人既已親到，與諸公親見了也，就中還有親切提持事也無？明聖湖中龍躍起，越王臺上鳳飛來。師到龍門，石雨大師請上堂。石雨大師問：「君臣未定，賓主先分，賓主協和，如何開示？」師云：「彩霞籠玉像，個裏自分明。」進云：「秪如低處低平、高處高平又作麼",
+            "heading": {
+              "head": "",
+              "mulu": []
+            },
+            "actorDecision": {
+              "evidenceKey": "o3",
+              "masterName": "Huangbo Xiyun",
+              "actorAttribution": null,
+              "action": "uses the headword in the retained source unit",
+              "grammarEvidence": "The complete source frame assigns the retained headword-bearing action to Huangbo Xiyun.",
+              "voice": "The complete source frame assigns the retained headword-bearing action to Huangbo Xiyun.",
+              "contextMasters": [
+                {
+                  "MasterName": "Huangbo Xiyun",
+                  "Roles": [
+                    "utterer"
+                  ]
+                },
+                {
+                  "MasterName": "Juelang Daosheng",
+                  "Roles": [
+                    "later-quoter",
+                    "commentator",
+                    "record-owner"
+                  ]
+                }
+              ],
+              "contextActors": []
+            },
+            "sourceSpanIdentity": {
+              "fromLb": "0692c24",
+              "sourceSpanOrdinal": 0,
+              "sourceContextSha256": "b5643b2fa1af979bdbde658322066bc95830757999b7ee1dcc9ab16fa7bb6b62",
+              "boundedKwic": "奇功；魔宮虎穴能穿過，掉臂歸來笑自濃。」復舉：「甘贄行者一日到南泉設齋，黃檗為首座。甘曰：『請施財。』檗曰：『財法二施，等無差別。』甘曰：『若恁麼，爭消得某甲嚫？』便將下去。頃又復來曰：『請施財。』檗曰：『",
+              "boundedFromLb": "0692c24",
+              "boundedToLb": "0692c28",
+              "boundaryEvidence": "zc.verify binds the complete retained public KWIC."
+            },
+            "decisionBasis": "The complete source frame assigns the retained headword-bearing action to Huangbo Xiyun."
+          },
+          {
+            "relPath": "J/J26/J26nB178.xml",
+            "workId": "work:J26nB178",
+            "sourceTitle": "Recorded Sayings of Chan Master Feiyin",
+            "tier": 2,
+            "fullCaseWindow": "彌舞，大闡洪音滿帝都。」師云：「是何言歟？」進云：「赤條條地空三界，縱橫無處不稱尊。」師云：「未是放身處。」僧以手點空，云：「當軒指出春風面，為瑞為祥遍界春。」師云：「轉轉錯看。」問：「昔日韓文公參大顛和尚云：『弟子軍州事繁，佛法省要處，乞師一語。』顛良久，意旨如何？」師云：「放憨。」進云：「三平侍者在傍敲禪床三下，顛云：『作麼？』平云：『先以定動，後以智拔。』意旨如何？」師云：「私通車馬。」進云：「韓文公云：『和尚門庭高聳，弟子在侍者邊得箇消息。』且道他得箇甚麼消息？」師云：「窺覷許他。」進云：「只如老和尚門庭高聳，眾居士得得到山，且道在那裏得箇消息？」師云：「看棒落處。」問：「把住則乾坤失色，放行則瓦礫生光，正恁麼時，把住即是？放行即是？」師云：「絞。」進云：「水窮山盡處，風起月明時。」師云：「雨下階前濕。」進云：「坐斷千差猶點額，密移一步看飛龍。」師云：「風來樹有聲。」僧喝，師云：「顢頇。」乃云：「嘉定縣是老僧舊遊之地，合城善友與老僧夙有因緣道契，老僧繼席天童，亦曾天童設齋，在徑山開法，亦到徑山獻供，於福嚴興造，亦曾贊助，而今在此堯峰建立法幢，亦復如是，更請老僧上堂為人說法，可謂財法二施，等無差別。且法又作麼生說？祖師門下，只有明心見性、成佛作祖之法門。只如心又作麼生明？過去心不可得，未來心不可得，現在心不可得。性又作麼生見？性無形段、性非色相性無邊表，如大圓寶鏡，非內非外，佛祖與博地凡夫一體，凡夫亦與佛祖無異，非勝非劣、非得非失。古人要人有箇入路，別提持云：『不是心，不是佛，不是物，且道是箇甚麼？』蓋心有分別故、佛有知覺故、物有對待、故。三者透脫得去，則當陽披露，直下顯揚。現前若有英靈衲子、俊俏禪和出來云：『者老漢說心說性，成得甚麼邊事？』老僧更說一偈，略為鞭影：硬如綿帛軟如鐵，等閒咬著見重牙，頂門忽具摩醯眼，不動腳跟駕白車。還會得麼？」便下座。解制，知浴慈光上座領法淨菴主請上堂，僧問：「和尚陞座鐘鼓齊鳴，若聞聲即著有句，若不聞即著無句，去此二途請道。」師云：「瞎。」進云：「忽有無耳人，還聞聲否？」師云：「汝不是無耳。」進云：「若將耳聽終難會，眼裏聞聲始得知。」師云：「元來。」問：「當陽一著眾眼難瞞，末後一機千聖端的，拈卻兩頭中間不立，如何進步一竿頭？」師云：「踏翻船子。」進云：「樞輪轉處難迴互，又作麼生？」師云：「如何是你樞輪？」進云：「無根兮得活，離地兮不到。」",
+            "heading": {
+              "head": "",
+              "mulu": []
+            },
+            "actorDecision": {
+              "evidenceKey": "o4",
+              "masterName": "Feiyin Tongrong",
+              "actorAttribution": null,
+              "action": "uses the headword in the retained source unit",
+              "grammarEvidence": "The complete source frame assigns the retained headword-bearing action to Feiyin Tongrong.",
+              "voice": "The complete source frame assigns the retained headword-bearing action to Feiyin Tongrong.",
+              "contextMasters": [
+                {
+                  "MasterName": "Feiyin Tongrong",
+                  "Roles": [
+                    "utterer",
+                    "record-owner"
+                  ]
+                }
+              ],
+              "contextActors": []
+            },
+            "sourceSpanIdentity": {
+              "fromLb": "0151b30",
+              "sourceSpanOrdinal": 0,
+              "sourceContextSha256": "5b4a59edb6efe129627e4f88c40863a18f6ca5b45941762844f05e8068ec6de5",
+              "boundedKwic": "齋，在徑山開法，亦到徑山獻供，於福嚴興造，亦曾贊助，而今在此堯峰建立法幢，亦復如是，更請老僧上堂為人說法，可謂財法二施，等無差別。且法又作麼生說？祖師門下，只有明心見性、成佛作祖之法門。只如心又作麼生明？過去心不可得，未來心不可",
+              "boundedFromLb": "0151b30",
+              "boundedToLb": "0151c04",
+              "boundaryEvidence": "zc.verify binds the complete retained public KWIC."
+            },
+            "decisionBasis": "The complete source frame assigns the retained headword-bearing action to Feiyin Tongrong."
+          }
+        ],
+        "tier3ExceptionalJustification": "",
+        "actorRiskAdjudication": [
+          "Every retained complete case has an exact actor and final WitnessFamilyId.",
+          "No Tier-3 lamp is retained."
+        ],
+        "senseRuling": "One corpus-wide sense: the retained grammatical and rhetorical frames do not introduce a different referent.",
+        "sourceMeta": [
+          {
+            "path": "J/J26/J26nB188.xml",
+            "tier": 2,
+            "title": "Recorded Sayings of Chan Master Rujiu Ruibai"
+          },
+          {
+            "path": "J/J25/J25nB171.xml",
+            "tier": 2,
+            "title": "Recorded Sayings of Monk Tianyin"
+          },
+          {
+            "path": "J/J25/J25nB174.xml",
+            "tier": 2,
+            "title": "Recorded Sayings of Chan Master Juelangsheng of Tianjie"
+          },
+          {
+            "path": "J/J26/J26nB178.xml",
+            "tier": 2,
+            "title": "Recorded Sayings of Chan Master Feiyin"
+          }
+        ],
+        "sourceAuthorityManifest": {
+          "rows": [
+            {
+              "EvidenceKey": "o1",
+              "RelPath": "J/J26/J26nB188.xml",
+              "WorkId": "work:J26nB188",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "two-givings:ruibai-hall",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o2",
+              "RelPath": "J/J25/J25nB171.xml",
+              "WorkId": "work:J25nB171",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "two-givings:tianyin-question",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o3",
+              "RelPath": "J/J25/J25nB174.xml",
+              "WorkId": "work:J25nB174",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "two-givings:ganzi-huangbo",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o4",
+              "RelPath": "J/J26/J26nB178.xml",
+              "WorkId": "work:J26nB178",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "two-givings:feiyin-hall",
+              "DeploymentRole": "original-use"
+            }
+          ]
+        },
+        "researchNotes": {
+          "openingInterpretation": "The paired givings of material support supplied by donors and teaching supplied in return or alongside it.",
+          "evidenceBody": [
+            "Ruibai Mingxue, an unnamed monk questioning Tianyin Yuanxiu, Huangbo Xiyun, and Feiyin Tongrong deploy the paired expression in four independent recorded-sayings families."
+          ],
+          "counterexampleOrLimit": "Equality, completion, or joint fulfillment is supplied by surrounding predicates and is not part of the headword itself.",
+          "literalGraphFloor": "the two givings: material support and teaching",
+          "lexicalJob": "財法二施 means the two givings: material support and teaching.",
+          "deploymentClasses": [
+            "authored verse",
+            "direct instruction"
+          ],
+          "highValueEvidenceLedger": [
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to Ruibai Mingxue.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to the unnamed monk questioning Tianyin Yuanxiu.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to Huangbo Xiyun.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to Feiyin Tongrong.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            }
+          ],
+          "openingClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3",
+            "o4"
+          ],
+          "evidenceBodyClaimKeys": [
+            [
+              "o1",
+              "o2",
+              "o3",
+              "o4"
+            ]
+          ],
+          "zenBend": "The paired givings of material support supplied by donors and teaching supplied in return or alongside it.",
+          "counterexample": "Equality, completion, or joint fulfillment is supplied by surrounding predicates and is not part of the headword itself.",
+          "differentThing": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "the two givings: material support and teaching"
+            ],
+            "Reason": "One lexical job."
+          },
+          "aliasRationale": "Alternates preserve the same lexical job.",
+          "modifierControls": [
+            {
+              "Term": "財法二施",
+              "Finding": "No modifier creates a second referent."
+            }
+          ],
+          "familyControls": [
+            {
+              "Term": "財法二施",
+              "Finding": "4 independent higher-tier families meet the floor."
+            }
+          ],
+          "higherSearch": "Tier 1 searched first, then Tier 2; no lamp needed.",
+          "depthReceipt": {
+            "Complete": true,
+            "ReviewedExactHitCount": 96,
+            "AvailableSourceFiles": 51,
+            "SearchedDeploymentClasses": [
+              "authored verse",
+              "direct instruction"
+            ],
+            "OmissionAudit": [
+              "4 retained cases actor-adjudicated.",
+              "No lamp retained."
+            ]
+          },
+          "admissionReason": "財法二施 is a stable expression with repeated active Chan deployments.",
+          "duplicateCheck": {
+            "DeterministicIdChecked": true,
+            "ExactHeadwordChecked": true,
+            "NearDuplicateRuling": "R92 checked 財法二施 against the installed dictionary; no exact collision is admitted."
+          },
+          "familyHarvest": {
+            "PolicyVersion": 1,
+            "Scope": "R83 source-hierarchy repair",
+            "Edges": [],
+            "NegativeReceipt": [],
+            "GraphicVariants": []
+          }
+        }
+      },
+      "evidenceDraft": {
+        "SchemaVersion": 1,
+        "ConstructionPipelineVersion": 2,
+        "Admission": {
+          "Decision": "admit",
+          "LexicalUnitReason": "財法二施 is a stable expression with repeated active Chan deployments.",
+          "ObservableChanJob": "財法二施 means the two givings: material support and teaching.",
+          "DuplicateCheck": {
+            "DeterministicIdChecked": true,
+            "ExactHeadwordChecked": true,
+            "NearDuplicateRuling": "財法二施 was checked against the installed dictionary; no exact or punctuation-normalized collision is admitted."
+          }
+        },
+        "EvidenceTransport": {
+          "DossierPath": "source-dossier.json",
+          "DossierSha256": "c81a868533bf6a6016fea6236472d6815f6feaebe5e918d60c2a9b1d6228a1fc",
+          "SourceAuthorityManifestSha256": "2ee44bf19a2533958e5620c38915f3d03fbb81209c76c7183742a4f3d059f501",
+          "DiscoveryMethods": [
+            "exact concordance count",
+            "complete-turn actor review",
+            "Tier 1 then Tier 2 source ranking",
+            "predecessor-evidence adjudication"
+          ],
+          "ExactCount": 96,
+          "BridgedCount": 96,
+          "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+        },
+        "Entry": {
+          "Id": "t_21b44f051c7a",
+          "SourceTerm": "財法二施",
+          "CreatedBy": "R92 source-hierarchy repair",
+          "WrittenUtc": "2026-07-30T10:38:00Z",
+          "Senses": [
+            {
+              "SenseKey": null,
+              "MasterName": null,
+              "PreferredTarget": "the two givings: material support and teaching",
+              "AlternateTargets": [
+                "material and teaching gifts"
+              ],
+              "SearchAliases": [
+                "material and dharma gifts"
+              ],
+              "Status": "preferred",
+              "Validation": "multi-source",
+              "Explanation": "The paired givings of material support supplied by donors and teaching supplied in return or alongside it. Ruibai Mingxue, an unnamed monk questioning Tianyin Yuanxiu, Huangbo Xiyun, and Feiyin Tongrong deploy the paired expression in four independent recorded-sayings families.",
+              "Note": "Equality, completion, or joint fulfillment is supplied by surrounding predicates and is not part of the headword itself.",
+              "Occurrences": [
+                {
+                  "RelPath": "J/J26/J26nB188.xml",
+                  "FromLb": "0751c23",
+                  "ToLb": "0751c27",
+                  "Kwic": "」良久云：「暑退三秋起，冬至一陽生。今日是冬至節屆，躍雲禪友入山設齋，更請山僧登座說法，為大眾結般若緣。正所謂財法二施。今問大眾，且道應時納祐一句作麼生道？天寒日色淡，水冷草方枯。」上堂。「道本無言，徒為指示。殺活縱奪，露布門庭",
+                  "MasterName": "Ruibai Mingxue",
+                  "Curated": true,
+                  "ContextMasters": [
+                    {
+                      "MasterName": "Ruibai Mingxue",
+                      "Roles": [
+                        "utterer",
+                        "record-owner"
+                      ]
+                    }
+                  ],
+                  "ContextActors": [],
+                  "AttributionNote": "Source record (J/J26/J26nB188.xml). Recorded Sayings of Chan Master Rujiu Ruibai. Exact actor: Ruibai Mingxue. The complete source frame assigns the retained headword-bearing action to Ruibai Mingxue.",
+                  "DraftActorProof": {
+                    "ExactHeadwordClause": "財法二施",
+                    "GrammaticalSubject": "Ruibai Mingxue",
+                    "SpeechFrame": "Source record (J/J26/J26nB188.xml). Recorded Sayings of Chan Master Rujiu Ruibai. Exact actor: Ruibai Mingxue. The complete source frame assigns the retained headword-bearing action to Ruibai Mingxue.",
+                    "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to Ruibai Mingxue."
+                  }
+                },
+                {
+                  "RelPath": "J/J25/J25nB171.xml",
+                  "FromLb": "0539a29",
+                  "ToLb": "0539b04",
+                  "Kwic": "隨緣。尋常簡點無欺處，纔向煙波擲釣竿。」以拄杖作釣勢云：「不惜性命者，上來吞餌。」僧問：「信施營齋，法王陞座，財法二施兼周，未審無事衲僧憑何報德？」師橫呈拄杖。進云：「與麼一粒一莖，布雲水缽中，咸成菩提種草。或語或默，與寶華座下",
+                  "MasterName": null,
+                  "Curated": true,
+                  "ContextMasters": [
+                    {
+                      "MasterName": "Tianyin Yuanxiu",
+                      "Roles": [
+                        "respondent",
+                        "record-owner"
+                      ]
+                    }
+                  ],
+                  "ContextActors": [],
+                  "AttributionNote": "Source record (J/J25/J25nB171.xml). Recorded Sayings of Monk Tianyin. Action performer: the unnamed monk questioning Tianyin Yuanxiu. The complete source frame assigns the retained headword-bearing action to the unnamed monk questioning Tianyin Yuanxiu.",
+                  "ActorAttribution": {
+                    "Status": "reviewed-unnamed",
+                    "Kind": "person",
+                    "ActorLabel": "the unnamed monk questioning Tianyin Yuanxiu",
+                    "ActorRole": "questioner",
+                    "RungsChecked": [
+                      "line",
+                      "expanded-context",
+                      "section-header",
+                      "book-title",
+                      "tei-header",
+                      "parallel-passage"
+                    ],
+                    "GrammarEvidence": "The complete source frame assigns the retained headword-bearing action to the unnamed monk questioning Tianyin Yuanxiu.",
+                    "ReviewedBy": "R92 frozen source-first adjudication",
+                    "ReviewedUtc": "2026-07-30T14:12:00Z",
+                    "AuthoredVoiceRiskReviewed": true
+                  },
+                  "DraftActorProof": {
+                    "ExactHeadwordClause": "財法二施",
+                    "GrammaticalSubject": "the unnamed monk questioning Tianyin Yuanxiu",
+                    "SpeechFrame": "Source record (J/J25/J25nB171.xml). Recorded Sayings of Monk Tianyin. Action performer: the unnamed monk questioning Tianyin Yuanxiu. The complete source frame assigns the retained headword-bearing action to the unnamed monk questioning Tianyin Yuanxiu.",
+                    "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to the unnamed monk questioning Tianyin Yuanxiu."
+                  }
+                },
+                {
+                  "RelPath": "J/J25/J25nB174.xml",
+                  "FromLb": "0692c24",
+                  "ToLb": "0692c28",
+                  "Kwic": "奇功；魔宮虎穴能穿過，掉臂歸來笑自濃。」復舉：「甘贄行者一日到南泉設齋，黃檗為首座。甘曰：『請施財。』檗曰：『財法二施，等無差別。』甘曰：『若恁麼，爭消得某甲嚫？』便將下去。頃又復來曰：『請施財。』檗曰：『",
+                  "MasterName": "Huangbo Xiyun",
+                  "Curated": true,
+                  "ContextMasters": [
+                    {
+                      "MasterName": "Huangbo Xiyun",
+                      "Roles": [
+                        "utterer"
+                      ]
+                    },
+                    {
+                      "MasterName": "Juelang Daosheng",
+                      "Roles": [
+                        "later-quoter",
+                        "commentator",
+                        "record-owner"
+                      ]
+                    }
+                  ],
+                  "ContextActors": [],
+                  "AttributionNote": "Source record (J/J25/J25nB174.xml). Recorded Sayings of Chan Master Juelangsheng of Tianjie. Exact actor: Huangbo Xiyun. The complete source frame assigns the retained headword-bearing action to Huangbo Xiyun.",
+                  "DraftActorProof": {
+                    "ExactHeadwordClause": "財法二施",
+                    "GrammaticalSubject": "Huangbo Xiyun",
+                    "SpeechFrame": "Source record (J/J25/J25nB174.xml). Recorded Sayings of Chan Master Juelangsheng of Tianjie. Exact actor: Huangbo Xiyun. The complete source frame assigns the retained headword-bearing action to Huangbo Xiyun.",
+                    "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to Huangbo Xiyun."
+                  }
+                },
+                {
+                  "RelPath": "J/J26/J26nB178.xml",
+                  "FromLb": "0151b30",
+                  "ToLb": "0151c04",
+                  "Kwic": "齋，在徑山開法，亦到徑山獻供，於福嚴興造，亦曾贊助，而今在此堯峰建立法幢，亦復如是，更請老僧上堂為人說法，可謂財法二施，等無差別。且法又作麼生說？祖師門下，只有明心見性、成佛作祖之法門。只如心又作麼生明？過去心不可得，未來心不可",
+                  "MasterName": "Feiyin Tongrong",
+                  "Curated": true,
+                  "ContextMasters": [
+                    {
+                      "MasterName": "Feiyin Tongrong",
+                      "Roles": [
+                        "utterer",
+                        "record-owner"
+                      ]
+                    }
+                  ],
+                  "ContextActors": [],
+                  "AttributionNote": "Source record (J/J26/J26nB178.xml). Recorded Sayings of Chan Master Feiyin. Exact actor: Feiyin Tongrong. The complete source frame assigns the retained headword-bearing action to Feiyin Tongrong.",
+                  "DraftActorProof": {
+                    "ExactHeadwordClause": "財法二施",
+                    "GrammaticalSubject": "Feiyin Tongrong",
+                    "SpeechFrame": "Source record (J/J26/J26nB178.xml). Recorded Sayings of Chan Master Feiyin. Exact actor: Feiyin Tongrong. The complete source frame assigns the retained headword-bearing action to Feiyin Tongrong.",
+                    "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to Feiyin Tongrong."
+                  }
+                }
+              ],
+              "ClaimAnchors": [],
+              "SourceTexts": [
+                "J/J26/J26nB188.xml",
+                "J/J25/J25nB171.xml",
+                "J/J25/J25nB174.xml",
+                "J/J26/J26nB178.xml"
+              ],
+              "RelatedMasters": [
+                "Ruibai Mingxue",
+                "Tianyin Yuanxiu",
+                "Huangbo Xiyun",
+                "Juelang Daosheng",
+                "Feiyin Tongrong"
+              ],
+              "RelatedTerms": [],
+              "ExplanationParts": {
+                "CorpusEarnedOpening": "The paired givings of material support supplied by donors and teaching supplied in return or alongside it.",
+                "EvidenceBody": [
+                  "Ruibai Mingxue, an unnamed monk questioning Tianyin Yuanxiu, Huangbo Xiyun, and Feiyin Tongrong deploy the paired expression in four independent recorded-sayings families."
+                ]
+              },
+              "DraftEvidence": {
+                "LiteralGraphFloor": "the two givings: material support and teaching",
+                "LexicalJob": "財法二施 means the two givings: material support and teaching.",
+                "DeploymentClasses": [
+                  "authored verse",
+                  "direct instruction"
+                ],
+                "HighValueEvidenceLedger": [
+                  {
+                    "Disposition": "keep",
+                    "Finding": "The complete source frame assigns the retained headword-bearing action to Ruibai Mingxue.",
+                    "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+                  },
+                  {
+                    "Disposition": "keep",
+                    "Finding": "The complete source frame assigns the retained headword-bearing action to the unnamed monk questioning Tianyin Yuanxiu.",
+                    "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+                  },
+                  {
+                    "Disposition": "keep",
+                    "Finding": "The complete source frame assigns the retained headword-bearing action to Huangbo Xiyun.",
+                    "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+                  },
+                  {
+                    "Disposition": "keep",
+                    "Finding": "The complete source frame assigns the retained headword-bearing action to Feiyin Tongrong.",
+                    "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+                  }
+                ],
+                "OpeningClaimEvidenceKeys": [
+                  "o1",
+                  "o2",
+                  "o3",
+                  "o4"
+                ],
+                "EvidenceBodyClaimKeys": [
+                  [
+                    "o1",
+                    "o2",
+                    "o3",
+                    "o4"
+                  ]
+                ],
+                "ZenBend": "The paired givings of material support supplied by donors and teaching supplied in return or alongside it.",
+                "CounterexampleOrLimit": "Equality, completion, or joint fulfillment is supplied by surrounding predicates and is not part of the headword itself.",
+                "DifferentThingTest": {
+                  "Decision": "one-thing",
+                  "ComparedThings": [
+                    "the two givings: material support and teaching"
+                  ],
+                  "Reason": "One lexical job."
+                },
+                "AliasRationale": "Alternates preserve the same lexical job.",
+                "ModifierControls": [
+                  {
+                    "Term": "財法二施",
+                    "Finding": "No modifier creates a second referent."
+                  }
+                ],
+                "FamilyControls": [
+                  {
+                    "Term": "財法二施",
+                    "Finding": "4 independent higher-tier families meet the floor."
+                  }
+                ],
+                "IndependentWorkIds": [
+                  "work:J26nB188",
+                  "work:J25nB171",
+                  "work:J25nB174",
+                  "work:J26nB178"
+                ],
+                "SourceAuthorityRows": [
+                  {
+                    "EvidenceKey": "o1",
+                    "RelPath": "J/J26/J26nB188.xml",
+                    "WorkId": "work:J26nB188",
+                    "Tier": 2,
+                    "SourceClass": "recorded-sayings",
+                    "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+                    "WitnessFamilyId": "two-givings:ruibai-hall",
+                    "DeploymentRole": "original-use"
+                  },
+                  {
+                    "EvidenceKey": "o2",
+                    "RelPath": "J/J25/J25nB171.xml",
+                    "WorkId": "work:J25nB171",
+                    "Tier": 2,
+                    "SourceClass": "recorded-sayings",
+                    "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+                    "WitnessFamilyId": "two-givings:tianyin-question",
+                    "DeploymentRole": "original-use"
+                  },
+                  {
+                    "EvidenceKey": "o3",
+                    "RelPath": "J/J25/J25nB174.xml",
+                    "WorkId": "work:J25nB174",
+                    "Tier": 2,
+                    "SourceClass": "recorded-sayings",
+                    "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+                    "WitnessFamilyId": "two-givings:ganzi-huangbo",
+                    "DeploymentRole": "original-use"
+                  },
+                  {
+                    "EvidenceKey": "o4",
+                    "RelPath": "J/J26/J26nB178.xml",
+                    "WorkId": "work:J26nB178",
+                    "Tier": 2,
+                    "SourceClass": "recorded-sayings",
+                    "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+                    "WitnessFamilyId": "two-givings:feiyin-hall",
+                    "DeploymentRole": "original-use"
+                  }
+                ],
+                "LampExcessJustification": "No Tier-3 lamp retained.",
+                "NoHigherWitnessSearchReceipt": "Tier 1 searched first, then Tier 2; no lamp needed.",
+                "DepthHarvestReceipt": {
+                  "Complete": true,
+                  "ReviewedExactHitCount": 96,
+                  "AvailableSourceFiles": 51,
+                  "SearchedDeploymentClasses": [
+                    "authored verse",
+                    "direct instruction"
+                  ],
+                  "OmissionAudit": [
+                    "4 retained cases actor-adjudicated.",
+                    "No lamp retained."
+                  ]
+                }
+              },
+              "DraftAcceptedDerivedFields": {
+                "SourceTexts": [
+                  "J/J26/J26nB188.xml",
+                  "J/J25/J25nB171.xml",
+                  "J/J25/J25nB174.xml",
+                  "J/J26/J26nB178.xml"
+                ],
+                "RelatedMasters": [
+                  "Ruibai Mingxue",
+                  "Tianyin Yuanxiu",
+                  "Huangbo Xiyun",
+                  "Juelang Daosheng",
+                  "Feiyin Tongrong"
+                ]
+              }
+            }
+          ],
+          "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+        },
+        "FamilyHarvest": {
+          "PolicyVersion": 1,
+          "Scope": "R92 source-hierarchy repair",
+          "Edges": [],
+          "NegativeReceipt": [],
+          "GraphicVariants": []
+        }
+      }
+    }
+  ],
+  "replacementStaging": {
+    "mode": "authorized-replacement",
+    "ids": [
+      "t_219099a33daa",
+      "t_21a3463bc0db",
+      "t_21b44f051c7a"
+    ],
+    "authorizationPath": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r92-retry2-replacement-staging-authority-root.json",
+    "authorizationSha256": "c8850e1b8d751e9982d7962564f6f63e296fd9ca00f23a86152ee825e1c88b76"
+  }
+}

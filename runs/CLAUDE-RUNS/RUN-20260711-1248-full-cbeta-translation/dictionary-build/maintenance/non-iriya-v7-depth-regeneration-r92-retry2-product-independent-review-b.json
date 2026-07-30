@@ -1,0 +1,60 @@
+{
+  "schemaVersion": "r92-retry2-product-independent-review.v1",
+  "cohort": "R92",
+  "reviewer": "Codex r92_product_review_b",
+  "reviewMode": "independent semantic and source-first review of exact retry2 products against frozen R92 evidence; no edits, rescans, or publication",
+  "bindings": {
+    "constructionManifest": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r92-retry2-construction-manifest-b.json",
+      "sha256": "78a3e37a69a917895cef1242f18bdf1ff4b90932fba74813da8dcdcec1dbf957"
+    },
+    "products": [
+      {
+        "id": "t_219099a33daa",
+        "sha256": "1851fa3d1be027706c496dfe2c5ba1d30449f5998fc96ba75cf4622d8b14931b"
+      },
+      {
+        "id": "t_21a3463bc0db",
+        "sha256": "7bc95a32e9d7dd9a99aa10dc083c0486ab9f1e973665b26f062501b9e71768fa"
+      },
+      {
+        "id": "t_21b44f051c7a",
+        "sha256": "2304e8a688fded4103efb27daa4de6dcb3b9bc348dbfe0e3c0663242ffebe5d3"
+      }
+    ]
+  },
+  "entryReviews": [
+    {
+      "id": "t_219099a33daa",
+      "term": "疾入於涅槃",
+      "verdict": "pass",
+      "finding": "The fixed counterfactual clause, final-extinction rendering, semantic limit, four Tier-2 active later deployments, represented Shakyamuni voice, and four independent families remain supported by their complete quoted frames."
+    },
+    {
+      "id": "t_21a3463bc0db",
+      "term": "隨處",
+      "verdict": "pass",
+      "finding": "All seven exact spans support one locative-distributive sense; the authored-work classifications and seven distinct deployment families match the frozen adjudication. The retry2 product restores canonical ContextMasters roles for every roster-linked exact actor."
+    },
+    {
+      "id": "t_21b44f051c7a",
+      "term": "財法二施",
+      "verdict": "pass",
+      "finding": "Ruibai Mingxue's direct winter-solstice hall deployment correctly replaces the lay-authored Wang witness. The public product contains no Wang Kentang occurrence or claim. Ruibai, the Tianyin question, the inherited Huangbo-Ganzi case, and Feiyin's hall address are four independent Tier-2 recorded-sayings families. Each complete quote supports the paired material-and-teaching givings and the explanation does not import equality or completion into the headword."
+    }
+  ],
+  "cohortChecks": {
+    "exactHeadwordPresentInEveryPublicQuote": true,
+    "exactSpanAndQuoteSupport": "pass",
+    "ruibaiReplacement": "pass",
+    "wangAbsentFromPublicProduct": true,
+    "lampOccurrences": 0,
+    "familyIndependence": "pass",
+    "sourceTierClassification": "pass",
+    "explanationsAndLimits": "pass",
+    "unsupportedClassificationFound": false
+  },
+  "hardFailures": [],
+  "hardPass": true,
+  "publishAuthorized": true
+}

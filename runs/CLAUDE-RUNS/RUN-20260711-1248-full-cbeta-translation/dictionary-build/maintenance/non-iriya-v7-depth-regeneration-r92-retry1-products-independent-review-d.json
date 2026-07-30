@@ -1,0 +1,134 @@
+{
+  "schemaVersion": "r92-retry1-products-independent-review.v1",
+  "cohort": "R92",
+  "retry": 1,
+  "reviewer": "Codex independent product review D",
+  "startedEpoch": 1785421261.869296,
+  "reviewedUtc": "2026-07-30T14:27:00Z",
+  "verdict": "FAIL",
+  "boundProducts": [
+    {
+      "id": "t_219099a33daa",
+      "term": "疾入於涅槃",
+      "path": "fresh-build/entries/t_219099a33daa/entry.v2.json",
+      "sha256": "1851fa3d1be027706c496dfe2c5ba1d30449f5998fc96ba75cf4622d8b14931b"
+    },
+    {
+      "id": "t_21a3463bc0db",
+      "term": "隨處",
+      "path": "fresh-build/entries/t_21a3463bc0db/entry.v2.json",
+      "sha256": "5a5de1f16c0659fc6c2268fe24fb9a63d4cfb4c3acf62abd3bff662cc8fc8741"
+    },
+    {
+      "id": "t_21b44f051c7a",
+      "term": "財法二施",
+      "path": "fresh-build/entries/t_21b44f051c7a/entry.v2.json",
+      "sha256": "822c2c4190c6dc819e908605607898eb66323c70abb81b2e3a30113604b5370c"
+    }
+  ],
+  "frozenBindings": {
+    "extractionPath": "maintenance/non-iriya-v7-depth-regeneration-r92-extraction-output-b.json",
+    "extractionSha256": "46fa8c86ea017ea178151a4cc0376b0e145d22f5111c52501745bd3fe2c1ded7",
+    "adjudications": [
+      "maintenance/non-iriya-v7-depth-regeneration-r92-adjudication-a.json",
+      "maintenance/non-iriya-v7-depth-regeneration-r92-adjudication-c.json"
+    ],
+    "constructorConfigSha256": "38229ae6773b29fc079c26d46a642edbd53edbf1937ccad0d95689ca7acdb3e8",
+    "manifestSha256": "6c36dca79c9f9e0fa414738ad23fd3322b5ec32cb947e906bcc57a143c415d35",
+    "preclosureSha256": "889091d7f4163e7f883a46284216034271323f5642d123e0451a425470d12eca",
+    "closureSha256": "ca2cc52a7410f48103e586b552029f54ee307c7610f9e40aada299f5961a1a2a"
+  },
+  "reviewCoordinates": {
+    "frozenExtractionAndAdjudication": {
+      "result": "PASS",
+      "finding": "All 15 retained occurrences use the adjudicated paths, headwords, actors, and source families; no excluded or reserve candidate entered the products."
+    },
+    "sourceHierarchy": {
+      "result": "PASS",
+      "finding": "Source mix is seven Tier 1 witnesses and eight Tier 2 witnesses, with zero Tier 3 lamps. No weaker witness pads a filled floor."
+    },
+    "semanticClaims": {
+      "result": "PASS",
+      "finding": "The preferred targets, one-sense rulings, limits, and prose stay within the frozen adjudications. The products do not import equality into 財法二施 or turn 疾入於涅槃 into a general death injunction."
+    },
+    "witnessIndependence": {
+      "result": "PASS",
+      "finding": "隨處 has seven distinct authored works/families; 財法二施 has four distinct deployments with the repeated Ganzi-Huangbo family deduplicated; 疾入於涅槃 retains four independently framed active recorded/commentarial deployments rather than parallel Dahui or compiled padding."
+    },
+    "headwordAndSourceSpread": {
+      "result": "PASS",
+      "finding": "Every KWIC contains exactly one governed headword span. Occurrence counts and distinct source counts are 4/4, 7/7, and 4/4, matching the respective floors."
+    },
+    "compilerParity": {
+      "result": "PASS",
+      "finding": "A fresh independent --new-entry compile into a temporary directory reproduced all three product SHA-256 hashes byte-for-byte. The retry manifest also binds the same worksheet, compile-report, and product hashes."
+    },
+    "actorClosure": {
+      "result": "FAIL",
+      "finding": "Six roster-linked exact actors retain MasterName but lose the mandatory ContextMasters row carrying their proved role. ACTOR_AUDIT requires named successes as well as exceptions to carry structured role evidence. The generic machine closure did not cover this acceptance rule."
+    }
+  },
+  "hardFailures": [
+    {
+      "entry": "t_21a3463bc0db",
+      "occurrence": "D/D50/D50n8945.xml",
+      "exactActor": "Xuefeng Huikong",
+      "missingContextMasterRoles": [
+        "verse-author"
+      ]
+    },
+    {
+      "entry": "t_21a3463bc0db",
+      "occurrence": "T/T48/T48n2013.xml",
+      "exactActor": "Yongjia Xuanjue",
+      "missingContextMasterRoles": [
+        "utterer"
+      ]
+    },
+    {
+      "entry": "t_21a3463bc0db",
+      "occurrence": "T/T48/T48n2015.xml",
+      "exactActor": "Guifeng Zongmi",
+      "missingContextMasterRoles": [
+        "utterer"
+      ]
+    },
+    {
+      "entry": "t_21a3463bc0db",
+      "occurrence": "T/T48/T48n2018.xml",
+      "exactActor": "Yongming Yanshou",
+      "missingContextMasterRoles": [
+        "verse-author"
+      ]
+    },
+    {
+      "entry": "t_21b44f051c7a",
+      "occurrence": "J/J25/J25nB174.xml",
+      "exactActor": "Huangbo Xiyun",
+      "missingContextMasterRoles": [
+        "utterer"
+      ],
+      "note": "Juelang Daosheng is correctly retained contextually, but the exact actor's own role row is absent."
+    },
+    {
+      "entry": "t_21b44f051c7a",
+      "occurrence": "J/J26/J26nB178.xml",
+      "exactActor": "Feiyin Tongrong",
+      "missingContextMasterRoles": [
+        "utterer",
+        "record-owner"
+      ],
+      "note": "This directly loses the frozen adjudication's explicit Feiyin context-master ruling."
+    }
+  ],
+  "rootCause": "The R84 inherited emitter initially creates a linked actor ContextMasters row, then unconditionally replaces the list with role_meta.contextMasters. builder_use always supplies that key, including an empty list, so the exact linked actor role is erased.",
+  "boundedRepair": [
+    "Change the adapter/emitter handoff so contextual additions are merged with, not substituted for, the linked exact actor's canonical role row.",
+    "Preserve Feiyin's adjudicated record-owner role in addition to utterer.",
+    "Add a whole-config regression asserting that every non-null MasterName occurs in ContextMasters with its exact actor role.",
+    "Regenerate only the three R92 products from the unchanged frozen extraction and adjudications, then rerun compiler parity and independent review."
+  ],
+  "researchRedoRequired": false,
+  "publicationAuthorized": false,
+  "productionDataModified": false
+}

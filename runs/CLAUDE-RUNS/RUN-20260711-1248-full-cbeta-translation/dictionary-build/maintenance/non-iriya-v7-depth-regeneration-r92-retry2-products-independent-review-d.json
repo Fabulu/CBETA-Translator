@@ -1,0 +1,95 @@
+{
+  "schemaVersion": "r92-retry2-products-independent-review.v1",
+  "cohort": "R92",
+  "retry": 2,
+  "reviewer": "Codex independent product review D",
+  "startedEpoch": 1785421931.7709854,
+  "reviewedUtc": "2026-07-30T14:35:00Z",
+  "verdict": "PASS",
+  "boundProducts": [
+    {
+      "id": "t_219099a33daa",
+      "term": "疾入於涅槃",
+      "sha256": "1851fa3d1be027706c496dfe2c5ba1d30449f5998fc96ba75cf4622d8b14931b"
+    },
+    {
+      "id": "t_21a3463bc0db",
+      "term": "隨處",
+      "sha256": "7bc95a32e9d7dd9a99aa10dc083c0486ab9f1e973665b26f062501b9e71768fa"
+    },
+    {
+      "id": "t_21b44f051c7a",
+      "term": "財法二施",
+      "sha256": "2304e8a688fded4103efb27daa4de6dcb3b9bc348dbfe0e3c0663242ffebe5d3"
+    }
+  ],
+  "constructionBindings": {
+    "manifestPath": "maintenance/non-iriya-v7-depth-regeneration-r92-retry2-construction-manifest-b.json",
+    "manifestSha256": "78a3e37a69a917895cef1242f18bdf1ff4b90932fba74813da8dcdcec1dbf957",
+    "closurePath": "maintenance/non-iriya-v7-depth-regeneration-r92-retry2-closure-b.json",
+    "closureSha256": "26e84159bbac899f6575fec3384dcfe7be986ed190b865a317b63d5dc08ff99f",
+    "elapsedSeconds": 4.864688396453857,
+    "deadlineSeconds": 180,
+    "hardPass": true,
+    "publicMutation": false,
+    "rosterMutation": false
+  },
+  "priorFailureResolution": [
+    {
+      "failure": "Roster-linked exact actors were lost from ContextMasters.",
+      "result": "RESOLVED",
+      "evidence": [
+        "Xuefeng Huikong retains verse-author.",
+        "Yongjia Xuanjue retains utterer.",
+        "Guifeng Zongmi retains utterer.",
+        "Yongming Yanshou retains verse-author.",
+        "Huangbo Xiyun retains utterer while Juelang Daosheng remains a distinct later-raiser/commentator/record-owner.",
+        "Feiyin Tongrong retains one deduplicated row with utterer and record-owner."
+      ]
+    },
+    {
+      "failure": "Wang Kentang's lay-authored witness was mislabeled Tier 1/master-authored.",
+      "result": "RESOLVED",
+      "evidence": "Wang is absent. The replacement is the already frozen J/J26/J26nB188.xml reserve candidate: Ruibai Mingxue's direct Tier 2 recorded-sayings hall address, with Ruibai as exact utterer and record owner."
+    }
+  ],
+  "reviewCoordinates": {
+    "linkedContextMastersMerge": {
+      "result": "PASS",
+      "finding": "Every occurrence with non-null MasterName also carries that same canonical actor in ContextMasters with its adjudicated exact role; duplicate roles are absent."
+    },
+    "exactActors": {
+      "result": "PASS",
+      "finding": "All 15 headword turns retain their frozen exact actor branch. Shakyamuni remains the represented utterer rather than later commentators; the Tianyin monk remains reviewed unnamed; Ruibai, Huangbo, and Feiyin are the direct linked utterers."
+    },
+    "sourceMix": {
+      "result": "PASS",
+      "tier1": 7,
+      "tier2": 8,
+      "tier3Lamps": 0,
+      "finding": "隨處 uses seven Tier 1 authored works. 疾入於涅槃 and 財法二施 use eight Tier 2 recorded/commentarial witnesses. No lamp or lay-authored Tier 1 padding remains."
+    },
+    "witnessIndependence": {
+      "result": "PASS",
+      "finding": "The products retain 15 distinct works across their adjudicated deployment families: 4, 7, and 4 respectively. The Ruibai substitution is independent of the Tianyin question, Ganzi-Huangbo case, and Feiyin address."
+    },
+    "semanticClaims": {
+      "result": "PASS",
+      "finding": "The first two articles preserve their accepted meanings and limits. 財法二施 now accurately names four recorded-sayings families and still keeps equality/completion outside the lexical headword."
+    },
+    "compilerParity": {
+      "result": "PASS",
+      "finding": "Independent --new-entry recompilation into a temporary directory reproduced all three exact product hashes byte-for-byte."
+    },
+    "manifestAndClosureParity": {
+      "result": "PASS",
+      "finding": "The retry2 manifest binds the same dossier, worksheet, compile-report, and product hashes observed on disk; closure binds that manifest, is hard-pass, and records no public or roster mutation."
+    },
+    "recurrenceAudit": {
+      "result": "PASS",
+      "finding": "Neither retry1 failure recurs, and no new actor-role, tier, family, semantic, or compiler-parity defect was found in the corrected coordinates."
+    }
+  },
+  "publicationAuthorized": true,
+  "productionDataModified": false
+}

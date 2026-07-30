@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "r92-retry2-mixed-atomic-install.v1",
+  "cohort": "R92",
+  "authorityPath": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r92-retry2-final-release-authority-root.json",
+  "authoritySha256": "565449ea27f83c349d6df78fd40f73ae0199583acd4ce77b3baf4ed358b5c74c",
+  "bindingsSha256": "45592db47df1db8f370c3cb0e0e4cebaaf22aa6260f5a8a54d62271e2a78e330",
+  "entries": [
+    {
+      "id": "t_219099a33daa",
+      "mode": "create-missing",
+      "baselineSha256": null,
+      "installedEntrySha256": "1851fa3d1be027706c496dfe2c5ba1d30449f5998fc96ba75cf4622d8b14931b"
+    },
+    {
+      "id": "t_21a3463bc0db",
+      "mode": "replace",
+      "baselineSha256": "82f944027691b6186a03fc8999a67d55116022bdc6121549a5778735c6c51202",
+      "installedEntrySha256": "7bc95a32e9d7dd9a99aa10dc083c0486ab9f1e973665b26f062501b9e71768fa"
+    },
+    {
+      "id": "t_21b44f051c7a",
+      "mode": "replace",
+      "baselineSha256": "7ddc8db15d4c99bb3493d8cccc2b202f67a5cc2c38042adeaa8bc901364896e8",
+      "installedEntrySha256": "2304e8a688fded4103efb27daa4de6dcb3b9bc348dbfe0e3c0663242ffebe5d3"
+    }
+  ],
+  "replacementCount": 2,
+  "createdCount": 1,
+  "postInstallHardPass": true
+}

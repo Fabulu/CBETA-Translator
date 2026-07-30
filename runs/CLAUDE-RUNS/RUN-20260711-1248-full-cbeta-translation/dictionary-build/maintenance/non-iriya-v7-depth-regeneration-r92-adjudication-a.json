@@ -1,0 +1,278 @@
+{
+  "schemaVersion": "r92-frozen-source-adjudication.v1",
+  "cohort": "R92",
+  "adjudicator": "Codex r87_research_a",
+  "bindings": {
+    "extraction": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r92-extraction-output-b.json",
+      "sha256": "46fa8c86ea017ea178151a4cc0376b0e145d22f5111c52501745bd3fe2c1ded7"
+    }
+  },
+  "sourceHierarchy": "Prefer proved Zen-master-authored texts, then recorded sayings. Lamps are fallback witnesses, not padding. A directly attributed non-master authored passage may document ordinary usage but does not outrank a Zen master's direct deployment.",
+  "rows": [
+    {
+      "id": "t_219099a33daa",
+      "term": "疾入於涅槃",
+      "requiredFloor": 4,
+      "preferredTarget": "quickly enter final extinction",
+      "alternateTargets": [
+        "hasten into final extinction"
+      ],
+      "literalFloor": "疾 is quickly or urgently; 入於 is enter into; 涅槃 here is the Buddha's final extinction.",
+      "senseRuling": "One fixed clause from the Buddha's reported deliberation, 我寧不說法，疾入於涅槃: “I would rather not teach and quickly enter final extinction.” The later speakers quote, explain, contrast, or alter that clause; the frozen evidence does not establish a second lexical sense.",
+      "semanticLimit": "The clause reports a counterfactual deliberation before the Buddha decides to teach. It is not a general injunction to die, and later funeral wordplay must not be projected back into every occurrence.",
+      "validationRuling": "multi-source",
+      "retained": [
+        {
+          "candidateRow": 2,
+          "relPath": "J/J26/J26nB185.xml",
+          "fromLb": "0608b28",
+          "toLb": "0608b28",
+          "workId": "work:J26nB185",
+          "tier": 2,
+          "sourceTitle": "Recorded Sayings of Chan Master Fushi",
+          "exactActor": "Shakyamuni",
+          "actorStatus": "quoted-case-figure",
+          "contextMasters": [
+            {
+              "name": "Fushi Tongxian",
+              "roles": [
+                "later-quoter",
+                "commentator",
+                "record-owner"
+              ]
+            }
+          ],
+          "deploymentFamily": "Fushi Tongxian's extended account of the Buddha's decision to teach",
+          "deployment": "Fushi quotes the full paired line while narrating the Buddha's hesitation and subsequent use of expedient teaching.",
+          "actorProof": "The headword lies inside the Buddha's first-person speech, introduced within Fushi's explicit narrative of 世尊; Fushi is the later quoter, not the speaker of 我."
+        },
+        {
+          "candidateRow": 3,
+          "relPath": "J/J35/J35nB342.xml",
+          "fromLb": "0804a22",
+          "toLb": "0804a22",
+          "workId": "work:J35nB342",
+          "tier": 2,
+          "sourceTitle": "Recorded Sayings of Chan Master Huayan Shengke",
+          "exactActor": "Shakyamuni",
+          "actorStatus": "quoted-case-figure",
+          "contextMasters": [
+            {
+              "name": "Shengke Deyu",
+              "roles": [
+                "later-quoter",
+                "commentator",
+                "record-owner"
+              ]
+            }
+          ],
+          "deploymentFamily": "Shengke Deyu's tower-entry contrast for the deceased Dekai",
+          "deployment": "Shengke quotes the Buddha's line, contrasts saying with doing, and then makes his own compressed alteration, 我寧不說疾入.",
+          "actorProof": "世尊說得行不得 explicitly assigns the preceding quoted line to the World-Honored One; Shengke's own voice begins with the contrast and 師遂."
+        },
+        {
+          "candidateRow": 4,
+          "relPath": "M/M59/M59n1540.xml",
+          "fromLb": "0890a03",
+          "toLb": "0890a03",
+          "workId": "chan:dahui-pushuo",
+          "tier": 2,
+          "sourceTitle": "General Discourses of Chan Master Dahui Pujue",
+          "exactActor": "Shakyamuni",
+          "actorStatus": "quoted-case-figure",
+          "contextMasters": [
+            {
+              "name": "Dahui Zonggao",
+              "roles": [
+                "later-quoter",
+                "commentator",
+                "record-owner"
+              ]
+            }
+          ],
+          "deploymentFamily": "Dahui Zonggao's explanation of why speaking the teaching is difficult",
+          "deployment": "Dahui raises the formula as the Buddha's response to the danger that hearers will cling to any formulation, then explains the turn to expedient teaching.",
+          "actorProof": "The surrounding subject is 佛在摩竭提國; 所以道 introduces that Buddha's first-person formula. Dahui supplies the framing explanation."
+        },
+        {
+          "candidateRow": 6,
+          "relPath": "T/T48/T48n2003.xml",
+          "fromLb": "0146c01",
+          "toLb": "0146c01",
+          "workId": "work:T48n2003",
+          "tier": 2,
+          "sourceTitle": "Blue Cliff Record",
+          "exactActor": "Shakyamuni",
+          "actorStatus": "quoted-case-figure",
+          "contextMasters": [
+            {
+              "name": "Yuanwu Keqin",
+              "roles": [
+                "later-quoter",
+                "commentator"
+              ]
+            }
+          ],
+          "deploymentFamily": "Yuanwu Keqin's commentary on the Buddha finding no place to open his mouth",
+          "deployment": "Yuanwu quotes the line while explaining that Shakyamuni, after awakening, could find no opening from which to speak.",
+          "actorProof": "釋迦老子成道後 governs the narrative and the quotation is that figure's first-person speech; Yuanwu is the commentator who raises it."
+        }
+      ],
+      "excluded": [
+        {
+          "candidateRow": 1,
+          "relPath": "C/C077/C077n1710.xml",
+          "reason": "Baizhang actively explains the inherited formula, but four clearer independent commentarial deployments already fill the floor."
+        },
+        {
+          "candidateRow": 5,
+          "relPath": "T/T47/T47n1998A.xml",
+          "reason": "Parallel Dahui witness to the retained M59 General Discourses deployment; do not double-count the same speaker and discourse family."
+        },
+        {
+          "candidateRow": 7,
+          "relPath": "X/X69/X69n1346.xml",
+          "reason": "Reserve compiled witness unnecessary after four recorded/commentarial deployments fill the floor."
+        }
+      ],
+      "lampPolicy": {
+        "tier3Consulted": false,
+        "lampFallbackCount": 0,
+        "ruling": "Four non-lamp deployments fill the floor."
+      }
+    },
+    {
+      "id": "t_21b44f051c7a",
+      "term": "財法二施",
+      "requiredFloor": 4,
+      "preferredTarget": "the two givings: material support and teaching",
+      "alternateTargets": [
+        "material and teaching gifts"
+      ],
+      "literalFloor": "財施 is material giving; 法施 is giving the teaching; 二施 marks them as the paired two givings.",
+      "senseRuling": "One paired expression for material support supplied by donors and teaching supplied in return or alongside it. Phrases such as 等無差別, 兼周, and 俱圓 say that the two are equal, both completed, or both fulfilled in a particular passage; equality is not part of the headword itself.",
+      "semanticLimit": "Do not reduce 法施 to donation of books or 財施 to cash alone. In these records food, a feast, or other support supplies the material side, while a master's ascent and address supplies the teaching side.",
+      "validationRuling": "multi-source",
+      "retained": [
+        {
+          "candidateRow": 1,
+          "relPath": "J/J23/J23nB118.xml",
+          "fromLb": "0006c12",
+          "toLb": "0006c12",
+          "workId": "work:J23nB118",
+          "tier": 1,
+          "sourceTitle": "Second Vow Text for Engraving the Great Canon",
+          "exactActor": "Wang Kentang",
+          "actorStatus": "named-nonmaster-author",
+          "contextMasters": [],
+          "deploymentFamily": "Wang Kentang's authored canon-engraving vow",
+          "deployment": "Wang says that engraving the canon brings both material giving and teaching giving to completion and calls it foremost in generosity.",
+          "actorProof": "The passage closes with 念西居士王肯堂書, explicitly naming Wang Kentang as author.",
+          "authorityNote": "Direct authorship makes the wording secure, but this is a named lay author's contextual witness, not top-tier Zen-master doctrine."
+        },
+        {
+          "candidateRow": 2,
+          "relPath": "J/J25/J25nB171.xml",
+          "fromLb": "0539b01",
+          "toLb": "0539b01",
+          "workId": "work:J25nB171",
+          "tier": 2,
+          "sourceTitle": "Recorded Sayings of Chan Master Tianyin Xiu",
+          "exactActor": null,
+          "actorStatus": "reviewed-unnamed",
+          "actorLabel": "the unnamed monk questioning Tianyin Yuanxiu",
+          "actorRole": "questioner",
+          "contextMasters": [
+            {
+              "name": "Tianyin Yuanxiu",
+              "roles": [
+                "respondent",
+                "record-owner"
+              ]
+            }
+          ],
+          "deploymentFamily": "an unnamed monk's question after a donor's feast and Tianyin's ascent",
+          "deployment": "The monk says the donor's feast and the dharma king's ascent jointly complete the two givings, then asks how an unconcerned patch-robed monk repays the kindness.",
+          "actorProof": "僧問 governs the entire headword-bearing question; 師橫呈 introduces Tianyin's response afterward."
+        },
+        {
+          "candidateRow": 3,
+          "relPath": "J/J25/J25nB174.xml",
+          "fromLb": "0692c26",
+          "toLb": "0692c26",
+          "workId": "work:J25nB174",
+          "tier": 2,
+          "sourceTitle": "Recorded Sayings of Chan Master Juelang",
+          "exactActor": "Huangbo Xiyun",
+          "actorStatus": "quoted-case-figure",
+          "contextMasters": [
+            {
+              "name": "Juelang Daosheng",
+              "roles": [
+                "later-raiser",
+                "commentator",
+                "record-owner"
+              ]
+            }
+          ],
+          "deploymentFamily": "the Ganzi-Huangbo material-gift case",
+          "deployment": "When Ganzi asks him to distribute material gifts, Huangbo answers that material giving and teaching giving are equally without distinction.",
+          "actorProof": "The embedded case explicitly gives 檗曰 immediately before the headword; Juelang's own comment begins at 師云 after the quotation."
+        },
+        {
+          "candidateRow": 4,
+          "relPath": "J/J26/J26nB178.xml",
+          "fromLb": "0151c02",
+          "toLb": "0151c02",
+          "workId": "work:J26nB178",
+          "tier": 2,
+          "sourceTitle": "Recorded Sayings of Chan Master Feiyin",
+          "exactActor": "Feiyin Tongrong",
+          "actorStatus": "roster-linked-master",
+          "contextMasters": [
+            {
+              "name": "Feiyin Tongrong",
+              "roles": [
+                "utterer",
+                "record-owner"
+              ]
+            }
+          ],
+          "deploymentFamily": "Feiyin Tongrong's direct hall address after reciprocal support",
+          "deployment": "Feiyin recalls lay supporters providing feasts and offerings and his own ascent to teach, then calls the two givings equal and explains the teaching he offers.",
+          "actorProof": "乃云 introduces Feiyin's uninterrupted address in his own recorded sayings; no embedded speaker governs the headword."
+        }
+      ],
+      "excluded": [
+        {
+          "candidateRow": 5,
+          "relPath": "J/J26/J26nB188.xml",
+          "reason": "Usable direct recorded-sayings reserve, but the floor is already filled by one direct authored witness, one direct master deployment, one independently framed question, and the foundational quoted case."
+        },
+        {
+          "candidateRow": 6,
+          "relPath": "J/J27/J27nB189.xml",
+          "reason": "Repeats and comments on the same Ganzi-Huangbo case retained from candidate 3; exclude as the same inherited deployment family."
+        },
+        {
+          "candidateRow": 7,
+          "relPath": "J/J27/J27nB193.xml",
+          "reason": "Usable direct recorded-sayings reserve; unnecessary after four independent witnesses fill the bounded floor."
+        }
+      ],
+      "lampPolicy": {
+        "tier3Consulted": false,
+        "lampFallbackCount": 0,
+        "ruling": "The floor is filled without lamps; no lamp padding is admitted."
+      }
+    }
+  ],
+  "closure": {
+    "status": "PASS",
+    "scopeExpansion": false,
+    "rescanPerformed": false,
+    "lampCount": 0,
+    "note": "Both rows meet floor four from the frozen extraction. Parallel and same-case witnesses are excluded rather than counted as false independence."
+  }
+}

@@ -1,0 +1,189 @@
+{
+  "schemaVersion": "r92-frozen-source-adjudication.v1",
+  "cohort": "R92",
+  "adjudicator": "Codex r89_final_review",
+  "scope": [
+    {
+      "id": "t_21a3463bc0db",
+      "term": "隨處"
+    }
+  ],
+  "bindings": {
+    "extraction": {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r92-extraction-output-b.json",
+      "sha256": "46fa8c86ea017ea178151a4cc0376b0e145d22f5111c52501745bd3fe2c1ded7"
+    },
+    "sourceAuthority": {
+      "path": "../../../../Assets/Data/zen-source-authority.json",
+      "sha256": "2ee44bf19a2533958e5620c38915f3d03fbb81209c76c7183742a4f3d059f501"
+    }
+  },
+  "scopeControl": {
+    "frozenExtractionOnly": true,
+    "rescanPerformed": false,
+    "candidateAdded": false,
+    "scopeExpanded": false
+  },
+  "sourceHierarchy": "Prefer proved Zen-master-authored texts, then recorded sayings; use lamps only when stronger frozen evidence cannot fill the floor.",
+  "ruling": {
+    "id": "t_21a3463bc0db",
+    "term": "隨處",
+    "requiredFloor": 7,
+    "preferredTarget": "wherever",
+    "alternateTargets": [
+      "everywhere",
+      "in any place"
+    ],
+    "searchAliases": [
+      "wherever one is",
+      "wherever it occurs"
+    ],
+    "literalFloor": "隨 is to follow or accord with; 處 is a place, position, or situation.",
+    "senseCount": 1,
+    "senseRuling": "One locative-distributive sense: at whatever place or situation is in view, or throughout all such places. English syntax may call for 'wherever,' 'everywhere,' or 'in any place.' Uses for displaying a house style, meeting an arising reaction, seeing Buddha, following conditions, teaching people, revealing mind-light, or becoming attached do not establish different lexical things.",
+    "validationRuling": "multi-source",
+    "retained": [
+      {
+        "candidateRow": 1,
+        "relPath": "D/D50/D50n8945.xml",
+        "fromLb": "0044a02",
+        "toLb": "0044a02",
+        "workId": "work:D50n8945",
+        "tier": 1,
+        "sourceTitle": "Outer Collection of Monk Xuefeng Kong",
+        "exactActor": "Xuefeng Huikong",
+        "actorStatus": "roster-linked-master",
+        "actorRole": "verse-author",
+        "familyId": "suichu:xuefeng-house-style",
+        "deployment": "In an authored verse, Xuefeng says that the practitioner displays the house style wherever he goes.",
+        "actorProof": "The headword occurs in the direct authored verse core attributed to Huikong; no embedded speaker governs the line."
+      },
+      {
+        "candidateRow": 2,
+        "relPath": "J/J23/J23nB118.xml",
+        "fromLb": "0019a27",
+        "toLb": "0019a27",
+        "workId": "work:J23nB118",
+        "tier": 1,
+        "sourceTitle": "Posthumous Writings of Chan Master Micang Kai",
+        "exactActor": null,
+        "actorStatus": "identified-unlinked-master",
+        "actorLabel": "Micang Daokai",
+        "actorRole": "utterer",
+        "familyId": "suichu:micang-reaction-melts",
+        "deployment": "Micang advises that when vexation suddenly arises amid affairs, it should melt away wherever it arises.",
+        "actorProof": "The headword-bearing counsel is in Micang Daokai's own letter after his quotation of earlier maxims; it is not part of either quoted line."
+      },
+      {
+        "candidateRow": 3,
+        "relPath": "J/J25/J25nB166.xml",
+        "fromLb": "0301a14",
+        "toLb": "0301a14",
+        "workId": "work:J25nB166",
+        "tier": 1,
+        "sourceTitle": "Dharma Sayings of Fushan",
+        "exactActor": null,
+        "actorStatus": "identified-unlinked-master",
+        "actorLabel": "Fushan Benzhi",
+        "actorRole": "verse-author",
+        "familyId": "suichu:fushan-see-buddha",
+        "deployment": "Fushan's authored verse says that without leaving this very ground one sees the Buddha wherever one is.",
+        "actorProof": "The occurrence is in the numbered authored verse sequence of the work's Benzhi-authored core, not in a separately signed supplement."
+      },
+      {
+        "candidateRow": 4,
+        "relPath": "T/T48/T48n2013.xml",
+        "fromLb": "0394b17",
+        "toLb": "0394b17",
+        "workId": "work:T48n2013",
+        "tier": 1,
+        "sourceTitle": "Yongjia Collection of the Chan School",
+        "exactActor": "Yongjia Xuanjue",
+        "actorStatus": "roster-linked-master",
+        "actorRole": "utterer",
+        "familyId": "suichu:yongjia-follow-conditions",
+        "deployment": "Yongjia argues that once noise and quiet are understood alike, one may follow conditions wherever one is rather than treating mountains as uniquely quiet.",
+        "actorProof": "The headword occurs in Yongjia Xuanjue's sustained authored argument with no quoted speaker change."
+      },
+      {
+        "candidateRow": 5,
+        "relPath": "T/T48/T48n2015.xml",
+        "fromLb": "0400a01",
+        "toLb": "0400a01",
+        "workId": "work:T48n2015",
+        "tier": 1,
+        "sourceTitle": "General Preface to the Collection of Explanations on the Sources of Chan",
+        "exactActor": "Guifeng Zongmi",
+        "actorStatus": "roster-linked-master",
+        "actorRole": "utterer",
+        "familyId": "suichu:zongmi-teachers-save",
+        "deployment": "In his authored question-and-answer exposition, Zongmi contrasts the Buddha's enduring teaching with masters helping people wherever circumstances call.",
+        "actorProof": "The headword lies in the answer introduced by 答 within Zongmi's own authored analytical dialogue, not inside a cited external passage."
+      },
+      {
+        "candidateRow": 7,
+        "relPath": "T/T48/T48n2018.xml",
+        "fromLb": "0997a17",
+        "toLb": "0997a17",
+        "workId": "work:T48n2018",
+        "tier": 1,
+        "sourceTitle": "Mind-Only Verses of Chan Master Zhijue of Yongming",
+        "exactActor": "Yongming Yanshou",
+        "actorStatus": "roster-linked-master",
+        "actorRole": "verse-author",
+        "familyId": "suichu:yanshou-mind-light",
+        "deployment": "Yanshou's authored verse says that prajna naturally displays the light of mind everywhere.",
+        "actorProof": "The line belongs to Yongming Yanshou's continuous authored verse rather than to an embedded quotation."
+      },
+      {
+        "candidateRow": 9,
+        "relPath": "T/T48/T48n2021.xml",
+        "fromLb": "1010b20",
+        "toLb": "1010b20",
+        "workId": "work:T48n2021",
+        "tier": 1,
+        "sourceTitle": "Chan School Collection for Resolving Doubts",
+        "exactActor": null,
+        "actorStatus": "identified-unlinked-master",
+        "actorLabel": "Zhiche",
+        "actorRole": "utterer",
+        "familyId": "suichu:zhiche-attachment",
+        "deployment": "Zhiche's first-person practice warning says that delighting in or becoming attached wherever one is prevents the work from gaining strength.",
+        "actorProof": "The TEI author line identifies 元智徹述, and the headword occurs in Zhiche's sustained first-person authored instruction rather than quoted speech."
+      }
+    ],
+    "excludedOrReserve": [
+      {
+        "candidateRow": 6,
+        "relPath": "T/T48/T48n2016.xml",
+        "fromLb": "0436b22",
+        "reason": "The headword lies inside a passage explicitly introduced by 百門義海云. Its exact lexical actor is the quoted source's author rather than Yongming Yanshou, and seven cleaner direct authored deployments fill the floor."
+      },
+      {
+        "candidateRow": 8,
+        "relPath": "T/T48/T48n2019A.xml",
+        "fromLb": "1000a01",
+        "reason": "The work's attribution to the Korean master Jinul is low-confidence and falls outside the Chinese-master evidence preference; the source is unnecessary once seven high-value Chinese authored deployments fill the floor."
+      },
+      {
+        "candidateRow": 10,
+        "relPath": "X/X63/X63n1225.xml",
+        "fromLb": "0032a02",
+        "reason": "Zongmi's authored narrative about Mazu is usable reserve evidence, but Zongmi already supplies a cleaner retained direct deployment and seven independent author/source families meet the floor without repeating him."
+      }
+    ],
+    "sourceMix": {
+      "tier1": 7,
+      "tier2": 0,
+      "tier3": 0,
+      "occurrences": 7,
+      "independentWorks": 7,
+      "independentFamilies": 7
+    },
+    "lampPolicy": "No lamp consulted or retained; seven independent Tier 1 authored deployments fill the floor.",
+    "hardPass": true
+  },
+  "lineageTouched": false,
+  "publicMutationPerformed": false,
+  "hardPass": true
+}

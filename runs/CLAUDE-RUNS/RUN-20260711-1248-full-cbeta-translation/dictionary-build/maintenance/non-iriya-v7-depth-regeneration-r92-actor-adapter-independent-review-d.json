@@ -1,0 +1,142 @@
+{
+  "schemaVersion": "r92-actor-adapter-independent-review.v1",
+  "cohort": "R92",
+  "reviewer": "Codex independent actor-adapter review D",
+  "reviewedUtc": "2026-07-30T14:20:00Z",
+  "scope": {
+    "builder": "maintenance/build_r92_config_b.py",
+    "adapter": "maintenance/adjudicated_actor_adapter.py",
+    "constructor": "maintenance/generic_bounded_constructor.py",
+    "rules": [
+      "DICTIONARY_ENTRY_GUIDE.md exact-actor XOR gate",
+      "ATTRIBUTION_FIX.md",
+      "ACTOR_AUDIT.md"
+    ]
+  },
+  "verdict": "FAIL",
+  "deterministicMappingRequired": [
+    {
+      "adjudicatedActor": "roster-linked master who bears the headword turn",
+      "MasterName": "canonical roster names[0]",
+      "ActorAttributionStatus": null,
+      "ActorRole": "utterer, verse-author, or another role from the canonical closed vocabulary proved by the complete case"
+    },
+    {
+      "adjudicatedActor": "named master absent from every roster alias",
+      "MasterName": null,
+      "ActorAttributionStatus": "identified-unlinked-master",
+      "ActorLabel": "explicit personal identity",
+      "ActorRole": "canonical closed role; quoted speech maps to utterer"
+    },
+    {
+      "adjudicatedActor": "personally named non-master author or speaker",
+      "MasterName": null,
+      "ActorAttributionStatus": "identified-non-master",
+      "ActorLabel": "explicit personal identity",
+      "ActorRole": "utterer unless the complete case proves compiler or verse-author"
+    },
+    {
+      "adjudicatedActor": "anonymous questioning monk after all six rungs",
+      "MasterName": null,
+      "ActorAttributionStatus": "reviewed-unnamed",
+      "ActorLabel": "explicitly says the questioning monk is unnamed",
+      "ActorRole": "questioner"
+    },
+    {
+      "inputRole": "quoted-speaker",
+      "canonicalOutputRole": "utterer"
+    },
+    {
+      "inputRole": "quoted-case-figure",
+      "canonicalOutputRole": "utterer for the exact quoted headword voice; case-figure is contextual only"
+    },
+    {
+      "inputRole": "author",
+      "canonicalOutputRole": "utterer, compiler, or verse-author as proved by the complete case; author is not a canonical structured role"
+    },
+    {
+      "inputRole": "performer or action-performer",
+      "canonicalOutputRole": "must be adjudicated into the canonical closed vocabulary; neither label is permitted"
+    }
+  ],
+  "canonicalClosedRoles": [
+    "utterer",
+    "respondent",
+    "questioner",
+    "interlocutor",
+    "addressee",
+    "section-subject",
+    "record-owner",
+    "person-described",
+    "person-discussed",
+    "commentator",
+    "later-raiser",
+    "later-quoter",
+    "teacher",
+    "student",
+    "compiler",
+    "verse-author",
+    "case-figure"
+  ],
+  "findings": [
+    {
+      "severity": "hard",
+      "coordinate": "adjudicated_actor_adapter.py:CLOSED_ROLES",
+      "finding": "The adapter adds performer, action-performer, and author to the closed role set, contradicting the guide's exact closed vocabulary."
+    },
+    {
+      "severity": "hard",
+      "coordinate": "adjudicated_actor_adapter.py:verify_builder_uses",
+      "finding": "The verifier never validates the exact actor role at use[4]. It therefore accepts R92's quoted-speaker role even though that role is outside the canonical vocabulary."
+    },
+    {
+      "severity": "hard",
+      "coordinate": "build_r92_config_b.py:verify_builder_uses(specs)",
+      "finding": "R92 does not construct uses through adapt_actor and builder_use. It verifies already handwritten tuples, so the proposed deterministic adapter is not the path that produces the cohort."
+    },
+    {
+      "severity": "hard",
+      "coordinate": "build_r84_config_b.py inherited emitter",
+      "finding": "The inherited emitter passes the handwritten exact actor role through to ActorAttribution.ActorRole and ContextMasters, except for an obsolete performer-to-action-performer rewrite. Invalid role vocabulary can therefore reach canonical compilation."
+    },
+    {
+      "severity": "hard",
+      "coordinate": "R92 財法二施 / Wang Kentang",
+      "finding": "The corrected status identified-non-master is right, but role author remains outside the canonical vocabulary and needs a complete-case-supported canonical role."
+    },
+    {
+      "severity": "medium",
+      "coordinate": "adjudicated_actor_adapter.py:verify_builder_uses",
+      "finding": "A canonical roster name is rejected when labeled identified-unlinked-master, but is not rejected when mislabeled identified-non-master. Every nonlinked named-person status should be checked against all roster aliases."
+    },
+    {
+      "severity": "medium",
+      "coordinate": "adjudicated_actor_adapter.py:adapt_actor",
+      "finding": "quoted-nonroster-figure always becomes identified-unlinked-master. The generic kind name does not prove that every quoted figure is a master; the adjudicated input should distinguish quoted master from quoted non-master."
+    }
+  ],
+  "r92RowAssessment": [
+    {
+      "term": "疾入於涅槃",
+      "assessment": "Actor identity and contextual later-quoter separation are structurally sound; quoted-speaker must deterministically map to utterer."
+    },
+    {
+      "term": "隨處",
+      "assessment": "The shown linked and identified-unlinked-master branches are structurally plausible; exact roles used here are canonical."
+    },
+    {
+      "term": "財法二施",
+      "assessment": "Wang Kentang correctly needs identified-non-master rather than reviewed-unnamed, and the anonymous monk correctly needs reviewed-unnamed/questioner. Wang's author role must be replaced by a canonical complete-case-supported role."
+    }
+  ],
+  "acceptanceConditions": [
+    "Make the adapter the sole constructor-input path for all R92 uses, or remove the claim that it performs deterministic conversion.",
+    "Validate use[4] against the guide's exact closed role vocabulary before config construction.",
+    "Remove performer, action-performer, and author from the adapter's accepted closed roles.",
+    "Encode and test the explicit quoted-speaker to utterer mapping.",
+    "Encode and test Wang Kentang's reviewed canonical role.",
+    "Reject every nonlinked named identity that matches any roster alias, regardless of the chosen nonlinked status.",
+    "Run focused adapter tests and the constructor's whole-config actor closure before writing R92 products."
+  ],
+  "productionDataModified": false
+}

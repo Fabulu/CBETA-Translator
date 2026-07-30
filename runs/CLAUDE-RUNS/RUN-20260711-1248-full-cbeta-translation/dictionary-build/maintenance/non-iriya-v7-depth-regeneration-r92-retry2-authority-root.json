@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "r92-explicit-corrected-retry-authority.v1",
+  "cohort": "R92",
+  "retryOrdinal": 2,
+  "decision": "AUTHORIZE_CORRECTED_RETRY",
+  "authorizedEpoch": 1785421931.7709854,
+  "boundInputs": {
+    "non-iriya-v7-depth-regeneration-r92-extraction-output-b.json": "46fa8c86ea017ea178151a4cc0376b0e145d22f5111c52501745bd3fe2c1ded7",
+    "non-iriya-v7-depth-regeneration-r92-adjudication-a.json": "4737c9041d840a5199c4e021fd45e4dcf8d14cfa1ecacc7b7e9b8415bdefa42c",
+    "non-iriya-v7-depth-regeneration-r92-adjudication-c.json": "b2122b7347ca361ba608b93568bc062acc2b7ba12f1757de970dcfbf42b80f26",
+    "non-iriya-v7-depth-regeneration-r92-retry1-authority-root.json": "2c373f796a8a0915d34931e5703c28963bd30acc4733f101438be232b04e1d9b",
+    "non-iriya-v7-depth-regeneration-r92-retry1-timegate-root.json": "122d84c1dcfea79b866419f1d2776f8b1e0020fc2ca05649cce393a47e0ca91f",
+    "non-iriya-v7-depth-regeneration-r92-retry1-products-independent-review-d.json": "174a1631c460e52bd88c281439be2658d7ee6c47bba032a7172e246f877663fa",
+    "non-iriya-v7-depth-regeneration-r92-retry1-product-independent-review-b.json": "4a3ca91dd7bab55fff704431493b44d554741a6a0d08fc7fe501ed6a65962cbe",
+    "non-iriya-v7-depth-regeneration-r92-correction-code-independent-review-d.json": "2dbef1b1f9a7c09e2c99141415e93cd4304261b066b4a407ce1c97470011d0d3",
+    "non-iriya-v7-depth-regeneration-r92-correction-input-independent-review-b.json": "ee340ca6b57f4ea5b1e019c9afc264411c360af17c8b0fdccf93372776cae281",
+    "adjudicated_actor_adapter.py": "92c883460504506463c017307e1c4796e6750bcad6f465f8dd599c4501fd7ef3",
+    "build_r84_config_b.py": "5bf4d7aa505ca884c151de3f7d3e37b2fac25446271b76ed2db280c4aef17010",
+    "build_r92_config_b.py": "c03d3d4976413163037fdcdfc3c06dd2d69ce4d407d7db7e3d541a2258642cb6",
+    "test_adjudicated_actor_adapter.py": "286b6302a52b1eae3d92f91c5e27f71bb6e9c6ac4a2f47d4e6703d62dfb34077",
+    "build_r92_retry2_config_b.py": "11de5cdaf739e7eee63d33eb4772b45ead2166fa80ce5ddc091544f5280877c6",
+    "launch_r92_retry2_constructor.py": "da3163e382743485ba37a3bc336afb81265836dca46665dc6f6bf651046331b2"
+  },
+  "historicalFailure": "Retry1 products failed two independent reviews; correction1 config completed but construction hard-stopped before emitting any corrected product.",
+  "scope": {
+    "ids": [
+      "t_219099a33daa",
+      "t_21a3463bc0db",
+      "t_21b44f051c7a"
+    ],
+    "rescanAllowed": false,
+    "scopeExpansionAllowed": false,
+    "publicationAllowed": false,
+    "termInstallationAllowed": false
+  },
+  "deadlinesSeconds": {
+    "config": 60,
+    "firstProduct": 150,
+    "construction": 180,
+    "review": 320,
+    "correction": 410,
+    "publication": 500
+  }
+}

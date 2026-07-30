@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "r92-retry2-publication-receipt.v1",
+  "cohort": "R92",
+  "publicCommit": "46dfb71579fc1adbb1dc718959e1ec501b01a938",
+  "entryCountBefore": 4714,
+  "entryCountAfter": 4714,
+  "replacementCount": 3,
+  "creationCount": 0,
+  "replacementIds": [
+    "t_219099a33daa",
+    "t_21a3463bc0db",
+    "t_21b44f051c7a"
+  ],
+  "changedFiles": [
+    {
+      "path": "termbase.index.json",
+      "sha256": "f347833a7467df1489df1dd29b6c4a2b7177ebb0896673474151a986c8b0539c"
+    },
+    {
+      "path": "termbase.json",
+      "sha256": "b020b8df98e8d7afbd5505f4f7ccbd635366860ec55250c29b4097fe4649c148"
+    },
+    {
+      "path": "termbase.v2.json",
+      "sha256": "b52dacf59ccf041ac81271ac6c589c0ef30e175782376e2a4dc551d24da01345"
+    },
+    {
+      "path": "termbase/161.json",
+      "sha256": "8d24dba500a4a87a6445f818452689c5c639b9f14f253d6a525c7c59a8e54830"
+    },
+    {
+      "path": "termbase/168.json",
+      "sha256": "9bfa896fc4c227d0959fc5953b7efb40a1f7c6c5fbbe919899d5d9e68af8e01e"
+    },
+    {
+      "path": "termbase/190.json",
+      "sha256": "82127faf97aca4f9518c28d09de449d4a1f40021ea043cd7e7d33d3d8f00959b"
+    }
+  ],
+  "aggregateCounts": {
+    "rich": 4714,
+    "legacy": 4714,
+    "index": 4714
+  },
+  "exactProductParity": "3/3",
+  "windowsGitPush": true,
+  "hardPass": true
+}

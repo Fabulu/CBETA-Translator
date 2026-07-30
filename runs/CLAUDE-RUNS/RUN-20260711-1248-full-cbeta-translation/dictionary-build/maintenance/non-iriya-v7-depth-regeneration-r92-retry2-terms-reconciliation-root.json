@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "r92-retry2-terms-reconciliation.v1",
+  "cohort": "R92",
+  "releaseBindings": {
+    "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r92-retry2-release-authority-bindings-root.json",
+    "sha256": "fde406db5f642963944ee945e697e97c8b81674fb7c2a9f150bfd54760f8b666"
+  },
+  "finalReleaseAuthority": {
+    "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r92-retry2-final-release-authority-root.json",
+    "sha256": "ef13c49bb7d231cde53148c51199a76b16408652d877d024aec6d31b60054ccc"
+  },
+  "atomicInstallReceipt": {
+    "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r92-retry2-atomic-install-receipt-root.json",
+    "sha256": "b4256ac1741e6c5457cdd3d86fa51beafda3507840d84006646698d1be09b452",
+    "note": "Historical installer receipt bound the pre-root-correction draft; this receipt reconciles installed bytes to the current root bindings and authority."
+  },
+  "installed": [
+    {
+      "id": "t_219099a33daa",
+      "term": "疾入於涅槃",
+      "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_219099a33daa/entry.v2.json",
+      "entrySha256": "1851fa3d1be027706c496dfe2c5ba1d30449f5998fc96ba75cf4622d8b14931b",
+      "matchesReleaseProduct": true
+    },
+    {
+      "id": "t_21a3463bc0db",
+      "term": "隨處",
+      "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_21a3463bc0db/entry.v2.json",
+      "entrySha256": "7bc95a32e9d7dd9a99aa10dc083c0486ab9f1e973665b26f062501b9e71768fa",
+      "matchesReleaseProduct": true
+    },
+    {
+      "id": "t_21b44f051c7a",
+      "term": "財法二施",
+      "path": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/terms/t_21b44f051c7a/entry.v2.json",
+      "entrySha256": "2304e8a688fded4103efb27daa4de6dcb3b9bc348dbfe0e3c0663242ffebe5d3",
+      "matchesReleaseProduct": true
+    }
+  ],
+  "installedProductParity": "3/3",
+  "termsMutationPerformed": false,
+  "hardPass": true
+}
