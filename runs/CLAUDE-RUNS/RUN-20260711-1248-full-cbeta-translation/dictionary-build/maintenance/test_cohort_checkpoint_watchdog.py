@@ -3,6 +3,7 @@ import hashlib, json, os, shutil
 from datetime import datetime, timezone
 from pathlib import Path
 import subprocess, sys, tempfile, unittest
+from maintenance import cohort_checkpoint_watchdog as watchdog
 
 ROOT = Path(__file__).resolve().parent.parent
 W = ROOT / "maintenance/cohort_checkpoint_watchdog.py"
@@ -16,9 +17,15 @@ class CheckpointTests(unittest.TestCase):
         self.temp=tempfile.TemporaryDirectory(dir=ROOT/"maintenance"); self.r=Path(self.temp.name)
         self.terms=["甲","乙"]
         self.ids=["t_"+hashlib.sha256(x.encode()).hexdigest()[:12] for x in self.terms]
+        self.floors=[6,4]
+        self.deadlines={"viability":90,"researchExtraction":120,"adjudicatedConfig":240,
+          "constructor":250,"firstProduct":270,"construction":330,"review":510,
+          "correction":630,"publication":720}
         self.tg=self.r/"timegate.json"
         self.tg.write_text(json.dumps({"startedEpoch":1000,"artifactZero":True,
-          "createdUtc":datetime.fromtimestamp(1000,timezone.utc).isoformat()}))
+          "createdUtc":datetime.fromtimestamp(1000,timezone.utc).isoformat(),
+          "requiredFloors":self.floors,"admittedRequiredOccurrences":10,
+          "deadlinesSeconds":self.deadlines}))
         os.utime(self.tg,(1000,1000))
     def tearDown(self): self.temp.cleanup()
     def call(self,*a): return subprocess.run([sys.executable,str(W),*map(str,a)],capture_output=True,text=True)
@@ -60,8 +67,10 @@ class CheckpointTests(unittest.TestCase):
               "commandAuditPath":str(self.r/"ca"),"engineSha256":sh(engine),"paths":paths,"entries":entries}
         config.write_text(json.dumps(data)); os.utime(config,(1200,1200)); return config
     def constructor_call(self,id_only=False,empty_payload=False,unauthorized=False,decorative=False,now="1249",overwrite=False):
-        rr=self.r/"research-receipt.json"; rr.write_text(json.dumps({"hardPass":True,"ids":self.ids}))
-        rr.write_text(json.dumps({"hardPass":True,"ids":self.ids,"terms":self.terms}))
+        rr=self.r/"research-receipt.json"
+        rr.write_text(json.dumps({"hardPass":True,"ids":self.ids,"terms":self.terms,
+          "requiredFloors":self.floors,"admittedRequiredOccurrences":10,
+          "deadlinesSeconds":self.deadlines}))
         marker=self.r/"invoked"; engine=self.r/"authorized-engine.py"
         engine.write_text(
           "import json,sys\n"+
@@ -86,6 +95,24 @@ class CheckpointTests(unittest.TestCase):
         return result
 
     def test_real_extraction_passes(self): self.assertEqual(0,self.research_call().returncode)
+    def test_r48_evidence_scaled_schedule(self):
+        total,deadlines=watchdog.evidence_schedule([6,6,8])
+        self.assertEqual(20,total)
+        self.assertEqual({"viability":90,"researchExtraction":120,"adjudicatedConfig":300,
+          "constructor":310,"firstProduct":330,"construction":390,"review":570,
+          "correction":690,"publication":780},deadlines)
+    def test_schedule_positive_bounds_and_cap(self):
+        with self.assertRaises(ValueError): watchdog.evidence_schedule([])
+        with self.assertRaises(ValueError): watchdog.evidence_schedule([0])
+        with self.assertRaises(ValueError): watchdog.evidence_schedule([True])
+        total,deadlines=watchdog.evidence_schedule([100])
+        self.assertEqual(100,total)
+        self.assertEqual(330,deadlines["adjudicatedConfig"])
+        self.assertEqual(810,deadlines["publication"])
+    def test_timegate_schedule_mismatch_rejected(self):
+        gate=json.loads(self.tg.read_text()); gate["deadlinesSeconds"]["constructor"]=999
+        self.tg.write_text(json.dumps(gate)); os.utime(self.tg,(1000,1000))
+        self.assertEqual(124,self.research_call().returncode)
     def test_shallow_candidate_rejected(self): self.assertEqual(124,self.research_call(shallow=True).returncode)
     def test_pre_receipt_command_epoch_rejected(self): self.assertEqual(124,self.research_call(pre_epoch=True).returncode)
     def test_late_research_not_invoked(self): self.assertEqual(124,self.research_call(now="1120.1").returncode)
@@ -106,7 +133,8 @@ class CheckpointTests(unittest.TestCase):
 
     def test_viability_count_ids_terms_must_match(self):
         selection=self.r/"selection.json"; union=self.r/"union.json"; count=self.r/"count.json"
-        selection.write_text(json.dumps({"rows":[{"id":i,"term":t} for i,t in zip(self.ids,self.terms)]}))
+        selection.write_text(json.dumps({"rows":[{"id":i,"term":t,"requiredFloor":f}
+          for i,t,f in zip(self.ids,self.terms,self.floors)]}))
         union.write_text(json.dumps({"ids":[]}))
         count.write_text(json.dumps({"results":[{"id":"wrong","term":t,"hits":1} for t in self.terms]}))
         result=self.call("viability","--timegate",self.tg,"--receipt",self.r/"v.json",

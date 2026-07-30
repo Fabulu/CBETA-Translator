@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "cohort-checkpoint-watchdog-independent-authority.v1",
+  "reviewer": "source_tiers_b",
+  "verdict": "PASS",
+  "artifacts": [
+    {
+      "path": "maintenance/cohort_checkpoint_watchdog.py",
+      "sha256": "d7a21824c37a4efbf2e6082873b82c6bf1c6b779a11d3e1108d613238009fa75"
+    },
+    {
+      "path": "maintenance/test_cohort_checkpoint_watchdog.py",
+      "sha256": "a676bd2aaf195833b813a37b9d558e3a3c9b2aefeb5e9bf19ca8d3155560b9e6"
+    }
+  ],
+  "reviewScope": {
+    "orderedFloorsBoundToSelectionAndIds": true,
+    "admittedOccurrenceTotalBoundToFloorSum": true,
+    "deadlineScheduleBoundExactlyToTimegate": true,
+    "r48TwentyOccurrenceScheduleVerified": {
+      "requiredFloors": [
+        4,
+        8,
+        8
+      ],
+      "admittedRequiredOccurrences": 20,
+      "deadlinesSeconds": {
+        "viability": 90,
+        "researchExtraction": 120,
+        "adjudicatedConfig": 300,
+        "constructor": 310,
+        "firstProduct": 330,
+        "construction": 390,
+        "review": 570,
+        "correction": 690,
+        "publication": 780
+      }
+    },
+    "configDeadlineCapVerified": {
+      "largeOccurrenceTotal": 100,
+      "adjudicatedConfig": 330,
+      "publication": 810
+    },
+    "invalidFloorAndScheduleOverridesRejected": true,
+    "priorReceiptFirstConstructorContractPreserved": true
+  },
+  "verification": {
+    "suiteCommand": "PYTHONPATH=. python3 maintenance/test_cohort_checkpoint_watchdog.py",
+    "testsRun": 24,
+    "testsPassed": 24,
+    "testsFailed": 0,
+    "independentAssertions": [
+      "Both [4,8,8] and [6,6,8] produce N=20 and the exact R48 schedule.",
+      "Wrong admittedRequiredOccurrences fails.",
+      "A changed constructor deadline fails.",
+      "A floor-vector/ID cardinality mismatch fails.",
+      "The 330-second adjudicated-config cap holds.",
+      "Both Python files compile."
+    ]
+  },
+  "defects": [],
+  "hardPass": true,
+  "releaseAuthorized": true
+}

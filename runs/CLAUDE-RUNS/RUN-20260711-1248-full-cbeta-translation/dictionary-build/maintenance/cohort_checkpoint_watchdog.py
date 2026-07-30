@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 """Receipt-first staged cohort watchdog.
 
-Deadlines: viability 90s; real bounded extraction 120s; adjudicated config
-240s; generic constructor invocation 250s; first product 270s; construction
-and preclosure 330s.
+Viability and extraction are fixed at 90/120 seconds.  Downstream deadlines
+scale deterministically with the admitted total required occurrences.
 """
 from __future__ import annotations
 
@@ -17,8 +16,32 @@ import sys
 import time
 from datetime import datetime
 
-DEADLINES = {"viability": 90, "research": 120, "config": 240,
-             "constructor": 250, "first-product": 270, "construction": 330}
+def evidence_schedule(required_floors):
+    if not isinstance(required_floors, list) or not required_floors:
+        raise ValueError("requiredFloors must be a nonempty list")
+    if any(isinstance(value, bool) or not isinstance(value, int) or value <= 0
+           for value in required_floors):
+        raise ValueError("requiredFloors must contain positive integers")
+    total = sum(required_floors)
+    config = min(330, 180 + 6 * total)
+    return total, {
+        "viability": 90, "researchExtraction": 120, "adjudicatedConfig": config,
+        "constructor": config + 10, "firstProduct": config + 30,
+        "construction": config + 90, "review": config + 270,
+        "correction": config + 390, "publication": config + 480,
+    }
+
+
+def governed_schedule(gate, ids):
+    floors = gate.get("requiredFloors")
+    if not isinstance(floors, list) or len(floors) != len(ids):
+        raise ValueError("timegate requiredFloors do not match selected IDs")
+    total, deadlines = evidence_schedule(floors)
+    if gate.get("admittedRequiredOccurrences") != total:
+        raise ValueError("timegate admitted occurrence total mismatch")
+    if gate.get("deadlinesSeconds") != deadlines:
+        raise ValueError("timegate deadline schedule mismatch")
+    return floors, total, deadlines
 
 
 def read(path):
@@ -177,13 +200,16 @@ def validate_candidate(candidate, term):
 def viability(args):
     try:
         immutable(args.receipt)
-        _, started, _, elapsed, receipt_mtime = clock(args.timegate, args.now_epoch)
-        if elapsed > DEADLINES["viability"]:
+        gate, started, _, elapsed, receipt_mtime = clock(args.timegate, args.now_epoch)
+        floors, total, deadlines = governed_schedule(gate, args.ids)
+        if elapsed > deadlines["viability"]:
             raise ValueError(f"{elapsed:.3f}s > 90s")
         selection = post_receipt(args.selection, receipt_mtime, "selection")
         union = post_receipt(args.union, receipt_mtime, "union")
         count = post_receipt(args.count, receipt_mtime, "count")
-        exact_rows(selection, args.ids, args.terms)
+        selected = exact_rows(selection, args.ids, args.terms)
+        if [row.get("requiredFloor") for row in selected] != floors:
+            raise ValueError("selection dynamic floors mismatch timegate")
         union_ids = set(read(union).get("ids", []))
         if union_ids.intersection(args.ids):
             raise ValueError("selected IDs collide with union")
@@ -199,6 +225,8 @@ def viability(args):
     write(args.receipt, {"schemaVersion": "cohort-viability-checkpoint.v1",
                          "startedEpoch": started, "elapsedSeconds": elapsed,
                          "ids": args.ids, "terms": args.terms, "selectionSha256": sha(selection),
+                         "requiredFloors": floors, "admittedRequiredOccurrences": total,
+                         "deadlinesSeconds": deadlines,
                          "unionSha256": sha(union), "countSha256": sha(count),
                          "hardPass": True})
     return 0
@@ -208,8 +236,9 @@ def research(args):
     receipt = Path(args.receipt)
     try:
         immutable(receipt)
-        _, started, now, elapsed, receipt_mtime = clock(args.timegate, args.now_epoch)
-        if elapsed > DEADLINES["research"]:
+        gate, started, now, elapsed, receipt_mtime = clock(args.timegate, args.now_epoch)
+        floors, total, deadlines = governed_schedule(gate, args.ids)
+        if elapsed > deadlines["researchExtraction"]:
             raise ValueError(f"{elapsed:.3f}s > 120s")
         audit = post_receipt(args.command_audit, receipt_mtime, "command audit")
         command = list(args.command)
@@ -244,7 +273,9 @@ def research(args):
         return fail(receipt, "research", str(exc))
     write(receipt, {"schemaVersion": "cohort-research-checkpoint.v1",
                     "startedEpoch": started, "invokedEpoch": now,
-                    "elapsedSeconds": elapsed, "deadlineSeconds": 120,
+                    "elapsedSeconds": elapsed, "deadlineSeconds": deadlines["researchExtraction"],
+                    "requiredFloors": floors, "admittedRequiredOccurrences": total,
+                    "deadlinesSeconds": deadlines,
                     "ids": args.ids, "terms": args.terms, "command": command,
                     "commandAuditSha256": sha(audit),
                     "extractionOutputSha256": sha(output),
@@ -258,17 +289,20 @@ def constructor(args):
     receipt = Path(args.receipt)
     try:
         immutable(receipt)
-        _, started, now, elapsed, receipt_mtime = clock(args.timegate, args.now_epoch)
+        gate, started, now, elapsed, receipt_mtime = clock(args.timegate, args.now_epoch)
+        floors, total, deadlines = governed_schedule(gate, args.ids)
         config = post_receipt(args.config, receipt_mtime, "config")
         research_receipt = post_receipt(args.research_receipt, receipt_mtime, "research receipt")
         rr = read(research_receipt)
-        if rr.get("hardPass") is not True or rr.get("ids") != args.ids or rr.get("terms") != args.terms:
+        if rr.get("hardPass") is not True or rr.get("ids") != args.ids or rr.get("terms") != args.terms or \
+           rr.get("requiredFloors") != floors or rr.get("admittedRequiredOccurrences") != total or \
+           rr.get("deadlinesSeconds") != deadlines:
             raise ValueError("research checkpoint is not valid for selected IDs")
         config_elapsed = config.stat().st_mtime - started
-        if config_elapsed > DEADLINES["config"]:
-            raise ValueError(f"adjudicated config late: {config_elapsed:.3f}s > 240s")
-        if elapsed > DEADLINES["constructor"]:
-            raise ValueError(f"constructor invocation late: {elapsed:.3f}s > 250s")
+        if config_elapsed > deadlines["adjudicatedConfig"]:
+            raise ValueError(f"adjudicated config late: {config_elapsed:.3f}s")
+        if elapsed > deadlines["constructor"]:
+            raise ValueError(f"constructor invocation late: {elapsed:.3f}s")
         data = read(config)
         required = {"schemaVersion", "cohort", "startedEpoch", "timegatePath",
                     "watchdogReceiptPath", "commandAuditPath", "engineSha256", "paths", "entries"}
@@ -297,6 +331,8 @@ def constructor(args):
         write(receipt, {"schemaVersion": "cohort-constructor-checkpoint.v1",
                         "startedEpoch": started, "invokedEpoch": now,
                         "ids": args.ids, "terms": args.terms, "configSha256": sha(config),
+                        "requiredFloors": floors, "admittedRequiredOccurrences": total,
+                        "deadlinesSeconds": deadlines,
                         "engineSha256": sha(engine), "wrapperSha256": sha(wrapper),
                         "commandAuditSha256": sha(audit),
                         "command": command, "processState": "starting"})
@@ -306,7 +342,7 @@ def constructor(args):
     except (OSError, ValueError, KeyError, json.JSONDecodeError) as exc:
         return fail(receipt, "constructor", str(exc))
     record = read(receipt)
-    record.update({"elapsedSeconds": elapsed, "deadlineSeconds": 250,
+    record.update({"elapsedSeconds": elapsed, "deadlineSeconds": deadlines["constructor"],
                    "processState": "completed", "returnCode": 0, "hardPass": True})
     write(receipt, record)
     return 0
@@ -315,9 +351,10 @@ def constructor(args):
 def product(args):
     try:
         immutable(args.receipt)
-        _, started, _, elapsed, receipt_mtime = clock(args.timegate, args.now_epoch)
-        if elapsed > DEADLINES["first-product"]:
-            raise ValueError(f"{elapsed:.3f}s > 270s")
+        gate, started, _, elapsed, receipt_mtime = clock(args.timegate, args.now_epoch)
+        floors, total, deadlines = governed_schedule(gate, args.ids)
+        if elapsed > deadlines["firstProduct"]:
+            raise ValueError(f"{elapsed:.3f}s > {deadlines['firstProduct']}s")
         path = post_receipt(args.product, receipt_mtime, "first product")
         if args.id not in args.ids:
             raise ValueError("first product ID is not selected")
@@ -339,6 +376,8 @@ def product(args):
     write(args.receipt, {"schemaVersion": "cohort-first-product-checkpoint.v1",
                          "startedEpoch": started, "elapsedSeconds": elapsed,
                          "id": args.id, "term": args.term, "ids": args.ids,
+                         "requiredFloors": floors, "admittedRequiredOccurrences": total,
+                         "deadlinesSeconds": deadlines,
                          "configSha256": sha(config), "productSha256": sha(path),
                          "compilerReportSha256": sha(report),
                          "hardPass": True})
@@ -348,9 +387,10 @@ def product(args):
 def construction(args):
     try:
         immutable(args.receipt)
-        _, started, _, elapsed, receipt_mtime = clock(args.timegate, args.now_epoch)
-        if elapsed > DEADLINES["construction"]:
-            raise ValueError(f"{elapsed:.3f}s > 330s")
+        gate, started, _, elapsed, receipt_mtime = clock(args.timegate, args.now_epoch)
+        floors, total, deadlines = governed_schedule(gate, args.ids)
+        if elapsed > deadlines["construction"]:
+            raise ValueError(f"{elapsed:.3f}s > {deadlines['construction']}s")
         manifest = post_receipt(args.manifest, receipt_mtime, "manifest")
         preclosure = post_receipt(args.preclosure, receipt_mtime, "preclosure")
         closure = post_receipt(args.closure, receipt_mtime, "closure")
@@ -375,6 +415,8 @@ def construction(args):
         return fail(args.receipt, "construction", str(exc))
     write(args.receipt, {"schemaVersion": "cohort-construction-checkpoint.v1",
                          "startedEpoch": started, "elapsedSeconds": elapsed,
+                         "requiredFloors": floors, "admittedRequiredOccurrences": total,
+                         "deadlinesSeconds": deadlines,
                          "manifestSha256": sha(manifest),
                          "preclosureSha256": sha(preclosure),
                          "closureSha256": sha(closure), "hardPass": True})

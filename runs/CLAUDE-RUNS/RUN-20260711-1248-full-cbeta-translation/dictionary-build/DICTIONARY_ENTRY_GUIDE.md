@@ -1997,3 +1997,23 @@ lineage roster. Use `ContextActors` on the occurrence with `Status = identified-
 case-specific `GrammarEvidence`; the same public label must appear in `AttributionNote`. `ContextMasters`
 remains link-only and contains exact roster `names[0]` values. A later roster reconciliation may promote
 the structured unlinked identity without re-reading the case.
+
+## Evidence-scaled receipt-first cohort schedule
+
+The artifact-zero receipt binds the selected entries' ordered positive-integer dynamic floors and their
+sum, `N`, as `admittedRequiredOccurrences`. The cohort watchdog derives the complete hard schedule;
+callers may not override it:
+
+- viability: 90 seconds;
+- actual bounded extraction: 120 seconds;
+- adjudicated config: `min(330, 180 + 6*N)` seconds;
+- constructor invocation: config deadline + 10 seconds;
+- first product: config deadline + 30 seconds;
+- construction closure: config deadline + 90 seconds;
+- independent review: construction deadline + 180 seconds;
+- finite correction: review deadline + 120 seconds;
+- publication: correction deadline + 90 seconds.
+
+Every checkpoint receipt repeats the ordered floors, `N`, and complete derived schedule. Missing,
+non-positive, reordered, or mismatched floors, totals, or deadlines fail closed. For `N=20`, the
+downstream deadlines are 300/310/330/390/570/690/780 seconds.
