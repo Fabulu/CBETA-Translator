@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "r80-admitted-constructor-selection.v1",
+  "cohort": "R80",
+  "artifactZeroSelectionPath": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r80-selection-b.json",
+  "artifactZeroSelectionSha256": "6c9ee0d6a2bef4d6aba00f1c87cb6e9721acaecbb9b4b5e1dcf87e12b31625b5",
+  "rows": [
+    {
+      "queueOrdinal": 1,
+      "identityId": "t_1a9ab2ab3675",
+      "term": "酒逢知己飲",
+      "requiredFloor": 4,
+      "classification": "hard-fail"
+    },
+    {
+      "queueOrdinal": 2,
+      "identityId": "t_1b056c5af929",
+      "term": "雞向五更啼",
+      "requiredFloor": 4,
+      "classification": "hard-fail"
+    }
+  ],
+  "excluded": [
+    {
+      "id": "t_1a86ee3d406f",
+      "term": "便下座",
+      "decisionPath": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r77-carryover-review-bianxiazuo-c.json",
+      "decisionSha256": "0cdc3a65f9e9754e1bf9cbc4626e46ed105badca9048d2f6b66d44940a24d9e6",
+      "ruling": "REJECT_AND_REMOVE_DICTIONARY_ENTRY"
+    }
+  ],
+  "hardPass": true
+}

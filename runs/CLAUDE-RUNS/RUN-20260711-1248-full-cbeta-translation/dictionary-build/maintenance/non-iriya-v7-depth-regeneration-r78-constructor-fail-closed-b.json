@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "r78-constructor-fail-closed.v1",
+  "cohort": "R78",
+  "failedStage": "constructor-checkpoint",
+  "sourceTimegatePath": "maintenance/non-iriya-v7-depth-regeneration-r78-timegate-root.json",
+  "sourceTimegateSha256": "ebc68772c9aecef2fcd4f05727c2e1b27d4a91e7892e1d3b6ee4853daff62474",
+  "startedEpoch": 1785402354.321354,
+  "failureObservedElapsedSeconds": 496,
+  "exactFailure": "FAIL_CLOSED[constructor]: timegate requiredFloors do not match selected IDs",
+  "rootCause": "The artifact-zero timegate governed three selected IDs with required floors [8,4,4], while post-adjudication construction correctly excluded compositional 便下座 and submitted only the two admitted IDs. The constructor watchdog requires the timegate requiredFloors cardinality to equal the constructor ID cardinality.",
+  "configPath": "maintenance/non-iriya-v7-depth-regeneration-r78-constructor-config-b.json",
+  "configSha256": "ba81b86e0ae101ccef7472fccc740a1866c194252dd2bea7345dffeb43f18f89",
+  "commandAuditPath": "maintenance/non-iriya-v7-depth-regeneration-r78-constructor-command-audit-b.json",
+  "commandAuditSha256": "d1d3e8d2b3d248505d1eacb6a4577ac7ce3099f0e4858c3caa2a26a11121da0b",
+  "constructorReceiptCreated": false,
+  "constructionManifestCreated": false,
+  "productsCreatedByR78": 0,
+  "preexistingFreshBuildProducts": [
+    {
+      "id": "t_1a9ab2ab3675",
+      "mtimeEpoch": 1785305480,
+      "createdBy": "Codex Batch41 construction C",
+      "ruling": "Predates R78 artifact zero and is not an R78 product."
+    },
+    {
+      "id": "t_1b056c5af929",
+      "mtimeEpoch": 1785324489,
+      "createdBy": "V6 batch44 A+B constructor",
+      "ruling": "Predates R78 artifact zero and is not an R78 product."
+    }
+  ],
+  "publicMutation": false,
+  "rosterMutation": false,
+  "repeatConstructionUnderFreshClockRequired": true,
+  "hardPass": true
+}

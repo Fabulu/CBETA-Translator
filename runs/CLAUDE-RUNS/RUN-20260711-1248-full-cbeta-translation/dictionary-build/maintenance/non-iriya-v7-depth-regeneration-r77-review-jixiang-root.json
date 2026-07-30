@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "r77-independent-semantic-review.v1",
+  "cohort": "R77",
+  "id": "t_1b056c5af929",
+  "term": "雞向五更啼",
+  "requiredFloor": 4,
+  "governedExtractionPath": "maintenance/non-iriya-v7-depth-regeneration-r77-extraction-output-b.json",
+  "ruling": {
+    "verdict": "ADMIT",
+    "preferredTarget": "the rooster crows at the fifth watch",
+    "alternateTargets": ["the cock crows at the fifth watch"],
+    "semanticJob": "A concrete, recurrent event used as a capping line or direct answer. Its point in these deployments is the unforced regularity or unmistakable obviousness of what occurs, not a fixed symbolic doctrine about the bird.",
+    "scopeLimit": "Do not turn the rooster, the fifth watch, or their pairing into a universal doctrinal symbol; context controls the force of each answer.",
+    "familyRuling": "At least four independent Tier-2 deployment families survive: the inherited Yunju line actively raised and revised by Dahui and Qianyan; Miyin's expanded direct answer; Hengshan's direct answer about the proper position; and independent capping uses by Shanyi and Huanxi. The J29 use supplies another active adaptation.",
+    "sourceHierarchy": "The governed supply contains seven Tier-2 candidates and zero lamps. No Tier-3 padding is needed.",
+    "actorBoundary": "Each occurrence must follow its complete turn. Active raisers own their present wording; embedded Yunju wording remains explicitly raised material. Direct-answer and hall-address occurrences belong to the named record speaker. No narrator or record owner may be substituted for the headword-bearing voice."
+  },
+  "candidateDecisions": [
+    {"relPath":"J/J29/J29nB243.xml","decision":"retain","deployment":"active adaptation/capping line"},
+    {"relPath":"J/J32/J32nB273.xml","decision":"retain","deployment":"active raising and revision of inherited Yunju line"},
+    {"relPath":"J/J35/J35nB343.xml","decision":"retain","deployment":"expanded direct answer"},
+    {"relPath":"J/J39/J39nB438.xml","decision":"retain","deployment":"direct answer about the proper position"},
+    {"relPath":"J/J39/J39nB468.xml","decision":"retain","deployment":"independent hall-address capping line"},
+    {"relPath":"T/T47/T47n1998A.xml","decision":"retain","deployment":"Dahui actively raises and rejects/replaces the inherited line"},
+    {"relPath":"X/X70/X70n1388.xml","decision":"reserve","deployment":"independent New-Year address on unchanging recurrence"}
+  ],
+  "retainedFloorMet": true,
+  "lampFallbackCount": 0,
+  "hardPass": true,
+  "publicMutationPerformed": false
+}

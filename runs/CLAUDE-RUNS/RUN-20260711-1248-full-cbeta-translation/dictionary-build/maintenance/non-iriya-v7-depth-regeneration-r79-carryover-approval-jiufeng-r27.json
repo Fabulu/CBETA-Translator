@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "r79-byte-bound-carryover-approval.v1",
+  "cohort": "R79",
+  "id": "t_1a9ab2ab3675",
+  "term": "酒逢知己飲",
+  "sourceBinding": {
+    "extractionPath": "maintenance/non-iriya-v7-depth-regeneration-r79-extraction-output-b.json",
+    "extractionSha256": "4291f63b64c70e533df2b587223314956f4697faa3dbe02cbd35a90eff1534f3",
+    "skeletonPath": "maintenance/non-iriya-v7-depth-regeneration-r79-research-skeleton-b.json",
+    "skeletonSha256": "3ea3285f92125fb5769cda632051ca2846594ef0046a39b7cc41070bd08adbae",
+    "candidateCount": 7,
+    "candidateTupleSha256": "d8f96cf97965e632bd12bc43be4a9067d01d5abae65820bfdd1a1a5b069c7c91"
+  },
+  "priorAuthority": {
+    "path": "maintenance/non-iriya-v7-depth-regeneration-r78-final-decision-review-jiufeng-r27.json",
+    "sha256": "881957f5d67c25ef0a8ac719589e782c013b4506c0993e86a868e3e979d1697b",
+    "priorCandidateTupleSha256": "d8f96cf97965e632bd12bc43be4a9067d01d5abae65820bfdd1a1a5b069c7c91"
+  },
+  "parityReview": {
+    "tupleDefinition": "ordered relative path, line anchor, context SHA-256, and source tier for each candidate",
+    "candidateParity": "PASS: all seven R79 candidate tuples exactly match R78.",
+    "semanticCarryover": "PASS: admission, one-sense ruling, preferred English, companion-line control, and ordinary-proverb limit transfer unchanged.",
+    "actorCarryover": "PASS: all seven exact actor and later-raiser distinctions transfer unchanged.",
+    "familyCarryover": "PASS: four retained active Tier-2 families, two direct surplus reserves, and one inherited Duanqiao quotation retain their dispositions.",
+    "sourceHierarchy": "PASS: no lamp consulted or retained."
+  },
+  "verdict": "APPROVE_FOR_CONSTRUCTION",
+  "hardPass": true,
+  "publicMutation": false
+}

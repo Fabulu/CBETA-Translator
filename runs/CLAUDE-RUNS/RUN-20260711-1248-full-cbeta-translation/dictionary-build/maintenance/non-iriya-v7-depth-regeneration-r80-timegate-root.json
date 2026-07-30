@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "bounded-dictionary-timegate.v2",
+  "cohort": "R80",
+  "artifactZero": true,
+  "startedEpoch": 1785403422.6991122,
+  "createdUtc": "2026-07-30T09:23:42.699112Z",
+  "requiredFloors": [4, 4],
+  "admittedRequiredOccurrences": 8,
+  "adjudicatedCaseLoad": 8,
+  "researchCandidateReserve": 3,
+  "deadlinesSeconds": {
+    "viability": 120,
+    "researchExtraction": 120,
+    "adjudicatedConfig": 416,
+    "constructor": 426,
+    "firstProduct": 446,
+    "construction": 506,
+    "review": 630,
+    "correction": 722,
+    "publication": 812
+  },
+  "assignedLaunch": {
+    "selector": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/last1500-public-depth/final-scope/full-regeneration-selector.json",
+    "priorUnion": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r75-resolved-union-root.json",
+    "entries": [
+      {"id": "t_1a9ab2ab3675", "term": "酒逢知己飲", "requiredFloor": 4},
+      {"id": "t_1b056c5af929", "term": "雞向五更啼", "requiredFloor": 4}
+    ],
+    "reserveIds": ["t_1a86ee3d406f"],
+    "researchCandidateReserve": 3
+  },
+  "continuationOf": "R79-AUTHORITY-HASH-CONSTRUCTOR-FAIL-CLOSED",
+  "continuationSha256": "bc16e4fe600e0602fd48ab0a8d98f5be0430aac1660f02fb392eae4ce0096eb0",
+  "preflightFixes": {
+    "configGeneratorSha256": "46a1fdcea534fac0b6ca762b799bad32e7322a5ba8d7e5af6ab5600b37f4bdef",
+    "constructorEngineSha256": "94c639896844807c829a7998bd5db0e98e49c2dad43d6b158d169a8e65edcdf9",
+    "directFamilySpecSha256": "4e834a9afca54ecd41ef1c24254f3f6b517114357ae89988a5c05df3a6435379",
+    "targetedTests": "15/15 PASS"
+  },
+  "removalCarryover": {
+    "id": "t_1a86ee3d406f",
+    "term": "便下座",
+    "reviewSha256": "693f10560e940326fb0e991ba2f45c4ec19bc023e62afa939c66e865e635f4ba"
+  }
+}

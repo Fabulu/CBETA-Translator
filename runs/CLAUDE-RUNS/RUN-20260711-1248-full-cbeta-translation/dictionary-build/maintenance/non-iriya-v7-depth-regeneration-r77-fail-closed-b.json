@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "r77-research-checkpoint-fail-closed.v1",
+  "cohort": "R77",
+  "timegatePath": "maintenance/non-iriya-v7-depth-regeneration-r77-timegate-root.json",
+  "timegateSha256": "164bc93eb84264781f1676f5277558e5b2dda1bd7c9dff2455d372726e1e5f1a",
+  "startedEpoch": 1785402067.5445645,
+  "researchExtractionDeadlineSeconds": 120,
+  "viability": {
+    "path": "maintenance/non-iriya-v7-depth-regeneration-r77-viability-checkpoint-b.json",
+    "sha256": "b96b9e9568eb5e1c5bdd846e3ed1ba8d4c17160a33d5bf14d650652bb7bd3f57",
+    "elapsedSeconds": 74.57205653190613,
+    "hardPass": true
+  },
+  "unauthorizedExtractionOutputs": {
+    "extractionPath": "maintenance/non-iriya-v7-depth-regeneration-r77-extraction-output-b.json",
+    "extractionSha256": "584e6ab917cde2cb30b5298404253602bae5068bdf478a9a2c2ba1e1b8067d43",
+    "extractionMtimeElapsedSeconds": 85.00142526626587,
+    "skeletonPath": "maintenance/non-iriya-v7-depth-regeneration-r77-research-skeleton-b.json",
+    "skeletonSha256": "d46202e0245af5c930dbb229f0170c74e5a055fc7a2067999793794611e1926b",
+    "skeletonMtimeElapsedSeconds": 85.00595736503601,
+    "ruling": "The files were emitted inside the raw time window but are not governed research authority because the watchdog did not invoke and close them."
+  },
+  "checkpointFailure": {
+    "failedStage": "research",
+    "failure": "The command audit did not bind the exact absolute argv returned by governed_research_command; the extractor had been invoked directly before the watchdog instead of by it.",
+    "auditPath": "maintenance/non-iriya-v7-depth-regeneration-r77-research-command-audit-b.json",
+    "auditSha256": "c216689b5fe139996548658fe648930e7f64632cd9be6ab48ba054fb0269026a",
+    "auditMtimeElapsedSeconds": 100.3065276145935,
+    "researchCheckpointCreated": false
+  },
+  "productsCreated": 0,
+  "publicMutation": false,
+  "rosterMutation": false,
+  "carryoverPermitted": false,
+  "repeatResearchRequired": true,
+  "hardPass": true
+}

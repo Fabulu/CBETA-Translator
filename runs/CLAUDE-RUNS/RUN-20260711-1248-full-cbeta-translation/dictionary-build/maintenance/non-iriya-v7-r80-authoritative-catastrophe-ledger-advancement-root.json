@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "authoritative-catastrophe-ledger-advancement.v1",
+  "cohort": "R80",
+  "publicCommit": "d0b701efdf9688321ac62e2ceee9e41c817a2b32",
+  "publicCommitSubject": "Repair R80 dictionary cohort",
+  "publishedIds": [
+    "t_1a86ee3d406f",
+    "t_1a9ab2ab3675",
+    "t_1b056c5af929"
+  ],
+  "authoritativeRepairedBefore": 134,
+  "authoritativeRepairedAfter": 137,
+  "authoritativeRemainderBefore": 891,
+  "resolvedThisAdvancement": 3,
+  "authoritativeRemainderAfter": 888,
+  "arithmeticHardPass": true,
+  "publicIntegrity": {
+    "entryCount": 4714,
+    "aggregateCount": 4714,
+    "legacyCount": 4714,
+    "indexCount": 4714,
+    "shardCount": 4714,
+    "exactProductParity": "3/3",
+    "replacementParity": "2/2",
+    "removalParity": "1/1",
+    "headEqualsOriginMain": true,
+    "hardPass": true
+  },
+  "timegate": {
+    "artifactZeroSha256": "32db2b9b2dc56fa7ebcfb681f1ac809ac821d5c4f85a7ad1e9fcaa2782e215fa",
+    "publicationDeadlineEpoch": 1785404234.6991122,
+    "atomicInstallEpoch": 1785403915,
+    "atomicInstallMarginSeconds": 319.69911217689514,
+    "publicCommitEpoch": 1785403999,
+    "publicCommitMarginSeconds": 235.69911217689514,
+    "publicationDeadlineHardPass": true,
+    "remotePersistenceDeadlineHardPass": true,
+    "lateRemotePersistenceDisclosed": false
+  },
+  "finalReleaseAuthoritySha256": "82773c6747ac2edae4f44cce3fe16936f65d8bac80b6e2582f9a293715586d47",
+  "windowsNodeMergeReceiptSha256": "839a90c452aef63d3f0220c48d520c38ca1304149851b73acaf373dec4bb7ee7",
+  "sourceHierarchy": "0 Tier-1, 8 Tier-2 recorded-sayings witnesses, 0 Tier-3 lamps.",
+  "unrelatedPublicDirtPreserved": true,
+  "windowsNodeMerge": true,
+  "windowsGitPush": true,
+  "sealed": true
+}

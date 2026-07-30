@@ -1,0 +1,82 @@
+{
+  "Id": "t_1a9ab2ab3675",
+  "SourceTerm": "酒逢知己飲",
+  "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff",
+  "CreatedBy": "Codex Batch41 construction C",
+  "WrittenUtc": "2026-07-29T06:11:19.922713Z",
+  "Senses": [
+    {
+      "SenseKey": null,
+      "MasterName": null,
+      "PreferredTarget": "wine is drunk when one meets a kindred spirit",
+      "AlternateTargets": [
+        "drink wine with one who understands"
+      ],
+      "SearchAliases": [
+        "wine is drunk when one meets a kindred spirit",
+        "drink wine with one who understands"
+      ],
+      "Status": "preferred",
+      "Validation": "multi-source",
+      "Note": "The expanded proverb corroborates the standalone clause but does not create a second sense.",
+      "Occurrences": [
+        {
+          "RelPath": "T/T47/T47n2000.xml",
+          "FromLb": "1010a12",
+          "ToLb": "1010b01",
+          "Kwic": "僧曰：王常侍訪臨際，游僧堂次，曰：這一堂僧還看經否？際曰：不看經。此意如何？答曰：酒逢知己飲。",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Xutang (虛堂和尚語錄): 答曰 assigns the complete standalone answer to Xutang Zhiyu.",
+          "MasterName": "Xutang Zhiyu",
+          "ContextMasters": [
+            {
+              "MasterName": "Xutang Zhiyu",
+              "Roles": [
+                "utterer",
+                "record-owner"
+              ]
+            }
+          ],
+          "ContextActors": []
+        },
+        {
+          "RelPath": "J/J37/J37nB386.xml",
+          "FromLb": "0349c26",
+          "ToLb": "0350a12",
+          "Kwic": "放下拄杖，良久，云：「若向者裏知歸，如壯士展臂，不假他力；師子遊行，不求伴侶。有如是標格，也好與三十棒。」呵呵大笑，云：「酒逢知己飲，詩向會人吟。」",
+          "Curated": true,
+          "AttributionNote": "Recorded Sayings of Yuan'an Feng (遠菴僼禪師語錄): Yuan'an directly caps his address with the expanded proverb.",
+          "MasterName": null,
+          "ContextMasters": [],
+          "ContextActors": [],
+          "ActorAttribution": {
+            "Status": "identified-unlinked-master",
+            "Kind": "named Chan master",
+            "ActorLabel": "Yuan'an Feng",
+            "ActorRole": "utterer",
+            "GrammarEvidence": "Recorded Sayings of Yuan'an Feng (遠菴僼禪師語錄): Yuan'an directly caps his address with the expanded proverb.",
+            "RungsChecked": [
+              "line",
+              "expanded-context",
+              "section-header",
+              "book-title",
+              "tei-header",
+              "parallel-passage"
+            ],
+            "ReviewedBy": "Codex Batch41 construction C"
+          }
+        }
+      ],
+      "ClaimAnchors": [],
+      "SourceTexts": [
+        "T/T47/T47n2000.xml",
+        "J/J37/J37nB386.xml"
+      ],
+      "RelatedMasters": [
+        "Xutang Zhiyu"
+      ],
+      "RelatedTerms": [],
+      "Explanation": "“Wine is drunk when one meets a kindred spirit” is a proverb clause for speech or action suited to someone who understands. Xutang Zhiyu gives the wine clause alone as his complete answer while commenting on Linji and Wang Changshi. Yuan'an Feng independently uses the expanded proverb with “a poem is recited to one who understands it.”"
+    }
+  ]
+}

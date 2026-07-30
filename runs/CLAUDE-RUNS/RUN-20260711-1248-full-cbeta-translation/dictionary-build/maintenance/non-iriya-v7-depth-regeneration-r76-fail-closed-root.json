@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "bounded-dictionary-fail-close.v1",
+  "cohort": "R76",
+  "status": "FAIL_CLOSED",
+  "failedGate": "researchExtraction",
+  "deadlineSeconds": 120,
+  "observedElapsedSeconds": 121.946176,
+  "reason": "No governed extraction or research skeleton existed at the extraction deadline.",
+  "productsWritten": 0,
+  "publicMutationPerformed": false,
+  "carryoverPolicy": "Restart the same ordered selection under a fresh artifact-zero clock; do not waive or backdate the missed gate.",
+  "hardPass": true
+}

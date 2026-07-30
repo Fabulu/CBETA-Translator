@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "r78-final-removal-review.v1",
+  "cohort": "R78",
+  "id": "t_1a86ee3d406f",
+  "term": "便下座",
+  "reviewScope": "Final byte-bound removal review after the governed R78 research checkpoint. No product or public mutation.",
+  "sourceBindings": {
+    "timegatePath": "maintenance/non-iriya-v7-depth-regeneration-r78-timegate-root.json",
+    "timegateSha256": "ebc68772c9aecef2fcd4f05727c2e1b27d4a91e7892e1d3b6ee4853daff62474",
+    "selectionPath": "maintenance/non-iriya-v7-depth-regeneration-r78-selection-b.json",
+    "selectionSha256": "c1d8bad26512761aff1d5f70416b0f6262534f049d455b364b731265daee3de4",
+    "researchCheckpointPath": "maintenance/non-iriya-v7-depth-regeneration-r78-research-checkpoint-b.json",
+    "researchCheckpointSha256": "cc89c95da60b6da38009138a10da4834f76f8defd505379f2d05eab9ecc1191a",
+    "extractionPath": "maintenance/non-iriya-v7-depth-regeneration-r78-extraction-output-b.json",
+    "extractionSha256": "127e19e20038c4b031a7bd2e81689f93cd2c5db59dcd3e47c7cae9050a1b32c7",
+    "researchSkeletonPath": "maintenance/non-iriya-v7-depth-regeneration-r78-research-skeleton-b.json",
+    "researchSkeletonSha256": "338390d4ebdf5db66687f2cca40b96e6dc15ce927a82bd66594fa3e29406e1f1",
+    "r77CarryoverReviewPath": "maintenance/non-iriya-v7-depth-regeneration-r77-carryover-review-bianxiazuo-c.json",
+    "r77CarryoverReviewSha256": "0cdc3a65f9e9754e1bf9cbc4626e46ed105badca9048d2f6b66d44940a24d9e6"
+  },
+  "checkpointVerification": {
+    "processState": "completed",
+    "returnCode": 0,
+    "checkpointHardPass": true,
+    "requiredFloor": 8,
+    "candidateCount": 11,
+    "skeletonHashCount": 11,
+    "candidateSupplyExhausted": false,
+    "exactSpan": "便下座",
+    "exactSpanSha256": "1a86ee3d406f2a7186de27bafa5f0e2effd71ba49738540841091b6320a6a3b6",
+    "parityFinding": "The R78 extraction and skeleton agree on eleven candidates for this identity. Candidate coordinates, governed tiers, context hashes, and the candidate-hash sequence for 便下座 are unchanged from the reviewed R77 governed row."
+  },
+  "finalAdmissionRuling": {
+    "decision": "REJECT_AND_REMOVE_DICTIONARY_ENTRY",
+    "reasonCode": "compositional-particle-plus-institutional-action",
+    "semanticAnalysis": {
+      "便": "ordinary narrative sequencing: then, thereupon",
+      "下座": "the complete institutional action: descend from the teaching seat, ordinarily closing the hall appearance",
+      "wholeSpan": "The whole is fully predicted by its parts. No governed candidate supplies contrast, self-gloss, active reapplication, or specialized semantic force for the prefixed 便."
+    },
+    "sourceFirstFinding": "The three candidates governed as Tier 1 and the eight governed as Tier 2 all repeat the same passive stage direction. Better-ranked witnesses confirm the action denoted by 下座; source authority does not make the arbitrary particle-prefixed span an independent lexeme.",
+    "familyFinding": "Eleven raw candidates collapse to one compositional narrative pattern and zero active semantic families.",
+    "floorFinding": "Occurrence floors apply only to admitted headwords. The eight-occurrence floor is void after lexical-admission failure and must not be satisfied by duplicate narration or source-tier padding."
+  },
+  "actorRuling": {
+    "masterName": null,
+    "status": "narrated",
+    "owner": "record or compiler narrative voice",
+    "actorRole": "compiler",
+    "contextualPerson": "The figure who descends is person-described or case-figure, never headword utterer.",
+    "exceptions": 0
+  },
+  "requiredDisposition": {
+    "entry": "Remove t_1a86ee3d406f rather than regenerate it.",
+    "cohort": "Resolve this selected row as an admission removal, not a depth repair.",
+    "evidence": "Do not preserve or transfer the eleven candidates as an eight-example entry.",
+    "relatedCandidate": "If 下座 is separately proposed, subject it to a new governed extraction and family review.",
+    "mutation": "This reviewer performed no product, union, selector, or public mutation."
+  },
+  "verdict": "FINAL_APPROVE_REMOVAL",
+  "hardPass": true,
+  "publicMutation": false
+}

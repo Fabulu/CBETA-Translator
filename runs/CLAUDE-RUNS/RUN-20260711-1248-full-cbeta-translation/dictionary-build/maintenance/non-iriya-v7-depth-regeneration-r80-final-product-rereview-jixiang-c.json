@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "r80-final-exact-product-rereview.v1",
+  "cohort": "R80",
+  "id": "t_1b056c5af929",
+  "term": "雞向五更啼",
+  "supersedes": "maintenance/non-iriya-v7-depth-regeneration-r80-product-review-jixiang-c.json",
+  "supersessionReason": "The earlier review missed note_missing_english_source_label on the X70 occurrence.",
+  "productPath": "fresh-build/entries/t_1b056c5af929/entry.v2.json",
+  "productSha256": "eec67e2bd341d10e7caeb7543032e55fa3c2fe28cfcae333db9c3715492f5879",
+  "worksheetPath": "fresh-build/entries/t_1b056c5af929/evidence.draft.json",
+  "worksheetSha256": "5ba52f19c6cdc8632c5bf29c2f546dc44a156818183af8176404283957b04629",
+  "compilerReportPath": "fresh-build/entries/t_1b056c5af929/evidence-compile-report.json",
+  "compilerReportSha256": "0f5f88b2340464a02ae7b1a16acccd3c314a17ccc6ef7f2e441c77f2336daabf",
+  "ruling": {
+    "directActors": "PASS: the four exact actors are Miyin Zhenchuan, Hengshan Dengbing, Shanyi Ruchun, and Huanxi Weiyi. Full canonical names agree across occurrence MasterName, ContextMasters, Explanation, and RelatedMasters.",
+    "attributionNotes": "PASS: every occurrence now has an English source title followed by passage-specific grammar evidence. X70 now reads 'Recorded Sayings of Chan Master Huanxi Weiyi' and identifies Huanxi's continuous 除夜-address voice.",
+    "attributionAudit": "PASS: zero attribution issues remain; note_missing_english_source_label is cleared.",
+    "semanticsAndTargets": "PASS: the preferred and alternate targets preserve the concrete fifth-watch cockcrow; the prose describes recurrent obviousness without inventing fixed symbolism.",
+    "families": "PASS: the four approved direct-use families project exactly once; no inherited Yunju quotation remains.",
+    "sourceHierarchy": "PASS: four recorded-sayings witnesses and no lamp padding.",
+    "projection": "PASS: occurrence coordinates, actors, SourceTexts, RelatedMasters, aliases, Explanation, and Note match the approved R80 construction.",
+    "compiler": "PASS: canonical compiler hardPass, no errors, exact worksheet and product hashes bound."
+  },
+  "attributionCoordinates": [
+    {
+      "relPath": "J/J35/J35nB343.xml",
+      "actor": "Miyin Zhenchuan",
+      "englishSourceTitle": "Recorded Sayings of Chan Master Miyin of Shengjue Monastery, Guangfu Mountain",
+      "decision": "PASS"
+    },
+    {
+      "relPath": "J/J39/J39nB438.xml",
+      "actor": "Hengshan Dengbing",
+      "englishSourceTitle": "Recorded Sayings of Chan Master Hengshan",
+      "decision": "PASS"
+    },
+    {
+      "relPath": "J/J39/J39nB468.xml",
+      "actor": "Shanyi Ruchun",
+      "englishSourceTitle": "Recorded Sayings of Chan Master Shanyi Chun",
+      "decision": "PASS"
+    },
+    {
+      "relPath": "X/X70/X70n1388.xml",
+      "actor": "Huanxi Weiyi",
+      "englishSourceTitle": "Recorded Sayings of Chan Master Huanxi Weiyi",
+      "decision": "PASS"
+    }
+  ],
+  "defects": [],
+  "verdict": "APPROVE",
+  "hardPass": true,
+  "publicMutation": false
+}

@@ -27,6 +27,7 @@ TOP_KEYS = {
     "schemaVersion", "cohort", "startedEpoch", "timegatePath",
     "watchdogReceiptPath", "commandAuditPath", "engineSha256", "paths", "entries",
 }
+OPTIONAL_TOP_KEYS = {"replacementStaging"}
 PATH_KEYS = {
     "selection", "research", "outputRoot", "firstProductReceipt",
     "preclosure", "manifest", "closure",
@@ -85,6 +86,41 @@ def contained(root: Path, raw: str) -> Path:
     return resolved
 
 
+def verify_output_collision_policy(
+    config: dict[str, Any], output_root: Path, allowed_root: Path, started: float
+) -> None:
+    """Reject stale per-ID staging unless a closed, byte-bound authority permits it."""
+    existing = [
+        row["id"] for row in config["entries"]
+        if (output_root / row["id"]).exists()
+    ]
+    if not existing:
+        return
+    policy = config.get("replacementStaging")
+    if not isinstance(policy, dict):
+        raise ValueError(
+            "preexisting per-ID output directories rejected: "
+            + json.dumps(existing, ensure_ascii=False)
+        )
+    required = {"mode", "ids", "authorizationPath", "authorizationSha256"}
+    if set(policy) != required or policy.get("mode") != "authorized-replacement":
+        raise ValueError("replacementStaging policy is incomplete or not authorized")
+    if policy.get("ids") != existing:
+        raise ValueError("replacementStaging IDs do not exactly match collisions")
+    authority = contained(allowed_root, policy["authorizationPath"])
+    if not authority.is_file() or sha256(authority) != policy["authorizationSha256"]:
+        raise ValueError("replacementStaging authority bytes do not match")
+    if authority.stat().st_mtime + 1 < started:
+        raise ValueError("replacementStaging authority predates artifact zero")
+    data = read_json(authority)
+    if (
+        data.get("decision") != "AUTHORIZE_REPLACEMENT_STAGING"
+        or data.get("ids") != existing
+        or data.get("cohort") != config.get("cohort")
+    ):
+        raise ValueError("replacementStaging authority content is invalid")
+
+
 def artifact_map(receipt: dict[str, Any]) -> dict[str, dict[str, Any]]:
     rows = receipt.get("cohortArtifacts")
     if not isinstance(rows, list):
@@ -93,7 +129,7 @@ def artifact_map(receipt: dict[str, Any]) -> dict[str, dict[str, Any]]:
 
 
 def verify_authority(config_path: Path, config: dict[str, Any], allowed_root: Path) -> dict[str, Path]:
-    unknown = sorted(set(config) - TOP_KEYS)
+    unknown = sorted(set(config) - TOP_KEYS - OPTIONAL_TOP_KEYS)
     missing = sorted(TOP_KEYS - set(config))
     if unknown or missing:
         raise ValueError(f"config keys unknown={unknown} missing={missing}")
@@ -160,6 +196,7 @@ def verify_authority(config_path: Path, config: dict[str, Any], allowed_root: Pa
     output_root = paths["outputRoot"]
     if output_root.exists() and not output_root.is_dir():
         raise ValueError("outputRoot exists but is not a directory")
+    verify_output_collision_policy(config, output_root, allowed_root, started)
     for key in ("firstProductReceipt", "preclosure", "manifest", "closure"):
         if paths[key].exists():
             raise ValueError(f"cohort output already exists before constructor: {key}")

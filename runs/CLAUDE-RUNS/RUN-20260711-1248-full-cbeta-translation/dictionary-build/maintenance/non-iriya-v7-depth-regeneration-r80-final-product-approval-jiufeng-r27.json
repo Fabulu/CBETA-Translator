@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "r80-final-exact-product-approval.v1",
+  "cohort": "R80",
+  "id": "t_1a9ab2ab3675",
+  "term": "酒逢知己飲",
+  "productPath": "fresh-build/entries/t_1a9ab2ab3675/entry.v2.json",
+  "productSha256": "3ed6020e6826c519e44e1cf508ee52a1a24af0bf192009b089fed4a393080bef",
+  "worksheetPath": "fresh-build/entries/t_1a9ab2ab3675/evidence.draft.json",
+  "worksheetSha256": "8e985ab8d89b44b139b11174c6893639bdd52a90e3c40bb42b1040f54a5e0056",
+  "compilerReportPath": "fresh-build/entries/t_1a9ab2ab3675/evidence-compile-report.json",
+  "compilerReportSha256": "b3a0dad82d73827e1c31560e7f55071f58baa7f8844118438a35ee3f529ae087",
+  "supersedesPath": "maintenance/non-iriya-v7-depth-regeneration-r80-product-review-jiufeng-r27.json",
+  "supersedesSha256": "48c02c7a4263095b2b51e538304abcff4385c3cdf0bd1fff99d42723a8978270",
+  "decisionAuthorityPath": "maintenance/non-iriya-v7-depth-regeneration-r80-carryover-approval-jiufeng-r27.json",
+  "decisionAuthoritySha256": "6ca6fefee9f9ade92af18a4866fed67038b87b44af049b43bfbf17e1253c4ec2",
+  "productRuling": {
+    "semantics": "PASS: one ordinary-proverb sense; the product explains something offered or said when the other person truly understands and avoids mystical wine symbolism.",
+    "targets": "PASS: preferred target, alternate target, and search alias match the reviewed decision.",
+    "prose": "PASS: the opening is corpus-earned, the evidence paragraph accurately distinguishes the four deployments, and no duplicate opening remains.",
+    "occurrencesAndFamilies": "PASS: four retained source paths represent the independent Zhenjing, Poshan, Linye, and Binya families. No reserve or inherited Duanqiao quotation appears.",
+    "sourceHierarchy": "PASS: four Tier-2 recorded-sayings families and zero lamps.",
+    "actorIdentities": "PASS: all four MasterName values use the full canonical names Zhenjing Kewen, Poshan Haiming, Linye Tongqi, and Binya Jian, with utterer roles.",
+    "actorProofProjection": "PASS: the corrected notes preserve the case-specific grammar: 師拈云 for Zhenjing, 拈曰 for Poshan, 視左右，云 for Linye, and the lay question followed by 師云 for Binya.",
+    "compilerBinding": "PASS: the canonical hard-pass report binds the exact corrected worksheet and product hashes.",
+    "scopeIntegrity": "PASS: targets, prose, four occurrences, four families, roles, and source paths remain within the approved decision."
+  },
+  "defects": [],
+  "verdict": "APPROVE",
+  "hardPass": true,
+  "publicMutation": false
+}

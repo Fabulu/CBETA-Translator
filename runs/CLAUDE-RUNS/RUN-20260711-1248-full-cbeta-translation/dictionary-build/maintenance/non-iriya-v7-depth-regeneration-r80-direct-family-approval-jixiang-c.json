@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "r80-direct-family-approval.v1",
+  "cohort": "R80",
+  "id": "t_1b056c5af929",
+  "term": "雞向五更啼",
+  "bindings": {
+    "timegateSha256": "32db2b9b2dc56fa7ebcfb681f1ac809ac821d5c4f85a7ad1e9fcaa2782e215fa",
+    "selectionSha256": "6c9ee0d6a2bef4d6aba00f1c87cb6e9721acaecbb9b4b5e1dcf87e12b31625b5",
+    "checkpointSha256": "fba21ff713c8edc7e240f2491f80a76118fa9a1b32a59abfb51cdbbe2f6286cd",
+    "extractionSha256": "17f379f7349a2d51741d5c994e0a167053ba991d0dcfc11ce70b0f7ae12d9292",
+    "skeletonSha256": "fa0589cf13f7bc48aa3ab8eb2cc1de840fad51efb7d2b192b2c7179f4bddd578",
+    "directFamilySpecSha256": "4e834a9afca54ecd41ef1c24254f3f6b517114357ae89988a5c05df3a6435379",
+    "constructorConfigSha256": "b7086db5cb809d06205623aa211be5b57ca83d31856b76158f175a8fe3bdf47d"
+  },
+  "semanticRuling": {
+    "decision": "ADMIT",
+    "preferredTarget": "the rooster crows at the fifth watch",
+    "sense": "A concrete recurrent event used as a direct answer or capping line, commonly stressing unforced regularity or unmistakable obviousness.",
+    "limit": "No fixed doctrinal symbolism is assigned to the rooster or fifth watch."
+  },
+  "directFamilyTuple": [
+    {
+      "relPath": "J/J35/J35nB343.xml",
+      "fromLb": "0843b16",
+      "contextSha256": "d687c8da9d636528e2e6e031fc40803aa7fb9f9d50f183c98ddf2784a18807fa",
+      "masterName": "Miyin Zhenchuan",
+      "family": "jixiang:miyin-direct-answer",
+      "decision": "APPROVE"
+    },
+    {
+      "relPath": "J/J39/J39nB438.xml",
+      "fromLb": "0250a30",
+      "contextSha256": "bf45022b8a6206668aebb35936e10369501be9d4fbf55a71a705347bd929db70",
+      "masterName": "Hengshan Dengbing",
+      "family": "jixiang:hengshan-proper-position",
+      "decision": "APPROVE"
+    },
+    {
+      "relPath": "J/J39/J39nB468.xml",
+      "fromLb": "0911a26",
+      "contextSha256": "eea9049dac60729c8001abc67ff937f160e4ebbad3b528c42b28063ea7bb84e5",
+      "masterName": "Shanyi Ruchun",
+      "family": "jixiang:shanyi-hall-cap",
+      "decision": "APPROVE"
+    },
+    {
+      "relPath": "X/X70/X70n1388.xml",
+      "fromLb": "0383a02",
+      "contextSha256": "0da980297ffcc689498a0b42c335b69ae98ccf3c8d3fa8d09a453f988299e599",
+      "masterName": "Huanxi Weiyi",
+      "family": "jixiang:huanxi-new-year",
+      "decision": "APPROVE"
+    }
+  ],
+  "gates": {
+    "fourIndependentFamilies": true,
+    "fourDirectHeadwordUses": true,
+    "exactSpeakerIdentity": true,
+    "inheritedYunjuQuotesRetained": false,
+    "tier2RecordedSayings": 4,
+    "tier3Lamp": 0,
+    "floorMet": true
+  },
+  "finding": "R80 replaces both R79 actor-defective inherited quotations with direct uses. The four selected witnesses now supply distinct deployment families and exact headword speakers without lamp padding.",
+  "verdict": "APPROVE_CONSTRUCTION",
+  "hardPass": true,
+  "publicMutation": false
+}

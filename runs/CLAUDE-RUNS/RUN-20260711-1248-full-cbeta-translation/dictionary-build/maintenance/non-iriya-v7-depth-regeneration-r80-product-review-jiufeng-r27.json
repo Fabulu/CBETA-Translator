@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "r80-exact-product-review.v1",
+  "cohort": "R80",
+  "id": "t_1a9ab2ab3675",
+  "term": "酒逢知己飲",
+  "productPath": "fresh-build/entries/t_1a9ab2ab3675/entry.v2.json",
+  "productSha256": "ce5a87adb20e5bbebc1cf5e4d06a93f9cdb3f0833db2a249419e838c054e08da",
+  "worksheetPath": "fresh-build/entries/t_1a9ab2ab3675/evidence.draft.json",
+  "worksheetSha256": "a695bc1d656127cde56ded1e4df58286b61878b00c92201a0eddcb606cdea913",
+  "compilerReportSha256": "6c0865c4c351833dc18d9cf43ee7d28d2a1b2a416d9d4f55b2095eba716d7bd9",
+  "decisionAuthorityPath": "maintenance/non-iriya-v7-depth-regeneration-r80-carryover-approval-jiufeng-r27.json",
+  "decisionAuthoritySha256": "6ca6fefee9f9ade92af18a4866fed67038b87b44af049b43bfbf17e1253c4ec2",
+  "productRuling": {
+    "semantics": "PASS: one ordinary-proverb sense; the product explains that an offering or saying is suited to one who truly understands and avoids mystical wine symbolism.",
+    "targets": "PASS: preferred target, alternate target, and search alias exactly match the reviewed decision.",
+    "prose": "PASS: the opening is corpus-earned rather than a calque, the evidence paragraph accurately distinguishes the four deployments, and the companion poem line is correctly treated as corroboration rather than a second sense.",
+    "occurrencesAndFamilies": "PASS: the four approved source paths occur once each and represent the Zhenjing, Poshan, Linye, and Binya independent families. No reserve or inherited Duanqiao quotation leaks into the product.",
+    "sourceHierarchy": "PASS: four Tier-2 recorded-sayings families and zero lamps.",
+    "actorIdentities": "PASS IN SUBSTANCE: the KWICs and MasterName fields identify the correct four utterers.",
+    "actorProofProjection": "FAIL: all four AttributionNote and DraftActorProof SpeechFrame values were flattened into the same generic assertion that 'the complete retained turn assigns' the use and that the frame is 'active use or active raising.' This discards the reviewed grammatical proofs: 師拈云 for Zhenjing, 拈曰 for Poshan, 視左右云 for Linye, and the question followed by 師云 for Binya. The generic wording does not distinguish direct utterance from active raising and is not an exact actor proof.",
+    "compilerBinding": "PASS BYTES, FAIL SEMANTIC PROJECTION: the canonical report binds the exact worksheet/product hashes but did not preserve the decision's case-specific actor grammar.",
+    "duplicateOpening": "PASS: the opening occurs once and is not duplicated into EvidenceBody."
+  },
+  "defects": [
+    {
+      "severity": "blocking",
+      "coordinates": [
+        "Senses[0].Occurrences[0].AttributionNote and mirrored DraftActorProof.SpeechFrame",
+        "Senses[0].Occurrences[1].AttributionNote and mirrored DraftActorProof.SpeechFrame",
+        "Senses[0].Occurrences[2].AttributionNote and mirrored DraftActorProof.SpeechFrame",
+        "Senses[0].Occurrences[3].AttributionNote and mirrored DraftActorProof.SpeechFrame"
+      ],
+      "finding": "Four case-specific grammatical actor proofs were replaced with one generic generated assertion.",
+      "requiredRepair": "Restore the reviewed exact speech frames: Zhenjing 師拈云; Poshan 拈曰; Linye 視左右，云; Binya's lay question followed by 師云. Recompile canonically without changing targets, prose, occurrences, families, or roles."
+    }
+  ],
+  "verdict": "DENY",
+  "hardPass": false,
+  "publicMutation": false
+}

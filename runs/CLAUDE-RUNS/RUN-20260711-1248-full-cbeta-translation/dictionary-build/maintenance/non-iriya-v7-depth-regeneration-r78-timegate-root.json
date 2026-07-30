@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "bounded-dictionary-timegate.v2",
+  "cohort": "R78",
+  "artifactZero": true,
+  "startedEpoch": 1785402354.321354,
+  "createdUtc": "2026-07-30T09:05:54.321354Z",
+  "requiredFloors": [8, 4, 4],
+  "admittedRequiredOccurrences": 16,
+  "adjudicatedCaseLoad": 16,
+  "researchCandidateReserve": 3,
+  "deadlinesSeconds": {
+    "viability": 120,
+    "researchExtraction": 120,
+    "adjudicatedConfig": 512,
+    "constructor": 522,
+    "firstProduct": 542,
+    "construction": 602,
+    "review": 790,
+    "correction": 914,
+    "publication": 1004
+  },
+  "assignedLaunch": {
+    "selector": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/last1500-public-depth/final-scope/full-regeneration-selector.json",
+    "priorUnion": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r75-resolved-union-root.json",
+    "entries": [
+      {"id": "t_1a86ee3d406f", "term": "便下座", "requiredFloor": 8},
+      {"id": "t_1a9ab2ab3675", "term": "酒逢知己飲", "requiredFloor": 4},
+      {"id": "t_1b056c5af929", "term": "雞向五更啼", "requiredFloor": 4}
+    ],
+    "reserveIds": [],
+    "researchCandidateReserve": 3
+  },
+  "continuationOf": "R77-RESEARCH-COMMAND-AUDIT-FAIL-CLOSED",
+  "continuationSha256": "35973cfb4dc20900c169686e2f39c44fed2ba65bcb9b0b5601bc643ab53d6843"
+}

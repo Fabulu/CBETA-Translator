@@ -1,0 +1,175 @@
+{
+  "schemaVersion": "r77-independent-source-first-decision-review.v1",
+  "cohort": "R77",
+  "id": "t_1a9ab2ab3675",
+  "term": "酒逢知己飲",
+  "sourceBinding": {
+    "extractionPath": "maintenance/non-iriya-v7-depth-regeneration-r77-extraction-output-b.json",
+    "extractionSha256": "584e6ab917cde2cb30b5298404253602bae5068bdf478a9a2c2ba1e1b8067d43",
+    "skeletonPath": "maintenance/non-iriya-v7-depth-regeneration-r77-research-skeleton-b.json",
+    "skeletonSha256": "d46202e0245af5c930dbb229f0170c74e5a055fc7a2067999793794611e1926b",
+    "completeCasesRead": 7,
+    "requiredFloor": 4,
+    "reserveRead": 3
+  },
+  "admissionRuling": {
+    "decision": "ADMIT",
+    "unitType": "stable proverb clause with repeated Chan deployment",
+    "reason": "The clause is an ordinary proverb, but the records repeatedly use it as a direct answer, a capping judgment, and a host-guest or understanding test. Admission rests on those active deployments, not merely on occurrence inside Chan books.",
+    "ordinaryProverbControl": "No special mystical meaning is assigned to wine or drinking. The proverb says that an apt offering or expression is reserved for someone who understands."
+  },
+  "semanticRuling": {
+    "senseCount": 1,
+    "preferredTarget": "wine is drunk with one who understands",
+    "alternateTargets": [
+      "drink wine with a kindred spirit"
+    ],
+    "searchAliases": [
+      "wine is for one who knows you"
+    ],
+    "validation": "multi-source",
+    "explanation": "The records use 酒逢知己飲 for something offered or said when the other person truly understands. Zhenjing Kewen applies the full proverb to Nanquan's handling of Zhaozhou; Poshan Haiming uses it to appraise Nanquan's 'not mind, not Buddha, not a thing'; Linye Tongqi gives it as the host-and-guest capping line at a meeting of fellow practitioners; and Binya Jian answers a question about Shakyamuni's before-birth formula with the paired wine-and-poem proverb.",
+    "note": "The frequent continuation 詩向會人吟, 'a poem is recited to one who understands it,' confirms the parallel structure but does not create a second sense. Other continuations, including 花插美人頭, show that the wine clause can remain stable while its paired line varies."
+  },
+  "caseDecisions": [
+    {
+      "evidenceKey": "r77-o1",
+      "relPath": "C/C077/C077n1710.xml",
+      "fromLb": "0971b22",
+      "tier": 2,
+      "decision": "keep",
+      "exactActor": {
+        "masterName": "Zhenjing Kewen",
+        "role": "utterer",
+        "grammarEvidence": "Within 真淨禪師語之餘, 師拈云 directly governs 不見道酒逢知己飲詩向會人吟 after the raised Nanquan-Zhaozhou case."
+      },
+      "WitnessFamilyId": "jiufeng:Zhenjing-nanquan-zhaozhou-appraisal",
+      "deploymentRole": "active-case-appraisal",
+      "semanticContribution": "Applies the full paired proverb to an encounter in which Nanquan distinguishes the person he addresses.",
+      "contextSha256": "e4cc796c3d6e74b25da739432ab8f5b73ae41ea9229ca9ec39d1f3d8fa50dced"
+    },
+    {
+      "evidenceKey": "r77-o2",
+      "relPath": "J/J26/J26nB177.xml",
+      "fromLb": "0054a11",
+      "tier": 2,
+      "decision": "keep",
+      "exactActor": {
+        "masterName": "Poshan Haiming",
+        "role": "utterer",
+        "grammarEvidence": "In Poshan's own case commentary, 拈曰 directly governs 酒逢知己飲，詩向會人吟 before his criticism of Nanquan."
+      },
+      "WitnessFamilyId": "jiufeng:poshan-nanquan-not-mind",
+      "deploymentRole": "active-case-commentary",
+      "semanticContribution": "Uses the proverb to frame Nanquan's public saying as an offering to one able to receive it, then subjects that use to criticism.",
+      "contextSha256": "cee577ceed49d03a4c034e294e313ae0e5c437ff5bdd0e2013741e8399645369"
+    },
+    {
+      "evidenceKey": "r77-o3",
+      "relPath": "J/J26/J26nB186.xml",
+      "fromLb": "0630b03",
+      "tier": 2,
+      "decision": "keep",
+      "exactActor": {
+        "masterName": "Linye Tongqi",
+        "role": "utterer",
+        "grammarEvidence": "In Linye's own host-guest address, 視左右，云 directly introduces 酒逢知己飲，詩向會人吟 as his answer to the requested capping phrase."
+      },
+      "WitnessFamilyId": "jiufeng:linye-host-guest-meeting",
+      "deploymentRole": "direct-capping-answer",
+      "semanticContribution": "Makes the proverb the explicit answer for host and guest meeting as people who know one another.",
+      "contextSha256": "207f010e3966fab8e8d9d3ee453d9526fc27748a0ad48cf730386dc03dffa06c"
+    },
+    {
+      "evidenceKey": "r77-o4",
+      "relPath": "J/J28/J28nB204.xml",
+      "fromLb": "0209c29",
+      "tier": 2,
+      "decision": "keep",
+      "exactActor": {
+        "masterName": "Binya Jian",
+        "role": "utterer",
+        "grammarEvidence": "A layperson asks about Shakyamuni's teaching after the inherited before-birth formula, and 師云 directly assigns 酒逢知己飲，詩向會人吟 to Binya as the answer."
+      },
+      "WitnessFamilyId": "jiufeng:binya-before-birth-answer",
+      "deploymentRole": "direct-dialogue-answer",
+      "semanticContribution": "Uses the paired proverb as a complete answer about teaching addressed to those able to understand it.",
+      "contextSha256": "6019afaf19569f205ec3869ffa27ccb15fa4484e788a0d8c5295a9ed1ad84650"
+    },
+    {
+      "evidenceKey": "r77-o5",
+      "relPath": "J/J36/J36nB369.xml",
+      "fromLb": "0970b24",
+      "tier": 2,
+      "decision": "reject-surplus",
+      "exactActor": {
+        "masterName": "Zhe'an Jingfan",
+        "role": "utterer",
+        "grammarEvidence": "師曰 directly gives 酒逢知己飲，花插美人頭 as Zhe'an's answer to why the Caodong family style is so."
+      },
+      "candidateWitnessFamilyId": "jiufeng:zhean-caodong-variant-pair",
+      "deploymentRole": "direct-answer-with-variant-companion",
+      "reason": "Genuine independent use and useful proof that the second line can vary, but the four retained families already establish the clause's sense and active Chan deployment."
+    },
+    {
+      "evidenceKey": "r77-o6",
+      "relPath": "J/J37/J37nB386.xml",
+      "fromLb": "0350a04",
+      "tier": 2,
+      "decision": "reject-surplus",
+      "exactActor": {
+        "masterName": "Yuan'an Liao",
+        "role": "utterer",
+        "grammarEvidence": "In Yuan'an's own hall address, 呵呵大笑，云 directly governs 酒逢知己飲，詩向會人吟 as the concluding cap."
+      },
+      "candidateWitnessFamilyId": "jiufeng:yuanan-hall-cap",
+      "deploymentRole": "active-hall-cap",
+      "reason": "A sound independent deployment, but lexically redundant after four stronger retained families."
+    },
+    {
+      "evidenceKey": "r77-o7",
+      "relPath": "J/J38/J38nB415.xml",
+      "fromLb": "0448c21",
+      "tier": 2,
+      "decision": "reject-inherited-quotation",
+      "exactActor": {
+        "masterName": "Duanqiao Miaolun",
+        "role": "quoted-utterer",
+        "grammarEvidence": "大悲妙雲 raises 斷橋和尚云; the headword occurs inside Duanqiao's quoted judgment about the Qiyuan elder, before Miaoyun supplies his own present response."
+      },
+      "contextMasters": [
+        {
+          "masterName": "Miaoyun Zhenxiong",
+          "roles": [
+            "later-raiser",
+            "commentator",
+            "record-owner"
+          ],
+          "grammarEvidence": "Miaoyun introduces Duanqiao's saying and then contrasts it with 龍淵今日道舊相訪."
+        }
+      ],
+      "WitnessFamilyId": "jiufeng:duanqiao-qiyuan-judgment",
+      "deploymentRole": "inherited-quotation",
+      "reason": "Legitimate historical use, but not an independent Miaoyun deployment and unnecessary for the four-family floor."
+    }
+  ],
+  "retainedSubset": {
+    "occurrenceCount": 4,
+    "independentWitnessFamilyCount": 4,
+    "tier1Count": 0,
+    "tier2Count": 4,
+    "tier3LampCount": 0,
+    "families": [
+      "jiufeng:Zhenjing-nanquan-zhaozhou-appraisal",
+      "jiufeng:poshan-nanquan-not-mind",
+      "jiufeng:linye-host-guest-meeting",
+      "jiufeng:binya-before-birth-answer"
+    ],
+    "floorRuling": "Four independent active Tier-2 families meet the required floor. Two further direct uses are held as reserve, and one inherited Duanqiao quotation is not counted as a new Miaoyun family.",
+    "sourceHierarchy": "No Tier-1 witness occurs in the governed seven-case packet. The floor is met entirely by recorded sayings, without lamps.",
+    "lampPolicy": "No lamp consulted or retained."
+  },
+  "reviewVerdict": "APPROVE_FOR_CONSTRUCTION",
+  "hardPass": true,
+  "publicMutation": false
+}

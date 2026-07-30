@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "non-iriya-v7-depth-regeneration-selection.v1",
+  "cohort": "R78",
+  "selectionRule": "exact coordinator-assigned next unreserved authoritative rows",
+  "rows": [
+    {
+      "queueOrdinal": 1,
+      "identityId": "t_1a86ee3d406f",
+      "term": "便下座",
+      "requiredFloor": 8,
+      "classification": "legacy-selected-depth-repair"
+    },
+    {
+      "queueOrdinal": 2,
+      "identityId": "t_1a9ab2ab3675",
+      "term": "酒逢知己飲",
+      "requiredFloor": 4,
+      "classification": "hard-fail"
+    },
+    {
+      "queueOrdinal": 3,
+      "identityId": "t_1b056c5af929",
+      "term": "雞向五更啼",
+      "requiredFloor": 4,
+      "classification": "hard-fail"
+    }
+  ],
+  "collisionCheck": {
+    "priorIds": 185,
+    "collisions": [],
+    "hardPass": true
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "r78-r79-carry-ruling.v1",
+  "fromCohort": "R78",
+  "toCohort": "R79",
+  "wholeConfigByteCarryPermitted": false,
+  "reason": "The R78 config embeds cohort, startedEpoch, timegate path, watchdog receipt path, command-audit path, selection/research paths, and dossier selection/research hashes. Those authorities must be rebound to fresh R79 artifacts.",
+  "semanticPayloadCarryPermitted": true,
+  "semanticPayloadConditions": [
+    "R79 launches only the two admitted IDs 酒逢知己飲 and 雞向五更啼 with required floors [4,4].",
+    "R79 repeats governed extraction under its own artifact-zero clock.",
+    "The four retained candidate coordinates and context hashes are checked for byte parity against the new R79 extraction.",
+    "The R77 independent semantic reviews remain hash-bound as adjudication authority.",
+    "All cohort-bound dossier and worksheet bindings are regenerated before constructor invocation."
+  ],
+  "exactProcessDefectToFix": "Do not launch a constructor from a three-ID timegate after excluding one ID. Create the fresh R79 artifact-zero schedule with only the two admitted IDs and [4,4] floors. This avoids an ungoverned post-hoc timegate rewrite and lets research and constructor checkpoints share exactly the same admitted ID vector.",
+  "sourceHierarchy": {
+    "tier1": 0,
+    "tier2RecordedSayings": 8,
+    "tier3Lamp": 0,
+    "ruling": "The semantic payload already satisfies the hierarchy: four independent recorded-sayings families per term and no lamp evidence."
+  },
+  "publicMutation": false,
+  "hardPass": true
+}

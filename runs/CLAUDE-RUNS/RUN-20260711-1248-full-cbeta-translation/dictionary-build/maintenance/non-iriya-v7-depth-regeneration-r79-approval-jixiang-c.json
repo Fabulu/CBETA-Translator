@@ -1,0 +1,138 @@
+{
+  "schemaVersion": "r79-byte-bound-independent-approval.v1",
+  "cohort": "R79",
+  "id": "t_1b056c5af929",
+  "term": "雞向五更啼",
+  "reviewScope": "Independent semantic, witness-family, source-hierarchy, and exact-actor review of the governed R79 candidate tuple. No product or public mutation.",
+  "sourceBindings": {
+    "timegatePath": "maintenance/non-iriya-v7-depth-regeneration-r79-timegate-root.json",
+    "timegateSha256": "e0a6bbc89b575a8471aba57e92027c8eb19e17d0a1baca5156fafc3c62eeb254",
+    "selectionPath": "maintenance/non-iriya-v7-depth-regeneration-r79-selection-b.json",
+    "selectionSha256": "1be236bbfb49f900a36863fec7f05cd9f114550767adcade27f2472c6a05acb4",
+    "researchCheckpointPath": "maintenance/non-iriya-v7-depth-regeneration-r79-research-checkpoint-b.json",
+    "researchCheckpointSha256": "860548ec1600fe1df93ba1523474bb5c8411e2f7edf38738b173c42fd3ed4c58",
+    "extractionPath": "maintenance/non-iriya-v7-depth-regeneration-r79-extraction-output-b.json",
+    "extractionSha256": "4291f63b64c70e533df2b587223314956f4697faa3dbe02cbd35a90eff1534f3",
+    "researchSkeletonPath": "maintenance/non-iriya-v7-depth-regeneration-r79-research-skeleton-b.json",
+    "researchSkeletonSha256": "3ea3285f92125fb5769cda632051ca2846594ef0046a39b7cc41070bd08adbae",
+    "constructorConfigPath": "maintenance/non-iriya-v7-depth-regeneration-r79-constructor-config-b.json",
+    "constructorConfigSha256": "131d9d50c6782f8c3c115a42d478db82a6aa7fb6a02c3cdf3d2fefc69b9c17e0",
+    "r77SemanticReviewPath": "maintenance/non-iriya-v7-depth-regeneration-r77-review-jixiang-root.json",
+    "r77SemanticReviewSha256": "6ff0bad5660d84745ff1a8a16ac32a306a3640a626f599a9f147e36d7cac81c7",
+    "r78SemanticReviewPath": "maintenance/non-iriya-v7-depth-regeneration-r78-review-jixiang-root.json",
+    "r78SemanticReviewSha256": "f14835079e38219b992a7ae3a0e0173fa4d91247135ec87eb10f8f3397aa8f2a"
+  },
+  "governedSupply": {
+    "requiredFloor": 4,
+    "candidateTarget": 7,
+    "candidateCount": 7,
+    "skeletonHashCount": 7,
+    "candidateSupplyExhausted": false,
+    "tiers": {
+      "tier1": 0,
+      "tier2": 7,
+      "tier3Lamp": 0
+    },
+    "parity": "The seven extraction coordinates and context hashes match the governed R79 skeleton tuple and the previously reviewed R78 semantic supply."
+  },
+  "semanticApproval": {
+    "decision": "ADMIT",
+    "preferredTarget": "the rooster crows at the fifth watch",
+    "alternateTargets": [
+      "the cock crows at the fifth watch"
+    ],
+    "semanticJob": "A concrete, recurrent event used as a capping line or direct answer. In these deployments it presents unforced regularity or something unmistakably evident.",
+    "scopeLimit": "Do not assign a universal doctrinal symbolism to the rooster or fifth watch; the force is controlled by the surrounding exchange.",
+    "senseCount": 1,
+    "finding": "All seven candidates preserve the same concrete event. Differences lie in rhetorical deployment, not lexical referent."
+  },
+  "approvedCandidateTuple": [
+    {
+      "evidenceKey": "o1",
+      "relPath": "J/J29/J29nB243.xml",
+      "fromLb": "0686b26",
+      "contextSha256": "9c0749997d7f46583a64792c4788aa7a1e901ec8165e3822d5ac35e4c7639007",
+      "witnessFamilyId": "jixiang:eran-active-adaptation",
+      "familyDecision": "APPROVE",
+      "exactActor": "Er'an Song",
+      "actorRole": "utterer",
+      "actorDecision": "APPROVE",
+      "reason": "Er'an directly supplies the headword as his own capping line before contrasting it with his alternative."
+    },
+    {
+      "evidenceKey": "o2",
+      "relPath": "J/J32/J32nB273.xml",
+      "fromLb": "0207c08",
+      "contextSha256": "b89c6e2104d15a9b83aad564b0adb013697b91ec8fd72ee1826e8d0d9359d561",
+      "witnessFamilyId": "jixiang:qianyan-yunju-revision",
+      "familyDecision": "APPROVE",
+      "exactActor": "Yunju Shun",
+      "actorRole": "utterer",
+      "contextActor": {
+        "actor": "Qianyan Yuanzhang",
+        "roles": [
+          "later-raiser",
+          "commentator"
+        ]
+      },
+      "actorDecision": "REPAIR_REQUIRED",
+      "reason": "Qianyan creates an independent later deployment by actively raising, criticizing, and replacing the inherited line. Grammatically, however, 舜老夫云 opens the quotation containing the headword; Yunju Shun is the exact utterer. Qianyan's own replacement is 虛空剜窟寵."
+    },
+    {
+      "evidenceKey": "o3",
+      "relPath": "J/J39/J39nB438.xml",
+      "fromLb": "0250a30",
+      "contextSha256": "bf45022b8a6206668aebb35936e10369501be9d4fbf55a71a705347bd929db70",
+      "witnessFamilyId": "jixiang:hengshan-proper-position",
+      "familyDecision": "APPROVE",
+      "exactActor": "Hengshan Dengbing",
+      "actorRole": "respondent",
+      "actorDecision": "APPROVE",
+      "reason": "Hengshan gives the headword directly when asked which is the proper position."
+    },
+    {
+      "evidenceKey": "o4",
+      "relPath": "T/T47/T47n1998A.xml",
+      "fromLb": "0828a02",
+      "contextSha256": "ec8ad9e872be6d3df9cee09a48542eec166367a7ea1236454dd087f55435a564",
+      "witnessFamilyId": "jixiang:dahui-yunju-revision",
+      "familyDecision": "APPROVE",
+      "exactActor": "Yunju Shun",
+      "actorRole": "utterer",
+      "contextActor": {
+        "actor": "Dahui Zonggao",
+        "roles": [
+          "later-raiser",
+          "commentator"
+        ]
+      },
+      "actorDecision": "REPAIR_REQUIRED",
+      "reason": "Dahui creates an independent later deployment by raising, appraising, and replacing the inherited line. Grammatically, 雲居舜老夫道 opens the quotation containing the headword; Yunju Shun is the exact utterer. Dahui's own replacement verse does not repeat the headword."
+    }
+  ],
+  "familyApproval": {
+    "approvedFamilies": 4,
+    "inheritedBaseFamily": "The Qianyan and Dahui occurrences quote the same inherited Yunju line and must share that predecessor edge.",
+    "independentRedeploymentRuling": "They may remain two later deployment families because each record actively raises the inherited line and supplies a distinct appraisal and replacement. They must not be described as two original utterances of the headword.",
+    "otherCandidates": {
+      "J/J35/J35nB343.xml": "Independent Miyin direct-answer family; valid reserve.",
+      "J/J39/J39nB468.xml": "Independent hall-address capping family; valid reserve.",
+      "X/X70/X70n1388.xml": "Independent New-Year recurrence address; valid reserve."
+    },
+    "floorMet": true
+  },
+  "actorGate": {
+    "status": "BLOCKING_REPAIR_REQUIRED",
+    "defect": "The current R79 constructor tuple assigns Qianyan Yuanzhang and Dahui Zonggao as MasterName/utterer for clauses explicitly quoted as Yunju Shun's words.",
+    "requiredRepair": [
+      "For o2, set MasterName to Yunju Shun; retain Qianyan Yuanzhang only as later-raiser and commentator.",
+      "For o4, set MasterName to Yunju Shun; retain Dahui Zonggao only as later-raiser and commentator.",
+      "Rewrite attribution notes, DraftActorProof, RelatedMasters, and explanatory prose so active later deployment is not confused with exact utterance ownership.",
+      "Preserve the two distinct later-redeployment families while recording their shared inherited Yunju predecessor."
+    ],
+    "alternative": "If the product schema cannot accurately represent the quoted exact actor plus later raiser, replace o2 and o4 with the valid direct-use reserve candidates rather than publishing false actor attribution."
+  },
+  "verdict": "SEMANTIC_AND_FAMILY_APPROVE_ACTOR_REPAIR_REQUIRED",
+  "hardPass": false,
+  "publicMutation": false
+}

@@ -1,0 +1,59 @@
+{
+  "schemaVersion": "r80-exact-product-review.v1",
+  "cohort": "R80",
+  "id": "t_1b056c5af929",
+  "term": "雞向五更啼",
+  "productPath": "fresh-build/entries/t_1b056c5af929/entry.v2.json",
+  "productSha256": "585fbefe935183129c90fcb30df7883d0d048d6b217d1fe1f4634c6a22acf784",
+  "worksheetPath": "fresh-build/entries/t_1b056c5af929/evidence.draft.json",
+  "worksheetSha256": "ac853e0c9563cbcf6d17f86e97687b6c4a63565ebfc0256d2eda4ce55bb7fe6d",
+  "compilerReportPath": "fresh-build/entries/t_1b056c5af929/evidence-compile-report.json",
+  "compilerReportSha256": "ddfe3b28828b9ff5d8b1b0911b2a18db1a67aa3771d5a9fb6904fd3c9c150bc1",
+  "approvalPath": "maintenance/non-iriya-v7-depth-regeneration-r80-direct-family-approval-jixiang-c.json",
+  "approvalSha256": "553e45ee3a59ef5e9818c12b2722e1953373360b55038067f55a9ced51c63d59",
+  "productRuling": {
+    "semantics": "PASS: one concrete fifth-watch cockcrow event is retained, with contextual force described as unforced regularity or unmistakable obviousness and an explicit warning against fixed bird symbolism.",
+    "targets": "PASS: preferred 'the rooster crows at the fifth watch', alternate 'the cock crows at the fifth watch', and before-dawn search alias preserve the same referent.",
+    "readerProse": "PASS: the opening states the corpus-earned rhetorical job; the evidence sentence accurately distinguishes Miyin's expanded answer, Hengshan's direct answer, Shanyi's hall cap, and Huanxi's New-Year recurrence address.",
+    "directActors": "PASS: Miyin Zhenchuan, Hengshan Dengbing, Shanyi Ruchun, and Huanxi Weiyi each own the exact headword-bearing clause in the retained complete turn. The R79 Yunju quotation misattributions are absent.",
+    "families": "PASS: four coordinates project the four approved independent direct-use families exactly once.",
+    "sourceHierarchy": "PASS: four Tier-2 sayings sources and no lamp evidence.",
+    "projections": "PASS: occurrence order, coordinates, actors, SourceTexts, RelatedMasters, targets, aliases, Explanation, and Note match the approved construction.",
+    "compilerAudit": "PASS: the compiler report is hardPass with no errors and binds the exact worksheet and exact reviewed product hashes.",
+    "publicSchema": "PASS: Sense MasterName remains null across multiple exact actors; occurrence MasterName and ContextMasters preserve each direct speaker."
+  },
+  "occurrenceAudit": [
+    {
+      "relPath": "J/J35/J35nB343.xml",
+      "fromLb": "0843b16",
+      "masterName": "Miyin Zhenchuan",
+      "family": "jixiang:miyin-direct-answer",
+      "decision": "PASS"
+    },
+    {
+      "relPath": "J/J39/J39nB438.xml",
+      "fromLb": "0250a30",
+      "masterName": "Hengshan Dengbing",
+      "family": "jixiang:hengshan-proper-position",
+      "decision": "PASS"
+    },
+    {
+      "relPath": "J/J39/J39nB468.xml",
+      "fromLb": "0911a26",
+      "masterName": "Shanyi Ruchun",
+      "family": "jixiang:shanyi-hall-cap",
+      "decision": "PASS"
+    },
+    {
+      "relPath": "X/X70/X70n1388.xml",
+      "fromLb": "0383a02",
+      "masterName": "Huanxi Weiyi",
+      "family": "jixiang:huanxi-new-year",
+      "decision": "PASS"
+    }
+  ],
+  "defects": [],
+  "verdict": "APPROVE",
+  "hardPass": true,
+  "publicMutation": false
+}

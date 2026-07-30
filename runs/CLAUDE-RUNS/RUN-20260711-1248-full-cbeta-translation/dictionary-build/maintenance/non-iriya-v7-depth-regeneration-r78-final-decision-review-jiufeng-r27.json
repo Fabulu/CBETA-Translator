@@ -1,0 +1,76 @@
+{
+  "schemaVersion": "r78-final-source-first-decision-review.v1",
+  "cohort": "R78",
+  "id": "t_1a9ab2ab3675",
+  "term": "酒逢知己飲",
+  "sourceBinding": {
+    "extractionPath": "maintenance/non-iriya-v7-depth-regeneration-r78-extraction-output-b.json",
+    "extractionSha256": "127e19e20038c4b031a7bd2e81689f93cd2c5db59dcd3e47c7cae9050a1b32c7",
+    "skeletonPath": "maintenance/non-iriya-v7-depth-regeneration-r78-research-skeleton-b.json",
+    "skeletonSha256": "338390d4ebdf5db66687f2cca40b96e6dc15ce927a82bd66594fa3e29406e1f1",
+    "candidateCaseIdentitySha256": "d8f96cf97965e632bd12bc43be4a9067d01d5abae65820bfdd1a1a5b069c7c91",
+    "candidateCount": 7,
+    "requiredFloor": 4,
+    "reserveRead": 3
+  },
+  "rebindAuthority": {
+    "priorDecisionReviewPath": "maintenance/non-iriya-v7-depth-regeneration-r77-decision-review-jiufeng-r27.json",
+    "priorDecisionReviewSha256": "99169695c138d90de53fc69c12dbc0a2ca8a4daa9720064fc9b5c51bf810a287",
+    "comparison": "The ordered seven-case tuple of relative path, line anchor, context SHA-256, and source tier is byte-identical in substance between the R77 and R78 governed extractions.",
+    "ruling": "The R77 complete-case semantic, actor, family, reserve, and source-hierarchy decisions transfer without alteration to the current R78 governed bytes."
+  },
+  "finalDecision": {
+    "admission": "ADMIT",
+    "unitType": "stable proverb clause with repeated Chan deployment",
+    "senseCount": 1,
+    "preferredTarget": "wine is drunk with one who understands",
+    "alternateTargets": [
+      "drink wine with a kindred spirit"
+    ],
+    "searchAliases": [
+      "wine is for one who knows you"
+    ],
+    "meaning": "The clause marks something offered or said when the other person truly understands; no special mystical meaning is assigned to literal wine or drinking.",
+    "companionLine": "詩向會人吟 confirms the parallel proverb but is not a second sense; 花插美人頭 shows that the first clause remains stable when the paired line varies."
+  },
+  "retainedFamilies": [
+    {
+      "relPath": "C/C077/C077n1710.xml",
+      "actor": "Zhenjing Kewen",
+      "family": "jiufeng:Zhenjing-nanquan-zhaozhou-appraisal",
+      "tier": 2
+    },
+    {
+      "relPath": "J/J26/J26nB177.xml",
+      "actor": "Poshan Haiming",
+      "family": "jiufeng:poshan-nanquan-not-mind",
+      "tier": 2
+    },
+    {
+      "relPath": "J/J26/J26nB186.xml",
+      "actor": "Linye Tongqi",
+      "family": "jiufeng:linye-host-guest-meeting",
+      "tier": 2
+    },
+    {
+      "relPath": "J/J28/J28nB204.xml",
+      "actor": "Binya Jian",
+      "family": "jiufeng:binya-before-birth-answer",
+      "tier": 2
+    }
+  ],
+  "reserveRuling": {
+    "J/J36/J36nB369.xml": "Zhe'an Jingfan's direct answer with a variant companion line is genuine but surplus.",
+    "J/J37/J37nB386.xml": "Yuan'an Liao's hall cap is genuine but surplus.",
+    "J/J38/J38nB415.xml": "The headword belongs to the inherited quotation of Duanqiao Miaolun raised by Miaoyun Zhenxiong; it is not a new Miaoyun family."
+  },
+  "sourceHierarchy": {
+    "tier1": 0,
+    "tier2": 4,
+    "tier3Lamp": 0,
+    "ruling": "Four independent active recorded-sayings families meet the floor; no lamp was consulted or retained."
+  },
+  "reviewVerdict": "APPROVE_FOR_CONSTRUCTION",
+  "hardPass": true,
+  "publicMutation": false
+}

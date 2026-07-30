@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "r79-constructor-fail-closed.v1",
+  "cohort": "R79",
+  "failedStage": "constructor-render",
+  "startedEpoch": 1785402957.2812827,
+  "constructorReceiptPath": "maintenance/non-iriya-v7-depth-regeneration-r79-constructor-checkpoint-b.json",
+  "constructorConfigPath": "maintenance/non-iriya-v7-depth-regeneration-r79-constructor-config-b.json",
+  "constructorConfigSha256": "131d9d50c6782f8c3c115a42d478db82a6aa7fb6a02c3cdf3d2fefc69b9c17e0",
+  "exactFailure": "EvidenceTransport.SourceAuthorityManifestSha256: must match the current authority registry bytes",
+  "rootCause": "The R79 config generator hashed its dossier-local sourceAuthorityManifest object. The canonical compiler instead requires the exact SHA-256 of Assets/Data/zen-source-authority.json.",
+  "partialState": [
+    {
+      "path": "fresh-build/entries/t_1a9ab2ab3675/source-dossier.json",
+      "sha256": "6a819b807fd22d7f31aaa8e68f137fcd611002f24f16c442992ae6e9c0a7e854",
+      "r79Written": true
+    },
+    {
+      "path": "fresh-build/entries/t_1a9ab2ab3675/evidence.draft.json",
+      "sha256": "09d7ab732ce5dad650f9ac15ddc28137160f3022c26dc9548e355aa804af0197",
+      "r79Written": true
+    },
+    {
+      "path": "fresh-build/entries/t_1a9ab2ab3675/evidence-compile-report.json",
+      "sha256": "4b13426c41770ebd92505952d9af600e731b109f658067cba9ac9fb0afe964e7",
+      "r79Written": true
+    }
+  ],
+  "productRuling": {
+    "path": "fresh-build/entries/t_1a9ab2ab3675/entry.v2.json",
+    "sha256": "c639df9cf5605aa2dbdf31e6a5e5807666519de96a13cd1dc6fac60937291982",
+    "mtimeEpoch": 1785305480.8820055,
+    "finding": "The entry product predates R79 artifact zero; R79 rendered no product."
+  },
+  "secondEntryWrittenByR79": false,
+  "constructionManifestCreated": false,
+  "productsCreatedByR79": 0,
+  "publicMutation": false,
+  "repeatUnderFreshClockRequired": true,
+  "hardPass": true
+}

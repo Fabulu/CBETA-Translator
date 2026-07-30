@@ -1,0 +1,130 @@
+{
+  "schemaVersion": "r77-byte-bound-carryover-review.v1",
+  "cohort": "R77",
+  "id": "t_1a86ee3d406f",
+  "term": "便下座",
+  "reviewScope": "Byte-bound carryover review of the R76 lexical-admission ruling against the governed R77 extraction and research skeleton. No product or public mutation.",
+  "sourceBindings": {
+    "r77TimegatePath": "maintenance/non-iriya-v7-depth-regeneration-r77-timegate-root.json",
+    "r77TimegateSha256": "164bc93eb84264781f1676f5277558e5b2dda1bd7c9dff2455d372726e1e5f1a",
+    "r77SelectionPath": "maintenance/non-iriya-v7-depth-regeneration-r77-selection-b.json",
+    "r77SelectionSha256": "3181dcbe07804b5f934d9df3a7cc033fd114a1859b73c1ee295e1cb4dc60bcc2",
+    "r77ExtractionPath": "maintenance/non-iriya-v7-depth-regeneration-r77-extraction-output-b.json",
+    "r77ExtractionSha256": "584e6ab917cde2cb30b5298404253602bae5068bdf478a9a2c2ba1e1b8067d43",
+    "r77ResearchSkeletonPath": "maintenance/non-iriya-v7-depth-regeneration-r77-research-skeleton-b.json",
+    "r77ResearchSkeletonSha256": "d46202e0245af5c930dbb229f0170c74e5a055fc7a2067999793794611e1926b",
+    "carriedR76ReviewPath": "maintenance/non-iriya-v7-depth-regeneration-r76-review-bianxiazuo-c.json",
+    "carriedR76ReviewSha256": "609726fddcf7096cb7d7b82912e416e074a3328119c13414fd19cc055fccb021"
+  },
+  "governedExtractionAudit": {
+    "requiredFloor": 8,
+    "candidateTarget": 11,
+    "candidateSupplyExhausted": false,
+    "extractedCandidates": 11,
+    "skeletonCandidateHashes": 11,
+    "exactSpan": "便下座",
+    "exactSpanSha256": "1a86ee3d406f2a7186de27bafa5f0e2effd71ba49738540841091b6320a6a3b6",
+    "candidateCoordinates": [
+      {
+        "relPath": "J/J25/J25nB165.xml",
+        "fromLb": "0287c03",
+        "governedTier": 1,
+        "use": "After 無事且休去, narrator reports descent from the seat."
+      },
+      {
+        "relPath": "J/J25/J25nB166.xml",
+        "fromLb": "0299b16",
+        "governedTier": 1,
+        "use": "After pointing the whisk in the air, narrator reports descent from the seat."
+      },
+      {
+        "relPath": "X/X78/X78n1554.xml",
+        "fromLb": "0587a16",
+        "governedTier": 1,
+        "use": "After an exchange with the governor, narrator reports the master then descending."
+      },
+      {
+        "relPath": "B/B27/B27n0152.xml",
+        "fromLb": "0497a19",
+        "governedTier": 2,
+        "use": "Following a hall statement and glance at the assembly, narrator reports descent."
+      },
+      {
+        "relPath": "C/C077/C077n1710.xml",
+        "fromLb": "0617b10",
+        "governedTier": 2,
+        "use": "Mazu descends after Baizhang rolls up the mat."
+      },
+      {
+        "relPath": "D/D51/D51n8948.xml",
+        "fromLb": "0002b08",
+        "governedTier": 2,
+        "use": "Mingzhao ends a cold-weather statement, descends, and returns to the quarters."
+      },
+      {
+        "relPath": "J/J10/J10nA158.xml",
+        "fromLb": "0003b07",
+        "governedTier": 2,
+        "use": "A hall address closes with a shout and descent."
+      },
+      {
+        "relPath": "J/J23/J23nB134.xml",
+        "fromLb": "0520c16",
+        "governedTier": 2,
+        "use": "Linji descends after Magu leaves."
+      },
+      {
+        "relPath": "J/J24/J24nB138.xml",
+        "fromLb": "0373a14",
+        "governedTier": 2,
+        "use": "Xuefeng descends and physically seizes a monk; the sequence remains literal narration."
+      },
+      {
+        "relPath": "J/J25/J25nB154.xml",
+        "fromLb": "0032b17",
+        "governedTier": 2,
+        "use": "A short hall challenge is followed by descent."
+      },
+      {
+        "relPath": "J/J25/J25nB155.xml",
+        "fromLb": "0044b03",
+        "governedTier": 2,
+        "use": "After raising the whisk and saying 是這個, narrator reports descent."
+      }
+    ],
+    "byteParity": "The governed extraction contains eleven candidates for this ID, and the governed skeleton contains eleven candidate hashes for this ID. The reviewed row, exact span, and cohort bindings agree."
+  },
+  "newEvidenceTest": {
+    "lexicalContrast": false,
+    "selfGloss": false,
+    "activeReapplicationOfWholeSpan": false,
+    "specializedMeaningForBian": false,
+    "stableInstitutionalMeaning": "The new material reinforces 下座 as the institutional action of descending from the teaching seat, often closing a hall appearance.",
+    "finding": "None of the eleven candidates distinguishes 便下座 from 下座 plus the ordinary sequencing adverb 便. Higher source rank improves witness authority but cannot repair a failed lexical boundary."
+  },
+  "familyRuling": {
+    "rawCandidates": 11,
+    "activeSemanticFamilies": 0,
+    "narrativePatternFamilies": 1,
+    "pattern": "After a statement, gesture, interruption, or exchange, the narrator reports that the seated figure then descends.",
+    "conclusion": "Different masters and incidents do not create independent semantic deployments. All eleven candidates are passive compositional narration."
+  },
+  "actorRuling": {
+    "masterName": null,
+    "headwordOwner": "record or compiler narrative voice",
+    "status": "narrated",
+    "actorRole": "compiler",
+    "contextualPerson": "The person descending is person-described or case-figure, not utterer of the headword.",
+    "finding": "R77 introduces no actor exception."
+  },
+  "carryoverDecision": {
+    "r76Decision": "REJECT_AND_REMOVE_DICTIONARY_ENTRY",
+    "r77Decision": "REJECT_AND_REMOVE_DICTIONARY_ENTRY",
+    "reasonCode": "compositional-particle-plus-institutional-action",
+    "floorRuling": "The eight-occurrence floor remains inapplicable after admission failure.",
+    "requiredDisposition": "Resolve t_1a86ee3d406f as an admission removal. Do not construct an eight-occurrence entry and do not use the R77 candidates as source-tier padding. Evaluate 下座 separately only through a fresh governed review."
+  },
+  "verdict": "CARRYOVER_APPROVE_REMOVAL",
+  "hardPass": true,
+  "publicMutation": false
+}

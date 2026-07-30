@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "r80-final-release-authority.v1",
+  "cohort": "R80",
+  "verdict": "RELEASE_AUTHORIZED",
+  "closureSha256": "9cda0a280b01512d3470359b89063f064b5f5b95dc8bcbda6309e7e528e1b272",
+  "replacements": [
+    {"id":"t_1a9ab2ab3675","term":"酒逢知己飲","sha256":"3ed6020e6826c519e44e1cf508ee52a1a24af0bf192009b089fed4a393080bef","reviewSha256":"0b15380085e810f4f2da76713727e8177b0e1d6bad19eff1ebed66f6bfbb3856"},
+    {"id":"t_1b056c5af929","term":"雞向五更啼","sha256":"eec67e2bd341d10e7caeb7543032e55fa3c2fe28cfcae333db9c3715492f5879","reviewSha256":"ee053086570497db75f343a7fab7c900103302a79c517886b4310fc42db6ee78"}
+  ],
+  "removal": {
+    "id":"t_1a86ee3d406f",
+    "term":"便下座",
+    "reason":"Ordinary sequential 便 plus institutional 下座; eleven reviewed cases yield one passive narrator pattern and zero independent lexical deployments.",
+    "reviewSha256":"693f10560e940326fb0e991ba2f45c4ec19bc023e62afa939c66e865e635f4ba"
+  },
+  "review": {
+    "retainedEvidence":"8 quotations across 8 independent deployment families",
+    "tierMix":"0 Tier-1, 8 Tier-2, 0 Tier-3",
+    "attributionAudit":"zero hard failures",
+    "processRegressions":"16/16 PASS"
+  },
+  "releaseAuthorized":true,
+  "hardPass":true
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "r80-byte-bound-carryover-approval.v1",
+  "cohort": "R80",
+  "id": "t_1a9ab2ab3675",
+  "term": "酒逢知己飲",
+  "sourceBinding": {
+    "extractionPath": "maintenance/non-iriya-v7-depth-regeneration-r80-extraction-output-b.json",
+    "extractionSha256": "17f379f7349a2d51741d5c994e0a167053ba991d0dcfc11ce70b0f7ae12d9292",
+    "skeletonPath": "maintenance/non-iriya-v7-depth-regeneration-r80-research-skeleton-b.json",
+    "skeletonSha256": "fa0589cf13f7bc48aa3ab8eb2cc1de840fad51efb7d2b192b2c7179f4bddd578",
+    "candidateCount": 7,
+    "candidateTupleSha256": "d8f96cf97965e632bd12bc43be4a9067d01d5abae65820bfdd1a1a5b069c7c91"
+  },
+  "priorAuthority": {
+    "path": "maintenance/non-iriya-v7-depth-regeneration-r79-carryover-approval-jiufeng-r27.json",
+    "sha256": "b47bc83b47574d1b186aa78c0056c154af670d26cf7bf20b0a304e801f9b71b7"
+  },
+  "ruling": "PASS: the ordered R80 tuples of relative path, line anchor, context SHA-256, and tier exactly match R79. Carry forward the approved one-sense proverb ruling, all seven actor/family dispositions, four retained Tier-2 families, three reserves, and zero-lamp policy without semantic change.",
+  "verdict": "APPROVE_FOR_CONSTRUCTION",
+  "hardPass": true,
+  "publicMutation": false
+}

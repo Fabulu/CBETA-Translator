@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "r80-focused-correction.v1",
+  "cohort": "R80",
+  "correctedEpoch": 1785403690.0582902,
+  "corrections": [
+    "All four 酒逢知己飲 occurrences now bind their exact Chinese speech frame in AttributionNote and DraftActorProof.SpeechFrame.",
+    "The Huanxi Weiyi occurrence names the full English source title and its exact 除夜 speech frame.",
+    "All reusable generator grammar specifications were corrected."
+  ],
+  "rows": [
+    {
+      "id": "t_1a9ab2ab3675",
+      "before": {
+        "dossier": "31d3d991615e0569e310bcfddb7daf64139e0c5612f247bb5842741de5904d54",
+        "worksheet": "a695bc1d656127cde56ded1e4df58286b61878b00c92201a0eddcb606cdea913",
+        "product": "ce5a87adb20e5bbebc1cf5e4d06a93f9cdb3f0833db2a249419e838c054e08da"
+      },
+      "after": {
+        "dossier": "244827899b29067e5b316980fb2c25c1d7ec212265eb368b3ae2c4eda3db02bf",
+        "worksheet": "ee9bbedfa34ce52fc4d7231fff9c73297d9713000767a6e858aaa666b917c4ca",
+        "product": "00842cb5bcc5bdb1ca6e5814aef00b1348693246bf23fdff6f484ef4b1f4a520",
+        "compileReport": "e6b845cde469479be14b0b0bafd409ec5d484642908a9a4ef3a7682ede348349",
+        "roundtripReport": "3f98a43a0cd6de75469f920337db29bef34a1354aca0c6897520d9a7d9099d3c"
+      }
+    },
+    {
+      "id": "t_1b056c5af929",
+      "before": {
+        "dossier": "cae69690a6af50f2bc75066132f383890a373112b582242b9df7ed15aa655c9b",
+        "worksheet": "ac853e0c9563cbcf6d17f86e97687b6c4a63565ebfc0256d2eda4ce55bb7fe6d",
+        "product": "585fbefe935183129c90fcb30df7883d0d048d6b217d1fe1f4634c6a22acf784"
+      },
+      "after": {
+        "dossier": "f2f86b24fce1a9d6e5a70b14b86f23903b8da91c2ae02b746abf1a82263960a7",
+        "worksheet": "20350d405cadb0fc27709d1a6117397fc1e15ac749b24799629df41f8e3b1b07",
+        "product": "076d1ff6a4c479554ab6ca5bd165b9b29540e930215900dc400d40eed6417111",
+        "compileReport": "06bc35c0fb8c6fdbdac057b879caa14c18563dc5cd92da9b5dd122a34b884a9d",
+        "roundtripReport": "f80b3a328897c8df34af46966deab8af72d90ed896434c6e3b9cdff6a9a259b7"
+      }
+    }
+  ],
+  "tier3Lamp": 0,
+  "publicMutation": false,
+  "hardPass": true
+}

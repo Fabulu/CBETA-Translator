@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "r80-final-post-correction-closure.v1",
+  "cohort": "R80",
+  "constructionAuthority": {
+    "checkpointPath": "maintenance/non-iriya-v7-depth-regeneration-r80-constructor-checkpoint-b.json",
+    "checkpointSha256": "04d757c3d595cb1f5fd3fca3a03d35bf234fba3c4ddb8241a39b485680cd23e5",
+    "manifestPath": "maintenance/non-iriya-v7-depth-regeneration-r80-construction-manifest-b.json",
+    "manifestSha256": "be80094e00938366931dfc4fad82e474ad620c1f114d0a7bb3e1e75c03b81782",
+    "constructorEngineSha256": "94c639896844807c829a7998bd5db0e98e49c2dad43d6b158d169a8e65edcdf9"
+  },
+  "finalProducts": [
+    {
+      "id": "t_1a9ab2ab3675",
+      "term": "酒逢知己飲",
+      "productPath": "fresh-build/entries/t_1a9ab2ab3675/entry.v2.json",
+      "productSha256": "3ed6020e6826c519e44e1cf508ee52a1a24af0bf192009b089fed4a393080bef",
+      "worksheetSha256": "8e985ab8d89b44b139b11174c6893639bdd52a90e3c40bb42b1040f54a5e0056",
+      "dossierSha256": "244827899b29067e5b316980fb2c25c1d7ec212265eb368b3ae2c4eda3db02bf",
+      "finalReviewPath": "maintenance/non-iriya-v7-depth-regeneration-r80-final-product-approval-jiufeng-r27.json",
+      "finalReviewSha256": "0b15380085e810f4f2da76713727e8177b0e1d6bad19eff1ebed66f6bfbb3856",
+      "tier2Families": 4,
+      "tier3Lamp": 0
+    },
+    {
+      "id": "t_1b056c5af929",
+      "term": "雞向五更啼",
+      "productPath": "fresh-build/entries/t_1b056c5af929/entry.v2.json",
+      "productSha256": "eec67e2bd341d10e7caeb7543032e55fa3c2fe28cfcae333db9c3715492f5879",
+      "worksheetSha256": "5ba52f19c6cdc8632c5bf29c2f546dc44a156818183af8176404283957b04629",
+      "dossierSha256": "f2f86b24fce1a9d6e5a70b14b86f23903b8da91c2ae02b746abf1a82263960a7",
+      "finalReviewPath": "maintenance/non-iriya-v7-depth-regeneration-r80-final-product-rereview-jixiang-c.json",
+      "finalReviewSha256": "ee053086570497db75f343a7fab7c900103302a79c517886b4310fc42db6ee78",
+      "tier2Families": 4,
+      "tier3Lamp": 0
+    }
+  ],
+  "removalCarryover": {
+    "id": "t_1a86ee3d406f",
+    "term": "便下座",
+    "ruling": "REJECT_AND_REMOVE_DICTIONARY_ENTRY",
+    "reviewPath": "maintenance/non-iriya-v7-depth-regeneration-r78-final-removal-review-bianxiazuo-c.json",
+    "reviewSha256": "693f10560e940326fb0e991ba2f45c4ec19bc023e62afa939c66e865e635f4ba"
+  },
+  "correctionAuthority": [
+    {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r80-focused-correction-b.json",
+      "sha256": "476b7fbdf497fa8a438fe427411d4597cbd90b785590428b88c01a707d992736"
+    },
+    {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r80-second-correction-receipt-b.json",
+      "sha256": "24ced2c2e4c1e3879573f6b073c03b4725e6b341b9dc05761b64eb8f703dd32d"
+    }
+  ],
+  "processSafeguards": {
+    "existingPerIdCollisionPolicy": "reject unless a post-artifact-zero, byte-bound authorized replacement policy exactly names every collision",
+    "sourceAuthorityBinding": "exact Assets/Data/zen-source-authority.json bytes",
+    "canonicalActorNote": "exact canonical MasterName is mandatory in every AttributionNote and DraftActorProof.SpeechFrame",
+    "generatorSha256": "426c8ea2cdc6cb1cbb5ad626aef105820203f6fb68b7f3653cbebd1a29c838c5",
+    "actorNoteFormatterSha256": "0ee4f5ae416786c11fb9dce8e920ca5c7f7da0fecbc2665c10c193943997ed0f",
+    "sourceAuthorityHelperSha256": "f457c0dc39b302e32d7749cee0798d20cee13b13668759ba98d8f88b257238a2"
+  },
+  "testReceipt": {
+    "testsPassed": 16,
+    "testsFailed": 0,
+    "testFiles": [
+      {
+        "path": "maintenance/test_generic_bounded_constructor.py",
+        "sha256": "c5318fe18a6ca1afdf0e2e1fadc08080d9dcb4f4c360997bbd24a0308444b0bd"
+      },
+      {
+        "path": "maintenance/test_source_authority_binding.py",
+        "sha256": "c7171614048c23b11c9e6471bea9d88e8e8a4f903b9e9bac12c059860179a2c1"
+      },
+      {
+        "path": "maintenance/test_r80_direct_family_payload.py",
+        "sha256": "25e9a35ea29ebed74e1eabdd528f146c93aedf0ab528931279ddf24d28669e82"
+      },
+      {
+        "path": "maintenance/test_r80_exact_grammar_frames.py",
+        "sha256": "c6360f5d0da59bd803cfeec85810538cc8b951859622c7e070e217913e4730bb"
+      }
+    ]
+  },
+  "sourceHierarchy": "Eight independent Tier-2 recorded-sayings families; no Tier-3 lamp retained.",
+  "attributionAuditErrors": 0,
+  "publicMutation": false,
+  "rosterMutation": false,
+  "releaseReady": true,
+  "hardPass": true
+}

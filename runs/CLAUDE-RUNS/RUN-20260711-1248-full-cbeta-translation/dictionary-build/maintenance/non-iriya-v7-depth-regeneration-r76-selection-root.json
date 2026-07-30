@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "r76-selection.v1",
+  "cohort": "R76",
+  "orderedSelectorPolicy": "first three unresolved rows in the authoritative selector after subtracting the 185-ID R75 resolved union; current-pass rows selected for proven earliest-snapshot depth failure are not skipped",
+  "entries": [
+    {
+      "id": "t_1a86ee3d406f",
+      "term": "便下座",
+      "requiredFloor": 8,
+      "currentOccurrences": 8,
+      "selectionReason": "earliestSnapshotDepthFailure"
+    },
+    {
+      "id": "t_1a9ab2ab3675",
+      "term": "酒逢知己飲",
+      "requiredFloor": 4,
+      "currentOccurrences": 2,
+      "selectionReason": "currentGitBoundDepthFailure"
+    },
+    {
+      "id": "t_1b056c5af929",
+      "term": "雞向五更啼",
+      "requiredFloor": 4,
+      "currentOccurrences": 2,
+      "selectionReason": "currentGitBoundDepthFailure"
+    }
+  ],
+  "hardPass": true
+}

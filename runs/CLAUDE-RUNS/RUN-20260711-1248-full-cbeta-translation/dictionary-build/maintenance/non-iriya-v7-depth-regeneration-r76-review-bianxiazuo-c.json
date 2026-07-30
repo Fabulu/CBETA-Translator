@@ -1,0 +1,109 @@
+{
+  "schemaVersion": "r76-source-first-admission-review.v1",
+  "cohort": "R76",
+  "id": "t_1a86ee3d406f",
+  "term": "便下座",
+  "reviewScope": "Independent source-first lexical-admission, semantic-family, source-hierarchy, and actor review. No product or public mutation.",
+  "sourceBindings": {
+    "timegatePath": "maintenance/non-iriya-v7-depth-regeneration-r76-timegate-root.json",
+    "timegateSha256": "340b2f5cdf1f43f9ef970b4d5e484795f0a0c1567e18151b96a6ca3a5b26d147",
+    "selectionPath": "maintenance/non-iriya-v7-depth-regeneration-r76-selection-root.json",
+    "selectionSha256": "739f1cf53249749c462bf27b5ac850825f2eb3e922b88c9f42faf4c05ac653d0",
+    "reviewedProductPath": "fresh-build/entries/t_1a86ee3d406f/entry.v2.json",
+    "reviewedProductSha256": "e66a0a773be0bf602540349824bb3d110854d8798f67d8dec784647036812db2"
+  },
+  "admissionReview": {
+    "decision": "REJECT_AND_REMOVE_DICTIONARY_ENTRY",
+    "reasonCode": "compositional-particle-plus-institutional-action",
+    "analysis": "便 contributes the ordinary narrative transition 'then/thereupon'; 下座 supplies the complete institutional action 'descend from the teaching seat'. The assembled passages do not establish a meaning or Chan job for the three-character span beyond the transparent sum of those parts. Repetition of the same narrator formula cannot convert an arbitrary particle-prefixed span into a dictionary headword.",
+    "stableMaterial": {
+      "candidate": "下座",
+      "job": "In hall narration, descending from the teaching seat ordinarily closes the formal appearance or address.",
+      "constraint": "This review recommends only that the stable institutional material be evaluated under 下座. It does not authorize creating or changing that separate entry."
+    },
+    "floorRuling": "The required floor of eight applies only after lexical admission. Because the headword fails admission, the floor must not be met by retaining redundant narration or low-tier sources."
+  },
+  "currentEntryDiagnosis": {
+    "preferredTarget": "The current 'then descended from the seat' is a sound clause translation but demonstrates compositionality rather than lexical independence.",
+    "explanation": "The public explanation correctly recognizes a formal teaching-seat action, but assigns the institutional force to 便下座 as a whole. The evidence supports that force for 下座; no evidence identifies a distinct function contributed by the prefixed 便.",
+    "note": "The note correctly distinguishes narration from utterance.",
+    "relatedTerms": "The current RelatedTerms already includes 下座, which exposes the better lexical boundary."
+  },
+  "sourceHierarchyAudit": {
+    "tier2Witnesses": [
+      {
+        "relPath": "T/T47/T47n1985.xml",
+        "work": "Recorded Sayings of Linji",
+        "occurrences": 2,
+        "ruling": "Usable sayings-record evidence for 下座 as narrated action, but not for an independent 便下座 lexeme."
+      },
+      {
+        "relPath": "C/C077/C077n1710.xml",
+        "work": "Recorded Sayings of Ancient Venerable Masters",
+        "occurrences": 1,
+        "ruling": "Usable record evidence for narrated descent from the seat; no independent semantic deployment of the full span."
+      },
+      {
+        "relPath": "J/J26/J26nB178.xml",
+        "work": "Recorded Sayings of Feiyin",
+        "occurrences": 1,
+        "ruling": "Usable sayings-record evidence for a closing stage direction; no lexical contrast or active reuse."
+      }
+    ],
+    "tier3Witnesses": [
+      {
+        "relPath": "X/X80/X80n1565.xml",
+        "work": "Five Lamps Compendium",
+        "occurrences": 2,
+        "ruling": "Lamp narration; the two near-parallel Shakyamuni scenes repeat one inherited stage-direction template and must not be counted as independent depth."
+      },
+      {
+        "relPath": "X/X82/X82n1571.xml",
+        "work": "Complete Five Lamps",
+        "occurrences": 1,
+        "ruling": "Late lamp narration; unnecessary for a meaning already visible in better sources."
+      },
+      {
+        "relPath": "X/X81/X81n1568.xml",
+        "work": "Strict Lineage of the Five Lamps",
+        "occurrences": 1,
+        "ruling": "Lamp narration; unnecessary padding."
+      }
+    ],
+    "tier1Witnesses": [],
+    "hierarchyConclusion": "The current entry is half lamp by occurrence count and half lamp by source-file count. More importantly, neither the better Tier-2 witnesses nor the lamps supply a non-compositional sense. Lamps therefore cannot cure the admission failure."
+  },
+  "familyAudit": {
+    "rawOccurrences": 8,
+    "sourceFiles": 6,
+    "activeSemanticFamilies": 0,
+    "narrativePatternFamilies": [
+      {
+        "family": "formal-seat-descent-stage-direction",
+        "members": 8,
+        "finding": "All passages use the same ordinary narrator transition: after an utterance, departure, mat-rolling, mallet signal, or dedication, the seated figure then descends. Changes of person and surrounding incident do not create new senses or active deployments."
+      }
+    ],
+    "collapseConclusion": "The two Shakyamuni lamp passages are especially close template recensions. The two Linji passages are separate narrated incidents but the same compositional use. The remaining examples add persons and settings, not semantic depth."
+  },
+  "actorAudit": {
+    "masterName": null,
+    "headwordOwnership": "In every occurrence the record's narrative voice owns the wording.",
+    "actorAttribution": {
+      "status": "narrated",
+      "kind": "compiler narrative",
+      "actorRole": "compiler"
+    },
+    "contextualActors": "The person who descends is contextual only, normally person-described or case-figure; that person must not be promoted to headword utterer.",
+    "currentProductRuling": "The current occurrence metadata correctly keeps MasterName null and uses narrated/compiler ownership. Its actor model is not a reason to retain a lexically inadmissible entry."
+  },
+  "requiredDisposition": {
+    "entry": "Remove t_1a86ee3d406f from the dictionary build and from any resolved/admitted union.",
+    "evidence": "Do not transfer the eight occurrences wholesale into another entry. If 下座 is separately reviewed, select source-hierarchical, family-distinct evidence from scratch.",
+    "selector": "Resolve this cohort item as an admission removal rather than a depth repair.",
+    "publication": "No public mutation was performed by this reviewer."
+  },
+  "verdict": "APPROVE_REMOVAL",
+  "hardPass": true,
+  "publicMutation": false
+}

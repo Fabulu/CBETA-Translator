@@ -1,0 +1,28 @@
+{
+  "complete": true,
+  "commands": [
+    {
+      "epoch": 1785402167.846828,
+      "argv": [
+        "python3",
+        "maintenance/dictionary_python_env.py",
+        "--script",
+        "maintenance/extract_assigned_source_first.py",
+        "--",
+        "--extraction-output",
+        "maintenance/non-iriya-v7-depth-regeneration-r77-extraction-output-b.json",
+        "--research-skeleton",
+        "maintenance/non-iriya-v7-depth-regeneration-r77-research-skeleton-b.json",
+        "--timegate",
+        "maintenance/non-iriya-v7-depth-regeneration-r77-timegate-root.json",
+        "--selection",
+        "maintenance/non-iriya-v7-depth-regeneration-r77-selection-b.json",
+        "--count",
+        "maintenance/non-iriya-v7-depth-regeneration-r77-count-b.json",
+        "--viability-receipt",
+        "maintenance/non-iriya-v7-depth-regeneration-r77-viability-checkpoint-b.json"
+      ],
+      "command": "R77 bounded source-first extraction"
+    }
+  ]
+}
