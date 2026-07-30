@@ -627,7 +627,13 @@ def compile_one(config, research_row, family_counts, labels, recut_plan=None):
         "familyControls": [{
             "Term": item["CandidateTerm"],
             "Finding": item["Reason"],
-        } for item in negative],
+        } for item in negative] or [{
+            "Term": config["term"],
+            "Finding": (
+                "Not applicable: no distinct family candidate was admitted or "
+                "rejected in this bounded source-first construction."
+            ),
+        }],
         "higherSearch": "Every matching allowlisted file was classified by authority; the retained set uses only Tier 1 or Tier 2 sources, and no lamp is needed.",
         "depthReceipt": {
             "Complete": True,

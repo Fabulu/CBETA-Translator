@@ -12,7 +12,7 @@ from unittest.mock import patch
 
 from atomic_write import atomic_write_json
 from maintenance.generic_bounded_constructor import (
-    ActorClosureError, run, verify_whole_config_preclosure,
+    ActorClosureError, CompilerPrewriteError, run, verify_whole_config_preclosure,
 )
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -146,6 +146,49 @@ class GenericBoundedConstructorIntegrationTest(unittest.TestCase):
             self.assertTrue(any("entries[1](t_fixture_1)" in row for row in errors))
             self.assertTrue(any("utterer role contradicts null MasterName" in row for row in errors))
             self.assertFalse(output.exists(), "actor preflight must create no product root")
+
+    def test_canonical_compiler_collects_later_entry_defects_before_any_write(self):
+        """A valid first entry cannot escape before unrelated later defects."""
+        with tempfile.TemporaryDirectory(dir=ROOT / "maintenance") as raw:
+            base = Path(raw).resolve()
+            output = base / "output"
+            config_path = base / "config.json"
+            entries = []
+            for identity in FIXTURE_IDS:
+                source = ROOT / "fresh-build/entries" / identity
+                worksheet = json.loads((source / "evidence.draft.json").read_text())
+                dossier = json.loads((source / "source-dossier.json").read_text())
+                entries.append({
+                    "id": identity,
+                    "term": worksheet["Entry"]["SourceTerm"],
+                    "sourceDossier": dossier,
+                    "evidenceDraft": worksheet,
+                })
+            # The R62 defect occurs only in the second entry.
+            entries[1]["evidenceDraft"]["Entry"]["Senses"][0]["DraftEvidence"][
+                "FamilyControls"] = []
+            # A different canonical compiler-schema defect occurs in the third.
+            entries[2]["evidenceDraft"]["Admission"]["Decision"] = "reject"
+            atomic_write_json(config_path, {"entries": entries})
+            with patch(
+                "maintenance.generic_bounded_constructor.verify_authority",
+                return_value={"outputRoot": output},
+            ):
+                with self.assertRaises(CompilerPrewriteError) as raised:
+                    run(config_path, base)
+            errors = raised.exception.errors
+            self.assertTrue(any(
+                f"entries[1]({FIXTURE_IDS[1]})" in row and "FamilyControls" in row
+                for row in errors
+            ))
+            self.assertTrue(any(
+                f"entries[2]({FIXTURE_IDS[2]})" in row and "Admission.Decision" in row
+                for row in errors
+            ))
+            self.assertFalse(
+                output.exists(),
+                "all-entry canonical dry compile must precede output-root creation",
+            )
 
     def test_watchdog_cli_real_compile_three_entries(self):
         with tempfile.TemporaryDirectory(dir=ROOT / "maintenance") as raw:

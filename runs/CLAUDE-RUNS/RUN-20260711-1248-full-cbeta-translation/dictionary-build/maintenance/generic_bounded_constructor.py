@@ -19,7 +19,7 @@ from typing import Any
 
 from atomic_write import atomic_write_json
 from clean_regeneration_preclosure import load_preclosure_row, validate_preclosure
-from compile_evidence_draft import compile_occurrence
+from compile_evidence_draft import compile_draft, compile_occurrence
 
 ROOT = Path(__file__).resolve().parent.parent
 ENGINE = Path(__file__).resolve()
@@ -48,6 +48,17 @@ class ActorClosureError(ValueError):
         self.errors = errors
         super().__init__(
             "whole-config actor closure failed: "
+            + json.dumps(errors, ensure_ascii=False)
+        )
+
+
+class CompilerPrewriteError(ValueError):
+    """Exhaustive canonical compiler failure before any output write."""
+
+    def __init__(self, errors: list[str]):
+        self.errors = errors
+        super().__init__(
+            "whole-config canonical compiler prewrite failed: "
             + json.dumps(errors, ensure_ascii=False)
         )
 
@@ -211,6 +222,34 @@ def verify_whole_config_preclosure(config: dict[str, Any]) -> None:
         raise ValueError(f"whole-config prewrite preclosure failed: {errors}")
 
 
+def canonical_compile_prewrite(config: dict[str, Any]) -> dict[str, dict[str, Any]]:
+    """Compile every worksheet in memory and collect every compiler error.
+
+    The dossier digest is projected exactly as the write phase will set it.
+    Passing this function proves that no later entry can discover a canonical
+    worksheet-schema error after an earlier directory or product was written.
+    """
+    errors: list[str] = []
+    projections: dict[str, dict[str, Any]] = {}
+    for index, item in enumerate(config["entries"]):
+        worksheet = json.loads(json.dumps(item["evidenceDraft"], ensure_ascii=False))
+        dossier_bytes = (
+            json.dumps(item["sourceDossier"], ensure_ascii=False, indent=2) + "\n"
+        ).encode("utf-8")
+        worksheet["EvidenceTransport"]["DossierSha256"] = hashlib.sha256(
+            dossier_bytes).hexdigest()
+        projected, compiler_errors = compile_draft(
+            worksheet, require_pipeline_v2=True, worksheet_path=None)
+        errors.extend(
+            f"entries[{index}]({item['id']}): {error}"
+            for error in compiler_errors
+        )
+        projections[item["id"]] = projected
+    if errors:
+        raise CompilerPrewriteError(errors)
+    return projections
+
+
 def run(config_path: Path, allowed_root: Path, now=time.time) -> dict[str, Any]:
     config_path = config_path.resolve()
     allowed_root = allowed_root.resolve()
@@ -221,6 +260,7 @@ def run(config_path: Path, allowed_root: Path, now=time.time) -> dict[str, Any]:
     # one defective later entry may never leave an earlier partial product.
     verify_actor_closure(config)
     verify_whole_config_preclosure(config)
+    projected_products = canonical_compile_prewrite(config)
     started = float(config["startedEpoch"])
     results = []
     for ordinal, entry in enumerate(config["entries"], 1):
@@ -247,6 +287,12 @@ def run(config_path: Path, allowed_root: Path, now=time.time) -> dict[str, Any]:
             ],
             check=True, cwd=ROOT,
         )
+        actual_product = read_json(product_path)
+        if actual_product != projected_products[entry["id"]]:
+            raise ValueError(
+                f"{entry['id']}: written compiler product differs from "
+                "the deterministic in-memory projection"
+            )
         results.append({
             "id": entry["id"], "term": entry["term"],
             "dossierSha256": sha256(dossier_path),
