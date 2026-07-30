@@ -1,0 +1,676 @@
+{
+  "schemaVersion": "bounded-selected-resolved-union.v1",
+  "scope": "R01-R33",
+  "maxCohort": 33,
+  "selectionManifestCount": 28,
+  "publicationOnlyReceiptCount": 5,
+  "sourceCount": 33,
+  "uniqueIdCount": 142,
+  "ids": [
+    "t_003426d89e5a",
+    "t_008d3b7662fd",
+    "t_00e8627f3a48",
+    "t_011d32ea606a",
+    "t_014c01308078",
+    "t_0186abbebdef",
+    "t_01a355a89ba1",
+    "t_021e77b23d7b",
+    "t_022d58242948",
+    "t_0278f5fdf5e2",
+    "t_027c7b92b7b0",
+    "t_0296c60fb986",
+    "t_02b88ed94759",
+    "t_02d93ab1ca2e",
+    "t_030c61298571",
+    "t_031ed67f95d7",
+    "t_03340b23e109",
+    "t_037ce27bebcb",
+    "t_0427b79d8ba4",
+    "t_042a8f2b193c",
+    "t_043de1343529",
+    "t_046856230fc7",
+    "t_048e35d228bc",
+    "t_04994645e07a",
+    "t_04b6f4f3baaf",
+    "t_04ec0062b6d1",
+    "t_04ec52b69afa",
+    "t_04fc273ffb60",
+    "t_057cc9ea8755",
+    "t_05a8e67efbf5",
+    "t_05ab325b6faf",
+    "t_05f3b79d0a6d",
+    "t_0739dcfc571e",
+    "t_073d53c0f3cf",
+    "t_0756c6f2afb3",
+    "t_07d808115439",
+    "t_07dc83839c4b",
+    "t_07fc3b058711",
+    "t_081fff128817",
+    "t_083de4a490e2",
+    "t_08943ce05c60",
+    "t_08ca0c164829",
+    "t_094be4e93da2",
+    "t_097f38f58678",
+    "t_09ef8275d7cc",
+    "t_0a00a92fd752",
+    "t_0a49c51488be",
+    "t_0a4aff7173e4",
+    "t_0abc40b439e6",
+    "t_0ac851a89500",
+    "t_0b6b1ec65143",
+    "t_0b8912312b92",
+    "t_0bd6428ea4a4",
+    "t_0bf5cc6082be",
+    "t_0bf7001b62ac",
+    "t_0c86700b60cb",
+    "t_0c9b30548f6b",
+    "t_0cb5d6235986",
+    "t_0d0045299c18",
+    "t_0d6794766098",
+    "t_0d8b879574b9",
+    "t_0d8d00c9bbc7",
+    "t_0d926425f385",
+    "t_0db0a143fae2",
+    "t_0dbbba3ab8ca",
+    "t_0e4798a959a5",
+    "t_0e86fe607a3d",
+    "t_0ed8638229a9",
+    "t_0f40bcecac07",
+    "t_0f8df3105c35",
+    "t_0f97bfab265c",
+    "t_0fb97dffe2bc",
+    "t_11ee68fa9b21",
+    "t_13a0b44bce53",
+    "t_1477bde8dcb0",
+    "t_157a08c37c3d",
+    "t_179883d5a6d3",
+    "t_19976beb42a0",
+    "t_20373fb359ea",
+    "t_20c61aa842ce",
+    "t_2d1f7efa7aba",
+    "t_2ebc58efe6c7",
+    "t_2ffc1edc98c9",
+    "t_329b1563a810",
+    "t_33444a26fd7d",
+    "t_355e774b3789",
+    "t_370eee2d4f3a",
+    "t_39d143b60ee0",
+    "t_3ed697ca1e5c",
+    "t_450f7d894701",
+    "t_517fe08384e7",
+    "t_524111d25353",
+    "t_560ec12c9ab9",
+    "t_599b071846ed",
+    "t_5ca1ff913a72",
+    "t_5fafa9ede6ed",
+    "t_63c4f6aea51b",
+    "t_644e32733867",
+    "t_66352cb9e654",
+    "t_665e6dcf0536",
+    "t_6773f4604c84",
+    "t_68dd08922e59",
+    "t_6cdd01b41789",
+    "t_6f1ad3832512",
+    "t_72d4046b8627",
+    "t_73cd6941ee3a",
+    "t_754abdb3604d",
+    "t_7b208e8d4528",
+    "t_7c6290301a7b",
+    "t_82813c9640a9",
+    "t_82a9f3b7b44f",
+    "t_890c1340cbe5",
+    "t_8c7b7893f693",
+    "t_91bc25aacb4a",
+    "t_936e9a0adaf7",
+    "t_97e8db7ae00b",
+    "t_993c691ecc95",
+    "t_993dfd9c2e5e",
+    "t_9ba7c943bd3d",
+    "t_9bbc996ba00c",
+    "t_9de989262256",
+    "t_9effe884f58e",
+    "t_9f422c1ca7d7",
+    "t_a2622d1264c8",
+    "t_a2c9cd3591ac",
+    "t_a62c9105e364",
+    "t_a64c940ecc5c",
+    "t_a955e6457675",
+    "t_b8a0d8ccd40b",
+    "t_ba71dea5e9a2",
+    "t_be7554261235",
+    "t_c9a96e08c9b7",
+    "t_ce7c9b265cb1",
+    "t_cffaf560969c",
+    "t_d46a5feb5681",
+    "t_d69f1b58a06e",
+    "t_d9d6de455d46",
+    "t_ec0378e7de2e",
+    "t_f2efc9a8737f",
+    "t_f3d1af365047",
+    "t_f767a4a574fc",
+    "t_fbea58b12526"
+  ],
+  "duplicateIds": [
+    {
+      "id": "t_0c9b30548f6b",
+      "sourceCount": 3,
+      "sourcePaths": [
+        "maintenance/non-iriya-v7-depth-regeneration-r27-selection-b.json",
+        "maintenance/non-iriya-v7-depth-regeneration-r25-timegate-c.json",
+        "maintenance/non-iriya-v7-depth-regeneration-r28-timegate-root.json"
+      ]
+    },
+    {
+      "id": "t_0cb5d6235986",
+      "sourceCount": 3,
+      "sourcePaths": [
+        "maintenance/non-iriya-v7-depth-regeneration-r27-selection-b.json",
+        "maintenance/non-iriya-v7-depth-regeneration-r25-timegate-c.json",
+        "maintenance/non-iriya-v7-depth-regeneration-r28-timegate-root.json"
+      ]
+    },
+    {
+      "id": "t_0d0045299c18",
+      "sourceCount": 2,
+      "sourcePaths": [
+        "maintenance/non-iriya-v7-depth-regeneration-r25-timegate-c.json",
+        "maintenance/non-iriya-v7-depth-regeneration-r26-timegate-root.json"
+      ]
+    },
+    {
+      "id": "t_0d6794766098",
+      "sourceCount": 2,
+      "sourcePaths": [
+        "maintenance/non-iriya-v7-depth-regeneration-r25-timegate-c.json",
+        "maintenance/non-iriya-v7-depth-regeneration-r26-timegate-root.json"
+      ]
+    },
+    {
+      "id": "t_0d8b879574b9",
+      "sourceCount": 2,
+      "sourcePaths": [
+        "maintenance/non-iriya-v7-depth-regeneration-r25-timegate-c.json",
+        "maintenance/non-iriya-v7-depth-regeneration-r26-timegate-root.json"
+      ]
+    },
+    {
+      "id": "t_0d926425f385",
+      "sourceCount": 2,
+      "sourcePaths": [
+        "maintenance/non-iriya-v7-depth-regeneration-r27-selection-b.json",
+        "maintenance/non-iriya-v7-depth-regeneration-r28-timegate-root.json"
+      ]
+    },
+    {
+      "id": "t_0db0a143fae2",
+      "sourceCount": 2,
+      "sourcePaths": [
+        "maintenance/non-iriya-v7-depth-regeneration-r29-selection-b.json",
+        "maintenance/non-iriya-v7-depth-regeneration-r30-timegate-b.json"
+      ]
+    },
+    {
+      "id": "t_0dbbba3ab8ca",
+      "sourceCount": 2,
+      "sourcePaths": [
+        "maintenance/non-iriya-v7-depth-regeneration-r29-selection-b.json",
+        "maintenance/non-iriya-v7-depth-regeneration-r30-timegate-b.json"
+      ]
+    },
+    {
+      "id": "t_0e4798a959a5",
+      "sourceCount": 2,
+      "sourcePaths": [
+        "maintenance/non-iriya-v7-depth-regeneration-r29-selection-b.json",
+        "maintenance/non-iriya-v7-depth-regeneration-r30-timegate-b.json"
+      ]
+    },
+    {
+      "id": "t_0f8df3105c35",
+      "sourceCount": 2,
+      "sourcePaths": [
+        "maintenance/non-iriya-v7-depth-regeneration-r32-selection-b.json",
+        "maintenance/non-iriya-v7-depth-regeneration-r33-timegate-b.json"
+      ]
+    },
+    {
+      "id": "t_0f97bfab265c",
+      "sourceCount": 2,
+      "sourcePaths": [
+        "maintenance/non-iriya-v7-depth-regeneration-r32-selection-b.json",
+        "maintenance/non-iriya-v7-depth-regeneration-r33-timegate-b.json"
+      ]
+    },
+    {
+      "id": "t_0fb97dffe2bc",
+      "sourceCount": 2,
+      "sourcePaths": [
+        "maintenance/non-iriya-v7-depth-regeneration-r32-selection-b.json",
+        "maintenance/non-iriya-v7-depth-regeneration-r33-timegate-b.json"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r01-selection-b.json",
+      "sha256": "aa26ed454ad8a2553ccb19aa5c215fd9662397cb82ad265a11a558e4f0f229fe",
+      "sourceKind": "selection-manifest",
+      "cohort": 1,
+      "ids": [
+        "t_2ebc58efe6c7",
+        "t_66352cb9e654",
+        "t_6cdd01b41789",
+        "t_6f1ad3832512",
+        "t_91bc25aacb4a",
+        "t_993dfd9c2e5e",
+        "t_a2622d1264c8",
+        "t_a2c9cd3591ac",
+        "t_c9a96e08c9b7",
+        "t_ce7c9b265cb1"
+      ]
+    },
+    {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r02-selection-a.json",
+      "sha256": "8427592523e66a197d921984debc59d15b2f818095014266bcd28f4edd66c182",
+      "sourceKind": "selection-manifest",
+      "cohort": 2,
+      "ids": [
+        "t_19976beb42a0",
+        "t_2ffc1edc98c9",
+        "t_33444a26fd7d",
+        "t_450f7d894701",
+        "t_644e32733867",
+        "t_6773f4604c84",
+        "t_754abdb3604d",
+        "t_9bbc996ba00c",
+        "t_f3d1af365047",
+        "t_f767a4a574fc"
+      ]
+    },
+    {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r03-selection-c.json",
+      "sha256": "b65910ba3f91114ac363b8cf8ab177197e68a3edf1b87d36b2d5e5aabdca1512",
+      "sourceKind": "selection-manifest",
+      "cohort": 3,
+      "ids": [
+        "t_1477bde8dcb0",
+        "t_8c7b7893f693",
+        "t_ba71dea5e9a2",
+        "t_d9d6de455d46",
+        "t_fbea58b12526"
+      ]
+    },
+    {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r04-selection-b.json",
+      "sha256": "a0dd9e3c7e8fec8182899730ef686bf6906a243dc02d5ca3e8773f1acc80b63f",
+      "sourceKind": "selection-manifest",
+      "cohort": 4,
+      "ids": [
+        "t_13a0b44bce53",
+        "t_179883d5a6d3",
+        "t_5ca1ff913a72",
+        "t_72d4046b8627",
+        "t_ec0378e7de2e"
+      ]
+    },
+    {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r05-selection-b.json",
+      "sha256": "4c38b7e83481534bcb8d2fae3534b13f199a623049f9094fa7b0f85cf349fef7",
+      "sourceKind": "selection-manifest",
+      "cohort": 5,
+      "ids": [
+        "t_0d8d00c9bbc7",
+        "t_2d1f7efa7aba",
+        "t_329b1563a810",
+        "t_a955e6457675",
+        "t_b8a0d8ccd40b"
+      ]
+    },
+    {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r06-selection-b.json",
+      "sha256": "a564e8a9e24987ea3bc17672b2d7f5dafbf99dd21d9e01423b25bad9bf5e7dfd",
+      "sourceKind": "selection-manifest",
+      "cohort": 6,
+      "ids": [
+        "t_11ee68fa9b21",
+        "t_157a08c37c3d",
+        "t_20373fb359ea",
+        "t_517fe08384e7",
+        "t_cffaf560969c"
+      ]
+    },
+    {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r07-selection-c.json",
+      "sha256": "c2b9c27010cb6bc6a1a16a121c61dbb3df7228fdd0c137c94cc6174937f885ba",
+      "sourceKind": "selection-manifest",
+      "cohort": 7,
+      "ids": [
+        "t_524111d25353",
+        "t_665e6dcf0536",
+        "t_68dd08922e59",
+        "t_a62c9105e364",
+        "t_d46a5feb5681"
+      ]
+    },
+    {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r08-selection-c.json",
+      "sha256": "a9e3848577c50752aa3e872082a2d352ee2fb32db101887b829aa2bbb34e3b75",
+      "sourceKind": "selection-manifest",
+      "cohort": 8,
+      "ids": [
+        "t_5fafa9ede6ed",
+        "t_73cd6941ee3a",
+        "t_7c6290301a7b",
+        "t_993c691ecc95",
+        "t_9ba7c943bd3d"
+      ]
+    },
+    {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r09-selection-c.json",
+      "sha256": "adcef1c9a7f7f512a7d68b885c7fe84c2b5bc17712d1e465e9ad02f82e1aeb34",
+      "sourceKind": "selection-manifest",
+      "cohort": 9,
+      "ids": [
+        "t_008d3b7662fd",
+        "t_3ed697ca1e5c",
+        "t_560ec12c9ab9",
+        "t_63c4f6aea51b",
+        "t_a64c940ecc5c"
+      ]
+    },
+    {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r10-selection-a.json",
+      "sha256": "9afb70e6e277094d287939c50530d44054cde5cd6d5517d318392e62c70adde2",
+      "sourceKind": "selection-manifest",
+      "cohort": 10,
+      "ids": [
+        "t_370eee2d4f3a",
+        "t_39d143b60ee0",
+        "t_7b208e8d4528",
+        "t_be7554261235",
+        "t_f2efc9a8737f"
+      ]
+    },
+    {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r11-selection-c.json",
+      "sha256": "6489c04a3c3f3730c32dd7c21cd066311750f9ccd81520016573435215a07ceb",
+      "sourceKind": "selection-manifest",
+      "cohort": 11,
+      "ids": [
+        "t_355e774b3789",
+        "t_599b071846ed",
+        "t_936e9a0adaf7",
+        "t_97e8db7ae00b",
+        "t_9f422c1ca7d7"
+      ]
+    },
+    {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r12-selection-b.json",
+      "sha256": "4d3efa55a33fb316bd89f9df7e51707daa14f636d5f5b0dc4c99c08aef42a17d",
+      "sourceKind": "selection-manifest",
+      "cohort": 12,
+      "ids": [
+        "t_20c61aa842ce",
+        "t_82a9f3b7b44f",
+        "t_890c1340cbe5",
+        "t_9de989262256",
+        "t_d69f1b58a06e"
+      ]
+    },
+    {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r13-selection-a.json",
+      "sha256": "0eabb7169c623b85d551e37c87cb140b93fee59e2b0ce9316ca45e14bebb7f1e",
+      "sourceKind": "selection-manifest",
+      "cohort": 13,
+      "ids": [
+        "t_82813c9640a9",
+        "t_9effe884f58e"
+      ]
+    },
+    {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r14-selection-a.json",
+      "sha256": "51033a14502f86b65791bc70076ed83b627fd636334b43a74d80f8ebaa0518ef",
+      "sourceKind": "selection-manifest",
+      "cohort": 14,
+      "ids": [
+        "t_003426d89e5a",
+        "t_00e8627f3a48",
+        "t_011d32ea606a",
+        "t_014c01308078",
+        "t_0186abbebdef"
+      ]
+    },
+    {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r15-selection-a.json",
+      "sha256": "1d42e4b7329048c6ee64f66a8efe741f7980ae89da82b33281235ea7e35aaf84",
+      "sourceKind": "selection-manifest",
+      "cohort": 15,
+      "ids": [
+        "t_01a355a89ba1",
+        "t_021e77b23d7b",
+        "t_022d58242948",
+        "t_0278f5fdf5e2",
+        "t_027c7b92b7b0"
+      ]
+    },
+    {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r16-selection-b.json",
+      "sha256": "10565627e7810b451be5350a2ab1a7d46ba5056e7d68462d4ce5b616f4c0c333",
+      "sourceKind": "selection-manifest",
+      "cohort": 16,
+      "ids": [
+        "t_0296c60fb986",
+        "t_02b88ed94759",
+        "t_02d93ab1ca2e",
+        "t_030c61298571",
+        "t_031ed67f95d7"
+      ]
+    },
+    {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r17-selection-b.json",
+      "sha256": "75f61b460b1ad5673fa1615b0d0116bfdd4295b1ef6000bd486ef5e0669df96d",
+      "sourceKind": "selection-manifest",
+      "cohort": 17,
+      "ids": [
+        "t_03340b23e109",
+        "t_037ce27bebcb",
+        "t_0427b79d8ba4",
+        "t_042a8f2b193c",
+        "t_043de1343529"
+      ]
+    },
+    {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r18-selection-b.json",
+      "sha256": "c6ad9644ec2e64d1a37e35fe6e3bf88d010a66b6e9046fb3bc8300e1b1dfa205",
+      "sourceKind": "selection-manifest",
+      "cohort": 18,
+      "ids": [
+        "t_046856230fc7",
+        "t_048e35d228bc",
+        "t_04994645e07a",
+        "t_04b6f4f3baaf",
+        "t_04ec0062b6d1"
+      ]
+    },
+    {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r19-selection-b.json",
+      "sha256": "2c6e6b8ba14b39e92a0627331a1ab2f3f340197695554de8c5835f61e0bd7966",
+      "sourceKind": "selection-manifest",
+      "cohort": 19,
+      "ids": [
+        "t_04ec52b69afa",
+        "t_04fc273ffb60",
+        "t_057cc9ea8755",
+        "t_05a8e67efbf5",
+        "t_05ab325b6faf"
+      ]
+    },
+    {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r20-selection-b.json",
+      "sha256": "6e35f089521ce1f08d4da6a1f6651094dd15e94a142a090faf034446c8c6beff",
+      "sourceKind": "selection-manifest",
+      "cohort": 20,
+      "ids": [
+        "t_05f3b79d0a6d",
+        "t_0739dcfc571e",
+        "t_073d53c0f3cf",
+        "t_0756c6f2afb3",
+        "t_07d808115439"
+      ]
+    },
+    {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r21-selection-b.json",
+      "sha256": "9a49c1b93de3b10544048c335ec0e8bd98faa15474d980505608308e38944dd6",
+      "sourceKind": "selection-manifest",
+      "cohort": 21,
+      "ids": [
+        "t_07dc83839c4b",
+        "t_07fc3b058711",
+        "t_081fff128817",
+        "t_083de4a490e2",
+        "t_08943ce05c60"
+      ]
+    },
+    {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r22-selection-c.json",
+      "sha256": "ad9704b929865c7a9c400b98d3ecb45b249cabf7b6c760dff963c27d228a16e0",
+      "sourceKind": "selection-manifest",
+      "cohort": 22,
+      "ids": [
+        "t_08ca0c164829",
+        "t_094be4e93da2",
+        "t_097f38f58678",
+        "t_09ef8275d7cc",
+        "t_0a00a92fd752"
+      ]
+    },
+    {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r23-selection-b.json",
+      "sha256": "b54b36cae29eeba50b8e729f0d905090d86cf4f7392e12d1c1bb9596e349276e",
+      "sourceKind": "selection-manifest",
+      "cohort": 23,
+      "ids": [
+        "t_0a49c51488be",
+        "t_0a4aff7173e4",
+        "t_0abc40b439e6",
+        "t_0ac851a89500",
+        "t_0b6b1ec65143"
+      ]
+    },
+    {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r24-selection-b.json",
+      "sha256": "2bf3515894b628005d9d884a1e8273c5494f41ae5ab7f0cf113290aa6f03f237",
+      "sourceKind": "selection-manifest",
+      "cohort": 24,
+      "ids": [
+        "t_0b8912312b92",
+        "t_0bd6428ea4a4",
+        "t_0bf5cc6082be",
+        "t_0bf7001b62ac",
+        "t_0c86700b60cb"
+      ]
+    },
+    {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r27-selection-b.json",
+      "sha256": "0948560e5d956c01000ab7366fc03232ab0c82a8caeeebd9f5ffd6482d33d1d1",
+      "sourceKind": "selection-manifest",
+      "cohort": 27,
+      "ids": [
+        "t_0c9b30548f6b",
+        "t_0cb5d6235986",
+        "t_0d926425f385"
+      ]
+    },
+    {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r29-selection-b.json",
+      "sha256": "625b1dc0a6960f2cb75509f14f9eaecaec61a0b118e753685f3d1f3707304ee5",
+      "sourceKind": "selection-manifest",
+      "cohort": 29,
+      "ids": [
+        "t_0db0a143fae2",
+        "t_0dbbba3ab8ca",
+        "t_0e4798a959a5"
+      ]
+    },
+    {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r31-selection-b.json",
+      "sha256": "2c856e221ce1c5dde7efb9527a2136cb739ea872b06579f4af6794c66c5b51ad",
+      "sourceKind": "selection-manifest",
+      "cohort": 31,
+      "ids": [
+        "t_0e86fe607a3d",
+        "t_0ed8638229a9",
+        "t_0f40bcecac07"
+      ]
+    },
+    {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r32-selection-b.json",
+      "sha256": "d0d8151718464e6248463e8c74cee4245e9eaf48434d6b9ed044e2298169a0e9",
+      "sourceKind": "selection-manifest",
+      "cohort": 32,
+      "ids": [
+        "t_0f8df3105c35",
+        "t_0f97bfab265c",
+        "t_0fb97dffe2bc"
+      ]
+    },
+    {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r25-timegate-c.json",
+      "sha256": "9f29a107c5f63f30a35310799f9afe5c4e689a931115f57ad36b91cfcd90f911",
+      "sourceKind": "publication-only-receipt",
+      "cohort": 25,
+      "ids": [
+        "t_0c9b30548f6b",
+        "t_0cb5d6235986",
+        "t_0d0045299c18",
+        "t_0d6794766098",
+        "t_0d8b879574b9"
+      ]
+    },
+    {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r26-timegate-root.json",
+      "sha256": "244f583556ac98574d67aada950c58e1d199ebd901c80a8e72b40e6de7a46c69",
+      "sourceKind": "publication-only-receipt",
+      "cohort": 26,
+      "ids": [
+        "t_0d0045299c18",
+        "t_0d6794766098",
+        "t_0d8b879574b9"
+      ]
+    },
+    {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r28-timegate-root.json",
+      "sha256": "7d4662dee5640d4922bf8827f63aaa31cd9fc8fbd22c1372c4df3a9092975b0d",
+      "sourceKind": "publication-only-receipt",
+      "cohort": 28,
+      "ids": [
+        "t_0c9b30548f6b",
+        "t_0cb5d6235986",
+        "t_0d926425f385"
+      ]
+    },
+    {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r30-timegate-b.json",
+      "sha256": "224f353419b439d96f125e8f7d73793bf94ed4270b495ed9955527ae2ec9eb1c",
+      "sourceKind": "publication-only-receipt",
+      "cohort": 30,
+      "ids": [
+        "t_0db0a143fae2",
+        "t_0dbbba3ab8ca",
+        "t_0e4798a959a5"
+      ]
+    },
+    {
+      "path": "maintenance/non-iriya-v7-depth-regeneration-r33-timegate-b.json",
+      "sha256": "6af772ae63640c27876caf6a3253442fa10d07a7e4f780eca35a1c67c7ccea4d",
+      "sourceKind": "publication-only-receipt",
+      "cohort": 33,
+      "ids": [
+        "t_0f8df3105c35",
+        "t_0f97bfab265c",
+        "t_0fb97dffe2bc"
+      ]
+    }
+  ],
+  "hardPass": true
+}

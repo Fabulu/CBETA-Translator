@@ -318,7 +318,12 @@ the dynamic floor, and prove that enough distinct Tier-1/2 works exist to make t
 viability deadline immediately after those operations. Do not spend the 90-second window reading complete
 contexts, resolving exact actors, inventing witness families, or drafting prose; those semantic operations
 belong to construction and independent review. The CLI count command must use `zc.batch_count` for the whole
-term set, never one full `zc.count` corpus traversal per term. A fresh entry must reach canonical
+term set, never one full `zc.count` corpus traversal per term. **Collision discovery is fail-closed:** the
+selector must load the bounded prior selection manifests plus publication-only receipts through the shared
+union helper, record every contributing path and hash, and require the expected nonzero prior-manifest count.
+An empty or incomplete discovery set, a filename-pattern mismatch, or any selected ID already present in that
+union is a hard failure; code must never construct `hardPass: true` independently of those checks. Independent
+collision review must finish before construction begins. A fresh entry must reach canonical
 construction and a green `pre_review_decile.py --timegate <receipt>` before the construction deadline.
 Independent source-first review ends at 510 seconds; unread candidates are deferred. Corrections end at
 630 seconds; unresolved disagreements move to the complex queue. The merged checkpoint and Windows Git push
