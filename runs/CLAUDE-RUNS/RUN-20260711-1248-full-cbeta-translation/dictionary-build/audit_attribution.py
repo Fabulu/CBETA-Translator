@@ -326,11 +326,13 @@ def anonymous_monk_question_governs_headword(term: str, clause: str) -> bool:
 
 
 def has_exact_actor_context(master: str | None, context_masters: object) -> bool:
-    """Accept a named headword actor only when linked as utterer/verse-author."""
+    """Accept a named headword actor only under its exact closed actor role."""
     return bool(master and isinstance(context_masters, list) and any(
         isinstance(context, dict)
         and context.get("MasterName") == master
-        and set(context.get("Roles") or []) & {"utterer", "verse-author"}
+        and set(context.get("Roles") or []) & {
+            "utterer", "verse-author", "performer", "action-performer"
+        }
         for context in context_masters
     ))
 
@@ -610,7 +612,7 @@ def main() -> int:
                             fail("placeholder_actor_forbidden", entry, f"{term} s{si} {evidence_label} {field}: {value!r}")
                     if actor.get("ActorRole") and actor.get("ActorRole") not in CLOSED_ROLES:
                         fail("invalid_actor_role", entry, f"{term} s{si} o{oi}: {actor.get('ActorRole')!r}")
-                    if status != "identified-unlinked-master" and re.search(
+                    if status not in {"identified-unlinked-master", "identified-non-master"} and re.search(
                         r"master|teacher|禪師|和尚",
                         " ".join(str(actor.get(field) or "") for field in ("Kind", "ActorLabel")),
                         re.IGNORECASE,

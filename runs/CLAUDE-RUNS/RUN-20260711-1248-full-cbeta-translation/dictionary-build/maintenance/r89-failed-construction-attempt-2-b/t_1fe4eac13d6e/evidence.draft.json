@@ -1,0 +1,516 @@
+{
+  "SchemaVersion": 1,
+  "ConstructionPipelineVersion": 2,
+  "Admission": {
+    "Decision": "admit",
+    "LexicalUnitReason": "入門便喝 is a stable expression with repeated active Chan deployments.",
+    "ObservableChanJob": "入門便喝 means shout as soon as someone enters.",
+    "DuplicateCheck": {
+      "DeterministicIdChecked": true,
+      "ExactHeadwordChecked": true,
+      "NearDuplicateRuling": "入門便喝 was checked against the installed dictionary; no exact or punctuation-normalized collision is admitted."
+    }
+  },
+  "EvidenceTransport": {
+    "DossierPath": "source-dossier.json",
+    "DossierSha256": "daf1f410ddf492d542ebd85dc04bc36b8aceb125e7510465e1344181edcd3544",
+    "SourceAuthorityManifestSha256": "2ee44bf19a2533958e5620c38915f3d03fbb81209c76c7183742a4f3d059f501",
+    "DiscoveryMethods": [
+      "exact concordance count",
+      "complete-turn actor review",
+      "Tier 1 then Tier 2 source ranking",
+      "predecessor-evidence adjudication"
+    ],
+    "ExactCount": 386,
+    "BridgedCount": 386,
+    "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+  },
+  "Entry": {
+    "Id": "t_1fe4eac13d6e",
+    "SourceTerm": "入門便喝",
+    "CreatedBy": "R89 source-hierarchy repair",
+    "WrittenUtc": "2026-07-30T10:38:00Z",
+    "Senses": [
+      {
+        "SenseKey": null,
+        "MasterName": null,
+        "PreferredTarget": "shout as soon as someone enters",
+        "AlternateTargets": [
+          "shout on entry"
+        ],
+        "SearchAliases": [
+          "an entry shout"
+        ],
+        "Status": "preferred",
+        "Validation": "multi-source",
+        "Explanation": "The inherited formula for Linji shouting as soon as a visitor enters. One authored work and five recorded-sayings sources actively raise, criticize, or interpret Linji's entry shout beside Deshan's entry blow.",
+        "Note": "These are six later treatments of one inherited action formula, not six historical origins. Linji is the represented action performer; each outer author or master owns only the surrounding use.",
+        "Occurrences": [
+          {
+            "RelPath": "X/X69/X69n1357.xml",
+            "FromLb": "0473b24",
+            "ToLb": "0473c05",
+            "Kwic": "聞禪與道削迹吞聲，猶未是極致，況其餘光影色聲、山河大地、露柱燈籠、眼見耳聞、擔枷抱鎖？豈不見德山入門便棒、臨濟入門便喝、睦州現成公案？子細看來，渠已是入泥入水老婆心切。所以道，若一向舉揚宗教，法堂上須草深一丈，自餘方便門軒，知是",
+            "MasterName": "Yuanwu Keqin",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Yuanwu Keqin",
+                "Roles": [
+                  "utterer",
+                  "commentator",
+                  "record-owner"
+                ]
+              },
+              {
+                "MasterName": "Linji Yixuan",
+                "Roles": [
+                  "case-figure"
+                ]
+              },
+              {
+                "MasterName": "Deshan Xuanjian",
+                "Roles": [
+                  "case-figure"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (X/X69/X69n1357.xml). Essentials of the Mind by Chan Master Foguо Keqin. Exact actor: Yuanwu Keqin. The complete source frame assigns the retained headword-bearing action to Yuanwu Keqin.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "入門便喝",
+              "GrammaticalSubject": "Yuanwu Keqin",
+              "SpeechFrame": "Source record (X/X69/X69n1357.xml). Essentials of the Mind by Chan Master Foguо Keqin. Exact actor: Yuanwu Keqin. The complete source frame assigns the retained headword-bearing action to Yuanwu Keqin.",
+              "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to Yuanwu Keqin."
+            }
+          },
+          {
+            "RelPath": "X/X78/X78n1554.xml",
+            "FromLb": "0611a21",
+            "ToLb": "0611b02",
+            "Kwic": "莫認奴作郎。珍重！示眾：天晴蓋却屋，趂閑刈却禾，輸納王粗了，鼓腹自高歌。僧問：德山入門便棒，猶是起模𦘕樣。臨濟入門便喝，未免揑目生花。離此二途，未審洞山如何為人？師曰：天晴久無雨，近日有雲騰。曰：他日若有人問洞山宗旨，教學人如何",
+            "MasterName": null,
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Dongshan Xiaocong",
+                "Roles": [
+                  "respondent",
+                  "section-subject"
+                ]
+              },
+              {
+                "MasterName": "Linji Yixuan",
+                "Roles": [
+                  "case-figure"
+                ]
+              },
+              {
+                "MasterName": "Deshan Xuanjian",
+                "Roles": [
+                  "case-figure"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (X/X78/X78n1554.xml). Praise of the Orthodox Lineage of the Five Houses. Action performer: the unnamed monk questioning Dongshan Xiaocong. The complete source frame assigns the retained headword-bearing action to the unnamed monk questioning Dongshan Xiaocong.",
+            "ActorAttribution": {
+              "Status": "reviewed-unnamed",
+              "Kind": "person",
+              "ActorLabel": "the unnamed monk questioning Dongshan Xiaocong",
+              "ActorRole": "questioner",
+              "RungsChecked": [
+                "line",
+                "expanded-context",
+                "section-header",
+                "book-title",
+                "tei-header",
+                "parallel-passage"
+              ],
+              "GrammarEvidence": "The complete source frame assigns the retained headword-bearing action to the unnamed monk questioning Dongshan Xiaocong.",
+              "ReviewedBy": "R89 root source-first adjudication",
+              "ReviewedUtc": "2026-07-30T12:23:00Z",
+              "AuthoredVoiceRiskReviewed": true
+            },
+            "DraftActorProof": {
+              "ExactHeadwordClause": "入門便喝",
+              "GrammaticalSubject": "the unnamed monk questioning Dongshan Xiaocong",
+              "SpeechFrame": "Source record (X/X78/X78n1554.xml). Praise of the Orthodox Lineage of the Five Houses. Action performer: the unnamed monk questioning Dongshan Xiaocong. The complete source frame assigns the retained headword-bearing action to the unnamed monk questioning Dongshan Xiaocong.",
+              "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to the unnamed monk questioning Dongshan Xiaocong."
+            }
+          },
+          {
+            "RelPath": "B/B25/B25n0145.xml",
+            "FromLb": "0765b12",
+            "ToLb": "0765b17",
+            "Kwic": "靈照說不難不易。移華兼蝶至買石得雲饒。六祖謂。非風動非幡動仁者心動。瞞人猶自可。自瞞愁殺人。德山入門便棒。臨濟入門便喝。佗得底人其神機智用。如水赴壑。如風行空。語言作略圓轉活脫。雖局局逈異𫨻𫨻不同。要且曲為當人發揮己事。自有佛祖",
+            "MasterName": "Zhongfeng Mingben",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Zhongfeng Mingben",
+                "Roles": [
+                  "utterer",
+                  "record-owner"
+                ]
+              },
+              {
+                "MasterName": "Linji Yixuan",
+                "Roles": [
+                  "case-figure"
+                ]
+              },
+              {
+                "MasterName": "Deshan Xuanjian",
+                "Roles": [
+                  "case-figure"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (B/B25/B25n0145.xml). Extensive Record of Zhongfeng Mingben of Tianmu. Exact actor: Zhongfeng Mingben. The complete source frame assigns the retained headword-bearing action to Zhongfeng Mingben.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "入門便喝",
+              "GrammaticalSubject": "Zhongfeng Mingben",
+              "SpeechFrame": "Source record (B/B25/B25n0145.xml). Extensive Record of Zhongfeng Mingben of Tianmu. Exact actor: Zhongfeng Mingben. The complete source frame assigns the retained headword-bearing action to Zhongfeng Mingben.",
+              "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to Zhongfeng Mingben."
+            }
+          },
+          {
+            "RelPath": "C/C077/C077n1710.xml",
+            "FromLb": "0690c21",
+            "ToLb": "0691a04",
+            "Kwic": "佛當人未悟盤山非心非佛只成戲論之談雪峯輥毬誑諕小兒之作雲門頋鑒咲殺傍觀少室自傷一塲大錯德山入門便棒未遇奇人臨濟入門便喝太殺輕薄黃梅呈頌人我未忘更言祖祖相傳𮞏相誹謗到這裏須是個人始得所以道鷹生鷹子鶻生鶻兒然雖如此也是鞏縣茶瓶乃彈指",
+            "MasterName": "Fenyang Shanzhao",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Fenyang Shanzhao",
+                "Roles": [
+                  "utterer",
+                  "commentator",
+                  "record-owner"
+                ]
+              },
+              {
+                "MasterName": "Linji Yixuan",
+                "Roles": [
+                  "case-figure"
+                ]
+              },
+              {
+                "MasterName": "Deshan Xuanjian",
+                "Roles": [
+                  "case-figure"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (C/C077/C077n1710.xml). Recorded Sayings of Ancient Venerable Masters. Exact actor: Fenyang Shanzhao. The complete source frame assigns the retained headword-bearing action to Fenyang Shanzhao.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "入門便喝",
+              "GrammaticalSubject": "Fenyang Shanzhao",
+              "SpeechFrame": "Source record (C/C077/C077n1710.xml). Recorded Sayings of Ancient Venerable Masters. Exact actor: Fenyang Shanzhao. The complete source frame assigns the retained headword-bearing action to Fenyang Shanzhao.",
+              "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to Fenyang Shanzhao."
+            }
+          },
+          {
+            "RelPath": "J/J10/J10nA158.xml",
+            "FromLb": "0069b28",
+            "ToLb": "0069c02",
+            "Kwic": "此老，看他恁麼舉示，則不專在言句尖新，唯貴提其至要而已。云何至要？不見他室中問僧：「德山見僧入門便棒，臨濟見僧入門便喝，雪峰見僧便道：『是甚麼？』睦州見僧便道：『現成公案，放汝三十棒。』者，四個老漢還有為人處也無？」僧云：「有。",
+            "MasterName": "Miyun Yuanwu",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Miyun Yuanwu",
+                "Roles": [
+                  "utterer",
+                  "commentator",
+                  "record-owner"
+                ]
+              },
+              {
+                "MasterName": "Linji Yixuan",
+                "Roles": [
+                  "case-figure"
+                ]
+              },
+              {
+                "MasterName": "Deshan Xuanjian",
+                "Roles": [
+                  "case-figure"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J10/J10nA158.xml). Recorded Sayings of Chan Master Miyun. Exact actor: Miyun Yuanwu. The complete source frame assigns the retained headword-bearing action to Miyun Yuanwu.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "入門便喝",
+              "GrammaticalSubject": "Miyun Yuanwu",
+              "SpeechFrame": "Source record (J/J10/J10nA158.xml). Recorded Sayings of Chan Master Miyun. Exact actor: Miyun Yuanwu. The complete source frame assigns the retained headword-bearing action to Miyun Yuanwu.",
+              "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to Miyun Yuanwu."
+            }
+          },
+          {
+            "RelPath": "J/J25/J25nB163.xml",
+            "FromLb": "0247c09",
+            "ToLb": "0247c14",
+            "Kwic": "。從上作家宗師能為人者，惟有睦州見你有坐地處，便鏟卻，從頭鏟將去。宗師家，要與學者遞究生死，須是不順人情。臨濟入門便喝，德山入門便棒，學者要到古人田地，也須死得自己一片心地。將古人受苦處，向前一一經歷，莫起一毫半進半退半信半疑之",
+            "MasterName": "Guting Shanjian",
+            "Curated": true,
+            "ContextMasters": [
+              {
+                "MasterName": "Guting Shanjian",
+                "Roles": [
+                  "utterer",
+                  "commentator",
+                  "record-owner"
+                ]
+              },
+              {
+                "MasterName": "Linji Yixuan",
+                "Roles": [
+                  "case-figure"
+                ]
+              },
+              {
+                "MasterName": "Deshan Xuanjian",
+                "Roles": [
+                  "case-figure"
+                ]
+              }
+            ],
+            "ContextActors": [],
+            "AttributionNote": "Source record (J/J25/J25nB163.xml). Selected Record of Chan Master Guting’s Sayings. Exact actor: Guting Shanjian. The complete source frame assigns the retained headword-bearing action to Guting Shanjian.",
+            "DraftActorProof": {
+              "ExactHeadwordClause": "入門便喝",
+              "GrammaticalSubject": "Guting Shanjian",
+              "SpeechFrame": "Source record (J/J25/J25nB163.xml). Selected Record of Chan Master Guting’s Sayings. Exact actor: Guting Shanjian. The complete source frame assigns the retained headword-bearing action to Guting Shanjian.",
+              "FullCaseDecision": "The complete source frame assigns the retained headword-bearing action to Guting Shanjian."
+            }
+          }
+        ],
+        "ClaimAnchors": [],
+        "SourceTexts": [
+          "X/X69/X69n1357.xml",
+          "X/X78/X78n1554.xml",
+          "B/B25/B25n0145.xml",
+          "C/C077/C077n1710.xml",
+          "J/J10/J10nA158.xml",
+          "J/J25/J25nB163.xml"
+        ],
+        "RelatedMasters": [
+          "Yuanwu Keqin",
+          "Linji Yixuan",
+          "Deshan Xuanjian",
+          "Dongshan Xiaocong",
+          "Zhongfeng Mingben",
+          "Fenyang Shanzhao",
+          "Miyun Yuanwu",
+          "Guting Shanjian"
+        ],
+        "RelatedTerms": [],
+        "ExplanationParts": {
+          "CorpusEarnedOpening": "The inherited formula for Linji shouting as soon as a visitor enters.",
+          "EvidenceBody": [
+            "One authored work and five recorded-sayings sources actively raise, criticize, or interpret Linji's entry shout beside Deshan's entry blow."
+          ]
+        },
+        "DraftEvidence": {
+          "LiteralGraphFloor": "shout as soon as someone enters",
+          "LexicalJob": "入門便喝 means shout as soon as someone enters.",
+          "DeploymentClasses": [
+            "authored verse",
+            "direct instruction"
+          ],
+          "HighValueEvidenceLedger": [
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to Yuanwu Keqin.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to the unnamed monk questioning Dongshan Xiaocong.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to Zhongfeng Mingben.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to Fenyang Shanzhao.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to Miyun Yuanwu.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            },
+            {
+              "Disposition": "keep",
+              "Finding": "The complete source frame assigns the retained headword-bearing action to Guting Shanjian.",
+              "Reason": "Independent higher-tier family with exact actor and one governed headword span."
+            }
+          ],
+          "OpeningClaimEvidenceKeys": [
+            "o1",
+            "o2",
+            "o3",
+            "o4",
+            "o5",
+            "o6"
+          ],
+          "EvidenceBodyClaimKeys": [
+            [
+              "o1",
+              "o2",
+              "o3",
+              "o4",
+              "o5",
+              "o6"
+            ]
+          ],
+          "ZenBend": "The inherited formula for Linji shouting as soon as a visitor enters.",
+          "CounterexampleOrLimit": "These are six later treatments of one inherited action formula, not six historical origins. Linji is the represented action performer; each outer author or master owns only the surrounding use.",
+          "DifferentThingTest": {
+            "Decision": "one-thing",
+            "ComparedThings": [
+              "shout as soon as someone enters"
+            ],
+            "Reason": "One lexical job."
+          },
+          "AliasRationale": "Alternates preserve the same lexical job.",
+          "ModifierControls": [
+            {
+              "Term": "入門便喝",
+              "Finding": "No modifier creates a second referent."
+            }
+          ],
+          "FamilyControls": [
+            {
+              "Term": "入門便喝",
+              "Finding": "6 independent higher-tier families meet the floor."
+            }
+          ],
+          "IndependentWorkIds": [
+            "work:X69n1357",
+            "chan:wujia-zhengzong-zan",
+            "work:B25n0145",
+            "work:guzunsu-yulu",
+            "work:J10nA158",
+            "work:J25nB163"
+          ],
+          "SourceAuthorityRows": [
+            {
+              "EvidenceKey": "o1",
+              "RelPath": "X/X69/X69n1357.xml",
+              "WorkId": "work:X69n1357",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "entry-shout:yuanwu-comment",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o2",
+              "RelPath": "X/X78/X78n1554.xml",
+              "WorkId": "chan:wujia-zhengzong-zan",
+              "Tier": 1,
+              "SourceClass": "master-authored",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "entry-shout:dongshan-question",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o3",
+              "RelPath": "B/B25/B25n0145.xml",
+              "WorkId": "work:B25n0145",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "entry-shout:zhongfeng-discourse",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o4",
+              "RelPath": "C/C077/C077n1710.xml",
+              "WorkId": "work:guzunsu-yulu",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "entry-shout:fenyang-critique",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o5",
+              "RelPath": "J/J10/J10nA158.xml",
+              "WorkId": "work:J10nA158",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "entry-shout:miyun-preface",
+              "DeploymentRole": "original-use"
+            },
+            {
+              "EvidenceKey": "o6",
+              "RelPath": "J/J25/J25nB163.xml",
+              "WorkId": "work:J25nB163",
+              "Tier": 2,
+              "SourceClass": "recorded-sayings",
+              "AuthorityReason": "Exact named higher-tier source; complete frame actor-reviewed.",
+              "WitnessFamilyId": "entry-shout:guting-discourse",
+              "DeploymentRole": "original-use"
+            }
+          ],
+          "LampExcessJustification": "No Tier-3 lamp retained.",
+          "NoHigherWitnessSearchReceipt": "Tier 1 searched first, then Tier 2; no lamp needed.",
+          "DepthHarvestReceipt": {
+            "Complete": true,
+            "ReviewedExactHitCount": 386,
+            "AvailableSourceFiles": 144,
+            "SearchedDeploymentClasses": [
+              "authored verse",
+              "direct instruction"
+            ],
+            "OmissionAudit": [
+              "6 retained cases actor-adjudicated.",
+              "No lamp retained."
+            ]
+          }
+        },
+        "DraftAcceptedDerivedFields": {
+          "SourceTexts": [
+            "X/X69/X69n1357.xml",
+            "X/X78/X78n1554.xml",
+            "B/B25/B25n0145.xml",
+            "C/C077/C077n1710.xml",
+            "J/J10/J10nA158.xml",
+            "J/J25/J25nB163.xml"
+          ],
+          "RelatedMasters": [
+            "Yuanwu Keqin",
+            "Linji Yixuan",
+            "Deshan Xuanjian",
+            "Dongshan Xiaocong",
+            "Zhongfeng Mingben",
+            "Fenyang Shanzhao",
+            "Miyun Yuanwu",
+            "Guting Shanjian"
+          ]
+        }
+      }
+    ],
+    "CorpusBaselineSha256": "8ea7e8ab756138567783a1d3f9e01648885c1732a782ba601ba478742adddaff"
+  },
+  "FamilyHarvest": {
+    "PolicyVersion": 1,
+    "Scope": "R89 source-hierarchy repair",
+    "Edges": [],
+    "NegativeReceipt": [],
+    "GraphicVariants": []
+  }
+}

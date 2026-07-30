@@ -1,0 +1,72 @@
+{
+  "schemaVersion": "r89-corrected-source-matrix.v1",
+  "cohort": "R89",
+  "originalClockStartedEpoch": 1785413989.049684,
+  "lateResearchDisclosure": "The frozen extraction completed, but its watchdog failed closed at 132.681 seconds against the 120-second research window. Root authorized same-scope read-only adjudication without a clock reset.",
+  "sourceHierarchy": "Tier 1 proved Zen-master authorship, then Tier 2 recorded sayings, with Tier 3 lamps only as a useful last option and never as padding.",
+  "registryTierRuling": "Product SourceAuthorityRows must bind the frozen authority registry. That registry classifies X63n1257 and X69n1357 as Tier 1. The earlier source-history adjudication treated their recorded/compiled form more conservatively as Tier 2; this metadata correction changes no witness, actor, deployment, or semantic claim.",
+  "rows": [
+    {
+      "id": "t_1e41b014d80e",
+      "term": "向上一路",
+      "preferredTarget": "the road beyond",
+      "alternateTargets": ["the one road upward"],
+      "senseRuling": "One corpus-wide sense. Formula, direct question, and beyond-awakening uses name the same further route or coordinate; they are deployments, not different things.",
+      "retained": [
+        {"relPath":"X/X63/X63n1257.xml","fromLb":"0767a21","workId":"work:X63n1257","tier":1,"exactActor":"Wuyi Yuanlai","deployment":"direct recorded discourse says that after entering the gate, the road beyond must be seen for oneself"},
+        {"relPath":"X/X63/X63n1259.xml","fromLb":"0782b01","workId":"work:X63n1259","tier":1,"exactActor":"Huishan Jiexian","deployment":"authored section opens with the thousand-sages formula and develops it beyond speech and understanding"},
+        {"relPath":"X/X64/X64n1276.xml","fromLb":"0813a16","workId":"work:X64n1276","tier":1,"exactActor":"Tianze","actorStatus":"identified-unlinked-master unless the canonical roster alias resolves","deployment":"authorial argument calls it the ancestral gate's road beyond; do not assign the following 師 turn"},
+        {"relPath":"X/X69/X69n1357.xml","fromLb":"0484a12","workId":"work:X69n1357","tier":1,"exactActor":"Yuanwu Keqin","deployment":"compiled recorded instruction actively raises the formula and explains its non-transmission"},
+        {"relPath":"B/B27/B27n0152.xml","fromLb":"0519a03","workId":"work:B27n0152","tier":2,"exactActor":"Yulin Tongxiu","deployment":"hall address names what remains beyond even complete awakening as the road beyond and final barrier"},
+        {"relPath":"C/C077/C077n1710.xml","fromLb":"0655a14","workId":"work:guzunsu-yulu","tier":2,"exactActor":null,"actorStatus":"reviewed-unnamed non-master questioner; all six rungs required","contextActors":[{"name":"Muzhou Daoming","role":"respondent"},{"name":"Muzhou Daoming","role":"section-subject"},{"name":"Muzhou Daoming","role":"record-owner"}],"deployment":"direct question asks what the road beyond is"},
+        {"relPath":"J/J10/J10nA158.xml","fromLb":"0002c17","workId":"work:J10nA158","tier":2,"exactActor":"Miyun Yuanwu","deployment":"own hall address actively raises the thousand-sages formula and answers it"}
+      ],
+      "excluded": [
+        {"relPath":"T/T48/T48n2016.xml","reason":"Yongming Yanshou passively quotes Panshan Baoji's inherited line; Panshan is the exact quoted actor and the family is redundant"},
+        {"relPath":"X/X78/X78n1554.xml","reason":"biographical praise preserves inherited material rather than adding an independent semantic deployment"},
+        {"relPath":"D/D51/D51n8948.xml","reason":"narrator-governed occurrence around a layman's death material is weaker and semantically ambiguous"}
+      ]
+    },
+    {
+      "id": "t_1f3653f30389",
+      "term": "抱子弄孫",
+      "preferredTarget": "hold one's children and amuse one's grandchildren",
+      "alternateTargets": ["family life with children and grandchildren"],
+      "senseRuling": "One ordinary-life sense. Masters use household family activity to show the immediate road or Buddha-work in everyday lay life; this is not a separate technical object.",
+      "retained": [
+        {"relPath":"J/J26/J26nB188.xml","fromLb":"0808a03","workId":"work:J26nB188","tier":2,"exactActor":"Ruibai Mingxue","deployment":"direct letter says receiving guests and tending children and grandchildren are themselves the shortcut and guide"},
+        {"relPath":"J/J27/J27nB190.xml","fromLb":"0104a09","workId":"work:J27nB190","tier":2,"exactActor":"Shiyu Mingfang","deployment":"hall address returns from extraordinary action to the household, children, grandchildren, servants, and the still-present Vulture Peak assembly"},
+        {"relPath":"J/J27/J27nB196.xml","fromLb":"0382a17","workId":"work:J27nB196","tier":2,"exactActor":"Yuanhu Miaoyong","deployment":"direct letter says that once one's original matter is understood, tending children and grandchildren is itself Buddha-work"},
+        {"relPath":"J/J28/J28nB211.xml","fromLb":"0469b16","workId":"work:J28nB211","tier":2,"exactActor":"Jizong Che","deployment":"direct letter says one may recognize it amid receiving guests, children and grandchildren, and ordinary movement"}
+      ],
+      "excluded": [
+        {"relPath":"J/J27/J27nB198.xml","reason":"the headword occurs inside quoted lay correspondent Li Bing's letter and is then commented on; unnecessary when four cleaner direct master deployments meet the floor"},
+        {"relPath":"J/J25/J25nB171.xml","reason":"direct verse is usable but less lexically explicit than the retained prose deployments"},
+        {"relPath":"J/J29/J29nB223.xml","reason":"direct letter is usable reserve evidence after the floor is already met"}
+      ]
+    },
+    {
+      "id": "t_1fe4eac13d6e",
+      "term": "入門便喝",
+      "preferredTarget": "shout as soon as someone enters",
+      "alternateTargets": ["shout on entry"],
+      "senseRuling": "One entry-shout action. Six witnesses actively treat Linji's inherited action formula, while two actor-clear operational extensions ask how to answer such a shout or name entry shouting generically. Those extensions prove the lexical unit is the full clause, not a substring dependent on adjacent 臨濟.",
+      "retained": [
+        {"relPath":"X/X69/X69n1357.xml","fromLb":"0473c03","workId":"work:X69n1357","tier":1,"exactActor":"Yuanwu Keqin","representedActor":"Linji Yixuan","deployment":"recorded instruction actively invokes Deshan's entry blow and Linji's entry shout as compassionate expedients"},
+        {"relPath":"X/X78/X78n1554.xml","fromLb":"0611a23","workId":"chan:wujia-zhengzong-zan","tier":1,"exactActor":null,"actorStatus":"reviewed-unnamed non-master questioner; all six rungs required","representedActor":"Linji Yixuan","deployment":"a direct question criticizes the inherited entry shout before asking how Dongshan teaches apart from the two routes"},
+        {"relPath":"B/B25/B25n0145.xml","fromLb":"0765b15","workId":"work:B25n0145","tier":2,"exactActor":"Zhongfeng Mingben","representedActor":"Linji Yixuan","deployment":"direct discourse uses Deshan's blow and Linji's shout to characterize responsive function that develops a person's own matter"},
+        {"relPath":"C/C077/C077n1710.xml","fromLb":"0690c24","workId":"work:guzunsu-yulu","tier":2,"exactActor":"Fenyang Shanzhao","contextActors":[{"name":"Linji Yixuan","role":"case-figure"},{"name":"Deshan Xuanjian","role":"case-figure"}],"actorProof":"The headword is in a 示眾 paragraph inside the level-1 汾陽昭禪師語錄 section beginning at lb 0682a05; the section biography names 太子院善昭禪師. The same discourse calls 汾陽 in the first person elsewhere. The exact actor is therefore roster-canonical Fenyang Shanzhao, not Linji.","representedActor":"Linji Yixuan","deployment":"direct hall address actively criticizes the inherited entry shout as too frivolous"},
+        {"relPath":"J/J10/J10nA158.xml","fromLb":"0069b30","workId":"work:J10nA158","tier":2,"exactActor":"Miyun Yuanwu","representedActor":"Linji Yixuan","deployment":"own preface actively raises the four inherited entry actions and explains the urgent work of blows and shouts"},
+        {"relPath":"J/J25/J25nB163.xml","fromLb":"0247c12","workId":"work:J25nB163","tier":2,"exactActor":"Guting Shanjian","representedActor":"Linji Yixuan","deployment":"direct discourse says Linji's shout and Deshan's blow do not accommodate human sentiment and require the student's own life-and-death work"},
+        {"relPath":"B/B27/B27n0152.xml","fromLb":"0539b11","workId":"work:B27n0152","tier":2,"exactActor":"Yulin Tongxiu","deployment":"direct hall address names entry shouting or beating as an operational extension without the adjacent name Linji"},
+        {"relPath":"J/J25/J25nB171.xml","fromLb":"0519a04","workId":"work:J25nB171","tier":2,"exactActor":null,"actorStatus":"identified-non-master","actorLabel":"Lin Xuan, the named non-master questioner","deployment":"Lin Xuan asks how one should respond to an entry shout; Tianyin Yuanxiu answers"}
+      ],
+      "excluded": [
+        {"relPath":"T/T48/T48n2019A.xml","reason":"the non-Chinese authorial/source boundary is unsuitable to control a Chinese Zen-record entry, and the inherited formula is amply attested in stronger Chinese Zen-record treatments and actor-clear operational extensions"}
+      ]
+    }
+  ],
+  "retainedTotals": {"tier1":6,"tier2":13,"tier3":0,"occurrences":19,"works":19},
+  "constructionHold": "All three canonical paths preexisted. Construction remains forbidden until root accepts this matrix and a hash-bound recoverable quarantine manifest hard-passes.",
+  "lineageTouched": false
+}

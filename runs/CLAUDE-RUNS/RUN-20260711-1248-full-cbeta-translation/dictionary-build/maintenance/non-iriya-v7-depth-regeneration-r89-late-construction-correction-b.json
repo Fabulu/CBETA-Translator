@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "r89-authorized-late-construction-correction.v1",
+  "cohort": "R89",
+  "ids": [
+    "t_1e41b014d80e",
+    "t_1f3653f30389",
+    "t_1fe4eac13d6e"
+  ],
+  "authorization": "Root authorized a bounded transparent late-construction correction for the same frozen R89 config and IDs.",
+  "watchdogFailure": "research extraction failed closed at 132.681s > 120s; root authorized an exact-hash, same-three-ID late continuation on the original clock; config construction was further delayed by a missing review-binding preflight and the required tested late-receipt validator",
+  "configPath": "/mnt/c/programmieren/MergeWorkCbeta/CBETA-Translator/runs/CLAUDE-RUNS/RUN-20260711-1248-full-cbeta-translation/dictionary-build/maintenance/non-iriya-v7-depth-regeneration-r89-constructor-config-b.json",
+  "configSha256": "321ffcbab73b3a3432929ff987fbc6a1a74889352b727e55bbf8bbecece5c5b7",
+  "rows": [
+    {
+      "id": "t_1e41b014d80e",
+      "term": "向上一路",
+      "dossierSha256": "d7d875ffdafc62d2d526e25cad111e89f5958fbce5650d194c4f0c63df9ce82c",
+      "worksheetSha256": "a7724be844d85cb4fbea8fabf1d9110af0865d727e7e04c68ccdee35ac009f0e",
+      "productSha256": "863003e24806f351dc269d72c20603da52cf569cbff9cdbf807709694b4a1176",
+      "compileReportSha256": "078d92d10aff1c8346de1108669b7eee38125ed328e05e2d4ec18ee842eb1b74",
+      "workSha256": "144ab7b9d29ec0c004539b6fb13e46ccbb2085b9924f7df118179da34b1f4723"
+    },
+    {
+      "id": "t_1f3653f30389",
+      "term": "抱子弄孫",
+      "dossierSha256": "afba35b1a9c29889c97dc8e31ea84e4a8af73895fc6ea6ab9d881a852cb5d4ba",
+      "worksheetSha256": "e747e3576633024f0188a1e920989491ec94e1d02d7493e99d68139ed2b7d5d3",
+      "productSha256": "527dd956e5d008187b3e08b0d8875c328846b4dd2c1f0fd96064a45a894774a4",
+      "compileReportSha256": "6c6de881c12d6dfcaef8f59648b4184b99a345f3dd122e36d42b1e0fd616c74d",
+      "workSha256": "085034dbcc5fbd51bcc451570ad802cb186b6355c99bf97372ad3110efb790fb"
+    },
+    {
+      "id": "t_1fe4eac13d6e",
+      "term": "入門便喝",
+      "dossierSha256": "6e05206ab22f2cdad8d555198621f5fc05d9439f036c594c311878711371b331",
+      "worksheetSha256": "20d8068e6e0262b02491aa2800239c51eb82338d2ce681bd8499083db65a8810",
+      "productSha256": "5ed1a64c1e328f2b2bfe87c5ef67bc9e68ef9ec658174ce27a7d0feee3f69be5",
+      "compileReportSha256": "89f8bf315a00ce80f666d32dbd96f68647fa0a61f8f4b0bb3971708843725bd3",
+      "workSha256": "ef4f054e671b8bb3925ff2b5f254de62047925e910f166ca34ae66a9d4dea2a6"
+    }
+  ],
+  "manifestSha256": "c21016215ab7ad382cb9862f9ad754c23865abcb38fd84838be55acf3465fe8a",
+  "preclosureSha256": "94fcde0687a6e3506987c9e657983aed882ad30a8e535bc5fc847520e10e50d3",
+  "closureSha256": "716142143eab9db6c173c4d6e494bd9c40495dc78f8e84b24984472c61731cb7",
+  "elapsedSeconds": 1100.1672339439392,
+  "deadlineExceeded": true,
+  "hardPass": true,
+  "publicMutation": false
+}
